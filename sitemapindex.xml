@@ -5,27 +5,27 @@
     xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
                         http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
  <sitemap>
-  <loc>kirbyfan64.github.io/kirbyfan64.github.io/categories/build-system.xml</loc>
+  <loc>http://kirbyfan64.github.io/categories/build-system.xml</loc>
   <lastmod>2014-08-01</lastmod>
  </sitemap>
  <sitemap>
-  <loc>kirbyfan64.github.io/kirbyfan64.github.io/categories/tutorial.xml</loc>
+  <loc>http://kirbyfan64.github.io/categories/tutorial.xml</loc>
   <lastmod>2014-08-01</lastmod>
  </sitemap>
  <sitemap>
-  <loc>kirbyfan64.github.io/kirbyfan64.github.io/galleries/rss.xml</loc>
-  <lastmod>2014-08-01</lastmod>
+  <loc>http://kirbyfan64.github.io/galleries/rss.xml</loc>
+  <lastmod>2014-09-16</lastmod>
  </sitemap>
  <sitemap>
-  <loc>kirbyfan64.github.io/kirbyfan64.github.io/rss.xml</loc>
-  <lastmod>2014-08-01</lastmod>
+  <loc>http://kirbyfan64.github.io/rss.xml</loc>
+  <lastmod>2014-09-16</lastmod>
  </sitemap>
  <sitemap>
-  <loc>kirbyfan64.github.io/kirbyfan64.github.io/sitemap.xml</loc>
-  <lastmod>2014-08-01</lastmod>
+  <loc>http://kirbyfan64.github.io/sitemap.xml</loc>
+  <lastmod>2014-09-16</lastmod>
  </sitemap>
  <sitemap>
-  <loc>kirbyfan64.github.io/kirbyfan64.github.io/sitemapindex.xml</loc>
+  <loc>http://kirbyfan64.github.io/sitemapindex.xml</loc>
   <lastmod>2014-08-01</lastmod>
  </sitemap>
 </sitemapindex>
