@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset
+    xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+                        http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+ <url>
+  <loc>kirbyfan64.github.io/kirbyfan64.github.io/2014/index.html</loc>
+  <lastmod>2014-08-01</lastmod>
+ </url>
+ <url>
+  <loc>kirbyfan64.github.io/kirbyfan64.github.io/archive.html</loc>
+  <lastmod>2014-08-01</lastmod>
+ </url>
+ <url>
+  <loc>kirbyfan64.github.io/kirbyfan64.github.io/categories/build-system.html</loc>
+  <lastmod>2014-08-01</lastmod>
+ </url>
+ <url>
+  <loc>kirbyfan64.github.io/kirbyfan64.github.io/categories/index.html</loc>
+  <lastmod>2014-08-01</lastmod>
+ </url>
+ <url>
+  <loc>kirbyfan64.github.io/kirbyfan64.github.io/categories/tutorial.html</loc>
+  <lastmod>2014-08-01</lastmod>
+ </url>
+ <url>
+  <loc>kirbyfan64.github.io/kirbyfan64.github.io/galleries/index.html</loc>
+  <lastmod>2014-08-01</lastmod>
+ </url>
+ <url>
+  <loc>kirbyfan64.github.io/kirbyfan64.github.io/index.html</loc>
+  <lastmod>2014-08-01</lastmod>
+ </url>
+ <url>
+  <loc>kirbyfan64.github.io/kirbyfan64.github.io/listings/index.html</loc>
+  <lastmod>2014-08-01</lastmod>
+ </url>
+ <url>
+  <loc>kirbyfan64.github.io/kirbyfan64.github.io/posts/gyp-tutorial.html</loc>
+  <lastmod>2014-08-01</lastmod>
+ </url>
+</urlset>
