@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/"><channel><title>BlockByte (c preprocessor hack)</title><link>http://kirbyfan64.github.io/</link><description></description><language>en</language><lastBuildDate>Tue, 16 Sep 2014 18:57:24 GMT</lastBuildDate><generator>http://getnikola.com/</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Overloading functions with the C preprocessor</title><link>http://kirbyfan64.github.io/posts/overloading-functions-with-the-c-preprocessor.html</link><dc:creator>Ryan Gonzalez</dc:creator><description>&lt;p&gt;Let's have an imaginary scenario: you're trying to make a library that has a special function, &lt;em&gt;myfunc&lt;/em&gt;. Now, this functions needs to have two possible ways to invoke it. One way takes one int parameter, the other takes two. Here's how you might do that in C++:&lt;/p&gt;
+&lt;pre class="code c++ literal-block"&gt;
+&lt;span class="kt"&gt;void&lt;/span&gt; &lt;span class="nf"&gt;myfunc&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kt"&gt;int&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;span class="kt"&gt;void&lt;/span&gt; &lt;span class="nf"&gt;myfunc&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kt"&gt;int&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="kt"&gt;int&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;/pre&gt;
+&lt;p&gt;C doesn't have a way to do this. You'll often see code like this:&lt;/p&gt;
+&lt;pre class="code c literal-block"&gt;
+&lt;span class="kt"&gt;void&lt;/span&gt; &lt;span class="nf"&gt;myfunc_1&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kt"&gt;int&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;span class="kt"&gt;void&lt;/span&gt; &lt;span class="nf"&gt;myfunc_2&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kt"&gt;int&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="kt"&gt;int&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;/pre&gt;
+&lt;p&gt;However, this &lt;em&gt;can&lt;/em&gt; be implemented, albeit in a slightly convulted way using a very controversial tool: the C preprocessor.&lt;/p&gt;
+&lt;p&gt;&lt;a href="http://kirbyfan64.github.io/posts/overloading-functions-with-the-c-preprocessor.html"&gt;Read more…&lt;/a&gt; (2 min remaining to read)&lt;/p&gt;</description><category>c preprocessor hack</category><guid>http://kirbyfan64.github.io/posts/overloading-functions-with-the-c-preprocessor.html</guid><pubDate>Tue, 16 Sep 2014 01:42:34 GMT</pubDate></item></channel></rss>

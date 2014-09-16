@@ -1,7 +1,7 @@
 .. title: Overloading functions with the C preprocessor
 .. slug: overloading-functions-with-the-c-preprocessor
 .. date: 2014-09-15 20:42:34 UTC-05:00
-.. tags: 
+.. tags: c preprocessor hack
 .. link: 
 .. description: 
 .. type: text
@@ -28,7 +28,7 @@ However, this *can* be implemented, albeit in a slightly convulted way using a v
    
    This is a very messy method that is bound to cause confusion. Do not use this is real production code. Ever. At all.
 
-Here's the in `myfunc.h`:
+Here's the code in `myfunc.h`:
 
 .. code:: c
    
