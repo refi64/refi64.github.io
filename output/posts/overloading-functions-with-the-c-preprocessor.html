@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html prefix="og: http://ogp.me/ns# article: http://ogp.me/ns/article# " lang="en">
+    <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Overloading functions with the C preprocessor | BlockByte</title>
+
+    
+            <link href="../assets/css/all-nocdn.css" rel="stylesheet" type="text/css">
+
+    
+            <link rel="alternate" type="application/rss+xml" title="RSS" href="../rss.xml">
+
+      <link rel="canonical" href="kirbyfan64.github.io/posts/overloading-functions-with-the-c-preprocessor.html">
+
+
+
+    
+        <!--[if lt IE 9]><script src="/assets/js/html5.js"></script><![endif]-->
+
+    
+
+
+    
+
+    <meta name="author" content="Ryan Gonzalez">
+    
+        <meta name="og:title" content="Overloading functions with the C preprocessor">
+        <meta name="og:url" content="kirbyfan64.github.io/posts/overloading-functions-with-the-c-preprocessor.html">
+            <meta name="og:description" content="Let's have an imaginary scenario: you're trying to make a library that has a special function, myfunc. Now, this functions needs to have two possible ways to invoke it. One way takes one int parameter">
+        <meta name="og:site_name" content="BlockByte">
+        <meta name="og:type" content="article">
+
+    
+
+    
+
+
+
+</head>
+<body>
+
+<!-- Menubar -->
+
+<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="container">
+<!-- This keeps the margins nice -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="kirbyfan64.github.io/">
+
+                <span id="blog-title">BlockByte</span>
+            </a>
+        </div>
+<!-- /.navbar-header -->
+        <div class="collapse navbar-collapse navbar-ex1-collapse">
+            <ul class="nav navbar-nav">
+                
+                <li>
+<a href="../archive.html">Archive</a>
+                </li>
+<li>
+<a href="../categories/index.html">Tags</a>
+                </li>
+<li>
+<a href="../rss.xml">RSS feed</a>
+
+                
+            </li>
+</ul>
+
+            <ul class="nav navbar-nav navbar-right">
+                
+                
+                    
+    <li>
+    <a href="overloading-functions-with-the-c-preprocessor.rst" id="sourcelink">Source</a>
+    </li>
+
+                
+            </ul>
+        </div>
+<!-- /.navbar-collapse -->
+    </div>
+<!-- /.container -->
+</nav>
+
+<!-- End of Menubar -->
+
+<div class="container">
+    <div class="body-content">
+        <!--Body content-->
+        <div class="row">
+            
+            
+<article class="post-text h-entry hentry postpage" itemscope="itemscope" itemtype="http://schema.org/Article">
+    
+    <header>
+        
+    <h1 class="p-name entry-title" itemprop="headline name"><a href="#" class="u-url">Overloading functions with the C preprocessor</a></h1>
+
+        <div class="metadata">
+            <p class="byline author vcard"><span class="byline-name fn">Ryan Gonzalez</span></p>
+            <p class="dateline"><a href="#" rel="bookmark"><time class="published dt-published" datetime="2014-09-15T20:42:34-05:00" itemprop="datePublished" title="Publication date">2014-09-15 20:42</time></a></p>
+                <p class="commentline">
+        
+    <a href="overloading-functions-with-the-c-preprocessor.html#disqus_thread" data-disqus-identifier="cache/posts/overloading-functions-with-the-c-preprocessor.html">Comments</a>
+
+
+            
+        </p>
+<p class="sourceline"><a href="overloading-functions-with-the-c-preprocessor.rst" id="sourcelink">Source</a></p>
+
+        </div>
+        
+
+    </header>
+
+    <div class="e-content entry-content" itemprop="articleBody text">
+    <p>Let's have an imaginary scenario: you're trying to make a library that has a special function, <em>myfunc</em>. Now, this functions needs to have two possible ways to invoke it. One way takes one int parameter, the other takes two. Here's how you might do that in C++:</p>
+<pre class="code c++ literal-block">
+<span class="kt">void</span> <span class="nf">myfunc</span><span class="p">(</span><span class="kt">int</span><span class="p">);</span>
+<span class="kt">void</span> <span class="nf">myfunc</span><span class="p">(</span><span class="kt">int</span><span class="p">,</span> <span class="kt">int</span><span class="p">);</span>
+</pre>
+<p>C doesn't have a way to do this. You'll often see code like this:</p>
+<pre class="code c literal-block">
+<span class="kt">void</span> <span class="nf">myfunc_1</span><span class="p">(</span><span class="kt">int</span><span class="p">);</span>
+<span class="kt">void</span> <span class="nf">myfunc_2</span><span class="p">(</span><span class="kt">int</span><span class="p">,</span> <span class="kt">int</span><span class="p">);</span>
+</pre>
+<p>However, this <em>can</em> be implemented, albeit in a slightly convulted way using a very controversial tool: the C preprocessor.</p>
+<!-- TEASER_END -->
+<div class="warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">This is a very messy method that is bound to cause confusion. Do not use this is real production code. Ever. At all.</p>
+</div>
+<p>Here's the in <cite>myfunc.h</cite>:</p>
+<pre class="code c literal-block">
+<span class="cp">#ifndef MYFUNC_H
+#define MYFUNC_H
+</span>
+<span class="kt">void</span> <span class="nf">_myfunc_1</span><span class="p">(</span><span class="kt">int</span> <span class="n">a</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">puts</span><span class="p">(</span><span class="s">"Got 1 arg"</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="nf">_myfunc_2</span><span class="p">(</span><span class="kt">int</span> <span class="n">a</span><span class="p">,</span> <span class="kt">int</span> <span class="n">b</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">puts</span><span class="p">(</span><span class="s">"Got 2 args"</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="cp">#define _MYFUNC_SEL(_1, _2, _3, ...) _3
+#define myfunc(...) _MYFUNC_SEL(__VA_ARGS__, _myfunc_2, _myfunc_1)(__VA_ARGS__)
+</span>
+<span class="cp">#endif </span><span class="c1">// MYFUNC_H
+</span>
+</pre>
+<p>and the main file:</p>
+<pre class="code c literal-block">
+<span class="cp">#include "myfunc.h"
+</span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="n">myfunc</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span> <span class="c1">// Got 1 arg
+</span>    <span class="n">myfunc</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">);</span> <span class="c1">// Got 2 args
+</span>    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre>
+<p>What's going on here? The easiest way to see is to look at what happens in the preprocessor.</p>
+<p>The first call (<cite>myfunc(1)</cite>) expands to this:</p>
+<pre class="code c literal-block">
+<span class="n">_MYFUNC_SEL</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">_myfunc_2</span><span class="p">,</span> <span class="n">_myfunc_1</span><span class="p">)(</span><span class="mi">1</span><span class="p">)</span>
+</pre>
+<p>Remember, <cite>__VA_ARGS__</cite> expands to the <cite>...</cite> arguments. The <cite>_MYFUNC_SEL</cite> macro takes returns the third argument, <cite>_myfunc_1</cite>. Therefore, the expansion is ends up being:</p>
+<pre class="code c literal-block">
+<span class="n">_myfunc_1</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+</pre>
+<p>The second call (<cite>myfunc(1, 2)</cite>) expands to this:</p>
+<pre class="code c literal-block">
+<span class="n">_MYFUNC_SEL</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">_myfunc_2</span><span class="p">,</span> <span class="n">_myfunc_1</span><span class="p">)(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+</pre>
+<p>Again, <cite>_MYFUNC_SEL</cite> returns the third argument, which, in this case, is <cite>_myfunc_2</cite>.</p>
+<p>Now you're probably beginning to realize how simple the underlying logic is.</p>
+<p>However, what if you need to overload by types instead? In C11, that's easily possible using the <cite>_Generic</cite> feature. See <a class="reference external" href="http://www.robertgamble.net/2012/01/c11-generic-selections.html">this</a> for more info. Here's the new <cite>myfunc.h</cite>:</p>
+<pre class="code c literal-block">
+<span class="cp">#ifndef MYFUNC_H
+#define MYFUNC_H
+</span>
+<span class="kt">void</span> <span class="nf">_myfunc_1_int</span><span class="p">(</span><span class="kt">int</span> <span class="n">a</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">puts</span><span class="p">(</span><span class="s">"Got 1 int"</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="nf">_myfunc_1_void</span><span class="p">(</span><span class="kt">void</span><span class="o">*</span> <span class="n">x</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">puts</span><span class="p">(</span><span class="s">"Got 1 pointer"</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="nf">_myfunc_2</span><span class="p">(</span><span class="kt">int</span> <span class="n">a</span><span class="p">,</span> <span class="kt">int</span> <span class="n">b</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">puts</span><span class="p">(</span><span class="s">"Got 2 args"</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="cp">#define _MYFUNC_1(x) _Generic((x), int: _myfunc_1_int, void*: _myfunc_1_void)(x)
+#define _MYFUNC_SEL(_1, _2, _3, ...) _3
+#define myfunc(...) _MYFUNC_SEL(__VA_ARGS__, _myfunc_2, _MYFUNC_1)(__VA_ARGS__)
+</span>
+<span class="cp">#endif </span><span class="c1">// MYFUNC_H
+</span>
+</pre>
+<p>and the new main source file:</p>
+<pre class="code c literal-block">
+<span class="cp">#include "myfunc.h"
+</span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="n">myfunc</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span> <span class="c1">// Got 1 int
+</span>    <span class="n">myfunc</span><span class="p">((</span><span class="kt">void</span><span class="o">*</span><span class="p">)</span><span class="nb">NULL</span><span class="p">);</span> <span class="c1">// Got 1 pointer
+</span>    <span class="n">myfunc</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">);</span> <span class="c1">// Got 2 args
+</span>    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre>
+<p>Let's review the expansion process:</p>
+<pre class="code c literal-block">
+<span class="n">myfunc</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">_MYFUNC_SEL</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">_myfunc_2</span><span class="p">,</span> <span class="n">_MYFUNC_1</span><span class="p">)(</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">_MYFUNC_1</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">_Generic</span><span class="p">((</span><span class="mi">1</span><span class="p">),</span> <span class="kt">int</span><span class="o">:</span> <span class="n">_myfunc_1_int</span><span class="p">,</span> <span class="kt">void</span><span class="o">*:</span> <span class="n">_myfunc_1_void</span><span class="p">)(</span><span class="mi">1</span><span class="p">)</span>
+</pre>
+<p>Now, the <cite>_Generic</cite> function basically is like pattern-matching on types. (See the linked article above for more info.) The <cite>_Generic</cite> evaluates to:</p>
+<pre class="code c literal-block">
+<span class="n">_myfunc_1_int</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+</pre>
+<p>See how the magic works?</p>
+<p>All in all, you can see how much you can do with the preprocessor. Just don't abuse it, because the error messages kind of...well...suck. I'll put a way to get better errors in a future post.</p>
+    </div>
+    <aside class="postpromonav">
+    <nav>
+    
+
+    
+        <ul class="pager">
+            <li class="previous">
+                <a href="welcome.html" rel="prev" title="Welcome!">Previous post</a>
+            </li>
+        </ul>
+
+    </nav>
+    </aside>
+        <section class="comments">
+        <h2>Comments</h2>
+        
+        
+        <div id="disqus_thread"></div>
+        <script>
+        var disqus_shortname ="blockbyte",
+            disqus_url="kirbyfan64.github.io/posts/overloading-functions-with-the-c-preprocessor.html",
+        disqus_title="Overloading functions with the C preprocessor",
+        disqus_identifier="cache/posts/overloading-functions-with-the-c-preprocessor.html",
+        disqus_config = function () {
+            this.language = "en";
+        };
+        (function() {
+            var dsq = document.createElement('script'); dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a>
+</noscript>
+    <a href="//disqus.com" class="dsq-brlink" rel="nofollow">Comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+        </section>
+    
+
+</article>
+
+        
+       <script>var disqus_shortname="blockbyte";(function(){var a=document.createElement("script");a.async=true;a.src="//"+disqus_shortname+".disqus.com/count.js";(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(a)}());</script>
+
+
+
+        </div>
+        <!--End of body content-->
+
+        <footer>
+            Contents © 2014         <a href="mailto:rymg19@gmail.com">Ryan Gonzalez</a> - Powered by         <a href="http://getnikola.com" rel="nofollow">Nikola</a>         
+            
+        </footer>
+    </div>
+</div>
+
+
+            <script src="../assets/js/all-nocdn.js"></script>
+    
+<!-- Social buttons -->
+<div id="addthisbox" class="addthis_toolbox addthis_peekaboo_style addthis_default_style addthis_label_style addthis_32x32_style">
+<a class="addthis_button_more">Share</a>
+<ul>
+<li>
+<a class="addthis_button_facebook"></a>
+</li>
+<li>
+<a class="addthis_button_google_plusone_share"></a>
+</li>
+<li>
+<a class="addthis_button_linkedin"></a>
+</li>
+<li>
+<a class="addthis_button_twitter"></a>
+</li>
+</ul>
+</div>
+<script src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-4f7088a56bb93798"></script>
+<!-- End of social buttons -->
+
+
+    <script>jQuery("a.image-reference").colorbox({rel:"gal",maxWidth:"100%",maxHeight:"100%",scalePhotos:true});</script>
+    
+
+
+</body>
+</html>
