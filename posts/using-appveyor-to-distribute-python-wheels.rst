@@ -1,7 +1,7 @@
 .. title: Using AppVeyor to distribute Python wheels
 .. slug: using-appveyor-to-distribute-python-wheels
 .. date: 2014-09-21 17:02:14 UTC-05:00
-.. tags: 
+.. tags: python, wheels, appveyor, ci
 .. link: 
 .. description: 
 .. type: text
