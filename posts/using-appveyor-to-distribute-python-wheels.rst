@@ -1,0 +1,73 @@
+.. title: Using AppVeyor to distribute Python wheels
+.. slug: using-appveyor-to-distribute-python-wheels
+.. date: 2014-09-21 17:02:14 UTC-05:00
+.. tags: 
+.. link: 
+.. description: 
+.. type: text
+
+`Wheels <http://wheel.readthedocs.org/en/latest/>`_ are the future of distribution. No more messy broken `setup.py` scripts or needed a compiler for C extensions! Of course, this has a glaring issue: a Linux user can't build Wheels of their C extension for Windows. Unless, of course, you use `Travis CI <https://travis-ci.org/>`_, install the MinGW compilers, define the compiler variables, etc. However, there is an easier way: `AppVeyor <www.appveyor.com>`_.
+
+.. TEASER_END
+
+AppVeyor uses a simple configuration file that uses YAML. Here is what the config file for your project might look like:
+
+.. code:: yaml
+   
+   install:
+     - ps: (new-object net.webclient).DownloadFile('https://raw.github.com/pypa/pip/master/contrib/get-pip.py', 'C:/get-pip.py')
+     - C:/Python34/python.exe C:/get-pip.py
+     - C:/Python34/Scripts/pip.exe install wheel
+   build_script:
+     - python setup.py build
+   test_script:
+     - C:/Python34/Scripts/py.test
+   deploy_script:
+     - python setup.py sdist bdist_wheel upload
+
+It goes into a file named `appveyor.yml`. Here's what's going on, one piece at a time:
+
+.. code:: yaml
+   
+   install:
+
+The `install` section defines commands to run for installation.
+
+.. code:: yaml
+   
+     - ps: (new-object net.webclient).DownloadFile('https://raw.github.com/pypa/pip/master/contrib/get-pip.py', 'C:/get-pip.py')
+     - C:/Python34/python.exe C:/get-pip.py
+
+These two lines install `pip`. The first uses PowerShell to download the install script; the second runs it.
+
+.. code:: yaml
+   
+     - .. code:: yaml
+   
+     - C:/Python34/Scripts/pip.exe install wheel
+     - C:/Python34/Scripts/pip.exe install pytest
+
+The first line installs wheel. The second is optional; it just installs pytest (a unit testing framework). I put it here as an example of installing other packages with `pip`.
+
+.. code:: yaml
+   
+   build_script:
+     - C:/Python34/python.exe setup.py build
+
+The commands to build your Python project go here.
+
+.. code:: yaml
+   
+   test_script:
+     - C:/Python34/Scripts/py.test
+
+Whatever you do to run your project tests go here.
+
+.. code:: yaml
+   
+   deploy_script:
+     - python setup.py sdist bdist_wheel upload
+
+This is the magic part; it runs `bdist_wheel` and uploads the result.
+
+That's it! Pretty simple, no? Now, you can build Windows binary wheels easily.
