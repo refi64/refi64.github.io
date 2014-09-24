@@ -6,7 +6,7 @@
 .. description: 
 .. type: text
 
-`Wheels <http://wheel.readthedocs.org/en/latest/>`_ are the future of distribution. No more messy broken `setup.py` scripts or needed a compiler for C extensions! Of course, this has a glaring issue: a Linux user can't build Wheels of their C extension for Windows. Unless, of course, you use `Travis CI <https://travis-ci.org/>`_, install the MinGW compilers, define the compiler variables, etc. However, there is an easier way: `AppVeyor <www.appveyor.com>`_.
+`Wheels <http://wheel.readthedocs.org/en/latest/>`_ are the future of distribution. No more messy broken `setup.py` scripts or a needed a compiler for C extensions! Of course, this has a glaring issue: a Linux user can't build Wheels of their C extension for Windows. Unless, of course, you use `Travis CI <https://travis-ci.org/>`_, install the MinGW compilers, define the compiler variables, etc. However, there is an easier way: `AppVeyor <www.appveyor.com>`_.
 
 .. TEASER_END
 
