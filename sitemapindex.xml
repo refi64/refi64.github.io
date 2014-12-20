@@ -5,27 +5,35 @@
     xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
                         http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
  <sitemap>
-  <loc>http://kirbyfan64.github.io/categories/build-system.xml</loc>
-  <lastmod>2014-08-01</lastmod>
+  <loc>http://kirbyfan64.github.io/categories/appveyor.xml</loc>
+  <lastmod>2014-11-16</lastmod>
  </sitemap>
  <sitemap>
-  <loc>http://kirbyfan64.github.io/categories/tutorial.xml</loc>
-  <lastmod>2014-08-01</lastmod>
+  <loc>http://kirbyfan64.github.io/categories/c-preprocessor-hack.xml</loc>
+  <lastmod>2014-11-16</lastmod>
+ </sitemap>
+ <sitemap>
+  <loc>http://kirbyfan64.github.io/categories/ci.xml</loc>
+  <lastmod>2014-11-16</lastmod>
+ </sitemap>
+ <sitemap>
+  <loc>http://kirbyfan64.github.io/categories/python.xml</loc>
+  <lastmod>2014-11-16</lastmod>
+ </sitemap>
+ <sitemap>
+  <loc>http://kirbyfan64.github.io/categories/wheels.xml</loc>
+  <lastmod>2014-11-16</lastmod>
  </sitemap>
  <sitemap>
   <loc>http://kirbyfan64.github.io/galleries/rss.xml</loc>
-  <lastmod>2014-09-16</lastmod>
+  <lastmod>2014-11-16</lastmod>
  </sitemap>
  <sitemap>
   <loc>http://kirbyfan64.github.io/rss.xml</loc>
-  <lastmod>2014-09-16</lastmod>
+  <lastmod>2014-11-16</lastmod>
  </sitemap>
  <sitemap>
   <loc>http://kirbyfan64.github.io/sitemap.xml</loc>
-  <lastmod>2014-09-16</lastmod>
- </sitemap>
- <sitemap>
-  <loc>http://kirbyfan64.github.io/sitemapindex.xml</loc>
-  <lastmod>2014-08-01</lastmod>
+  <lastmod>2014-11-16</lastmod>
  </sitemap>
 </sitemapindex>

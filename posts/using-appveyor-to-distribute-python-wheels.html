@@ -148,8 +148,6 @@
 </pre>
 <p>These two lines install <cite>pip</cite>. The first uses PowerShell to download the install script; the second runs it.</p>
 <pre class="code yaml literal-block">
-<span class="p-Indicator">-</span> <span class="l-Scalar-Plain">.. code:</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">yaml</span>
-
 <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">C:/Python34/Scripts/pip.exe install wheel</span>
 <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">C:/Python34/Scripts/pip.exe install pytest</span>
 </pre>
@@ -170,6 +168,30 @@
 </pre>
 <p>This is the magic part; it runs <cite>bdist_wheel</cite> and uploads the result.</p>
 <p>That's it! Pretty simple, no? Now, you can build Windows binary wheels easily.</p>
+<p><strong>EDIT</strong>: Someone pointed out in the comments that I completely ignored PyPI authentication. Luckily, it's a simple addition.</p>
+<ol class="arabic simple">
+<li>Go to your AppVeyor account and click your username in the top-right corner. Select "Encrypt Data" in the menu that appears.</li>
+</ol>
+<img alt="http://s5.postimg.org/lmtn7ucsn/appveyor_encrypt.png" src="http://s5.postimg.org/lmtn7ucsn/appveyor_encrypt.png">
+<ol class="arabic simple" start="2">
+<li>Type your password in the box and click "Encrypt". AppVeyor should give you an encrypted value. Copy it.</li>
+</ol>
+<img alt="http://s5.postimg.org/50c2yrjuv/appveyor_encrypt_win.png" src="http://s5.postimg.org/50c2yrjuv/appveyor_encrypt_win.png">
+<p>Now, add this to the end of appveyor.yml:</p>
+<pre class="code yaml literal-block">
+<span class="l-Scalar-Plain">environment</span><span class="p-Indicator">:</span>
+  <span class="l-Scalar-Plain">password</span><span class="p-Indicator">:</span>
+    <span class="l-Scalar-Plain">secure</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">&lt;value&gt;</span>
+</pre>
+<p>replaing <cite>&lt;value&gt;</cite> with the value you copied from the Encrypt Data page. Then, change the deploy_script part to read this:</p>
+<pre class="code yaml literal-block">
+<span class="l-Scalar-Plain">deploy_script</span><span class="p-Indicator">:</span>
+     <span class="p-Indicator">-</span> <span class="s">"echo</span><span class="nv"> </span><span class="s">[pypi]</span><span class="nv"> </span><span class="s">&gt;</span><span class="nv"> </span><span class="s">%USERPROFILE%\\.pypirc"</span>
+     <span class="p-Indicator">-</span> <span class="s">"echo</span><span class="nv"> </span><span class="s">username:</span><span class="nv"> </span><span class="s">user</span><span class="nv"> </span><span class="s">&gt;&gt;</span><span class="nv"> </span><span class="s">%USERPROFILE%\\.pypirc"</span>
+     <span class="p-Indicator">-</span> <span class="s">"echo</span><span class="nv"> </span><span class="s">password:</span><span class="nv"> </span><span class="s">%password%</span><span class="nv"> </span><span class="s">&gt;&gt;</span><span class="nv"> </span><span class="s">%USERPROFILE%\\.pypirc"</span>
+     <span class="p-Indicator">-</span> <span class="s">"type</span><span class="nv"> </span><span class="s">%USERPROFILE%\\.pypirc"</span>
+     <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">python setup.py sdist bdist_wheel upload</span>
+</pre>
     </div>
     <aside class="postpromonav">
     <nav>

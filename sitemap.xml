@@ -6,46 +6,58 @@
                         http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
  <url>
   <loc>http://kirbyfan64.github.io/2014/index.html</loc>
-  <lastmod>2014-09-16</lastmod>
+  <lastmod>2014-11-16</lastmod>
  </url>
  <url>
   <loc>http://kirbyfan64.github.io/archive.html</loc>
-  <lastmod>2014-09-16</lastmod>
+  <lastmod>2014-11-16</lastmod>
  </url>
  <url>
-  <loc>http://kirbyfan64.github.io/categories/build-system.html</loc>
-  <lastmod>2014-08-01</lastmod>
+  <loc>http://kirbyfan64.github.io/categories/appveyor.html</loc>
+  <lastmod>2014-11-16</lastmod>
+ </url>
+ <url>
+  <loc>http://kirbyfan64.github.io/categories/c-preprocessor-hack.html</loc>
+  <lastmod>2014-11-16</lastmod>
+ </url>
+ <url>
+  <loc>http://kirbyfan64.github.io/categories/ci.html</loc>
+  <lastmod>2014-11-16</lastmod>
  </url>
  <url>
   <loc>http://kirbyfan64.github.io/categories/index.html</loc>
-  <lastmod>2014-09-16</lastmod>
+  <lastmod>2014-11-16</lastmod>
  </url>
  <url>
-  <loc>http://kirbyfan64.github.io/categories/tutorial.html</loc>
-  <lastmod>2014-08-01</lastmod>
+  <loc>http://kirbyfan64.github.io/categories/python.html</loc>
+  <lastmod>2014-11-16</lastmod>
+ </url>
+ <url>
+  <loc>http://kirbyfan64.github.io/categories/wheels.html</loc>
+  <lastmod>2014-11-16</lastmod>
  </url>
  <url>
   <loc>http://kirbyfan64.github.io/galleries/index.html</loc>
-  <lastmod>2014-09-16</lastmod>
+  <lastmod>2014-11-16</lastmod>
  </url>
  <url>
   <loc>http://kirbyfan64.github.io/index.html</loc>
-  <lastmod>2014-09-16</lastmod>
+  <lastmod>2014-11-16</lastmod>
  </url>
  <url>
   <loc>http://kirbyfan64.github.io/listings/index.html</loc>
-  <lastmod>2014-09-16</lastmod>
- </url>
- <url>
-  <loc>http://kirbyfan64.github.io/posts/gyp-tutorial.html</loc>
-  <lastmod>2014-08-01</lastmod>
+  <lastmod>2014-11-16</lastmod>
  </url>
  <url>
   <loc>http://kirbyfan64.github.io/posts/overloading-functions-with-the-c-preprocessor.html</loc>
-  <lastmod>2014-09-16</lastmod>
+  <lastmod>2014-11-16</lastmod>
+ </url>
+ <url>
+  <loc>http://kirbyfan64.github.io/posts/using-appveyor-to-distribute-python-wheels.html</loc>
+  <lastmod>2014-11-16</lastmod>
  </url>
  <url>
   <loc>http://kirbyfan64.github.io/posts/welcome.html</loc>
-  <lastmod>2014-09-16</lastmod>
+  <lastmod>2014-11-16</lastmod>
  </url>
 </urlset>

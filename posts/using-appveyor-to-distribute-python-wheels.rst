@@ -12,7 +12,7 @@
 
 AppVeyor uses a simple configuration file that uses YAML. Here is what the config file for your project might look like:
 
-.. code:: yaml
+.. code-block:: yaml
    
    install:
      - ps: (new-object net.webclient).DownloadFile('https://raw.github.com/pypa/pip/master/contrib/get-pip.py', 'C:/get-pip.py')
@@ -27,43 +27,41 @@ AppVeyor uses a simple configuration file that uses YAML. Here is what the confi
 
 It goes into a file named `appveyor.yml`. Here's what's going on, one piece at a time:
 
-.. code:: yaml
+.. code-block:: yaml
    
    install:
 
 The `install` section defines commands to run for installation.
 
-.. code:: yaml
+.. code-block:: yaml
    
      - ps: (new-object net.webclient).DownloadFile('https://raw.github.com/pypa/pip/master/contrib/get-pip.py', 'C:/get-pip.py')
      - C:/Python34/python.exe C:/get-pip.py
 
 These two lines install `pip`. The first uses PowerShell to download the install script; the second runs it.
 
-.. code:: yaml
-   
-     - .. code:: yaml
-   
+.. code-block:: yaml
+      
      - C:/Python34/Scripts/pip.exe install wheel
      - C:/Python34/Scripts/pip.exe install pytest
 
 The first line installs wheel. The second is optional; it just installs pytest (a unit testing framework). I put it here as an example of installing other packages with `pip`.
 
-.. code:: yaml
+.. code-block:: yaml
    
    build_script:
      - C:/Python34/python.exe setup.py build
 
 The commands to build your Python project go here.
 
-.. code:: yaml
+.. code-block:: yaml
    
    test_script:
      - C:/Python34/Scripts/py.test
 
 Whatever you do to run your project tests go here.
 
-.. code:: yaml
+.. code-block:: yaml
    
    deploy_script:
      - python setup.py sdist bdist_wheel upload
@@ -71,3 +69,32 @@ Whatever you do to run your project tests go here.
 This is the magic part; it runs `bdist_wheel` and uploads the result.
 
 That's it! Pretty simple, no? Now, you can build Windows binary wheels easily.
+
+**EDIT**: Someone pointed out in the comments that I completely ignored PyPI authentication. Luckily, it's a simple addition.
+
+1. Go to your AppVeyor account and click your username in the top-right corner. Select "Encrypt Data" in the menu that appears.
+
+.. image:: http://s5.postimg.org/lmtn7ucsn/appveyor_encrypt.png
+
+2. Type your password in the box and click "Encrypt". AppVeyor should give you an encrypted value. Copy it.
+
+.. image:: http://s5.postimg.org/50c2yrjuv/appveyor_encrypt_win.png
+
+Now, add this to the end of appveyor.yml:
+
+.. code-block:: yaml
+   
+   environment:
+     password:
+       secure: <value>
+
+replaing `<value>` with the value you copied from the Encrypt Data page. Then, change the deploy_script part to read this:
+
+.. code-block:: yaml
+   
+   deploy_script:
+        - "echo [pypi] > %USERPROFILE%\\.pypirc"
+        - "echo username: user >> %USERPROFILE%\\.pypirc"
+        - "echo password: %password% >> %USERPROFILE%\\.pypirc"
+        - "type %USERPROFILE%\\.pypirc"
+        - python setup.py sdist bdist_wheel upload

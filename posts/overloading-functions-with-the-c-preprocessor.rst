@@ -8,14 +8,14 @@
 
 Let's have an imaginary scenario: you're trying to make a library that has a special function, *myfunc*. Now, this functions needs to have two possible ways to invoke it. One way takes one int parameter, the other takes two. Here's how you might do that in C++:
 
-.. code:: c++
+.. code-block:: c++
    
    void myfunc(int);
    void myfunc(int, int);
 
 C doesn't have a way to do this. You'll often see code like this:
 
-.. code:: c
+.. code-block:: c
    
    void myfunc_1(int);
    void myfunc_2(int, int);
@@ -30,7 +30,7 @@ However, this *can* be implemented, albeit in a slightly convulted way using a v
 
 Here's the code in `myfunc.h`:
 
-.. code:: c
+.. code-block:: c
    
    #ifndef MYFUNC_H
    #define MYFUNC_H
@@ -52,7 +52,7 @@ Here's the code in `myfunc.h`:
 
 and the main file:
 
-.. code:: c
+.. code-block:: c
    
    #include "myfunc.h"
    
@@ -67,19 +67,19 @@ What's going on here? The easiest way to see is to look at what happens in the p
 
 The first call (`myfunc(1)`) expands to this:
 
-.. code:: c
+.. code-block:: c
    
    _MYFUNC_SEL(1, _myfunc_2, _myfunc_1)(1)
 
 Remember, `__VA_ARGS__` expands to the `...` arguments. The `_MYFUNC_SEL` macro takes returns the third argument, `_myfunc_1`. Therefore, the expansion is ends up being:
 
-.. code:: c
+.. code-block:: c
    
    _myfunc_1(1)
 
 The second call (`myfunc(1, 2)`) expands to this:
 
-.. code:: c
+.. code-block:: c
    
    _MYFUNC_SEL(1, 2, _myfunc_2, _myfunc_1)(1, 2)
 
@@ -89,7 +89,7 @@ Now you're probably beginning to realize how simple the underlying logic is.
 
 However, what if you need to overload by types instead? In C11, that's easily possible using the `_Generic` feature. See `this <http://www.robertgamble.net/2012/01/c11-generic-selections.html>`_ for more info. Here's the new `myfunc.h`:
 
-.. code:: c
+.. code-block:: c
    
    #ifndef MYFUNC_H
    #define MYFUNC_H
@@ -117,7 +117,7 @@ However, what if you need to overload by types instead? In C11, that's easily po
 
 and the new main source file:
 
-.. code:: c
+.. code-block:: c
    
    #include "myfunc.h"
    
@@ -131,7 +131,7 @@ and the new main source file:
 
 Let's review the expansion process:
 
-.. code:: c
+.. code-block:: c
    
    myfunc(1)
    _MYFUNC_SEL(1, _myfunc_2, _MYFUNC_1)(1)
@@ -140,7 +140,7 @@ Let's review the expansion process:
 
 Now, the `_Generic` function basically is like pattern-matching on types. (See the linked article above for more info.) The `_Generic` evaluates to:
 
-.. code:: c
+.. code-block:: c
    
    _myfunc_1_int(1)
 
