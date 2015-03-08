@@ -27,7 +27,7 @@
     
         <meta name="og:title" content="Using AppVeyor to distribute Python wheels">
         <meta name="og:url" content="http://kirbyfan64.github.io/posts/using-appveyor-to-distribute-python-wheels.html">
-            <meta name="og:description" content="Wheels are the future of distribution. No more messy broken setup.py scripts or a needed a compiler for C extensions! Of course, this has a glaring issue: a Linux user can't build Wheels of their C ex">
+            <meta name="og:description" content="Wheels are the future of distribution. No more messy broken setup.py scripts or need for a compiler to build C extensions! Of course, this has a glaring issue: a Linux user can't build Wheels of their">
         <meta name="og:site_name" content="BlockByte">
         <meta name="og:type" content="article">
 
@@ -122,7 +122,7 @@
     </header>
 
     <div class="e-content entry-content" itemprop="articleBody text">
-    <p><a class="reference external" href="http://wheel.readthedocs.org/en/latest/">Wheels</a> are the future of distribution. No more messy broken <cite>setup.py</cite> scripts or a needed a compiler for C extensions! Of course, this has a glaring issue: a Linux user can't build Wheels of their C extension for Windows. Unless, of course, you use <a class="reference external" href="https://travis-ci.org/">Travis CI</a>, install the MinGW compilers, define the compiler variables, etc. However, there is an easier way: <a class="reference external" href="www.appveyor.com">AppVeyor</a>.</p>
+    <p><a class="reference external" href="http://wheel.readthedocs.org/en/latest/">Wheels</a> are the future of distribution. No more messy broken <cite>setup.py</cite> scripts or need for a compiler to build C extensions! Of course, this has a glaring issue: a Linux user can't build Wheels of their C extension for Windows. Unless, of course, you use <a class="reference external" href="https://travis-ci.org/">Travis CI</a>, install the MinGW compilers, define the compiler variables, etc. However, there is an easier way: <a class="reference external" href="www.appveyor.com">AppVeyor</a>.</p>
 <!-- TEASER_END -->
 <p>AppVeyor uses a simple configuration file that uses YAML. Here is what the config file for your project might look like:</p>
 <pre class="code yaml literal-block">
@@ -189,7 +189,6 @@
      <span class="p-Indicator">-</span> <span class="s">"echo</span><span class="nv"> </span><span class="s">[pypi]</span><span class="nv"> </span><span class="s">&gt;</span><span class="nv"> </span><span class="s">%USERPROFILE%\\.pypirc"</span>
      <span class="p-Indicator">-</span> <span class="s">"echo</span><span class="nv"> </span><span class="s">username:</span><span class="nv"> </span><span class="s">user</span><span class="nv"> </span><span class="s">&gt;&gt;</span><span class="nv"> </span><span class="s">%USERPROFILE%\\.pypirc"</span>
      <span class="p-Indicator">-</span> <span class="s">"echo</span><span class="nv"> </span><span class="s">password:</span><span class="nv"> </span><span class="s">%password%</span><span class="nv"> </span><span class="s">&gt;&gt;</span><span class="nv"> </span><span class="s">%USERPROFILE%\\.pypirc"</span>
-     <span class="p-Indicator">-</span> <span class="s">"type</span><span class="nv"> </span><span class="s">%USERPROFILE%\\.pypirc"</span>
      <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">python setup.py sdist bdist_wheel upload</span>
 </pre>
     </div>

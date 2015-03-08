@@ -20,7 +20,7 @@ C doesn't have a way to do this. You'll often see code like this:
    void myfunc_1(int);
    void myfunc_2(int, int);
 
-However, this *can* be implemented, albeit in a slightly convulted way using a very controversial tool: the C preprocessor.
+However, this *can* be implemented, albeit in a slightly convoluted way using a very controversial tool: the C preprocessor.
 
 .. TEASER_END
 

@@ -6,14 +6,14 @@
 .. description: 
 .. type: text
 
-Lately, there's been a large surge in new programming languages as languages such  as `Rust <http://www.rust-lang.org/>`_ have been taking the spotlight and showing lots of promise. However, there are some programming languages few have heard of that deserve to be more popular. Here's a breif listing of some of my favorite languages that aren't very popular.
+Lately, there's been a large surge in new programming languages as projects such as `Rust <http://www.rust-lang.org/>`_ have been taking the spotlight and showing lots of promise. However, there are some programming languages few have heard of that deserve to be more popular. Here's a brief listing of some of my favorite languages that aren't common sights.
 
 .. TEASER_END
 
 Nim
 ===
 
-`Nim <http://nim-lang.org/>`_ is more popular than most languages on this list. It recently acquired `coporate backing from 3DICC <http://forum.nim-lang.org/t/870>`_ and is under very active development. Here's a factorial program in Nim:
+`Nim <http://nim-lang.org/>`_ is more popular than most languages on this list. It recently acquired `corporate backing from 3DICC <http://forum.nim-lang.org/t/870>`_ and is under very active development. Here's a factorial program in Nim:
 
 .. code-block:: nim
 
@@ -37,7 +37,7 @@ Nim
 Felix
 =====
 
-`Felix <http://felix-lang.org/>`_ is an experimental programming language that covers most problems in a unique way. It's a functional programming language that has great coroutine support, a nice threading system, and a grammar defined in user space (a.k.a. you can extend the grammar inside your own programs). You run your programs just like a scripting language::
+`Felix <http://felix-lang.org/>`_ is an experimental programming language that covers most problems in a unique way. It's very functional and has great coroutine support, a nice threading system, and a grammar defined in user space (a.k.a. you can extend the grammar inside your own programs). You run your files just like a scripting language::
    
    $ flx my_prog.flx arg1 arg2
 
@@ -107,7 +107,7 @@ Notice the explicit error handling.
 K
 =
 
-`K <http://www.kuro5hin.org/story/2002/11/14/22741/791>`_ (and it's open source counterpart, `Kona <https://github.com/kevinlawler/kona>`_) are very unique languages. Here's a factorial function in K::
+`K <http://www.kuro5hin.org/story/2002/11/14/22741/791>`_ (and it's open source counterpart, `Kona <https://github.com/kevinlawler/kona>`_) is a very unique language. Here's a factorial function in K::
    
    fac:{*/1+!x}
 
@@ -124,7 +124,7 @@ K is actually surprisingly readable once you learn it...provided you don't get a
 Objeck
 ======
 
-`Objeck <http://www.objeck.org/>`_ is kind of how Java should've been. Here's the factorial in Objeck (the language has a factorial function built in, but this)::
+`Objeck <http://www.objeck.org/>`_ is kind of how Java should've been. Here's a factorial in Objeck (the language has a factorial function built in, but this is a custom one)::
    
    class Factorial {
        function : native : Factorial(n : Int) ~ Int {
