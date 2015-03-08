@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html prefix="og: http://ogp.me/ns# article: http://ogp.me/ns/article# " lang="en">
+    <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>The top 5 programming languages you've never heard of (part 2) | BlockByte</title>
+
+    
+            <link href="../assets/css/all-nocdn.css" rel="stylesheet" type="text/css">
+
+    
+            <link rel="alternate" type="application/rss+xml" title="RSS" href="../rss.xml">
+
+      <link rel="canonical" href="http://kirbyfan64.github.io/posts/the-top-5-programming-languages-youve-never-heard-of-part-2.html">
+
+
+
+    
+        <!--[if lt IE 9]><script src="/assets/js/html5.js"></script><![endif]-->
+
+    
+
+
+    
+
+    <meta name="author" content="Ryan Gonzalez">
+    
+        <meta name="og:title" content="The top 5 programming languages you've never heard of (part 2)">
+        <meta name="og:url" content="http://kirbyfan64.github.io/posts/the-top-5-programming-languages-youve-never-heard-of-part-2.html">
+            <meta name="og:description" content="Yesterday, I wrote a post about the top 5 programming languages you've never heard of. Well, since it was kind of short (I didn't have too much time to write), I'm going to put a little more info here">
+        <meta name="og:site_name" content="BlockByte">
+        <meta name="og:type" content="article">
+
+    
+
+    
+
+
+
+</head>
+<body>
+
+<!-- Menubar -->
+
+<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="container">
+<!-- This keeps the margins nice -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="http://kirbyfan64.github.io/">
+
+                <span id="blog-title">BlockByte</span>
+            </a>
+        </div>
+<!-- /.navbar-header -->
+        <div class="collapse navbar-collapse navbar-ex1-collapse">
+            <ul class="nav navbar-nav">
+                
+                <li>
+<a href="../archive.html">Archive</a>
+                </li>
+<li>
+<a href="../categories/index.html">Tags</a>
+                </li>
+<li>
+<a href="../rss.xml">RSS feed</a>
+
+                
+            </li>
+</ul>
+
+            <ul class="nav navbar-nav navbar-right">
+                
+                
+                    
+    <li>
+    <a href="the-top-5-programming-languages-youve-never-heard-of-part-2.rst" id="sourcelink">Source</a>
+    </li>
+
+                
+            </ul>
+        </div>
+<!-- /.navbar-collapse -->
+    </div>
+<!-- /.container -->
+</nav>
+
+<!-- End of Menubar -->
+
+<div class="container">
+    <div class="body-content">
+        <!--Body content-->
+        <div class="row">
+            
+            
+<article class="post-text h-entry hentry postpage" itemscope="itemscope" itemtype="http://schema.org/Article">
+    
+    <header>
+        
+    <h1 class="p-name entry-title" itemprop="headline name"><a href="#" class="u-url">The top 5 programming languages you've never heard of (part 2)</a></h1>
+
+        <div class="metadata">
+            <p class="byline author vcard"><span class="byline-name fn">Ryan Gonzalez</span></p>
+            <p class="dateline"><a href="#" rel="bookmark"><time class="published dt-published" datetime="2015-03-08T17:04:17-05:00" itemprop="datePublished" title="Publication date">2015-03-08 17:04</time></a></p>
+                <p class="commentline">
+        
+    <a href="the-top-5-programming-languages-youve-never-heard-of-part-2.html#disqus_thread" data-disqus-identifier="cache/posts/the-top-5-programming-languages-youve-never-heard-of-part-2.html">Comments</a>
+
+
+            
+        </p>
+<p class="sourceline"><a href="the-top-5-programming-languages-youve-never-heard-of-part-2.rst" id="sourcelink">Source</a></p>
+
+        </div>
+        
+
+    </header>
+
+    <div class="e-content entry-content" itemprop="articleBody text">
+    <p>Yesterday, I wrote a post about <a class="reference external" href="http://kirbyfan64.github.io/posts/the-top-5-programming-languages-youve-never-heard-of.html">the top 5 programming languages you've never heard of</a>. Well, since it was kind of short (I didn't have too much time to write), I'm going to put a little more info here.</p>
+<!-- TEASER_END -->
+<div class="section" id="nim">
+<h2>Nim</h2>
+<p>I enjoy coding in <a class="reference external" href="http://nim-lang.org/">Nim</a> because it's fun. Nim's goal is seemingly to blur the line between compiled and scripting languages, and it's doing a GREAT job. The compiler is self-hosting, but it's not quite the prime example of a well-written Nim program (it was ported from Object Pascal). A better example is <a class="reference external" href="https://github.com/nim-lang/nimble">Nimble</a>: the Nim package manager. Here's a piece of Nimble's source code:</p>
+<pre class="code nim literal-block">
+<span class="k">proc </span><span class="nf">update</span><span class="p">(</span><span class="n">options</span><span class="p">:</span> <span class="n">Options</span><span class="p">)</span> <span class="o">=</span>
+  <span class="sd">## Downloads the package list from the specified URL.</span>
+  <span class="sd">##</span>
+  <span class="sd">## If the download is successful, the global didUpdatePackages is set to</span>
+  <span class="sd">## true. Otherwise an exception is raised on error.</span>
+  <span class="k">let</span> <span class="n">url</span> <span class="o">=</span>
+    <span class="k">if</span> <span class="n">options</span><span class="p">.</span><span class="n">action</span><span class="p">.</span><span class="n">typ</span> <span class="o">==</span> <span class="n">actionUpdate</span> <span class="ow">and</span> <span class="n">options</span><span class="p">.</span><span class="n">action</span><span class="p">.</span><span class="n">optionalURL</span> <span class="o">!=</span> <span class="s">""</span><span class="p">:</span>
+      <span class="n">options</span><span class="p">.</span><span class="n">action</span><span class="p">.</span><span class="n">optionalURL</span>
+    <span class="k">else</span><span class="p">:</span>
+      <span class="n">defaultPackageURL</span>
+  <span class="n">echo</span><span class="p">(</span><span class="s">"Downloading package list from "</span> <span class="o">&amp;</span> <span class="n">url</span><span class="p">)</span>
+  <span class="n">downloadFile</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">options</span><span class="p">.</span><span class="n">getNimbleDir</span><span class="p">()</span> <span class="o">/</span> <span class="s">"packages.json"</span><span class="p">)</span>
+  <span class="n">echo</span><span class="p">(</span><span class="s">"Done."</span><span class="p">)</span>
+</pre>
+<p>A longer piece:</p>
+<pre class="code nim literal-block">
+<span class="k">proc </span><span class="nf">parseConfig</span><span class="o">*</span><span class="p">():</span> <span class="n">Config</span> <span class="o">=</span>
+  <span class="n">result</span> <span class="o">=</span> <span class="n">initConfig</span><span class="p">()</span>
+  <span class="kd">var</span> <span class="n">confFile</span> <span class="o">=</span> <span class="n">getConfigDir</span><span class="p">()</span> <span class="o">/</span> <span class="s">"nimble"</span> <span class="o">/</span> <span class="s">"nimble.ini"</span>
+
+  <span class="kd">var</span> <span class="n">f</span> <span class="o">=</span> <span class="n">newFileStream</span><span class="p">(</span><span class="n">confFile</span><span class="p">,</span> <span class="n">fmRead</span><span class="p">)</span>
+  <span class="k">if</span> <span class="n">f</span> <span class="o">==</span> <span class="kp">nil</span><span class="p">:</span>
+    <span class="c"># Try the old deprecated babel.ini</span>
+    <span class="n">confFile</span> <span class="o">=</span> <span class="n">getConfigDir</span><span class="p">()</span> <span class="o">/</span> <span class="s">"babel"</span> <span class="o">/</span> <span class="s">"babel.ini"</span>
+    <span class="n">f</span> <span class="o">=</span> <span class="n">newFileStream</span><span class="p">(</span><span class="n">confFile</span><span class="p">,</span> <span class="n">fmRead</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">f</span> <span class="o">!=</span> <span class="kp">nil</span><span class="p">:</span>
+      <span class="n">echo</span><span class="p">(</span><span class="s">"[Warning] Using deprecated config file at "</span><span class="p">,</span> <span class="n">confFile</span><span class="p">)</span>
+
+  <span class="k">if</span> <span class="n">f</span> <span class="o">!=</span> <span class="kp">nil</span><span class="p">:</span>
+    <span class="n">echo</span><span class="p">(</span><span class="s">"Reading from config file at "</span><span class="p">,</span> <span class="n">confFile</span><span class="p">)</span>
+    <span class="kd">var</span> <span class="n">p</span><span class="p">:</span> <span class="n">CfgParser</span>
+    <span class="n">open</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">f</span><span class="p">,</span> <span class="n">confFile</span><span class="p">)</span>
+    <span class="k">while</span> <span class="kp">true</span><span class="p">:</span>
+      <span class="kd">var</span> <span class="n">e</span> <span class="o">=</span> <span class="n">next</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
+      <span class="k">case</span> <span class="n">e</span><span class="p">.</span><span class="n">kind</span>
+      <span class="k">of</span> <span class="n">cfgEof</span><span class="p">:</span>
+        <span class="k">break</span>
+      <span class="k">of</span> <span class="n">cfgSectionStart</span><span class="p">:</span> <span class="k">discard</span>
+      <span class="k">of</span> <span class="n">cfgKeyValuePair</span><span class="p">,</span> <span class="n">cfgOption</span><span class="p">:</span>
+        <span class="k">case</span> <span class="n">e</span><span class="p">.</span><span class="n">key</span><span class="p">.</span><span class="n">normalize</span>
+        <span class="k">of</span> <span class="s">"nimbledir"</span><span class="p">:</span>
+          <span class="c"># Ensure we don't restore the deprecated nimble dir.</span>
+          <span class="k">if</span> <span class="n">e</span><span class="p">.</span><span class="n">value</span> <span class="o">!=</span> <span class="n">getHomeDir</span><span class="p">()</span> <span class="o">/</span> <span class="s">".babel"</span><span class="p">:</span>
+            <span class="n">result</span><span class="p">.</span><span class="n">nimbleDir</span> <span class="o">=</span> <span class="n">e</span><span class="p">.</span><span class="n">value</span>
+        <span class="k">of</span> <span class="s">"chcp"</span><span class="p">:</span>
+          <span class="n">result</span><span class="p">.</span><span class="n">chcp</span> <span class="o">=</span> <span class="n">parseBool</span><span class="p">(</span><span class="n">e</span><span class="p">.</span><span class="n">value</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+          <span class="k">raise</span> <span class="n">newException</span><span class="p">(</span><span class="n">NimbleError</span><span class="p">,</span> <span class="s">"Unable to parse config file:"</span> <span class="o">&amp;</span>
+                                  <span class="s">" Unknown key: "</span> <span class="o">&amp;</span> <span class="n">e</span><span class="p">.</span><span class="n">key</span><span class="p">)</span>
+      <span class="k">of</span> <span class="n">cfgError</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="n">newException</span><span class="p">(</span><span class="n">NimbleError</span><span class="p">,</span> <span class="s">"Unable to parse config file: "</span> <span class="o">&amp;</span> <span class="n">e</span><span class="p">.</span><span class="n">msg</span><span class="p">)</span>
+    <span class="n">close</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
+</pre>
+<p>My personal coding conventions are quite different, but this still captures some of the elegance of Nim.</p>
+<p>Note that the compiler is still a work-in-progress, and a new threading model is going to be implemented soon.</p>
+</div>
+<div class="section" id="felix">
+<h2>Felix</h2>
+<p><a class="reference external" href="http://felix-lang.org/">Felix</a> is unique. It's a mix of C++, ML, and lots of unique ideas. Here's a nice sample from a toy JSON parser I was writing (this is only the lexer part):</p>
+<pre class="code felix literal-block">
+<span class="k">class</span> <span class="nc">JSON</span> <span class="p">{</span>
+    <span class="k">typedef</span> <span class="n">LineType</span> <span class="o">=</span> <span class="kt">int</span><span class="p">;</span>
+
+    <span class="k">union</span> <span class="nf">Value</span> <span class="o">=</span>
+        <span class="o">|</span> <span class="n">Object</span> <span class="k">of</span> <span class="n">strdict</span><span class="p">[</span><span class="n">Value</span><span class="p">]</span>
+        <span class="o">|</span> <span class="n">Array</span>  <span class="k">of</span> <span class="kt">list</span><span class="p">[</span><span class="n">Value</span><span class="p">]</span>
+        <span class="o">|</span> <span class="n">String</span> <span class="k">of</span> <span class="kt">string</span>
+        <span class="o">|</span> <span class="n">Number</span> <span class="k">of</span> <span class="kt">double</span>
+        <span class="o">|</span> <span class="n">True</span>
+        <span class="o">|</span> <span class="n">False</span>
+        <span class="o">|</span> <span class="n">Null</span>
+        <span class="o">|</span> <span class="n">Error</span> <span class="k">of</span> <span class="kt">string</span> <span class="o">*</span> <span class="n">LineType</span>
+    <span class="p">;</span>
+
+    <span class="k">union</span> <span class="nf">Token</span> <span class="o">=</span>
+        <span class="o">|</span> <span class="n">TString</span> <span class="k">of</span> <span class="kt">string</span>
+        <span class="o">|</span> <span class="n">TNumber</span> <span class="k">of</span> <span class="kt">double</span>
+        <span class="o">|</span> <span class="n">TLBrace</span> <span class="c1">// {
+</span>        <span class="o">|</span> <span class="n">TRBrace</span> <span class="c1">// }
+</span>        <span class="o">|</span> <span class="n">TLBrak</span>  <span class="c1">// [
+</span>        <span class="o">|</span> <span class="n">TRBrak</span>  <span class="c1">// ]
+</span>        <span class="o">|</span> <span class="n">TColon</span>  <span class="c1">// :
+</span>        <span class="o">|</span> <span class="n">TTrue</span>   <span class="c1">// true
+</span>        <span class="o">|</span> <span class="n">TFalse</span>  <span class="c1">// false
+</span>        <span class="o">|</span> <span class="n">TNull</span>   <span class="c1">// null
+</span>        <span class="o">|</span> <span class="n">TEOF</span>
+        <span class="o">|</span> <span class="n">TError</span> <span class="k">of</span> <span class="kt">string</span> <span class="o">*</span> <span class="n">LineType</span>
+    <span class="p">;</span>
+
+    <span class="k">instance</span> <span class="err"></span><span class="nn">Str</span><span class="p">[</span><span class="n">Token</span><span class="p">]</span> <span class="p">{</span>
+        <span class="k">fun</span> <span class="nf">str</span><span class="p">(</span><span class="n">t</span><span class="p">:</span> <span class="n">Token</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="k">match</span> <span class="n">t</span> <span class="k">with</span>
+            <span class="o">|</span> <span class="n">TString</span> <span class="p">?</span><span class="n">s</span> <span class="o">=&gt;</span> <span class="s">"TString </span><span class="se">\"</span><span class="s">"</span> <span class="o">+</span> <span class="n">s</span> <span class="o">+</span> <span class="s">"</span><span class="se">\"</span><span class="s">"</span>
+            <span class="o">|</span> <span class="n">TNumber</span> <span class="p">?</span><span class="n">n</span> <span class="o">=&gt;</span> <span class="s">"TNumber "</span> <span class="o">+</span> <span class="n">n</span><span class="o">.</span><span class="n">str</span>
+            <span class="o">|</span> <span class="n">TLBrace</span>    <span class="o">=&gt;</span> <span class="s">"TLBrace"</span>
+            <span class="o">|</span> <span class="n">TRBrace</span>    <span class="o">=&gt;</span> <span class="s">"TRBrace"</span>
+            <span class="o">|</span> <span class="n">TLBrak</span>     <span class="o">=&gt;</span> <span class="s">"TLBrak"</span>
+            <span class="o">|</span> <span class="n">TRBrak</span>     <span class="o">=&gt;</span> <span class="s">"TRBrak"</span>
+            <span class="o">|</span> <span class="n">TColon</span>     <span class="o">=&gt;</span> <span class="s">"TColon"</span>
+            <span class="o">|</span> <span class="n">TTrue</span>      <span class="o">=&gt;</span> <span class="s">"TTrue"</span>
+            <span class="o">|</span> <span class="n">TFalse</span>     <span class="o">=&gt;</span> <span class="s">"TFalse"</span>
+            <span class="o">|</span> <span class="n">TNull</span>      <span class="o">=&gt;</span> <span class="s">"TNull"</span>
+            <span class="o">|</span> <span class="n">TEOF</span>       <span class="o">=&gt;</span> <span class="s">"TEOF"</span>
+            <span class="o">|</span> <span class="n">TError</span> <span class="p">(?</span><span class="n">s</span><span class="p">,</span> <span class="p">?</span><span class="n">i</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="s">"error at line "</span> <span class="o">+</span> <span class="n">i</span><span class="o">.</span><span class="n">str</span> <span class="o">+</span> <span class="s">": "</span> <span class="o">+</span> <span class="n">s</span>
+        <span class="k">endmatch</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="k">proc</span> <span class="nf">lex</span><span class="p">(</span><span class="n">s</span><span class="p">:</span> <span class="kt">string</span><span class="p">,</span> <span class="n">line</span><span class="p">:</span> <span class="o">&amp;</span><span class="n">LineType</span><span class="p">,</span> <span class="n">outs</span><span class="p">:</span> <span class="n">oschannel</span><span class="p">[</span><span class="n">Token</span><span class="p">])</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="n">line</span> <span class="o">&lt;-</span> <span class="mi">1</span><span class="p">;</span>
+
+        <span class="k">proc</span> <span class="nf">tok</span><span class="p">(</span><span class="n">t</span><span class="p">:</span> <span class="n">Token</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">write</span> <span class="o">$</span> <span class="n">outs</span><span class="p">,</span> <span class="n">t</span><span class="p">;</span>
+
+        <span class="k">proc</span> <span class="nf">err</span><span class="p">(</span><span class="n">s</span><span class="p">:</span> <span class="kt">string</span><span class="p">)</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="n">tok</span> <span class="o">$</span> <span class="n">TError</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="o">*</span><span class="n">line</span><span class="p">);</span>
+            <span class="k">return</span> <span class="n">from</span> <span class="n">lex</span><span class="p">;</span>
+        <span class="p">};</span>
+
+        <span class="kd">var</span> <span class="n">i</span> <span class="o">=</span> <span class="mf">0.</span><span class="n">size</span><span class="p">;</span>
+
+        <span class="nb">while</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">s</span><span class="o">.</span><span class="n">len</span> <span class="k">do</span>
+            <span class="nb">while</span> <span class="n">s</span><span class="o">.</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">isspace</span> <span class="k">do</span>
+                <span class="k">if</span> <span class="n">s</span><span class="o">.</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="s">"</span><span class="se">\n</span><span class="s">"</span> <span class="k">do</span> <span class="o">*</span><span class="n">line</span><span class="o">++</span><span class="p">;</span> <span class="k">done</span><span class="p">;</span>
+                <span class="n">i</span><span class="o">++</span><span class="p">;</span>
+                <span class="k">if</span> <span class="n">i</span> <span class="o">&gt;=</span> <span class="n">s</span><span class="o">.</span><span class="n">len</span> <span class="k">goto</span> <span class="n">eof</span><span class="p">;</span>
+            <span class="k">done</span><span class="p">;</span>
+
+            <span class="c1">// number
+</span>            <span class="k">if</span> <span class="n">s</span><span class="o">.</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">isnumeric</span> <span class="ow">or</span> <span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span> <span class="o">&lt;</span> <span class="n">s</span><span class="o">.</span><span class="n">len</span> <span class="ow">and</span> <span class="n">s</span><span class="o">.</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="s">"-"</span> <span class="ow">and</span>
+                                     <span class="n">s</span><span class="o">.</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">isnumeric</span><span class="p">)</span> <span class="k">do</span>
+                <span class="n">d</span> <span class="p">:</span><span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="p">[</span><span class="n">i</span> <span class="k">to</span><span class="p">]</span><span class="o">.</span><span class="kt">double</span><span class="p">;</span>
+                <span class="n">i</span> <span class="o">+=</span> <span class="n">d</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">len</span><span class="p">;</span>
+                <span class="n">tok</span> <span class="o">$</span> <span class="n">TNumber</span> <span class="n">d</span><span class="p">;</span>
+            <span class="c1">// string
+</span>            <span class="k">elif</span> <span class="n">s</span><span class="o">.</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="s">"</span><span class="se">\"</span><span class="s">"</span> <span class="k">do</span>
+                <span class="n">i</span><span class="o">++</span><span class="p">;</span>
+                <span class="kd">var</span> <span class="n">st</span> <span class="o">=</span> <span class="s">""</span><span class="p">;</span>
+                <span class="nb">while</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">s</span><span class="o">.</span><span class="n">len</span> <span class="ow">and</span> <span class="n">s</span><span class="o">.</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">!=</span> <span class="s">"</span><span class="se">\n</span><span class="s">"</span> <span class="ow">and</span> <span class="n">s</span><span class="o">.</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">!=</span> <span class="s">"</span><span class="se">\"</span><span class="s">"</span> <span class="k">do</span>
+                    <span class="n">st</span> <span class="o">+=</span> <span class="n">s</span><span class="o">.</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+                    <span class="n">i</span><span class="o">++</span><span class="p">;</span>
+                <span class="k">done</span><span class="p">;</span>
+                <span class="k">if</span> <span class="n">s</span><span class="o">.</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">!=</span> <span class="s">"</span><span class="se">\"</span><span class="s">"</span> <span class="k">call</span> <span class="n">err</span> <span class="s">"unterminated string literal"</span><span class="p">;</span>
+                <span class="n">i</span><span class="o">++</span><span class="p">;</span>
+                <span class="n">tok</span> <span class="o">$</span> <span class="n">TString</span> <span class="n">st</span><span class="p">;</span>
+            <span class="c1">// literals
+</span>            <span class="k">elif</span> <span class="n">s</span><span class="o">.</span><span class="p">[</span><span class="n">i</span> <span class="k">to</span> <span class="n">i</span><span class="o">+</span><span class="mi">4</span><span class="p">]</span> <span class="o">==</span> <span class="s">"true"</span> <span class="k">do</span>
+                <span class="n">tok</span> <span class="o">$</span> <span class="n">TTrue</span><span class="p">;</span>
+                <span class="n">i</span> <span class="o">+=</span> <span class="mf">4.</span><span class="n">size</span><span class="p">;</span>
+            <span class="k">elif</span> <span class="n">s</span><span class="o">.</span><span class="p">[</span><span class="n">i</span> <span class="k">to</span> <span class="n">i</span><span class="o">+</span><span class="mi">5</span><span class="p">]</span> <span class="o">==</span> <span class="s">"false"</span> <span class="k">do</span>
+                <span class="n">tok</span> <span class="o">$</span> <span class="n">TFalse</span><span class="p">;</span>
+                <span class="n">i</span> <span class="o">+=</span> <span class="mf">5.</span><span class="n">size</span><span class="p">;</span>
+            <span class="k">elif</span> <span class="n">s</span><span class="o">.</span><span class="p">[</span><span class="n">i</span> <span class="k">to</span> <span class="n">i</span><span class="o">+</span><span class="mi">4</span><span class="p">]</span> <span class="o">==</span> <span class="s">"null"</span> <span class="k">do</span>
+                <span class="n">tok</span> <span class="o">$</span> <span class="n">TNull</span><span class="p">;</span>
+                <span class="n">i</span> <span class="o">+=</span> <span class="mf">4.</span><span class="n">size</span><span class="p">;</span>
+            <span class="c1">// others
+</span>            <span class="k">else</span>
+                <span class="k">match</span> <span class="n">s</span><span class="o">.</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">str</span> <span class="k">with</span>
+                    <span class="o">|</span> <span class="s">"{"</span> <span class="o">=&gt;</span> <span class="n">tok</span> <span class="n">TLBrace</span><span class="p">;</span>
+                    <span class="o">|</span> <span class="s">"}"</span> <span class="o">=&gt;</span> <span class="n">tok</span> <span class="n">TRBrace</span><span class="p">;</span>
+                    <span class="o">|</span> <span class="s">"["</span> <span class="o">=&gt;</span> <span class="n">tok</span> <span class="n">TLBrak</span><span class="p">;</span>
+                    <span class="o">|</span> <span class="s">"]"</span> <span class="o">=&gt;</span> <span class="n">tok</span> <span class="n">TRBrak</span><span class="p">;</span>
+                    <span class="o">|</span> <span class="s">":"</span> <span class="o">=&gt;</span> <span class="n">tok</span> <span class="n">TColon</span><span class="p">;</span>
+                    <span class="o">|</span> <span class="k">_</span>   <span class="o">=&gt;</span> <span class="n">err</span> <span class="s">"unknown token"</span><span class="p">;</span>
+                <span class="k">endmatch</span><span class="p">;</span>
+
+                <span class="n">i</span><span class="o">++</span><span class="p">;</span>
+            <span class="k">done</span><span class="p">;</span>
+        <span class="k">done</span><span class="p">;</span>
+
+        <span class="nl">eof:&gt;</span>
+        <span class="n">tok</span> <span class="n">TEOF</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre>
+<p><a class="reference external" href="http://felix-lang.org/%24/usr/local/lib/felix/felix-latest//share/lib/web/json.flx">Here's</a> a link to Felix's own JSON parser, which is written more nicely than mine is...</p>
+<p>It illustrates some nice features, such as schannels (coroutines on steroids). <cite>schannels</cite> are like Go's channels, but not concurrent. Felix has another Go-like channel named <cite>fchannels</cite>, which are concurrent.</p>
+<p>Felix also has a nice set of utilities (a web server, a literate programming format, an <a class="reference external" href="https://github.com/felix-lang/felix/blob/master/src/tools/flx_config.fdoc">alpha-quality graphical config tool</a>) and a decently-sized standard library.</p>
+<p>Cons? Very little documentation. However, the <a class="reference external" href="https://groups.google.com/forum/#!forum/felix-language">mailing list</a> is very responsive.</p>
+</div>
+<div class="section" id="myrddin">
+<h2>Myrddin</h2>
+<p><a class="reference external" href="http://eigenstate.org/myrddin/">Myrddin</a> is essentially how C would probably look if it were designed right now. Some features:</p>
+<ul class="simple">
+<li>Type inference</li>
+<li>Pattern matching</li>
+<li>Go-style slices</li>
+<li>C-style memory management</li>
+</ul>
+<p>All in a C-style language. I've been toying with writing a kernel in it, and it's been going very well. I have a lot of hope in Myrddin.</p>
+<p>A great example is the <a class="reference external" href="http://git.eigenstate.org/ori/libbio.git/tree/bio.myr">libbio</a> input/output library. Here's a snippet:</p>
+<pre class="literal-block">
+/*
+writes to as much from `src` as possible to a file,
+returning the number of bytes written.
+*/
+const write = {f, src
+    std.assert(f.mode &amp; Wr != 0, "File is not in write mode")
+    /*
+    Tack small writes onto the buffer end. Big ones
+    flush the buffer and then go right to kernel.
+    */
+    if src.len &lt; (f.wbuf.len - f.wend)
+        std.slcp(f.wbuf[f.wend:f.wend+src.len], src)
+        f.wend += src.len
+        -&gt; src.len
+    else
+        flush(f)
+        -&gt; writebuf(f.fd, src)
+    ;;
+}
+</pre>
+<p>However, the compiler generates VERY slow x64 assembly code at the moment...and only x64 assembly code. I'm working on a C backend, though, but it'll be a while until it's finished.</p>
+</div>
+<div class="section" id="k">
+<h2>K</h2>
+<p><a class="reference external" href="http://www.kuro5hin.org/story/2002/11/14/22741/791">K</a>, along with <a class="reference external" href="https://github.com/kevinlawler/kona">Kona</a> (an open-source K implementation with bad error messages) is special. It's the result of shoving APL into an ASCII-character world.</p>
+<p>Here are some of the idioms at the <a class="reference external" href="https://github.com/kevinlawler/kona/wiki/Idioms">Kona wiki</a>:</p>
+<pre class="literal-block">
+shuffle:{x@&lt;&gt;(#x)#1 0} / Perfect shuffle
+mean:{(+/x)%#x} / Arithmetic mean
+fac:*/1+!: / Factorial
+fib:{x{x,+/-2#x}/!2} / Fibonacci
+life:{|/(1;x)&amp;3 4=\:+/,/2{-1 0 1!'\:x}/x} / Conway's Game of Life
+sort:{x@&lt;x} / Sort list
+powerset:{x[&amp;:'!2+&amp;#x]} / Powerset
+</pre>
+<p>As you can see, K is very concise. A little too concise. However, as an array-processing language, it's great for iterating over large sequences of data, as <a class="reference external" href="http://kx.com/">kdb+</a> has shown. It's also very fast and lean (I'm speaking for kdb+, though, not Kona).</p>
+<p>If you can't already tell, the main con is that no one that doesn't know K will be able to read your programs without getting a seizure.</p>
+</div>
+<div class="section" id="objeck">
+<h2>Objeck</h2>
+<p>As I said before, <a class="reference external" href="http://www.objeck.org/">Objeck</a> is kind of like I envisioned Java to be, other than the (painful) lack of generics.</p>
+<p>It's pretty expressive and nice to work with:</p>
+<pre class="literal-block">
+class Factorial {
+    function : native : Factorial(n : Int) ~ Int {
+        if (n &lt;= 1) {
+            return n;
+        } else {
+            return n * Factorial(n-1);
+        };
+    }
+
+    function : Main(args : String[]) ~ Nil {
+        "Number: "-&gt;Print();
+        number := IO.Console-&gt;ReadString()-&gt;ToInt();
+        if (number &lt; 0) {
+            "Number must be greater than 0"-&gt;PrintLine();
+            Runtime-&gt;Exit(1);
+        };
+        Factorial(number)-&gt;PrintLine();
+    }
+}
+</pre>
+<p>It's very Java-esque but nicer to use. The cons would be the fact that <em>there is no true native compiler</em>. Sure, there's a "compiler", but it's like the Java compiler: it compiles to a bytecode that's executed by a VM. It Objeck's case, the VM is <cite>obe</cite>. You also have to manually specify that a function is native for it to be compiled to machine code. There also seem to be to unsigned types or operator overloading. Again.</p>
+</div>
+<div class="section" id="others">
+<h2>Others</h2>
+<p>Two honorable, discontinued mentions are <a class="reference external" href="https://code.google.com/p/anic/">ani</a> and <a class="reference external" href="http://www.alorelang.org/">Alore</a>.</p>
+<p>Ani is a programming language that would have sported implicit parallelism and very nice speed. Note that I said <em>would have</em>. <a class="reference external" href="https://code.google.com/p/anic/wiki/Tutorial">A working compiler was never fully completed and the maintainer disappeared</a>, so this language may never quite see the light of day. The <a class="reference external" href="https://groups.google.com/forum/#!forum/ani-compiler">project mailing list</a> is still there, though, so there are hopes that someday, someone may indeed restart the project.</p>
+<p>Alore was a language based on the ability to freely mix static and dynamic typing. Although it was a great idea, the language itself seemingly never caught on, and it was abandoned in favor of <a class="reference external" href="http://www.mypy-lang.org">mypy</a>, a project with the same basic idea but implemented as a static type checker for Python.</p>
+</div>
+<div class="section" id="summary">
+<h2>Summary</h2>
+<p>That's all! As I said before, I hope one of the languages mentioned caught your eye.</p>
+</div>
+    </div>
+    <aside class="postpromonav">
+    <nav>
+    
+        <ul itemprop="keywords" class="tags">
+           <li><a class="tag p-category" href="../categories/compilers.html" rel="tag">compilers</a></li>
+           <li><a class="tag p-category" href="../categories/felix.html" rel="tag">felix</a></li>
+           <li><a class="tag p-category" href="../categories/k.html" rel="tag">k</a></li>
+           <li><a class="tag p-category" href="../categories/languages.html" rel="tag">languages</a></li>
+           <li><a class="tag p-category" href="../categories/myrddin.html" rel="tag">myrddin</a></li>
+           <li><a class="tag p-category" href="../categories/nim.html" rel="tag">nim</a></li>
+           <li><a class="tag p-category" href="../categories/objeck.html" rel="tag">objeck</a></li>
+           <li><a class="tag p-category" href="../categories/programming.html" rel="tag">programming</a></li>
+        </ul>
+
+    
+        <ul class="pager">
+            <li class="previous">
+                <a href="the-top-5-programming-languages-youve-never-heard-of.html" rel="prev" title="The top 5 programming Languages you've never heard of">Previous post</a>
+            </li>
+        </ul>
+
+    </nav>
+    </aside>
+        <section class="comments">
+        <h2>Comments</h2>
+        
+        
+        <div id="disqus_thread"></div>
+        <script>
+        var disqus_shortname ="blockbyte",
+            disqus_url="http://kirbyfan64.github.io/posts/the-top-5-programming-languages-youve-never-heard-of-part-2.html",
+        disqus_title="The top 5 programming languages you've never heard of (part 2)",
+        disqus_identifier="cache/posts/the-top-5-programming-languages-youve-never-heard-of-part-2.html",
+        disqus_config = function () {
+            this.language = "en";
+        };
+        (function() {
+            var dsq = document.createElement('script'); dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a>
+</noscript>
+    <a href="//disqus.com" class="dsq-brlink" rel="nofollow">Comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+        </section>
+    
+
+</article>
+
+        
+       <script>var disqus_shortname="blockbyte";(function(){var a=document.createElement("script");a.async=true;a.src="//"+disqus_shortname+".disqus.com/count.js";(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(a)}());</script>
+
+
+
+        </div>
+        <!--End of body content-->
+
+        <footer>
+            Contents © 2015         <a href="mailto:rymg19@gmail.com">Ryan Gonzalez</a> - Powered by         <a href="http://getnikola.com" rel="nofollow">Nikola</a>         
+            
+        </footer>
+    </div>
+</div>
+
+
+            <script src="../assets/js/all-nocdn.js"></script>
+    
+<!-- Social buttons -->
+<div id="addthisbox" class="addthis_toolbox addthis_peekaboo_style addthis_default_style addthis_label_style addthis_32x32_style">
+<a class="addthis_button_more">Share</a>
+<ul>
+<li>
+<a class="addthis_button_facebook"></a>
+</li>
+<li>
+<a class="addthis_button_google_plusone_share"></a>
+</li>
+<li>
+<a class="addthis_button_linkedin"></a>
+</li>
+<li>
+<a class="addthis_button_twitter"></a>
+</li>
+</ul>
+</div>
+<script src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-4f7088a56bb93798"></script>
+<!-- End of social buttons -->
+
+
+    <script>jQuery("a.image-reference").colorbox({rel:"gal",maxWidth:"100%",maxHeight:"100%",scalePhotos:true});</script>
+    
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-55018880-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+</body>
+</html>

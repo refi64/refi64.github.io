@@ -238,13 +238,13 @@ class Factorial {
         if (n &lt;= 1) {
             return n;
         } else {
-            return n * fac(n-1);
+            return n * Factorial(n-1);
         };
     }
 
     function : Main(args : String[]) ~ Nil {
         "Number: "-&gt;Print();
-        number := Console-&gt;ReadLine()-&gt;ToInt;
+        number := IO.Console-&gt;ReadString()-&gt;ToInt();
         if (number &lt; 0) {
             "Number must be greater than 0"-&gt;PrintLine();
             Runtime-&gt;Exit(1);
@@ -278,6 +278,9 @@ class Factorial {
         <ul class="pager">
             <li class="previous">
                 <a href="using-appveyor-to-distribute-python-wheels.html" rel="prev" title="Using AppVeyor to distribute Python wheels">Previous post</a>
+            </li>
+            <li class="next">
+                <a href="the-top-5-programming-languages-youve-never-heard-of-part-2.html" rel="next" title="The top 5 programming languages you've never heard of (part 2)">Next post</a>
             </li>
         </ul>
 

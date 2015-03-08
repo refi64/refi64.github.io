@@ -131,13 +131,13 @@ Objeck
            if (n <= 1) {
                return n;
            } else {
-               return n * fac(n-1);
+               return n * Factorial(n-1);
            };
        }
    
        function : Main(args : String[]) ~ Nil {
            "Number: "->Print();
-           number := Console->ReadLine()->ToInt;
+           number := IO.Console->ReadString()->ToInt();
            if (number < 0) {
                "Number must be greater than 0"->PrintLine();
                Runtime->Exit(1);
