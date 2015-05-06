@@ -81,7 +81,7 @@ Myrddin
    }
    
    const main = {
-       var stdin = bio.mkfile(0, "r")
+       var stdin = bio.mkfile(0, bio.Rd)
        std.put("Number: ")
        match bio.readln(stdin)
        | `std.Some s:

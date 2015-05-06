@@ -6,58 +6,110 @@
                         http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
  <url>
   <loc>http://kirbyfan64.github.io/2014/index.html</loc>
-  <lastmod>2014-11-16</lastmod>
+  <lastmod>2015-05-05</lastmod>
+ </url>
+ <url>
+  <loc>http://kirbyfan64.github.io/2015/index.html</loc>
+  <lastmod>2015-05-05</lastmod>
  </url>
  <url>
   <loc>http://kirbyfan64.github.io/archive.html</loc>
-  <lastmod>2014-11-16</lastmod>
+  <lastmod>2015-05-05</lastmod>
  </url>
  <url>
   <loc>http://kirbyfan64.github.io/categories/appveyor.html</loc>
-  <lastmod>2014-11-16</lastmod>
+  <lastmod>2015-05-05</lastmod>
  </url>
  <url>
   <loc>http://kirbyfan64.github.io/categories/c-preprocessor-hack.html</loc>
-  <lastmod>2014-11-16</lastmod>
+  <lastmod>2015-05-05</lastmod>
  </url>
  <url>
   <loc>http://kirbyfan64.github.io/categories/ci.html</loc>
-  <lastmod>2014-11-16</lastmod>
+  <lastmod>2015-05-05</lastmod>
+ </url>
+ <url>
+  <loc>http://kirbyfan64.github.io/categories/compilers.html</loc>
+  <lastmod>2015-05-05</lastmod>
+ </url>
+ <url>
+  <loc>http://kirbyfan64.github.io/categories/felix.html</loc>
+  <lastmod>2015-05-05</lastmod>
  </url>
  <url>
   <loc>http://kirbyfan64.github.io/categories/index.html</loc>
-  <lastmod>2014-11-16</lastmod>
+  <lastmod>2015-05-05</lastmod>
+ </url>
+ <url>
+  <loc>http://kirbyfan64.github.io/categories/k.html</loc>
+  <lastmod>2015-05-05</lastmod>
+ </url>
+ <url>
+  <loc>http://kirbyfan64.github.io/categories/languages.html</loc>
+  <lastmod>2015-05-05</lastmod>
+ </url>
+ <url>
+  <loc>http://kirbyfan64.github.io/categories/myrddin.html</loc>
+  <lastmod>2015-05-05</lastmod>
+ </url>
+ <url>
+  <loc>http://kirbyfan64.github.io/categories/nim.html</loc>
+  <lastmod>2015-05-05</lastmod>
+ </url>
+ <url>
+  <loc>http://kirbyfan64.github.io/categories/objeck.html</loc>
+  <lastmod>2015-05-05</lastmod>
+ </url>
+ <url>
+  <loc>http://kirbyfan64.github.io/categories/programming.html</loc>
+  <lastmod>2015-05-05</lastmod>
  </url>
  <url>
   <loc>http://kirbyfan64.github.io/categories/python.html</loc>
-  <lastmod>2014-11-16</lastmod>
+  <lastmod>2015-05-05</lastmod>
  </url>
  <url>
   <loc>http://kirbyfan64.github.io/categories/wheels.html</loc>
-  <lastmod>2014-11-16</lastmod>
+  <lastmod>2015-05-05</lastmod>
  </url>
  <url>
   <loc>http://kirbyfan64.github.io/galleries/index.html</loc>
-  <lastmod>2014-11-16</lastmod>
+  <lastmod>2015-05-05</lastmod>
  </url>
  <url>
   <loc>http://kirbyfan64.github.io/index.html</loc>
-  <lastmod>2014-11-16</lastmod>
+  <lastmod>2015-05-05</lastmod>
  </url>
  <url>
   <loc>http://kirbyfan64.github.io/listings/index.html</loc>
-  <lastmod>2014-11-16</lastmod>
+  <lastmod>2015-05-05</lastmod>
+ </url>
+ <url>
+  <loc>http://kirbyfan64.github.io/pages/katex.html</loc>
+  <lastmod>2015-05-05</lastmod>
+ </url>
+ <url>
+  <loc>http://kirbyfan64.github.io/pages/randomness.html</loc>
+  <lastmod>2015-05-05</lastmod>
  </url>
  <url>
   <loc>http://kirbyfan64.github.io/posts/overloading-functions-with-the-c-preprocessor.html</loc>
-  <lastmod>2014-11-16</lastmod>
+  <lastmod>2015-05-05</lastmod>
+ </url>
+ <url>
+  <loc>http://kirbyfan64.github.io/posts/the-top-5-programming-languages-youve-never-heard-of-part-2.html</loc>
+  <lastmod>2015-05-05</lastmod>
+ </url>
+ <url>
+  <loc>http://kirbyfan64.github.io/posts/the-top-5-programming-languages-youve-never-heard-of.html</loc>
+  <lastmod>2015-05-05</lastmod>
  </url>
  <url>
   <loc>http://kirbyfan64.github.io/posts/using-appveyor-to-distribute-python-wheels.html</loc>
-  <lastmod>2014-11-16</lastmod>
+  <lastmod>2015-05-05</lastmod>
  </url>
  <url>
   <loc>http://kirbyfan64.github.io/posts/welcome.html</loc>
-  <lastmod>2014-11-16</lastmod>
+  <lastmod>2015-05-05</lastmod>
  </url>
 </urlset>

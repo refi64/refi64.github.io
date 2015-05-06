@@ -3,7 +3,7 @@
     <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Tags | BlockByte</title>
+    <title>KaTeX | BlockByte</title>
 
     
             <link href="../assets/css/all-nocdn.css" rel="stylesheet" type="text/css">
@@ -11,7 +11,7 @@
     
             <link rel="alternate" type="application/rss+xml" title="RSS" href="../rss.xml">
 
-      <link rel="canonical" href="http://kirbyfan64.github.io/categories/index.html">
+      <link rel="canonical" href="http://kirbyfan64.github.io/pages/katex.html">
 
 
 
@@ -20,6 +20,46 @@
 
     
 
+
+    
+    
+
+    <meta name="author" content="Ryan Gonzalez">
+    
+        <meta name="og:title" content="KaTeX">
+        <meta name="og:url" content="http://kirbyfan64.github.io/pages/katex.html">
+            <meta name="og:description" content='function renderMath(txt) {
+    var out = document.getElementById("mathOutput");
+    out.style.color = "black";
+    try {
+        katex.render(txt.value, out);
+    } catch (err) {
+        out.innerHTML'>
+        <meta name="og:site_name" content="BlockByte">
+        <meta name="og:type" content="article">
+
+    
+
+    
+
+
+    <meta name="author" content="Ryan Gonzalez">
+    
+        <meta name="og:title" content="KaTeX">
+        <meta name="og:url" content="http://kirbyfan64.github.io/pages/katex.html">
+            <meta name="og:description" content='function renderMath(txt) {
+    var out = document.getElementById("mathOutput");
+    out.style.color = "black";
+    try {
+        katex.render(txt.value, out);
+    } catch (err) {
+        out.innerHTML'>
+        <meta name="og:site_name" content="BlockByte">
+        <meta name="og:type" content="article">
+
+    
+
+    
 
 
 
@@ -50,8 +90,8 @@
                 <li>
 <a href="../archive.html">Archive</a>
                 </li>
-<li class="active">
-<a href="#">Tags</a>
+<li>
+<a href="../categories/index.html">Tags</a>
                 </li>
 <li>
 <a href="../rss.xml">RSS feed</a>
@@ -60,10 +100,10 @@
 <a href="#" class="dropdown-toggle" data-toggle="dropdown">Randomness<b class="caret"></b></a>
             <ul class="dropdown-menu">
                     <li>
-<a href="../pages/randomness.html">Index</a>
+<a href="randomness.html">Index</a>
                     </li>
-<li>
-<a href="../pages/katex.html">KaTeX Previewer</a>
+<li class="active">
+<a href="#">KaTeX Previewer</a>
             </li>
 </ul>
 
@@ -75,6 +115,10 @@
                 
                 
                     
+    <li>
+    <a href="katex.rst" id="sourcelink">Source</a>
+    </li>
+
                 
             </ul>
         </div>
@@ -91,22 +135,38 @@
         <div class="row">
             
             
-<h1>Tags</h1>
-    <ul class="list-inline">
-        <li><a class="reference badge" href="appveyor.html">appveyor</a></li>
-        <li><a class="reference badge" href="c-preprocessor-hack.html">c preprocessor hack</a></li>
-        <li><a class="reference badge" href="ci.html">ci</a></li>
-        <li><a class="reference badge" href="compilers.html">compilers</a></li>
-        <li><a class="reference badge" href="felix.html">felix</a></li>
-        <li><a class="reference badge" href="k.html">k</a></li>
-        <li><a class="reference badge" href="languages.html">languages</a></li>
-        <li><a class="reference badge" href="myrddin.html">myrddin</a></li>
-        <li><a class="reference badge" href="nim.html">nim</a></li>
-        <li><a class="reference badge" href="objeck.html">objeck</a></li>
-        <li><a class="reference badge" href="programming.html">programming</a></li>
-        <li><a class="reference badge" href="python.html">python</a></li>
-        <li><a class="reference badge" href="wheels.html">wheels</a></li>
-    </ul>
+<article class="storypage" itemscope="itemscope" itemtype="http://schema.org/Article">
+    <header>
+        
+    <h1 class="p-name entry-title" itemprop="headline name"><a href="#" class="u-url">KaTeX</a></h1>
+
+        
+
+    </header>
+    <div itemprop="articleBody text">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/KaTeX/0.2.0/katex.min.css">
+<script src="//cdnjs.cloudflare.com/ajax/libs/KaTeX/0.2.0/katex.min.js"></script>
+
+<script>
+function renderMath(txt) {
+    var out = document.getElementById("mathOutput");
+    out.style.color = "black";
+    try {
+        katex.render(txt.value, out);
+    } catch (err) {
+        out.innerHTML = err.message;
+        out.style.color = "red";
+    }
+}
+</script><p>A KaTeX demo page. Type in your math, and see it rendered. Or you can get a big, red parse error.</p>
+<textarea id="input" rows="10" cols="50" oninput="renderMath(this)"></textarea>
+<br>
+<br>
+<div id="mathOutput"></div>
+<br>
+<br>
+    </div>
+</article>
 
         </div>
         <!--End of body content-->
