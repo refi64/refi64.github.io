@@ -2,17 +2,16 @@
 <html prefix="og: http://ogp.me/ns# article: http://ogp.me/ns/article# " lang="en">
     <head>
     <meta charset="utf-8">
-    <meta name="description" content="Random programming tidbits/tutorials">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>BlockByte | BlockByte</title>
+    <title>Functional programming isn't the answer to all problems (and neither is OOP) | BlockByte</title>
 
     
-            <link href="assets/css/all-nocdn.css" rel="stylesheet" type="text/css">
+            <link href="../assets/css/all-nocdn.css" rel="stylesheet" type="text/css">
 
     
-            <link rel="alternate" type="application/rss+xml" title="RSS" href="rss.xml">
+            <link rel="alternate" type="application/rss+xml" title="RSS" href="../rss.xml">
 
-      <link rel="canonical" href="http://kirbyfan64.github.io/index.html">
+      <link rel="canonical" href="http://kirbyfan64.github.io/posts/functional-programming-isnt-the-answer-to-all-problems-and-neither-is-oop.html">
 
 
 
@@ -21,6 +20,20 @@
 
     
 
+
+    
+
+    <meta name="author" content="Ryan Gonzalez">
+    
+        <meta name="og:title" content="Functional programming isn't the answer to all problems (and neither i">
+        <meta name="og:url" content="http://kirbyfan64.github.io/posts/functional-programming-isnt-the-answer-to-all-problems-and-neither-is-oop.html">
+            <meta name="og:description" content="I like functional programming. Being a big fan of Python and C++, it took a while to get used to functional languages like Haskell and Felix (my personal favorite FP language). I started out with Lear">
+        <meta name="og:site_name" content="BlockByte">
+        <meta name="og:type" content="article">
+
+    
+
+    
 
 
 
@@ -49,22 +62,22 @@
             <ul class="nav navbar-nav">
                 
                 <li>
-<a href="archive.html">Archive</a>
+<a href="../archive.html">Archive</a>
                 </li>
 <li>
-<a href="categories/index.html">Tags</a>
+<a href="../categories/index.html">Tags</a>
                 </li>
 <li>
-<a href="rss.xml">RSS feed</a>
+<a href="../rss.xml">RSS feed</a>
             </li>
 <li class="dropdown">
 <a href="#" class="dropdown-toggle" data-toggle="dropdown">Randomness<b class="caret"></b></a>
             <ul class="dropdown-menu">
                     <li>
-<a href="pages/randomness.html">Index</a>
+<a href="../pages/randomness.html">Index</a>
                     </li>
 <li>
-<a href="pages/katex.html">KaTeX Previewer</a>
+<a href="../pages/katex.html">KaTeX Previewer</a>
             </li>
 </ul>
 
@@ -76,6 +89,10 @@
                 
                 
                     
+    <li>
+    <a href="functional-programming-isnt-the-answer-to-all-problems-and-neither-is-oop.rst" id="sourcelink">Source</a>
+    </li>
+
                 
             </ul>
         </div>
@@ -92,22 +109,30 @@
         <div class="row">
             
             
-<div class="postindex">
-    <article class="h-entry post-text">
+<article class="post-text h-entry hentry postpage" itemscope="itemscope" itemtype="http://schema.org/Article">
+    
     <header>
-        <h1 class="p-name entry-title"><a href="posts/functional-programming-isnt-the-answer-to-all-problems-and-neither-is-oop.html" class="u-url">Functional programming isn't the answer to all problems (and neither is OOP)</a></h1>
+        
+    <h1 class="p-name entry-title" itemprop="headline name"><a href="#" class="u-url">Functional programming isn't the answer to all problems (and neither is OOP)</a></h1>
+
         <div class="metadata">
             <p class="byline author vcard"><span class="byline-name fn">Ryan Gonzalez</span></p>
-            <p class="dateline"><a href="posts/functional-programming-isnt-the-answer-to-all-problems-and-neither-is-oop.html" rel="bookmark"><time class="published dt-published" datetime="2015-05-17T16:59:00-05:00" itemprop="datePublished" title="Publication date">2015-05-17 16:59</time></a></p>
+            <p class="dateline"><a href="#" rel="bookmark"><time class="published dt-published" datetime="2015-05-17T16:59:00-05:00" itemprop="datePublished" title="Publication date">2015-05-17 16:59</time></a></p>
                 <p class="commentline">
         
-    <a href="posts/functional-programming-isnt-the-answer-to-all-problems-and-neither-is-oop.html#disqus_thread" data-disqus-identifier="cache/posts/functional-programming-isnt-the-answer-to-all-problems-and-neither-is-oop.html">Comments</a>
+    <a href="functional-programming-isnt-the-answer-to-all-problems-and-neither-is-oop.html#disqus_thread" data-disqus-identifier="cache/posts/functional-programming-isnt-the-answer-to-all-problems-and-neither-is-oop.html">Comments</a>
 
 
+            
         </p>
-</div>
+<p class="sourceline"><a href="functional-programming-isnt-the-answer-to-all-problems-and-neither-is-oop.rst" id="sourcelink">Source</a></p>
+
+        </div>
+        
+
     </header>
-    <div class="p-summary entry-summary">
+
+    <div class="e-content entry-content" itemprop="articleBody text">
     <p>I like functional programming. Being a big fan of Python and C++, it took a while to get used to functional languages like Haskell and Felix (my personal favorite FP language). I started out with <em>Learn You a Haskell for Great Good!</em> and then started toying with OCaml and Felix. I stuck with Felix and ditched OCaml because I just didn't like it.</p>
 <p>However, it isn't the solution to the world's issues. People used to think OOP was the solution to everything. They started shoving every freaking thing on earth in a class and adding useless methods. Then they realized that Java sucked. Now, everyone seems to think that FP is going to take over the world. I disagree. Why?</p>
 <div class="section" id="certain-programs-are-easier-to-extend-with-oop">
@@ -176,121 +201,50 @@
 <p><a class="reference external" href="https://youtu.be/kCHVW65YLJs?t=36s">IT'S NO USE!!!!</a></p>
 </div>
     </div>
-    </article>
-    <article class="h-entry post-text">
-    <header>
-        <h1 class="p-name entry-title"><a href="posts/the-top-5-programming-languages-youve-never-heard-of-part-2.html" class="u-url">The top 5 programming languages you've never heard of (part 2)</a></h1>
-        <div class="metadata">
-            <p class="byline author vcard"><span class="byline-name fn">Ryan Gonzalez</span></p>
-            <p class="dateline"><a href="posts/the-top-5-programming-languages-youve-never-heard-of-part-2.html" rel="bookmark"><time class="published dt-published" datetime="2015-03-08T17:04:17-05:00" itemprop="datePublished" title="Publication date">2015-03-08 17:04</time></a></p>
-                <p class="commentline">
+    <aside class="postpromonav">
+    <nav>
+    
+
+    
+        <ul class="pager">
+            <li class="previous">
+                <a href="the-top-5-programming-languages-youve-never-heard-of-part-2.html" rel="prev" title="The top 5 programming languages you've never heard of (part 2)">Previous post</a>
+            </li>
+        </ul>
+
+    </nav>
+    </aside>
+        <section class="comments">
+        <h2>Comments</h2>
         
-    <a href="posts/the-top-5-programming-languages-youve-never-heard-of-part-2.html#disqus_thread" data-disqus-identifier="cache/posts/the-top-5-programming-languages-youve-never-heard-of-part-2.html">Comments</a>
-
-
-        </p>
-</div>
-    </header>
-    <div class="p-summary entry-summary">
-    <p>Yesterday, I wrote a post about <a class="reference external" href="http://kirbyfan64.github.io/posts/the-top-5-programming-languages-youve-never-heard-of.html">the top 5 programming languages you've never heard of</a>. Well, since it was kind of short (I didn't have too much time to write), I'm going to put a little more info here.</p>
-<p class="more"><a href="posts/the-top-5-programming-languages-youve-never-heard-of-part-2.html">Read more…</a></p>
-    </div>
-    </article>
-    <article class="h-entry post-text">
-    <header>
-        <h1 class="p-name entry-title"><a href="posts/the-top-5-programming-languages-youve-never-heard-of.html" class="u-url">The top 5 programming Languages you've never heard of</a></h1>
-        <div class="metadata">
-            <p class="byline author vcard"><span class="byline-name fn">Ryan Gonzalez</span></p>
-            <p class="dateline"><a href="posts/the-top-5-programming-languages-youve-never-heard-of.html" rel="bookmark"><time class="published dt-published" datetime="2015-03-07T18:56:29-06:00" itemprop="datePublished" title="Publication date">2015-03-07 18:56</time></a></p>
-                <p class="commentline">
         
-    <a href="posts/the-top-5-programming-languages-youve-never-heard-of.html#disqus_thread" data-disqus-identifier="cache/posts/the-top-5-programming-languages-youve-never-heard-of.html">Comments</a>
+        <div id="disqus_thread"></div>
+        <script>
+        var disqus_shortname ="blockbyte",
+            disqus_url="http://kirbyfan64.github.io/posts/functional-programming-isnt-the-answer-to-all-problems-and-neither-is-oop.html",
+        disqus_title="Functional programming isn't the answer to all problems (and neither is OOP)",
+        disqus_identifier="cache/posts/functional-programming-isnt-the-answer-to-all-problems-and-neither-is-oop.html",
+        disqus_config = function () {
+            this.language = "en";
+        };
+        (function() {
+            var dsq = document.createElement('script'); dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a>
+</noscript>
+    <a href="//disqus.com" class="dsq-brlink" rel="nofollow">Comments powered by <span class="logo-disqus">Disqus</span></a>
 
 
-        </p>
-</div>
-    </header>
-    <div class="p-summary entry-summary">
-    <p>Lately, there's been a large surge in new programming languages as projects such as <a class="reference external" href="http://www.rust-lang.org/">Rust</a> have been taking the spotlight and showing lots of promise. However, there are some programming languages few have heard of that deserve to be more popular. Here's a brief listing of some of my favorite languages that aren't common sights.</p>
-<p class="more"><a href="posts/the-top-5-programming-languages-youve-never-heard-of.html">Read more…</a></p>
-    </div>
-    </article>
-    <article class="h-entry post-text">
-    <header>
-        <h1 class="p-name entry-title"><a href="posts/using-appveyor-to-distribute-python-wheels.html" class="u-url">Using AppVeyor to distribute Python wheels</a></h1>
-        <div class="metadata">
-            <p class="byline author vcard"><span class="byline-name fn">Ryan Gonzalez</span></p>
-            <p class="dateline"><a href="posts/using-appveyor-to-distribute-python-wheels.html" rel="bookmark"><time class="published dt-published" datetime="2014-09-21T17:02:14-05:00" itemprop="datePublished" title="Publication date">2014-09-21 17:02</time></a></p>
-                <p class="commentline">
-        
-    <a href="posts/using-appveyor-to-distribute-python-wheels.html#disqus_thread" data-disqus-identifier="cache/posts/using-appveyor-to-distribute-python-wheels.html">Comments</a>
+        </section>
+    
 
-
-        </p>
-</div>
-    </header>
-    <div class="p-summary entry-summary">
-    <p><a class="reference external" href="http://wheel.readthedocs.org/en/latest/">Wheels</a> are the future of distribution. No more messy broken <cite>setup.py</cite> scripts or need for a compiler to build C extensions! Of course, this has a glaring issue: a Linux user can't build Wheels of their C extension for Windows. Unless, of course, you use <a class="reference external" href="https://travis-ci.org/">Travis CI</a>, install the MinGW compilers, define the compiler variables, etc. However, there is an easier way: <a class="reference external" href="posts/www.appveyor.com">AppVeyor</a>.</p>
-<p class="more"><a href="posts/using-appveyor-to-distribute-python-wheels.html">Read more…</a></p>
-    </div>
-    </article>
-    <article class="h-entry post-text">
-    <header>
-        <h1 class="p-name entry-title"><a href="posts/overloading-functions-with-the-c-preprocessor.html" class="u-url">Overloading functions with the C preprocessor</a></h1>
-        <div class="metadata">
-            <p class="byline author vcard"><span class="byline-name fn">Ryan Gonzalez</span></p>
-            <p class="dateline"><a href="posts/overloading-functions-with-the-c-preprocessor.html" rel="bookmark"><time class="published dt-published" datetime="2014-09-15T20:42:34-05:00" itemprop="datePublished" title="Publication date">2014-09-15 20:42</time></a></p>
-                <p class="commentline">
-        
-    <a href="posts/overloading-functions-with-the-c-preprocessor.html#disqus_thread" data-disqus-identifier="cache/posts/overloading-functions-with-the-c-preprocessor.html">Comments</a>
-
-
-        </p>
-</div>
-    </header>
-    <div class="p-summary entry-summary">
-    <p>Let's have an imaginary scenario: you're trying to make a library that has a special function, <em>myfunc</em>. Now, this functions needs to have two possible ways to invoke it. One way takes one int parameter, the other takes two. Here's how you might do that in C++:</p>
-<pre class="code c++ literal-block">
-<span class="kt">void</span> <span class="nf">myfunc</span><span class="p">(</span><span class="kt">int</span><span class="p">);</span>
-<span class="kt">void</span> <span class="nf">myfunc</span><span class="p">(</span><span class="kt">int</span><span class="p">,</span> <span class="kt">int</span><span class="p">);</span>
-</pre>
-<p>C doesn't have a way to do this. You'll often see code like this:</p>
-<pre class="code c literal-block">
-<span class="kt">void</span> <span class="nf">myfunc_1</span><span class="p">(</span><span class="kt">int</span><span class="p">);</span>
-<span class="kt">void</span> <span class="nf">myfunc_2</span><span class="p">(</span><span class="kt">int</span><span class="p">,</span> <span class="kt">int</span><span class="p">);</span>
-</pre>
-<p>However, this <em>can</em> be implemented, albeit in a slightly convoluted way using a very controversial tool: the C preprocessor.</p>
-<p class="more"><a href="posts/overloading-functions-with-the-c-preprocessor.html">Read more…</a></p>
-    </div>
-    </article>
-    <article class="h-entry post-text">
-    <header>
-        <h1 class="p-name entry-title"><a href="posts/welcome.html" class="u-url">Welcome!</a></h1>
-        <div class="metadata">
-            <p class="byline author vcard"><span class="byline-name fn">Ryan Gonzalez</span></p>
-            <p class="dateline"><a href="posts/welcome.html" rel="bookmark"><time class="published dt-published" datetime="2014-09-10T18:02:45-05:00" itemprop="datePublished" title="Publication date">2014-09-10 18:02</time></a></p>
-                <p class="commentline">
-        
-    <a href="posts/welcome.html#disqus_thread" data-disqus-identifier="cache/posts/welcome.html">Comments</a>
-
-
-        </p>
-</div>
-    </header>
-    <div class="p-summary entry-summary">
-    <p>First post!</p>
-<p>This website is my first ever web page. It's written using the excellent <a class="reference external" href="http://getnikola.com">Nikola</a> and reStructuredText. The majority of its content is going to revolve around programming: tutorials, experiments, and lots and lots of rants. :)</p>
-<p>Have fun browsing!</p>
-    </div>
-    </article>
-</div>
-
-
+</article>
 
         
        <script>var disqus_shortname="blockbyte";(function(){var a=document.createElement("script");a.async=true;a.src="//"+disqus_shortname+".disqus.com/count.js";(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(a)}());</script>
-
-
 
 
 
@@ -305,7 +259,7 @@
 </div>
 
 
-            <script src="assets/js/all-nocdn.js"></script>
+            <script src="../assets/js/all-nocdn.js"></script>
     
 <!-- Social buttons -->
 <div id="addthisbox" class="addthis_toolbox addthis_peekaboo_style addthis_default_style addthis_label_style addthis_32x32_style">
