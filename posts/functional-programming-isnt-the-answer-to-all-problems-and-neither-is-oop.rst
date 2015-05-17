@@ -10,6 +10,8 @@ I like functional programming. Being a big fan of Python and C++, it took a whil
 
 However, it isn't the solution to the world's issues. People used to think OOP was the solution to everything. They started shoving every freaking thing on earth in a class and adding useless methods. Then they realized that Java sucked. Now, everyone seems to think that FP is going to take over the world. I disagree. Why?
 
+.. TEASER_END
+
 Certain programs are easier to extend with OOP
 ==============================================
 
