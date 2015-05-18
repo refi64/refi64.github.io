@@ -103,3 +103,9 @@ Also, I'm not saying that moving forward like this is bad. Imagine what would ha
 But it's just not all cut out. Trying to mix them perfectly doesn't work out, either...
 
 `IT'S NO USE!!!! <https://youtu.be/kCHVW65YLJs?t=36s>`_
+
+**EDIT:** Apparently, this post is very controversial:
+
+.. image:: https://dl-web.dropbox.com/get/contr_web.png?_subject_uid=200677686&w=AABUq-WzkWaCgzQmcibavrxBqBnnqHFlvPwDBDMTDnVEZQ&dl=1
+
+:/
