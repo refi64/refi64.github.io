@@ -74,6 +74,26 @@ Now, I'm not saying that Haskell is slow; it can actually be quite fast. I'm jus
 
 It's worth saying again that this is only really bad for lazy languages, so Felix and OCaml shouldn't suffer from it as badly. Rust also doesn't suffer from it; the program I wrote took 0.04s.
 
+**EDIT:** As @kuribas pointed out in the comments, the Haskell example seems to be inferred to use unbounded integers. Let's try using bounded ones:
+
+.. code-block:: haskell
+   
+   f :: [Int] -> Int
+   f = foldl1' (+)
+
+This finishes in 1.7s on my (not-too-fast) computer. He also pointed out that using ``Data.Vector`` instead made it faster than the C++ version:
+
+.. code-block:: haskell
+   
+   import qualified Data.Vector as V
+   
+   f :: V.Vector Int -> Int
+   f = V.foldl1' (+)
+   
+   main = print . f $ V.replicate 10000000 1
+
+This actually took a whopping 1.08s on my laptop. Ouch!
+
 It's not magic
 ==============
 

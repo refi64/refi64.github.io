@@ -182,6 +182,21 @@
 <p>The Haskell version gives a stack overflow after 1.7 seconds. Changing <tt class="docutils literal">foldl1</tt> to <tt class="docutils literal">foldl1'</tt> fixes it, but it still takes 0.184s. C++ version? 0.022s.</p>
 <p>Now, I'm not saying that Haskell is slow; it can actually be quite fast. I'm just saying that it can be hard to predict performance, where your stack will explode, or where you can blow threw several gigs of RAM.</p>
 <p>It's worth saying again that this is only really bad for lazy languages, so Felix and OCaml shouldn't suffer from it as badly. Rust also doesn't suffer from it; the program I wrote took 0.04s.</p>
+<p><strong>EDIT:</strong> As @kuribas pointed out in the comments, the Haskell example seems to be inferred to use unbounded integers. Let's try using bounded ones:</p>
+<pre class="code haskell literal-block">
+<span class="nf">f</span> <span class="ow">::</span> <span class="p">[</span><span class="kt">Int</span><span class="p">]</span> <span class="ow">-&gt;</span> <span class="kt">Int</span>
+<span class="nf">f</span> <span class="ow">=</span> <span class="n">foldl1'</span> <span class="p">(</span><span class="o">+</span><span class="p">)</span>
+</pre>
+<p>This finishes in 1.7s on my (not-too-fast) computer. He also pointed out that using <tt class="docutils literal">Data.Vector</tt> instead made it faster than the C++ version:</p>
+<pre class="code haskell literal-block">
+<span class="kr">import</span> <span class="k">qualified</span> <span class="nn">Data.Vector</span> <span class="k">as</span> <span class="n">V</span>
+
+<span class="nf">f</span> <span class="ow">::</span> <span class="kt">V</span><span class="o">.</span><span class="kt">Vector</span> <span class="kt">Int</span> <span class="ow">-&gt;</span> <span class="kt">Int</span>
+<span class="nf">f</span> <span class="ow">=</span> <span class="kt">V</span><span class="o">.</span><span class="n">foldl1'</span> <span class="p">(</span><span class="o">+</span><span class="p">)</span>
+
+<span class="nf">main</span> <span class="ow">=</span> <span class="n">print</span> <span class="o">.</span> <span class="n">f</span> <span class="o">$</span> <span class="kt">V</span><span class="o">.</span><span class="n">replicate</span> <span class="mi">10000000</span> <span class="mi">1</span>
+</pre>
+<p>This actually took a whopping 1.08s on my laptop. Ouch!</p>
 </div>
 <div class="section" id="it-s-not-magic">
 <h2>It's not magic</h2>
