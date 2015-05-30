@@ -27,7 +27,7 @@
     
         <meta name="og:title" content="The Magic of RPython">
         <meta name="og:url" content="http://kirbyfan64.github.io/posts/the-magic-of-rpython.html">
-            <meta name="og:description" content="RPython is a really nice translation framework that converts a (very) restricted subset of Python to C code. Better yet, RPython will generate JITs for your interpreters. Although there are very good ">
+            <meta name="og:description" content="RPython is a really nice translation framework that converts a (very) restricted subset of Python 2 to C code. Better yet, RPython will generate JITs for your interpreters. Although there are very goo">
         <meta name="og:site_name" content="BlockByte">
         <meta name="og:type" content="article">
 
@@ -133,10 +133,10 @@
     </header>
 
     <div class="e-content entry-content" itemprop="articleBody text">
-    <p><a class="reference external" href="http://rpython.readthedocs.org/en/latest/">RPython</a> is a really nice translation framework that converts a (very) restricted subset of Python to C code. Better yet, RPython will generate JITs for your interpreters. Although there are very good articles on how to write interpreters with RPython, I don't often find anything that describes the language itself. My goal with this post is to do just that: describe RPython itself. I'm going to leave out the things about the JITs; the RPython FAQ links to a good tutorial about that.</p>
+    <p><a class="reference external" href="http://rpython.readthedocs.org/en/latest/">RPython</a> is a really nice translation framework that converts a (very) restricted subset of Python 2 to C code. Better yet, RPython will generate JITs for your interpreters. Although there are very good articles on how to write interpreters with RPython, I don't often find anything that describes the language itself. My goal with this post is to do just that: describe RPython itself. I'm going to leave out the things about the JITs; the RPython FAQ links to a good tutorial about that.</p>
 <!-- TEASER_END -->
-<div class="section" id="entry-points">
-<h2>Entry points</h2>
+<div class="section" id="rpython-enters-and-exits">
+<h2>RPython enters and exits</h2>
 <p>Your RPython programs/interpreters will often begin like this:</p>
 <pre class="code python literal-block">
 <span class="k">def</span> <span class="nf">entry_point</span><span class="p">(</span><span class="n">argv</span><span class="p">):</span>
@@ -156,6 +156,15 @@ $ python path_to_pypy_source/rpython/bin/rpython -O0 my_program.py
 <pre class="literal-block">
 $ alias rpython="python path_to_pypy_source/rpython/bin/rpython"
 </pre>
+<p>The <tt class="docutils literal">target</tt> function lets you set certain or check command-line arguments passed to RPython. For instance:</p>
+<pre class="code python literal-block">
+<span class="k">def</span> <span class="nf">target</span><span class="p">(</span><span class="n">driver</span><span class="p">,</span> <span class="n">args</span><span class="p">):</span>
+    <span class="c"># The default output file name for xyz.py is xyz-c</span>
+    <span class="k">if</span> <span class="n">driver</span><span class="o">.</span><span class="n">exe_name</span> <span class="o">==</span> <span class="s">'xyz-c'</span><span class="p">:</span>
+        <span class="n">driver</span><span class="o">.</span><span class="n">exe_name</span> <span class="o">=</span> <span class="s">'bin/xyz'</span>
+    <span class="k">return</span> <span class="n">entry_point</span><span class="p">,</span> <span class="bp">None</span>
+</pre>
+<p>I have <em>no</em> clue what the <tt class="docutils literal">None</tt> is for, though.</p>
 </div>
 <div class="section" id="rpython-is-half-python-half-not-python-and-python">
 <h2>RPython is half-Python, half-not-Python, and Python</h2>
@@ -463,8 +472,9 @@ error: myfile.whatever:22: variable 'xyz' may be 'null' when used here
 </pre>
 <p>Also note the types again. Here, it's telling us it's a list (<tt class="docutils literal">SomeList</tt>) of non-nullable strings (<tt class="docutils literal"><span class="pre">listdef=&lt;[SomeString(no_nul=True)]&gt;</span></tt>).</p>
 </div>
+</div>
 <div class="section" id="rpython-takes-a-hint">
-<h3>RPython takes a hint</h3>
+<h2>RPython takes a hint</h2>
 <p>For instance:</p>
 <pre class="code python literal-block">
 <span class="k">class</span> <span class="nc">A</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
@@ -516,18 +526,13 @@ error: myfile.whatever:22: variable 'xyz' may be 'null' when used here
 [translation:ERROR]  --end--
 </pre>
 <p>The solution? You can use an assertion:</p>
-<pre class="literal-block">
-.. code-block:: python
+<pre class="code python literal-block">
+<span class="k">def</span> <span class="nf">entry_point</span><span class="p">(</span><span class="n">argv</span><span class="p">):</span>
+    <span class="n">a</span> <span class="o">=</span> <span class="n">C</span><span class="p">()</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">argv</span><span class="p">)</span> <span class="o">==</span> <span class="mi">3</span> <span class="k">else</span> <span class="n">B</span><span class="p">()</span> <span class="c"># Ok; 'a' is of type A</span>
+    <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">B</span><span class="p">)</span>
+    <span class="k">print</span> <span class="n">a</span><span class="o">.</span><span class="n">x</span><span class="p">()</span> <span class="c"># Ok; this will never run if 'a' is of type 'C'</span>
+    <span class="k">return</span> <span class="mi">0</span>
 </pre>
-<blockquote>
-<dl class="docutils">
-<dt>def entry_point(argv):</dt>
-<dd>a = C() if len(argv) == 3 else B() # Ok; 'a' is of type A
-assert isinstance(a, B)
-print a.x() # Ok; this will never run if 'a' is of type 'C'
-return 0</dd>
-</dl>
-</blockquote>
 <p>Or an <tt class="docutils literal">if</tt> statement:</p>
 <pre class="code python literal-block">
 <span class="k">def</span> <span class="nf">entry_point</span><span class="p">(</span><span class="n">argv</span><span class="p">):</span>
@@ -540,11 +545,11 @@ return 0</dd>
 </pre>
 </div>
 <div class="section" id="rpython-drops-you-some-neat-info">
-<h3>RPython drops you some neat info</h3>
+<h2>RPython drops you some neat info</h2>
 <p>Notice that, when an error occurs, RPython drops you into an instance of <a class="reference external" href="https://docs.python.org/2/library/pdb.html">pdb</a>. This means you can inspect the variables of RPython's internals! This can come in handy for debugging the more spurious errors. You can inspect the various variables and see what RPython thinks things are.</p>
 </div>
 <div class="section" id="rpython-is-polite">
-<h3>RPython is polite</h3>
+<h2>RPython is polite</h2>
 <p>Take this program:</p>
 <pre class="code python literal-block">
 <span class="k">def</span> <span class="nf">entry_point</span><span class="p">(</span><span class="n">argv</span><span class="p">):</span>
@@ -588,7 +593,7 @@ return 0</dd>
 </pre>
 </div>
 <div class="section" id="rpython-is-very-restricted">
-<h3>RPython is very restricted</h3>
+<h2>RPython is very restricted</h2>
 <p>Here are a few things that don't work:</p>
 <ul class="simple">
 <li>Any builtins not found as <tt class="docutils literal">builtin_xxx</tt> in <a class="reference external" href="https://bitbucket.org/pypy/pypy/src/default/rpython/annotator/builtin.py">rpython/annotator/builtin.py</a>.</li>
@@ -597,19 +602,75 @@ return 0</dd>
 <li>Most Python modules other than <tt class="docutils literal">os</tt> and <tt class="docutils literal">math</tt> (and maybe a few others).</li>
 <li>Sets.</li>
 <li>Multiple inheritance.</li>
+<li>Several <tt class="docutils literal">str</tt> methods (such as <tt class="docutils literal">*just</tt> and <tt class="docutils literal">zfill</tt>). Some others work take slightly different argument counts.</li>
+<li>
+<tt class="docutils literal">with</tt> blocks. Use <tt class="docutils literal"><span class="pre">try..finally</span></tt>.</li>
+<li>
+<tt class="docutils literal">sys.stdin</tt>, <tt class="docutils literal">sys.stdout</tt>, and <tt class="docutils literal">sys.stderr</tt>.</li>
+<li>
+<tt class="docutils literal">raw_input</tt>.</li>
 <li>Lots and lots and lots of other stuff!</li>
 </ul>
 <p>I believe <tt class="docutils literal">OrderedDict</tt> works, but I'm not quite sure.</p>
 <p>Figuring some of the other restrictions is simply trial-and-error.</p>
+<p>For getting around <tt class="docutils literal">sys.std*</tt>, you can use this function to read a line from <tt class="docutils literal">stdin</tt>:</p>
+<pre class="code python literal-block">
+<span class="kn">import</span> <span class="nn">os</span>
+
+<span class="k">def</span> <span class="nf">readline</span><span class="p">():</span>
+    <span class="n">res</span> <span class="o">=</span> <span class="s">''</span>
+    <span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
+        <span class="n">buf</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">16</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">buf</span><span class="p">:</span> <span class="k">return</span> <span class="n">res</span>
+        <span class="n">res</span> <span class="o">+=</span> <span class="n">buf</span>
+        <span class="k">if</span> <span class="n">res</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="s">'</span><span class="se">\n</span><span class="s">'</span><span class="p">:</span> <span class="k">return</span> <span class="n">res</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+</pre>
+<p>For reading all the lines in <tt class="docutils literal">stdin</tt> into a list:</p>
+<pre class="code python literal-block">
+<span class="kn">import</span> <span class="nn">os</span>
+
+<span class="k">def</span> <span class="nf">readlines</span><span class="p">():</span>
+    <span class="n">res</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">cur</span> <span class="o">=</span> <span class="s">''</span>
+    <span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
+        <span class="n">buf</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">16</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">buf</span><span class="p">:</span> <span class="k">return</span> <span class="n">res</span>
+        <span class="n">cur</span> <span class="o">+=</span> <span class="n">buf</span>
+        <span class="k">if</span> <span class="n">cur</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="s">'</span><span class="se">\n</span><span class="s">'</span><span class="p">:</span> <span class="n">res</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">cur</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+</pre>
+<p>For reading the lines in <tt class="docutils literal">stdin</tt> into a single string:</p>
+<pre class="code python literal-block">
+<span class="kn">import</span> <span class="nn">os</span>
+
+<span class="k">def</span> <span class="nf">readall</span><span class="p">():</span>
+    <span class="n">res</span> <span class="o">=</span> <span class="s">''</span>
+    <span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
+        <span class="n">buf</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">16</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">buf</span><span class="p">:</span> <span class="k">return</span> <span class="n">res</span>
+        <span class="n">res</span> <span class="o">+=</span> <span class="n">buf</span>
+</pre>
+<p>For writing to <tt class="docutils literal">stderr</tt>:</p>
+<pre class="code python literal-block">
+<span class="kn">import</span> <span class="nn">os</span>
+
+<span class="k">def</span> <span class="nf">write_err</span><span class="p">(</span><span class="n">msg</span><span class="p">):</span>
+    <span class="n">os</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">msg</span><span class="o">+</span><span class="s">'</span><span class="se">\n</span><span class="s">'</span><span class="p">)</span>
+</pre>
+<p>And for writing to <tt class="docutils literal">stdout</tt> without any trailing newlines or spaces:</p>
+<pre class="code python literal-block">
+<span class="kn">import</span> <span class="nn">os</span>
+
+<span class="k">def</span> <span class="nf">write</span><span class="p">(</span><span class="n">msg</span><span class="p">):</span>
+    <span class="n">os</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">msg</span><span class="p">)</span>
+</pre>
 </div>
 <div class="section" id="rpython-is-fun">
-<h3>RPython is fun!</h3>
+<h2>RPython is fun!</h2>
 <p>Maybe I'm weird, but RPython is still really cool. Once you get the hang of the oddities, everything else kind of starts to fall into place.</p>
 </div>
 <div class="section" id="need-help">
-<h3>Need help?</h3>
+<h2>Need help?</h2>
 <p>You can ask the <a class="reference external" href="https://mail.python.org/mailman/listinfo/pypy-dev">PyPy mailing list</a>. They helped me with several slip-ups while writing an interpreter in RPython.</p>
-</div>
 <div class="section" id="read-the-docs">
 <h3>Read the docs!</h3>
 <p>Also, read through the <a class="reference external" href="http://rpython.readthedocs.org/en/latest/">RPython</a> documentation. It's very exhaustive and mentions stuff that I can't in this short space.</p>

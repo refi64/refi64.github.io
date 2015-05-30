@@ -6,12 +6,12 @@
 .. description: 
 .. type: text
 
-`RPython <http://rpython.readthedocs.org/en/latest/>`_ is a really nice translation framework that converts a (very) restricted subset of Python to C code. Better yet, RPython will generate JITs for your interpreters. Although there are very good articles on how to write interpreters with RPython, I don't often find anything that describes the language itself. My goal with this post is to do just that: describe RPython itself. I'm going to leave out the things about the JITs; the RPython FAQ links to a good tutorial about that.
+`RPython <http://rpython.readthedocs.org/en/latest/>`_ is a really nice translation framework that converts a (very) restricted subset of Python 2 to C code. Better yet, RPython will generate JITs for your interpreters. Although there are very good articles on how to write interpreters with RPython, I don't often find anything that describes the language itself. My goal with this post is to do just that: describe RPython itself. I'm going to leave out the things about the JITs; the RPython FAQ links to a good tutorial about that.
 
 .. TEASER_END
 
-Entry points
-============
+RPython enters and exits
+========================
 
 Your RPython programs/interpreters will often begin like this:
 
@@ -34,6 +34,18 @@ The ``-O0`` turns off all optimizations, which makes compile times *much* faster
 If you're lazy like me, you can define an alias::
    
    $ alias rpython="python path_to_pypy_source/rpython/bin/rpython"
+
+The ``target`` function lets you set certain or check command-line arguments passed to RPython. For instance:
+
+.. code-block:: python
+   
+   def target(driver, args):
+       # The default output file name for xyz.py is xyz-c
+       if driver.exe_name == 'xyz-c':
+           driver.exe_name = 'bin/xyz'
+       return entry_point, None
+
+I have *no* clue what the ``None`` is for, though.
 
 RPython is half-Python, half-not-Python, and Python
 ===================================================
@@ -367,7 +379,7 @@ Gives::
 Also note the types again. Here, it's telling us it's a list (``SomeList``) of non-nullable strings (``listdef=<[SomeString(no_nul=True)]>``).
 
 RPython takes a hint
-********************
+====================
 
 For instance:
 
@@ -421,7 +433,7 @@ This gives::
    [translation:ERROR]        v5 = simple_call((function rpython_print_newline))
    [translation:ERROR]  --end--
 
-The solution? You can use an assertion::
+The solution? You can use an assertion:
 
 .. code-block:: python
    
@@ -444,12 +456,12 @@ Or an ``if`` statement:
        return 0
 
 RPython drops you some neat info
-********************************
+================================
 
 Notice that, when an error occurs, RPython drops you into an instance of `pdb <https://docs.python.org/2/library/pdb.html>`_. This means you can inspect the variables of RPython's internals! This can come in handy for debugging the more spurious errors. You can inspect the various variables and see what RPython thinks things are.
 
 RPython is polite
-*****************
+=================
 
 Take this program:
 
@@ -502,7 +514,7 @@ This will segfault when build with ``-O2``. But we put a ``try`` block! RPython 
            raise
 
 RPython is very restricted
-**************************
+==========================
 
 Here are a few things that don't work:
 
@@ -512,19 +524,83 @@ Here are a few things that don't work:
 - Most Python modules other than ``os`` and ``math`` (and maybe a few others).
 - Sets.
 - Multiple inheritance.
+- Several ``str`` methods (such as ``*just`` and ``zfill``). Some others work take slightly different argument counts.
+- ``with`` blocks. Use ``try..finally``.
+- ``sys.stdin``, ``sys.stdout``, and ``sys.stderr``.
+- ``raw_input``.
 - Lots and lots and lots of other stuff!
 
 I believe ``OrderedDict`` works, but I'm not quite sure.
 
 Figuring some of the other restrictions is simply trial-and-error.
 
+For getting around ``sys.std*``, you can use this function to read a line from ``stdin``:
+
+.. code-block:: python
+   
+   import os
+   
+   def readline():
+       res = ''
+       while True:
+           buf = os.read(0, 16)
+           if not buf: return res
+           res += buf
+           if res[-1] == '\n': return res[:-1]
+
+For reading all the lines in ``stdin`` into a list:
+
+.. code-block:: python
+   
+   import os
+   
+   def readlines():
+       res = []
+       cur = ''
+       while True:
+           buf = os.read(0, 16)
+           if not buf: return res
+           cur += buf
+           if cur[-1] == '\n': res.append(cur[:-1])
+
+For reading the lines in ``stdin`` into a single string:
+
+.. code-block:: python
+   
+   import os
+   
+   def readall():
+       res = ''
+       while True:
+           buf = os.read(0, 16)
+           if not buf: return res
+           res += buf
+
+For writing to ``stderr``:
+
+.. code-block:: python
+   
+   import os
+   
+   def write_err(msg):
+       os.write(2, msg+'\n')
+
+And for writing to ``stdout`` without any trailing newlines or spaces:
+
+.. code-block:: python
+   
+   import os
+   
+   def write(msg):
+       os.write(1, msg)
+
 RPython is fun!
-***************
+===============
 
 Maybe I'm weird, but RPython is still really cool. Once you get the hang of the oddities, everything else kind of starts to fall into place.
 
 Need help?
-**********
+==========
 
 You can ask the `PyPy mailing list <https://mail.python.org/mailman/listinfo/pypy-dev>`_. They helped me with several slip-ups while writing an interpreter in RPython.
 
