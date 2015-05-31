@@ -47,6 +47,8 @@ The ``target`` function lets you set certain or check command-line arguments pas
 
 I have *no* clue what the ``None`` is for, though.
 
+**EDIT:** As Chris pointed out in the comments and Maciej Fijalkowski in an e-mail, the ``None`` represents the type of the arguments that are given to ``entry_point``. See `rpython/translator/goal/targetrpystonex.py <https://bitbucket.org/pypy/pypy/src/tip/rpython/translator/goal/targetrpystonex.py?at=py3k>`_ for an example.
+
 RPython is half-Python, half-not-Python, and Python
 ===================================================
 

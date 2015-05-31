@@ -165,6 +165,7 @@ $ alias rpython="python path_to_pypy_source/rpython/bin/rpython"
     <span class="k">return</span> <span class="n">entry_point</span><span class="p">,</span> <span class="bp">None</span>
 </pre>
 <p>I have <em>no</em> clue what the <tt class="docutils literal">None</tt> is for, though.</p>
+<p><strong>EDIT:</strong> As Chris pointed out in the comments and Maciej Fijalkowski in an e-mail, the <tt class="docutils literal">None</tt> represents the type of the arguments that are given to <tt class="docutils literal">entry_point</tt>. See <a class="reference external" href="https://bitbucket.org/pypy/pypy/src/tip/rpython/translator/goal/targetrpystonex.py?at=py3k">rpython/translator/goal/targetrpystonex.py</a> for an example.</p>
 </div>
 <div class="section" id="rpython-is-half-python-half-not-python-and-python">
 <h2>RPython is half-Python, half-not-Python, and Python</h2>
