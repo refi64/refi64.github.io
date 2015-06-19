@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html prefix="og: http://ogp.me/ns# article: http://ogp.me/ns/article# " lang="en">
+    <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Programming Decisions | BlockByte</title>
+
+    
+            <link href="../assets/css/all-nocdn.css" rel="stylesheet" type="text/css">
+
+    
+            <link rel="alternate" type="application/rss+xml" title="RSS" href="../rss.xml">
+
+      <link rel="canonical" href="http://kirbyfan64.github.io/posts/programming-decisions.html">
+
+
+
+    
+        <!--[if lt IE 9]><script src="/assets/js/html5.js"></script><![endif]-->
+
+    
+
+
+    
+
+    <meta name="author" content="Ryan Gonzalez">
+    
+        <meta name="og:title" content="Programming Decisions">
+        <meta name="og:url" content="http://kirbyfan64.github.io/posts/programming-decisions.html">
+            <meta name="og:description" content="DISCLAIMER This is a satirical post. If your name is mentioned in a diminishing way, don't be insulted; I insult myself a few times throughout the post. Also, I like some of the projects I made fun of">
+        <meta name="og:site_name" content="BlockByte">
+        <meta name="og:type" content="article">
+
+    
+
+    
+
+
+
+</head>
+<body>
+
+<!-- Menubar -->
+
+<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="container">
+<!-- This keeps the margins nice -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="http://kirbyfan64.github.io/">
+
+                <span id="blog-title">BlockByte</span>
+            </a>
+        </div>
+<!-- /.navbar-header -->
+        <div class="collapse navbar-collapse navbar-ex1-collapse">
+            <ul class="nav navbar-nav">
+                
+                <li>
+<a href="../archive.html">Archive</a>
+                </li>
+<li>
+<a href="../categories/index.html">Tags</a>
+                </li>
+<li>
+<a href="../rss.xml">RSS feed</a>
+            </li>
+<li class="dropdown">
+<a href="#" class="dropdown-toggle" data-toggle="dropdown">Randomness<b class="caret"></b></a>
+            <ul class="dropdown-menu">
+                    <li>
+<a href="../pages/randomness.html">Index</a>
+                    </li>
+<li>
+<a href="../pages/katex.html">KaTeX Previewer</a>
+            </li>
+</ul>
+
+                
+            </li>
+</ul>
+
+            <ul class="nav navbar-nav navbar-right">
+                
+                
+                    
+    <li>
+    <a href="programming-decisions.rst" id="sourcelink">Source</a>
+    </li>
+
+                
+            </ul>
+        </div>
+<!-- /.navbar-collapse -->
+    </div>
+<!-- /.container -->
+</nav>
+
+<!-- End of Menubar -->
+
+<div class="container">
+    <div class="body-content">
+        <!--Body content-->
+        <div class="row">
+            
+            
+<article class="post-text h-entry hentry postpage" itemscope="itemscope" itemtype="http://schema.org/Article">
+    
+    <header>
+        
+    <h1 class="p-name entry-title" itemprop="headline name"><a href="#" class="u-url">Programming Decisions</a></h1>
+
+        <div class="metadata">
+            <p class="byline author vcard"><span class="byline-name fn">Ryan Gonzalez</span></p>
+            <p class="dateline"><a href="#" rel="bookmark"><time class="published dt-published" datetime="2015-06-19T17:54:34-05:00" itemprop="datePublished" title="Publication date">2015-06-19 17:54</time></a></p>
+                <p class="commentline">
+        
+    <a href="programming-decisions.html#disqus_thread" data-disqus-identifier="cache/posts/programming-decisions.html">Comments</a>
+
+
+            
+        </p>
+<p class="sourceline"><a href="programming-decisions.rst" id="sourcelink">Source</a></p>
+
+        </div>
+        
+
+    </header>
+
+    <div class="e-content entry-content" itemprop="articleBody text">
+    <p><strong>DISCLAIMER</strong> <em>This is a satirical post. If your name is mentioned in a diminishing way, don't be insulted; I insult myself a few times throughout the post. Also, I like some of the projects I made fun of, including C++, JavaScript, Kotlin, Nim, Fbuild, and plenty of others. Again, this is satirical.</em></p>
+<p>A farmer couldn't figure out how to maintain his web servers, so he gave it to his animals. However, they simply couldn't agree on what tools to use.</p>
+<p>Horse: We should write it in PHP.</p>
+<p>Cow: No; Ruby on Rails is better.</p>
+<p>Duck: Forget about Rails; we need a native HTML+JS (or TypeScript) solution using React.js components.</p>
+<p>Bee (various non-farm animals joined in the conversation): But Polymer is so much better!</p>
+<p>Duck: And slower.</p>
+<p>Bee: That was before 1.0.</p>
+<p>Cow: But JavaScript is unmaintainable!</p>
+<p>Leech: Use TypeScript.</p>
+<p>Horse: Microsoft is evil.</p>
+<p>Cow: With TypeScript, we need to compile our code. What about PyPy.js?</p>
+<p>Fish: Then we end up with a 2 hour startup time. That thing blows through 10 MB of data!</p>
+<p>Bee: Just use TypeScript with a build system like Grunt.</p>
+<p>Leech: Ugh! Grunt is so last-gen! Use Gulp.</p>
+<p>Ant: Or Google's Anvil.</p>
+<p>Duck: Anvil? Sounds painful.</p>
+<p>Pig: What about writing the site in Nim? It has a JS backend.</p>
+<p>Horse: Python is evil, and therefore Nim is evil.</p>
+<p>Leech: Nim's creator called me a Leech!</p>
+<p>Pig: <em>YOU ARE A LEECH!!</em></p>
+<p>Bee: We can use Java+GWT.</p>
+<p>Duck: Or just Java.</p>
+<p>Ant: Eh, no one likes Java; how about Scala?</p>
+<p>Horse: Scala takes forever to compile, is slow, and is therefore evil.</p>
+<p>Pig: We can use Kotlin or Groovy or...</p>
+<p>Cow: But now we're back to the TypeScript problem: we need to compile our code.</p>
+<p>Fish: Use Maven.</p>
+<p>Ant: HA! We're not suicidal! Gradle is so much better.</p>
+<p>Deer: And Buck.</p>
+<p>Horse: Buck has Android build rules and is therefore evil.</p>
+<p>Bee: All those suck! Just use Fbuild.</p>
+<p>Duck: The Scala builder in Fbuild has been broken for ages, and no one there is seemingly smart enough to fix it.</p>
+<p>Leech: At HLUYTSWE (Magic Engineering Company Inc.), they use a bunch of shell scripts layered under Shake using kdb to store hashes and redo for...</p>
+<p>Horse: Shell scripts are evil.</p>
+<p>Fish: *sigh* Whatever. How about C++?</p>
+<p>Ant: Still not suicidal.</p>
+<p>Cow: If we use C++, we need another build system. Again.</p>
+<p>Fish: Fbuild.</p>
+<p>Horse: Make.</p>
+<p>Ant: CMake+Ninja.</p>
+<p>Fish: Bazel.</p>
+<p>Leech: Autotools.</p>
+<p>Cow: Autotools == pain, horror, and lengthy config times. CMake is faster.</p>
+<p>Horse: CMake uses macros and is therefore evil.</p>
+<p>Cow: But CMake has a Ninja generator!</p>
+<p>Fish: Then use GN. Or Gyp.</p>
+<p>Duck: Gyp is ugly and complicated.</p>
+<p>Pig: Ninja was written for Chromium. I heard that they track the type of oven you have and zap you if you boil peanuts. We should use C++ with Clang+Tup.</p>
+<p>Horse: Clang is sponsored by Apple and is therefore evil. The creator of Tup has a secret alliance with Mordor; therefore, Tup is evil.</p>
+<p>Ant: GCC is better. Their license is the <em>one</em> true way. Besides, what writing the site in Crystal or Felix?</p>
+<p>Horse: Richard Stallman's beard is too long; therefore, GCC evil. Crystal is written by a sword-wielding apple and is therefore evil. Felix is written by someone who can't shut their mouth for over 5 minutes and is therefore evil.</p>
+<p>Leech: The MIT Expat license is much better than the GPL. What about Rust?</p>
+<p>Ant: Again, not suicidal. The sheer number of errors related to borrowing/stealing/pillaging gives me heartburn.</p>
+<p>Horse: Rust...</p>
+<p>Everyone: TO YOU EVERYTHING IS EVIL!!!!!!!!!!!!!!!</p>
+<p>Bee: C++ still has better IDE support than the other languages; we can use Visual Studio.</p>
+<p>Horse: Visual Studio... <em>gets kicked by pig</em></p>
+<p>Duck: Nah, Vim is the best editor.</p>
+<p>Pig: Emacs is better. I can type <tt class="docutils literal"><span class="pre">C-f</span> <span class="pre">M-d</span> shoot <span class="pre">C-s-h-l-f-e</span></tt> and get a free hamburger.</p>
+<p>Duck: Vim too: <tt class="docutils literal"><span class="pre">ahsJGT12$@/ghns</span></tt>.</p>
+<p>Leech: Forget about it. I know the best language to use: K. Someone actually wrote a BF interpreter in a few lines of code!</p>
+<p>Pig: The creator of K has no concept of code maintainability, and the person who wrote that interpreter is an alien from Pluto.</p>
+<p>Fish: We can use Elm, which compiles to JS. Or we can use Haskell. I momentarily forgot how superior purely functional programming is...</p>
+<p>Horse: <em>opens his mouth and gets kicked by Duck</em>.</p>
+<p>Cow: The entire database can be a monadic applicative functorical set-based polymorphic monomorphic mathical editorial purely functional SHA1-based data structure.</p>
+<p>Leech: What about Python?</p>
+<p>Bee: Booooo to indentation syntax.</p>
+<p>Fish: How about Go?</p>
+<p>Ant: I told you guys! Not suicidal!</p>
+<p>Leech: Someone released a study proving that using Go makes you grow excess armpit hair.</p>
+<p>Pig: Go tracks you steps and zaps you if you kick a gofer.</p>
+<p>Horse: WE WILL GO TO THE FARMER AND ASK!</p>
+<p>Ant, Bee, Leech: We'll go first!</p>
+<p>The ant, bee, and leech went the farmer, who freaked out by the sudden showing of unwanted creatures and drowned them all in alcohol.</p>
+<p>Fish: Why don't you think they've come back?</p>
+<p>Horse: They are evil. We shall go next.</p>
+<p>The horse, cow, duck, fish, pig, went to the farmer. Now, the farmer had been on a vegetarian diet. When he saw all these animals, he want haywire, shot them, and had horse-beef-duck-fish-pork stew for dinner</p>
+<p>However, the farmer realized he still needed to fix his web site, so he paid someone on the side of the street 5 bucks. Now he has a website that handles 0.04 requests per second, and he cannot find anyone who knows how to maintain the INTERCAL+Brainf**k web app the person wrote.</p>
+<p><strong>Motto</strong>: There's supposed to be a motto? Uhh...how about "If you don't stop debating, you'll get either drowned in alcohol or eaten?" Yeah, that's a good one! :)</p>
+    </div>
+    <aside class="postpromonav">
+    <nav>
+    
+
+    
+        <ul class="pager">
+            <li class="previous">
+                <a href="the-magic-of-rpython.html" rel="prev" title="The Magic of RPython">Previous post</a>
+            </li>
+        </ul>
+
+    </nav>
+    </aside>
+        <section class="comments">
+        <h2>Comments</h2>
+        
+        
+        <div id="disqus_thread"></div>
+        <script>
+        var disqus_shortname ="blockbyte",
+            disqus_url="http://kirbyfan64.github.io/posts/programming-decisions.html",
+        disqus_title="Programming Decisions",
+        disqus_identifier="cache/posts/programming-decisions.html",
+        disqus_config = function () {
+            this.language = "en";
+        };
+        (function() {
+            var dsq = document.createElement('script'); dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a>
+</noscript>
+    <a href="//disqus.com" class="dsq-brlink" rel="nofollow">Comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+        </section>
+    
+
+</article>
+
+        
+       <script>var disqus_shortname="blockbyte";(function(){var a=document.createElement("script");a.async=true;a.src="//"+disqus_shortname+".disqus.com/count.js";(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(a)}());</script>
+
+
+
+        </div>
+        <!--End of body content-->
+
+        <footer>
+            Contents © 2015         <a href="mailto:rymg19@gmail.com">Ryan Gonzalez</a> - Powered by         <a href="http://getnikola.com" rel="nofollow">Nikola</a>         
+            
+        </footer>
+    </div>
+</div>
+
+
+            <script src="../assets/js/all-nocdn.js"></script>
+    
+<!-- Social buttons -->
+<div id="addthisbox" class="addthis_toolbox addthis_peekaboo_style addthis_default_style addthis_label_style addthis_32x32_style">
+<a class="addthis_button_more">Share</a>
+<ul>
+<li>
+<a class="addthis_button_facebook"></a>
+</li>
+<li>
+<a class="addthis_button_google_plusone_share"></a>
+</li>
+<li>
+<a class="addthis_button_linkedin"></a>
+</li>
+<li>
+<a class="addthis_button_twitter"></a>
+</li>
+</ul>
+</div>
+<script src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-4f7088a56bb93798"></script>
+<!-- End of social buttons -->
+
+
+    <script>jQuery("a.image-reference").colorbox({rel:"gal",maxWidth:"100%",maxHeight:"100%",scalePhotos:true});</script>
+    
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-55018880-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+</body>
+</html>
