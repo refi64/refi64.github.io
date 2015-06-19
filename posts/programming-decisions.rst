@@ -10,6 +10,8 @@
 
 A farmer couldn't figure out how to maintain his web servers, so he gave it to his animals. However, they simply couldn't agree on what tools to use.
 
+.. TEASER_END
+
 Horse: We should write it in PHP.
 
 Cow: No; Ruby on Rails is better.
