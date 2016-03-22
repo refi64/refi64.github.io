@@ -192,7 +192,7 @@ This would be equivalent to:
      try
        myfunc a
      # Inserted by compiler.
-     except MyErrorType | MyOtherErrorType ex
+     except MyErrorType | MyOtherErrorType as ex
        raise ex
      else value
        puts "Function returned: #{value}"
@@ -283,6 +283,40 @@ Differences from other strategies
 
 Last but not least, since errors are again types, there's lots of room for
 potential compiler optimizations.
+
+Sequencing
+**********
+
+This was actually not present in the original post, but someone pointed it out, so
+I'm adding it here. (I actually can't believe I forgot this, considering this is
+easily one of my error handling deal-breakers...)
+
+What happens to error sequences? Exceptions are great for this:
+
+.. code-block:: python
+   
+   try:
+       x = something()
+       something_else(x)
+   except IOError: # If any of the expressions result in an IOError.
+       print('Error occurred!')
+
+Well, that could go something like this:
+
+.. code-block:: ruby
+   
+   try
+       x = try something
+       something_else x
+   except IOError as ex
+       puts "Error occurred!"
+
+What exactly does this do?
+
+The core idea is that, when ``try``'s are nested, errors propogate up. This code
+does what you might expect; if ``something`` returns an error type, it causes an
+error. This error is then propogated up to the outer ``try``, which would forward
+it to the ``except`` block.
 
 Issues
 ******
