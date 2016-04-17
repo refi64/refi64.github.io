@@ -1,0 +1,21 @@
+<dom-module id="post-teaser">
+  <link rel="import" href="site-title.html">
+
+  <template>
+    <iron-ajax auto url="../posts/{{post}}.html" handle-as="document"
+               last-response="{{resp}}" on-response="onResponse"></iron-ajax>
+    <site-title title="{{resp.title}}"></site-title>
+    <div id="teaser"></div>
+  </template>
+
+  <script>
+    Polymer({
+      is: 'post-teaser',
+      properties: { post: String },
+      onResponse: function (_, r) {
+        Polymer.dom(this.$.teaser).appendChild(
+          Polymer.dom(r.response).querySelector('#teaser'));
+      }
+    });
+  </script>
+</dom-module>

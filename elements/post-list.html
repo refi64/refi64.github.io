@@ -1,10 +1,12 @@
 <dom-module id="post-list">
+  <link rel="import" href="post-teaser.html">
+
   <template>
     <iron-ajax auto url="../posts.json" handle-as="json" last-response="{{posts}}">
     </iron-ajax>
 
     <template is="dom-repeat" items="{{posts.posts}}">
-      Post: {{item}}
+      <post-teaser post="[[item]]">
     </template>
   </template>
 

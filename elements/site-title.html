@@ -4,13 +4,19 @@
       h1 { ; }
     </style>
 
-    <h1 id="title"></div>
+    <h1>{{title}}</div>
   </template>
 
   <script>
     Polymer({
       is: 'site-title',
-      ready: function () { this.$.title.textContent = document.title; },
+
+      properties: {
+        title: {
+          type: String,
+          value: function () { return document.title; },
+        }
+      }
     });
   </script>
 </dom-module>
