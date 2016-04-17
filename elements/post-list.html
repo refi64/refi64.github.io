@@ -1,0 +1,14 @@
+<dom-module id="post-list">
+  <template>
+    <iron-ajax auto url="../posts.json" handle-as="json" last-response="{{posts}}">
+    </iron-ajax>
+
+    <template is="dom-repeat" items="{{posts.posts}}">
+      Post: {{item}}
+    </template>
+  </template>
+
+  <script>
+    Polymer({ is: 'post-list' });
+  </script>
+</dom-module>
