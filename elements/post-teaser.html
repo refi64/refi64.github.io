@@ -1,10 +1,8 @@
 <dom-module id="post-teaser">
-  <link rel="import" href="site-title.html">
-
   <template>
     <iron-ajax auto url="../posts/{{post}}.html" handle-as="document"
                last-response="{{resp}}" on-response="onResponse"></iron-ajax>
-    <site-title title="{{resp.title}}"></site-title>
+    <site-title title="{{resp.title}}" url="posts/{{post}}.html"></site-title>
     <div id="teaser"></div>
   </template>
 
