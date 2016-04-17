@@ -16,18 +16,161 @@
   </div>
 
   <prism-js language="cpp">
-    void myfunc(int);
-    void myfunc(int, int);
+void myfunc(int);
+void myfunc(int, int);
   </prism-js>
 
   <p>C doesn't have a way to do this. You'll often see code like this:</p>
 
   <prism-js language="c">
-    void myfunc_1(int);
-    void myfunc_2(int, int);
+void myfunc_1(int);
+void myfunc_2(int, int);
   </prism-js>
 
   <p>
     However, this <i>can</i> be implemented, albeit in a slightly convoluted way,
     using a very controversial tool: the C preprocessor.</p>
+
+  <warning-card>
+    This is a very messy method that is bound to cause confusion. Do not use this
+    is real production code. Ever. At all.
+  </warning-card>
+
+  <p>Here's the code in myfunc.h:</p>
+
+  <prism-js language="c">
+#ifndef MYFUNC_H
+#define MYFUNC_H
+
+void _myfunc_1(int a)
+{
+    puts("Got 1 arg");
+}
+
+void _myfunc_2(int a, int b)
+{
+    puts("Got 2 args");
+}
+
+#define _MYFUNC_SEL(_1, _2, _3, ...) _3
+#define myfunc(...) _MYFUNC_SEL(__VA_ARGS__, _myfunc_2, _myfunc_1)(__VA_ARGS__)
+
+#endif // MYFUNC_H
+  </prism-js>
+
+  <p>and the main file:</p>
+
+  <prism-js language="c">
+#include "myfunc.h"
+
+int main()
+{
+    myfunc(1); // Got 1 arg
+    myfunc(1, 2); // Got 2 args
+    return 0;
+}
+  </prism-js>
+
+  <p>
+    What's going on here? The easiest way to see is to look at what happens in
+    the preprocessor.</p>
+
+  <p>The first call (<code>myfunc(1)</code>) expands to this:</p>
+
+  <prism-js language="c">
+_MYFUNC_SEL(1, _myfunc_2, _myfunc_1)(1)
+  </prism-js>
+
+  <p>
+    Remember, <code>__VA_ARGS__</code> expands to the <code>...</code> arguments.
+    The <code>_MYFUNC_SEL</code> macro returns the third argument,
+    <code>_myfunc_1</code>. Therefore, the expansion is ends up being:</p>
+
+  <prism-js language="c">
+_myfunc_1(1)
+  </prism-js>
+
+  <p>The second call (<code>myfunc(1, 2)</code>) expands to this:</p>
+
+  <prism-js language="c">
+_MYFUNC_SEL(1, 2, _myfunc_2, _myfunc_1)(1, 2)
+  </prism-js>
+
+  <p>
+    Again, <code>_MYFUNC_SEL</code> returns the third argument, which, in this
+    case, is <code>_myfunc_2</code>.</p>
+
+  <p>
+    Now you're probably beginning to realize how simple the underlying logic
+    is.</p>
+
+  <p>
+    However, what if you need to overload by types instead? In C11, that's easily
+    possible using the _Generic feature. See
+    <a href="http://www.robertgamble.net/2012/01/c11-generic-selections.html">
+      this</a> for more info. Here's the new myfunc.h:</p>
+
+  <prism-js language="c">
+#ifndef MYFUNC_H
+#define MYFUNC_H
+
+void _myfunc_1_int(int a)
+{
+    puts("Got 1 int");
+}
+
+void _myfunc_1_void(void* x)
+{
+    puts("Got 1 pointer");
+}
+
+void _myfunc_2(int a, int b)
+{
+    puts("Got 2 args");
+}
+
+#define _MYFUNC_1(x) _Generic((x), int: _myfunc_1_int, void*: _myfunc_1_void)(x)
+#define _MYFUNC_SEL(_1, _2, _3, ...) _3
+#define myfunc(...) _MYFUNC_SEL(__VA_ARGS__, _myfunc_2, _MYFUNC_1)(__VA_ARGS__)
+
+#endif // MYFUNC_H
+  </prism-js>
+
+  <p>and the new main source file:</p>
+
+  <prism-js language="c">
+#include "myfunc.h"
+
+int main()
+{
+    myfunc(1); // Got 1 int
+    myfunc((void*)NULL); // Got 1 pointer
+    myfunc(1, 2); // Got 2 args
+    return 0;
+}
+  </prism-js>
+
+  <p>Let's review the expansion process:</p>
+
+  <prism-js language="c">
+myfunc(1)
+_MYFUNC_SEL(1, _myfunc_2, _MYFUNC_1)(1)
+_MYFUNC_1(1)
+_Generic((1), int: _myfunc_1_int, void*: _myfunc_1_void)(1)
+  </prism-js>
+  <p>
+    Now, the <code>_Generic</code> function basically is like pattern-matching on
+    types. (See the linked article above for more info.) The <code>_Generic</code>
+    call evaluates to:</p>
+
+  <prism-js language="c">
+_myfunc_1_int(1)
+  </prism-js>
+
+  <p>See how the magic works? </p>
+
+  <p>
+    All in all, you can see how much you can do with the preprocessor. Just don't
+    abuse it, because the error messages kind of...well...suck. I'll put a way to
+    get better errors in a future post.</p>
 </body>
