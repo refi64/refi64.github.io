@@ -1,0 +1,33 @@
+<head>
+  <title>Overloading functions with the C preprocessor</title>
+  <link rel="import" href="../_imports.html">
+</head>
+
+<body>
+  <site-navbar></site-navbar>
+  <site-title></site-title>
+
+  <div id="teaser">
+    <p>
+      Let's have an imaginary scenario: you're trying to make a library that has a
+      special function, <code>myfunc</code>. Now, this functions needs to have two
+      possible ways to invoke it. One way takes one int parameter, the other takes
+      two. Here's how you might do that in C++:</p>
+  </div>
+
+  <prism-js language="cpp">
+    void myfunc(int);
+    void myfunc(int, int);
+  </prism-js>
+
+  <p>C doesn't have a way to do this. You'll often see code like this:</p>
+
+  <prism-js language="c">
+    void myfunc_1(int);
+    void myfunc_2(int, int);
+  </prism-js>
+
+  <p>
+    However, this <i>can</i> be implemented, albeit in a slightly convoluted way,
+    using a very controversial tool: the C preprocessor.</p>
+</body>
