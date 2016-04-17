@@ -1,0 +1,16 @@
+<dom-module id="site-title">
+  <template>
+    <style>
+      h1 { ; }
+    </style>
+
+    <h1 id="title"></div>
+  </template>
+
+  <script>
+    Polymer({
+      is: 'site-title',
+      ready: function () { this.$.title.textContent = document.title; },
+    });
+  </script>
+</dom-module>
