@@ -1,6 +1,7 @@
 {
     "posts": [
-        "overloading-functions-with-the-c-preprocessor",
-        "moving-from-nuitka-to-polymer"
+        "moving-from-nuitka-to-polymer",
+        "using-appveyor-to-distribute-python-wheels",
+        "overloading-functions-with-the-c-preprocessor"
     ]
 }
