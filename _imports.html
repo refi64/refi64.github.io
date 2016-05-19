@@ -2,9 +2,14 @@
   <link rel="import" href="bower_components/polymer/polymer.html">
   <link rel="import" href="bower_components/paper-styles/typography.html">
   <link rel="import" href="bower_components/iron-ajax/iron-ajax.html">
+  <link rel="import" href="bower_components/iron-flex-layout/iron-flex-layout-classes.html">
   <link rel="import" href="bower_components/paper-toolbar/paper-toolbar.html">
   <link rel="import" href="bower_components/paper-button/paper-button.html">
   <link rel="import" href="bower_components/paper-card/paper-card.html">
+  <link rel="import" href="bower_components/paper-menu/paper-menu.html">
+  <link rel="import" href="bower_components/paper-menu-button/paper-menu-button.html">
+  <link rel="import" href="bower_components/paper-item/paper-item.html">
+  <link rel="import" href="bower_components/paper-input/paper-input.html">
   <link rel="import" href="bower_components/prism-js/prism-js.html">
   <link rel="stylesheet" href="bower_components/prism/themes/prism-tomorrow.css">
   <script src="bower_components/prism/components/prism-python.min.js"></script>
@@ -28,8 +33,13 @@
     a, a:visited { text-decoration: none; color: blue; }
     a:hover { text-decoration: underline; color: blue; }
     img { width: 100%; height: auto; }
-    a paper-button { text-decoration: none; color: white; }
-    a:visited paper-button { text-decoration: none; color: white; }
+
+    a paper-button, a:visited paper-button { text-decoration: none; color: white; }
+
+    a paper-item, a:hover paper-item, a:visited paper-item {
+      text-decoration: none; color: black;
+    }
+
     share-button {
       position: absolute;
       left: 50%;

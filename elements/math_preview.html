@@ -1,0 +1,40 @@
+<dom-module id="math-preview">
+  <style is="custom-style" include="iron-flex iron-flex-alignment"></style>
+  <link rel="stylesheet"
+        href="//cdnjs.cloudflare.com/ajax/libs/KaTeX/0.2.0/katex.min.css">
+  <script src="//cdnjs.cloudflare.com/ajax/libs/KaTeX/0.2.0/katex.min.js">
+  </script>
+
+  <template>
+    <style is="custom-style">
+      paper-input {
+        --paper-input-container-invalid-color: red;
+        --paper-input-container-input: { font-family: "Roboto Mono", monospace; };
+      }
+    </style>
+
+    <div class="horizontal layout">
+      <paper-input id="input" label="Math expression" style="width: 45%;"
+                   on-input="render"></paper-input>
+      <div style="width: 10%;"></div>
+      <div id="output" style="width: 45%"></div>
+    </div>
+  </template>
+
+  <script>
+    Polymer({
+      is: 'math-preview',
+
+      render: function (event) {
+        this.$.input.removeAttribute('invalid');
+        this.$.input.removeAttribute('error-message', '');
+        try {
+          katex.render(event.target.value, this.$.output);
+        } catch (err) {
+          this.$.input.setAttribute('invalid', true);
+          this.$.input.setAttribute('error-message', err.message);
+        }
+      },
+    });
+  </script>
+</dom-module>
