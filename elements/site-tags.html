@@ -1,0 +1,20 @@
+<dom-module id="site-tags">
+  <template>
+    <style>
+      paper-button { background-color: black; }
+    </style>
+
+    TAGS:
+    <template is="dom-repeat" items="{{tags}}">
+      <a href="/tags.html#[[item]]"><paper-button>[[item]]</paper-button></a>
+    </template>
+  </template>
+
+  <script>
+    Polymer({
+      is: 'site-tags',
+
+      properties: { tags: Array }
+    });
+  </script>
+</dom-module>
