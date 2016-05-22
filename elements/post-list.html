@@ -1,9 +1,9 @@
 <dom-module id="post-list">
   <link rel="import" href="post-teaser.html">
+  <link rel="import" href="fetch-posts.html">
 
   <template>
-    <iron-ajax auto url="../posts.json" handle-as="json" last-response="{{posts}}">
-    </iron-ajax>
+    <fetch-posts target="{{posts}}"></fetch-posts>
 
     <template is="dom-repeat" items="{{posts.posts}}">
       <post-teaser post="[[item]]">

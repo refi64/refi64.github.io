@@ -1,0 +1,19 @@
+<dom-module id="fetch-posts">
+  <template>
+    <iron-ajax auto url="/posts.json" handle-as="json" last-response="{{target}}">
+    </iron-ajax>
+  </template>
+
+  <script>
+    Polymer({
+      is: 'fetch-posts',
+
+      properties: {
+        target: {
+          type: String,
+          notify: true
+        }
+      }
+    });
+  </script>
+</dom-module>
