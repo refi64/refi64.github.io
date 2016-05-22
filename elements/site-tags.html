@@ -1,5 +1,11 @@
 <dom-module id="site-tags">
   <template>
+    <style is="custom-style">
+      paper-button {
+        margin-bottom: 1em;
+      }
+    </style>
+
     <style>
       paper-button { background-color: black; }
     </style>
@@ -11,6 +17,8 @@
     <template is="dom-repeat" items="{{tags}}">
       <a href="/tags.html#[[item]]"><paper-button>[[item]]</paper-button></a>
     </template>
+
+    <br>
   </template>
 
   <script>
