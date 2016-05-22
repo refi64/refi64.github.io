@@ -12,15 +12,18 @@
         <h1>Tag: [[tag]]</h1>
       </template>
 
+      <template is="dom-if" if="{{!isTag(tag)}}">
+        <h1>Tags</h1>
+      </template>
+
       <warning-card>
         The "Read more..." links (bizzarely) don't work like you'd expect. If
         clicking the link takes you back to the "Tags" page, then try using
         right click -&gt; open in new tab.
       </warning-card>
+      <br>
+      <br>
 
-      <template is="dom-if" if="{{!isTag(tag)}}">
-        <h1>Tags</h1>
-      </template>
     </template>
 
     <template is="dom-if" if="{{!isTag(tag)}}">
