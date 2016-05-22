@@ -1,6 +1,7 @@
 <dom-module id="fetch-posts">
   <template>
-    <iron-ajax auto url="/posts.json" handle-as="json" last-response="{{target}}">
+    <iron-ajax auto url="/posts.json" handle-as="json"
+               headers='{"Cache-Control": "max-age=0"}' last-response="{{target}}">
     </iron-ajax>
   </template>
 
