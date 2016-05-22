@@ -43,7 +43,7 @@
     "tag": "v0.8.2",
     "commit": "9ab0b3bf4b30e00d1f80dcb1cf9e00bd17cce4a5"
   },
-  "_source": "git://github.com/polymerelements/iron-location.git",
-  "_target": "^0.8.1",
-  "_originalSource": "polymerelements/iron-location"
+  "_source": "git://github.com/PolymerElements/iron-location.git",
+  "_target": "~0.8.2",
+  "_originalSource": "PolymerElements/iron-location"
 }
