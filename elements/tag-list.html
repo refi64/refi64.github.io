@@ -1,18 +1,45 @@
 <dom-module id="tag-list">
   <link rel="import" href="fetch-posts.html">
+  <link rel="import" href="post-teaser.html">
+  <link rel="import" href="/bower_components/iron-location/iron-location.html">
 
   <template>
+    <iron-location hash="{{tag}}"></iron-location>
     <fetch-posts target="{{posts}}"></fetch-posts>
-    <site-tags tags="{{gatherAllTags(posts.posts)}}" no-header></site-tags>
+
+    <template is="dom-if" if="{{tagPage}}">
+      <template is="dom-if" if="{{isTag(tag)}}">
+        <h1>Tag: [[tag]]</h1>
+      </template>
+
+      <template is="dom-if" if="{{!isTag(tag)}}">
+        <h1>Tags</h1>
+      </template>
+    </template>
+
+    <template is="dom-if" if="{{!isTag(tag)}}">
+      <site-tags tags="{{gatherAllTags(posts.posts)}}" no-header></site-tags>
+    </template>
+
+    <template is="dom-if" if="{{isTag((tag)}}">
+      <template is="dom-repeat" items="{{gatherPostsFor(posts.posts, tag)}}">
+        <post-teaser post="[[item]]"></post-teaser>
+      </template>
+    </template>
   </template>
 
   <script>
     Polymer({
       is: 'tag-list',
 
-      gatherAllTags: function (posts) {
-        var all_tags = [];
+      properties: {
+        tagPage: {
+          type: Boolean,
+          value: false,
+        }
+      },
 
+      mapTags: function (posts, func) {
         for (var i=0; i<posts.length; i++) {
           var req = new XMLHttpRequest();
           req.open('GET', '/posts/' + posts[i] + '.html', false);
@@ -22,16 +49,33 @@
             div.innerHTML = req.response;
             var site_tags = div.querySelector('site-tags');
             if (site_tags)
-              all_tags = all_tags.concat(site_tags.tags);
+              func(posts[i], site_tags.tags);
           }
         }
+      },
 
+      gatherAllTags: function (posts) {
+        var all_tags = [];
+        this.mapTags(posts, function (post, tags) {
+          all_tags = all_tags.concat(tags);
+        });
+
+        all_tags.sort();
         return all_tags;
       },
 
-      onResponse: function (_, r) {
-        console.log(r);
+      gatherPostsFor: function (posts, tag) {
+        var found = [];
+
+        this.mapTags(posts, function (post, tags) {
+          if (tags.indexOf(tag) != -1)
+            found.push(post);
+        });
+
+        return found;
       },
+
+      isTag: function (hash) { return hash != '' && this.tagPage; },
     });
   </script>
 </dom-module>
