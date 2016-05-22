@@ -1,0 +1,37 @@
+<dom-module id="tag-list">
+  <link rel="import" href="fetch-posts.html">
+
+  <template>
+    <fetch-posts target="{{posts}}"></fetch-posts>
+    <site-tags tags="{{gatherAllTags(posts.posts)}}" no-header></site-tags>
+  </template>
+
+  <script>
+    Polymer({
+      is: 'tag-list',
+
+      gatherAllTags: function (posts) {
+        var all_tags = [];
+
+        for (var i=0; i<posts.length; i++) {
+          var req = new XMLHttpRequest();
+          req.open('GET', '/posts/' + posts[i] + '.html', false);
+          req.send(null);
+          if (req.response) {
+            var div = document.createElement('div');
+            div.innerHTML = req.response;
+            var site_tags = div.querySelector('site-tags');
+            if (site_tags)
+              all_tags = all_tags.concat(site_tags.tags);
+          }
+        }
+
+        return all_tags;
+      },
+
+      onResponse: function (_, r) {
+        console.log(r);
+      },
+    });
+  </script>
+</dom-module>

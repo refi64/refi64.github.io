@@ -4,7 +4,10 @@
       paper-button { background-color: black; }
     </style>
 
-    TAGS:
+    <template is="dom-if" if="{{!noHeader}}">
+      TAGS:
+    </template>
+
     <template is="dom-repeat" items="{{tags}}">
       <a href="/tags.html#[[item]]"><paper-button>[[item]]</paper-button></a>
     </template>
@@ -14,7 +17,13 @@
     Polymer({
       is: 'site-tags',
 
-      properties: { tags: Array }
+      properties: {
+        tags: Array,
+        noHeader: {
+          type: Boolean,
+          value: false,
+        }
+      }
     });
   </script>
 </dom-module>
