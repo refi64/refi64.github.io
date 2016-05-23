@@ -9,10 +9,19 @@
       a:hover iron-icon { color: black; }
     </style>
 
-    <h2 id="{{id}}">
-      <content></content>
-      <a href="#{{id}}"><iron-icon icon="icons:link"></iron-icon></a>
-    </h2>
+    <template is="dom-if" if="{{small}}">
+      <h3 id="{{id}}">
+        <content></content>
+        <a href="#{{id}}"><iron-icon icon="icons:link"></iron-icon></a>
+      </h3>
+    </template>
+
+    <template is="dom-if" if="{{!small}}">
+      <h2 id="{{id}}">
+        <content></content>
+        <a href="#{{id}}"><iron-icon icon="icons:link"></iron-icon></a>
+      </h2>
+    </template>
   </template>
 
   <script>
@@ -20,7 +29,11 @@
       is: 'link-header',
 
       properties: {
-        id: String
+        id: String,
+        small: {
+          type: Boolean,
+          value: false,
+        },
       }
     });
   </script>
