@@ -1,6 +1,7 @@
 {
     "posts": [
         "moving-from-nuitka-to-polymer",
+        "a-tour-of-the-howl-programming-text-editor",
         "implementing-a-sort-of-generic-sort-of-type-safe-arrayin-c",
         "programming-decisions",
         "the-magic-of-rpython",
