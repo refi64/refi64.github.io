@@ -66,7 +66,9 @@
       gatherAllTags: function (posts) {
         var all_tags = [];
         this.mapTags(posts, function (post, tags) {
-          all_tags = all_tags.concat(tags);
+          for (var i=0; i<tags.length; i++)
+            if (all_tags.indexOf(tags[i]) == -1)
+              all_tags.push(tags[i]);
         });
 
         all_tags.sort();
