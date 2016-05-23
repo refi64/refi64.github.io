@@ -286,13 +286,13 @@ const write = {f, src
     Here are some of the idioms at the
     <a href="https://github.com/kevinlawler/kona/wiki/Idioms">Kona wiki</a>:</p>
 
-  <prism-js>
+  <prism-js escape>
 shuffle:{x@<>(#x)#1 0} / Perfect shuffle
 mean:{(+/x)%#x} / Arithmetic mean
 fac:*/1+!: / Factorial
 fib:{x{x,+/-2#x}/!2} / Fibonacci
 life:{|/(1;x)&3 4=\:+/,/2{-1 0 1!'\:x}/x} / Conway's Game of Life
-sort:{x@ &lt; x} / Sort list
+sort:{x@&lt;x} / Sort list
 powerset:{x[&:'!2+&#x]} / Powerset
   </prism-js>
 
