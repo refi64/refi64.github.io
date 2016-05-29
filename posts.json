@@ -1,0 +1,16 @@
+{
+    "posts": [
+        "moving-from-nikola-to-polymer",
+        "an-idea-for-concise-checked-error-handling-in-imperative-languages",
+        "a-tour-of-the-howl-programming-text-editor",
+        "implementing-a-sort-of-generic-sort-of-type-safe-arrayin-c",
+        "programming-decisions",
+        "the-magic-of-rpython",
+        "functional-programming-isnt-the-answer-to-all-problems-and-neither-is-oop",
+        "the-top-5-programming-languages-youve-never-heard-of-part-2",
+        "the-top-5-programming-languages-youve-never-heard-of",
+        "using-appveyor-to-distribute-python-wheels",
+        "overloading-functions-with-the-c-preprocessor",
+        "welcome"
+    ]
+}

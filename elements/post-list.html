@@ -1,0 +1,16 @@
+<dom-module id="post-list">
+  <link rel="import" href="post-teaser.html">
+  <link rel="import" href="fetch-posts.html">
+
+  <template>
+    <fetch-posts target="{{posts}}"></fetch-posts>
+
+    <template is="dom-repeat" items="{{posts.posts}}">
+      <post-teaser post="[[item]]">
+    </template>
+  </template>
+
+  <script>
+    Polymer({ is: 'post-list' });
+  </script>
+</dom-module>

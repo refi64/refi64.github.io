@@ -1,0 +1,24 @@
+<dom-module id="post-teaser">
+  <template>
+    <iron-ajax auto url="../posts/{{post}}.html" handle-as="document"
+               last-response="{{resp}}" on-response="onResponse"></iron-ajax>
+    <site-title id="title" title="{{resp.title}}" url="posts/{{post}}.html">
+    </site-title>
+    <div id="teaser"></div>
+    <a href="/posts/{{post}}.html">Read more...</a>
+  </template>
+
+  <script>
+    Polymer({
+      is: 'post-teaser',
+      properties: { post: String },
+      onResponse: function (_, r) {
+        Polymer.dom(this.$.teaser).appendChild(
+          Polymer.dom(r.response).querySelector('#teaser'));
+        this.$.title.setAttribute('created-on',
+          Polymer.dom(r.response).querySelector('site-title').
+            getAttribute('created-on'));
+      }
+    });
+  </script>
+</dom-module>

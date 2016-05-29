@@ -1,435 +1,303 @@
-<!DOCTYPE html>
-<html prefix="og: http://ogp.me/ns# article: http://ogp.me/ns/article# " lang="en">
-    <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Implementing a (sort of) generic, (sort of) type-safe array in C | BlockByte</title>
-
-    
-            <link href="../assets/css/all-nocdn.css" rel="stylesheet" type="text/css">
-
-    
-            <link rel="alternate" type="application/rss+xml" title="RSS" href="../rss.xml">
-
-      <link rel="canonical" href="http://kirbyfan64.github.io/posts/implementing-a-sort-of-generic-sort-of-type-safe-arrayin-c.html">
-
-
-
-    
-        <!--[if lt IE 9]><script src="/assets/js/html5.js"></script><![endif]-->
-
-    
-
-
-    
-
-    <meta name="author" content="Ryan Gonzalez">
-    
-        <meta name="og:title" content="Implementing a (sort of) generic, (sort of) type-safe array in C">
-        <meta name="og:url" content="http://kirbyfan64.github.io/posts/implementing-a-sort-of-generic-sort-of-type-safe-arrayin-c.html">
-            <meta name="og:description" content="I've been using C for a project I've been working on, and one thing I find
-annoying are manually-managed arrays. Ever since watching Bjarne Stroustrup's
-talk on linked lists, I try to
-avoid them as mu">
-        <meta name="og:site_name" content="BlockByte">
-        <meta name="og:type" content="article">
-
-    
-
-    
-
-
-
+<head>
+  <title>Implementing a (sort of) generic, (sort of) type-safe array in C</title>
+  <script src="/bower_components/webcomponentsjs/webcomponents-lite.min.js">
+  </script>
+  <link rel="import" href="/_imports.html">
 </head>
+
 <body>
+  <site-navbar></site-navbar>
+  <site-title created-on="2015-11-28"></site-title>
 
-<!-- Menubar -->
+  <div id="teaser">
+    <p>
+      I've been using C for a project I've been working on, and one thing I find
+      annoying are manually-managed arrays. Ever since watching
+      <a href="https://youtu.be/YQs6IC-vgmo">Bjarne Stroustrup's talk on linked
+      lists</a>, I try to avoid using those as much as possible. Therefore, I
+      prefer using a container roughly equivalent to C++'s vector.</p>
 
-<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-    <div class="container">
-<!-- This keeps the margins nice -->
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="http://kirbyfan64.github.io/">
+    <p>
+      The obvious thing to do here would be to use something like
+      <a href="https://developer.gnome.org/glib/stable/glib-Arrays.html">
+        glib's GArray type</a> or
+      <a href="http://wolkykim.github.io/qlibc/doc/html/qvector_8c.html">
+        qlibc's qvector type</a>. However, both APIs require using
+      <code>sizeof</code> and are completely not-type-safe; it's easy to add a
+      char to an array/vector of ints. This made me wonder: is it possible to
+      implement a type-safe, generic array type in C?</p>
 
-                <span id="blog-title">BlockByte</span>
-            </a>
-        </div>
-<!-- /.navbar-header -->
-        <div class="collapse navbar-collapse navbar-ex1-collapse">
-            <ul class="nav navbar-nav">
-                
-                <li>
-<a href="../archive.html">Archive</a>
-                </li>
-<li>
-<a href="../categories/index.html">Tags</a>
-                </li>
-<li>
-<a href="../rss.xml">RSS feed</a>
-            </li>
-<li class="dropdown">
-<a href="#" class="dropdown-toggle" data-toggle="dropdown">Randomness<b class="caret"></b></a>
-            <ul class="dropdown-menu">
-                    <li>
-<a href="../pages/randomness.html">Index</a>
-                    </li>
-<li>
-<a href="../pages/katex.html">KaTeX Previewer</a>
-            </li>
-</ul>
+    <p>
+      Now, I mean the C version of type-safe, which basically means that your
+      compiler has to show either a warning or an error (probably if compiling with
+      <code>-Werror</code>) when you try to append the wrong type to an array.</p>
+  </div>
 
-                
-            </li>
-</ul>
+  <p>
+    <i>Note that this implementation is not complete!</i> The most obvious issues
+    are that you can't pop elements off an array, and it resizes itself with every
+    new addition, which is (obviously!) slow.</p>
 
-            <ul class="nav navbar-nav navbar-right">
-                
-                
-                    
-    <li>
-    <a href="implementing-a-sort-of-generic-sort-of-type-safe-arrayin-c.rst" id="sourcelink">Source</a>
-    </li>
+  <p>Also, it uses macros. If you're allergic to them...sucks to be you!</p>
 
-                
-            </ul>
-        </div>
-<!-- /.navbar-collapse -->
-    </div>
-<!-- /.container -->
-</nav>
+  <p>The API is basically like:</p>
 
-<!-- End of Menubar -->
+  <prism-js language="c">
+List(int*) mylist = NULL; // NULL represents the empty list.
+int a=1, b=2;
+list_append(mylist, &a);
+// We can get the first element of the list with l[0] and the length with list_len:
+printf("%zu %d\n", list_len(mylist), *mylist[0]); // Prints 1 1.
+list_append(mylist, &b);
+printf("%zu %d %d\n", list_len(mylist), *mylist[0], *mylist[1]); // Prints 2 1 2.
+list_free(mylist);
+  </prism-js>
 
-<div class="container">
-    <div class="body-content">
-        <!--Body content-->
-        <div class="row">
-            
-            
-<article class="post-text h-entry hentry postpage" itemscope="itemscope" itemtype="http://schema.org/Article">
-    
-    <header>
-        
-    <h1 class="p-name entry-title" itemprop="headline name"><a href="#" class="u-url">Implementing a (sort of) generic, (sort of) type-safe array in C</a></h1>
+  <p>
+    Note that I used the term <code>list</code>, not <code>array</code>, since I'm
+    a Python nerd.</p>
 
-        <div class="metadata">
-            <p class="byline author vcard"><span class="byline-name fn">Ryan Gonzalez</span></p>
-            <p class="dateline"><a href="#" rel="bookmark"><time class="published dt-published" datetime="2015-11-28T16:48:13-06:00" itemprop="datePublished" title="Publication date">2015-11-28 16:48</time></a></p>
-                <p class="commentline">
-        
-    <a href="implementing-a-sort-of-generic-sort-of-type-safe-arrayin-c.html#disqus_thread" data-disqus-identifier="cache/posts/implementing-a-sort-of-generic-sort-of-type-safe-arrayin-c.html">Comments</a>
+  <p>
+    I really like the fact that indexing a list is just <code>list[index]</code>,
+    not something like <code>get_element(list, index)</code> or
+    <code>list-&gt;array[index]</code>.</p>
 
+  <p>
+    Note that <i>this only supports lists of pointer types</i>. Don't try to use a
+    non-pointer type. It either won't work, or it will work, but only on some
+    platforms.</p>
 
-            
-        </p>
-<p class="sourceline"><a href="implementing-a-sort-of-generic-sort-of-type-safe-arrayin-c.rst" id="sourcelink">Source</a></p>
+  <p>
+    The code is available at
+    <a href="https://github.com/kirbyfan64/list">GitHub</a>.</p>
 
-        </div>
-        
+  <link-header id="boilerplate">Boilerplate</link-header>
 
-    </header>
-
-    <div class="e-content entry-content" itemprop="articleBody text">
-    <p>I've been using C for a project I've been working on, and one thing I find
-annoying are manually-managed arrays. Ever since watching <a class="reference external" href="https://www.youtube.com/watch?v=YQs6IC-vgmo">Bjarne Stroustrup's
-talk on linked lists</a>, I try to
-avoid them as much as possible. Therefore, I prefer using a container roughly
-equivalent to C++'s vector.</p>
-<p>The obvious thing to do here would be to use something like <a class="reference external" href="https://www.youtube.com/watch?v=YQs6IC-vgmo">glib's GArray type</a> or <a class="reference external" href="http://wolkykim.github.io/qlibc/doc/html/qvector_8c.html">qlibc's qvector type</a>. However, both APIs
-require using <tt class="docutils literal">sizeof</tt> and are completely not-type-safe; it's easy to add a char
-to an arrayh/vector of ints. This made me wonder: is it possible to implement a
-type-safe, generic array type in C?</p>
-<p>Now, I mean the C version of type-safe, which basically means that your compiler
-has to show either a warning or an error (probably if compiling with <tt class="docutils literal"><span class="pre">-Werror</span></tt>)
-when you try to append the wrong type to an array.</p>
-<!-- TEASER_END -->
-<p><em>Note that this implementation is not complete!</em> The most obvious issues are that
-you can't pop elements off an array, and it resizes itself with every new addition,
-which is (obviously!) slow.</p>
-<p>Also, it uses macros. If you're allergic to them...sucks to be you!</p>
-<p>The API is basically like:</p>
-<pre class="code c literal-block">
-<span class="n">List</span><span class="p">(</span><span class="kt">int</span><span class="o">*</span><span class="p">)</span> <span class="n">mylist</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span> <span class="c1">// NULL represents the empty list.
-</span><span class="kt">int</span> <span class="n">a</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">b</span><span class="o">=</span><span class="mi">2</span><span class="p">;</span>
-<span class="n">list_append</span><span class="p">(</span><span class="n">l</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">a</span><span class="p">);</span>
-<span class="c1">// We can get the first element of the list with l[0] and the length with list_len:
-</span><span class="n">printf</span><span class="p">(</span><span class="s">"%zu %d</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">list_len</span><span class="p">(</span><span class="n">l</span><span class="p">),</span> <span class="o">*</span><span class="n">l</span><span class="p">[</span><span class="mi">0</span><span class="p">]);</span> <span class="c1">// Prints 1 1.
-</span><span class="n">list_append</span><span class="p">(</span><span class="n">l</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">b</span><span class="p">);</span>
-<span class="n">printf</span><span class="p">(</span><span class="s">"%zu %d %d</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">list_len</span><span class="p">(</span><span class="n">l</span><span class="p">),</span> <span class="o">*</span><span class="n">l</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="o">*</span><span class="n">l</span><span class="p">[</span><span class="mi">1</span><span class="p">]);</span> <span class="c1">// Prints 2 1 2.
-</span><span class="n">list_free</span><span class="p">(</span><span class="n">l</span><span class="p">);</span>
-</pre>
-<p>Note that I used the term <tt class="docutils literal">list</tt>, not <tt class="docutils literal">array</tt>, since I'm a Python nerd.</p>
-<p>I really like the fact that indexing a list is just <tt class="docutils literal">list[index]</tt>, not
-something like <tt class="docutils literal">get_element(list, index)</tt> or <tt class="docutils literal"><span class="pre">list-&gt;array[index]</span></tt>.</p>
-<p>Note that <em>this only supports lists of pointer types</em>. Don't try to
-use a non-pointer type. It either won't work, or it will work, but only on some
-platforms.</p>
-<p>The code is available at <a class="reference external" href="https://github.com/kirbyfan64/list">GitHub</a>.</p>
-<p>Here's a breakdown of how it works:</p>
-<div class="section" id="boilerplate">
-<h2>Boilerplate</h2>
-<pre class="code c literal-block">
-<span class="cp">#ifndef LIST_H
+  <prism-js language="c">
+#ifndef LIST_H
 #define LIST_H
-</span>
-<span class="p">...</span>
 
-<span class="cp">#endif</span>
-</pre>
-<p>Yeah, we all know what this is for! Joyous header files.</p>
-<p>Inside these header files is some more boilerplate:</p>
-<pre class="code c literal-block">
-<span class="cp">#define list_cat2(a,b) a##b
+...
+
+#endif
+  </prism-js>
+
+  <p>Yeah, we all know what this is for! Joyous header files.</p>
+
+  <p>Inside these header files is some more boilerplate:</p>
+
+  <prism-js language="c">
+#define list_cat2(a,b) a##b
 #define list_cat(a,b) list_cat2(a,b)
-#define list_var(b) list_cat(list_type_,list_cat(b,__LINE__))</span>
-</pre>
-<p>This is just a way of creating anonymous, single-use variables inside a macro in
-order to avoid name clashes. Think Lisp's <tt class="docutils literal">gensym</tt>.</p>
-</div>
-<div class="section" id="the-basics">
-<h2>The basics</h2>
-<pre class="code c literal-block">
-<span class="cp">#define List(t) t*</span>
-</pre>
-<p><em>Now</em> the interesting stuff starts! This is just a macro to make uses of the list
-type look like generics, so that I can do stuff like <tt class="docutils literal">List(int*)</tt>.</p>
-<pre class="code c literal-block">
-<span class="cp">#define list_lenref(l) ((size_t*)l)[-1]</span>
-</pre>
-<p>I think I need to explain a moment.</p>
-<p>Lists are represented by a pointer to a length of type <tt class="docutils literal">size_t</tt> and the elements
-immediately after, like this:</p>
-<pre class="code c literal-block">
-<span class="k">struct</span> <span class="n">my_list_type</span> <span class="p">{</span>
-    <span class="kt">size_t</span> <span class="n">length</span><span class="p">;</span>
-    <span class="n">some_type</span> <span class="n">my_array</span><span class="p">[</span><span class="n">size_here</span><span class="p">];</span>
-<span class="p">};</span>
-</pre>
-<p>(Except that <tt class="docutils literal">my_array</tt> can be of any size.) However, the list is a pointer to
-the array, after the length. Therefore, <tt class="docutils literal">list_lenref</tt> (which gets the length of
-the list) needs to go BEFORE the given list to get the length.</p>
-<p>Next is the definition of <tt class="docutils literal">list_len</tt>:</p>
-<pre class="code c literal-block">
-<span class="cp">#define list_len(l) (l?list_lenref(l):0)</span>
-</pre>
-<p>This is just a wrapper macro around <tt class="docutils literal">list_lenref</tt> to support getting the length
-of an empty list (<tt class="docutils literal">NULL</tt>).</p>
-</div>
-<div class="section" id="appending">
-<h2>Appending</h2>
-<p>Now is my personal favorite part: the definition of <tt class="docutils literal">list_append</tt>:</p>
-<pre class="code c literal-block">
-<span class="cp">#define list_append(l,x) do {\
+#define list_var(b) list_cat(list_type_,list_cat(b,__LINE__))
+  </prism-js>
+
+  <p>
+    This is just a way of creating anonymous, single-use variables inside a macro
+    in order to avoid name clashes. Think Lisp's <code>gensym</code>.</p>
+
+  <link-header id="basics">The basics</link-header>
+
+  <prism-js language="c">
+#define List(t) t*
+  </prism-js>
+
+  <p>
+    <i>Now</i> the interesting stuff starts! This is just a macro to make uses
+    of the list type look like generics, so that I can do stuff like
+    <code>List(int*)</code>.</p>
+
+  <prism-js language="c">
+#define list_lenref(l) ((size_t*)l)[-1]
+  </prism-js>
+
+  <p>I think I need to explain a moment.</p>
+
+  <p>
+    Lists are represented by a pointer to a length of type <code>size_t</code>
+    and the elements immediately after, like this:</p>
+
+  <prism-js language="c">
+struct my_list_type {
+    size_t length;
+    some_type my_array[size_here];
+};
+  </prism-js>
+
+  <p>
+    (Except that <code>my_array</code> can be of any size.) However, the list is
+    a pointer to the array, after the length. Therefore, <code>list_lenref</code>
+    (which gets the length of the list) needs to index BEFORE the given list to
+    get the length.
+
+  <p>Next is the definition of <code>list_len</code>:</p>
+
+  <prism-js language="c">
+#define list_len(l) (l?list_lenref(l):0)
+  </prism-js>
+
+  <p>
+    This is just a wrapper macro around <code>list_lenref</code> to support
+    getting the length of an empty list (<code>NULL</code>).</p>
+
+  <link-header id="appending">Appending</link-header>
+
+  <p>Now is my personal favorite part: the definition of <code>list_append</code>:
+
+  <prism-js language="c">
+#define list_append(l,x) do {\
     size_t list_var(len) = list_len(l);\
     l = realloc(l?((void*)l)-sizeof(size_t):NULL,\
                 sizeof(void*)*(list_var(len)+1)+sizeof(size_t))+sizeof(size_t);\
     list_lenref(l) = list_var(len)+1;\
     l[list_lenref(l)-1] = x;\
-} while (0)</span>
-</pre>
-<p>This is definitely the biggest macro (and arguably the most important), so I'll
-explain it line-by-line:</p>
-<p>First, the length of the list is saved in an anonymous variable:</p>
-<pre class="code c literal-block">
-<span class="kt">size_t</span> <span class="nf">list_var</span><span class="p">(</span><span class="n">len</span><span class="p">)</span> <span class="o">=</span> <span class="n">list_len</span><span class="p">(</span><span class="n">l</span><span class="p">);</span>\
-</pre>
-<p>Next, the list is <tt class="docutils literal">realloc</tt>'d:</p>
-<pre class="code c literal-block">
-<span class="n">l</span> <span class="o">=</span> <span class="n">realloc</span><span class="p">(</span><span class="n">l</span><span class="o">?</span><span class="p">((</span><span class="kt">void</span><span class="o">*</span><span class="p">)</span><span class="n">l</span><span class="p">)</span><span class="o">-</span><span class="k">sizeof</span><span class="p">(</span><span class="kt">size_t</span><span class="p">)</span><span class="o">:</span><span class="nb">NULL</span><span class="p">,</span>\
-            <span class="k">sizeof</span><span class="p">(</span><span class="kt">void</span><span class="o">*</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">list_var</span><span class="p">(</span><span class="n">len</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">+</span><span class="k">sizeof</span><span class="p">(</span><span class="kt">size_t</span><span class="p">))</span><span class="o">+</span><span class="k">sizeof</span><span class="p">(</span><span class="kt">size_t</span><span class="p">);</span>\
-</pre>
-<p>This alone deserves explanation, too! The first argument to <tt class="docutils literal">realloc</tt> is the
-block of memory to be resized. If the list is NULL, then NULL is passed to
-<tt class="docutils literal">realloc</tt>. Otherwise, the size of the length is subtracted from the pointer to
-get the beginning of the allocated memory.</p>
-<p>The second argument is the size of the new memory block. This is the size of a
-pointer times the number of elements to be in the new list, which is just the old
-length plus 1.</p>
-<p>A``sizeof(size_t)`` is then added to the result of the call to <tt class="docutils literal">realloc</tt> to get
-a pointer to the elements.</p>
-<p>I didn't worry about <tt class="docutils literal">realloc</tt> returning <tt class="docutils literal">NULL</tt>, since this is just an
-example, and, in my use case, I'm calling a wrapper over <tt class="docutils literal">realloc</tt> that aborts
-on out-of-memory errors.</p>
-<p>After all that, the length of the list is updated:</p>
-<pre class="code c literal-block">
-<span class="n">list_lenref</span><span class="p">(</span><span class="n">l</span><span class="p">)</span> <span class="o">=</span> <span class="n">list_var</span><span class="p">(</span><span class="n">len</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="p">;</span>\
-</pre>
-<p>If you're wondering why I didn't just use <tt class="docutils literal">++list_lenref(l)</tt>, it's because, if
-the list was empty before the append, the length will be uninitialized. Also,
-<tt class="docutils literal">list_lenref</tt> is used instead of <tt class="docutils literal">list_len</tt> because the latter is an rvalue
-because it handles empty lists, but we know the list is</p>
-<p>And the new element is assigned:</p>
-<pre class="code c literal-block">
-<span class="n">l</span><span class="p">[</span><span class="n">list_lenref</span><span class="p">(</span><span class="n">l</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">x</span><span class="p">;</span>\
-</pre>
-<p>All of this is wrapped in a <tt class="docutils literal">do</tt>/<tt class="docutils literal">while</tt> block to avoid <cite>surprising issues
-&lt;http://stackoverflow.com/a/154138/2097780&gt;</cite>.</p>
-</div>
-<div class="section" id="freeing-the-list">
-<h2>Freeing the list</h2>
-<p>Last of all comes freeing a list:</p>
-<pre class="code c literal-block">
-<span class="cp">#define list_free(l) free(l?(void*)l-sizeof(size_t):NULL)</span>
-</pre>
-<p>If the list is empty, then it just tries to free <tt class="docutils literal">NULL</tt>, which does nothing. If
-the list is <em>not</em> empty, then <tt class="docutils literal">sizeof(size_t)</tt> is subtracted to get the
-beginning of the list, and that is freed.</p>
-</div>
-<div class="section" id="closing-notes-and-problems">
-<h2>Closing notes (and problems)</h2>
-<p>If you're wondering how the heck this is type-safe, consider:</p>
-<pre class="code c literal-block">
-<span class="n">List</span><span class="p">(</span><span class="kt">int</span><span class="o">*</span><span class="p">)</span> <span class="n">l</span><span class="p">;</span>
-<span class="kt">char</span> <span class="n">c</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
-<span class="n">list_append</span><span class="p">(</span><span class="n">l</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">c</span><span class="p">);</span>
-</pre>
-<p>If I try to compile this, my compiler (Clang) says:</p>
-<pre class="literal-block">
+} while (0)
+  </prism-js>
+
+  <p>
+    This is definitely the biggest macro (and arguably the most important), so
+    I'll explain it line-by-line:</p>
+
+  <p>First, the length of the list is saved in an anonymous variable:</p>
+
+  <prism-js language="c">
+size_t list_var(len) = list_len(l);\
+  </prism-js>
+
+  <p>Next, the list is <code>realloc</code>'d:</p>
+
+  <prism-js language="c">
+l = realloc(l?((void*)l)-sizeof(size_t):NULL,\
+            sizeof(void*)*(list_var(len)+1)+sizeof(size_t))+sizeof(size_t);\
+  </prism-js>
+
+  <p>
+    This alone deserves explanation, too! The first argument to
+    <code>realloc</code> is the block of memory to be resized. If the list is
+    <code>NULL</code>, then <code>NULL</code> is passed to <code>realloc</code>.
+    Otherwise, the size of the length is subtracted from the pointer to get the
+    beginning of the allocated memory.</p>
+
+  <p>
+    The second argument is the size of the new memory block. This is the size of
+    a pointer times the number of elements to be in the new list, which is just
+    the old length plus 1.</p>
+
+  <p>
+    A <code>sizeof(size_t)</code> is then added to the result of the call to
+    <code>realloc</code> to get a pointer to the elements.</p>
+
+  <p>
+    I didn't worry about <code>realloc</code> returning <code>NULL</code>, since
+    this is just an example, and, in my use case, I'm calling a wrapper over
+    <code>realloc</code> that aborts on out-of-memory errors.</p>
+
+  <p>After all that, the length of the list is updated:</p>
+
+  <prism-js language="c">
+list_lenref(l) = list_var(len)+1;\
+  </prism-js>
+
+  <p>
+    If you're wondering why I didn't just use <code>++list_lenref(l)</code>, it's
+    because, if the list was empty before the append, the length will be
+    uninitialized. Also, <code>list_lenref</code> is used instead of
+    <code>list_len</code> because the latter is an rvalue because it handles
+    empty lists, but we know the list is non-empty, and you can only assign to an
+    l-value.</p>
+
+  <p>And the new element is assigned:</p>
+
+  <prism-js language="c">
+l[list_lenref(l)-1] = x;\
+  </prism-js>
+
+  <p>
+    All of this is wrapped in a <code>do/while</code> block to avoid
+    <a href="http://stackoverflow.com/a/154138/2097780">surprising issues</a>.</p>
+
+  <link-header id="freeing">Freeing the list</link-header>
+
+  <p>Last of all comes freeing a list:</p>
+
+  <prism-js language="c">
+#define list_free(l) free(l?(void*)l-sizeof(size_t):NULL)
+  </prism-js>
+
+  <p>
+    If the list is empty, then it just tries to free <code>NULL</code>, which
+    does nothing. If the list is <i>not</i> empty, then
+    <code>sizeof(size_t)</code> is subtracted to get the beginning of the list,
+    and that is freed.
+
+  <link-header id="closing">Closing notes (and problems)</link-header>
+
+  <p>If you're wondering how the heck this is type-safe, consider:</p>
+
+  <prism-js language="c">
+List(int*) l;
+char c=0;
+list_append(l, &c);
+  </prism-js>
+
+  <p>If I try to compile this, my compiler (Clang) says:</p>
+
+  <prism-js>
 tst.c:13:5: warning: incompatible pointer types assigning to 'int *' from 'char *' [-Wincompatible-pointer-types]
-    list_append(l, &amp;c);
+    list_append(l, &c);
     ^              ~~
 ./list.h:16:25: note: expanded from macro 'list_append'
     l[list_lenref(l)-1] = x;\
                         ^
 1 warning generated.
-</pre>
-<p>GCC 4.9 (which is admittedly an old version) gives a slightly less helpful but
-still informative warning:</p>
-<pre class="literal-block">
+  </prism-js>
+
+  <p>
+    GCC 4.9 (which is admittedly an old version) gives a slightly less helpful
+    but still informative warning:</p>
+
+  <prism-js>
 In file included from tst.c:5:0:
 tst.c: In function ‘main’:
 list.h:16:25: warning: assignment from incompatible pointer type
      l[list_lenref(l)-1] = x;\
                          ^
 tst.c:13:5: note: in expansion of macro ‘list_append’
-     list_append(l, &amp;c);
+     list_append(l, &c);
      ^
-</pre>
-<p>Intel's doesn't show the macro expansion, but it still works:</p>
-<pre class="literal-block">
+  </prism-js>
+
+  <p>Intel's doesn't show the macro expansion, but it still works:</p>
+
+  <prism-js>
 tst.c(13): warning #556: a value of type "char *" cannot be assigned to an entity of type "int *"
-      list_append(l, &amp;c);
+      list_append(l, &c);
       ^
-</pre>
-<p>You can see that the compiler always notices when something isn't right, and
-building with <tt class="docutils literal"><span class="pre">-Werror</span></tt> will prevent this from even compiling.</p>
-<p>As for problems with the implementation, there are a few:</p>
-<ul class="simple">
-<li>The list is always resized on every append, like I mentioned above. This would
-be a trivial change that I just haven't done yet.</li>
-<li>No popping from a list, which I also mentioned.</li>
-<li>No handling of a <tt class="docutils literal">realloc</tt> failure. Again, I mentioned this above, too.</li>
-<li>Error messages can be big. Just try something like
-<tt class="docutils literal">list_append(some_nonexistent_variable, 0)</tt> and you'll see what I mean. That
-gives a whopping 8 errors with Clang. GCC and Intel iare much better here (they
-only show one), but you get the idea!</li>
-</ul>
-<p>All in all, I still think this is a cool list implementation!</p>
-</div>
-    </div>
-    <aside class="postpromonav">
-    <nav>
-    
+  </prism-js>
 
-    
-        <ul class="pager">
-            <li class="previous">
-                <a href="programming-decisions.html" rel="prev" title="Programming Decisions">Previous post</a>
-            </li>
-            <li class="next">
-                <a href="a-tour-of-the-howl-programming-text-editor.html" rel="next" title="A tour of the Howl programming text editor">Next post</a>
-            </li>
-        </ul>
+  <p>
+    You can see that the compiler always notices when something isn't right, and
+    building with <code>-Werror</code> will prevent this from even compiling.</p>
 
-    </nav>
-    </aside>
-        <section class="comments">
-        <h2>Comments</h2>
-        
-        
-        <div id="disqus_thread"></div>
-        <script>
-        var disqus_shortname ="blockbyte",
-            disqus_url="http://kirbyfan64.github.io/posts/implementing-a-sort-of-generic-sort-of-type-safe-arrayin-c.html",
-        disqus_title="Implementing a (sort of) generic, (sort of) type-safe array in C",
-        disqus_identifier="cache/posts/implementing-a-sort-of-generic-sort-of-type-safe-arrayin-c.html",
-        disqus_config = function () {
-            this.language = "en";
-        };
-        (function() {
-            var dsq = document.createElement('script'); dsq.async = true;
-            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-        })();
-    </script>
-    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a>
-</noscript>
-    <a href="//disqus.com" class="dsq-brlink" rel="nofollow">Comments powered by <span class="logo-disqus">Disqus</span></a>
+  <p>As for problems with the implementation, there are a few:</p>
 
+  <ul>
+    <li>
+      The list is always resized on every append, like I mentioned above. This
+      would be a trivial change that I just haven't done yet.
+    <li>No popping from a list, which I also mentioned.</li>
+    <li>
+      No handling of a <code>realloc</code> failure. Again, I mentioned this
+      above, too.</li>
+    <li>
+      Error messages can be big. Just try something like
+      <code>list_append(some_nonexistent_variable, 0)</code> and you'll see what
+      I mean. That gives a whopping 8 errors with Clang. GCC and Intel are much
+      better here (they only show one), but you get the idea!
+  </ul>
 
-        </section>
-    
+  <p>All in all, I still think this is a cool list implementation!</p>
 
-</article>
-
-        
-       <script>var disqus_shortname="blockbyte";(function(){var a=document.createElement("script");a.async=true;a.src="//"+disqus_shortname+".disqus.com/count.js";(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(a)}());</script>
-
-
-
-        </div>
-        <!--End of body content-->
-
-        <footer>
-            Contents © 2016         <a href="mailto:rymg19@gmail.com">Ryan Gonzalez</a> - Powered by         <a href="http://getnikola.com" rel="nofollow">Nikola</a>         
-            
-        </footer>
-    </div>
-</div>
-
-
-            <script src="../assets/js/all-nocdn.js"></script>
-    
-<!-- Social buttons -->
-<div id="addthisbox" class="addthis_toolbox addthis_peekaboo_style addthis_default_style addthis_label_style addthis_32x32_style">
-<a class="addthis_button_more">Share</a>
-<ul>
-<li>
-<a class="addthis_button_facebook"></a>
-</li>
-<li>
-<a class="addthis_button_google_plusone_share"></a>
-</li>
-<li>
-<a class="addthis_button_linkedin"></a>
-</li>
-<li>
-<a class="addthis_button_twitter"></a>
-</li>
-</ul>
-</div>
-<script src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-4f7088a56bb93798"></script>
-<!-- End of social buttons -->
-
-
-    <script>jQuery("a.image-reference").colorbox({rel:"gal",maxWidth:"100%",maxHeight:"100%",scalePhotos:true});</script>
-    
-<script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-  ga('create', 'UA-55018880-1', 'auto');
-  ga('send', 'pageview');
-
-</script>
-
+  <site-tags tags='["c", "programming", "preprocessor", "hack"]'></site-tags>
+  <site-suffix></site-suffix>
 </body>
-</html>

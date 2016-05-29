@@ -1,0 +1,33 @@
+<dom-module id="site-suffix">
+  <script src="/bower_components/share-button/share-button.js"></script>
+  <link rel="stylesheet" href="/bower_components/share-button/share-button.css">
+  <link rel="import" href="google-analytics.html">
+
+  <template>
+    <share-button></share-button>
+    <script> new ShareButton; </script>
+
+    <div id="disqus_thread"></div>
+    <script>
+      var disqus_config = function() {
+        this.page.url = window.location.href;
+        this.page.identifier = 'cache' + window.location.pathname;
+      };
+
+      (function() {
+        var ds = document.createElement('script');
+        ds.src = '//blockbyte.disqus.com/embed.js';
+        ds.async = true;
+        ds.setAttribute('data-timestamp', +new Date());
+
+        (document.head || document.body).appendChild(ds);
+      })();
+    </script>
+
+    <google-analytics></google-analytics>
+  </template>
+
+  <script>
+    Polymer({ is: 'site-suffix' });
+  </script>
+</dom-module>

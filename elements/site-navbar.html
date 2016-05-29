@@ -1,0 +1,23 @@
+<dom-module id="site-navbar">
+  <template>
+    <paper-toolbar>
+      <div class="title">BlockByte</div>
+      <a href="/"><paper-button>Home</paper-button></a>
+      <a href="/tags.html"><paper-button>Tags</paper-button></a>
+      <a href="/projects.html"><paper-button>Projects</paper-button></a>
+      <a href="https://github.com/kirbyfan64">
+        <paper-button>GitHub</paper-button>
+      </a>
+    </paper-toolbar>
+
+    <p style="color: red;">
+      Note that this website has just been completely redesigned. If you notice any
+      issues, please report them
+      <a href="https://github.com/kirbyfan64/kirbyfan64.github.io/issues">here</a>.
+    </p>
+  </template>
+
+  <script>
+    Polymer({is: 'site-navbar'});
+  </script>
+</dom-module>

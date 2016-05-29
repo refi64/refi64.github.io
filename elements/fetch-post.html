@@ -1,0 +1,8 @@
+<dom-module is="fetch-post">
+  <iron-ajax auto url="../posts/{{post}}.html" handle-as="document"
+             headers='{"Cache-Control": "max-age=0"}' last-response="{{target}}"
+             on-response="onResponse"></iron-ajax>
+
+  <script>
+  </script>
+</dom-module>
