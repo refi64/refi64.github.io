@@ -1,2 +1,4 @@
-Sitemap: http://kirbyfan64.github.io/sitemapindex.xml
-
+User-agent: *
+Disallow: /_imports.html
+Disallow: /bower.json
+Disallow: /bower_components/
