@@ -1,0 +1,35 @@
+#!/usr/bin/env python
+
+from datetime import datetime
+import os, json, sys
+
+templates = os.path.dirname(__file__)
+
+# USAGE:
+# templates/copy base [target path] [title]
+# templates/copy post [post title] [list of tags]*
+
+def copy_template(src, tgt, **fm):
+    with open(os.path.join(templates, src+'.html')) as tmplf:
+        tmpl = tmplf.read()
+
+    res = tmpl.format(**fm)
+
+    with open(tgt+'.html', 'w') as tgtf:
+        tgtf.write(res)
+
+def base(path, title):
+    copy_template('base', path, title=title)
+
+def post(path, title, *tags):
+    date = datetime.now().strftime('%Y-%m-%d %H-%M-%S')
+    copy_template('post', os.path.join('posts', path), title=title,
+                  tags=json.dumps(tags), date=date)
+
+funcs = {
+    'base': base,
+    'post': post,
+}
+
+if __name__ == '__main__':
+    funcs[sys.argv[1]](*sys.argv[2:])

@@ -7,27 +7,38 @@
     <share-button></share-button>
     <script> new ShareButton; </script>
 
-    <div id="disqus_thread"></div>
-    <script>
-      var disqus_config = function() {
-        this.page.url = window.location.href;
-        this.page.identifier = 'cache' + window.location.pathname;
-      };
+    <template is="dom-if" if="{{!noDisqus}}">
+      <div id="disqus_thread"></div>
+      <script>
+        var disqus_config = function() {
+          this.page.url = window.location.href;
+          this.page.identifier = 'cache' + window.location.pathname;
+        };
 
-      (function() {
-        var ds = document.createElement('script');
-        ds.src = '//blockbyte.disqus.com/embed.js';
-        ds.async = true;
-        ds.setAttribute('data-timestamp', +new Date());
+        (function() {
+          var ds = document.createElement('script');
+          ds.src = '//blockbyte.disqus.com/embed.js';
+          ds.async = true;
+          ds.setAttribute('data-timestamp', +new Date());
 
-        (document.head || document.body).appendChild(ds);
-      })();
-    </script>
+          (document.head || document.body).appendChild(ds);
+        })();
+      </script>
+    </template>
 
     <google-analytics></google-analytics>
   </template>
 
   <script>
-    Polymer({ is: 'site-suffix' });
+    Polymer({
+      is: 'site-suffix',
+
+      properties: {
+        noDisqus: {
+          type: Boolean,
+          value: false,
+        }
+      }
+    });
   </script>
 </dom-module>

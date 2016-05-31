@@ -11,8 +11,10 @@
       <a href="{{url}}#disqus_thread"
          data-disqus-identifier="{{disqusId(url)}}">Comments</a></div>
 
-      <script id="dsq-count-scr" src="//blockbyte.disqus.com/count.js" async>
-      </script>
+      <template is="dom-if" if="{{!noDisqus}}">
+        <script id="dsq-count-scr" src="//blockbyte.disqus.com/count.js" async>
+        </script>
+      </template>
   </template>
 
   <script>
@@ -27,6 +29,10 @@
         url: {
           type: String,
           value: function () { return window.location.pathname; },
+        },
+        noDisqus: {
+          type: Boolean,
+          value: false,
         },
         createdOn: String,
       },
