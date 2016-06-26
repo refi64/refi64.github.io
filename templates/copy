@@ -7,7 +7,7 @@ templates = os.path.dirname(__file__)
 
 # USAGE:
 # templates/copy base [target path] [title]
-# templates/copy post [post title] [list of tags]*
+# templates/copy post [post slug] [post title] [list of tags]*
 
 def copy_template(src, tgt, **fm):
     with open(os.path.join(templates, src+'.html')) as tmplf:
