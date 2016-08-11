@@ -49,15 +49,21 @@
       ready: function () {
         // XXX: I'm just really, really lazy...
 
+        function nl2a(nl) {
+          var ar = [];
+          var len = nl.length;
+          for (var i=0; i<len; i++) ar.push(nl[i]);
+          return ar;
+        }
+
         var pn = this.parentNode;
-        var pc = pn.children;
+        var pc = nl2a(pn.children);
         var div = document.createElement('div');
 
         for (var i=0; i < pc.length; i++) {
           var child = pc[i];
           if (child == this) continue;
-          console.log(child);
-          div.appendChild(pn.removeChild(child));
+          div.appendChild(child);
         }
         pn.innerHTML = '';
         pn.appendChild(this);
