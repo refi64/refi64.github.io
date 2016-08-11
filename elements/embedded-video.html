@@ -1,0 +1,38 @@
+<dom-module id="embedded-video">
+  <template>
+    <style is="custom-style">
+      div {
+        position: relative;
+        padding-bottom: 56.25%;
+        padding-top: 25px;
+        height: 0;
+      }
+
+      iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+      }
+    </style>
+
+    <div>
+      <iframe width="{{width}}" height="{{height}}" src="{{url}}" frameborder="0"
+              style="max-width: {{width}}; max-height: {{height}};"
+              allowfullscreen></iframe>
+    </div>
+  </template>
+
+  <script>
+    Polymer({
+      is: 'embedded-video',
+
+      properties: {
+        url: String,
+        width: Number,
+        height: Number,
+      }
+    });
+  </script>
+</dom-module>
