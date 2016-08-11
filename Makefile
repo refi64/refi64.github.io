@@ -1,2 +1,4 @@
-_imports.html : _imports.raw.html
-	vulcanize -p . $< > $@
+.PHONY : imports
+
+imports :
+	vulcanize -p . _imports.raw.html > _imports.html
