@@ -14,7 +14,7 @@
     </style>
 
     <paper-drawer-panel id="drawer">
-      <div drawer>
+      <div drawer style="overflow: scroll; overflow-y: auto; background-color: gainsboro;">
         <paper-listbox>
           <h4 style="text-align: center;">Navigation</h4>
           <link-item target="/">Home</link-item>
@@ -27,7 +27,7 @@
           <link-item target="https://github.com/kirbyfan64">GitHub</link-item>
         </paper-listbox>
       </div>
-      <div main style="overflow: scroll;" id="site-navbar-main">
+      <div main style="overflow: scroll; overflow-y: auto;" id="site-navbar-main">
         <paper-toolbar>
           <paper-icon-button paper-drawer-toggle icon="menu"></paper-icon-button>
           <div class="title">BlockByte</div>
@@ -56,8 +56,11 @@
         for (var i=0; i < pc.length; i++) {
           var child = pc[i];
           if (child == this) continue;
+          console.log(child);
           div.appendChild(pn.removeChild(child));
         }
+        pn.innerHTML = '';
+        pn.appendChild(this);
 
         var ins_point = this.$.drawer.
                         queryEffectiveChildren('#site-navbar-main').
