@@ -5,7 +5,6 @@
         border-style: solid;
         border-color: gray;
         border-width: 0.5px;
-        width: 90%;
       }
 
       paper-listbox {
@@ -13,39 +12,46 @@
       }
     </style>
 
-    <paper-drawer-panel id="drawer">
-      <div drawer style="overflow: scroll; overflow-x: auto; overflow-y: auto; background-color: gainsboro;">
-        <paper-listbox>
-          <h4 style="text-align: center;">Navigation</h4>
-          <link-item target="/">Home</link-item>
-          <hr>
-          <link-item target="https://feed43.com/4061761183385368.xml">RSS</link-item>
-          <link-item target="/tags.html">Tags</link-item>
-          <hr>
-          <link-item target="/projects.html">Projects</link-item>
-          <hr>
-          <link-item target="https://github.com/kirbyfan64">GitHub</link-item>
-        </paper-listbox>
-      </div>
-      <div main style="overflow: scroll; overflow-x: auto; overflow-y: auto;" id="site-navbar-main">
-        <paper-toolbar>
-          <paper-icon-button paper-drawer-toggle icon="menu"></paper-icon-button>
-          <div class="title">BlockByte</div>
-        </paper-toolbar>
-        <div id="site-navbar-ins" style="padding-left: 1em;">
-          <p style="color: red;">
-            Note that this website has just been completely redesigned. If you
-            notice any issues, please report them
-            <a href="https://github.com/kirbyfan64/kirbyfan64.github.io/issues">here</a>.
-          </p>
+    <paper-header-panel id="header" class="flex">
+      <paper-toolbar>
+        <paper-icon-button id="toggle" icon="menu" on-click="toggleDrawer"></paper-icon-button>
+        <div class="title">BlockByte</div>
+      </paper-toolbar>
+
+      <paper-drawer-panel id="drawer">
+        <div drawer style="overflow: scroll; overflow-x: auto; overflow-y: auto; background-color: gainsboro;">
+          <paper-listbox>
+            <h4 style="text-align: center;">Navigation</h4>
+            <link-item target="/">Home</link-item>
+            <hr>
+            <link-item target="https://feed43.com/4061761183385368.xml">RSS</link-item>
+            <link-item target="/tags.html">Tags</link-item>
+            <hr>
+            <link-item target="/projects.html">Projects</link-item>
+            <hr>
+            <link-item target="https://github.com/kirbyfan64">GitHub</link-item>
+          </paper-listbox>
         </div>
-      </div>
-    </paper-drawer-panel>
+        <div main style="overflow: scroll; overflow-x: auto; overflow-y: auto;" id="site-navbar-main">
+          <div id="site-navbar-ins" style="padding-left: 1em; padding-right: 1em;">
+            <p style="color: red;">
+              Note that this website has just been completely redesigned. If you
+              notice any issues, please report them
+              <a href="https://github.com/kirbyfan64/kirbyfan64.github.io/issues">here</a>.
+            </p>
+          </div>
+        </div>
+      </paper-drawer-panel>
+    </paper-header-panel>
   </template>
 
   <script>
     Polymer({
       is: 'site-navbar',
+
+      observers: [
+        'narrowChanged(drawer.narrow)'
+      ],
 
       ready: function () {
         // XXX: I'm just really, really lazy...
@@ -74,7 +80,16 @@
                         querySelector('#site-navbar-ins');
 
         Polymer.dom(ins_point).appendChild(div);
-      }
+
+        var $ = this.$;
+        function resize() {
+          $.toggle.style.visibility = $.drawer.narrow ? 'visible' : 'hidden';
+        }
+        resize();
+        window.addEventListener('resize', resize);
+      },
+
+      toggleDrawer: function () { this.$.drawer.togglePanel(); }
     });
   </script>
 </dom-module>
