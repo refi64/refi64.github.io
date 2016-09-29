@@ -7,8 +7,14 @@
         border-width: 0.5px;
       }
 
-      paper-listbox {
-        --paper-listbox-background-color: gainsboro;
+      paper-menu {
+        --paper-menu-background-color: gainsboro;
+      }
+
+      .overflow {
+        overflow: scroll;
+        overflow-x: auto;
+        overflow-y: auto;
       }
     </style>
 
@@ -19,8 +25,8 @@
       </paper-toolbar>
 
       <paper-drawer-panel id="drawer">
-        <div drawer style="overflow: scroll; overflow-x: auto; overflow-y: auto; background-color: gainsboro;">
-          <paper-listbox>
+        <div drawer class="overflow" style="background-color: gainsboro;">
+          <paper-menu selectable="link-item">
             <h4 style="text-align: center;">Navigation</h4>
             <link-item target="/">Home</link-item>
             <hr>
@@ -30,10 +36,10 @@
             <link-item target="/projects.html">Projects</link-item>
             <hr>
             <link-item target="https://github.com/kirbyfan64">GitHub</link-item>
-          </paper-listbox>
+          </paper-menu>
         </div>
-        <div main style="overflow: scroll; overflow-x: auto; overflow-y: auto;" id="site-navbar-main">
-          <div id="site-navbar-ins" style="padding-left: 1em; padding-right: 1em;">
+        <div main class="overflow" id="site-navbar-main">
+          <div id="site-navbar-ins" style="padding: 0em 1em 1em 1em;">
             <p style="color: red;">
               Note that this website has just been completely redesigned. If you
               notice any issues, please report them

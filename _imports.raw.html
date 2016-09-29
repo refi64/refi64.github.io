@@ -39,7 +39,6 @@
       font-family: 'Roboto', 'Noto', sans-serif;
       line-height: 1.4;
       color: DarkSlateGray;
-      /*padding: 0em 1em 0em 1em;*/
       height: 100%;
       width: 100%;
       margin: 0;
@@ -49,7 +48,9 @@
     a:hover { text-decoration: underline; color: mediumblue; }
     img { width: 100%; height: auto; }
 
-    a paper-button, a:visited paper-button { text-decoration: none; color: white; }
+    a paper-button, a:hover paper-button, a:visited paper-button {
+      text-decoration: none; color: white;
+    }
 
     a paper-item, a:hover paper-item, a:visited paper-item {
       text-decoration: none; color: black;
