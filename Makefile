@@ -1,3 +1,5 @@
+MOPTS=--html5 --minify-css true --minify-js true --remove-comments
+
 .PHONY : debug release
 
 debug :
@@ -5,4 +7,4 @@ debug :
 
 release :
 	rm _imports.html
-	vulcanize -p . _imports.raw.html > _imports.html
+	vulcanize -p . _imports.raw.html | html-minifier $(MOPTS) -o _imports.html
