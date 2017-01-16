@@ -1,0 +1,97 @@
+<head>
+  <title>XCXSound</title>
+  <script src="/bower_components/webcomponentsjs/webcomponents-lite.min.js">
+  </script>
+  <link rel="import" href="/_imports.html">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body unresolved>
+  <site-navbar></site-navbar>
+
+  <h1>XCXSound</h1>
+
+  <p>
+    XCXSound is a tool that makes it easier to use custom music in Xenoblade
+    Chronicles X.</p>
+
+  <link-header id="downloads">Downloads</link-header>
+
+  <link-header id="v01" small>Version 0.1</link-header>
+
+  <ul>
+    <li>
+      <a href="https://www.dropbox.com/s/wtsruq1tis9aap2/xcxsound_v0.1.zip?dl=0">
+        Windows binaries</a></li>
+    <li><a href="http://hub.darcs.net/refi64/xcxsound">Source code</a></li>
+  </ul>
+
+  <link-header id="howto">How to use</link-header>
+
+  <link-header id="extracting" small>Extracting and opening</link-header>
+
+  <p>
+    Unzip the archive, right-click xcxsound.exe, and hit <i>Run as
+    Administrator.</i></p>
+
+  <link-header id="basics" small>Setting up XCXSound</link-header>
+
+  <p>
+    The top-left field of the XCXSound window allows you to set the directory
+    where the music files will be stored. <b>This does not go on your SD card;
+    it goes on your main hard drive!</b> In most cases, the default is fine,
+    so you can ignore this option.</p>
+
+  <p>
+    Set the <i>Game ID</i> dropdown to your game's region. Note that I've only
+    tested XCXSound with the US region. After this, click the <i>Load</i>
+    button.</p>
+
+  <link-header id="editing" small>Editing the songs</link-header>
+
+  <p>
+    Select the song you want to change and click <i>Edit Song</i>. There
+    are two options at this point:</p>
+
+  <ul>
+    <li><b>Reset</b> - Remove any modifications to the song.</li>
+    <li>
+      <b>Custom song</b> - Select an audio file to use. XCXSound uses FFmpeg,
+      which means that a wide variety of music formats are supported, including
+      <code>.mp3</code>, <code>.wav</code>, <code>.flac</code>,
+      <code>.ogg</code>, <code>.m4a</code>, <code>.acc</code>, and more. Once
+      you select the audio file to convert, XCXSound will automatically
+      convert it to the proper format and loop it if necessary.</li>
+  </ul>
+
+  <link-header id="cafiine" small>
+    Connecting the Wii U to the computer</link-header>
+
+  <b>On your computer:</b>
+
+  <ul>
+    <li>Make note of your IP address on the bottom-ride of XCXSound.</li>
+    <li>
+      Click <i>Start Cafiine</i> inside XCXSound. This will start up the
+      Cafiine server. If the Windows firewall pops up and says it blocked
+      Cafiine, make sure you select <i>both</i> check boxes, then hit
+      <i>Allow access</i>.</li>
+  </ul>
+
+  <b>On the Wii U:</b>
+
+  <ul>
+    <li>Open up the web browser and navigate to <code>loadiine.ovh</code>.</li>
+    <li>
+      Select <i>Cafiine + Kernel</i> from the drop-down menu and hit
+      <i>Submit</i>.</li>
+    <li>
+      Once you end up back at the main menu, return to the internet
+      browser. After this, you should end up with a screen on the Wii U gamepad
+      gamepad asking you to enter an IP address. Use the D-pad to enter the IP
+      address you saw in XCXSound earlier, then hit the A button.</li>
+    <li>Open up Xenoblade X and enjoy the custom music!</li>
+  </ul>
+
+  <google-analytics></google-analytics>
+</body>
