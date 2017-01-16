@@ -13,7 +13,13 @@
 
   <p>
     XCXSound is a tool that makes it easier to use custom music in Xenoblade
-    Chronicles X.</p>
+    Chronicles X. Runs on Windows and Linux (OSX should work, but it's
+    untested).</p>
+
+  <link-header id="screen">Screenshots</link-header>
+
+  <img src="https://s30.postimg.org/spo9jo3w1/XCXSound_001.jpg"
+       style="max-height: 802px; max-width: 626px;">Linux</img>
 
   <link-header id="downloads">Downloads</link-header>
 
@@ -30,9 +36,20 @@
 
   <link-header id="extracting" small>Extracting and opening</link-header>
 
-  <p>
-    Unzip the archive, right-click xcxsound.exe, and hit <i>Run as
-    Administrator.</i></p>
+  <ul>
+    <li>
+      <p>
+        <b>On Windows:</b> Unzip the archive, right-click xcxsound.exe, and hit
+        <i>Run as Administrator.</i></p></li>
+    <li>
+      <p>
+        <b>On Linux:</b> You'll have to get it from source. Download the
+        <a href="http://hub.darcs.net/refi64/xcxsound/dist">zip from Darcs
+        Hub</a> or clone the source yourself via
+        <code>darcs get http://hub.darcs.net/refi64/xcxsound</code>. Make sure
+        you have Python 3.4+, PySide, and Wine installed, then run
+        <code>python3 xcxsound.py</code></p></li>
+  </ul>
 
   <link-header id="basics" small>Setting up XCXSound</link-header>
 
