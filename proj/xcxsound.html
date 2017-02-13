@@ -18,10 +18,15 @@
 
   <link-header id="screen">Screenshots</link-header>
 
-  <img src="https://s5.postimg.org/pyn3qjrif/xcxsound_v0_2.png"
+  <img src="https://s5.postimg.org/3o71vxu6f/xcxsound_v0_3.png"
        style="max-height: 802px; max-width: 626px;">Linux</img>
 
   <link-header id="downloads">Downloads</link-header>
+
+  <link-header id="v02" small>Version 0.3</link-header>
+
+  <p><a href="https://www.dropbox.com/s/29d9q1h6no9p2oz/xcxsound_v0.3.zip?dl=0">
+    Windows binaries.</a></p>
 
   <link-header id="v02" small>Version 0.2</link-header>
 
@@ -32,6 +37,7 @@
 
   <p><a href="https://www.dropbox.com/s/wtsruq1tis9aap2/xcxsound_v0.1.zip?dl=0">
     Windows binaries.</a></p>
+
   <link-header id="src" small>Source code</link-header>
 
   <a href="http://hub.darcs.net/refi64/xcxsound">
@@ -128,7 +134,60 @@
     audio modifications to a zip file. You can later restore them using the
     <i>Restore a backup</i> button.</p>
 
+  <p>
+    Note that restoring a backup will <b>not</b> remove any already-present
+    mods. Hit <i>Reset all mods</i> first if you want to do that.</note-card>
+
+  <link-header id="rm-flight" small>Removing the flight music</link-header>
+
+  <note-card>
+    This feature is still in testing!! Please read this section fully before
+    attempting to use it.</note-card>
+
+  <p>
+    XCXSound can automatically try to replace the flight music with the normal
+    continent music, but there are some gotchas involved. In order to enable
+    this, just check the <i>No flight music</i> checkbox before hitting
+    <i>Start Cafiine</i>. Note the following:</p>
+
+  <ul>
+    <li>This restarts the continent theme.</li>
+    <li>
+      If you cross a continent boundary, or the time changes between day and
+      night, you need to land your skell, wait a second or so for the correct
+      music to load, and then take off again.</li>
+    <li>
+      If you fast-travel, wait a few seconds before taking off flying to make
+      sure the new music gets loaded.</li>
+    <li>This will erase any previous flight music mods that you've done.</li>
+    <li>
+      After you're done with Cafiine, make sure you select the flight music
+      in XCXSound and hit <i>Edit song</i> -&gt; <i>Reset</i>.</li>
+  </ul>
+
+  <p>If you follow these directions carefully, it should work well!</p>
+
+  <link-header id="rst" small>Resetting your mods</link-header>
+
+  <p>
+    If you want to reset all your music mods, use the <i>Reset all mods</i>
+    button.</p>
+
   <link-header id="changelog">Changelog</link-header>
+
+  <link-header id="log-v0.3" small>Version 0.3</link-header>
+
+  <ul>
+    <li>
+      Add the ability to automatically remove flight music!!! Many thanks to
+      GameFAQs user
+      <a href="http://www.gamefaqs.com/community/hshamsedin546">hshamsedin546</a>
+      for helping make this possible! (I don't have a flight module yet, so
+      they tested out all the changes, reported what was wrong, etc.)</li>
+    <li>
+      Changed the behavior of <i>Restore a backup</i> to not remove current
+      mods.</li>
+  </ul>
 
   <link-header id="log-v0.2" small>Version 0.2</link-header>
 
