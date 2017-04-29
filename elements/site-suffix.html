@@ -1,30 +1,15 @@
 <dom-module id="site-suffix">
   <script src="/bower_components/share-button/share-button.js"></script>
+  <!-- Double imports: one for shady DOM, one for shadow DOM -->
   <link rel="stylesheet" href="/bower_components/share-button/share-button.css">
+  <link rel="import" type="css"
+        href="/bower_components/share-button/share-button.css">
   <link rel="import" href="google-analytics.html">
 
   <template>
-    <share-button></share-button>
-    <script> new ShareButton; </script>
-
-    <template is="dom-if" if="{{!noDisqus}}">
-      <div id="disqus_thread"></div>
-      <script>
-        var disqus_config = function() {
-          this.page.url = window.location.href;
-          this.page.identifier = 'cache' + window.location.pathname;
-        };
-
-        (function() {
-          var ds = document.createElement('script');
-          ds.src = '//blockbyte.disqus.com/embed.js';
-          ds.async = true;
-          ds.setAttribute('data-timestamp', +new Date());
-
-          (document.head || document.body).appendChild(ds);
-        })();
-      </script>
-    </template>
+    <share-button style="position: relative; left: 50%;" id="share">
+    </share-button>
+    <div id="disqus_thread"></div>
 
     <google-analytics></google-analytics>
   </template>
@@ -38,6 +23,48 @@
           type: Boolean,
           value: false,
         }
+      },
+
+      ready: function () {
+        if (this.noDisqus) return;
+
+        var share = this.$.share;
+        var thread = this.$.disqus_thread;
+
+        function patch(name, replacement) {
+          var orig = document[name].bind(document);
+          replacement = replacement.bind(document, orig);
+          document[name] = function () {
+            return replacement.apply(this, arguments);
+          };
+        }
+
+        // XXX: Hack to make Disqus and ShareButton play nicely with shadow DOM.
+
+        patch('getElementsByTagName', function (orig, tag) {
+          if (tag === 'share-button') return {share: share};
+          else return orig(tag);
+        });
+
+        patch('getElementById', function (orig, id) {
+          if (id === 'disqus_thread') return thread;
+          else return orig(id);
+        });
+
+        new ShareButton;
+
+        window.disqus_config = function() {
+          this.page.url = window.location.href.split('?', 1)[0];
+          this.page.identifier = 'cache' +
+                                 window.location.pathname.split('?', 1)[0];
+        };
+
+        var ds = document.createElement('script');
+        ds.src = '//blockbyte.disqus.com/embed.js';
+        ds.async = true;
+        ds.setAttribute('data-timestamp', +new Date());
+
+        (document.head || document.body).appendChild(ds);
       }
     });
   </script>
