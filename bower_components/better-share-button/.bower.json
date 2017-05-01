@@ -1,0 +1,27 @@
+{
+  "name": "better-share-button",
+  "homepage": "http://refi64.com/better-share-button",
+  "authors": [
+    "Jeff Escalante <hello@jenius.me>",
+    "Ryan Gonzalez <rymg19@gmail.com>"
+  ],
+  "description": "fast, beautiful, and painless social shares.",
+  "main": "dist/share-button.js",
+  "moduleType": [
+    "globals"
+  ],
+  "keywords": [
+    "share",
+    "social"
+  ],
+  "license": "MIT",
+  "_release": "74de00e5e5",
+  "_resolution": {
+    "type": "branch",
+    "branch": "master",
+    "commit": "74de00e5e54e4402213e5c6edcaaa30f37655d00"
+  },
+  "_source": "https://github.com/kirbyfan64/better-share-button.git",
+  "_target": "master",
+  "_originalSource": "better-share-button"
+}

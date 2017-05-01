@@ -1,15 +1,21 @@
 <dom-module id="site-suffix">
-  <script src="/bower_components/share-button/share-button.js"></script>
+  <script src="/bower_components/better-share-button/dist/share-button.js">
+  </script>
   <!-- Double imports: one for shady DOM, one for shadow DOM -->
-  <link rel="stylesheet" href="/bower_components/share-button/share-button.css">
+  <link rel="stylesheet"
+        href="/bower_components/better-share-button/dist/share-button.css">
   <link rel="import" type="css"
-        href="/bower_components/share-button/share-button.css">
+        href="/bower_components/better-share-button/dist/share-button.css">
   <link rel="import" href="google-analytics.html">
 
   <template>
-    <share-button style="position: relative; left: 50%;" id="share">
+    <share-button style="left: 50%;" id="share">
     </share-button>
     <div id="disqus_thread"></div>
+    <!-- <a class="muut" href="https://muut.com/i/blockbyte/comments" type="dynamic"> -->
+      <!-- BlockByte</a> -->
+    <!-- <script src="//cdn.muut.com/1/moot.min.js"> -->
+    <!-- </script> -->
 
     <google-analytics></google-analytics>
   </template>
@@ -39,19 +45,14 @@
           };
         }
 
-        // XXX: Hack to make Disqus and ShareButton play nicely with shadow DOM.
-
-        patch('getElementsByTagName', function (orig, tag) {
-          if (tag === 'share-button') return {share: share};
-          else return orig(tag);
-        });
-
+        // XXX: Hack to make Disqus play nicely with shadow DOM.
         patch('getElementById', function (orig, id) {
           if (id === 'disqus_thread') return thread;
           else return orig(id);
         });
 
-        new ShareButton;
+        console.log(this.shadowRoot);
+        new ShareButton({ root: this.shadowRoot });
 
         window.disqus_config = function() {
           this.page.url = window.location.href.split('?', 1)[0];

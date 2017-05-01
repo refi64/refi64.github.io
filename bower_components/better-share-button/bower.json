@@ -1,19 +1,14 @@
 {
-  "name": "share-button",
-  "homepage": "http://sharebutton.co",
+  "name": "better-share-button",
+  "homepage": "http://refi64.com/better-share-button",
   "authors": [
     "Jeff Escalante <hello@jenius.me>",
-    "Henry Snopek <henry@carrotcreative.com>"
+    "Ryan Gonzalez <rymg19@gmail.com>"
   ],
   "description": "fast, beautiful, and painless social shares.",
-  "main": [
-	  "./share-button.js",
-	  "./share-button.css"
-	],
+  "main": "dist/share-button.js",
   "moduleType": [
-    "globals",
-    "amd",
-    "node"
+    "globals"
   ],
   "keywords": [
     "share",
