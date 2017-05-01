@@ -1,6 +1,9 @@
 <dom-module id="site-suffix">
   <script src="/bower_components/better-share-button/dist/share-button.js">
   </script>
+  <script src="/bower_components/postscribe.min/index.js"></script>
+  <script src="/bower_components/arrive/minified/arrive.min.js"></script>
+
   <!-- Double imports: one for shady DOM, one for shadow DOM -->
   <link rel="stylesheet"
         href="/bower_components/better-share-button/dist/share-button.css">
@@ -11,11 +14,10 @@
   <template>
     <share-button style="left: 50%;" id="share">
     </share-button>
-    <div id="disqus_thread"></div>
-    <!-- <a class="muut" href="https://muut.com/i/blockbyte/comments" type="dynamic"> -->
-      <!-- BlockByte</a> -->
-    <!-- <script src="//cdn.muut.com/1/moot.min.js"> -->
-    <!-- </script> -->
+
+    <div id="muutjs"></div>
+    <a id="muut" class="muut" href="https://muut.com/i/blockbyte/comments"
+       type="dynamic">BlockByte</a>
 
     <google-analytics></google-analytics>
   </template>
@@ -34,38 +36,49 @@
       ready: function () {
         if (this.noDisqus) return;
 
-        var share = this.$.share;
-        var thread = this.$.disqus_thread;
+        var shadow = this.shadowRoot || this;
+        var muutjs = shadow.querySelector('#muutjs');
 
-        function patch(name, replacement) {
-          var orig = document[name].bind(document);
-          replacement = replacement.bind(document, orig);
-          document[name] = function () {
-            return replacement.apply(this, arguments);
-          };
+        // XXX: Hacks to make Postscribe and Muut play nicely with shadow DOM.
+        if (this.shadowRoot) {
+          function patch(name, replacement) {
+            var orig = document[name].bind(document);
+            replacement = replacement.bind(document, orig);
+            document[name] = function () {
+              return replacement.apply(this, arguments);
+            };
+          }
+
+          patch('getElementsByTagName', function (orig, tag) {
+            var ar = Array.from(orig(tag));
+            ar.push.apply(ar, shadow.querySelectorAll(tag));
+            return ar;
+          });
+
+          patch('getElementById', function (orig, id) {
+            console.log('getElementById', id);
+            if (id == 'ps-script' || id == 'ps-style')
+              return muutjs.querySelector('#' + id);
+            else return orig(id);
+          });
+
+          patch('querySelectorAll', function (orig, query) {
+            console.log('querySelectorAll', query);
+            if (query.indexOf('.muut') != -1 ||
+                query.indexOf('.maillist') != -1)
+              return shadow.querySelectorAll(query);
+            else return orig(query);
+          });
+
+          document.head.arrive('link[href*=muut], #moot-css', function () {
+            shadow.appendChild(this);
+          });
         }
 
-        // XXX: Hack to make Disqus play nicely with shadow DOM.
-        patch('getElementById', function (orig, id) {
-          if (id === 'disqus_thread') return thread;
-          else return orig(id);
-        });
+        new ShareButton({ root: this.shadowRoot || this });
 
-        console.log(this.shadowRoot);
-        new ShareButton({ root: this.shadowRoot });
-
-        window.disqus_config = function() {
-          this.page.url = window.location.href.split('?', 1)[0];
-          this.page.identifier = 'cache' +
-                                 window.location.pathname.split('?', 1)[0];
-        };
-
-        var ds = document.createElement('script');
-        ds.src = '//blockbyte.disqus.com/embed.js';
-        ds.async = true;
-        ds.setAttribute('data-timestamp', +new Date());
-
-        (document.head || document.body).appendChild(ds);
+        postscribe(muutjs,
+                   '<script src="//cdn.muut.com/1/moot.min.js"></scrip' + 't>');
       }
     });
   </script>
