@@ -7,6 +7,6 @@ debug :
 	ln -sf $(PWD)/_imports.raw.html _imports.html
 
 release :
-	rm _imports.html
+	rm -f _imports.html
 	vulcanize -p . _imports.raw.html $(VULCANIZE_OPTS) | \
 		html-minifier $(HTML_MIN_OPTS) -o _imports.html

@@ -9,6 +9,8 @@
         href="/bower_components/better-share-button/dist/share-button.css">
   <link rel="import" type="css"
         href="/bower_components/better-share-button/dist/share-button.css">
+  <link rel="stylesheet" href="//cdn.muut.com/1/moot.css">
+  <link rel="import" type="css" href="//cdn.muut.com/1/moot.css">
   <link rel="import" href="google-analytics.html">
 
   <template>
@@ -16,8 +18,7 @@
     </share-button>
 
     <div id="muutjs"></div>
-    <a id="muut" class="muut" href="https://muut.com/i/blockbyte/comments"
-       type="dynamic">BlockByte</a>
+    <a id="comments" type="dynamic">Loading comments...</a>
 
     <google-analytics></google-analytics>
   </template>
@@ -26,18 +27,10 @@
     Polymer({
       is: 'site-suffix',
 
-      properties: {
-        noDisqus: {
-          type: Boolean,
-          value: false,
-        }
-      },
-
       ready: function () {
-        if (this.noDisqus) return;
-
         var shadow = this.shadowRoot || this;
         var muutjs = shadow.querySelector('#muutjs');
+        var comments = shadow.querySelector('#comments');
 
         // XXX: Hacks to make Postscribe and Muut play nicely with shadow DOM.
         if (this.shadowRoot) {
@@ -75,7 +68,19 @@
           });
         }
 
-        new ShareButton({ root: this.shadowRoot || this });
+        new ShareButton({ root: shadow });
+
+        function waitForMuut() {
+          if (typeof muut !== 'undefined') {
+            var url = 'https://muut.com/i/blockbyte/general:' +
+                      muut.urlify(document.title) +
+                      // XXX: Don't ask.
+                      '\0\0\0\0\0\0\0\0\0\0';
+            $(comments).muut(url);
+          } else setTimeout(waitForMuut.bind(this), 100);
+        };
+
+        waitForMuut();
 
         postscribe(muutjs,
                    '<script src="//cdn.muut.com/1/moot.min.js"></scrip' + 't>');
