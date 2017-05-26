@@ -1,4 +1,5 @@
-VULCANIZE_OPTS=--exclude=/bower_components/polymer/polymer.html
+VULCANIZE_OPTS=--exclude=/bower_components/polymer/polymer.html \
+			   --exclude=/elements/google-analytics.html
 HTML_MIN_OPTS=--html5 --minify-css true --minify-js true --remove-comments
 
 .PHONY : debug release
