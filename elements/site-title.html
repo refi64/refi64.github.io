@@ -8,13 +8,7 @@
     <a href="{{url}}"><h1>{{title}}</h1></a>
     <div id="meta">
       Created on {{createdOn}} -
-      <a href="{{url}}#disqus_thread"
-         data-disqus-identifier="{{disqusId(url)}}">Comments</a></div>
-
-      <template is="dom-if" if="{{!noDisqus}}">
-        <script id="dsq-count-scr" src="//blockbyte.disqus.com/count.js" async>
-        </script>
-      </template>
+      <a href="{{url}}#muutjs">Comments</a></div>
   </template>
 
   <script>
@@ -30,18 +24,7 @@
           type: String,
           value: function () { return window.location.pathname; },
         },
-        noDisqus: {
-          type: Boolean,
-          value: false,
-        },
         createdOn: String,
-      },
-
-      disqusId: function (url) {
-        if (url[0] == '/') { url = url.substr(1); }
-        if (!url.startsWith('posts/')) { url = 'posts/' + url; }
-        if (!url.endsWith('.html')) { url += '.html'; }
-        return 'cache/' + url;
       }
     });
   </script>
