@@ -1,0 +1,56 @@
+<dom-module id="embedded-image">
+  <template>
+    <style is="custom-style">
+      #text {
+        text-align: center;
+        padding-top: 0.5em;
+      }
+
+      #image { max-width: 100%; }
+    </style>
+
+    <div style="padding: 1em;">
+      <img id="image" style="{{imgStyle}}" src="{{url}}" alt="{{alt}}"
+           on-load="imgload"/>
+      <div id="text">
+        <template is="dom-if" if="{{_hasText(text)}}">
+          <i>{{text}}</i>
+        </template>
+      </div>
+    </div>
+  </template>
+
+  <script>
+    Polymer({
+      is: 'embedded-image',
+
+      properties: {
+        url: String,
+
+        alt: {
+          type: String,
+          value: '',
+        },
+
+        text: {
+          type: String,
+          value: '',
+        },
+
+        imgStyle: {
+          type: String,
+          value: '',
+        },
+      },
+
+      imgload: function () {
+        this.$.text.style.width = this.$.image.clientWidth;
+      },
+
+      _hasText: function (text) {
+        return text.length > 0;
+      },
+    });
+  </script>
+</dom-module>
+

@@ -40,6 +40,7 @@
   <link rel="import" href="elements/site-suffix.html">
   <link rel="import" href="elements/site-tags.html">
   <link rel="import" href="elements/link-header.html">
+  <link rel="import" href="elements/embedded-image.html">
   <link rel="import" href="elements/google-analytics.html">
 
   <style is="custom-style" include="iron-flex iron-flex-alignment"></style>
@@ -55,7 +56,7 @@
     h1 { font-weight: 500; }
     a, a:visited { text-decoration: none; color: mediumblue; }
     a:hover { text-decoration: underline; color: mediumblue; }
-    img { width: 100%; height: auto; }
+    img { max-width: 100%; height: auto; overflow-x: scroll; }
 
     a paper-button, a:hover paper-button, a:visited paper-button {
       text-decoration: none; color: white;
