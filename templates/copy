@@ -22,7 +22,7 @@ def base(path, title):
     copy_template('base', path, title=title)
 
 def post(path, title, *tags):
-    date = datetime.now().strftime('%Y-%m-%d %H-%M-%S')
+    date = datetime.now().strftime('%Y-%m-%d %H:%M')
     copy_template('post', os.path.join('posts', path), title=title,
                   tags=json.dumps(tags), date=date)
 
