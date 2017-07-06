@@ -1,0 +1,23 @@
+<head>
+  <title>FlyHub Authentication</title>
+  <script src="/bower_components/webcomponentsjs/webcomponents-lite.min.js">
+  </script>
+  <link rel="import" href="/_imports.html">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body unresolved>
+  <site-navbar></site-navbar>
+
+  <p>Copy the following code and paste it into the FlyHub application:</p>
+  <code id="flyhub-code"></code>
+
+  <script>
+    window.addEventListener('DOMContentLoaded', function () {
+      document.getElementById('flyhub-code').innerHTML =
+        window.location.search.split('?code=')[1];
+    });
+  </script>
+
+  <google-analytics></google-analytics>
+</body>
