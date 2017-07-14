@@ -13,9 +13,24 @@
   <link rel="import" type="css" href="//cdn.muut.com/1/moot.css">
   <link rel="import" href="google-analytics.html">
 
+  <style is="custom-style">
+    paper-tooltip { --paper-tooltip-opacity: 1.0; }
+  </style>
+
   <template>
     <share-button style="left: 50%;" id="share">
     </share-button>
+
+    <p>
+      Really liked this post?
+      <div style="display: inline-block">
+        <a href="bitcoin:19run9LfWs4wP2drgWpriMXvCg1Zce1EKp">
+          19run9LfWs4wP2drgWpriMXvCg1Zce1EKp</a>
+        <paper-tooltip position="top">
+          QR code:
+          <embedded-image url="/bitcoin.png"></embedded-image>
+        </paper-tooltip>
+      </div></p>
 
     <div id="muutjs"></div>
     <a id="comments" type="dynamic">Loading comments...</a>
