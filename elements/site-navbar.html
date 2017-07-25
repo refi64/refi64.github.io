@@ -1,107 +1,107 @@
-<dom-module id="site-navbar">
+<vue-module id="site-navbar">
   <template>
-    <style is="custom-style">
-      hr {
-        border-style: solid;
-        border-color: gray;
-        border-width: 0.5px;
-      }
+    <if-mobile>
+      <span class="container" slot="mobile">
+        <md-sidenav class="md-left md-fixed" ref="sidenav">
+          <md-toolbar class="md-large">
+            <div class="md-toolbar-container">
+              <h3 class="md-title">Navigation</h3>
+            </div>
+          </md-toolbar>
 
-      paper-menu {
-        --paper-menu-background-color: gainsboro;
-      }
+          <md-list>
+            <md-list-item v-for="(item, index) in headers.root" :key="index" :href="item[1]">
+              {{ item[0] }}
+            </md-list-item>
 
-      .overflow {
-        overflow: scroll;
-        overflow-x: auto;
-        overflow-y: auto;
-      }
-    </style>
+            <template v-for="(menu, index) in headers.menus">
+              <md-subheader>{{ menu }}</md-subheader>
 
-    <paper-header-panel id="header" class="flex">
-      <paper-toolbar>
-        <paper-icon-button id="toggle" icon="menu" on-click="toggleDrawer"></paper-icon-button>
-        <div class="title">refi64 - BlockByte</div>
-      </paper-toolbar>
+              <md-list-item v-for="(item, index) in headers[menu]" :key="index"
+                            :href="item[1]">
+                {{ item[0] }}
+              </md-list-item>
+            </template>
+          </md-list>
+        </md-sidenav>
+      </span>
+    </if-mobile>
 
-      <paper-drawer-panel id="drawer">
-        <div drawer class="overflow" style="background-color: gainsboro;">
-          <paper-menu selectable="link-item">
-            <h4 style="text-align: center;">Navigation</h4>
-            <link-item target="/">Home</link-item>
-            <hr>
-            <link-item target="https://feed43.com/4061761183385368.xml">RSS</link-item>
-            <link-item target="/tags.html">Tags</link-item>
-            <hr>
-            <link-item target="/proj/xcxsound.html">XCXSound</link-item>
-            <link-item target="/projects.html">Other Projects</link-item>
-            <hr>
-            <link-item target="https://github.com/kirbyfan64">GitHub</link-item>
-            <link-item target="http://www.gamefaqs.com/community/kirbyfan64sos">GameFAQs</link-item>
-            <link-item target="http://stackoverflow.com/users/2097780/refi64">Stack Overflow</link-item>
-            <link-item target="http://hub.darcs.net/refi64">Darcs Hub</link-item>
-            <link-item target="https://soundcloud.com/user-356790806">SoundCloud</link-item>
-            <link-item target="https://forum.xda-developers.com/member.php?u=5569318">XDA</link-item>
-            <link-item target="http://vgmdb.net/forums/member.php?u=24312">VGMdb</link-item>
-          </paper-menu>
-        </div>
-        <div main class="overflow" id="site-navbar-main">
-          <div id="site-navbar-ins" style="padding: 0em 1em 1em 1em;">
-            <p style="color: red;">
-              If you notice any issues with this website, please report them
-              <a href="https://github.com/kirbyfan64/kirbyfan64.github.io/issues">here</a>.
-            </p>
-          </div>
-        </div>
-      </paper-drawer-panel>
-    </paper-header-panel>
+    <div id="main-content">
+      <md-toolbar>
+        <md-button class="md-icon-button" @click="toggleNav" ref="nav">
+          <md-icon>menu</md-icon>
+        </md-button>
+
+        <h2 class="md-title" style="flex: 1">refi64 - BlockByte</h2>
+
+        <if-mobile>
+          <span class="container" slot="desktop">
+            <md-button v-for="(item, index) in headers.root" :key="index" :href="item[1]">
+              {{ item[0] }}
+            </md-button>
+
+            <md-menu md-align-trigger v-for="(menu, index) in headers.menus" :key="index">
+              <md-button md-menu-trigger>
+                {{ menu }}
+                <md-icon>keyboard_arrow_down</md-icon>
+              </md-button>
+
+              <md-menu-content>
+                <md-menu-item v-for="(item, index) in headers[menu]" :key="index"
+                              :href="item[1]">
+                  {{ item[0] }}
+                </md-menu-item>
+              </md-menu-content>
+            </md-menu>
+          </span>
+        </if-mobile>
+      </md-toolbar>
+    </div>
   </template>
 
+  <style>
+  @media (min-width: 481px) {
+    .md-icon-button { visibility: hidden; }
+  }
+  </style>
+
   <script>
-    Polymer({
-      is: 'site-navbar',
+    Vue.module('site-navbar', {
+      data: function() {
+        return {
+          headers: {
+            root: [
+              ['Home', '/'],
+              ['RSS', 'https://feed43.com/4061761183385368.xml'],
+              ['Tags', '/tags.html'],
+            ],
 
-      observers: [
-        'narrowChanged(drawer.narrow)'
-      ],
+            menus: ['Projects', 'Links'],
 
-      ready: function () {
-        // XXX: I'm just really, really lazy...
+            Projects: [
+              ['XCXSound', '/proj/xcxsound.html'],
+              ['Other projects', '/projects.html'],
+            ],
 
-        function nl2a(nl) {
-          var ar = [];
-          var len = nl.length;
-          for (var i=0; i<len; i++) ar.push(nl[i]);
-          return ar;
-        }
-
-        var pn = this.parentNode;
-        var pc = nl2a(pn.children);
-        var div = document.createElement('div');
-
-        for (var i=0; i < pc.length; i++) {
-          var child = pc[i];
-          if (child == this) continue;
-          div.appendChild(child);
-        }
-        pn.innerHTML = '';
-        pn.appendChild(this);
-
-        var ins_point = this.$.drawer.
-                        queryEffectiveChildren('#site-navbar-main').
-                        querySelector('#site-navbar-ins');
-
-        Polymer.dom(ins_point).appendChild(div);
-
-        var $ = this.$;
-        function resize() {
-          $.toggle.style.visibility = $.drawer.narrow ? 'visible' : 'hidden';
-        }
-        resize();
-        window.addEventListener('resize', resize);
+            Links: [
+              ['GitHub', 'https://github.com/kirbyfan64'],
+              ['GameFAQs', 'http://www.gamefaqs.com/community/kirbyfan64sos'],
+              ['Stack Overflow', 'http://stackoverflow.com/users/2097780/refi64'],
+              ['Darcs Hub', 'http://hub.darcs.net/refi64'],
+              ['SoundCloud', 'https://soundcloud.com/user-356790806'],
+              ['XDA Developers', 'https://forum.xda-developers.com/member.php?u=5569318'],
+              ['VGMdb', 'http://vgmdb.net/forums/member.php?u=24312'],
+            ],
+          },
+        };
       },
 
-      toggleDrawer: function () { this.$.drawer.togglePanel(); }
+      methods: {
+        toggleNav: function () {
+          this.$refs.sidenav.toggle();
+        }
+      }
     });
   </script>
-</dom-module>
+</vue-module>
