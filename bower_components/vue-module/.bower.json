@@ -1,0 +1,21 @@
+{
+  "name": "vue-module",
+  "main": "vue-module.js",
+  "authors": [
+    "Ryan Gonzalez <rymg19@gmail.com>"
+  ],
+  "description": "Define Vue components using a web components-like syntax.",
+  "license": "MIT",
+  "homepage": "https://github.com/kirbyfan64/vue-module.git",
+  "version": "0.1.1",
+  "_release": "0.1.1",
+  "_resolution": {
+    "type": "version",
+    "tag": "v0.1.1",
+    "commit": "a44189a94a4e0802ca0898980424a1ec3f81dcd8"
+  },
+  "_source": "https://github.com/kirbyfan64/vue-module.git",
+  "_target": "^0.1.1",
+  "_originalSource": "vue-module",
+  "_direct": true
+}

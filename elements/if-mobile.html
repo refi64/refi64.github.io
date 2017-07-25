@@ -1,0 +1,36 @@
+<vue-module id="if-mobile">
+  <style>
+    .if-mobile { display: inline-flex; }
+    .if-mobile .container { display: inline-flex; }
+  </style>
+
+  <template>
+    <template v-if="mobile">
+      <slot name="mobile"></slot>
+    </template>
+
+    <template v-else>
+      <slot name="desktop"></slot>
+    </template>
+  </template>
+
+  <script>
+    function isMobile() { return document.body.clientWidth <= 480; }
+
+    Vue.module('if-mobile', {
+      mounted: function () {
+        var module = this;
+
+        $(window).resize(function () {
+          module.mobile = isMobile();
+        });
+      },
+
+      data: function () {
+        return {
+          mobile: isMobile(),
+        };
+      }
+    });
+  </script>
+</vue-module>
