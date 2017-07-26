@@ -1,18 +1,24 @@
 <vue-module id="link-header">
   <style>
     .link-header .md-icon { color: gray; }
+    .link-header .md-icon:hover { color: darkgray; }
+    .link-header a:hover { text-decoration: none !important; }
   </style>
 
   <template>
     <h3 :id="id" v-if="small">
       <slot></slot>
-      <md-icon :href="ref">link</md-icon>
+      <a :href="ref">
+        <md-icon>link</md-icon>
+      </a>
     </h3>
 
-    <h3 :id="id" v-else>
+    <h2 :id="id" v-else>
       <slot></slot>
-      <md-icon :href="ref">link</md-icon>
-    </h3>
+      <a :href="ref">
+        <md-icon>link</md-icon>
+      </a>
+    </h2>
   </template>
 
   <script>
