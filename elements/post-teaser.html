@@ -1,24 +1,47 @@
-<dom-module id="post-teaser">
+<vue-module id="post-teaser">
   <template>
-    <iron-ajax auto url="../posts/{{post}}.html" handle-as="document"
-               last-response="{{resp}}" on-response="onResponse"></iron-ajax>
-    <site-title id="title" title="{{resp.title}}" url="posts/{{post}}.html">
-    </site-title>
-    <div id="teaser"></div>
-    <a href="/posts/{{post}}.html">Read more...</a>
+    <div v-if="!hasPost">
+      <p>Loading post teaser...</p>
+      <md-spinner md-indeterminate></md-spinner>
+    </div>
+
+    <template v-if="hasPost">
+      <site-title :created-on="createdOn" :title="title" :url="url"></site-title>
+      <div v-html="teaser"></div>
+    </template>
+
+    <a :href="url">Read more...</a>
   </template>
 
   <script>
-    Polymer({
-      is: 'post-teaser',
-      properties: { post: String },
-      onResponse: function (_, r) {
-        Polymer.dom(this.$.teaser).appendChild(
-          Polymer.dom(r.response).querySelector('#teaser'));
-        this.$.title.setAttribute('created-on',
-          Polymer.dom(r.response).querySelector('site-title').
-            getAttribute('created-on'));
-      }
+    Vue.module('post-teaser', {
+      props: ['post'],
+
+      data: function () {
+        return {
+          teaser: '',
+          title: '',
+          createdOn: '',
+        };
+      },
+
+      computed: {
+        hasPost: function () { return this.teaser.length > 0; },
+        url: function () { return '/posts/' + this.post + '.html' },
+      },
+
+      mounted: function () {
+        $.ajax({
+          url: this.url,
+          context: this,
+          dataType: 'html',
+        }).done(function (postText) {
+          var post = $('<div>').append($(postText));
+          this.title = $.trim(post.find('title').text());
+          this.createdOn = post.find('site-title').attr('created-on');
+          this.teaser = post.find('#teaser').html();
+        });
+      },
     });
   </script>
-</dom-module>
+</vue-module>

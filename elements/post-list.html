@@ -1,16 +1,38 @@
-<dom-module id="post-list">
+<vue-module id="post-list">
   <link rel="import" href="post-teaser.html">
-  <link rel="import" href="fetch-posts.html">
 
   <template>
-    <fetch-posts target="{{posts}}"></fetch-posts>
+    <div v-if="!hasPosts" style="text-align: center;">
+      <p>Loading posts...</p>
+      <md-spinner md-indeterminate></md-spinner>
+    </div>
 
-    <template is="dom-repeat" items="{{posts.posts}}">
-      <post-teaser post="[[item]]">
+    <template v-if="hasPosts">
+      <post-teaser v-for="(post, index) in posts" :post="post" :key="index"></post-teaser>
     </template>
   </template>
 
   <script>
-    Polymer({ is: 'post-list' });
+    Vue.module('post-list', {
+      data: function () {
+        return {
+          posts: [],
+        };
+      },
+
+      computed: {
+        hasPosts: function () { return this.posts.length > 0; },
+      },
+
+      mounted: function () {
+        $.ajax({
+          url: '/posts.json',
+          context: this,
+          dataType: 'json',
+        }).done(function (posts) {
+          this.posts = posts.posts;
+        });
+      },
+    });
   </script>
-</dom-module>
+</vue-module>

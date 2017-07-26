@@ -1,31 +1,33 @@
-<dom-module id="site-title">
-  <template>
-    <style>
-      h1 { margin-bottom: 0; }
-      #meta { margin-bottom: 1.5em; }
-    </style>
+<vue-module id="site-title">
+  <style>
+    .site-title h1 { margin-bottom: 0.2em; line-height: 1.2; font-weight: 500; }
+    .site-title #meta { margin-bottom: 1.2em; }
+  </style>
 
-    <a href="{{url}}"><h1>{{title}}</h1></a>
+  <template>
+    <a :href="url"><h1>{{title}}</h1></a>
     <div id="meta">
       Created on {{createdOn}} -
-      <a href="{{url}}#muutjs">Comments</a></div>
+      <a :href="muutjs">Comments</a></div>
   </template>
 
   <script>
-    Polymer({
-      is: 'site-title',
-
-      properties: {
+    Vue.module('site-title', {
+      props: {
+        createdOn: String,
         title: {
           type: String,
-          value: function () { return document.title; },
+          default: document.title,
         },
         url: {
           type: String,
-          value: function () { return window.location.pathname; },
+          default: window.location.pathname,
         },
-        createdOn: String,
-      }
+      },
+
+      computed: {
+        muutjs: function () { return this.url + '#muutjs'; },
+      },
     });
   </script>
-</dom-module>
+</vue-module>
