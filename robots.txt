@@ -1,4 +1,4 @@
 User-agent: *
-Disallow: /_imports.html
+Disallow: /_base.html
 Disallow: /bower.json
 Disallow: /bower_components/

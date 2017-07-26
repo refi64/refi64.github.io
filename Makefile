@@ -5,9 +5,9 @@ HTML_MIN_OPTS=--html5 --minify-css true --minify-js true --remove-comments
 .PHONY : debug release
 
 debug :
-	ln -sf $(PWD)/_imports.raw.html _imports.html
+	ln -sf $(PWD)/_base.raw.html _base.html
 
 release :
-	rm -f _imports.html
-	vulcanize -p . _imports.raw.html $(VULCANIZE_OPTS) | \
-		html-minifier $(HTML_MIN_OPTS) -o _imports.html
+	rm -f _base.html
+	vulcanize -p . _base.raw.html $(VULCANIZE_OPTS) | \
+		html-minifier $(HTML_MIN_OPTS) -o _base.html
