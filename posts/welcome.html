@@ -7,24 +7,27 @@
 </head>
 
 <body>
-  <site-navbar></site-navbar>
-  <site-title created-on="2014-09-10 18:02"></site-title>
+  <div id="page">
+    <site-navbar></site-navbar>
+    <site-title created-on="2014-09-10 18:02"></site-title>
 
-  <div id="teaser">
-    <p>First post!</p>
+    <div id="teaser">
+      <p>First post!</p>
 
-    <p>
-      This website is my first ever web page. It's written using the excellent
-      <a href="http://getnikola.com/">Nikola</a> and reStructuredText.
-      (<b>EDIT:</b> Well now it's completely different. It uses Polymer;
-      <a href="/posts/moving-from-nuitka-to-polymer.html">see this post</a>.)
-      The
-      majority of its content is going to revolve around programming: tutorials,
-      experiments, and lots and lots of rants. :)</p>
+      <p>
+        This website is my first ever web page. It's written using the excellent
+        <a href="http://getnikola.com/">Nikola</a> and reStructuredText.
+        (<b>EDIT:</b> Well now it's completely different. It uses Polymer;
+        <a href="/posts/moving-from-nuitka-to-polymer.html">see this post</a>.)
+        (<b>EDIT 2:</b> Aaaand I changed it again. It's now written using Vue.)
+        The
+        majority of its content is going to revolve around programming: tutorials,
+        experiments, and lots and lots of rants. :)</p>
 
-    <p>Have fun browsing!</p>
+      <p>Have fun browsing!</p>
+    </div>
+
+    <site-tags tags='miscellaneous'></site-tags>
+    <site-suffix></site-suffix>
   </div>
-
-  <site-tags tags='["miscellaneous"]'></site-tags>
-  <site-suffix></site-suffix>
 </body>

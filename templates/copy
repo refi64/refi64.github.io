@@ -24,7 +24,7 @@ def base(path, title):
 def post(path, title, *tags):
     date = datetime.now().strftime('%Y-%m-%d %H:%M')
     copy_template('post', os.path.join('posts', path), title=title,
-                  tags=json.dumps(tags), date=date)
+                  tags=', '.join(tags), date=date)
 
 funcs = {
     'base': base,

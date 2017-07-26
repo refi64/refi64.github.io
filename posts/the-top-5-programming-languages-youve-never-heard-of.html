@@ -7,27 +7,28 @@
 </head>
 
 <body>
-  <site-navbar></site-navbar>
-  <site-title created-on="2015-03-07 18:56"></site-title>
+  <div id="page">
+    <site-navbar></site-navbar>
+    <site-title created-on="2015-03-07 18:56"></site-title>
 
-  <div id="teaser">
+    <div id="teaser">
+      <p>
+        Lately, there's been a large surge in new programming languages as projects
+        such as <a href="http://www.rust-lang.org/">Rust</a> have been taking the
+        spotlight and showing lots of promise. However, there are some programming
+        languages few have heard of that deserve to be more popular. Here's a brief
+        listing of some of my favorite languages that aren't common sights.</p>
+    </div>
+
+    <link-header id="nim">Nim</link-header>
+
     <p>
-      Lately, there's been a large surge in new programming languages as projects
-      such as <a href="http://www.rust-lang.org/">Rust</a> have been taking the
-      spotlight and showing lots of promise. However, there are some programming
-      languages few have heard of that deserve to be more popular. Here's a brief
-      listing of some of my favorite languages that aren't common sights.</p>
-  </div>
+      <a href="http://nim-lang.org/">Nim</a> is more popular than most languages on
+      this list. It recently acquired
+      <a href="http://forum.nim-lang.org/t/870">corporate backing from 3DICC</a> and
+      is under very active development. Here's a factorial program in Nim:</p>
 
-  <link-header id="nim">Nim</link-header>
-
-  <p>
-    <a href="http://nim-lang.org/">Nim</a> is more popular than most languages on
-    this list. It recently acquired
-    <a href="http://forum.nim-lang.org/t/870">corporate backing from 3DICC</a> and
-    is under very active development. Here's a factorial program in Nim:</p>
-
-  <prism-js language="nim">
+    <prism-js language="nim">
 import unsigned, strutils
 
 proc fac(n: int): uint64 =
@@ -44,24 +45,24 @@ if number &lt; 0:
   quit QuitFailure
 
 echo fac number
-  </prism-js>
+    </prism-js>
 
-  <link-header id="felix">Felix</link-header>
+    <link-header id="felix">Felix</link-header>
 
-  <p>
-    <a href="http://felix-lang.org/">Felix</a> is an experimental programming
-    language that covers most problems in a unique way. It's very functional and
-    has great coroutine support, a nice threading system, and a grammar defined in
-    user space (a.k.a. you can extend the grammar inside your own programs). You
-    run your files just like a scripting language:</p>
+    <p>
+      <a href="http://felix-lang.org/">Felix</a> is an experimental programming
+      language that covers most problems in a unique way. It's very functional and
+      has great coroutine support, a nice threading system, and a grammar defined in
+      user space (a.k.a. you can extend the grammar inside your own programs). You
+      run your files just like a scripting language:</p>
 
-  <prism-js>
+    <prism-js>
 $ flx my_prog.flx arg1 arg2
-  </prism-js>
+    </prism-js>
 
-  <p>Here's a factorial program, this time in Felix:</p>
+    <p>Here's a factorial program, this time in Felix:</p>
 
-  <prism-js>
+    <prism-js>
 // Recursive factorial
 fun fac(n: int) =>
     if n <= 1
@@ -80,17 +81,17 @@ done;
 
 // Print factorial
 println $ fac number
-  </prism-js>
+    </prism-js>
 
-  <link-header id="myrddin">Myrddin</link-header>
+    <link-header id="myrddin">Myrddin</link-header>
 
-  <p>
-    <a href="http://eigenstate.org/myrddin/">Myrddin</a> is, to quote the web
-    page, "A toy with delusions of usefulness." Well, it's pretty useful to me.
-    It's my new favorite low-level language (yes, above Rust). Following is yet
-    another factorial program, but this one in, guess what, Myrddin:
+    <p>
+      <a href="http://eigenstate.org/myrddin/">Myrddin</a> is, to quote the web
+      page, "A toy with delusions of usefulness." Well, it's pretty useful to me.
+      It's my new favorite low-level language (yes, above Rust). Following is yet
+      another factorial program, but this one in, guess what, Myrddin:
 
-  <prism-js>
+    <prism-js>
 use std
 use bio
 
@@ -123,46 +124,46 @@ const main = {
         std.exit(1)
     ;;
 }
-  </prism-js>
+    </prism-js>
 
-  <p>Notice the explicit error handling.</p>
+    <p>Notice the explicit error handling.</p>
 
-  <link-header id="k">K</link-header>
+    <link-header id="k">K</link-header>
 
-  <p>
-    <a href="http://www.kuro5hin.org/story/2002/11/14/22741/791">K</a> (and it's
-    open source counterpart,
-    <a href="https://github.com/kevinlawler/kona">Kona</a>) is a very unique
-    language. Here's a factorial function in K:</p>
+    <p>
+      <a href="http://www.kuro5hin.org/story/2002/11/14/22741/791">K</a> (and it's
+      open source counterpart,
+      <a href="https://github.com/kevinlawler/kona">Kona</a>) is a very unique
+      language. Here's a factorial function in K:</p>
 
-  <prism-js>
+    <prism-js>
 fac:{*/1+!x}
-  </prism-js>
+    </prism-js>
 
-  <p>If that isn't readable enough, here's another version:</p>
+    <p>If that isn't readable enough, here's another version:</p>
 
-  <prism-js>
+    <prism-js>
 fac:*/1+!:
-  </prism-js>
+    </prism-js>
 
-  <p>You can now call it:</p>
+    <p>You can now call it:</p>
 
-  <prism-js>
+    <prism-js>
 fac[4]
-  </prism-js>
+    </prism-js>
 
-  <p>
-    K is actually surprisingly readable once you learn it...provided you don't
-    get a nervous breakdown and blow your eyes out in the process. :)</p>
+    <p>
+      K is actually surprisingly readable once you learn it...provided you don't
+      get a nervous breakdown and blow your eyes out in the process. :)</p>
 
-  <link-header id="objeck">Objeck</link-header>
+    <link-header id="objeck">Objeck</link-header>
 
-  <p>
-    <a href="http://www.objeck.org/">Objeck</a> is kind of how Java should've
-    been. Here's a factorial in Objeck (the language has a factorial function
-    built in, but this is a custom one):</p>
+    <p>
+      <a href="http://www.objeck.org/">Objeck</a> is kind of how Java should've
+      been. Here's a factorial in Objeck (the language has a factorial function
+      built in, but this is a custom one):</p>
 
-  <prism-js>
+    <prism-js>
 class Factorial {
     function : native : Factorial(n : Int) ~ Int {
         if (n <= 1) {
@@ -182,15 +183,18 @@ class Factorial {
         Factorial(number)->PrintLine();
     }
 }
-  </prism-js>
+    </prism-js>
 
-Objeck has no long/unsigned types, so I just used the basic <code>Int</code> type.
+    Objeck has no long/unsigned types, so I just used the basic <code>Int</code> type.
 
-  <link-header id="final-notes">Final notes</link-header>
+    <link-header id="final-notes">Final notes</link-header>
 
-  <p>
-    I hope one of the languages here catches your eye. Just note that Myrddin and
-    Felix are still VERY experimental.</p>
+    <p>
+      I hope one of the languages here catches your eye. Just note that Myrddin and
+      Felix are still VERY experimental.</p>
 
-  <site-suffix></site-suffix>
+    <site-tags tags="compilers, felix, k, language, myrddin, nim, objeck, programming">
+    </site-tags>
+    <site-suffix></site-suffix>
+  </div>
 </body>

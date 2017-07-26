@@ -1,24 +1,11 @@
-<dom-module id="note-card">
-  <!-- XXX: This is mostly a copy-paste of warning-card.html. -->
-
+<vue-module id="note-card">
   <template>
-    <style is="custom-style">
-      paper-card {
-        --paper-card-background-color: blue;
-        --paper-card-header-color: ghostwhite;
-        --paper-card-content: { color: ghostwhite; };
-        width: 100%;
-      }
-    </style>
-
-    <paper-card elevation="5" heading="NOTE">
-      <div class="card-content">
-        <content></content>
-      </div>
-    </paper-card>
+    <generic-card title="NOTE" theme="md-primary">
+      <slot></slot>
+    </generic-card>
   </template>
 
   <script>
-    Polymer({ is: 'note-card' });
+    Vue.module('note-card');
   </script>
-</dom-module>
+</vue-module>

@@ -8,118 +8,119 @@
 </head>
 
 <body>
-  <site-navbar></site-navbar>
-  <site-title created-on="2016-03-20 16:34"></site-title>
+  <div id="page">
+    <site-navbar></site-navbar>
+    <site-title created-on="2016-03-20 16:34"></site-title>
 
-  <div id="teaser">
-    <p>Yes, the post title sucks. However, I can't think of anything better...</p>
+    <div id="teaser">
+      <p>Yes, the post title sucks. However, I can't think of anything better...</p>
+
+      <p>
+        This is an idea I've had for a while on an error handling model that tries
+        to combine safe, checked code with the conciseness of unchecked exceptions.
+        It's somewhat of a "rough draft", so to speak, and the syntax I'm using is
+        just an example.</p>
+    </div>
+
+    <link-header id="current">Current error handling strategies</link-header>
 
     <p>
-      This is an idea I've had for a while on an error handling model that tries
-      to combine safe, checked code with the conciseness of unchecked exceptions.
-      It's somewhat of a "rough draft", so to speak, and the syntax I'm using is
-      just an example.</p>
-  </div>
-
-  <link-header id="current">Current error handling strategies</link-header>
-
-  <p>
-    There are a lot of models that currently exist for error handling. Among them
-    are exceptions (C++, Python), checked exceptions (Java, Nim), multiple return
-    values (Elixir, Go), union types/ADTs (Haskell, Felix, Rust,
-    OCaml [I think...]), and a mix of them all (C). However, they all have some
-    issues that cause religious wars between their supporters:</p>
-
-  <ul>
-  <li>
-    Exceptions are completely unchecked. Goodness knows whether or not you are
-    handling all the cases. Often, a function will throw an exception that you
-    didn't even know threw anything.</li>
-
-  <li>
-    Checked exceptions can be either painful or breakable. When a compiler
-    implements them with 100% precision, then you can run into issues with
-    callbacks. Does <code>my_function_that_takes_a_callback(callback)</code> not
-    throw anything, but callback can? Too bad. When they're breakable, then that
-    brings us back to the first problem.</li>
-
-  <li>
-    Multiple return values can be a bit verbose at times. Go code tends to be
-    littered with <code>if err != nil</code> checks. Elixir code is MUCH better in
-    this regard, but the errors a function can return are still somewhat
-    unchecked. Since they use strings, you can't easily check what error exactly
-    occurred. (Note that Elixir actually just uses a single return value that's a
-    tuple, like <code>{:ok, result}</code> or
-    <code>{:error, error_message}</code>.)</li>
-
-  <li>
-    Union types seem to combine the best of them all. They are completely explicit
-    but work with callbacks (since errors are actually values) and can be more
-    concise than multiple return values (like Haskell does it). Unfortunately,
-    they can also combine the worst from each method:
+      There are a lot of models that currently exist for error handling. Among them
+      are exceptions (C++, Python), checked exceptions (Java, Nim), multiple return
+      values (Elixir, Go), union types/ADTs (Haskell, Felix, Rust,
+      OCaml [I think...]), and a mix of them all (C). However, they all have some
+      issues that cause religious wars between their supporters:</p>
 
     <ul>
-      <li>
-        In Haskell, functions that return <code>Maybe T</code> don't quite say
-        what error they returned, which was a problem with multiple return
-        values.</li>
+    <li>
+      Exceptions are completely unchecked. Goodness knows whether or not you are
+      handling all the cases. Often, a function will throw an exception that you
+      didn't even know threw anything.</li>
 
-      <li>
-        In other languages, such as Felix, they can be quite a bit verbose. Rust
-        is better, but things can still get a bit ugly at times.</li>
+    <li>
+      Checked exceptions can be either painful or breakable. When a compiler
+      implements them with 100% precision, then you can run into issues with
+      callbacks. Does <code>my_function_that_takes_a_callback(callback)</code> not
+      throw anything, but callback can? Too bad. When they're breakable, then that
+      brings us back to the first problem.</li>
 
-      <li>
-        If you ever have to deal with multiple different types of errors being
-        thrown at once...tough luck.</li>
+    <li>
+      Multiple return values can be a bit verbose at times. Go code tends to be
+      littered with <code>if err != nil</code> checks. Elixir code is MUCH better in
+      this regard, but the errors a function can return are still somewhat
+      unchecked. Since they use strings, you can't easily check what error exactly
+      occurred. (Note that Elixir actually just uses a single return value that's a
+      tuple, like <code>{:ok, result}</code> or
+      <code>{:error, error_message}</code>.)</li>
+
+    <li>
+      Union types seem to combine the best of them all. They are completely explicit
+      but work with callbacks (since errors are actually values) and can be more
+      concise than multiple return values (like Haskell does it). Unfortunately,
+      they can also combine the worst from each method:
+
+      <ul>
+        <li>
+          In Haskell, functions that return <code>Maybe T</code> don't quite say
+          what error they returned, which was a problem with multiple return
+          values.</li>
+
+        <li>
+          In other languages, such as Felix, they can be quite a bit verbose. Rust
+          is better, but things can still get a bit ugly at times.</li>
+
+        <li>
+          If you ever have to deal with multiple different types of errors being
+          thrown at once...tough luck.</li>
+      </ul>
+      </p>
     </ul>
-    </p>
-  </ul>
 
-  <link-header id="imperative-monads">Imperative monads</link-header>
+    <link-header id="imperative-monads">Imperative monads</link-header>
 
-  <p>
-    Now, I'm going to present an idea that tries to combine the best of these
-    WITHOUT the worst. Here it goes:</p>
+    <p>
+      Now, I'm going to present an idea that tries to combine the best of these
+      WITHOUT the worst. Here it goes:</p>
 
-  <p>
-    Let's take a language with type inference. Say Crystal. Now, we'll add a new
-    type <code>T![a,b,c...]</code>, which means <i>T or any of the error types
-    a, b, c, ....</i></p>
+    <p>
+      Let's take a language with type inference. Say Crystal. Now, we'll add a new
+      type <code>T![a,b,c...]</code>, which means <i>T or any of the error types
+      a, b, c, ....</i></p>
 
-  <p>When a function wants an error to occur, it would do this:</p>
+    <p>When a function wants an error to occur, it would do this:</p>
 
-  <prism-js language="crystal">
+    <prism-js language="crystal">
 def myfunc(a : Int32)
   raise MyErrorType.new if a == 0
   return a
 end
-  </prism-js>
+    </prism-js>
 
-  <p>
-    This <i>appears</i> to be just a normal exception throw, but it really isn't.
-    <code>raise</code> here would actually just be returning
-    <code>MyErrorType.new</code>. This code would roughly be the exact same thing
-    semantically as:</p>
+    <p>
+      This <i>appears</i> to be just a normal exception throw, but it really isn't.
+      <code>raise</code> here would actually just be returning
+      <code>MyErrorType.new</code>. This code would roughly be the exact same thing
+      semantically as:</p>
 
-  <prism-js language="crystal">
+    <prism-js language="crystal">
 def myfunc(a)
   # Using Haskell Left/Right naming.
   return Left.new "invalid number #{a}" if a == 0
   return Right.new a
 end
-  </prism-js>
+    </prism-js>
 
-  <p>
-    In short, it's just union types, but more concise. Because of Crystal's type
-    inference, this would make myfunc's return type
-    <code>Int32![MyErrorType]</code>.</p>
+    <p>
+      In short, it's just union types, but more concise. Because of Crystal's type
+      inference, this would make myfunc's return type
+      <code>Int32![MyErrorType]</code>.</p>
 
-  <p>
-    The cool part comes with handling the errors. If this were fully union types,
-    the code may be something like (Crystal doesn't actually have pattern
-    matching like I show; I'm just improvising):</p>
+    <p>
+      The cool part comes with handling the errors. If this were fully union types,
+      the code may be something like (Crystal doesn't actually have pattern
+      matching like I show; I'm just improvising):</p>
 
-  <prism-js language="crystal">
+    <prism-js language="crystal">
 def myotherfunc(a)
   case myfunc a
   when Left error
@@ -128,11 +129,11 @@ def myotherfunc(a)
     puts "Function returned: #{value}"
   end
 end
-  </prism-js>
+    </prism-js>
 
-  <p>However, this is where things go a completely different route:</p>
+    <p>However, this is where things go a completely different route:</p>
 
-  <prism-js language="crystal">
+    <prism-js language="crystal">
 def myotherfunc(a)
   try
     myfunc a
@@ -141,45 +142,45 @@ def myotherfunc(a)
   else value
     puts "Function returned: #{value}"
 end
-  </prism-js>
+    </prism-js>
 
-  <p>
-    "But wait," you say, "how is this different from exceptions!?" Well, this
-    <code>try</code> is not at all like a normal <code>try</code>.</p>
+    <p>
+      "But wait," you say, "how is this different from exceptions!?" Well, this
+      <code>try</code> is not at all like a normal <code>try</code>.</p>
 
-  <p>
-    Instead, the body of the <code>try</code> statement MUST be an expression
-    that returns <code>T![E...]</code>. If any <code>E</code> is returned, then
-    it goes to the appropriate <code>except</code> block. If no error occurred,
-    then it jumps to the <code>else</code> block, giving it the value of type
-    <code>T</code>.</p>
+    <p>
+      Instead, the body of the <code>try</code> statement MUST be an expression
+      that returns <code>T![E...]</code>. If any <code>E</code> is returned, then
+      it goes to the appropriate <code>except</code> block. If no error occurred,
+      then it jumps to the <code>else</code> block, giving it the value of type
+      <code>T</code>.</p>
 
-  <p>
-    The key difference here is that you can't just do something like
-    <code>1 + myfunc(1)</code>; an error would occur since you're trying to add 1
-    (of type <code>Int32</code>) to <code>myfunc(1)</code> (of type
-    <code>Int32![MyErrorType]</code>).</p>
+    <p>
+      The key difference here is that you can't just do something like
+      <code>1 + myfunc(1)</code>; an error would occur since you're trying to add 1
+      (of type <code>Int32</code>) to <code>myfunc(1)</code> (of type
+      <code>Int32![MyErrorType]</code>).</p>
 
-  <p>
-    Another major difference is what happens if an <code>except</code> block
-    doesn't cover a possible error. For instance, if <code>myfunc</code> were
-    changed to:</p>
+    <p>
+      Another major difference is what happens if an <code>except</code> block
+      doesn't cover a possible error. For instance, if <code>myfunc</code> were
+      changed to:</p>
 
-  <prism-js language="crystal">
+    <prism-js language="crystal">
 def myfunc(a : Int32)
   raise MyErrorType.new if a == 0
   # A new error:
   raise MyOtherErrorType.new if a &lt; 0
 end
-  </prism-js>
+    </prism-js>
 
-  <p>What would happen to <code>myotherfunc</code>? It wouldn't compile!</p>
+    <p>What would happen to <code>myotherfunc</code>? It wouldn't compile!</p>
 
-  <p>
-    If there would possibly be no matching <code>except</code> block, then the
-    compiler would treat <code>myotherfunc</code> as if it said:</p>
+    <p>
+      If there would possibly be no matching <code>except</code> block, then the
+      compiler would treat <code>myotherfunc</code> as if it said:</p>
 
-  <prism-js language="crystal">
+    <prism-js language="crystal">
 def myotherfunc(a)
   try
     myfunc a
@@ -191,14 +192,14 @@ def myotherfunc(a)
   else value
     puts "Function returned: #{value}"
 end
-  </prism-js>
+    </prism-js>
 
-  <p>
-    Now <code>myotherfunc</code> is inferred to return
-    <code>Int32![MyOtherErrorType]</code>. In order to fix it, you can just
-    do:</p>
+    <p>
+      Now <code>myotherfunc</code> is inferred to return
+      <code>Int32![MyOtherErrorType]</code>. In order to fix it, you can just
+      do:</p>
 
-  <prism-js language="crystal">
+    <prism-js language="crystal">
 def myotherfunc(a)
   try
     myfunc a
@@ -208,11 +209,11 @@ def myotherfunc(a)
   else value
     puts "Function returned: #{value}"
 end
-  </prism-js>
+    </prism-js>
 
-  <p>You could also omit any <code>except</code> clause. For example:</p>
+    <p>You could also omit any <code>except</code> clause. For example:</p>
 
-  <prism-js language="crystal">
+    <prism-js language="crystal">
 def myotherfunc(a)
   try
     myfunc a
@@ -220,11 +221,11 @@ def myotherfunc(a)
   else value
     puts "Function returned: #{value}"
 end
-  </prism-js>
+    </prism-js>
 
-  <p>This would be equivalent to:</p>
+    <p>This would be equivalent to:</p>
 
-  <prism-js language="crystal">
+    <prism-js language="crystal">
 def myotherfunc(a)
   try
     myfunc a
@@ -234,14 +235,14 @@ def myotherfunc(a)
   else value
     puts "Function returned: #{value}"
 end
-  </prism-js>
+    </prism-js>
 
-  <p>
-    In addition, this can be an expression. If an error occurs, the function
-    instantly returns; otherwise, the value of the <code>else</code> block is
-    returned:</p>
+    <p>
+      In addition, this can be an expression. If an error occurs, the function
+      instantly returns; otherwise, the value of the <code>else</code> block is
+      returned:</p>
 
-  <prism-js language="crystal">
+    <prism-js language="crystal">
 def myotherfunc(a)
   result = try
     myfunc a
@@ -252,13 +253,13 @@ def myotherfunc(a)
     value + 1
   puts result
 end
-  </prism-js>
+    </prism-js>
 
-  <p>
-    If the <code>else</code> block is ommitted, then the non-error value is
-    returned:</p>
+    <p>
+      If the <code>else</code> block is ommitted, then the non-error value is
+      returned:</p>
 
-  <prism-js language="crystal">
+    <prism-js language="crystal">
 def myotherfunc(a)
   result = try
     myfunc a
@@ -269,19 +270,19 @@ def myotherfunc(a)
   #   value
   puts result
 end
-  </prism-js>
+    </prism-js>
 
-  <p>Now you can combine all this to get a nice shorthand:</p>
+    <p>Now you can combine all this to get a nice shorthand:</p>
 
-  <prism-js language="crystal">
+    <prism-js language="crystal">
 def myotherfunc(a)
   return try myfunc a
 end
-  </prism-js>
+    </prism-js>
 
-  <p>The compiler would basically desugar that into:</p>
+    <p>The compiler would basically desugar that into:</p>
 
-  <prism-js language="crystal">
+    <prism-js language="crystal">
 def myotherfunc(a)
   return
     try
@@ -291,94 +292,94 @@ def myotherfunc(a)
     else value
       value
 end
-  </prism-js>
+    </prism-js>
 
-  <p>
-    As an added benefit, you can chain <code>!</code> uses, so
-    <code>T![E1]![E2]</code> would be converted to <code>T![E1,E2]</code>. This
-    seems useless, but it's very handy with generic types.</p>
+    <p>
+      As an added benefit, you can chain <code>!</code> uses, so
+      <code>T![E1]![E2]</code> would be converted to <code>T![E1,E2]</code>. This
+      seems useless, but it's very handy with generic types.</p>
 
-  <p>I call all this:</p>
+    <p>I call all this:</p>
 
-  <p><b>Imperative monads</b></p>
+    <p><b>Imperative monads</b></p>
 
-  <link-header id="differences">Differences from other strategies</link-header>
+    <link-header id="differences">Differences from other strategies</link-header>
 
-  <ul>
-    <li>
-      Exceptions are unchecked. On the other hand, with imperative monads,
-      if you try to use a function that can error in an expression, you'll get a
-      type error (e.g. <code>1 + myfunc(2)</code>). In addition, if you forgot to
-      handle an error type, you'll still get a type error.</li>
+    <ul>
+      <li>
+        Exceptions are unchecked. On the other hand, with imperative monads,
+        if you try to use a function that can error in an expression, you'll get a
+        type error (e.g. <code>1 + myfunc(2)</code>). In addition, if you forgot to
+        handle an error type, you'll still get a type error.</li>
 
-    <li>
-      Unlike checked exceptions, imperative monads, when combined with type
-      inference as shown above, don't necessarily require you to write out every
-      single possible error. Callbacks would work as excepted, since errors are
-      really just return values with some added awesomeness.</li>
+      <li>
+        Unlike checked exceptions, imperative monads, when combined with type
+        inference as shown above, don't necessarily require you to write out every
+        single possible error. Callbacks would work as excepted, since errors are
+        really just return values with some added awesomeness.</li>
 
-    <li>
-      Imperative monads have lots of sugar to handle errors, so it's as safe as
-      Go (if you can call it that...). In contrary to Elixir, imperative monads
-      allow you to create your own error types, just like Go or normal
-      exceptions. You can encode all the information you want into the type
-      itself.</li>
+      <li>
+        Imperative monads have lots of sugar to handle errors, so it's as safe as
+        Go (if you can call it that...). In contrary to Elixir, imperative monads
+        allow you to create your own error types, just like Go or normal
+        exceptions. You can encode all the information you want into the type
+        itself.</li>
 
-    <li>
-      Union types can be a bit messy in imperative languages, but imperative
-      monads were designed exactly for that. They're not verbose, and it would be
-      almost impossible to end up with nested errors.</li>
-  </ul>
+      <li>
+        Union types can be a bit messy in imperative languages, but imperative
+        monads were designed exactly for that. They're not verbose, and it would be
+        almost impossible to end up with nested errors.</li>
+    </ul>
 
-  <p>
-    Last but not least, since errors are again types, there's lots of room for
-    potential compiler optimizations.</p>
+    <p>
+      Last but not least, since errors are again types, there's lots of room for
+      potential compiler optimizations.</p>
 
-  <link-header id="sequencing">Sequencing</link-header>
+    <link-header id="sequencing">Sequencing</link-header>
 
-  <p>
-    This was actually not present in the original post, but someone pointed it
-    out, so I'm adding it here. (I actually can't believe I forgot this,
-    considering this is easily one of my error handling deal-breakers...)</p>
+    <p>
+      This was actually not present in the original post, but someone pointed it
+      out, so I'm adding it here. (I actually can't believe I forgot this,
+      considering this is easily one of my error handling deal-breakers...)</p>
 
-  <p>What happens to error sequences? Exceptions are great for this:</p>
+    <p>What happens to error sequences? Exceptions are great for this:</p>
 
-  <prism-js language="python">
+    <prism-js language="python">
 try:
     x = something()
     something_else(x)
 except IOError: # If any of the expressions result in an IOError.
     print('Error occurred!')
-  </prism-js>
+    </prism-js>
 
-  <p>Well, that could go something like this:</p>
+    <p>Well, that could go something like this:</p>
 
-  <prism-js language="crystal">
+    <prism-js language="crystal">
 try
     x = try something
     something_else x
 except IOError as ex
     puts "Error occurred!"
-  </prism-js>
+    </prism-js>
 
-  <p>What exactly does this do?</p>
+    <p>What exactly does this do?</p>
 
-  <p>
-    The core idea is that, when <code>try</code>'s are nested, errors propogate
-    up. This code does what you might expect; if <code>something</code> returns
-    an error type, it causes an error. This error is then propogated up to the
-    outer <code>try</code>, which would forward it to the <code>except</code>
-    block.</p>
+    <p>
+      The core idea is that, when <code>try</code>'s are nested, errors propogate
+      up. This code does what you might expect; if <code>something</code> returns
+      an error type, it causes an error. This error is then propogated up to the
+      outer <code>try</code>, which would forward it to the <code>except</code>
+      block.</p>
 
-  <link-header id="issues">Issues</link-header>
+    <link-header id="issues">Issues</link-header>
 
-  <p>
-    Honestly, the only issue I can think of is just with sequences and their
-    transformation functions. If you have a functional language, you'll need
-    multiple versions of every sequence function, like Haskell's <code>map</code>
-    vs <code>mapM</code> and <code>filter</code> vs <code>filterM</code>.</p>
+    <p>
+      Honestly, the only issue I can think of is just with sequences and their
+      transformation functions. If you have a functional language, you'll need
+      multiple versions of every sequence function, like Haskell's <code>map</code>
+      vs <code>mapM</code> and <code>filter</code> vs <code>filterM</code>.</p>
 
-  <site-tags tags='["errors", "crystal"]'></site-tags>
-  <site-suffix></site-suffix>
+    <site-tags tags='programming, errors, crystal'></site-tags>
+    <site-suffix></site-suffix>
 </body>
 

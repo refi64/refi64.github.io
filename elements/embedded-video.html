@@ -1,38 +1,32 @@
-<dom-module id="embedded-video">
+<vue-module id="embedded-video">
+  <style>
+    .embedded-video div {
+      position: relative;
+      padding-bottom: 56.25%;
+      padding-top: 25px;
+      height: 0;
+    }
+
+    .embedded-video div iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
+  </style>
+
   <template>
-    <style is="custom-style">
-      div {
-        position: relative;
-        padding-bottom: 56.25%;
-        padding-top: 25px;
-        height: 0;
-      }
-
-      iframe {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-      }
-    </style>
-
     <div>
-      <iframe width="{{width}}" height="{{height}}" src="{{url}}" frameborder="0"
-              style="max-width: {{width}}; max-height: {{height}};"
+      <iframe :width="width" :height="height" :src="url" frameborder="0"
+              :style="'max-width: ' + this.width + '; max-height: ' + this.height + ';'"
               allowfullscreen></iframe>
     </div>
   </template>
 
   <script>
-    Polymer({
-      is: 'embedded-video',
-
-      properties: {
-        url: String,
-        width: Number,
-        height: Number,
-      }
+    Vue.module('embedded-video', {
+      props: ['url', 'width', 'height'],
     });
   </script>
-</dom-module>
+</vue-module>

@@ -10,7 +10,7 @@
     <!-- </style> -->
 
     <span v-if="!noHeader">
-      TAGS:
+      <b><i>Tags:</i></b>
     </span>
 
     <md-chip md-editable v-for="(tag, index) in tagsArray" :href="'/tags.html#' + tag"

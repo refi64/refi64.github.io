@@ -1,22 +1,11 @@
-<dom-module id="warning-card">
+<vue-module id="warning-card">
   <template>
-    <style is="custom-style">
-      paper-card {
-        --paper-card-background-color: red;
-        --paper-card-header-color: ghostwhite;
-        --paper-card-content: { color: ghostwhite; };
-        width: 100%;
-      }
-    </style>
-
-    <paper-card elevation="5" heading="WARNING">
-      <div class="card-content">
-        <content></content>
-      </div>
-    </paper-card>
+    <generic-card title="WARNING" theme="md-warn">
+      <slot></slot>
+    </generic-card>
   </template>
 
   <script>
-    Polymer({ is: 'warning-card' });
+    Vue.module('warning-card');
   </script>
-</dom-module>
+</vue-module>
