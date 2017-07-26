@@ -1,0 +1,41 @@
+<vue-module id="prism-js">
+  <template>
+    <pre ref="pre">
+      <code ref="code" :class="languageclass">
+        <slot></slot>
+      </code>
+    </pre>
+  </template>
+
+  <script>
+    Vue.module('prism-js', {
+      props: {
+        language: {
+          type: String,
+          default: '*',
+        },
+        escape: {
+          type: Boolean,
+          default: false,
+        },
+      },
+
+      computed: {
+        languageclass: function () { return 'language-' + this.language; },
+      },
+
+      mounted: function () {
+        var jcode = $(this.$refs.code);
+        var jpre = $(this.$refs.pre);
+
+        jcode.html($.trim(jcode.html()));
+        jpre.html($.trim(jpre.html()));
+
+        // this.$refs.code is now invalid
+        Prism.highlightElement(jpre.children('code').get(0));
+      },
+
+      once: true,
+    });
+  </script>
+</vue-module>

@@ -1,54 +1,64 @@
 <vue-module id="embedded-image">
   <template>
-    <style is="custom-style">
-      #text {
-        text-align: center;
-        padding-top: 0.5em;
-      }
+    <!-- <style is="custom-style"> -->
+    <!--   #text { -->
+    <!--     text-align: center; -->
+    <!--     padding-top: 0.5em; -->
+    <!--   } -->
 
-      #image { max-width: 100%; }
-    </style>
+    <!--   #image { max-width: 100%; } -->
+    <!-- </style> -->
+
+    <!-- <div style="padding: 1em;"> -->
+    <!--   <img id="image" style="{{imgStyle}}" src="{{url}}" alt="{{alt}}" -->
+    <!--        on-load="imgload"/> -->
+    <!--   <div id="text"> -->
+    <!--     <template is="dom-if" if="{{_hasText(text)}}"> -->
+    <!--       <i>{{text}}</i> -->
+    <!--     </template> -->
+    <!--   </div> -->
+    <!-- </div> -->
 
     <div style="padding: 1em;">
-      <img id="image" style="{{imgStyle}}" src="{{url}}" alt="{{alt}}"
-           on-load="imgload"/>
-      <div id="text">
-        <template is="dom-if" if="{{_hasText(text)}}">
-          <i>{{text}}</i>
-        </template>
-      </div>
+      <img ref="image" :style="imgStyle" :src="url" :alt="alt" v-on:load="imgload">
+      </img>
+
+      <i :style="textStyle" v-if="hastext">{{text}}</i>
     </div>
   </template>
 
   <script>
-    Polymer({
-      is: 'embedded-image',
+    Vue.module('embedded-image', {
+      data: function () {
+        return {
+          textStyle: '',
+        };
+      },
 
-      properties: {
+      props: {
         url: String,
-
         alt: {
           type: String,
-          value: '',
+          default: '',
         },
-
         text: {
           type: String,
-          value: '',
+          default: '',
         },
-
         imgStyle: {
           type: String,
-          value: '',
+          default: '',
         },
       },
 
-      imgload: function () {
-        this.$.text.style.width = this.$.image.clientWidth;
+      methods: {
+        imgload: function () {
+          this.textStyle = 'width: ' + this.$refs.image.clientWidth + ';';
+        },
       },
 
-      _hasText: function (text) {
-        return text.length > 0;
+      computed: {
+        hastext: function () { return this.text.length > 0; },
       },
     });
   </script>

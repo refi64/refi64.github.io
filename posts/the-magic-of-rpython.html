@@ -1,32 +1,33 @@
 <head>
   <title>The Magic of RPython</title>
-  <script src="/bower_components/webcomponentsjs/webcomponents-lite.min.js">
+  <script src="/bower_components/webcomponentsjs/webcomponents-lite.js">
   </script>
   <link rel="import" href="/_imports.html">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 
-<body unresolved>
-  <site-navbar></site-navbar>
-  <site-title created-on="2015-05-29 19:19"></site-title>
+<body>
+  <div id="page">
+    <site-navbar></site-navbar>
+    <site-title created-on="2015-05-29 19:19"></site-title>
 
-  <div id="teaser">
-    <p>
-      <a href="http://rpython.readthedocs.org/en/latest/">RPython</a> is a really
-      nice translation framework that converts a (very) restricted subset of Python
-      2 to C code. Better yet, RPython will generate JITs for your interpreters.
-      Although there are very good articles on how to write interpreters with
-      RPython, I don't often find anything that describes the language itself. My
-      goal with this post is to do just that: describe RPython itself. I'm going
-      to leave out the things about the JITs; the RPython FAQ links to a good
-      tutorial about that.</p>
-  </div>
+    <div id="teaser">
+      <p>
+        <a href="http://rpython.readthedocs.org/en/latest/">RPython</a> is a really
+        nice translation framework that converts a (very) restricted subset of Python
+        2 to C code. Better yet, RPython will generate JITs for your interpreters.
+        Although there are very good articles on how to write interpreters with
+        RPython, I don't often find anything that describes the language itself. My
+        goal with this post is to do just that: describe RPython itself. I'm going
+        to leave out the things about the JITs; the RPython FAQ links to a good
+        tutorial about that.</p>
+    </div>
 
-  <link-header id="enter-exit">RPython enters and exits</link-header>
+    <link-header id="enter-exit">RPython enters and exits</link-header>
 
-  <p>Your RPython programs/interpreters will often begin like this:</p>
+    <p>Your RPython programs/interpreters will often begin like this:</p>
 
-  <prism-js language="python">
+    <prism-js language="python">
 def entry_point(argv):
     # this is your program's main function
     return 0
@@ -34,66 +35,66 @@ def entry_point(argv):
 def target(driver, args):
     # this is run at compile time
     return entry_point, None
-  </prism-js>
+    </prism-js>
 
-  <p>You'd run RPython kind of like this:</p>
+    <p>You'd run RPython kind of like this:</p>
 
-  <prism-js>
+    <prism-js>
 $ python path_to_pypy_source/rpython/bin/rpython -O0 my_program.py
-  </prism-js>
+    </prism-js>
 
-  <p>
-    The <code>-O0</code> turns off all optimizations, which makes compile times
-    <i>much</i> faster while testing.</p>
+    <p>
+      The <code>-O0</code> turns off all optimizations, which makes compile times
+      <i>much</i> faster while testing.</p>
 
-  <p>If you're lazy like me, you can define an alias:</p>
+    <p>If you're lazy like me, you can define an alias:</p>
 
-  <prism-js>
+    <prism-js>
 $ alias rpython="python path_to_pypy_source/rpython/bin/rpython"
-  </prism-js>
+    </prism-js>
 
-  <p>
-    The <code>target</code> function lets you set certain or check command-line
-    arguments passed to RPython. For instance:</p>
+    <p>
+      The <code>target</code> function lets you set certain or check command-line
+      arguments passed to RPython. For instance:</p>
 
-  <prism-js language="python">
+    <prism-js language="python">
 def target(driver, args):
     # The default output file name for xyz.py is xyz-c
     if driver.exe_name == 'xyz-c':
         driver.exe_name = 'bin/xyz'
     return entry_point, None
-  </prism-js>
+    </prism-js>
 
-  <p>I have <i>no</i> clue what the None is for, though.</p>
+    <p>I have <i>no</i> clue what the None is for, though.</p>
 
-  <p>
-    <b>EDIT:</b> As Chris pointed out in the comments and Maciej Fijalkowski in an
-    e-mail, the <code>None</code> represents the type of the arguments that are
-    given to <code>entry_point</code>. See
-    <a href="https://bitbucket.org/pypy/pypy/src/tip/rpython/translator/goal/targetrpystonex.py">
-      rpython/translator/goal/targetrpystonex.py</a> for an example.</p>
+    <p>
+      <b>EDIT:</b> As Chris pointed out in the comments and Maciej Fijalkowski in an
+      e-mail, the <code>None</code> represents the type of the arguments that are
+      given to <code>entry_point</code>. See
+      <a href="https://bitbucket.org/pypy/pypy/src/tip/rpython/translator/goal/targetrpystonex.py">
+        rpython/translator/goal/targetrpystonex.py</a> for an example.</p>
 
-  <link-header id="half">
-    RPython is half-Python, half-not-Python, and Python</link-header>
+    <link-header id="half">
+      RPython is half-Python, half-not-Python, and Python</link-header>
 
-  <p>
-    Notice that I said that <code>target</code> is run at compile time. While
-    other Python translation frameworks, such as Shedskin and Cython, analyse the
-    program's static AST, RPython analyses its bytecode. Here's an example:</p>
+    <p>
+      Notice that I said that <code>target</code> is run at compile time. While
+      other Python translation frameworks, such as Shedskin and Cython, analyse the
+      program's static AST, RPython analyses its bytecode. Here's an example:</p>
 
-  <prism-js language="python">
+    <prism-js language="python">
 print 'This is run during compile time!' # guess when this is run?
 
 def entry_point(argv):
     print 'This is run at run time!'
     return 0
-  </prism-js>
+    </prism-js>
 
-  <p>
-    This has really cool implications. For one thing, RPython lazily compiles
-    functions. For instance:</p>
+    <p>
+      This has really cool implications. For one thing, RPython lazily compiles
+      functions. For instance:</p>
 
-  <prism-js language="python">
+    <prism-js language="python">
 def f():
     # This is never compiled by RPython because 'f' is never called
     return 123
@@ -104,11 +105,11 @@ def g():
 
 def entry_point(argv):
     print g()
-  </prism-js>
+    </prism-js>
 
-  <p>That means we can do lots of compile-time computations:</p>
+    <p>That means we can do lots of compile-time computations:</p>
 
-  <prism-js language="python">
+    <prism-js language="python">
 import sys
 
 if sys.platform == 'windows':
@@ -121,26 +122,26 @@ else:
 def entry_point(argv):
     print plat()
     return 0
-  </prism-js>
+    </prism-js>
 
-  <link-header id="statically-typed">RPython is statically-typed</link-header>
+    <link-header id="statically-typed">RPython is statically-typed</link-header>
 
-  <p>In short:</p>
+    <p>In short:</p>
 
-  <prism-js language="python">
+    <prism-js language="python">
 def entry_point(argv):
     x = 123 # ok
     x = '456' # error!
-  </prism-js>
+    </prism-js>
 
-  <p>
-    Notice that no variable annotations were needed. This is because RPython uses
-    type inference.</p>
+    <p>
+      Notice that no variable annotations were needed. This is because RPython uses
+      type inference.</p>
 
-  <p>
-    RPython also performs compile-time null checking under certain situations:</p>
+    <p>
+      RPython also performs compile-time null checking under certain situations:</p>
 
-  <prism-js language="python">
+    <prism-js language="python">
 def entry_point(argv):
     if len(argv) == 1:
         x = None
@@ -151,21 +152,21 @@ def entry_point(argv):
 
 def target(driver, args):
     return entry_point, None
-  </prism-js>
+    </prism-js>
 
-  <link-header id="errors">RPython has confusing error messages</link-header>
+    <link-header id="errors">RPython has confusing error messages</link-header>
 
-  <p>
-    Whenever an error occurs during compilation, most compilers will output
-    something like:</p>
+    <p>
+      Whenever an error occurs during compilation, most compilers will output
+      something like:</p>
 
-  <prism-js>
+    <prism-js>
 error: myfile.whatever:22: variable 'xyz' may be 'null' when used here
-  </prism-js>
+    </prism-js>
 
-  <p>Not RPython! This is what I get when I try to compile the above snippet:</p>
+    <p>Not RPython! This is what I get when I try to compile the above snippet:</p>
 
-  <prism-js escape>
+    <prism-js escape>
 [translation:info] Error:
 [translation:info]    File "/media/ryan/stuff/pypy/rpython/translator/goal/translate.py", line 316, in main
 [translation:info]     drv.proceed(goals)
@@ -216,32 +217,32 @@ error: myfile.whatever:22: variable 'xyz' may be 'null' when used here
 [translation:ERROR]
 [translation:ERROR]         print x+1+2 # compile-time error
 [translation:ERROR]
-  </prism-js>
+    </prism-js>
 
-  <p>Wow! RPython's exceptions generally go like this:</p>
+    <p>Wow! RPython's exceptions generally go like this:</p>
 
-  <link-header id="flowingerror" small>FlowingError</link-header>
+    <link-header id="flowingerror" small>FlowingError</link-header>
 
-  <p>
-    RPython can prove at compile-time that some run-time computation may fail.
-    This usually means one of:</p>
+    <p>
+      RPython can prove at compile-time that some run-time computation may fail.
+      This usually means one of:</p>
 
-  <ul>
-    <li>
-      You're referencing a variable you never defined (the error message will go
-      something like global variable 'x' is not defined).</li>
-    <li>You're trying to get the len of None.</li>
-  </ul>
+    <ul>
+      <li>
+        You're referencing a variable you never defined (the error message will go
+        something like global variable 'x' is not defined).</li>
+      <li>You're trying to get the len of None.</li>
+    </ul>
 
-  <link-header id="unionerror" small>UnionError</link-header>
+    <link-header id="unionerror" small>UnionError</link-header>
 
-  <p>
-    A type conflict. Whenever you get this, RPython will show the internal types
-    that caused the error.</p>
+    <p>
+      A type conflict. Whenever you get this, RPython will show the internal types
+      that caused the error.</p>
 
-  <p>Take this program:</p>
+    <p>Take this program:</p>
 
-  <prism-js language="python">
+    <prism-js language="python">
 def f(b):
     return 1 if b else None
 
@@ -251,11 +252,11 @@ def entry_point(argv):
 
 def target(driver, args):
     return entry_point, None
-  </prism-js>
+    </prism-js>
 
-  <p>RPython gives this error message:</p>
+    <p>RPython gives this error message:</p>
 
-  <prism-js escape>
+    <prism-js escape>
 [translation:info] Error:
 [translation:info]    File "/media/ryan/stuff/pypy/rpython/translator/goal/translate.py", line 316, in main
 [translation:info]     drv.proceed(goals)
@@ -305,29 +306,29 @@ def target(driver, args):
 [translation:ERROR]  containing the following operations:
 [translation:ERROR]        v0 = bool(b_0)
 [translation:ERROR]  --end--
-  </prism-js>
+    </prism-js>
 
-  <p>
-    This tells us that the type conflict is between an integer and
-    <code>None</code>. Also note that there are no absolute line numbers. RPython
-    will sometimes show just the function where the error occurred (in this case,
-    <code>f</code>) and the internal, simplified code that is near the cause of
-    the error.</p>
+    <p>
+      This tells us that the type conflict is between an integer and
+      <code>None</code>. Also note that there are no absolute line numbers. RPython
+      will sometimes show just the function where the error occurred (in this case,
+      <code>f</code>) and the internal, simplified code that is near the cause of
+      the error.</p>
 
-  <p>These errors often show much more info:</p>
+    <p>These errors often show much more info:</p>
 
-  <ul>
-    <li>The integer is the constant <code>1</code>.</li>
-    <li>
-      It is non-negative (<code>nonneg=True</code>) but signed
-      (<code>unsigned=False</code>).</li>
-  </ul>
+    <ul>
+      <li>The integer is the constant <code>1</code>.</li>
+      <li>
+        It is non-negative (<code>nonneg=True</code>) but signed
+        (<code>unsigned=False</code>).</li>
+    </ul>
 
-  <link-header id="blockerror" small>BlockError</link-header>
+    <link-header id="blockerror" small>BlockError</link-header>
 
-  <p>This means that type inference couldn't succeed. Take this program:</p>
+    <p>This means that type inference couldn't succeed. Take this program:</p>
 
-  <prism-js language="python">
+    <prism-js language="python">
 import os
 
 def rd():
@@ -346,14 +347,14 @@ def entry_point(argv):
 
 def target(driver, args):
     return entry_point, None
-  </prism-js>
+    </prism-js>
 
-  <p>
-    This reads one or more numbers from stdin and prints the first one added to
-    <code>2.3</code>. You may have noticed an error in the program. When
-    compiling, this happens:</p>
+    <p>
+      This reads one or more numbers from stdin and prints the first one added to
+      <code>2.3</code>. You may have noticed an error in the program. When
+      compiling, this happens:</p>
 
-  <prism-js escape>
+    <prism-js escape>
 [translation:info] Error:
 [translation:info]    File "/media/ryan/stuff/pypy/rpython/translator/goal/translate.py", line 316, in main
 [translation:info]     drv.proceed(goals)
@@ -386,44 +387,44 @@ def target(driver, args):
 [translation:ERROR] Known variable annotations:
 [translation:ERROR]  v0 = SomeNone()
 [translation:ERROR]
-  </prism-js>
+    </prism-js>
 
-  <p>
-    What?? What RPython means is that it can't infer the type of
-    <code>data</code>. Why? Because somewhere in <code>rd</code> we put a plain
-    <code>return</code>. In Python, this returns <code>None</code>. In RPython?
-    It's an error.</p>
+    <p>
+      What?? What RPython means is that it can't infer the type of
+      <code>data</code>. Why? Because somewhere in <code>rd</code> we put a plain
+      <code>return</code>. In Python, this returns <code>None</code>. In RPython?
+      It's an error.</p>
 
-  <p>
-    One gotcha about these errors is that they occur when the type problems
-    surface. Notice that the error didn't occur in <code>rd</code>'s definition;
-    it occurred when we tried to slice it. This can be a little odd until you get
-    the hang of it.</p>
+    <p>
+      One gotcha about these errors is that they occur when the type problems
+      surface. Notice that the error didn't occur in <code>rd</code>'s definition;
+      it occurred when we tried to slice it. This can be a little odd until you get
+      the hang of it.</p>
 
-  <link-header id="assertionerror" small>AssertionError</link-header>
+    <link-header id="assertionerror" small>AssertionError</link-header>
 
-  <p>
-    Various meanings. Sometimes they have an error message; sometimes they don't.
-    When they don't, your best bet is to go to the line in RPython source that
-    raised the error and look for any helpful comments or try to figure out on
-    your own.</p>
+    <p>
+      Various meanings. Sometimes they have an error message; sometimes they don't.
+      When they don't, your best bet is to go to the line in RPython source that
+      raised the error and look for any helpful comments or try to figure out on
+      your own.</p>
 
-  <link-header id="annotatorerror" small>AnnotatorError</link-header>
+    <link-header id="annotatorerror" small>AnnotatorError</link-header>
 
-  <p>
-    This may have various meanings, but it basically means that an error occurred
-    while trying to annotate the types. The most common reason in my experience
-    is an attribute error. For instance, this:</p>
+    <p>
+      This may have various meanings, but it basically means that an error occurred
+      while trying to annotate the types. The most common reason in my experience
+      is an attribute error. For instance, this:</p>
 
-  <prism-js language="python">
+    <prism-js language="python">
 def entry_point(argv):
     print argv.x
     return 0
-  </prism-js>
+    </prism-js>
 
-  <p>Gives:</p>
+    <p>Gives:</p>
 
-  <prism-js escape>
+    <prism-js escape>
 [translation:ERROR] AnnotatorError:
 [translation:ERROR]
 [translation:ERROR] Cannot find attribute 'x' on SomeList(listdef=&lt;[SomeString(no_nul=True)]mr&gt;)
@@ -448,18 +449,18 @@ def entry_point(argv):
 [translation:ERROR]        v2 = simple_call((function rpython_print_item), v1)
 [translation:ERROR]        v3 = simple_call((function rpython_print_newline))
 [translation:ERROR]  --end--
-  </prism-js>
+    </prism-js>
 
-  <p>
-    Also note the types again. Here, it's telling us it's a list
-    (<code>SomeList</code>) of non-nullable strings
-    (<code>listdef=&lt;[SomeString(no_nul=True)]&gt;</code>).</p>
+    <p>
+      Also note the types again. Here, it's telling us it's a list
+      (<code>SomeList</code>) of non-nullable strings
+      (<code>listdef=&lt;[SomeString(no_nul=True)]&gt;</code>).</p>
 
-  <link-header id="hint">RPython takes a hint</link-header>
+    <link-header id="hint">RPython takes a hint</link-header>
 
-  <p>For instance:</p>
+    <p>For instance:</p>
 
-  <prism-js language="python">
+    <prism-js language="python">
 class A(object):
     pass
 
@@ -476,11 +477,11 @@ def entry_point(argv):
 
 def target(driver, args):
     return entry_point, None
-  </prism-js>
+    </prism-js>
 
-  <p>This gives:</p>
+    <p>This gives:</p>
 
-  <prism-js escape>
+    <prism-js escape>
 [translation:ERROR] AnnotatorError:
 [translation:ERROR]
 [translation:ERROR] signature mismatch: x() takes exactly 2 arguments (1 given)
@@ -509,21 +510,21 @@ def target(driver, args):
 [translation:ERROR]        v4 = simple_call((function rpython_print_item), v3)
 [translation:ERROR]        v5 = simple_call((function rpython_print_newline))
 [translation:ERROR]  --end--
-  </prism-js>
+    </prism-js>
 
-  <p>The solution? You can use an assertion:</p>
+    <p>The solution? You can use an assertion:</p>
 
-  <prism-js language="python">
+    <prism-js language="python">
 def entry_point(argv):
     a = C() if len(argv) == 3 else B() # Ok; 'a' is of type A
     assert isinstance(a, B)
     print a.x() # Ok; this will never run if 'a' is of type 'C'
     return 0
-  </prism-js>
+    </prism-js>
 
-  <p>Or an <code>if</code> statement:</p>
+    <p>Or an <code>if</code> statement:</p>
 
-  <prism-js language="python">
+    <prism-js language="python">
 def entry_point(argv):
     a = C() if len(argv) == 3 else B() # Ok; 'a' is of type A
     if isinstance(a, B):
@@ -531,56 +532,56 @@ def entry_point(argv):
     elif isinstance(a, C):
         print a.x(1)
     return 0
-  </prism-js>
+    </prism-js>
 
-  <link-header id="info">RPython drops you some neat info</link-header>
+    <link-header id="info">RPython drops you some neat info</link-header>
 
-  <p>
-    Notice that, when an error occurs, RPython drops you into an instance of
-    <a href="https://docs.python.org/2/library/pdb.html">pdb</a>. This means you
-    can inspect the variables of RPython's internals! This can come in handy for
-    debugging the more spurious errors. You can inspect the various variables and
-    see what RPython thinks things are.</p>
+    <p>
+      Notice that, when an error occurs, RPython drops you into an instance of
+      <a href="https://docs.python.org/2/library/pdb.html">pdb</a>. This means you
+      can inspect the variables of RPython's internals! This can come in handy for
+      debugging the more spurious errors. You can inspect the various variables and
+      see what RPython thinks things are.</p>
 
-  <link-header id="polite">RPython is polite</link-header>
+    <link-header id="polite">RPython is polite</link-header>
 
-  <p>Take this program:</p>
+    <p>Take this program:</p>
 
-  <prism-js language="python">
+    <prism-js language="python">
 def entry_point(argv):
     print argv[1]
     return 0
 
 def target(driver, args):
     return entry_point, None
-  </prism-js>
+    </prism-js>
 
-  <p>
-    If you give it no arguments, it'll throw an <code>IndexError</code>, right?
-    WRONG! If I build it without optimizations, it'll print <code>None</code>; if
-    I use optimizations (<code>-O2</code>), it'll segfault. Why? See, it would be
-    rude to throw an exception! After all, you asked it for the first argument.
-    Therefore, it returns a safe value: <code>None</code>. However, when you
-    build it with optimizations, RPython couldn't care less about your computers
-    memory, so it happily...crashes. However, try this:</p>
+    <p>
+      If you give it no arguments, it'll throw an <code>IndexError</code>, right?
+      WRONG! If I build it without optimizations, it'll print <code>None</code>; if
+      I use optimizations (<code>-O2</code>), it'll segfault. Why? See, it would be
+      rude to throw an exception! After all, you asked it for the first argument.
+      Therefore, it returns a safe value: <code>None</code>. However, when you
+      build it with optimizations, RPython couldn't care less about your computers
+      memory, so it happily...crashes. However, try this:</p>
 
-  <prism-js language="python">
+    <prism-js language="python">
 def entry_point(argv):
     try:
         print argv[1]
     except:
         print 'Too few arguments!'
     return 0
-  </prism-js>
+    </prism-js>
 
-  <p>
-    This will correctly print "Too few arguments!" if given no arguments. See,
-    now that you put a <code>try</code> block around it, RPython knows you want
-    an exception, so it'll throw one.</p>
+    <p>
+      This will correctly print "Too few arguments!" if given no arguments. See,
+      now that you put a <code>try</code> block around it, RPython knows you want
+      an exception, so it'll throw one.</p>
 
-  <p>However, take this:</p>
+    <p>However, take this:</p>
 
-  <prism-js language="python">
+    <prism-js language="python">
 def f(x): return x[1]
 
 def entry_point(argv):
@@ -592,67 +593,67 @@ def entry_point(argv):
 
 def target(driver, args):
     return entry_point, None
-  </prism-js>
+    </prism-js>
 
-  <p>
-    This will segfault when build with <code>-O2</code>. But we put a
-    <code>try</code> block! RPython analyses the function individually in this
-    case, so it doesn't pick up the <code>try</code> block in
-    <code>entry_point</code>. To circumvent this, put another <code>try</code>
-    block around <code>f</code> that explicitly re-raises any errors:</p>
+    <p>
+      This will segfault when build with <code>-O2</code>. But we put a
+      <code>try</code> block! RPython analyses the function individually in this
+      case, so it doesn't pick up the <code>try</code> block in
+      <code>entry_point</code>. To circumvent this, put another <code>try</code>
+      block around <code>f</code> that explicitly re-raises any errors:</p>
 
-  <prism-js language="python">
+    <prism-js language="python">
 def f(x):
     try:
         return x[1]
     except:
         raise
-  </prism-js>
+    </prism-js>
 
-  <link-header id="restricted">RPython is very restricted</link-header>
+    <link-header id="restricted">RPython is very restricted</link-header>
 
-  <p>Here are a few things that don't work:</p>
+    <p>Here are a few things that don't work:</p>
 
-  <ul>
-    <li>
-      Any builtins not found as <code>builtin_xxx</code> in
-      <a href="https://bitbucket.org/pypy/pypy/src/default/rpython/annotator/builtin.py">
-        rpython/annotator/builtin.py</a>.</li>
-    <li>
-      Printing unicode strings (use
-      <code>print string.encode('utf-8')</code>).</li>
-    <li>
-      Slicing any negative indices other than <code>-1</code>. If RPython can't
-      prove an index isn't non-negative or <code>-1</code>, a compile-time error
-      will be thrown. You can use an assertion (like
-      <code>assert the_index &gt;= 0</code>; see the above section on
-      hints).</li>
-    <li>
-      Most Python modules other than <code>os</code> and <code>math</code> (and
-      maybe a few others).</li>
-    <li>Sets.</li>
-    <li>Multiple inheritance.</li>
-    <li>
-      Several <code>str</code> methods (such as <code>*just</code> and
-      <code>zfill</code>). Some others take slightly different argument
-      counts.</li>
-    <li><code>with</code> blocks. Use <code>try..finally</code>.</li>
-    <li>
-      <code>sys.stdin</code>, <code>sys.stdout</code>, and
-      <code>sys.stderr</code>.</li>
-    <li><code>raw_input</code></li>
-    <li>Lots and lots and lots of other stuff!</li>
-  </ul>
+    <ul>
+      <li>
+        Any builtins not found as <code>builtin_xxx</code> in
+        <a href="https://bitbucket.org/pypy/pypy/src/default/rpython/annotator/builtin.py">
+          rpython/annotator/builtin.py</a>.</li>
+      <li>
+        Printing unicode strings (use
+        <code>print string.encode('utf-8')</code>).</li>
+      <li>
+        Slicing any negative indices other than <code>-1</code>. If RPython can't
+        prove an index isn't non-negative or <code>-1</code>, a compile-time error
+        will be thrown. You can use an assertion (like
+        <code>assert the_index &gt;= 0</code>; see the above section on
+        hints).</li>
+      <li>
+        Most Python modules other than <code>os</code> and <code>math</code> (and
+        maybe a few others).</li>
+      <li>Sets.</li>
+      <li>Multiple inheritance.</li>
+      <li>
+        Several <code>str</code> methods (such as <code>*just</code> and
+        <code>zfill</code>). Some others take slightly different argument
+        counts.</li>
+      <li><code>with</code> blocks. Use <code>try..finally</code>.</li>
+      <li>
+        <code>sys.stdin</code>, <code>sys.stdout</code>, and
+        <code>sys.stderr</code>.</li>
+      <li><code>raw_input</code></li>
+      <li>Lots and lots and lots of other stuff!</li>
+    </ul>
 
-  <p>I believe <code>OrderedDict</code> works, but I'm not quite sure.</p>
+    <p>I believe <code>OrderedDict</code> works, but I'm not quite sure.</p>
 
-  <p>Figuring out some of the other restrictions is simply trial-and-error.</p>
+    <p>Figuring out some of the other restrictions is simply trial-and-error.</p>
 
-  <p>
-    For getting around <code>sys.std*</code>, you can use this function to read a
-    line from <code>stdin</code>:</p>
+    <p>
+      For getting around <code>sys.std*</code>, you can use this function to read a
+      line from <code>stdin</code>:</p>
 
-  <prism-js language="python">
+    <prism-js language="python">
 import os
 
 def readline():
@@ -662,11 +663,11 @@ def readline():
         if not buf: return res
         res += buf
         if res[-1] == '\n': return res[:-1]
-  </prism-js>
+    </prism-js>
 
-  <p>For reading all the lines in <code>stdin</code> into a list:</p>
+    <p>For reading all the lines in <code>stdin</code> into a list:</p>
 
-  <prism-js language="python">
+    <prism-js language="python">
 import os
 
 def readlines():
@@ -677,49 +678,50 @@ def readlines():
         if not buf: return res
         cur += buf
         if cur[-1] == '\n': res.append(cur[:-1])
-  </prism-js>
+    </prism-js>
 
-  <p>For writing to <code>stderr</code>:</p>
+    <p>For writing to <code>stderr</code>:</p>
 
-  <prism-js language="python">
+    <prism-js language="python">
 import os
 
 def write_err(msg):
     os.write(2, msg+'\n')
-  </prism-js>
+    </prism-js>
 
-  <p>
-    And for writing to <code>stdout</code> without any trailing newlines or
-    spaces:</p>
+    <p>
+      And for writing to <code>stdout</code> without any trailing newlines or
+      spaces:</p>
 
-  <prism-js language="python">
+    <prism-js language="python">
 import os
 
 def write(msg):
     os.write(1, msg)
-  </prism-js>
+    </prism-js>
 
-  <link-header id="fun">RPython is fun!</link-header>
+    <link-header id="fun">RPython is fun!</link-header>
 
-  <p>
-    Maybe I'm weird, but RPython is still really cool. Once you get the hang of
-    the oddities, everything else kind of starts to fall into place.</p>
+    <p>
+      Maybe I'm weird, but RPython is still really cool. Once you get the hang of
+      the oddities, everything else kind of starts to fall into place.</p>
 
-  <link-header id="help">Need help?</link-header>
+    <link-header id="help">Need help?</link-header>
 
-  <p>
-    You can ask the
-    <a href="https://mail.python.org/mailman/listinfo/pypy-dev">
-      PyPy mailing list</a>. They helped me with several slip-ups while writing
-    an interpreter in RPython.</p>
+    <p>
+      You can ask the
+      <a href="https://mail.python.org/mailman/listinfo/pypy-dev">
+        PyPy mailing list</a>. They helped me with several slip-ups while writing
+      an interpreter in RPython.</p>
 
-  <link-header id="docs" small>Read the docs!</link-header>
+    <link-header id="docs" small>Read the docs!</link-header>
 
-  <p>
-    Also, read through the
-    <a href="http://rpython.readthedocs.org/en/latest/">RPython documentation</a>.
-    It's very exhaustive and mentions stuff that I can't in this short space.</p>
+    <p>
+      Also, read through the
+      <a href="http://rpython.readthedocs.org/en/latest/">RPython documentation</a>.
+      It's very exhaustive and mentions stuff that I can't in this short space.</p>
 
-  <site-tags tags='["rpython", "interpreter", "python"]'></site-tags>
-  <site-suffix></site-suffix>
+    <site-tags tags='rpython, interpreter, python'></site-tags>
+    <site-suffix></site-suffix>
+  </div>
 </body>

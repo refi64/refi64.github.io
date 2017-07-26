@@ -1,40 +1,33 @@
-<dom-module id="link-header">
-  <link rel="import" href="/bower_components/iron-icon/iron-icon.html">
-  <link rel="import" href="/bower_components/iron-icons/iron-icons.html">
+<vue-module id="link-header">
+  <style>
+    .link-header .md-icon { color: gray; }
+  </style>
 
   <template>
-    <style is="custom-style">
-      a iron-icon { color: gray; }
-      a:visited iron-icon { text-decoration: none; color: gray; }
-      a:hover iron-icon { color: black; }
-    </style>
+    <h3 :id="id" v-if="small">
+      <slot></slot>
+      <md-icon :href="ref">link</md-icon>
+    </h3>
 
-    <template is="dom-if" if="{{small}}">
-      <h3 id="{{id}}">
-        <content></content>
-        <a href="#{{id}}"><iron-icon icon="icons:link"></iron-icon></a>
-      </h3>
-    </template>
-
-    <template is="dom-if" if="{{!small}}">
-      <h2 id="{{id}}">
-        <content></content>
-        <a href="#{{id}}"><iron-icon icon="icons:link"></iron-icon></a>
-      </h2>
-    </template>
+    <h3 :id="id" v-else>
+      <slot></slot>
+      <md-icon :href="ref">link</md-icon>
+    </h3>
   </template>
 
   <script>
-    Polymer({
-      is: 'link-header',
-
-      properties: {
+    Vue.module('link-header', {
+      props: {
         id: String,
         small: {
           type: Boolean,
-          value: false,
+          default: false,
         },
-      }
+      },
+
+      computed: {
+        ref: function () { return '#' + this.id; },
+      },
     });
   </script>
 </dom-module>

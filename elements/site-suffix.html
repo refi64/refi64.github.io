@@ -1,105 +1,55 @@
-<dom-module id="site-suffix">
+<vue-module id="site-suffix">
   <script src="/bower_components/better-share-button/dist/share-button.js">
   </script>
-  <script src="/bower_components/postscribe.min/index.js"></script>
-  <script src="/bower_components/arrive/minified/arrive.min.js"></script>
 
-  <!-- Double imports: one for shady DOM, one for shadow DOM -->
   <link rel="stylesheet"
         href="/bower_components/better-share-button/dist/share-button.css">
-  <link rel="import" type="css"
-        href="/bower_components/better-share-button/dist/share-button.css">
   <link rel="stylesheet" href="//cdn.muut.com/1/moot.css">
-  <link rel="import" type="css" href="//cdn.muut.com/1/moot.css">
+  <script src="//cdn.muut.com/1/moot.min.js"></script>
   <link rel="import" href="google-analytics.html">
 
-  <style is="custom-style">
-    paper-tooltip { --paper-tooltip-opacity: 1.0; }
+  <style>
+  .site-suffix share-button {
+    display: inline-block !important;
+    margin-top: 1em;
+  }
   </style>
 
   <template>
-    <share-button style="left: 50%;" id="share">
-    </share-button>
+    <div style="text-align: center;">
+      <share-button ref="share">
+      </share-button>
 
-    <p>
-      Really liked this post?
-      <div style="display: inline-block">
-        <a href="bitcoin:19run9LfWs4wP2drgWpriMXvCg1Zce1EKp">
-          19run9LfWs4wP2drgWpriMXvCg1Zce1EKp</a>
-        <paper-tooltip position="top">
-          QR code:
-          <embedded-image url="/bitcoin.png"></embedded-image>
-        </paper-tooltip>
-      </div></p>
+      <p>
+        Really liked this post?
+        <span>
+          <a href="bitcoin:19run9LfWs4wP2drgWpriMXvCg1Zce1EKp">
+            19run9LfWs4wP2drgWpriMXvCg1Zce1EKp</a>
+          <md-tooltip md-direction="bottom">
+            QR code:
+            <embedded-image url="/bitcoin.png"></embedded-image>
+          </md-tooltip>
+        </span>
+      </p>
+    </div>
 
-    <div id="muutjs"></div>
-    <a id="comments" type="dynamic">Loading comments...</a>
+    <a ref="comments" type="dynamic">Loading comments...</a>
 
     <google-analytics></google-analytics>
   </template>
 
   <script>
-    Polymer({
-      is: 'site-suffix',
-
-      ready: function () {
-        var shadow = this.shadowRoot || this;
-        var muutjs = shadow.querySelector('#muutjs');
-        var comments = shadow.querySelector('#comments');
-
-        // XXX: Hacks to make Postscribe and Muut play nicely with shadow DOM.
-        if (this.shadowRoot) {
-          function patch(name, replacement) {
-            var orig = document[name].bind(document);
-            replacement = replacement.bind(document, orig);
-            document[name] = function () {
-              return replacement.apply(this, arguments);
-            };
-          }
-
-          patch('getElementsByTagName', function (orig, tag) {
-            var ar = Array.from(orig(tag));
-            ar.push.apply(ar, shadow.querySelectorAll(tag));
-            return ar;
-          });
-
-          patch('getElementById', function (orig, id) {
-            console.log('getElementById', id);
-            if (id == 'ps-script' || id == 'ps-style')
-              return muutjs.querySelector('#' + id);
-            else return orig(id);
-          });
-
-          patch('querySelectorAll', function (orig, query) {
-            console.log('querySelectorAll', query);
-            if (query.indexOf('.muut') != -1 ||
-                query.indexOf('.maillist') != -1)
-              return shadow.querySelectorAll(query);
-            else return orig(query);
-          });
-
-          document.head.arrive('link[href*=muut], #moot-css', function () {
-            shadow.appendChild(this);
-          });
-        }
-
-        new ShareButton({ root: shadow });
-
-        function waitForMuut() {
-          if (typeof muut !== 'undefined') {
-            var url = 'https://muut.com/i/blockbyte/general:' +
+    Vue.module('site-suffix', {
+      mounted: function () {
+        new ShareButton();
+        var url = 'https://muut.com/i/blockbyte/general:' +
                       muut.urlify(document.title) +
                       // XXX: Don't ask.
                       '\0\0\0\0\0\0\0\0\0\0';
-            $(comments).muut(url);
-          } else setTimeout(waitForMuut.bind(this), 100);
-        };
+        $(this.$refs.comments).muut(url);
+      },
 
-        waitForMuut();
-
-        postscribe(muutjs,
-                   '<script src="//cdn.muut.com/1/moot.min.js"></scrip' + 't>');
-      }
+      once: true,
     });
   </script>
-</dom-module>
+</vue-module>

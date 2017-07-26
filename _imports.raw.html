@@ -8,8 +8,8 @@
   <script src="bower_components/vue-module/vue-module.js"></script>
   <script> Vue.use(VueModule); Vue.use(VueMaterial); </script>
 
-  <link rel="import" href="bower_components/prism-js/prism-js.html">
   <link rel="stylesheet" href="bower_components/prism/themes/prism-tomorrow.css">
+  <script src="bower_components/prism/prism.js"></script>
   <script src="bower_components/prism/components/prism-python.min.js"></script>
   <script src="bower_components/prism/components/prism-c.min.js"></script>
   <script src="bower_components/prism/components/prism-cpp.min.js"></script>
@@ -24,37 +24,24 @@
   <link rel="import" href="elements/post-list.html">
   <!-- <link rel="import" href="elements/warning-card.html"> -->
   <!-- <link rel="import" href="elements/note-card.html"> -->
-  <!-- <link rel="import" href="elements/site-suffix.html"> -->
-  <!-- <link rel="import" href="elements/site-tags.html"> -->
-  <!-- <link rel="import" href="elements/link-header.html"> -->
-  <!-- <link rel="import" href="elements/embedded-image.html"> -->
-  <!-- <link rel="import" href="elements/google-analytics.html"> -->
+  <link rel="import" href="elements/site-suffix.html">
+  <link rel="import" href="elements/site-tags.html">
+  <link rel="import" href="elements/link-header.html">
+  <link rel="import" href="elements/prism-js.html">
+  <link rel="import" href="elements/embedded-image.html">
+  <link rel="import" href="elements/google-analytics.html">
 
   <style>
-    /* body { */
-    /*   font-family: 'Roboto', 'Noto', sans-serif; */
-    /*   line-height: 1.4; */
-    /*   color: DarkSlateGray; */
-    /*   height: 100%; */
-    /*   width: 100%; */
-    /*   margin: 0; */
-    /* } */
-    /* h1 { font-weight: 500; } */
-    /* a, a:visited { text-decoration: none; color: mediumblue; } */
-    /* a:hover { text-decoration: underline; color: mediumblue; } */
-    /* img { max-width: 100%; height: auto; overflow-x: scroll; } */
-
-    /* a paper-button, a:hover paper-button, a:visited paper-button { */
-    /*   text-decoration: none; color: white; */
-    /* } */
-
-    /* a paper-item, a:hover paper-item, a:visited paper-item { */
-    /*   text-decoration: none; color: black; */
-    /* } */
+    a, a:visited:not(.md-button) { text-decoration: none; color: mediumblue; }
+    a:hover:not(.md-button) { text-decoration: underline; color: mediumblue; }
+    body #page { margin-left: 1em; margin-right: 1em; }
+    .site-navbar { margin-left: -1em; margin-right: -1em; }
   </style>
 
   <script>
     document.addEventListener('WebComponentsReady', function () {
+      Vue.config.ignoredElements = ['share-button'];
+
       new Vue({ el: '#page' });
     });
   </script>

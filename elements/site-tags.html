@@ -1,36 +1,43 @@
-<dom-module id="site-tags">
+<vue-module id="site-tags">
   <template>
-    <style is="custom-style">
-      a:hover { text-decoration: none !important; }
-      paper-button { margin-bottom: 1em; }
-    </style>
+    <!-- <style is="custom-style"> -->
+    <!--   a:hover { text-decoration: none !important; } -->
+    <!--   paper-button { margin-bottom: 1em; } -->
+    <!-- </style> -->
 
-    <style>
-      paper-button { background-color: black; }
-    </style>
+    <!-- <style> -->
+    <!--   paper-button { background-color: black; } -->
+    <!-- </style> -->
 
-    <template is="dom-if" if="{{!noHeader}}">
+    <span v-if="!noHeader">
       TAGS:
-    </template>
+    </span>
 
-    <template is="dom-repeat" items="{{tags}}">
-      <a href="/tags.html#[[item]]"><paper-button>[[item]]</paper-button></a>
-    </template>
+    <md-chip md-editable v-for="(tag, index) in tagsArray" :href="'/tags.html#' + tag"
+             :key="index" style="margin: 0.2em;">
+      {{tag}}
+    </md-chip>
 
     <br>
   </template>
 
   <script>
-    Polymer({
-      is: 'site-tags',
-
-      properties: {
-        tags: Array,
+    Vue.module('site-tags', {
+      props: {
+        tags: String,
         noHeader: {
           type: Boolean,
-          value: false,
-        }
-      }
+          default: false,
+        },
+      },
+
+      computed: {
+        tagsArray: function () {
+          return $.map(this.tags.split(','), function (tag) {
+            return $.trim(tag).toUpperCase();
+          });
+        },
+      },
     });
   </script>
-</dom-module>
+</vue-module>
