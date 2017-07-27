@@ -14,7 +14,7 @@
     </span>
 
     <md-chip md-editable v-for="(tag, index) in tagsArray" :href="'/tags.html#' + tag"
-             :key="index" style="margin: 0.2em;">
+             :key="index" style="margin: 0.2em;" v-on:edit="tagclick(tag)">
       {{tag}}
     </md-chip>
 
@@ -36,6 +36,12 @@
           return $.map(this.tags.split(','), function (tag) {
             return $.trim(tag).toUpperCase();
           });
+        },
+      },
+
+      methods: {
+        tagclick: function (tag) {
+          window.location.href = '/tags.html#' + encodeURIComponent(tag.toLowerCase());
         },
       },
     });

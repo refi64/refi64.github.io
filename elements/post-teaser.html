@@ -31,12 +31,7 @@
       },
 
       mounted: function () {
-        $.ajax({
-          url: this.url,
-          context: this,
-          dataType: 'html',
-        }).done(function (postText) {
-          var post = $('<div>').append($(postText));
+        getPost(this, this.url, function (post) {
           this.title = $.trim(post.find('title').text());
           this.createdOn = post.find('site-title').attr('created-on');
           this.teaser = post.find('#teaser').html();

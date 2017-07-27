@@ -7,110 +7,112 @@
 </head>
 
 <body>
-  <site-navbar></site-navbar>
-  <site-title created-on="2016-05-29 15:07"></site-title>
+  <div id="page">
+    <site-navbar></site-navbar>
+    <site-title created-on="2016-05-29 15:07"></site-title>
 
-  <div id="teaser">
-    <p>
-      We've all done those things before. You know it's a horrible idea, but it
-      just sounds <i>so</i> cool that you can't resist.</p>
+    <div id="teaser">
+      <p>
+        We've all done those things before. You know it's a horrible idea, but it
+        just sounds <i>so</i> cool that you can't resist.</p>
+
+      <p>
+        Well, that's why I decided to move away from Nikola (which is awesome BTW)
+        and roll a home-made website using Polymer and the paper components.</p>
+    </div>
+
+    <link-header id="why">But...why?</link-header>
+
+    <p>To be honest, I have absolutely no idea.</p>
 
     <p>
-      Well, that's why I decided to move away from Nikola (which is awesome BTW)
-      and roll a home-made website using Polymer and the paper components.</p>
+      I had been toying with Polymer, and I loved it. However, it seemed like there
+      was nothing for me to use it on. Then I got the idea: why not move away from
+      my perfectly good, fast, stable static site generator and rewrite the whole
+      site by myself?</p>
+
+    <p>
+      Also, I was bored and curious. I dislike "black boxes"; if I don't know how
+      something works, I get frustrated easily.</p>
+
+    <p>In addition, where's the fun in <i>not</i> re-inventing the wheel?</p>
+
+    <link-header id="easy">The easy parts</link-header>
+
+    <p>
+      Some stuff was pretty easy. For instance, I'm using
+      <a href="http://prismjs.com/">Prism</a> for syntax highlighting and
+      <a href="https://sharebutton.co/">share-button</a> for sharing stuff. I stuck
+      with Disqus for commenting.</p>
+
+    <link-header id="hard">The hard/messy parts (mostly AJAX)</link-header>
+
+    <p>Well, of course there were some...err...<i>complications</i>...</p>
+
+
+    <p>
+      In particular, notice the <a href="/index.html">index page</a>. The whole
+      thing is automatically-generated. With AJAX.</p>
+
+    <p>
+      In the root of the website is
+      <a href="/posts.json"><code>posts.json</code></a>. This contains a list of
+      <i>all</i> the posts. The source code of <code>index.html</code> uses AJAX to
+      fetch the list of posts, then proceeds to again use AJAX (fun stuff) in order
+      to fetch the post.</p>
+
+    <p>
+      Now, the fetched post is already in DOM nodes, so I can use normal DOM
+      querying to fetch the <code>div</code> with the id <code>teaser</code> and
+      generate a teaser from it.</p>
+
+    <link-header id="weird">The really weird parts</link-header>
+
+    <p>
+      Tags use a similar mechanism of getting the posts via AJAX and querying the
+      <code>site-tags</code> element. However, for some weird as heck reason, on my
+      computer, clicking <code>any</code> link that leads to a totally different
+      page, it'll just take you back to <code>tags.html</code>. Refresing fixes the
+      issue. No clue what the heck is wrong...</p>
+
+    <link-header id="stupid">The stupid mistakes</link-header>
+
+    <p>So I don't usually do <i>that</i> much web development:</p>
+
+    <ul>
+      <li>
+        I consistently blew my brain out trying to figure out why elements weren't
+        showing. Because I changed the opening tag of another element and forgot to
+        change the closing tag. Resulting in it never being closed.</li>
+
+      <li>
+        I code too much Python. Iny my JS code, I tried adding two arrays together
+        with <code>+</code>...</li>
+
+      <li>
+        Random other stuff. Mostly stuff related to styling/AJAX. JS is <i>not</i>
+        my forte.</li>
+    </ul>
+
+    <link-header id="closing">Closing thoughts</link-header>
+
+    <p>
+      Normally, I dislike websites that use JavaScript a lot. But I just couldn't
+      resist the idea of trying to do this whole thing without a static site
+      generator. I mean, it <i>mostly</i> works...</p>
+
+    <p>
+      Note that, at the moment, the RSS feed still no longer works. Not quite sure
+      what to do about that yet.</p>
+
+    <p>Oh, and also:</p>
+
+    <embedded-image
+        alt="CommitStrip: Why, for the glory of code, of course!"
+        url="http://www.commitstrip.com/wp-content/uploads/2016/05/Strip-Detruire-les-serveurs-english650-final.jpg">
+    </embedded-image>
+
+    <site-tags tags="website nikola polymer"></site-tags>
+    <site-suffix></site-suffix>
   </div>
-
-  <link-header id="why">But...why?</link-header>
-
-  <p>To be honest, I have absolutely no idea.</p>
-
-  <p>
-    I had been toying with Polymer, and I loved it. However, it seemed like there
-    was nothing for me to use it on. Then I got the idea: why not move away from
-    my perfectly good, fast, stable static site generator and rewrite the whole
-    site by myself?</p>
-
-  <p>
-    Also, I was bored and curious. I dislike "black boxes"; if I don't know how
-    something works, I get frustrated easily.</p>
-
-  <p>In addition, where's the fun in <i>not</i> re-inventing the wheel?</p>
-
-  <link-header id="easy">The easy parts</link-header>
-
-  <p>
-    Some stuff was pretty easy. For instance, I'm using
-    <a href="http://prismjs.com/">Prism</a> for syntax highlighting and
-    <a href="https://sharebutton.co/">share-button</a> for sharing stuff. I stuck
-    with Disqus for commenting.</p>
-
-  <link-header id="hard">The hard/messy parts (mostly AJAX)</link-header>
-
-  <p>Well, of course there were some...err...<i>complications</i>...</p>
-
-
-  <p>
-    In particular, notice the <a href="/index.html">index page</a>. The whole
-    thing is automatically-generated. With AJAX.</p>
-
-  <p>
-    In the root of the website is
-    <a href="/posts.json"><code>posts.json</code></a>. This contains a list of
-    <i>all</i> the posts. The source code of <code>index.html</code> uses AJAX to
-    fetch the list of posts, then proceeds to again use AJAX (fun stuff) in order
-    to fetch the post.</p>
-
-  <p>
-    Now, the fetched post is already in DOM nodes, so I can use normal DOM
-    querying to fetch the <code>div</code> with the id <code>teaser</code> and
-    generate a teaser from it.</p>
-
-  <link-header id="weird">The really weird parts</link-header>
-
-  <p>
-    Tags use a similar mechanism of getting the posts via AJAX and querying the
-    <code>site-tags</code> element. However, for some weird as heck reason, on my
-    computer, clicking <code>any</code> link that leads to a totally different
-    page, it'll just take you back to <code>tags.html</code>. Refresing fixes the
-    issue. No clue what the heck is wrong...</p>
-
-  <link-header id="stupid">The stupid mistakes</link-header>
-
-  <p>So I don't usually do <i>that</i> much web development:</p>
-
-  <ul>
-    <li>
-      I consistently blew my brain out trying to figure out why elements weren't
-      showing. Because I changed the opening tag of another element and forgot to
-      change the closing tag. Resulting in it never being closed.</li>
-
-    <li>
-      I code too much Python. Iny my JS code, I tried adding two arrays together
-      with <code>+</code>...</li>
-
-    <li>
-      Random other stuff. Mostly stuff related to styling/AJAX. JS is <i>not</i>
-      my forte.</li>
-  </ul>
-
-  <link-header id="closing">Closing thoughts</link-header>
-
-  <p>
-    Normally, I dislike websites that use JavaScript a lot. But I just couldn't
-    resist the idea of trying to do this whole thing without a static site
-    generator. I mean, it <i>mostly</i> works...</p>
-
-  <p>
-    Note that, at the moment, the RSS feed still no longer works. Not quite sure
-    what to do about that yet.</p>
-
-  <p>Oh, and also:</p>
-
-  <img style="max-width: 650; max-height: 622;"
-       src="http://www.commitstrip.com/wp-content/uploads/2016/05/Strip-Detruire-les-serveurs-english650-final.jpg">
-    CommitStrip: Why, for the glory of code, of course!
-  </img>
-  <p></p>
-
-  <site-suffix></site-suffix>
 </body>

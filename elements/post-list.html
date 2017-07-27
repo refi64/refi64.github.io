@@ -25,11 +25,7 @@
       },
 
       mounted: function () {
-        $.ajax({
-          url: '/posts.json',
-          context: this,
-          dataType: 'json',
-        }).done(function (posts) {
+        getPosts(this, function (posts) {
           this.posts = posts.posts;
         });
       },

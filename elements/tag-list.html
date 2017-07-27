@@ -1,93 +1,92 @@
-<dom-module id="tag-list">
-  <link rel="import" href="fetch-posts.html">
-  <link rel="import" href="post-teaser.html">
-  <link rel="import" href="/bower_components/iron-location/iron-location.html">
-
+<vue-module id="tag-list">
   <template>
-    <iron-location hash="{{tag}}"></iron-location>
-    <fetch-posts target="{{posts}}"></fetch-posts>
-
-    <template is="dom-if" if="{{tagPage}}">
-      <template is="dom-if" if="{{isTag(tag)}}">
-        <h1>Tag: [[tag]]</h1>
-      </template>
-
-      <template is="dom-if" if="{{!isTag(tag)}}">
-        <h1>Tags</h1>
-      </template>
-
-      <warning-card>
-        The "Read more..." links (bizzarely) don't work like you'd expect. If
-        clicking a link to a post takes you back to the "Tags" page, then try
-        using right click -&gt; open in new tab, or hit Refresh/F5 after clicking
-        the link.
-      </warning-card>
-      <br>
-      <br>
-
+    <template v-if="tagPage">
+      <h1 v-if="istag">Tag: {{tag}}</h1>
+      <h1 v-else>Tags</h1>
     </template>
 
-    <template is="dom-if" if="{{!isTag(tag)}}">
-      <site-tags tags="{{gatherAllTags(posts.posts)}}" no-header></site-tags>
+    <template v-if="!istag">
+      <site-tags :tags="allTagsString" no-header></site-tags>
     </template>
 
-    <template is="dom-if" if="{{isTag((tag)}}">
-      <template is="dom-repeat" items="{{gatherPostsFor(posts.posts, tag)}}">
-        <post-teaser post="[[item]]"></post-teaser>
-      </template>
+    <template v-else>
+      <post-teaser v-for="(post, index) in ourPosts" :key="index" :post="post"></post-teaser>
     </template>
   </template>
 
   <script>
-    Polymer({
-      is: 'tag-list',
-
-      properties: {
+    Vue.module('tag-list', {
+      props: {
         tagPage: {
           type: Boolean,
-          value: false,
-        }
+          default: false,
+        },
       },
 
-      mapTags: function (posts, func) {
-        for (var i=0; i<posts.length; i++) {
-          var req = new XMLHttpRequest();
-          req.open('GET', '/posts/' + posts[i] + '.html', false);
-          req.send(null);
-          if (req.response) {
-            var div = document.createElement('div');
-            div.innerHTML = req.response;
-            var site_tags = div.querySelector('site-tags');
-            if (site_tags)
-              func(posts[i], site_tags.tags);
+      data: function () {
+        return {
+          tag: '',
+          posts: [],
+          allTags: [],
+          ourPosts: [],
+        };
+      },
+
+      methods: {
+        mapTags: function (func) {
+          for (var i=0; i<this.posts.length; i++) {
+            getPost(this, '/posts/' + this.posts[i] + '.html', (function (index, post) {
+              var tags = post.find('site-tags').attr('tags');
+              if (tags === undefined)
+                console.error(this.posts[index] + ' has no tags');
+              func.call(this, this.posts[index], tags);
+            }).bind(this, i));
           }
-        }
+        },
+
+        updateTags: function () {
+          if (!this.istag) {
+            this.mapTags(function (post, tagstring) {
+              var tags = tagstring.split(', ');
+              for (var i=0; i<tags.length; i++)
+                if (this.allTags.indexOf(tags[i]) == -1) {
+                  this.allTags.push(tags[i]);
+                  this.allTags.sort();
+                }
+            });
+          } else {
+            this.mapTags(function (post, tags) {
+              if (tags.indexOf(this.tag) != -1) {
+                this.ourPosts.push(post);
+              }
+            });
+          }
+        },
       },
 
-      gatherAllTags: function (posts) {
-        var all_tags = [];
-        this.mapTags(posts, function (post, tags) {
-          for (var i=0; i<tags.length; i++)
-            if (all_tags.indexOf(tags[i]) == -1)
-              all_tags.push(tags[i]);
+      computed: {
+        istag: function () { return this.tag != '' && this.tagPage; },
+        allTagsString: function () { return this.allTags.join(', '); },
+      },
+
+      watch: {
+        posts: function () { this.updateTags(); },
+        tag: function () { this.updateTags(); },
+      },
+
+      mounted: function () {
+        var hashchange = (function () {
+          this.tag = decodeURIComponent(window.location.hash.substring(1));
+        }).bind(this);
+
+        hashchange();
+        $(window).on('hashchange', hashchange);
+        $(window).ready(hashchange);
+
+        getPosts(this, function (posts) {
+          this.posts = posts.posts;
         });
-
-        all_tags.sort();
-        return all_tags;
       },
-
-      gatherPostsFor: function (posts, tag) {
-        var found = [];
-
-        this.mapTags(posts, function (post, tags) {
-          if (tags.indexOf(tag) != -1)
-            found.push(post);
-        });
-
-        return found;
-      },
-
-      isTag: function (hash) { return hash != '' && this.tagPage; },
     });
   </script>
-</dom-module>
+</vue-module>

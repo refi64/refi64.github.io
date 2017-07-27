@@ -7,223 +7,225 @@
 </head>
 
 <body>
-  <site-navbar></site-navbar>
+  <div id="page">
+    <site-navbar></site-navbar>
 
-  <h1>XCXSound</h1>
+    <h1>XCXSound</h1>
 
-  <p>
-    XCXSound is a tool that makes it easier to use custom music in Xenoblade
-    Chronicles X. Runs on Windows and Linux (OSX should work, but it's
-    untested).</p>
+    <p>
+      XCXSound is a tool that makes it easier to use custom music in Xenoblade
+      Chronicles X. Runs on Windows and Linux (OSX should work, but it's
+      untested).</p>
 
-  <link-header id="screen">Screenshots</link-header>
+    <link-header id="screen">Screenshots</link-header>
 
-  <img src="https://s5.postimg.org/mgrqipddz/xcxsound_v0_4.png"
-       style="max-height: 802px; max-width: 626px;">Linux</img>
+    <embedded-image url="https://s5.postimg.org/mgrqipddz/xcxsound_v0_4.png">
+      Linux</embedded-image>
 
-  <link-header id="downloads">Downloads</link-header>
+    <link-header id="downloads">Downloads</link-header>
 
-  <link-header id="v04" small>Version 0.4</link-header>
+    <link-header id="v04" small>Version 0.4</link-header>
 
-  <p><a href="https://www.dropbox.com/s/smfaw5kfrpaubr2/xcxsound_v0.4.zip?dl=0">
-    Windows binaries.</a></p>
+    <p><a href="https://www.dropbox.com/s/smfaw5kfrpaubr2/xcxsound_v0.4.zip?dl=0">
+      Windows binaries.</a></p>
 
-  <link-header id="v03" small>Version 0.3</link-header>
+    <link-header id="v03" small>Version 0.3</link-header>
 
-  <p><a href="https://www.dropbox.com/s/29d9q1h6no9p2oz/xcxsound_v0.3.zip?dl=0">
-    Windows binaries.</a></p>
+    <p><a href="https://www.dropbox.com/s/29d9q1h6no9p2oz/xcxsound_v0.3.zip?dl=0">
+      Windows binaries.</a></p>
 
-  <link-header id="v02" small>Version 0.2</link-header>
+    <link-header id="v02" small>Version 0.2</link-header>
 
-  <p><a href="https://www.dropbox.com/s/8a8iy0iivwq3rmd/xcxsound_v0.2.zip?dl=0">
-    Windows binaries.</a></p>
+    <p><a href="https://www.dropbox.com/s/8a8iy0iivwq3rmd/xcxsound_v0.2.zip?dl=0">
+      Windows binaries.</a></p>
 
-  <link-header id="v01" small>Version 0.1</link-header>
+    <link-header id="v01" small>Version 0.1</link-header>
 
-  <p><a href="https://www.dropbox.com/s/wtsruq1tis9aap2/xcxsound_v0.1.zip?dl=0">
-    Windows binaries.</a></p>
+    <p><a href="https://www.dropbox.com/s/wtsruq1tis9aap2/xcxsound_v0.1.zip?dl=0">
+      Windows binaries.</a></p>
 
-  <link-header id="src" small>Source code</link-header>
+    <link-header id="src" small>Source code</link-header>
 
-  <a href="http://hub.darcs.net/refi64/xcxsound">
-    Source code is available on Darcs Hub.</a>
+    <a href="http://hub.darcs.net/refi64/xcxsound">
+      Source code is available on Darcs Hub.</a>
 
-  <link-header id="howto">How to use</link-header>
+    <link-header id="howto">How to use</link-header>
 
-  <link-header id="extracting" small>Extracting and opening</link-header>
+    <link-header id="extracting" small>Extracting and opening</link-header>
 
-  <ul>
-    <li>
-      <p>
-        <b>On Windows:</b> Unzip the archive, right-click xcxsound.exe, and hit
-        <i>Run as Administrator.</i></p></li>
-    <li>
-      <p>
-        <b>On Linux:</b> You'll have to get it from source. Download the
-        <a href="http://hub.darcs.net/refi64/xcxsound/dist">zip from Darcs
-        Hub</a> or clone the source yourself via
-        <code>darcs get http://hub.darcs.net/refi64/xcxsound</code>. Make sure
-        you have Python 3.4+, PySide, and Wine installed, then run
-        <code>python3 xcxsound.py</code></p></li>
-  </ul>
+    <ul>
+      <li>
+        <p>
+          <b>On Windows:</b> Unzip the archive, right-click xcxsound.exe, and hit
+          <i>Run as Administrator.</i></p></li>
+      <li>
+        <p>
+          <b>On Linux:</b> You'll have to get it from source. Download the
+          <a href="http://hub.darcs.net/refi64/xcxsound/dist">zip from Darcs
+          Hub</a> or clone the source yourself via
+          <code>darcs get http://hub.darcs.net/refi64/xcxsound</code>. Make sure
+          you have Python 3.4+, PySide, and Wine installed, then run
+          <code>python3 xcxsound.py</code></p></li>
+    </ul>
 
-  <link-header id="basics" small>Setting up XCXSound</link-header>
+    <link-header id="basics" small>Setting up XCXSound</link-header>
 
-  <p>
-    The top-left field of the XCXSound window allows you to set the directory
-    where the music files will be stored. <b>This does not go on your SD card;
-    it goes on your main hard drive!</b> In most cases, the default is fine,
-    so you can ignore this option.</p>
+    <p>
+      The top-left field of the XCXSound window allows you to set the directory
+      where the music files will be stored. <b>This does not go on your SD card;
+      it goes on your main hard drive!</b> In most cases, the default is fine,
+      so you can ignore this option.</p>
 
-  <p>
-    Set the <i>Game ID</i> dropdown to your game's region. Note that I've only
-    tested XCXSound with the US region. After this, click the <i>Load</i>
-    button.</p>
+    <p>
+      Set the <i>Game ID</i> dropdown to your game's region. Note that I've only
+      tested XCXSound with the US region. After this, click the <i>Load</i>
+      button.</p>
 
-  <link-header id="editing" small>Editing the songs</link-header>
+    <link-header id="editing" small>Editing the songs</link-header>
 
-  <p>
-    Select the song you want to change and click <i>Edit Song</i>. There
-    are two options at this point:</p>
+    <p>
+      Select the song you want to change and click <i>Edit Song</i>. There
+      are two options at this point:</p>
 
-  <ul>
-    <li><b>Reset</b> - Remove any modifications to the song.</li>
-    <li><b>Cancel</b> - Do nothing.</li>
-    <li><b>No music</b> - No music will be played.</li>
-    <li>
-      <b>Custom song</b> - Select an audio file to use. XCXSound uses FFmpeg,
-      which means that a wide variety of music formats are supported, including
-      <code>.mp3</code>, <code>.wav</code>, <code>.flac</code>,
-      <code>.ogg</code>, <code>.m4a</code>, <code>.acc</code>, and more. Once
-      you select the audio file to convert, XCXSound will automatically
-      convert it to the proper format and loop it if necessary. Note that there
-      is a catch when replacing the ambush music: if the song is under 30 seconds
-      long, it will be padded with silence until it reaches 30 seconds in length.
-      Fix? Just pick a longer song for the ambush music!!!</li>
-  </ul>
+    <ul>
+      <li><b>Reset</b> - Remove any modifications to the song.</li>
+      <li><b>Cancel</b> - Do nothing.</li>
+      <li><b>No music</b> - No music will be played.</li>
+      <li>
+        <b>Custom song</b> - Select an audio file to use. XCXSound uses FFmpeg,
+        which means that a wide variety of music formats are supported, including
+        <code>.mp3</code>, <code>.wav</code>, <code>.flac</code>,
+        <code>.ogg</code>, <code>.m4a</code>, <code>.acc</code>, and more. Once
+        you select the audio file to convert, XCXSound will automatically
+        convert it to the proper format and loop it if necessary. Note that there
+        is a catch when replacing the ambush music: if the song is under 30 seconds
+        long, it will be padded with silence until it reaches 30 seconds in length.
+        Fix? Just pick a longer song for the ambush music!!!</li>
+    </ul>
 
-  <p>
-    After this, you will be shown another dialog that lets you change the
-    volume of the music. Positive values increase the volume by the
-    corresponding percentage, and negative values decrease it. If you don't
-    want to change the volume at all, click <i>Don't Change</i>.</p>
+    <p>
+      After this, you will be shown another dialog that lets you change the
+      volume of the music. Positive values increase the volume by the
+      corresponding percentage, and negative values decrease it. If you don't
+      want to change the volume at all, click <i>Don't Change</i>.</p>
 
-  <link-header id="cafiine" small>
-    Connecting the Wii U to the computer</link-header>
+    <link-header id="cafiine" small>
+      Connecting the Wii U to the computer</link-header>
 
-  <b>On your computer:</b>
+    <b>On your computer:</b>
 
-  <ul>
-    <li>Make note of your IP address on the bottom-ride of XCXSound.</li>
-    <li>
-      Click <i>Start Cafiine</i> inside XCXSound. This will start up the
-      Cafiine server. If the Windows firewall pops up and says it blocked
-      Cafiine, make sure you select <i>both</i> check boxes, then hit
-      <i>Allow access</i>.</li>
-  </ul>
+    <ul>
+      <li>Make note of your IP address on the bottom-ride of XCXSound.</li>
+      <li>
+        Click <i>Start Cafiine</i> inside XCXSound. This will start up the
+        Cafiine server. If the Windows firewall pops up and says it blocked
+        Cafiine, make sure you select <i>both</i> check boxes, then hit
+        <i>Allow access</i>.</li>
+    </ul>
 
-  <b>On the Wii U:</b>
+    <b>On the Wii U:</b>
 
-  <ul>
-    <li>Open up the web browser and navigate to <code>loadiine.ovh</code>.</li>
-    <li>
-      Select <i>Cafiine + Kernel</i> from the drop-down menu and hit
-      <i>Submit</i>.</li>
-    <li>
-      Once you end up back at the main menu, return to the internet
-      browser. After this, you should end up with a screen on the Wii U gamepad
-      gamepad asking you to enter an IP address. Use the D-pad to enter the IP
-      address you saw in XCXSound earlier, then hit the A button.</li>
-    <li>Open up Xenoblade X and enjoy the custom music!</li>
-  </ul>
+    <ul>
+      <li>Open up the web browser and navigate to <code>loadiine.ovh</code>.</li>
+      <li>
+        Select <i>Cafiine + Kernel</i> from the drop-down menu and hit
+        <i>Submit</i>.</li>
+      <li>
+        Once you end up back at the main menu, return to the internet
+        browser. After this, you should end up with a screen on the Wii U gamepad
+        gamepad asking you to enter an IP address. Use the D-pad to enter the IP
+        address you saw in XCXSound earlier, then hit the A button.</li>
+      <li>Open up Xenoblade X and enjoy the custom music!</li>
+    </ul>
 
-  <link-header id="backup" small>Backing up and restoring mods</link-header>
+    <link-header id="backup" small>Backing up and restoring mods</link-header>
 
-  <p>
-    If you have a group of sound modifications you would like to save, you
-    can do so using the <i>Backup all mods</i> button. This will save all your
-    audio modifications to a zip file. You can later restore them using the
-    <i>Restore a backup</i> button.</p>
+    <p>
+      If you have a group of sound modifications you would like to save, you
+      can do so using the <i>Backup all mods</i> button. This will save all your
+      audio modifications to a zip file. You can later restore them using the
+      <i>Restore a backup</i> button.</p>
 
-  <p>
-    Note that restoring a backup will <b>not</b> remove any already-present
-    mods. Hit <i>Reset all mods</i> first if you want to do that.</note-card>
+    <p>
+      Note that restoring a backup will <b>not</b> remove any already-present
+      mods. Hit <i>Reset all mods</i> first if you want to do that.</note-card>
 
-  <link-header id="rm-flight" small>Removing the flight music</link-header>
+    <link-header id="rm-flight" small>Removing the flight music</link-header>
 
-  <note-card>
-    This feature is still in testing!! Please read this section fully before
-    attempting to use it.</note-card>
+    <note-card>
+      This feature is still in testing!! Please read this section fully before
+      attempting to use it.</note-card>
 
-  <p>
-    XCXSound can automatically try to replace the flight music with the normal
-    continent music, but there are some gotchas involved. In order to enable
-    this, just check the <i>No flight music</i> checkbox before hitting
-    <i>Start Cafiine</i>. Note the following:</p>
+    <p>
+      XCXSound can automatically try to replace the flight music with the normal
+      continent music, but there are some gotchas involved. In order to enable
+      this, just check the <i>No flight music</i> checkbox before hitting
+      <i>Start Cafiine</i>. Note the following:</p>
 
-  <ul>
-    <li>This restarts the continent theme.</li>
-    <li>
-      If you cross a continent boundary, or the time changes between day and
-      night, you need to land your skell, wait a second or so for the correct
-      music to load, and then take off again.</li>
-    <li>
-      If you fast-travel, wait a few seconds before taking off flying to make
-      sure the new music gets loaded.</li>
-    <li>This will erase any previous flight music mods that you've done.</li>
-    <li>
-      After you're done with Cafiine, make sure you select the flight music
-      in XCXSound and hit <i>Edit song</i> -&gt; <i>Reset</i>.</li>
-  </ul>
+    <ul>
+      <li>This restarts the continent theme.</li>
+      <li>
+        If you cross a continent boundary, or the time changes between day and
+        night, you need to land your skell, wait a second or so for the correct
+        music to load, and then take off again.</li>
+      <li>
+        If you fast-travel, wait a few seconds before taking off flying to make
+        sure the new music gets loaded.</li>
+      <li>This will erase any previous flight music mods that you've done.</li>
+      <li>
+        After you're done with Cafiine, make sure you select the flight music
+        in XCXSound and hit <i>Edit song</i> -&gt; <i>Reset</i>.</li>
+    </ul>
 
-  <p>If you follow these directions carefully, it should work well!</p>
+    <p>If you follow these directions carefully, it should work well!</p>
 
-  <link-header id="rst" small>Resetting your mods</link-header>
+    <link-header id="rst" small>Resetting your mods</link-header>
 
-  <p>
-    If you want to reset all your music mods, use the <i>Reset all mods</i>
-    button.</p>
+    <p>
+      If you want to reset all your music mods, use the <i>Reset all mods</i>
+      button.</p>
 
-  <link-header id="changelog">Changelog</link-header>
+    <link-header id="changelog">Changelog</link-header>
 
-  <link-header id="log-v0.4" small>Version 0.4</link-header>
+    <link-header id="log-v0.4" small>Version 0.4</link-header>
 
-  <ul>
-    <li>Add the ability to change the volume of songs.</li>
-    <li>Add support for changing the overdrive theme
-      (<a href="http://hub.darcs.net/refi64/xcxsound/issue/3">issue #3</a>).
-      </li>
-    <li>Fix some audio glitches when a song would loop.</li>
-    <li>Avoid spawning unnecessary cmd.exe windows on Windows.</li>
-  </ul>
+    <ul>
+      <li>Add the ability to change the volume of songs.</li>
+      <li>Add support for changing the overdrive theme
+        (<a href="http://hub.darcs.net/refi64/xcxsound/issue/3">issue #3</a>).
+        </li>
+      <li>Fix some audio glitches when a song would loop.</li>
+      <li>Avoid spawning unnecessary cmd.exe windows on Windows.</li>
+    </ul>
 
-  <link-header id="log-v0.3" small>Version 0.3</link-header>
+    <link-header id="log-v0.3" small>Version 0.3</link-header>
 
-  <ul>
-    <li>
-      Add the ability to automatically remove flight music!!! Many thanks to
-      GameFAQs user
-      <a href="http://www.gamefaqs.com/community/hshamsedin546">hshamsedin546</a>
-      for helping make this possible! (I don't have a flight module yet, so
-      they tested out all the changes, reported what was wrong, etc.)</li>
-    <li>
-      Changed the behavior of <i>Restore a backup</i> to not remove current
-      mods.</li>
-  </ul>
+    <ul>
+      <li>
+        Add the ability to automatically remove flight music!!! Many thanks to
+        GameFAQs user
+        <a href="http://www.gamefaqs.com/community/hshamsedin546">hshamsedin546</a>
+        for helping make this possible! (I don't have a flight module yet, so
+        they tested out all the changes, reported what was wrong, etc.)</li>
+      <li>
+        Changed the behavior of <i>Restore a backup</i> to not remove current
+        mods.</li>
+    </ul>
 
-  <link-header id="log-v0.2" small>Version 0.2</link-header>
+    <link-header id="log-v0.2" small>Version 0.2</link-header>
 
-  <ul>
-    <li>Add the ability to replace 14 more songs.</li>
-    <li>Fix ambush music from glitching if under 30 seconds in length.</li>
-    <li>Fix MONOX not playing (<a href="http://hub.darcs.net/refi64/xcxsound/issue/1">#1</a>).</li>
-    <li>Add the <i>No music</i> option.</li>
-    <li>Add backup and restore.</li>
-  </ul>
+    <ul>
+      <li>Add the ability to replace 14 more songs.</li>
+      <li>Fix ambush music from glitching if under 30 seconds in length.</li>
+      <li>Fix MONOX not playing (<a href="http://hub.darcs.net/refi64/xcxsound/issue/1">#1</a>).</li>
+      <li>Add the <i>No music</i> option.</li>
+      <li>Add backup and restore.</li>
+    </ul>
 
-  <link-header id="log-v0.1" small>Version 0.1</link-header>
+    <link-header id="log-v0.1" small>Version 0.1</link-header>
 
-  <p>Initial version.</p>
+    <p>Initial version.</p>
 
-  <google-analytics></google-analytics>
+    <google-analytics></google-analytics
+  </div>
 </body>
