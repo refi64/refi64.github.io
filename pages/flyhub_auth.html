@@ -1,3 +1,5 @@
+<!DOCTYPE html>
+
 <head>
   <title>FlyHub Authentication</title>
   <script src="/bower_components/webcomponentsjs/webcomponents-lite.js">
@@ -7,19 +9,21 @@
 </head>
 
 <body>
-  <site-navbar></site-navbar>
+  <div id="page">
+    <site-navbar></site-navbar>
 
-  <p>
-    Copy the following code and paste it into the FlyHub application (with
-    Chrome for Android, use <i>Copy link text</i>):</p>
-  <a href="#"><code id="flyhub-code"></code></a>
+    <p>
+      Copy the following code and paste it into the FlyHub application (with
+      Chrome for Android, use <i>Copy link text</i>):</p>
+    <a href="#"><code id="flyhub-code"></code></a>
 
-  <script>
-    window.addEventListener('DOMContentLoaded', function () {
-      document.getElementById('flyhub-code').innerHTML =
-        window.location.search.split('?code=')[1];
-    });
-  </script>
+    <script>
+      window.addEventListener('DOMContentLoaded', function () {
+        document.getElementById('flyhub-code').innerHTML =
+          window.location.search.split('?code=')[1];
+      });
+    </script>
 
-  <google-analytics></google-analytics>
+    <google-analytics></google-analytics>
+  </div>
 </body>

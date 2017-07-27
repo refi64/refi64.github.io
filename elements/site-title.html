@@ -8,7 +8,7 @@
     <a :href="url"><h1>{{title}}</h1></a>
     <div id="meta">
       Created on {{createdOn}} -
-      <a :href="muutjs">Comments</a></div>
+      <a :href="comments">Comments</a></div>
   </template>
 
   <script>
@@ -26,7 +26,7 @@
       },
 
       computed: {
-        muutjs: function () { return this.url + '#muutjs'; },
+        comments: function () { return this.url + '#comments'; },
       },
     });
   </script>

@@ -1,40 +1,49 @@
-<dom-module id="math-preview">
-  <style is="custom-style" include="iron-flex iron-flex-alignment"></style>
+<vue-module id="math-preview">
   <link rel="stylesheet"
         href="//cdnjs.cloudflare.com/ajax/libs/KaTeX/0.2.0/katex.min.css">
   <script src="//cdnjs.cloudflare.com/ajax/libs/KaTeX/0.2.0/katex.min.js">
   </script>
 
-  <template>
-    <style is="custom-style">
-      paper-input {
-        --paper-input-container-invalid-color: red;
-        --paper-input-container-input: { font-family: "Roboto Mono", monospace; };
-      }
-    </style>
+  <style>
+    .katex { font-size: 2em !important; }
+  </style>
 
-    <div class="horizontal layout">
-      <paper-input id="input" label="Math expression" style="width: 45%;"
-                   on-input="render"></paper-input>
-      <div style="width: 10%;"></div>
-      <div id="output" style="width: 45%"></div>
-    </div>
+  <template>
+    <md-input-container :class="{'md-input-invalid': hasError}" ref="input">
+      <label>Math expression goes here</label>
+      <md-textarea v-model="math"></md-textarea>
+
+      <span class="md-error" v-show="hasError">{{error}}</span>
+    </md-input-container>
+
+    <div v-html="result"></div>
   </template>
 
   <script>
-    Polymer({
-      is: 'math-preview',
+    Vue.module('math-preview', {
+      data: function () {
+        return {
+          math: '',
+          error: '',
+          result: '',
+        };
+      },
 
-      render: function (event) {
-        this.$.input.removeAttribute('invalid');
-        this.$.input.removeAttribute('error-message', '');
-        try {
-          katex.render(event.target.value, this.$.output);
-        } catch (err) {
-          this.$.input.setAttribute('invalid', true);
-          this.$.input.setAttribute('error-message', err.message);
-        }
+      computed: {
+        hasError: function () { return this.error.length > 0; },
+      },
+
+      watch: {
+        math: function () {
+          try {
+            this.result = katex.renderToString(this.math);
+            this.error = ''
+          } catch (err) {
+            this.result = '';
+            this.error = err.message;
+          }
+        },
       },
     });
   </script>
-</dom-module>
+</vue-module>

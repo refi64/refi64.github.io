@@ -27,37 +27,40 @@
       </span>
     </if-mobile>
 
-    <div id="main-content">
-      <md-toolbar>
-        <md-button class="md-icon-button" @click="toggleNav">
-          <md-icon>menu</md-icon>
-        </md-button>
+    <md-toolbar>
+      <md-button class="md-icon-button" @click="toggleNav">
+        <md-icon>menu</md-icon>
+      </md-button>
 
-        <h2 class="md-title" style="flex: 1">refi64 - BlockByte</h2>
+      <h2 class="md-title" style="flex: 1">refi64 - BlockByte</h2>
 
-        <if-mobile>
-          <span class="container" slot="desktop">
-            <md-button v-for="(item, index) in headers.root" :key="index" :href="item[1]">
-              {{ item[0] }}
+      <if-mobile>
+        <span class="container" slot="desktop">
+          <md-button v-for="(item, index) in headers.root" :key="index" :href="item[1]">
+            {{ item[0] }}
+          </md-button>
+
+          <md-menu md-align-trigger v-for="(menu, index) in headers.menus" :key="index">
+            <md-button md-menu-trigger>
+              {{ menu }}
+              <md-icon>keyboard_arrow_down</md-icon>
             </md-button>
 
-            <md-menu md-align-trigger v-for="(menu, index) in headers.menus" :key="index">
-              <md-button md-menu-trigger>
-                {{ menu }}
-                <md-icon>keyboard_arrow_down</md-icon>
-              </md-button>
+            <md-menu-content>
+              <md-menu-item v-for="(item, index) in headers[menu]" :key="index"
+                            :href="item[1]">
+                {{ item[0] }}
+              </md-menu-item>
+            </md-menu-content>
+          </md-menu>
+        </span>
+      </if-mobile>
+    </md-toolbar>
 
-              <md-menu-content>
-                <md-menu-item v-for="(item, index) in headers[menu]" :key="index"
-                              :href="item[1]">
-                  {{ item[0] }}
-                </md-menu-item>
-              </md-menu-content>
-            </md-menu>
-          </span>
-        </if-mobile>
-      </md-toolbar>
-    </div>
+    <p style="color: #f44336; margin: 1em 1em 0 1em;">
+      Note that this website recently underwent a major overhaul (again). If you see any
+      issues, please report them
+      <a href="https://github.com/kirbyfan64/kirbyfan64.github.io">here</a>.</p>
   </template>
 
   <style>
@@ -77,11 +80,15 @@
               ['Tags', '/tags.html'],
             ],
 
-            menus: ['Projects', 'Links'],
+            menus: ['Projects', 'Misc', 'Links'],
 
             Projects: [
               ['XCXSound', '/proj/xcxsound.html'],
               ['Other projects', '/projects.html'],
+            ],
+
+            Misc: [
+              ['Katex Previewer', '/pages/katex.html'],
             ],
 
             Links: [

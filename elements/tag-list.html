@@ -1,9 +1,14 @@
 <vue-module id="tag-list">
   <template>
     <template v-if="tagPage">
-      <h1 v-if="istag">Tag: {{tag}}</h1>
+      <h1 v-if="istag">Tag: {{tag.toUpperCase()}}</h1>
       <h1 v-else>Tags</h1>
     </template>
+
+    <div v-if="!hasPosts" style="text-align: center;">
+      <p>Loading tags...</p>
+      <md-spinner md-indeterminate></md-spinner>
+    </div>
 
     <template v-if="!istag">
       <site-tags :tags="allTagsString" no-header></site-tags>
@@ -67,6 +72,8 @@
       computed: {
         istag: function () { return this.tag != '' && this.tagPage; },
         allTagsString: function () { return this.allTags.join(', '); },
+        hasPosts: function () { return this.posts.length > 0 &&
+                                       (this.istag ? this.ourPosts.length > 0: true); },
       },
 
       watch: {

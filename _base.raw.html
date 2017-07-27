@@ -32,6 +32,7 @@
   <link rel="import" href="elements/prism-js.html">
   <link rel="import" href="elements/embedded-image.html">
   <link rel="import" href="elements/embedded-video.html">
+  <link rel="import" href="/elements/math-preview.html">
   <link rel="import" href="elements/google-analytics.html">
 
   <style>
@@ -45,7 +46,32 @@
     document.addEventListener('WebComponentsReady', function () {
       Vue.config.ignoredElements = ['share-button'];
 
-      new Vue({ el: '#page' });
+      Vue.material.registerTheme('default', {
+        primary: 'indigo',
+        accent: 'light-blue',
+        warn: 'red',
+        background: 'white',
+      });
+
+      new Vue({
+        el: '#page',
+
+        methods: {
+          scroll: function () {
+            if (window.location.hash && window.location.hash[0] == '#') {
+              var target = $(window.location.hash);
+              if (target[0])
+                $('body').animate({ scrollTop: target.offset().top });
+            }
+          },
+        },
+
+        mounted: function () {
+          var scroll = this.scroll.bind(this);
+          scroll();
+          $(window).on('hashchange', scroll);
+        },
+      });
     });
 
     function getPosts(context, func) {

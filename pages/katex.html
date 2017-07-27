@@ -1,22 +1,22 @@
 <!DOCTYPE html>
-<!-- The above is required by KaTeX. -->
 
 <head>
   <title>KaTeX math previewer</title>
   <script src="/bower_components/webcomponentsjs/webcomponents-lite.js">
   </script>
   <link rel="import" href="/_base.html">
-  <link rel="import" href="/elements/math-preview.html">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 
 <body>
-  <site-navbar></site-navbar>
+  <div id="page">
+    <site-navbar></site-navbar>
 
-  <p>
-    A KaTeX demo page. Type in your math, and see it rendered. Or you can get a
-    big, red parse error.</p>
+    <p>
+      A KaTeX demo page. Type in your math, and see it rendered. Or you can get a
+      big, red parse error.</p>
 
-  <math-preview></math-preview>
-  <google-analytics></google-analytics>
+    <math-preview></math-preview>
+    <google-analytics></google-analytics>
+  </div>
 </body>

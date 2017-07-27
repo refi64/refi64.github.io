@@ -1,24 +1,5 @@
 <vue-module id="embedded-image">
   <template>
-    <!-- <style is="custom-style"> -->
-    <!--   #text { -->
-    <!--     text-align: center; -->
-    <!--     padding-top: 0.5em; -->
-    <!--   } -->
-
-    <!--   #image { max-width: 100%; } -->
-    <!-- </style> -->
-
-    <!-- <div style="padding: 1em;"> -->
-    <!--   <img id="image" style="{{imgStyle}}" src="{{url}}" alt="{{alt}}" -->
-    <!--        on-load="imgload"/> -->
-    <!--   <div id="text"> -->
-    <!--     <template is="dom-if" if="{{_hasText(text)}}"> -->
-    <!--       <i>{{text}}</i> -->
-    <!--     </template> -->
-    <!--   </div> -->
-    <!-- </div> -->
-
     <div style="padding: 1em;">
       <img ref="image" :style="imgStyle" :src="url" :alt="alt" v-on:load="imgload">
       </img>
