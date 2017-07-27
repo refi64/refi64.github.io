@@ -1,1 +1,325 @@
-/home/ryan/stuff/web/_base.raw.html
+<html><head><meta charset="UTF-8">
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto:300,400,500,700,400italic">
+  <link rel="stylesheet" href="//fonts.googleapis.com/icon?family=Material+Icons">
+  <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
+  <script src="bower_components/vue/dist/vue.js"></script>
+  <script src="https://unpkg.com/vue-material"></script>
+  <link rel="stylesheet" href="https://unpkg.com/vue-material/dist/vue-material.css">
+  <script src="bower_components/vue-module/vue-module.js"></script>
+  <script>Vue.use(VueModule),Vue.use(VueMaterial)</script>
+
+  <link rel="stylesheet" href="bower_components/prism/themes/prism-tomorrow.css">
+  <script src="bower_components/prism/prism.js"></script>
+  <script src="bower_components/prism/components/prism-python.min.js"></script>
+  <script src="bower_components/prism/components/prism-c.min.js"></script>
+  <script src="bower_components/prism/components/prism-cpp.min.js"></script>
+  <script src="bower_components/prism/components/prism-crystal.min.js"></script>
+  <script src="bower_components/prism/components/prism-yaml.min.js"></script>
+  <script src="bower_components/prism/components/prism-nim.min.js"></script>
+  <script src="bower_components/prism/components/prism-haskell.min.js"></script>
+
+  </head>
+<body><div hidden="" by-vulcanize=""><vue-module id="if-mobile">
+  <template>
+    <template v-if="mobile">
+      <slot name="mobile"></slot>
+    </template>
+
+    <template v-else="">
+      <slot name="desktop"></slot>
+    </template>
+  </template>
+
+  <script>function isMobile(){return document.body.clientWidth<=480}Vue.module("if-mobile",{mounted:function(){var i=this;$(window).resize(function(){i.mobile=isMobile()})},data:function(){return{mobile:isMobile()}}})</script>
+</vue-module>
+<vue-module id="site-title">
+  <style>.site-title h1{margin-bottom:.2em;line-height:1.2;font-weight:500}.site-title #meta{margin-bottom:1.2em}</style>
+
+  <template>
+    <a :href="url"><h1>{{title}}</h1></a>
+    <div id="meta">
+      Created on {{createdOn}} -
+      <a :href="comments">Comments</a></div>
+  </template>
+
+  <script>Vue.module("site-title",{props:{createdOn:String,title:{type:String,default:document.title},url:{type:String,default:window.location.pathname}},computed:{comments:function(){return this.url+"#comments"}}})</script>
+</vue-module>
+<vue-module id="site-navbar">
+  <template>
+    <if-mobile>
+      <span class="container" slot="mobile">
+        <md-sidenav class="md-left md-fixed" ref="sidenav">
+          <md-toolbar class="md-large">
+            <div class="md-toolbar-container">
+              <h3 class="md-title">Navigation</h3>
+            </div>
+          </md-toolbar>
+
+          <md-list>
+            <md-list-item v-for="(item, index) in headers.root" :key="index" :href="item[1]">
+              {{ item[0] }}
+            </md-list-item>
+
+            <template v-for="(menu, index) in headers.menus">
+              <md-subheader>{{ menu }}</md-subheader>
+
+              <md-list-item v-for="(item, index) in headers[menu]" :key="index" :href="item[1]">
+                {{ item[0] }}
+              </md-list-item>
+            </template>
+          </md-list>
+        </md-sidenav>
+      </span>
+    </if-mobile>
+
+    <md-toolbar>
+      <md-button class="md-icon-button" @click="toggleNav">
+        <md-icon>menu</md-icon>
+      </md-button>
+
+      <h2 class="md-title" style="flex:1">refi64 - BlockByte</h2>
+
+      <if-mobile>
+        <span class="container" slot="desktop">
+          <md-button v-for="(item, index) in headers.root" :key="index" :href="item[1]">
+            {{ item[0] }}
+          </md-button>
+
+          <md-menu md-align-trigger="" v-for="(menu, index) in headers.menus" :key="index">
+            <md-button md-menu-trigger="">
+              {{ menu }}
+              <md-icon>keyboard_arrow_down</md-icon>
+            </md-button>
+
+            <md-menu-content>
+              <md-menu-item v-for="(item, index) in headers[menu]" :key="index" :href="item[1]">
+                {{ item[0] }}
+              </md-menu-item>
+            </md-menu-content>
+          </md-menu>
+        </span>
+      </if-mobile>
+    </md-toolbar>
+
+    <p style="color:#f44336;margin:1em 1em 0 1em">
+      Note that this website recently underwent a major overhaul (again). If you see any
+      issues, please report them
+      <a href="https://github.com/kirbyfan64/kirbyfan64.github.io">here</a>.</p>
+  </template>
+
+  <style>@media (min-width:481px){.site-navbar .md-icon-button{visibility:hidden}}</style>
+
+  <script>Vue.module("site-navbar",{data:function(){return{headers:{root:[["Home","/"],["RSS","https://feed43.com/4061761183385368.xml"],["Tags","/tags.html"]],menus:["Projects","Misc","Links"],Projects:[["XCXSound","/proj/xcxsound.html"],["Other projects","/projects.html"]],Misc:[["Katex Previewer","/pages/katex.html"]],Links:[["GitHub","https://github.com/kirbyfan64"],["GameFAQs","http://www.gamefaqs.com/community/kirbyfan64sos"],["Stack Overflow","http://stackoverflow.com/users/2097780/refi64"],["Darcs Hub","http://hub.darcs.net/refi64"],["SoundCloud","https://soundcloud.com/user-356790806"],["XDA Developers","https://forum.xda-developers.com/member.php?u=5569318"],["VGMdb","http://vgmdb.net/forums/member.php?u=24312"]]}}},methods:{toggleNav:function(){this.$refs.sidenav.toggle()}}})</script>
+</vue-module>
+<vue-module id="post-list">
+  <vue-module id="post-teaser">
+  <template>
+    <div v-if="!hasPost">
+      <p>Loading post teaser...</p>
+      <md-spinner md-indeterminate=""></md-spinner>
+    </div>
+
+    <template v-if="hasPost">
+      <site-title :created-on="createdOn" :title="title" :url="url"></site-title>
+      <div v-html="teaser"></div>
+    </template>
+
+    <a :href="url">Read more...</a>
+  </template>
+
+  <script>Vue.module("post-teaser",{props:["post"],data:function(){return{teaser:"",title:"",createdOn:""}},computed:{hasPost:function(){return this.teaser.length>0},url:function(){return"/posts/"+this.post+".html"}},mounted:function(){getPost(this,this.url,function(t){this.title=$.trim(t.find("title").text()),this.createdOn=t.find("site-title").attr("created-on"),this.teaser=t.find("#teaser").html()})}})</script>
+</vue-module>
+<template>
+    <div v-if="!hasPosts" style="text-align:center">
+      <p>Loading posts...</p>
+      <md-spinner md-indeterminate=""></md-spinner>
+    </div>
+
+    <template v-if="hasPosts">
+      <post-teaser v-for="(post, index) in posts" :post="post" :key="index"></post-teaser>
+    </template>
+  </template>
+
+  <script>Vue.module("post-list",{data:function(){return{posts:[]}},computed:{hasPosts:function(){return this.posts.length>0}},mounted:function(){getPosts(this,function(t){this.posts=t.posts})}})</script>
+</vue-module>
+<vue-module id="generic-card">
+  <template>
+    <md-card :class="theme">
+      <md-card-header>
+        <div class="md-title">{{title}}</div>
+      </md-card-header>
+
+      <md-card-content>
+        <slot></slot>
+      </md-card-content>
+    </md-card>
+  </template>
+
+  <script>Vue.module("generic-card",{props:["title","theme"]})</script>
+</vue-module>
+<vue-module id="warning-card">
+  <template>
+    <generic-card title="WARNING" theme="md-warn">
+      <slot></slot>
+    </generic-card>
+  </template>
+
+  <script>Vue.module("warning-card")</script>
+</vue-module>
+<vue-module id="note-card">
+  <template>
+    <generic-card title="NOTE" theme="md-primary">
+      <slot></slot>
+    </generic-card>
+  </template>
+
+  <script>Vue.module("note-card")</script>
+</vue-module>
+<vue-module id="site-suffix">
+  <script src="/bower_components/better-share-button/dist/share-button.js"></script>
+
+  <link rel="stylesheet" href="/bower_components/better-share-button/dist/share-button.css">
+  <link rel="stylesheet" href="//cdn.muut.com/1/moot.css">
+  <script src="//cdn.muut.com/1/moot.min.js"></script>
+  <link rel="import" href="/elements/google-analytics.html">
+
+  <style>.site-suffix share-button{display:inline-block!important;margin-top:1em}</style>
+
+  <template>
+    <div style="text-align:center">
+      <share-button ref="share">
+      </share-button>
+
+      <p>
+        Really liked this post?
+        <span>
+          <a href="bitcoin:19run9LfWs4wP2drgWpriMXvCg1Zce1EKp">
+            19run9LfWs4wP2drgWpriMXvCg1Zce1EKp</a>
+          <md-tooltip md-direction="bottom">
+            QR code:
+            <embedded-image url="/bitcoin.png"></embedded-image>
+          </md-tooltip>
+        </span>
+      </p>
+    </div>
+
+    <div id="comments"></div>
+    <a ref="comments" type="dynamic">Loading comments...</a>
+
+    <google-analytics></google-analytics>
+  </template>
+
+  <script>Vue.module("site-suffix",{mounted:function(){new ShareButton;var t="https://muut.com/i/blockbyte/general:"+muut.urlify(document.title)+"\0\0\0\0\0\0\0\0\0\0";$(this.$refs.comments).muut(t)},once:!0})</script>
+</vue-module>
+<vue-module id="site-tags">
+  <template>
+    <span v-if="!noHeader">
+      <b><i>Tags:</i></b>
+    </span>
+
+    <md-chip md-editable="" v-for="(tag, index) in tagsArray" :href="'/tags.html#' + tag" :key="index" style="margin:.2em" v-on:edit="tagclick(tag)">
+      {{tag}}
+    </md-chip>
+
+    <br>
+  </template>
+
+  <script>Vue.module("site-tags",{props:{tags:String,noHeader:{type:Boolean,default:!1}},computed:{tagsArray:function(){return $.map(this.tags.split(","),function(t){return $.trim(t).toUpperCase()})}},methods:{tagclick:function(t){window.location.href="/tags.html#"+encodeURIComponent(t.toLowerCase())}}})</script>
+</vue-module>
+<vue-module id="tag-list">
+  <template>
+    <template v-if="tagPage">
+      <h1 v-if="istag">Tag: {{tag.toUpperCase()}}</h1>
+      <h1 v-else="">Tags</h1>
+    </template>
+
+    <div v-if="!hasPosts" style="text-align:center">
+      <p>Loading tags...</p>
+      <md-spinner md-indeterminate=""></md-spinner>
+    </div>
+
+    <template v-if="!istag">
+      <site-tags :tags="allTagsString" no-header=""></site-tags>
+    </template>
+
+    <template v-else="">
+      <post-teaser v-for="(post, index) in ourPosts" :key="index" :post="post"></post-teaser>
+    </template>
+  </template>
+
+  <script>Vue.module("tag-list",{props:{tagPage:{type:Boolean,default:!1}},data:function(){return{tag:"",posts:[],allTags:[],ourPosts:[]}},methods:{mapTags:function(t){for(var s=0;s<this.posts.length;s++)getPost(this,"/posts/"+this.posts[s]+".html",function(s,i){var a=i.find("site-tags").attr("tags");void 0===a&&console.error(this.posts[s]+" has no tags"),t.call(this,this.posts[s],a)}.bind(this,s))},updateTags:function(){this.istag?this.mapTags(function(t,s){-1!=s.indexOf(this.tag)&&this.ourPosts.push(t)}):this.mapTags(function(t,s){for(var i=s.split(", "),a=0;a<i.length;a++)-1==this.allTags.indexOf(i[a])&&(this.allTags.push(i[a]),this.allTags.sort())})}},computed:{istag:function(){return""!=this.tag&&this.tagPage},allTagsString:function(){return this.allTags.join(", ")},hasPosts:function(){return this.posts.length>0&&(!this.istag||this.ourPosts.length>0)}},watch:{posts:function(){this.updateTags()},tag:function(){this.updateTags()}},mounted:function(){var t=function(){this.tag=decodeURIComponent(window.location.hash.substring(1))}.bind(this);t(),$(window).on("hashchange",t),$(window).ready(t),getPosts(this,function(t){this.posts=t.posts})}})</script>
+</vue-module>
+<vue-module id="link-header">
+  <style>.link-header .md-icon{color:gray}.link-header .md-icon:hover{color:#a9a9a9}.link-header a:hover{text-decoration:none!important}</style>
+
+  <template>
+    <h3 :id="id" v-if="small">
+      <slot></slot>
+      <a :href="ref">
+        <md-icon>link</md-icon>
+      </a>
+    </h3>
+
+    <h2 :id="id" v-else="">
+      <slot></slot>
+      <a :href="ref">
+        <md-icon>link</md-icon>
+      </a>
+    </h2>
+  </template>
+
+  <script>Vue.module("link-header",{props:{id:String,small:{type:Boolean,default:!1}},computed:{ref:function(){return"#"+this.id}}})</script>
+
+</vue-module><vue-module id="prism-js">
+  <template>
+    <pre ref="pre">      <code ref="code" :class="languageclass">
+        <slot></slot>
+      </code>
+    </pre>
+  </template>
+
+  <script>Vue.module("prism-js",{props:{language:{type:String,default:"*"},escape:{type:Boolean,default:!1}},computed:{languageclass:function(){return"language-"+this.language}},mounted:function(){var e=$(this.$refs.code),t=$(this.$refs.pre);e.html($.trim(e.html())),t.html($.trim(t.html())),Prism.highlightElement(t.children("code").get(0))},once:!0})</script>
+</vue-module>
+<vue-module id="embedded-image">
+  <template>
+    <div style="padding:1em">
+      <img ref="image" :style="imgStyle" :src="url" :alt="alt" v-on:load="imgload">
+      
+
+      <i :style="textStyle" v-if="hastext">{{text}}</i>
+    </div>
+  </template>
+
+  <script>Vue.module("embedded-image",{data:function(){return{textStyle:""}},props:{url:String,alt:{type:String,default:""},text:{type:String,default:""},imgStyle:{type:String,default:""}},methods:{imgload:function(){this.textStyle="width: "+this.$refs.image.clientWidth+";"}},computed:{hastext:function(){return this.text.length>0}}})</script>
+</vue-module>
+<vue-module id="embedded-video">
+  <style>.embedded-video div{position:relative;padding-bottom:56.25%;padding-top:25px;height:0}.embedded-video div iframe{position:absolute;top:0;left:0;width:100%;height:100%}</style>
+
+  <template>
+    <div>
+      <iframe :width="width" :height="height" :src="url" frameborder="0" :style="'max-width: ' + this.width + '; max-height: ' + this.height + ';'" allowfullscreen=""></iframe>
+    </div>
+  </template>
+
+  <script>Vue.module("embedded-video",{props:["url","width","height"]})</script>
+</vue-module>
+<vue-module id="math-preview">
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/KaTeX/0.2.0/katex.min.css">
+  <script src="//cdnjs.cloudflare.com/ajax/libs/KaTeX/0.2.0/katex.min.js"></script>
+
+  <style>.katex{font-size:2em!important}</style>
+
+  <template>
+    <md-input-container :class="{'md-input-invalid': hasError}" ref="input">
+      <label>Math expression goes here</label>
+      <md-textarea v-model="math"></md-textarea>
+
+      <span class="md-error" v-show="hasError">{{error}}</span>
+    </md-input-container>
+
+    <div v-html="result"></div>
+  </template>
+
+  <script>Vue.module("math-preview",{data:function(){return{math:"",error:"",result:""}},computed:{hasError:function(){return this.error.length>0}},watch:{math:function(){try{this.result=katex.renderToString(this.math),this.error=""}catch(r){this.result="",this.error=r.message}}}})</script>
+</vue-module>
+<style>a,a:visited:not(.md-button){text-decoration:none;color:#0000cd}a:hover:not(.md-button){text-decoration:underline;color:#0000cd}body #page{margin:0 1em 1em 1em}.site-navbar{margin:0 -1em}</style><script>function getPosts(n,o){$.ajax({url:"/posts.json",context:n,dataType:"json"}).done(o)}function getPost(n,o,t){$.ajax({url:o,context:n,dataType:"html"}).done(function(n){var o=$("<div>").append($(n));t.call(this,o)})}document.addEventListener("WebComponentsReady",function(){Vue.config.ignoredElements=["share-button"],Vue.material.registerTheme("default",{primary:"indigo",accent:"light-blue",warn:"red",background:"white"}),new Vue({el:"#page",methods:{scroll:function(){if(window.location.hash&&"#"==window.location.hash[0]){var n=$(window.location.hash);n[0]&&$("body").animate({scrollTop:n.offset().top})}}},mounted:function(){var n=this.scroll.bind(this);n(),$(window).on("hashchange",n)}})})</script></div></body></html>
