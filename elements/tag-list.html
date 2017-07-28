@@ -50,6 +50,8 @@
         },
 
         updateTags: function () {
+          this.allTags = [];
+          this.ourPosts = [];
           if (!this.istag) {
             this.mapTags(function (post, tagstring) {
               var tags = tagstring.split(', ');
