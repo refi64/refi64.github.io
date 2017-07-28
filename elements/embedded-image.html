@@ -1,10 +1,18 @@
 <vue-module id="embedded-image">
+  <style>
+    .embedded-image .text {
+      text-align: center;
+      float: left;
+    }
+  </style>
+
   <template>
     <div style="padding: 1em;">
-      <img ref="image" :style="imgStyle" :src="url" :alt="alt" v-on:load="imgload">
+      <img ref="image" :style="imgStyle" :src="url" :alt="alt" v-on:load="imgsize">
       </img>
 
-      <i :style="textStyle" v-if="hastext">{{text}}</i>
+      <br>
+      <i class="text" :style="{ width: textwidth }" v-show="hastext">{{text}}</i>
     </div>
   </template>
 
@@ -12,7 +20,7 @@
     Vue.module('embedded-image', {
       data: function () {
         return {
-          textStyle: '',
+          textwidth: null,
         };
       },
 
@@ -33,13 +41,17 @@
       },
 
       methods: {
-        imgload: function () {
-          this.textStyle = 'width: ' + this.$refs.image.clientWidth + ';';
+        imgsize: function () {
+          this.textwidth = this.$refs.image.clientWidth + 'px';
         },
       },
 
       computed: {
         hastext: function () { return this.text.length > 0; },
+      },
+
+      mounted: function () {
+        $(window).resize(this.imgsize.bind(this));
       },
     });
   </script>
