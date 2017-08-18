@@ -85,6 +85,21 @@
 
     <p>Initial version.</p>
 
+    <link-header id="how">How does it work?</link-header>
+
+    <p>
+      zdata uses a technology built into Linux systems called <i>FUSE</i>, which allows you
+      to create custom filesystems and mount them over different directories. In particular,
+      zdata uses a FUSE filesystem implementation called <i>fusecompress</i>. fusecompress
+      is particularly interesting because it serves as a middle-man of sorts; when you
+      write a file to a directory fusecompress is running on, it will compress the file
+      and save it somewhere else instead.</p>
+
+    <p>
+      This is essentially how zdata works. It uses fusecompress to override an app's
+      data directory, that way any data the app saves will be compressed and saved
+      elsewhere.</p>
+
     <site-suffix></site-suffix>
   </div>
 </body>
