@@ -46,12 +46,13 @@
     document.addEventListener('WebComponentsReady', function () {
       Vue.config.ignoredElements = ['share-button'];
 
-      Vue.material.registerTheme('default', {
+      Vue.material.registerTheme('main', {
         primary: 'indigo',
-        accent: 'light-blue',
+        accent: { color: 'blue', hue: 900 },
         warn: 'red',
         background: 'white',
       });
+      Vue.material.setCurrentTheme('main');
 
       new Vue({
         el: '#page',
