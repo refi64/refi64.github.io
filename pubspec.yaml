@@ -3,11 +3,9 @@ dependencies:
   browser: any
   dart_to_js_script_rewriter: any
   js: any
-  pygments: any
+  pygments: ^0.1.2
   vue2: any
 dependency_overrides:
-  pygments:
-    path: /home/ryan/pygments-dart
   vue2:
     git: "https://github.com/kirbyfan64/vuedart.git"
 transformers:

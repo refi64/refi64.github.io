@@ -78,6 +78,8 @@ task_deploy() {
 
   [ -d deploy ] || git clone https://github.com/kirbyfan64/kirbyfan64.github.io deploy
   cd deploy
+
+  git pull
   git rm -r * 2>/dev/null ||:
   cp -r ../build/web/* .
   touch .nojekyll
