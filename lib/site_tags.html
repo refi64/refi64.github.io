@@ -1,0 +1,14 @@
+<template vuedart>
+  <div>
+    <span v-if="!noHeader">
+      <b><i>Tags:</i></b>
+    </span>
+
+    <md-chip md-editable v-for="(tag, index) in tagsList" :href="'/tags.html#' + tag"
+             :key="index" style="margin: 0.2em;" @edit="tagclick(tag)">
+      {{tag}}
+    </md-chip>
+
+    <br>
+  </div>
+</template>

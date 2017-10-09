@@ -1,0 +1,21 @@
+<template vuedart>
+  <div>
+    <template v-if="tagPage">
+      <h1 v-if="istag">Tag: {{tag.toUpperCase()}}</h1>
+      <h1 v-else>Tags</h1>
+    </template>
+
+    <div v-if="!hasPosts" style="text-align: center;">
+      <p>Loading tags...</p>
+      <md-spinner md-indeterminate></md-spinner>
+    </div>
+
+    <template v-if="!istag">
+      <site-tags :tags="allTagsString" no-header></site-tags>
+    </template>
+
+    <template v-else>
+      <post-teaser v-for="(post, index) in ourPosts" :key="index" :post="post"></post-teaser>
+    </template>
+  </div>
+</template>

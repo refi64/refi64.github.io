@@ -1,0 +1,14 @@
+<template vuedart>
+  <div style="padding: 1em;">
+    <img ref="image" :src="url" :alt="alt" @load="imgsize()"></img>
+    <br>
+    <i class="text" :style="{ width: textwidth }" v-show="hastext">{{text}}</i>
+  </div>
+</template>
+
+<style scoped>
+  .text {
+    text-align: center;
+    float: left;
+  }
+</style>

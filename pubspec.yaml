@@ -1,0 +1,24 @@
+name: blockbyte
+dependencies:
+  browser: any
+  dart_to_js_script_rewriter: any
+  js: any
+  pygments: any
+  vue2: any
+dependency_overrides:
+  pygments:
+    path: /home/ryan/pygments-dart
+  vue2:
+    git: "https://github.com/kirbyfan64/vuedart.git"
+transformers:
+  - pygments:
+      classes:
+        - "pygments":
+            re: "(.*)"
+  - vue2:
+      entry_points:
+        - web/index.dart
+        - web/tags.dart
+        - web/page.dart
+        - web/pages/katex.dart
+  - dart_to_js_script_rewriter

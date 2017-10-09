@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+
+<head>
+  <title>The top 5 programming languages you've never heard of</title>
+  <script defer src="/dist/pack.js"></script>
+  <link rel="stylesheet" href="/dist/pack.css">
+  <script defer type="application/dart" src="../page.dart"></script>
+  <script defer src="packages/browser/dart.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body vuedart>
+  <div id="page" v-cloak>
+    <site-navbar></site-navbar>
+    <site-title created-on="2015-03-07 18:56"></site-title>
+
+    <div id="teaser">
+      <p>
+        Lately, there's been a large surge in new programming languages as projects
+        such as <a href="http://www.rust-lang.org/">Rust</a> have been taking the
+        spotlight and showing lots of promise. However, there are some programming
+        languages few have heard of that deserve to be more popular. Here's a brief
+        listing of some of my favorite languages that aren't common sights.</p>
+    </div>
+
+    <link-header id="nim">Nim</link-header>
+
+    <p>
+      <a href="http://nim-lang.org/">Nim</a> is more popular than most languages on
+      this list. It recently acquired
+      <a href="http://forum.nim-lang.org/t/870">corporate backing from 3DICC</a> and
+      is under very active development. Here's a factorial program in Nim:</p>
+
+    <pygments class="nim">
+import unsigned, strutils
+
+proc fac(n: int): uint64 =
+  if n &lt;= 1:
+    return n.uint64
+  else:
+    return n.uint64() * fac(n-1)
+
+stdout.write "Number: "
+var number = stdin.readLine.parseInt
+
+if number &lt; 0:
+  echo "Number must be greater than 0"
+  quit QuitFailure
+
+echo fac number
+    </pygments>
+
+    <link-header id="felix">Felix</link-header>
+
+    <p>
+      <a href="http://felix-lang.org/">Felix</a> is an experimental programming
+      language that covers most problems in a unique way. It's very functional and
+      has great coroutine support, a nice threading system, and a grammar defined in
+      user space (a.k.a. you can extend the grammar inside your own programs). You
+      run your files just like a scripting language:</p>
+
+    <pygments>
+$ flx my_prog.flx arg1 arg2
+    </pygments>
+
+    <p>Here's a factorial program, this time in Felix:</p>
+
+    <pygments>
+// Recursive factorial
+fun fac(n: int) =>
+    if n <= 1
+    then n.ulong
+    else n.ulong * fac(n-1)
+;
+
+// Read a number from stdin
+print "Number: ";
+var number = cstdin.readln.int;
+
+if number &lt; 0 do
+    println "Number must be greater than 0";
+    System::exit(1);
+done;
+
+// Print factorial
+println $ fac number
+    </pygments>
+
+    <link-header id="myrddin">Myrddin</link-header>
+
+    <p>
+      <a href="http://eigenstate.org/myrddin/">Myrddin</a> is, to quote the web
+      page, "A toy with delusions of usefulness." Well, it's pretty useful to me.
+      It's my new favorite low-level language (yes, above Rust). Following is yet
+      another factorial program, but this one in, guess what, Myrddin:
+
+    <pygments>
+use std
+use bio
+
+const fac = {n: int -&gt; uint64
+    if n &lt;= 1
+        -&gt; n castto (uint64)
+    else
+        -&gt; (n castto (uint64)) * fac(n-1)
+    ;;
+}
+
+const main = {
+    var stdin = bio.mkfile(0, bio.Rd)
+    std.put("Number: ")
+    match bio.readln(stdin)
+    | `std.Some s:
+        match std.intparse(std.strstrip(s))
+        | `std.Some n:
+            if n &lt; 0
+                std.put("Number must be greater than 0\n")
+                std.exit(1)
+            ;;
+            std.put("%l\n", fac(n))
+        | `std.None:
+            std.put("error parsing integer input\n")
+            std.exit(1)
+        ;;
+    | `std.None:
+        std.put("error reading input\n")
+        std.exit(1)
+    ;;
+}
+    </pygments>
+
+    <p>Notice the explicit error handling.</p>
+
+    <link-header id="k">K</link-header>
+
+    <p>
+      <a href="http://www.kuro5hin.org/story/2002/11/14/22741/791">K</a> (and it's
+      open source counterpart,
+      <a href="https://github.com/kevinlawler/kona">Kona</a>) is a very unique
+      language. Here's a factorial function in K:</p>
+
+    <pygments>
+fac:{*/1+!x}
+    </pygments>
+
+    <p>If that isn't readable enough, here's another version:</p>
+
+    <pygments>
+fac:*/1+!:
+    </pygments>
+
+    <p>You can now call it:</p>
+
+    <pygments>
+fac[4]
+    </pygments>
+
+    <p>
+      K is actually surprisingly readable once you learn it...provided you don't
+      get a nervous breakdown and blow your eyes out in the process. :)</p>
+
+    <link-header id="objeck">Objeck</link-header>
+
+    <p>
+      <a href="http://www.objeck.org/">Objeck</a> is kind of how Java should've
+      been. Here's a factorial in Objeck (the language has a factorial function
+      built in, but this is a custom one):</p>
+
+    <pygments>
+class Factorial {
+    function : native : Factorial(n : Int) ~ Int {
+        if (n <= 1) {
+            return n;
+        } else {
+            return n * Factorial(n-1);
+        };
+    }
+
+    function : Main(args : String[]) ~ Nil {
+        "Number: "->Print();
+        number := IO.Console->ReadString()->ToInt();
+        if (number &lt; 0) {
+            "Number must be greater than 0"->PrintLine();
+            Runtime->Exit(1);
+        };
+        Factorial(number)->PrintLine();
+    }
+}
+    </pygments>
+
+    Objeck has no long/unsigned types, so I just used the basic <code>Int</code> type.
+
+    <link-header id="final-notes">Final notes</link-header>
+
+    <p>
+      I hope one of the languages here catches your eye. Just note that Myrddin and
+      Felix are still VERY experimental.</p>
+
+    <site-tags tags="compilers, felix, k, language, myrddin, nim, objeck, programming">
+    </site-tags>
+    <site-suffix></site-suffix>
+  </div>
+</body>

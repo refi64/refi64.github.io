@@ -1,0 +1,21 @@
+<template vuedart>
+  <h3 :id="id" v-if="small">
+    <slot></slot>
+    <a :href="ref">
+      <md-icon>link</md-icon>
+    </a>
+  </h3>
+
+  <h2 :id="id" v-else>
+    <slot></slot>
+    <a :href="ref">
+      <md-icon>link</md-icon>
+    </a>
+  </h2>
+</template>
+
+<style scoped>
+  .md-icon { color: gray; }
+  .md-icon:hover { color: darkgray; }
+  a:hover { text-decoration: none !important; }
+</style>

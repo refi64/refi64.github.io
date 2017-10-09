@@ -1,0 +1,75 @@
+<template vuedart>
+  <div class="site-navbar">
+    <if-mobile>
+      <span class="container" slot="mobile">
+        <md-sidenav class="md-left md-fixed" ref="sidenav">
+          <md-toolbar class="md-large">
+            <div class="md-toolbar-container">
+              <h3 class="md-title">Navigation</h3>
+            </div>
+          </md-toolbar>
+
+          <md-list>
+            <md-list-item v-for="(item, index) in headers.root" :key="index" :href="item[1]">
+              {{ item[0] }}
+            </md-list-item>
+
+            <template v-for="(menu, index) in headers.menus">
+              <md-subheader>{{ menu }}</md-subheader>
+
+              <md-list-item v-for="(item, index) in headers[menu]" :key="index"
+                            :href="item[1]">
+                {{ item[0] }}
+              </md-list-item>
+            </template>
+          </md-list>
+        </md-sidenav>
+      </span>
+    </if-mobile>
+
+    <md-toolbar>
+      <if-mobile>
+        <md-button class="md-icon-button" @click="toggleNav()" slot="mobile">
+          <md-icon>menu</md-icon>
+        </md-button>
+        <md-button class="md-icon-button" disabled slot="desktop">
+        </md-button>
+      </if-mobile>
+
+      <h2 class="md-title" style="flex: 1">refi64 - BlockByte</h2>
+
+      <if-mobile>
+        <span class="container" slot="desktop">
+          <md-button v-for="(item, index) in headers.root" :key="index" :href="item[1]">
+            {{ item[0] }}
+          </md-button>
+
+          <md-menu md-align-trigger v-for="(menu, index) in headers.menus" :key="index">
+            <md-button md-menu-trigger>
+              {{ menu }}
+              <md-icon>keyboard_arrow_down</md-icon>
+            </md-button>
+
+            <md-menu-content>
+              <md-menu-item v-for="(item, index) in headers[menu]" :key="index"
+                            :href="item[1]">
+                {{ item[0] }}
+              </md-menu-item>
+            </md-menu-content>
+          </md-menu>
+        </span>
+      </if-mobile>
+    </md-toolbar>
+
+    <p style="color: #f44336; margin: 1em 1em 0 1em;">
+      Note that this website recently underwent a major overhaul (again). If you see any
+      issues, please report them
+      <a href="https://github.com/kirbyfan64/kirbyfan64.github.io">here</a>.</p>
+  </div>
+</template>
+
+<style scoped>
+  .site-navbar {
+    margin: 0 -1em;
+  }
+</style>

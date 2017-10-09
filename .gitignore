@@ -1,0 +1,8 @@
+.packages
+.pub/
+build/
+deploy/
+node_modules/
+pubspec.lock
+web/dist/
+yarn.lock

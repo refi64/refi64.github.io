@@ -1,0 +1,12 @@
+<template vuedart>
+  <div>
+    <md-input-container :class="{'md-input-invalid': hasError}" ref="input">
+      <label>Math expression goes here</label>
+      <md-textarea v-model="math"></md-textarea>
+
+      <span class="md-error" v-show="hasError">{{error}}</span>
+    </md-input-container>
+
+    <div v-html="result"></div>
+  </div>
+</template>

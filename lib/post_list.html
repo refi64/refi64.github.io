@@ -1,0 +1,12 @@
+<template vuedart>
+  <div>
+    <div v-if="!hasPosts" style="text-align: center;">
+      <p>Loading posts...</p>
+      <md-spinner md-indeterminate></md-spinner>
+    </div>
+
+    <template v-if="hasPosts">
+      <post-teaser v-for="(post, index) in posts" :post=post :key="index"></post-teaser>
+    </template>
+  </div>
+</template>
