@@ -1,15 +1,14 @@
-<!DOCTYPE html>
-
-<head>
+<!DOCTYPE html><html><head>
   <title>The Magic of RPython</title>
-  <script src="/bower_components/webcomponentsjs/webcomponents-lite.js">
-  </script>
-  <link rel="import" href="/_base.html">
+  <script defer="" src="/dist/pack.js"></script>
+  <link rel="stylesheet" href="/dist/pack.css">
+  <script defer="" src="../page.initialize.dart.js"></script>
+  
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 
-<body>
-  <div id="page">
+<body vuedart="">
+  <div id="page" v-cloak="">
     <site-navbar></site-navbar>
     <site-title created-on="2015-05-29 19:19"></site-title>
 
@@ -29,21 +28,23 @@
 
     <p>Your RPython programs/interpreters will often begin like this:</p>
 
-    <prism-js language="python">
-def entry_point(argv):
-    # this is your program's main function
-    return 0
+    <div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">entry_point</span><span class="p">(</span><span class="n">argv</span><span class="p">):</span>
+    <span class="c1"># this is your program's main function</span>
+    <span class="k">return</span> <span class="mi">0</span>
 
-def target(driver, args):
-    # this is run at compile time
-    return entry_point, None
-    </prism-js>
+<span class="k">def</span> <span class="nf">target</span><span class="p">(</span><span class="n">driver</span><span class="p">,</span> <span class="n">args</span><span class="p">):</span>
+    <span class="c1"># this is run at compile time</span>
+    <span class="k">return</span> <span class="n">entry_point</span><span class="p">,</span> <span class="bp">None</span>
+    
+</pre></div>
+
 
     <p>You'd run RPython kind of like this:</p>
 
-    <prism-js>
-$ python path_to_pypy_source/rpython/bin/rpython -O0 my_program.py
-    </prism-js>
+    <div class="highlight"><pre><span></span>$ python path_to_pypy_source/rpython/bin/rpython -O0 my_program.py
+    
+</pre></div>
+
 
     <p>
       The <code>-O0</code> turns off all optimizations, which makes compile times
@@ -51,21 +52,23 @@ $ python path_to_pypy_source/rpython/bin/rpython -O0 my_program.py
 
     <p>If you're lazy like me, you can define an alias:</p>
 
-    <prism-js>
-$ alias rpython="python path_to_pypy_source/rpython/bin/rpython"
-    </prism-js>
+    <div class="highlight"><pre><span></span>$ alias rpython="python path_to_pypy_source/rpython/bin/rpython"
+    
+</pre></div>
+
 
     <p>
       The <code>target</code> function lets you set certain or check command-line
       arguments passed to RPython. For instance:</p>
 
-    <prism-js language="python">
-def target(driver, args):
-    # The default output file name for xyz.py is xyz-c
-    if driver.exe_name == 'xyz-c':
-        driver.exe_name = 'bin/xyz'
-    return entry_point, None
-    </prism-js>
+    <div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">target</span><span class="p">(</span><span class="n">driver</span><span class="p">,</span> <span class="n">args</span><span class="p">):</span>
+    <span class="c1"># The default output file name for xyz.py is xyz-c</span>
+    <span class="k">if</span> <span class="n">driver</span><span class="o">.</span><span class="n">exe_name</span> <span class="o">==</span> <span class="s1">'xyz-c'</span><span class="p">:</span>
+        <span class="n">driver</span><span class="o">.</span><span class="n">exe_name</span> <span class="o">=</span> <span class="s1">'bin/xyz'</span>
+    <span class="k">return</span> <span class="n">entry_point</span><span class="p">,</span> <span class="bp">None</span>
+    
+</pre></div>
+
 
     <p>I have <i>no</i> clue what the None is for, though.</p>
 
@@ -84,57 +87,61 @@ def target(driver, args):
       other Python translation frameworks, such as Shedskin and Cython, analyse the
       program's static AST, RPython analyses its bytecode. Here's an example:</p>
 
-    <prism-js language="python">
-print 'This is run during compile time!' # guess when this is run?
+    <div class="highlight"><pre><span></span><span class="k">print</span> <span class="s1">'This is run during compile time!'</span> <span class="c1"># guess when this is run?</span>
 
-def entry_point(argv):
-    print 'This is run at run time!'
-    return 0
-    </prism-js>
+<span class="k">def</span> <span class="nf">entry_point</span><span class="p">(</span><span class="n">argv</span><span class="p">):</span>
+    <span class="k">print</span> <span class="s1">'This is run at run time!'</span>
+    <span class="k">return</span> <span class="mi">0</span>
+    
+</pre></div>
+
 
     <p>
       This has really cool implications. For one thing, RPython lazily compiles
       functions. For instance:</p>
 
-    <prism-js language="python">
-def f():
-    # This is never compiled by RPython because 'f' is never called
-    return 123
+    <div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">f</span><span class="p">():</span>
+    <span class="c1"># This is never compiled by RPython because 'f' is never called</span>
+    <span class="k">return</span> <span class="mi">123</span>
 
-def g():
-    # This is compiled by RPython because 'g' *is* called
-    return 456
+<span class="k">def</span> <span class="nf">g</span><span class="p">():</span>
+    <span class="c1"># This is compiled by RPython because 'g' *is* called</span>
+    <span class="k">return</span> <span class="mi">456</span>
 
-def entry_point(argv):
-    print g()
-    </prism-js>
+<span class="k">def</span> <span class="nf">entry_point</span><span class="p">(</span><span class="n">argv</span><span class="p">):</span>
+    <span class="k">print</span> <span class="n">g</span><span class="p">()</span>
+    
+</pre></div>
+
 
     <p>That means we can do lots of compile-time computations:</p>
 
-    <prism-js language="python">
-import sys
+    <div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sys</span>
 
-if sys.platform == 'windows':
-    def plat(): return 'Windows!'
-elif sys.platform.startswith('linux'):
-    def plat(): return 'Linux!'
-else:
-    def plat(): return 'Who cares?'
+<span class="k">if</span> <span class="n">sys</span><span class="o">.</span><span class="n">platform</span> <span class="o">==</span> <span class="s1">'windows'</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">plat</span><span class="p">():</span> <span class="k">return</span> <span class="s1">'Windows!'</span>
+<span class="k">elif</span> <span class="n">sys</span><span class="o">.</span><span class="n">platform</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s1">'linux'</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">plat</span><span class="p">():</span> <span class="k">return</span> <span class="s1">'Linux!'</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">plat</span><span class="p">():</span> <span class="k">return</span> <span class="s1">'Who cares?'</span>
 
-def entry_point(argv):
-    print plat()
-    return 0
-    </prism-js>
+<span class="k">def</span> <span class="nf">entry_point</span><span class="p">(</span><span class="n">argv</span><span class="p">):</span>
+    <span class="k">print</span> <span class="n">plat</span><span class="p">()</span>
+    <span class="k">return</span> <span class="mi">0</span>
+    
+</pre></div>
+
 
     <link-header id="statically-typed">RPython is statically-typed</link-header>
 
     <p>In short:</p>
 
-    <prism-js language="python">
-def entry_point(argv):
-    x = 123 # ok
-    x = '456' # error!
-    </prism-js>
+    <div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">entry_point</span><span class="p">(</span><span class="n">argv</span><span class="p">):</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="mi">123</span> <span class="c1"># ok</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="s1">'456'</span> <span class="c1"># error!</span>
+    
+</pre></div>
+
 
     <p>
       Notice that no variable annotations were needed. This is because RPython uses
@@ -143,18 +150,19 @@ def entry_point(argv):
     <p>
       RPython also performs compile-time null checking under certain situations:</p>
 
-    <prism-js language="python">
-def entry_point(argv):
-    if len(argv) == 1:
-        x = None
-    else:
-        x = 0
-    print x+1+2 # compile-time error
-    return 0
+    <div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">entry_point</span><span class="p">(</span><span class="n">argv</span><span class="p">):</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">argv</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="bp">None</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">print</span> <span class="n">x</span><span class="o">+</span><span class="mi">1</span><span class="o">+</span><span class="mi">2</span> <span class="c1"># compile-time error</span>
+    <span class="k">return</span> <span class="mi">0</span>
 
-def target(driver, args):
-    return entry_point, None
-    </prism-js>
+<span class="k">def</span> <span class="nf">target</span><span class="p">(</span><span class="n">driver</span><span class="p">,</span> <span class="n">args</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">entry_point</span><span class="p">,</span> <span class="bp">None</span>
+    
+</pre></div>
+
 
     <link-header id="errors">RPython has confusing error messages</link-header>
 
@@ -162,14 +170,14 @@ def target(driver, args):
       Whenever an error occurs during compilation, most compilers will output
       something like:</p>
 
-    <prism-js>
-error: myfile.whatever:22: variable 'xyz' may be 'null' when used here
-    </prism-js>
+    <div class="highlight"><pre><span></span>error: myfile.whatever:22: variable 'xyz' may be 'null' when used here
+    
+</pre></div>
+
 
     <p>Not RPython! This is what I get when I try to compile the above snippet:</p>
 
-    <prism-js escape>
-[translation:info] Error:
+    <div class="highlight"><pre><span></span>[translation:info] Error:
 [translation:info]    File "/media/ryan/stuff/pypy/rpython/translator/goal/translate.py", line 316, in main
 [translation:info]     drv.proceed(goals)
 [translation:info]    File "/media/ryan/stuff/pypy/rpython/translator/driver.py", line 539, in proceed
@@ -219,11 +227,13 @@ error: myfile.whatever:22: variable 'xyz' may be 'null' when used here
 [translation:ERROR]
 [translation:ERROR]         print x+1+2 # compile-time error
 [translation:ERROR]
-    </prism-js>
+    
+</pre></div>
+
 
     <p>Wow! RPython's exceptions generally go like this:</p>
 
-    <link-header id="flowingerror" small>FlowingError</link-header>
+    <link-header id="flowingerror" small="">FlowingError</link-header>
 
     <p>
       RPython can prove at compile-time that some run-time computation may fail.
@@ -236,7 +246,7 @@ error: myfile.whatever:22: variable 'xyz' may be 'null' when used here
       <li>You're trying to get the len of None.</li>
     </ul>
 
-    <link-header id="unionerror" small>UnionError</link-header>
+    <link-header id="unionerror" small="">UnionError</link-header>
 
     <p>
       A type conflict. Whenever you get this, RPython will show the internal types
@@ -244,22 +254,22 @@ error: myfile.whatever:22: variable 'xyz' may be 'null' when used here
 
     <p>Take this program:</p>
 
-    <prism-js language="python">
-def f(b):
-    return 1 if b else None
+    <div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="n">b</span><span class="p">):</span>
+    <span class="k">return</span> <span class="mi">1</span> <span class="k">if</span> <span class="n">b</span> <span class="k">else</span> <span class="bp">None</span>
 
-def entry_point(argv):
-    print f(len(argv)==2)+2 # compile-time error
-    return 0
+<span class="k">def</span> <span class="nf">entry_point</span><span class="p">(</span><span class="n">argv</span><span class="p">):</span>
+    <span class="k">print</span> <span class="n">f</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">argv</span><span class="p">)</span><span class="o">==</span><span class="mi">2</span><span class="p">)</span><span class="o">+</span><span class="mi">2</span> <span class="c1"># compile-time error</span>
+    <span class="k">return</span> <span class="mi">0</span>
 
-def target(driver, args):
-    return entry_point, None
-    </prism-js>
+<span class="k">def</span> <span class="nf">target</span><span class="p">(</span><span class="n">driver</span><span class="p">,</span> <span class="n">args</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">entry_point</span><span class="p">,</span> <span class="bp">None</span>
+    
+</pre></div>
+
 
     <p>RPython gives this error message:</p>
 
-    <prism-js escape>
-[translation:info] Error:
+    <div class="highlight"><pre><span></span>[translation:info] Error:
 [translation:info]    File "/media/ryan/stuff/pypy/rpython/translator/goal/translate.py", line 316, in main
 [translation:info]     drv.proceed(goals)
 [translation:info]    File "/media/ryan/stuff/pypy/rpython/translator/driver.py", line 539, in proceed
@@ -308,7 +318,9 @@ def target(driver, args):
 [translation:ERROR]  containing the following operations:
 [translation:ERROR]        v0 = bool(b_0)
 [translation:ERROR]  --end--
-    </prism-js>
+    
+</pre></div>
+
 
     <p>
       This tells us that the type conflict is between an integer and
@@ -326,38 +338,38 @@ def target(driver, args):
         (<code>unsigned=False</code>).</li>
     </ul>
 
-    <link-header id="blockerror" small>BlockError</link-header>
+    <link-header id="blockerror" small="">BlockError</link-header>
 
     <p>This means that type inference couldn't succeed. Take this program:</p>
 
-    <prism-js language="python">
-import os
+    <div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
 
-def rd():
-    'Read all of stdin'
-    res = ''
-    while True:
-        buf = os.read(0, 1)
-        if buf == '': return
-        res += buf
-    return res
+<span class="k">def</span> <span class="nf">rd</span><span class="p">():</span>
+    <span class="s1">'Read all of stdin'</span>
+    <span class="n">res</span> <span class="o">=</span> <span class="s1">''</span>
+    <span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
+        <span class="n">buf</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">buf</span> <span class="o">==</span> <span class="s1">''</span><span class="p">:</span> <span class="k">return</span>
+        <span class="n">res</span> <span class="o">+=</span> <span class="n">buf</span>
+    <span class="k">return</span> <span class="n">res</span>
 
-def entry_point(argv):
-    data = rd()[:-1].split(' ')
-    print float(data[0])+2.3
-    return 0
+<span class="k">def</span> <span class="nf">entry_point</span><span class="p">(</span><span class="n">argv</span><span class="p">):</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">rd</span><span class="p">()[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">' '</span><span class="p">)</span>
+    <span class="k">print</span> <span class="nb">float</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="o">+</span><span class="mf">2.3</span>
+    <span class="k">return</span> <span class="mi">0</span>
 
-def target(driver, args):
-    return entry_point, None
-    </prism-js>
+<span class="k">def</span> <span class="nf">target</span><span class="p">(</span><span class="n">driver</span><span class="p">,</span> <span class="n">args</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">entry_point</span><span class="p">,</span> <span class="bp">None</span>
+    
+</pre></div>
+
 
     <p>
       This reads one or more numbers from stdin and prints the first one added to
       <code>2.3</code>. You may have noticed an error in the program. When
       compiling, this happens:</p>
 
-    <prism-js escape>
-[translation:info] Error:
+    <div class="highlight"><pre><span></span>[translation:info] Error:
 [translation:info]    File "/media/ryan/stuff/pypy/rpython/translator/goal/translate.py", line 316, in main
 [translation:info]     drv.proceed(goals)
 [translation:info]    File "/media/ryan/stuff/pypy/rpython/translator/driver.py", line 539, in proceed
@@ -389,7 +401,9 @@ def target(driver, args):
 [translation:ERROR] Known variable annotations:
 [translation:ERROR]  v0 = SomeNone()
 [translation:ERROR]
-    </prism-js>
+    
+</pre></div>
+
 
     <p>
       What?? What RPython means is that it can't infer the type of
@@ -403,7 +417,7 @@ def target(driver, args):
       it occurred when we tried to slice it. This can be a little odd until you get
       the hang of it.</p>
 
-    <link-header id="assertionerror" small>AssertionError</link-header>
+    <link-header id="assertionerror" small="">AssertionError</link-header>
 
     <p>
       Various meanings. Sometimes they have an error message; sometimes they don't.
@@ -411,23 +425,23 @@ def target(driver, args):
       raised the error and look for any helpful comments or try to figure out on
       your own.</p>
 
-    <link-header id="annotatorerror" small>AnnotatorError</link-header>
+    <link-header id="annotatorerror" small="">AnnotatorError</link-header>
 
     <p>
       This may have various meanings, but it basically means that an error occurred
       while trying to annotate the types. The most common reason in my experience
       is an attribute error. For instance, this:</p>
 
-    <prism-js language="python">
-def entry_point(argv):
-    print argv.x
-    return 0
-    </prism-js>
+    <div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">entry_point</span><span class="p">(</span><span class="n">argv</span><span class="p">):</span>
+    <span class="k">print</span> <span class="n">argv</span><span class="o">.</span><span class="n">x</span>
+    <span class="k">return</span> <span class="mi">0</span>
+    
+</pre></div>
+
 
     <p>Gives:</p>
 
-    <prism-js escape>
-[translation:ERROR] AnnotatorError:
+    <div class="highlight"><pre><span></span>[translation:ERROR] AnnotatorError:
 [translation:ERROR]
 [translation:ERROR] Cannot find attribute 'x' on SomeList(listdef=&lt;[SomeString(no_nul=True)]mr&gt;)
 [translation:ERROR]
@@ -451,7 +465,9 @@ def entry_point(argv):
 [translation:ERROR]        v2 = simple_call((function rpython_print_item), v1)
 [translation:ERROR]        v3 = simple_call((function rpython_print_newline))
 [translation:ERROR]  --end--
-    </prism-js>
+    
+</pre></div>
+
 
     <p>
       Also note the types again. Here, it's telling us it's a list
@@ -462,48 +478,48 @@ def entry_point(argv):
 
     <p>For instance:</p>
 
-    <prism-js language="python">
-class A(object):
-    pass
+    <div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">A</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="k">pass</span>
 
-class B(A):
-    def x(self): return 'y'
+<span class="k">class</span> <span class="nc">B</span><span class="p">(</span><span class="n">A</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">x</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span> <span class="k">return</span> <span class="s1">'y'</span>
 
-class C(A):
-    def x(self, n): return 'z'
+<span class="k">class</span> <span class="nc">C</span><span class="p">(</span><span class="n">A</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">x</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span> <span class="k">return</span> <span class="s1">'z'</span>
 
-def entry_point(argv):
-    a = C() if len(argv) == 3 else B() # Ok; 'a' is of type A
-    print a.x() # Error! RPython can't prove that 'a' is of type B, so it doesn't know which signature of 'x' to use
-    return 0
+<span class="k">def</span> <span class="nf">entry_point</span><span class="p">(</span><span class="n">argv</span><span class="p">):</span>
+    <span class="n">a</span> <span class="o">=</span> <span class="n">C</span><span class="p">()</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">argv</span><span class="p">)</span> <span class="o">==</span> <span class="mi">3</span> <span class="k">else</span> <span class="n">B</span><span class="p">()</span> <span class="c1"># Ok; 'a' is of type A</span>
+    <span class="k">print</span> <span class="n">a</span><span class="o">.</span><span class="n">x</span><span class="p">()</span> <span class="c1"># Error! RPython can't prove that 'a' is of type B, so it doesn't know which signature of 'x' to use</span>
+    <span class="k">return</span> <span class="mi">0</span>
 
-def target(driver, args):
-    return entry_point, None
-    </prism-js>
+<span class="k">def</span> <span class="nf">target</span><span class="p">(</span><span class="n">driver</span><span class="p">,</span> <span class="n">args</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">entry_point</span><span class="p">,</span> <span class="bp">None</span>
+    
+</pre></div>
+
 
     <p>This gives:</p>
 
-    <prism-js escape>
-[translation:ERROR] AnnotatorError:
+    <div class="highlight"><pre><span></span>[translation:ERROR] AnnotatorError:
 [translation:ERROR]
 [translation:ERROR] signature mismatch: x() takes exactly 2 arguments (1 given)
 [translation:ERROR]
 [translation:ERROR]
 [translation:ERROR] Occurred processing the following simple_call:
-[translation:ERROR]   &lt;MethodDesc 'x' of &lt;ClassDef 'nn.C'&rt; bound to &lt;ClassDef 'nn.C'&rt; {}&rt; returning
+[translation:ERROR]   &lt;MethodDesc 'x' of &lt;ClassDef 'nn.C'&amp;rt; bound to &lt;ClassDef 'nn.C'&amp;rt; {}&amp;rt; returning
 [translation:ERROR]
 [translation:ERROR]     v1 = simple_call(v0)
 [translation:ERROR]
-[translation:ERROR] In &lt;FunctionGraph of (nn:10)entry_point at 0x7f1c3d7081d0&rt;:
+[translation:ERROR] In &lt;FunctionGraph of (nn:10)entry_point at 0x7f1c3d7081d0&amp;rt;:
 [translation:ERROR] Happened at file nn.py line 12
 [translation:ERROR]
-[translation:ERROR] ==&rt;     print a.x() # Error! RPython can't prove that 'a' is of type B
+[translation:ERROR] ==&amp;rt;     print a.x() # Error! RPython can't prove that 'a' is of type B
 [translation:ERROR]
 [translation:ERROR] Known variable annotations:
 [translation:ERROR]  v0 = SomePBC(can_be_None=False, descriptions={...1...}, knowntype=instancemethod, subset_of=None)
 [translation:ERROR]
 [translation:ERROR] Processing block:
-[translation:ERROR]  block@39 is a &lt;class 'rpython.flowspace.flowcontext.SpamBlock'&rt;
+[translation:ERROR]  block@39 is a &lt;class 'rpython.flowspace.flowcontext.SpamBlock'&amp;rt;
 [translation:ERROR]  in (nn:10)entry_point
 [translation:ERROR]  containing the following operations:
 [translation:ERROR]        v0 = getattr(v2, ('x'))
@@ -512,29 +528,33 @@ def target(driver, args):
 [translation:ERROR]        v4 = simple_call((function rpython_print_item), v3)
 [translation:ERROR]        v5 = simple_call((function rpython_print_newline))
 [translation:ERROR]  --end--
-    </prism-js>
+    
+</pre></div>
+
 
     <p>The solution? You can use an assertion:</p>
 
-    <prism-js language="python">
-def entry_point(argv):
-    a = C() if len(argv) == 3 else B() # Ok; 'a' is of type A
-    assert isinstance(a, B)
-    print a.x() # Ok; this will never run if 'a' is of type 'C'
-    return 0
-    </prism-js>
+    <div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">entry_point</span><span class="p">(</span><span class="n">argv</span><span class="p">):</span>
+    <span class="n">a</span> <span class="o">=</span> <span class="n">C</span><span class="p">()</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">argv</span><span class="p">)</span> <span class="o">==</span> <span class="mi">3</span> <span class="k">else</span> <span class="n">B</span><span class="p">()</span> <span class="c1"># Ok; 'a' is of type A</span>
+    <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">B</span><span class="p">)</span>
+    <span class="k">print</span> <span class="n">a</span><span class="o">.</span><span class="n">x</span><span class="p">()</span> <span class="c1"># Ok; this will never run if 'a' is of type 'C'</span>
+    <span class="k">return</span> <span class="mi">0</span>
+    
+</pre></div>
+
 
     <p>Or an <code>if</code> statement:</p>
 
-    <prism-js language="python">
-def entry_point(argv):
-    a = C() if len(argv) == 3 else B() # Ok; 'a' is of type A
-    if isinstance(a, B):
-        print a.x()
-    elif isinstance(a, C):
-        print a.x(1)
-    return 0
-    </prism-js>
+    <div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">entry_point</span><span class="p">(</span><span class="n">argv</span><span class="p">):</span>
+    <span class="n">a</span> <span class="o">=</span> <span class="n">C</span><span class="p">()</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">argv</span><span class="p">)</span> <span class="o">==</span> <span class="mi">3</span> <span class="k">else</span> <span class="n">B</span><span class="p">()</span> <span class="c1"># Ok; 'a' is of type A</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">B</span><span class="p">):</span>
+        <span class="k">print</span> <span class="n">a</span><span class="o">.</span><span class="n">x</span><span class="p">()</span>
+    <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">C</span><span class="p">):</span>
+        <span class="k">print</span> <span class="n">a</span><span class="o">.</span><span class="n">x</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+    <span class="k">return</span> <span class="mi">0</span>
+    
+</pre></div>
+
 
     <link-header id="info">RPython drops you some neat info</link-header>
 
@@ -549,14 +569,15 @@ def entry_point(argv):
 
     <p>Take this program:</p>
 
-    <prism-js language="python">
-def entry_point(argv):
-    print argv[1]
-    return 0
+    <div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">entry_point</span><span class="p">(</span><span class="n">argv</span><span class="p">):</span>
+    <span class="k">print</span> <span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+    <span class="k">return</span> <span class="mi">0</span>
 
-def target(driver, args):
-    return entry_point, None
-    </prism-js>
+<span class="k">def</span> <span class="nf">target</span><span class="p">(</span><span class="n">driver</span><span class="p">,</span> <span class="n">args</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">entry_point</span><span class="p">,</span> <span class="bp">None</span>
+    
+</pre></div>
+
 
     <p>
       If you give it no arguments, it'll throw an <code>IndexError</code>, right?
@@ -567,14 +588,15 @@ def target(driver, args):
       build it with optimizations, RPython couldn't care less about your computers
       memory, so it happily...crashes. However, try this:</p>
 
-    <prism-js language="python">
-def entry_point(argv):
-    try:
-        print argv[1]
-    except:
-        print 'Too few arguments!'
-    return 0
-    </prism-js>
+    <div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">entry_point</span><span class="p">(</span><span class="n">argv</span><span class="p">):</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">print</span> <span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+    <span class="k">except</span><span class="p">:</span>
+        <span class="k">print</span> <span class="s1">'Too few arguments!'</span>
+    <span class="k">return</span> <span class="mi">0</span>
+    
+</pre></div>
+
 
     <p>
       This will correctly print "Too few arguments!" if given no arguments. See,
@@ -583,19 +605,20 @@ def entry_point(argv):
 
     <p>However, take this:</p>
 
-    <prism-js language="python">
-def f(x): return x[1]
+    <div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="n">x</span><span class="p">):</span> <span class="k">return</span> <span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
 
-def entry_point(argv):
-    try:
-        print f(argv)
-    except:
-        print 'Too few arguments!'
-    return 0
+<span class="k">def</span> <span class="nf">entry_point</span><span class="p">(</span><span class="n">argv</span><span class="p">):</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">print</span> <span class="n">f</span><span class="p">(</span><span class="n">argv</span><span class="p">)</span>
+    <span class="k">except</span><span class="p">:</span>
+        <span class="k">print</span> <span class="s1">'Too few arguments!'</span>
+    <span class="k">return</span> <span class="mi">0</span>
 
-def target(driver, args):
-    return entry_point, None
-    </prism-js>
+<span class="k">def</span> <span class="nf">target</span><span class="p">(</span><span class="n">driver</span><span class="p">,</span> <span class="n">args</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">entry_point</span><span class="p">,</span> <span class="bp">None</span>
+    
+</pre></div>
+
 
     <p>
       This will segfault when build with <code>-O2</code>. But we put a
@@ -604,13 +627,14 @@ def target(driver, args):
       <code>entry_point</code>. To circumvent this, put another <code>try</code>
       block around <code>f</code> that explicitly re-raises any errors:</p>
 
-    <prism-js language="python">
-def f(x):
-    try:
-        return x[1]
-    except:
-        raise
-    </prism-js>
+    <div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+    <span class="k">except</span><span class="p">:</span>
+        <span class="k">raise</span>
+    
+</pre></div>
+
 
     <link-header id="restricted">RPython is very restricted</link-header>
 
@@ -655,52 +679,56 @@ def f(x):
       For getting around <code>sys.std*</code>, you can use this function to read a
       line from <code>stdin</code>:</p>
 
-    <prism-js language="python">
-import os
+    <div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
 
-def readline():
-    res = ''
-    while True:
-        buf = os.read(0, 16)
-        if not buf: return res
-        res += buf
-        if res[-1] == '\n': return res[:-1]
-    </prism-js>
+<span class="k">def</span> <span class="nf">readline</span><span class="p">():</span>
+    <span class="n">res</span> <span class="o">=</span> <span class="s1">''</span>
+    <span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
+        <span class="n">buf</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">16</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">buf</span><span class="p">:</span> <span class="k">return</span> <span class="n">res</span>
+        <span class="n">res</span> <span class="o">+=</span> <span class="n">buf</span>
+        <span class="k">if</span> <span class="n">res</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="s1">'</span><span class="se">\n</span><span class="s1">'</span><span class="p">:</span> <span class="k">return</span> <span class="n">res</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+    
+</pre></div>
+
 
     <p>For reading all the lines in <code>stdin</code> into a list:</p>
 
-    <prism-js language="python">
-import os
+    <div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
 
-def readlines():
-    res = []
-    cur = ''
-    while True:
-        buf = os.read(0, 16)
-        if not buf: return res
-        cur += buf
-        if cur[-1] == '\n': res.append(cur[:-1])
-    </prism-js>
+<span class="k">def</span> <span class="nf">readlines</span><span class="p">():</span>
+    <span class="n">res</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">cur</span> <span class="o">=</span> <span class="s1">''</span>
+    <span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
+        <span class="n">buf</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">16</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">buf</span><span class="p">:</span> <span class="k">return</span> <span class="n">res</span>
+        <span class="n">cur</span> <span class="o">+=</span> <span class="n">buf</span>
+        <span class="k">if</span> <span class="n">cur</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="s1">'</span><span class="se">\n</span><span class="s1">'</span><span class="p">:</span> <span class="n">res</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">cur</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+    
+</pre></div>
+
 
     <p>For writing to <code>stderr</code>:</p>
 
-    <prism-js language="python">
-import os
+    <div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
 
-def write_err(msg):
-    os.write(2, msg+'\n')
-    </prism-js>
+<span class="k">def</span> <span class="nf">write_err</span><span class="p">(</span><span class="n">msg</span><span class="p">):</span>
+    <span class="n">os</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">msg</span><span class="o">+</span><span class="s1">'</span><span class="se">\n</span><span class="s1">'</span><span class="p">)</span>
+    
+</pre></div>
+
 
     <p>
       And for writing to <code>stdout</code> without any trailing newlines or
       spaces:</p>
 
-    <prism-js language="python">
-import os
+    <div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
 
-def write(msg):
-    os.write(1, msg)
-    </prism-js>
+<span class="k">def</span> <span class="nf">write</span><span class="p">(</span><span class="n">msg</span><span class="p">):</span>
+    <span class="n">os</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">msg</span><span class="p">)</span>
+    
+</pre></div>
+
 
     <link-header id="fun">RPython is fun!</link-header>
 
@@ -716,14 +744,15 @@ def write(msg):
         PyPy mailing list</a>. They helped me with several slip-ups while writing
       an interpreter in RPython.</p>
 
-    <link-header id="docs" small>Read the docs!</link-header>
+    <link-header id="docs" small="">Read the docs!</link-header>
 
     <p>
       Also, read through the
       <a href="http://rpython.readthedocs.org/en/latest/">RPython documentation</a>.
       It's very exhaustive and mentions stuff that I can't in this short space.</p>
 
-    <site-tags tags='rpython, interpreter, python'></site-tags>
+    <site-tags tags="rpython, interpreter, python"></site-tags>
     <site-suffix></site-suffix>
   </div>
-</body>
+
+</body></html>

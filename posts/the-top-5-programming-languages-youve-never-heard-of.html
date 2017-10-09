@@ -1,15 +1,14 @@
-<!DOCTYPE html>
-
-<head>
+<!DOCTYPE html><html><head>
   <title>The top 5 programming languages you've never heard of</title>
-  <script src="/bower_components/webcomponentsjs/webcomponents-lite.js">
-  </script>
-  <link rel="import" href="/_base.html">
+  <script defer="" src="/dist/pack.js"></script>
+  <link rel="stylesheet" href="/dist/pack.css">
+  <script defer="" src="../page.initialize.dart.js"></script>
+  
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 
-<body>
-  <div id="page">
+<body vuedart="">
+  <div id="page" v-cloak="">
     <site-navbar></site-navbar>
     <site-title created-on="2015-03-07 18:56"></site-title>
 
@@ -30,24 +29,25 @@
       <a href="http://forum.nim-lang.org/t/870">corporate backing from 3DICC</a> and
       is under very active development. Here's a factorial program in Nim:</p>
 
-    <prism-js language="nim">
-import unsigned, strutils
+    <div class="highlight"><pre><span></span><span class="kn">import</span> <span class="n">unsigned</span><span class="p">,</span> <span class="n">strutils</span>
 
-proc fac(n: int): uint64 =
-  if n &lt;= 1:
-    return n.uint64
-  else:
-    return n.uint64() * fac(n-1)
+<span class="k">proc </span><span class="nf">fac</span><span class="p">(</span><span class="n">n</span><span class="p">:</span> <span class="kt">int</span><span class="p">):</span> <span class="n">uint64</span> <span class="o">=</span>
+  <span class="k">if</span> <span class="n">n</span> <span class="o">&lt;=</span> <span class="mi">1</span><span class="p">:</span>
+    <span class="k">return</span> <span class="n">n</span><span class="p">.</span><span class="n">uint64</span>
+  <span class="k">else</span><span class="p">:</span>
+    <span class="k">return</span> <span class="n">n</span><span class="p">.</span><span class="n">uint64</span><span class="p">()</span> <span class="o">*</span> <span class="n">fac</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
 
-stdout.write "Number: "
-var number = stdin.readLine.parseInt
+<span class="n">stdout</span><span class="p">.</span><span class="n">write</span> <span class="s">"Number: "</span>
+<span class="kd">var</span> <span class="n">number</span> <span class="o">=</span> <span class="n">stdin</span><span class="p">.</span><span class="n">readLine</span><span class="p">.</span><span class="n">parseInt</span>
 
-if number &lt; 0:
-  echo "Number must be greater than 0"
-  quit QuitFailure
+<span class="k">if</span> <span class="n">number</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+  <span class="n">echo</span> <span class="s">"Number must be greater than 0"</span>
+  <span class="n">quit</span> <span class="n">QuitFailure</span>
 
-echo fac number
-    </prism-js>
+<span class="n">echo</span> <span class="n">fac</span> <span class="n">number</span>
+    
+</pre></div>
+
 
     <link-header id="felix">Felix</link-header>
 
@@ -58,16 +58,16 @@ echo fac number
       user space (a.k.a. you can extend the grammar inside your own programs). You
       run your files just like a scripting language:</p>
 
-    <prism-js>
-$ flx my_prog.flx arg1 arg2
-    </prism-js>
+    <div class="highlight"><pre><span></span>$ flx my_prog.flx arg1 arg2
+    
+</pre></div>
+
 
     <p>Here's a factorial program, this time in Felix:</p>
 
-    <prism-js>
-// Recursive factorial
-fun fac(n: int) =>
-    if n <= 1
+    <div class="highlight"><pre><span></span>// Recursive factorial
+fun fac(n: int) =&gt;
+    if n &lt;= 1
     then n.ulong
     else n.ulong * fac(n-1)
 ;
@@ -83,7 +83,9 @@ done;
 
 // Print factorial
 println $ fac number
-    </prism-js>
+    
+</pre></div>
+
 
     <link-header id="myrddin">Myrddin</link-header>
 
@@ -93,8 +95,7 @@ println $ fac number
       It's my new favorite low-level language (yes, above Rust). Following is yet
       another factorial program, but this one in, guess what, Myrddin:
 
-    <prism-js>
-use std
+    </p><div class="highlight"><pre><span></span>use std
 use bio
 
 const fac = {n: int -&gt; uint64
@@ -126,7 +127,9 @@ const main = {
         std.exit(1)
     ;;
 }
-    </prism-js>
+    
+</pre></div>
+
 
     <p>Notice the explicit error handling.</p>
 
@@ -138,21 +141,24 @@ const main = {
       <a href="https://github.com/kevinlawler/kona">Kona</a>) is a very unique
       language. Here's a factorial function in K:</p>
 
-    <prism-js>
-fac:{*/1+!x}
-    </prism-js>
+    <div class="highlight"><pre><span></span>fac:{*/1+!x}
+    
+</pre></div>
+
 
     <p>If that isn't readable enough, here's another version:</p>
 
-    <prism-js>
-fac:*/1+!:
-    </prism-js>
+    <div class="highlight"><pre><span></span>fac:*/1+!:
+    
+</pre></div>
+
 
     <p>You can now call it:</p>
 
-    <prism-js>
-fac[4]
-    </prism-js>
+    <div class="highlight"><pre><span></span>fac[4]
+    
+</pre></div>
+
 
     <p>
       K is actually surprisingly readable once you learn it...provided you don't
@@ -165,10 +171,9 @@ fac[4]
       been. Here's a factorial in Objeck (the language has a factorial function
       built in, but this is a custom one):</p>
 
-    <prism-js>
-class Factorial {
+    <div class="highlight"><pre><span></span>class Factorial {
     function : native : Factorial(n : Int) ~ Int {
-        if (n <= 1) {
+        if (n &lt;= 1) {
             return n;
         } else {
             return n * Factorial(n-1);
@@ -176,16 +181,18 @@ class Factorial {
     }
 
     function : Main(args : String[]) ~ Nil {
-        "Number: "->Print();
-        number := IO.Console->ReadString()->ToInt();
+        "Number: "-&gt;Print();
+        number := IO.Console-&gt;ReadString()-&gt;ToInt();
         if (number &lt; 0) {
-            "Number must be greater than 0"->PrintLine();
-            Runtime->Exit(1);
+            "Number must be greater than 0"-&gt;PrintLine();
+            Runtime-&gt;Exit(1);
         };
-        Factorial(number)->PrintLine();
+        Factorial(number)-&gt;PrintLine();
     }
 }
-    </prism-js>
+    
+</pre></div>
+
 
     Objeck has no long/unsigned types, so I just used the basic <code>Int</code> type.
 
@@ -199,4 +206,5 @@ class Factorial {
     </site-tags>
     <site-suffix></site-suffix>
   </div>
-</body>
+
+</body></html>

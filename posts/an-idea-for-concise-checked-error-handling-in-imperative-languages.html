@@ -1,16 +1,15 @@
-<!DOCTYPE html>
-
-<head>
+<!DOCTYPE html><html><head>
   <title>
     An idea for concise, checked error handling in imperative languages</title>
-  <script src="/bower_components/webcomponentsjs/webcomponents-lite.js">
-  </script>
-  <link rel="import" href="/_base.html">
+  <script defer="" src="/dist/pack.js"></script>
+  <link rel="stylesheet" href="/dist/pack.css">
+  <script defer="" src="../page.initialize.dart.js"></script>
+  
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 
-<body>
-  <div id="page">
+<body vuedart="">
+  <div id="page" v-cloak="">
     <site-navbar></site-navbar>
     <site-title created-on="2016-03-20 16:34"></site-title>
 
@@ -75,8 +74,8 @@
           If you ever have to deal with multiple different types of errors being
           thrown at once...tough luck.</li>
       </ul>
-      </p>
-    </ul>
+      <p></p>
+    </li></ul>
 
     <link-header id="imperative-monads">Imperative monads</link-header>
 
@@ -91,12 +90,13 @@
 
     <p>When a function wants an error to occur, it would do this:</p>
 
-    <prism-js language="crystal">
-def myfunc(a : Int32)
-  raise MyErrorType.new if a == 0
-  return a
-end
-    </prism-js>
+    <div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">myfunc</span><span class="p">(</span><span class="n">a</span> <span class="p">:</span> <span class="nb">Int32</span><span class="p">)</span>
+  <span class="nb">raise</span> <span class="n">MyErrorType</span><span class="o">.</span><span class="n">new</span> <span class="k">if</span> <span class="n">a</span> <span class="o">==</span> <span class="mi">0</span>
+  <span class="k">return</span> <span class="n">a</span>
+<span class="k">end</span>
+    
+</pre></div>
+
 
     <p>
       This <i>appears</i> to be just a normal exception throw, but it really isn't.
@@ -104,13 +104,14 @@ end
       <code>MyErrorType.new</code>. This code would roughly be the exact same thing
       semantically as:</p>
 
-    <prism-js language="crystal">
-def myfunc(a)
-  # Using Haskell Left/Right naming.
-  return Left.new "invalid number #{a}" if a == 0
-  return Right.new a
-end
-    </prism-js>
+    <div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">myfunc</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+  <span class="c1"># Using Haskell Left/Right naming.</span>
+  <span class="k">return</span> <span class="n">Left</span><span class="o">.</span><span class="n">new</span> <span class="s2">"invalid number </span><span class="si">#{</span><span class="n">a</span><span class="si">}</span><span class="s2">"</span> <span class="k">if</span> <span class="n">a</span> <span class="o">==</span> <span class="mi">0</span>
+  <span class="k">return</span> <span class="n">Right</span><span class="o">.</span><span class="n">new</span> <span class="n">a</span>
+<span class="k">end</span>
+    
+</pre></div>
+
 
     <p>
       In short, it's just union types, but more concise. Because of Crystal's type
@@ -122,29 +123,31 @@ end
       the code may be something like (Crystal doesn't actually have pattern
       matching like I show; I'm just improvising):</p>
 
-    <prism-js language="crystal">
-def myotherfunc(a)
-  case myfunc a
-  when Left error
-    puts "An error occurred: #{error}"
-  when Right result
-    puts "Function returned: #{value}"
-  end
-end
-    </prism-js>
+    <div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">myotherfunc</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+  <span class="k">case</span> <span class="n">myfunc</span> <span class="n">a</span>
+  <span class="k">when</span> <span class="n">Left</span> <span class="n">error</span>
+    <span class="nb">puts</span> <span class="s2">"An error occurred: </span><span class="si">#{</span><span class="n">error</span><span class="si">}</span><span class="s2">"</span>
+  <span class="k">when</span> <span class="n">Right</span> <span class="n">result</span>
+    <span class="nb">puts</span> <span class="s2">"Function returned: </span><span class="si">#{</span><span class="n">value</span><span class="si">}</span><span class="s2">"</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+    
+</pre></div>
+
 
     <p>However, this is where things go a completely different route:</p>
 
-    <prism-js language="crystal">
-def myotherfunc(a)
-  try
-    myfunc a
-  except MyErrorType as ex
-    puts "An error occurred: #{ex.message}"
-  else value
-    puts "Function returned: #{value}"
-end
-    </prism-js>
+    <div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">myotherfunc</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+  <span class="n">try</span>
+    <span class="n">myfunc</span> <span class="n">a</span>
+  <span class="n">except</span> <span class="n">MyErrorType</span> <span class="k">as</span> <span class="n">ex</span>
+    <span class="nb">puts</span> <span class="s2">"An error occurred: </span><span class="si">#{</span><span class="n">ex</span><span class="o">.</span><span class="n">message</span><span class="si">}</span><span class="s2">"</span>
+  <span class="k">else</span> <span class="n">value</span>
+    <span class="nb">puts</span> <span class="s2">"Function returned: </span><span class="si">#{</span><span class="n">value</span><span class="si">}</span><span class="s2">"</span>
+<span class="k">end</span>
+    
+</pre></div>
+
 
     <p>
       "But wait," you say, "how is this different from exceptions!?" Well, this
@@ -168,13 +171,14 @@ end
       doesn't cover a possible error. For instance, if <code>myfunc</code> were
       changed to:</p>
 
-    <prism-js language="crystal">
-def myfunc(a : Int32)
-  raise MyErrorType.new if a == 0
-  # A new error:
-  raise MyOtherErrorType.new if a &lt; 0
-end
-    </prism-js>
+    <div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">myfunc</span><span class="p">(</span><span class="n">a</span> <span class="p">:</span> <span class="nb">Int32</span><span class="p">)</span>
+  <span class="nb">raise</span> <span class="n">MyErrorType</span><span class="o">.</span><span class="n">new</span> <span class="k">if</span> <span class="n">a</span> <span class="o">==</span> <span class="mi">0</span>
+  <span class="c1"># A new error:</span>
+  <span class="nb">raise</span> <span class="n">MyOtherErrorType</span><span class="o">.</span><span class="n">new</span> <span class="k">if</span> <span class="n">a</span> <span class="o">&lt;</span> <span class="mi">0</span>
+<span class="k">end</span>
+    
+</pre></div>
+
 
     <p>What would happen to <code>myotherfunc</code>? It wouldn't compile!</p>
 
@@ -182,119 +186,127 @@ end
       If there would possibly be no matching <code>except</code> block, then the
       compiler would treat <code>myotherfunc</code> as if it said:</p>
 
-    <prism-js language="crystal">
-def myotherfunc(a)
-  try
-    myfunc a
-  except MyErrorType as ex
-    puts "An error occurred: #{ex.message}"
-  # Inserted by the compiler
-  except MyOtherErrorType as ex
-    raise ex # Re-raise the error
-  else value
-    puts "Function returned: #{value}"
-end
-    </prism-js>
+    <div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">myotherfunc</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+  <span class="n">try</span>
+    <span class="n">myfunc</span> <span class="n">a</span>
+  <span class="n">except</span> <span class="n">MyErrorType</span> <span class="k">as</span> <span class="n">ex</span>
+    <span class="nb">puts</span> <span class="s2">"An error occurred: </span><span class="si">#{</span><span class="n">ex</span><span class="o">.</span><span class="n">message</span><span class="si">}</span><span class="s2">"</span>
+  <span class="c1"># Inserted by the compiler</span>
+  <span class="n">except</span> <span class="n">MyOtherErrorType</span> <span class="k">as</span> <span class="n">ex</span>
+    <span class="nb">raise</span> <span class="n">ex</span> <span class="c1"># Re-raise the error</span>
+  <span class="k">else</span> <span class="n">value</span>
+    <span class="nb">puts</span> <span class="s2">"Function returned: </span><span class="si">#{</span><span class="n">value</span><span class="si">}</span><span class="s2">"</span>
+<span class="k">end</span>
+    
+</pre></div>
+
 
     <p>
       Now <code>myotherfunc</code> is inferred to return
       <code>Int32![MyOtherErrorType]</code>. In order to fix it, you can just
       do:</p>
 
-    <prism-js language="crystal">
-def myotherfunc(a)
-  try
-    myfunc a
-  # Take either type of error.
-  except MyErrorType | MyOtherErrorType as ex
-    puts "An error occurred: #{ex.message}"
-  else value
-    puts "Function returned: #{value}"
-end
-    </prism-js>
+    <div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">myotherfunc</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+  <span class="n">try</span>
+    <span class="n">myfunc</span> <span class="n">a</span>
+  <span class="c1"># Take either type of error.</span>
+  <span class="n">except</span> <span class="n">MyErrorType</span> <span class="o">|</span> <span class="n">MyOtherErrorType</span> <span class="k">as</span> <span class="n">ex</span>
+    <span class="nb">puts</span> <span class="s2">"An error occurred: </span><span class="si">#{</span><span class="n">ex</span><span class="o">.</span><span class="n">message</span><span class="si">}</span><span class="s2">"</span>
+  <span class="k">else</span> <span class="n">value</span>
+    <span class="nb">puts</span> <span class="s2">"Function returned: </span><span class="si">#{</span><span class="n">value</span><span class="si">}</span><span class="s2">"</span>
+<span class="k">end</span>
+    
+</pre></div>
+
 
     <p>You could also omit any <code>except</code> clause. For example:</p>
 
-    <prism-js language="crystal">
-def myotherfunc(a)
-  try
-    myfunc a
-  # No except clauses
-  else value
-    puts "Function returned: #{value}"
-end
-    </prism-js>
+    <div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">myotherfunc</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+  <span class="n">try</span>
+    <span class="n">myfunc</span> <span class="n">a</span>
+  <span class="c1"># No except clauses</span>
+  <span class="k">else</span> <span class="n">value</span>
+    <span class="nb">puts</span> <span class="s2">"Function returned: </span><span class="si">#{</span><span class="n">value</span><span class="si">}</span><span class="s2">"</span>
+<span class="k">end</span>
+    
+</pre></div>
+
 
     <p>This would be equivalent to:</p>
 
-    <prism-js language="crystal">
-def myotherfunc(a)
-  try
-    myfunc a
-  # Inserted by compiler.
-  except MyErrorType | MyOtherErrorType as ex
-    raise ex
-  else value
-    puts "Function returned: #{value}"
-end
-    </prism-js>
+    <div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">myotherfunc</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+  <span class="n">try</span>
+    <span class="n">myfunc</span> <span class="n">a</span>
+  <span class="c1"># Inserted by compiler.</span>
+  <span class="n">except</span> <span class="n">MyErrorType</span> <span class="o">|</span> <span class="n">MyOtherErrorType</span> <span class="k">as</span> <span class="n">ex</span>
+    <span class="nb">raise</span> <span class="n">ex</span>
+  <span class="k">else</span> <span class="n">value</span>
+    <span class="nb">puts</span> <span class="s2">"Function returned: </span><span class="si">#{</span><span class="n">value</span><span class="si">}</span><span class="s2">"</span>
+<span class="k">end</span>
+    
+</pre></div>
+
 
     <p>
       In addition, this can be an expression. If an error occurs, the function
       instantly returns; otherwise, the value of the <code>else</code> block is
       returned:</p>
 
-    <prism-js language="crystal">
-def myotherfunc(a)
-  result = try
-    myfunc a
-  except MyErrorType | MyOtherErrorType as ex
-    puts "An error occurred: #{ex.message}"
-  else value
-    puts "Function returned: #{value}"
-    value + 1
-  puts result
-end
-    </prism-js>
+    <div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">myotherfunc</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+  <span class="n">result</span> <span class="o">=</span> <span class="n">try</span>
+    <span class="n">myfunc</span> <span class="n">a</span>
+  <span class="n">except</span> <span class="n">MyErrorType</span> <span class="o">|</span> <span class="n">MyOtherErrorType</span> <span class="k">as</span> <span class="n">ex</span>
+    <span class="nb">puts</span> <span class="s2">"An error occurred: </span><span class="si">#{</span><span class="n">ex</span><span class="o">.</span><span class="n">message</span><span class="si">}</span><span class="s2">"</span>
+  <span class="k">else</span> <span class="n">value</span>
+    <span class="nb">puts</span> <span class="s2">"Function returned: </span><span class="si">#{</span><span class="n">value</span><span class="si">}</span><span class="s2">"</span>
+    <span class="n">value</span> <span class="o">+</span> <span class="mi">1</span>
+  <span class="nb">puts</span> <span class="n">result</span>
+<span class="k">end</span>
+    
+</pre></div>
+
 
     <p>
       If the <code>else</code> block is ommitted, then the non-error value is
       returned:</p>
 
-    <prism-js language="crystal">
-def myotherfunc(a)
-  result = try
-    myfunc a
-  except MyErrorType | MyOtherErrorType as ex
-    puts "An error occurred: #{ex.message}"
-  # No else block; same thing as putting:
-  # else value
-  #   value
-  puts result
-end
-    </prism-js>
+    <div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">myotherfunc</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+  <span class="n">result</span> <span class="o">=</span> <span class="n">try</span>
+    <span class="n">myfunc</span> <span class="n">a</span>
+  <span class="n">except</span> <span class="n">MyErrorType</span> <span class="o">|</span> <span class="n">MyOtherErrorType</span> <span class="k">as</span> <span class="n">ex</span>
+    <span class="nb">puts</span> <span class="s2">"An error occurred: </span><span class="si">#{</span><span class="n">ex</span><span class="o">.</span><span class="n">message</span><span class="si">}</span><span class="s2">"</span>
+  <span class="c1"># No else block; same thing as putting:</span>
+  <span class="c1"># else value</span>
+  <span class="c1">#   value</span>
+  <span class="nb">puts</span> <span class="n">result</span>
+<span class="k">end</span>
+    
+</pre></div>
+
 
     <p>Now you can combine all this to get a nice shorthand:</p>
 
-    <prism-js language="crystal">
-def myotherfunc(a)
-  return try myfunc a
-end
-    </prism-js>
+    <div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">myotherfunc</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+  <span class="k">return</span> <span class="n">try</span> <span class="n">myfunc</span> <span class="n">a</span>
+<span class="k">end</span>
+    
+</pre></div>
+
 
     <p>The compiler would basically desugar that into:</p>
 
-    <prism-js language="crystal">
-def myotherfunc(a)
-  return
-    try
-      myfunc a
-    except MyErrorType | MyOtherErrorType ex
-      raise ex
-    else value
-      value
-end
-    </prism-js>
+    <div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">myotherfunc</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+  <span class="k">return</span>
+    <span class="n">try</span>
+      <span class="n">myfunc</span> <span class="n">a</span>
+    <span class="n">except</span> <span class="n">MyErrorType</span> <span class="o">|</span> <span class="n">MyOtherErrorType</span> <span class="n">ex</span>
+      <span class="nb">raise</span> <span class="n">ex</span>
+    <span class="k">else</span> <span class="n">value</span>
+      <span class="n">value</span>
+<span class="k">end</span>
+    
+</pre></div>
+
 
     <p>
       As an added benefit, you can chain <code>!</code> uses, so
@@ -346,23 +358,25 @@ end
 
     <p>What happens to error sequences? Exceptions are great for this:</p>
 
-    <prism-js language="python">
-try:
-    x = something()
-    something_else(x)
-except IOError: # If any of the expressions result in an IOError.
-    print('Error occurred!')
-    </prism-js>
+    <div class="highlight"><pre><span></span><span class="k">try</span><span class="p">:</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">something</span><span class="p">()</span>
+    <span class="n">something_else</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="k">except</span> <span class="ne">IOError</span><span class="p">:</span> <span class="c1"># If any of the expressions result in an IOError.</span>
+    <span class="k">print</span><span class="p">(</span><span class="s1">'Error occurred!'</span><span class="p">)</span>
+    
+</pre></div>
+
 
     <p>Well, that could go something like this:</p>
 
-    <prism-js language="crystal">
-try
-    x = try something
-    something_else x
-except IOError as ex
-    puts "Error occurred!"
-    </prism-js>
+    <div class="highlight"><pre><span></span><span class="n">try</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">try</span> <span class="n">something</span>
+    <span class="n">something_else</span> <span class="n">x</span>
+<span class="n">except</span> <span class="n">IOError</span> <span class="k">as</span> <span class="n">ex</span>
+    <span class="nb">puts</span> <span class="s2">"Error occurred!"</span>
+    
+</pre></div>
+
 
     <p>What exactly does this do?</p>
 
@@ -381,7 +395,8 @@ except IOError as ex
       multiple versions of every sequence function, like Haskell's <code>map</code>
       vs <code>mapM</code> and <code>filter</code> vs <code>filterM</code>.</p>
 
-    <site-tags tags='programming, errors, crystal'></site-tags>
+    <site-tags tags="programming, errors, crystal"></site-tags>
     <site-suffix></site-suffix>
-</body>
 
+
+</div></body></html>

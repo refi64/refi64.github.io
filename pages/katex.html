@@ -1,14 +1,17 @@
-<!DOCTYPE html>
-
-<head>
+<!DOCTYPE html><html><head>
   <title>KaTeX math previewer</title>
-  <script src="/bower_components/webcomponentsjs/webcomponents-lite.js">
-  </script>
-  <link rel="import" href="/_base.html">
+  <script defer="" src="/dist/pack.js"></script>
+  <link rel="stylesheet" href="/dist/pack.css">
+  <script defer="" src="katex.initialize.dart.js"></script>
+  
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/KaTeX/0.2.0/katex.min.css">
+  <script src="//cdnjs.cloudflare.com/ajax/libs/KaTeX/0.2.0/katex.min.js">
+  </script>
 </head>
 
-<body>
+<body vuedart="">
   <div id="page">
     <site-navbar></site-navbar>
 
@@ -17,6 +20,6 @@
       big, red parse error.</p>
 
     <math-preview></math-preview>
-    <google-analytics></google-analytics>
   </div>
-</body>
+
+</body></html>

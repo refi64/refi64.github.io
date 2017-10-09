@@ -1,15 +1,14 @@
-<!DOCTYPE html>
-
-<head>
+<!DOCTYPE html><html><head>
   <title>The top 5 programming languages you've never heard of (part 2)</title>
-  <script src="/bower_components/webcomponentsjs/webcomponents-lite.js">
-  </script>
-  <link rel="import" href="/_base.html">
+  <script defer="" src="/dist/pack.js"></script>
+  <link rel="stylesheet" href="/dist/pack.css">
+  <script defer="" src="../page.initialize.dart.js"></script>
+  
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 
-<body>
-  <div id="page">
+<body vuedart="">
+  <div id="page" v-cloak="">
     <site-navbar></site-navbar>
     <site-title created-on="2015-03-08 17:04"></site-title>
 
@@ -32,62 +31,64 @@
       Object Pascal). A better example is Nimble: the Nim package manager. Here's a
       piece of Nimble's source code:</p>
 
-    <prism-js language="nim">
-proc update(options: Options) =
-  ## Downloads the package list from the specified URL.
-  ##
-  ## If the download is successful, the global didUpdatePackages is set to
-  ## true. Otherwise an exception is raised on error.
-  let url =
-    if options.action.typ == actionUpdate and options.action.optionalURL != "":
-      options.action.optionalURL
-    else:
-      defaultPackageURL
-  echo("Downloading package list from " &amp; url)
-  downloadFile(url, options.getNimbleDir() / "packages.json")
-  echo("Done.")
-    </prism-js>
+    <div class="highlight"><pre><span></span><span class="k">proc </span><span class="nf">update</span><span class="p">(</span><span class="n">options</span><span class="p">:</span> <span class="n">Options</span><span class="p">)</span> <span class="o">=</span>
+  <span class="sd">## Downloads the package list from the specified URL.</span>
+  <span class="sd">##</span>
+  <span class="sd">## If the download is successful, the global didUpdatePackages is set to</span>
+  <span class="sd">## true. Otherwise an exception is raised on error.</span>
+  <span class="k">let</span> <span class="n">url</span> <span class="o">=</span>
+    <span class="k">if</span> <span class="n">options</span><span class="p">.</span><span class="n">action</span><span class="p">.</span><span class="n">typ</span> <span class="o">==</span> <span class="n">actionUpdate</span> <span class="ow">and</span> <span class="n">options</span><span class="p">.</span><span class="n">action</span><span class="p">.</span><span class="n">optionalURL</span> <span class="o">!=</span> <span class="s">""</span><span class="p">:</span>
+      <span class="n">options</span><span class="p">.</span><span class="n">action</span><span class="p">.</span><span class="n">optionalURL</span>
+    <span class="k">else</span><span class="p">:</span>
+      <span class="n">defaultPackageURL</span>
+  <span class="n">echo</span><span class="p">(</span><span class="s">"Downloading package list from "</span> <span class="o">&amp;</span> <span class="n">url</span><span class="p">)</span>
+  <span class="n">downloadFile</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">options</span><span class="p">.</span><span class="n">getNimbleDir</span><span class="p">()</span> <span class="o">/</span> <span class="s">"packages.json"</span><span class="p">)</span>
+  <span class="n">echo</span><span class="p">(</span><span class="s">"Done."</span><span class="p">)</span>
+    
+</pre></div>
+
 
     <p>A longer piece:</p>
 
-    <prism-js language="nim">
-proc parseConfig*(): Config =
-  result = initConfig()
-  var confFile = getConfigDir() / "nimble" / "nimble.ini"
+    <div class="highlight"><pre><span></span><span class="k">proc </span><span class="nf">parseConfig</span><span class="o">*</span><span class="p">():</span> <span class="n">Config</span> <span class="o">=</span>
+  <span class="n">result</span> <span class="o">=</span> <span class="n">initConfig</span><span class="p">()</span>
+  <span class="kd">var</span> <span class="n">confFile</span> <span class="o">=</span> <span class="n">getConfigDir</span><span class="p">()</span> <span class="o">/</span> <span class="s">"nimble"</span> <span class="o">/</span> <span class="s">"nimble.ini"</span>
 
-  var f = newFileStream(confFile, fmRead)
-  if f == nil:
-    # Try the old deprecated babel.ini
-    confFile = getConfigDir() / "babel" / "babel.ini"
-    f = newFileStream(confFile, fmRead)
-    if f != nil:
-      echo("[Warning] Using deprecated config file at ", confFile)
+  <span class="kd">var</span> <span class="n">f</span> <span class="o">=</span> <span class="n">newFileStream</span><span class="p">(</span><span class="n">confFile</span><span class="p">,</span> <span class="n">fmRead</span><span class="p">)</span>
+  <span class="k">if</span> <span class="n">f</span> <span class="o">==</span> <span class="kp">nil</span><span class="p">:</span>
+    <span class="c"># Try the old deprecated babel.ini</span>
+    <span class="n">confFile</span> <span class="o">=</span> <span class="n">getConfigDir</span><span class="p">()</span> <span class="o">/</span> <span class="s">"babel"</span> <span class="o">/</span> <span class="s">"babel.ini"</span>
+    <span class="n">f</span> <span class="o">=</span> <span class="n">newFileStream</span><span class="p">(</span><span class="n">confFile</span><span class="p">,</span> <span class="n">fmRead</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">f</span> <span class="o">!=</span> <span class="kp">nil</span><span class="p">:</span>
+      <span class="n">echo</span><span class="p">(</span><span class="s">"[Warning] Using deprecated config file at "</span><span class="p">,</span> <span class="n">confFile</span><span class="p">)</span>
 
-  if f != nil:
-    echo("Reading from config file at ", confFile)
-    var p: CfgParser
-    open(p, f, confFile)
-    while true:
-      var e = next(p)
-      case e.kind
-      of cfgEof:
-        break
-      of cfgSectionStart: discard
-      of cfgKeyValuePair, cfgOption:
-        case e.key.normalize
-        of "nimbledir":
-          # Ensure we don't restore the deprecated nimble dir.
-          if e.value != getHomeDir() / ".babel":
-            result.nimbleDir = e.value
-        of "chcp":
-          result.chcp = parseBool(e.value)
-        else:
-          raise newException(NimbleError, "Unable to parse config file:" &
-                                  " Unknown key: " &amp; e.key)
-      of cfgError:
-        raise newException(NimbleError, "Unable to parse config file: " &amp; e.msg)
-    close(p)
-    </prism-js>
+  <span class="k">if</span> <span class="n">f</span> <span class="o">!=</span> <span class="kp">nil</span><span class="p">:</span>
+    <span class="n">echo</span><span class="p">(</span><span class="s">"Reading from config file at "</span><span class="p">,</span> <span class="n">confFile</span><span class="p">)</span>
+    <span class="kd">var</span> <span class="n">p</span><span class="p">:</span> <span class="n">CfgParser</span>
+    <span class="n">open</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">f</span><span class="p">,</span> <span class="n">confFile</span><span class="p">)</span>
+    <span class="k">while</span> <span class="kp">true</span><span class="p">:</span>
+      <span class="kd">var</span> <span class="n">e</span> <span class="o">=</span> <span class="n">next</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
+      <span class="k">case</span> <span class="n">e</span><span class="p">.</span><span class="n">kind</span>
+      <span class="k">of</span> <span class="n">cfgEof</span><span class="p">:</span>
+        <span class="k">break</span>
+      <span class="k">of</span> <span class="n">cfgSectionStart</span><span class="p">:</span> <span class="k">discard</span>
+      <span class="k">of</span> <span class="n">cfgKeyValuePair</span><span class="p">,</span> <span class="n">cfgOption</span><span class="p">:</span>
+        <span class="k">case</span> <span class="n">e</span><span class="p">.</span><span class="n">key</span><span class="p">.</span><span class="n">normalize</span>
+        <span class="k">of</span> <span class="s">"nimbledir"</span><span class="p">:</span>
+          <span class="c"># Ensure we don't restore the deprecated nimble dir.</span>
+          <span class="k">if</span> <span class="n">e</span><span class="p">.</span><span class="n">value</span> <span class="o">!=</span> <span class="n">getHomeDir</span><span class="p">()</span> <span class="o">/</span> <span class="s">".babel"</span><span class="p">:</span>
+            <span class="n">result</span><span class="p">.</span><span class="n">nimbleDir</span> <span class="o">=</span> <span class="n">e</span><span class="p">.</span><span class="n">value</span>
+        <span class="k">of</span> <span class="s">"chcp"</span><span class="p">:</span>
+          <span class="n">result</span><span class="p">.</span><span class="n">chcp</span> <span class="o">=</span> <span class="n">parseBool</span><span class="p">(</span><span class="n">e</span><span class="p">.</span><span class="n">value</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+          <span class="k">raise</span> <span class="n">newException</span><span class="p">(</span><span class="n">NimbleError</span><span class="p">,</span> <span class="s">"Unable to parse config file:"</span> <span class="o">&amp;</span>
+                                  <span class="s">" Unknown key: "</span> <span class="o">&amp;</span> <span class="n">e</span><span class="p">.</span><span class="n">key</span><span class="p">)</span>
+      <span class="k">of</span> <span class="n">cfgError</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="n">newException</span><span class="p">(</span><span class="n">NimbleError</span><span class="p">,</span> <span class="s">"Unable to parse config file: "</span> <span class="o">&amp;</span> <span class="n">e</span><span class="p">.</span><span class="n">msg</span><span class="p">)</span>
+    <span class="n">close</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
+    
+</pre></div>
+
 
     <link-header id="felix">Felix</link-header>
 
@@ -96,8 +97,7 @@ proc parseConfig*(): Config =
       and lots of unique ideas. Here's a nice sample from a toy JSON parser I was
       writing (this is only the lexer part):</p>
 
-    <prism-js>
-class JSON {
+    <div class="highlight"><pre><span></span>class JSON {
     typedef LineType = int;
 
     union Value =
@@ -143,8 +143,8 @@ class JSON {
         endmatch;
     }
 
-    proc lex(s: string, line: &LineType, outs: oschannel[Token]) = {
-        line <- 1;
+    proc lex(s: string, line: &amp;LineType, outs: oschannel[Token]) = {
+        line &lt;- 1;
 
         proc tok(t: Token) =&gt; write $ outs, t;
 
@@ -159,7 +159,7 @@ class JSON {
             while s.[i].isspace do
                 if s.[i] == "\n" do *line++; done;
                 i++;
-                if i >= s.len goto eof;
+                if i &gt;= s.len goto eof;
             done;
 
             // number
@@ -204,11 +204,13 @@ class JSON {
             done;
         done;
 
-        eof:>
+        eof:&gt;
         tok TEOF;
     }
 }
-    </prism-js>
+    
+</pre></div>
+
 
     <p>
       <a href="http://felix-lang.org/%24/usr/local/lib/felix/felix-latest//share/lib/web/json.flx">
@@ -253,8 +255,7 @@ class JSON {
       <a href="http://git.eigenstate.org/ori/libbio.git/tree/bio.myr">libbio</a>
       input/output library. Here's a snippet:</p>
 
-    <prism-js>
-/*
+    <div class="highlight"><pre><span></span>/*
 writes to as much from `src` as possible to a file,
 returning the number of bytes written.
 */
@@ -273,7 +274,9 @@ const write = {f, src
         -&gt; writebuf(f.fd, src)
     ;;
 }
-    </prism-js>
+    
+</pre></div>
+
 
     <p>
       However, the compiler generates VERY slow x64 assembly code at the
@@ -292,15 +295,16 @@ const write = {f, src
       Here are some of the idioms at the
       <a href="https://github.com/kevinlawler/kona/wiki/Idioms">Kona wiki</a>:</p>
 
-    <prism-js escape>
-shuffle:{x@<>(#x)#1 0} / Perfect shuffle
+    <div class="highlight"><pre><span></span>shuffle:{x@&lt;&gt;(#x)#1 0} / Perfect shuffle
 mean:{(+/x)%#x} / Arithmetic mean
 fac:*/1+!: / Factorial
 fib:{x{x,+/-2#x}/!2} / Fibonacci
-life:{|/(1;x)&3 4=\:+/,/2{-1 0 1!'\:x}/x} / Conway's Game of Life
+life:{|/(1;x)&amp;3 4=\:+/,/2{-1 0 1!'\:x}/x} / Conway's Game of Life
 sort:{x@&lt;x} / Sort list
-powerset:{x[&:'!2+&#x]} / Powerset
-    </prism-js>
+powerset:{x[&amp;:'!2+&amp;#x]} / Powerset
+    
+</pre></div>
+
 
     <p>
       As you can see, K is very concise. A little too concise. However, as an
@@ -320,10 +324,9 @@ powerset:{x[&:'!2+&#x]} / Powerset
 
     <p>It's pretty expressive and nice to work with:</p>
 
-    <prism-js>
-class Factorial {
+    <div class="highlight"><pre><span></span>class Factorial {
     function : native : Factorial(n : Int) ~ Int {
-        if (n <= 1) {
+        if (n &lt;= 1) {
             return n;
         } else {
             return n * Factorial(n-1);
@@ -331,16 +334,18 @@ class Factorial {
     }
 
     function : Main(args : String[]) ~ Nil {
-        "Number: "->Print();
-        number := IO.Console->ReadString()->ToInt();
+        "Number: "-&gt;Print();
+        number := IO.Console-&gt;ReadString()-&gt;ToInt();
         if (number &lt; 0) {
-            "Number must be greater than 0"->PrintLine();
-            Runtime->Exit(1);
+            "Number must be greater than 0"-&gt;PrintLine();
+            Runtime-&gt;Exit(1);
         };
-        Factorial(number)->PrintLine();
+        Factorial(number)-&gt;PrintLine();
     }
 }
-    </prism-js>
+    
+</pre></div>
+
 
     <p>
       It's very Java-esque but nicer to use. The cons would be the fact that there
@@ -383,4 +388,5 @@ class Factorial {
     </site-tags>
     <site-suffix></site-suffix>
   </div>
-</body>
+
+</body></html>

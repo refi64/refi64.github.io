@@ -1,15 +1,14 @@
-<!DOCTYPE html>
-
-<head>
+<!DOCTYPE html><html><head>
   <title>Implementing a (sort of) generic, (sort of) type-safe array in C</title>
-  <script src="/bower_components/webcomponentsjs/webcomponents-lite.js">
-  </script>
-  <link rel="import" href="/_base.html">
+  <script defer="" src="/dist/pack.js"></script>
+  <link rel="stylesheet" href="/dist/pack.css">
+  <script defer="" src="../page.initialize.dart.js"></script>
+  
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 
-<body>
-  <div id="page">
+<body vuedart="">
+  <div id="page" v-cloak="">
     <site-navbar></site-navbar>
     <site-title created-on="2015-11-28"></site-title>
 
@@ -46,16 +45,17 @@
 
     <p>The API is basically like:</p>
 
-    <prism-js language="c">
-List(int*) mylist = NULL; // NULL represents the empty list.
-int a=1, b=2;
-list_append(mylist, &a);
-// We can get the first element of the list with l[0] and the length with list_len:
-printf("%zu %d\n", list_len(mylist), *mylist[0]); // Prints 1 1.
-list_append(mylist, &b);
-printf("%zu %d %d\n", list_len(mylist), *mylist[0], *mylist[1]); // Prints 2 1 2.
-list_free(mylist);
-    </prism-js>
+    <div class="highlight"><pre><span></span><span class="n">List</span><span class="p">(</span><span class="kt">int</span><span class="o">*</span><span class="p">)</span> <span class="n">mylist</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span> <span class="c1">// NULL represents the empty list.</span>
+<span class="kt">int</span> <span class="n">a</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">b</span><span class="o">=</span><span class="mi">2</span><span class="p">;</span>
+<span class="n">list_append</span><span class="p">(</span><span class="n">mylist</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">a</span><span class="p">);</span>
+<span class="c1">// We can get the first element of the list with l[0] and the length with list_len:</span>
+<span class="n">printf</span><span class="p">(</span><span class="s">"%zu %d</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">list_len</span><span class="p">(</span><span class="n">mylist</span><span class="p">),</span> <span class="o">*</span><span class="n">mylist</span><span class="p">[</span><span class="mi">0</span><span class="p">]);</span> <span class="c1">// Prints 1 1.</span>
+<span class="n">list_append</span><span class="p">(</span><span class="n">mylist</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">b</span><span class="p">);</span>
+<span class="n">printf</span><span class="p">(</span><span class="s">"%zu %d %d</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">list_len</span><span class="p">(</span><span class="n">mylist</span><span class="p">),</span> <span class="o">*</span><span class="n">mylist</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="o">*</span><span class="n">mylist</span><span class="p">[</span><span class="mi">1</span><span class="p">]);</span> <span class="c1">// Prints 2 1 2.</span>
+<span class="n">list_free</span><span class="p">(</span><span class="n">mylist</span><span class="p">);</span>
+    
+</pre></div>
+
 
     <p>
       Note that I used the term <code>list</code>, not <code>array</code>, since I'm
@@ -77,24 +77,26 @@ list_free(mylist);
 
     <link-header id="boilerplate">Boilerplate</link-header>
 
-    <prism-js language="c">
-#ifndef LIST_H
-#define LIST_H
+    <div class="highlight"><pre><span></span><span class="cp">#ifndef LIST_H</span>
+<span class="cp">#define LIST_H</span>
 
-...
+<span class="p">...</span>
 
-#endif
-    </prism-js>
+<span class="cp">#endif</span>
+    
+</pre></div>
+
 
     <p>Yeah, we all know what this is for! Joyous header files.</p>
 
     <p>Inside these header files is some more boilerplate:</p>
 
-    <prism-js language="c">
-#define list_cat2(a,b) a##b
-#define list_cat(a,b) list_cat2(a,b)
-#define list_var(b) list_cat(list_type_,list_cat(b,__LINE__))
-    </prism-js>
+    <div class="highlight"><pre><span></span><span class="cp">#define list_cat2(a,b) a##b</span>
+<span class="cp">#define list_cat(a,b) list_cat2(a,b)</span>
+<span class="cp">#define list_var(b) list_cat(list_type_,list_cat(b,__LINE__))</span>
+    
+</pre></div>
+
 
     <p>
       This is just a way of creating anonymous, single-use variables inside a macro
@@ -102,18 +104,20 @@ list_free(mylist);
 
     <link-header id="basics">The basics</link-header>
 
-    <prism-js language="c">
-#define List(t) t*
-    </prism-js>
+    <div class="highlight"><pre><span></span><span class="cp">#define List(t) t*</span>
+    
+</pre></div>
+
 
     <p>
       <i>Now</i> the interesting stuff starts! This is just a macro to make uses
       of the list type look like generics, so that I can do stuff like
       <code>List(int*)</code>.</p>
 
-    <prism-js language="c">
-#define list_lenref(l) ((size_t*)l)[-1]
-    </prism-js>
+    <div class="highlight"><pre><span></span><span class="cp">#define list_lenref(l) ((size_t*)l)[-1]</span>
+    
+</pre></div>
+
 
     <p>I think I need to explain a moment.</p>
 
@@ -121,12 +125,13 @@ list_free(mylist);
       Lists are represented by a pointer to a length of type <code>size_t</code>
       and the elements immediately after, like this:</p>
 
-    <prism-js language="c">
-struct my_list_type {
-    size_t length;
-    some_type my_array[size_here];
-};
-    </prism-js>
+    <div class="highlight"><pre><span></span><span class="k">struct</span> <span class="n">my_list_type</span> <span class="p">{</span>
+    <span class="kt">size_t</span> <span class="n">length</span><span class="p">;</span>
+    <span class="n">some_type</span> <span class="n">my_array</span><span class="p">[</span><span class="n">size_here</span><span class="p">];</span>
+<span class="p">};</span>
+    
+</pre></div>
+
 
     <p>
       (Except that <code>my_array</code> can be of any size.) However, the list is
@@ -134,11 +139,12 @@ struct my_list_type {
       (which gets the length of the list) needs to index BEFORE the given list to
       get the length.
 
-    <p>Next is the definition of <code>list_len</code>:</p>
+    </p><p>Next is the definition of <code>list_len</code>:</p>
 
-    <prism-js language="c">
-#define list_len(l) (l?list_lenref(l):0)
-    </prism-js>
+    <div class="highlight"><pre><span></span><span class="cp">#define list_len(l) (l?list_lenref(l):0)</span>
+    
+</pre></div>
+
 
     <p>
       This is just a wrapper macro around <code>list_lenref</code> to support
@@ -148,15 +154,16 @@ struct my_list_type {
 
     <p>Now is my personal favorite part: the definition of <code>list_append</code>:
 
-  <prism-js language="c">
-#define list_append(l,x) do {\
-    size_t list_var(len) = list_len(l);\
-    l = realloc(l?((void*)l)-sizeof(size_t):NULL,\
-                sizeof(void*)*(list_var(len)+1)+sizeof(size_t))+sizeof(size_t);\
-    list_lenref(l) = list_var(len)+1;\
-    l[list_lenref(l)-1] = x;\
-} while (0)
-  </prism-js>
+  </p><div class="highlight"><pre><span></span><span class="cp">#define list_append(l,x) do {\</span>
+<span class="cp">    size_t list_var(len) = list_len(l);\</span>
+<span class="cp">    l = realloc(l?((void*)l)-sizeof(size_t):NULL,\</span>
+<span class="cp">                sizeof(void*)*(list_var(len)+1)+sizeof(size_t))+sizeof(size_t);\</span>
+<span class="cp">    list_lenref(l) = list_var(len)+1;\</span>
+<span class="cp">    l[list_lenref(l)-1] = x;\</span>
+<span class="cp">} while (0)</span>
+  
+</pre></div>
+
 
     <p>
       This is definitely the biggest macro (and arguably the most important), so
@@ -164,16 +171,18 @@ struct my_list_type {
 
     <p>First, the length of the list is saved in an anonymous variable:</p>
 
-    <prism-js language="c">
-size_t list_var(len) = list_len(l);\
-    </prism-js>
+    <div class="highlight"><pre><span></span><span class="kt">size_t</span> <span class="nf">list_var</span><span class="p">(</span><span class="n">len</span><span class="p">)</span> <span class="o">=</span> <span class="n">list_len</span><span class="p">(</span><span class="n">l</span><span class="p">);</span>\
+    
+</pre></div>
+
 
     <p>Next, the list is <code>realloc</code>'d:</p>
 
-    <prism-js language="c">
-l = realloc(l?((void*)l)-sizeof(size_t):NULL,\
-            sizeof(void*)*(list_var(len)+1)+sizeof(size_t))+sizeof(size_t);\
-    </prism-js>
+    <div class="highlight"><pre><span></span><span class="n">l</span> <span class="o">=</span> <span class="n">realloc</span><span class="p">(</span><span class="n">l</span><span class="o">?</span><span class="p">((</span><span class="kt">void</span><span class="o">*</span><span class="p">)</span><span class="n">l</span><span class="p">)</span><span class="o">-</span><span class="k">sizeof</span><span class="p">(</span><span class="kt">size_t</span><span class="p">)</span><span class="o">:</span><span class="nb">NULL</span><span class="p">,</span>\
+            <span class="k">sizeof</span><span class="p">(</span><span class="kt">void</span><span class="o">*</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">list_var</span><span class="p">(</span><span class="n">len</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">+</span><span class="k">sizeof</span><span class="p">(</span><span class="kt">size_t</span><span class="p">))</span><span class="o">+</span><span class="k">sizeof</span><span class="p">(</span><span class="kt">size_t</span><span class="p">);</span>\
+    
+</pre></div>
+
 
     <p>
       This alone deserves explanation, too! The first argument to
@@ -198,9 +207,10 @@ l = realloc(l?((void*)l)-sizeof(size_t):NULL,\
 
     <p>After all that, the length of the list is updated:</p>
 
-    <prism-js language="c">
-list_lenref(l) = list_var(len)+1;\
-    </prism-js>
+    <div class="highlight"><pre><span></span><span class="n">list_lenref</span><span class="p">(</span><span class="n">l</span><span class="p">)</span> <span class="o">=</span> <span class="n">list_var</span><span class="p">(</span><span class="n">len</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="p">;</span>\
+    
+</pre></div>
+
 
     <p>
       If you're wondering why I didn't just use <code>++list_lenref(l)</code>, it's
@@ -212,9 +222,10 @@ list_lenref(l) = list_var(len)+1;\
 
     <p>And the new element is assigned:</p>
 
-    <prism-js language="c">
-l[list_lenref(l)-1] = x;\
-    </prism-js>
+    <div class="highlight"><pre><span></span><span class="n">l</span><span class="p">[</span><span class="n">list_lenref</span><span class="p">(</span><span class="n">l</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">x</span><span class="p">;</span>\
+    
+</pre></div>
+
 
     <p>
       All of this is wrapped in a <code>do/while</code> block to avoid
@@ -224,9 +235,10 @@ l[list_lenref(l)-1] = x;\
 
     <p>Last of all comes freeing a list:</p>
 
-    <prism-js language="c">
-#define list_free(l) free(l?(void*)l-sizeof(size_t):NULL)
-    </prism-js>
+    <div class="highlight"><pre><span></span><span class="cp">#define list_free(l) free(l?(void*)l-sizeof(size_t):NULL)</span>
+    
+</pre></div>
+
 
     <p>
       If the list is empty, then it just tries to free <code>NULL</code>, which
@@ -236,48 +248,52 @@ l[list_lenref(l)-1] = x;\
 
     <link-header id="closing">Closing notes (and problems)</link-header>
 
-    <p>If you're wondering how the heck this is type-safe, consider:</p>
+    </p><p>If you're wondering how the heck this is type-safe, consider:</p>
 
-    <prism-js language="c">
-List(int*) l;
-char c=0;
-list_append(l, &c);
-    </prism-js>
+    <div class="highlight"><pre><span></span><span class="n">List</span><span class="p">(</span><span class="kt">int</span><span class="o">*</span><span class="p">)</span> <span class="n">l</span><span class="p">;</span>
+<span class="kt">char</span> <span class="n">c</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+<span class="n">list_append</span><span class="p">(</span><span class="n">l</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">c</span><span class="p">);</span>
+    
+</pre></div>
+
 
     <p>If I try to compile this, my compiler (Clang) says:</p>
 
-    <prism-js>
-tst.c:13:5: warning: incompatible pointer types assigning to 'int *' from 'char *' [-Wincompatible-pointer-types]
-    list_append(l, &c);
+    <div class="highlight"><pre><span></span>tst.c:13:5: warning: incompatible pointer types assigning to 'int *' from 'char *' [-Wincompatible-pointer-types]
+    list_append(l, &amp;c);
     ^              ~~
 ./list.h:16:25: note: expanded from macro 'list_append'
     l[list_lenref(l)-1] = x;\
                         ^
 1 warning generated.
-    </prism-js>
+    
+</pre></div>
+
 
     <p>
       GCC 4.9 (which is admittedly an old version) gives a slightly less helpful
       but still informative warning:</p>
 
-    <prism-js>
-In file included from tst.c:5:0:
-tst.c: In function ‘main’:
+    <div class="highlight"><pre><span></span>In file included from tst.c:5:0:
+tst.c: In function âmainâ:
 list.h:16:25: warning: assignment from incompatible pointer type
      l[list_lenref(l)-1] = x;\
                          ^
-tst.c:13:5: note: in expansion of macro ‘list_append’
-     list_append(l, &c);
+tst.c:13:5: note: in expansion of macro âlist_appendâ
+     list_append(l, &amp;c);
      ^
-    </prism-js>
+    
+</pre></div>
+
 
     <p>Intel's doesn't show the macro expansion, but it still works:</p>
 
-    <prism-js>
-tst.c(13): warning #556: a value of type "char *" cannot be assigned to an entity of type "int *"
-      list_append(l, &c);
+    <div class="highlight"><pre><span></span>tst.c(13): warning #556: a value of type "char *" cannot be assigned to an entity of type "int *"
+      list_append(l, &amp;c);
       ^
-    </prism-js>
+    
+</pre></div>
+
 
     <p>
       You can see that the compiler always notices when something isn't right, and
@@ -289,7 +305,7 @@ tst.c(13): warning #556: a value of type "char *" cannot be assigned to an entit
       <li>
         The list is always resized on every append, like I mentioned above. This
         would be a trivial change that I just haven't done yet.
-      <li>No popping from a list, which I also mentioned.</li>
+      </li><li>No popping from a list, which I also mentioned.</li>
       <li>
         No handling of a <code>realloc</code> failure. Again, I mentioned this
         above, too.</li>
@@ -298,11 +314,12 @@ tst.c(13): warning #556: a value of type "char *" cannot be assigned to an entit
         <code>list_append(some_nonexistent_variable, 0)</code> and you'll see what
         I mean. That gives a whopping 8 errors with Clang. GCC and Intel are much
         better here (they only show one), but you get the idea!
-    </ul>
+    </li></ul>
 
     <p>All in all, I still think this is a cool list implementation!</p>
 
-    <site-tags tags='c, programming, preprocessor, hack'></site-tags>
+    <site-tags tags="c, programming, preprocessor, hack"></site-tags>
     <site-suffix></site-suffix>
   </div>
-</body>
+
+</body></html>

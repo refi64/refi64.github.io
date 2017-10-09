@@ -1,16 +1,17 @@
-<!DOCTYPE html><html><head>
+<!DOCTYPE html>
+
+<head>
   <title>
     Functional programming isn't the answer to all problems (and neither is OOP)
   </title>
-  <script defer="" src="/dist/pack.js"></script>
-  <link rel="stylesheet" href="/dist/pack.css">
-  <script defer="" src="../page.initialize.dart.js"></script>
-  
+  <script src="/bower_components/webcomponentsjs/webcomponents-lite.js">
+  </script>
+  <link rel="import" href="/_base.html">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 
-<body vuedart="">
-  <div id="page" v-cloak="">
+<body>
+  <div id="page">
     <site-navbar></site-navbar>
     <site-title created-on="2015-05-17 16:59"></site-title>
 
@@ -74,10 +75,9 @@
       Basically, it's hard to predict how a program will perform. This innocent
       function:</p>
 
-    <div class="highlight"><pre><span></span><span class="nf">f</span> <span class="ow">=</span> <span class="n">foldl1</span> <span class="p">(</span><span class="o">+</span><span class="p">)</span>
-    
-</pre></div>
-
+    <prism-js language="haskell">
+f = foldl1 (+)
+    </prism-js>
 
     <p>
       will explode if given a list too long; the stack will be exhausted. Or it will
@@ -86,22 +86,20 @@
 
     <p>In imperative programming, this isn't even a problem:</p>
 
-    <div class="highlight"><pre><span></span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">v</span><span class="p">(</span><span class="mi">10000000</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
-<span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">accumulate</span><span class="p">(</span><span class="n">v</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span> <span class="n">v</span><span class="p">.</span><span class="n">end</span><span class="p">(),</span> <span class="mi">0</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="n">plus</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="p">{})</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
-    
-</pre></div>
-
+    <prism-js language="cpp">
+std::vector&lt;int&gt; v(10000000, 1);
+std::cout &lt;&lt; std::accumulate(v.begin(), v.end(), 0, std::plus&lt;int&gt;{}) &lt;&lt; std::endl;
+    </prism-js>
 
     <p>I had this code in all:</p>
 
     <p>Haskell:</p>
 
-    <div class="highlight"><pre><span></span><span class="nf">f</span> <span class="ow">=</span> <span class="n">foldl1</span> <span class="p">(</span><span class="o">+</span><span class="p">)</span>
+    <prism-js language="haskell">
+f = foldl1 (+)
 
-<span class="nf">main</span> <span class="ow">=</span> <span class="n">print</span> <span class="o">.</span> <span class="n">f</span> <span class="o">$</span> <span class="n">replicate</span> <span class="mi">10000000</span> <span class="mi">1</span>
-    
-</pre></div>
-
+main = print . f $ replicate 10000000 1
+    </prism-js>
 
     <note-card>
       I know about <code>sum</code>, but using it distracts from the point of this
@@ -109,19 +107,18 @@
 
     <p>C++:</p>
 
-    <div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;functional&gt;</span><span class="cp"></span>
-<span class="cp">#include</span> <span class="cpf">&lt;algorithm&gt;</span><span class="cp"></span>
-<span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
+    <prism-js language="cpp">
+#include &lt;functional&gt;
+#include &lt;algorithm&gt;
+#include &lt;iostream&gt;
 
-<span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+using namespace std;
 
-<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
-    <span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">v</span><span class="p">(</span><span class="mi">10000000</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
-    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">accumulate</span><span class="p">(</span><span class="n">v</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span> <span class="n">v</span><span class="p">.</span><span class="n">end</span><span class="p">(),</span> <span class="mi">0</span><span class="p">,</span> <span class="n">plus</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="p">())</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
-<span class="p">}</span>
-    
-</pre></div>
-
+int main() {
+    vector&lt;int&gt; v(10000000, 1);
+    cout &lt;&lt; accumulate(v.begin(), v.end(), 0, plus&lt;int&gt;()) &lt;&lt; endl;
+}
+    </prism-js>
 
     <p>
       The Haskell version gives a stack overflow after 1.7 seconds. Changing
@@ -143,26 +140,24 @@
       seems to be inferred to use unbounded integers. Let's try using bounded
       ones:</p>
 
-    <div class="highlight"><pre><span></span><span class="nf">f</span> <span class="ow">::</span> <span class="p">[</span><span class="kt">Int</span><span class="p">]</span> <span class="ow">-&gt;</span> <span class="kt">Int</span>
-<span class="nf">f</span> <span class="ow">=</span> <span class="n">foldl1'</span> <span class="p">(</span><span class="o">+</span><span class="p">)</span>
-    
-</pre></div>
-
+    <prism-js language="haskell">
+f :: [Int] -&gt; Int
+f = foldl1' (+)
+    </prism-js>
 
     <p>
       This finishes in 1.7s on my (not-too-fast) computer. He also pointed out that
       using <code>Data.Vector</code> instead made it faster than the C++
       version:</p>
 
-    <div class="highlight"><pre><span></span><span class="kr">import</span> <span class="k">qualified</span> <span class="nn">Data.Vector</span> <span class="k">as</span> <span class="n">V</span>
+    <prism-js language="haskell">
+import qualified Data.Vector as V
 
-<span class="nf">f</span> <span class="ow">::</span> <span class="kt">V</span><span class="o">.</span><span class="kt">Vector</span> <span class="kt">Int</span> <span class="ow">-&gt;</span> <span class="kt">Int</span>
-<span class="nf">f</span> <span class="ow">=</span> <span class="kt">V</span><span class="o">.</span><span class="n">foldl1'</span> <span class="p">(</span><span class="o">+</span><span class="p">)</span>
+f :: V.Vector Int -&gt; Int
+f = V.foldl1' (+)
 
-<span class="nf">main</span> <span class="ow">=</span> <span class="n">print</span> <span class="o">.</span> <span class="n">f</span> <span class="o">$</span> <span class="kt">V</span><span class="o">.</span><span class="n">replicate</span> <span class="mi">10000000</span> <span class="mi">1</span>
-    
-</pre></div>
-
+main = print . f $ V.replicate 10000000 1
+    </prism-js>
 
     <p>This actually took a whopping 1.08s on my laptop. Ouch!</p>
 
@@ -235,12 +230,11 @@
     <p><b>EDIT:</b> Apparently, this post is very controversial:</p>
 
     <embedded-image url="http://s5.postimg.org/wrbf628w7/contr_web.png"></embedded-image>
-    
+    </img>
 
     <p>:/</p>
 
-    <site-tags tags="function, programming, oop, haskell, c++"></site-tags>
+    <site-tags tags='function, programming, oop, haskell, c++'></site-tags>
     <site-suffix></site-suffix>
   </div>
-
-</body></html>
+</body>

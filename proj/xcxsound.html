@@ -1,14 +1,13 @@
-<!DOCTYPE html>
-
-<head>
+<!DOCTYPE html><html><head>
   <title>XCXSound</title>
-  <script src="/bower_components/webcomponentsjs/webcomponents-lite.js">
-  </script>
-  <link rel="import" href="/_base.html">
+  <script defer="" src="/dist/pack.js"></script>
+  <link rel="stylesheet" href="/dist/pack.css">
+  <script defer="" src="../page.initialize.dart.js"></script>
+  
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 
-<body>
+<body vuedart="">
   <div id="page">
     <site-navbar></site-navbar>
 
@@ -26,34 +25,34 @@
 
     <link-header id="downloads">Downloads</link-header>
 
-    <link-header id="v04" small>Version 0.4</link-header>
+    <link-header id="v04" small="">Version 0.4</link-header>
 
     <p><a href="https://www.dropbox.com/s/smfaw5kfrpaubr2/xcxsound_v0.4.zip?dl=0">
       Windows binaries.</a></p>
 
-    <link-header id="v03" small>Version 0.3</link-header>
+    <link-header id="v03" small="">Version 0.3</link-header>
 
     <p><a href="https://www.dropbox.com/s/29d9q1h6no9p2oz/xcxsound_v0.3.zip?dl=0">
       Windows binaries.</a></p>
 
-    <link-header id="v02" small>Version 0.2</link-header>
+    <link-header id="v02" small="">Version 0.2</link-header>
 
     <p><a href="https://www.dropbox.com/s/8a8iy0iivwq3rmd/xcxsound_v0.2.zip?dl=0">
       Windows binaries.</a></p>
 
-    <link-header id="v01" small>Version 0.1</link-header>
+    <link-header id="v01" small="">Version 0.1</link-header>
 
     <p><a href="https://www.dropbox.com/s/wtsruq1tis9aap2/xcxsound_v0.1.zip?dl=0">
       Windows binaries.</a></p>
 
-    <link-header id="src" small>Source code</link-header>
+    <link-header id="src" small="">Source code</link-header>
 
     <a href="http://hub.darcs.net/refi64/xcxsound">
       Source code is available on Darcs Hub.</a>
 
     <link-header id="howto">How to use</link-header>
 
-    <link-header id="extracting" small>Extracting and opening</link-header>
+    <link-header id="extracting" small="">Extracting and opening</link-header>
 
     <ul>
       <li>
@@ -70,7 +69,7 @@
           <code>python3 xcxsound.py</code></p></li>
     </ul>
 
-    <link-header id="basics" small>Setting up XCXSound</link-header>
+    <link-header id="basics" small="">Setting up XCXSound</link-header>
 
     <p>
       The top-left field of the XCXSound window allows you to set the directory
@@ -83,7 +82,7 @@
       tested XCXSound with the US region. After this, click the <i>Load</i>
       button.</p>
 
-    <link-header id="editing" small>Editing the songs</link-header>
+    <link-header id="editing" small="">Editing the songs</link-header>
 
     <p>
       Select the song you want to change and click <i>Edit Song</i>. There
@@ -111,7 +110,7 @@
       corresponding percentage, and negative values decrease it. If you don't
       want to change the volume at all, click <i>Don't Change</i>.</p>
 
-    <link-header id="cafiine" small>
+    <link-header id="cafiine" small="">
       Connecting the Wii U to the computer</link-header>
 
     <b>On your computer:</b>
@@ -140,7 +139,7 @@
       <li>Open up Xenoblade X and enjoy the custom music!</li>
     </ul>
 
-    <link-header id="backup" small>Backing up and restoring mods</link-header>
+    <link-header id="backup" small="">Backing up and restoring mods</link-header>
 
     <p>
       If you have a group of sound modifications you would like to save, you
@@ -150,15 +149,15 @@
 
     <p>
       Note that restoring a backup will <b>not</b> remove any already-present
-      mods. Hit <i>Reset all mods</i> first if you want to do that.</note-card>
+      mods. Hit <i>Reset all mods</i> first if you want to do that.
 
-    <link-header id="rm-flight" small>Removing the flight music</link-header>
+    <link-header id="rm-flight" small="">Removing the flight music</link-header>
 
     <note-card>
       This feature is still in testing!! Please read this section fully before
       attempting to use it.</note-card>
 
-    <p>
+    </p><p>
       XCXSound can automatically try to replace the flight music with the normal
       continent music, but there are some gotchas involved. In order to enable
       this, just check the <i>No flight music</i> checkbox before hitting
@@ -181,7 +180,7 @@
 
     <p>If you follow these directions carefully, it should work well!</p>
 
-    <link-header id="rst" small>Resetting your mods</link-header>
+    <link-header id="rst" small="">Resetting your mods</link-header>
 
     <p>
       If you want to reset all your music mods, use the <i>Reset all mods</i>
@@ -189,7 +188,7 @@
 
     <link-header id="changelog">Changelog</link-header>
 
-    <link-header id="log-v0.4" small>Version 0.4</link-header>
+    <link-header id="log-v0.4" small="">Version 0.4</link-header>
 
     <ul>
       <li>Add the ability to change the volume of songs.</li>
@@ -200,7 +199,7 @@
       <li>Avoid spawning unnecessary cmd.exe windows on Windows.</li>
     </ul>
 
-    <link-header id="log-v0.3" small>Version 0.3</link-header>
+    <link-header id="log-v0.3" small="">Version 0.3</link-header>
 
     <ul>
       <li>
@@ -214,7 +213,7 @@
         mods.</li>
     </ul>
 
-    <link-header id="log-v0.2" small>Version 0.2</link-header>
+    <link-header id="log-v0.2" small="">Version 0.2</link-header>
 
     <ul>
       <li>Add the ability to replace 14 more songs.</li>
@@ -224,10 +223,11 @@
       <li>Add backup and restore.</li>
     </ul>
 
-    <link-header id="log-v0.1" small>Version 0.1</link-header>
+    <link-header id="log-v0.1" small="">Version 0.1</link-header>
 
     <p>Initial version.</p>
 
     <site-suffix></site-suffix>
   </div>
-</body>
+
+</body></html>

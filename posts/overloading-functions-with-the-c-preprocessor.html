@@ -1,15 +1,14 @@
-<!DOCTYPE html>
-
-<head>
+<!DOCTYPE html><html><head>
   <title>Overloading functions with the C preprocessor</title>
-  <script src="/bower_components/webcomponentsjs/webcomponents-lite.js">
-  </script>
-  <link rel="import" href="/_base.html">
+  <script defer="" src="/dist/pack.js"></script>
+  <link rel="stylesheet" href="/dist/pack.css">
+  <script defer="" src="../page.initialize.dart.js"></script>
+  
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 
-<body>
-  <div id="page">
+<body vuedart="">
+  <div id="page" v-cloak="">
     <site-navbar></site-navbar>
     <site-title created-on="2014-09-15 20:42"></site-title>
 
@@ -21,17 +20,19 @@
         two. Here's how you might do that in C++:</p>
     </div>
 
-    <prism-js language="cpp">
-void myfunc(int);
-void myfunc(int, int);
-    </prism-js>
+    <div class="highlight"><pre><span></span><span class="kt">void</span> <span class="nf">myfunc</span><span class="p">(</span><span class="kt">int</span><span class="p">);</span>
+<span class="kt">void</span> <span class="nf">myfunc</span><span class="p">(</span><span class="kt">int</span><span class="p">,</span> <span class="kt">int</span><span class="p">);</span>
+    
+</pre></div>
+
 
     <p>C doesn't have a way to do this. You'll often see code like this:</p>
 
-    <prism-js language="c">
-void myfunc_1(int);
-void myfunc_2(int, int);
-    </prism-js>
+    <div class="highlight"><pre><span></span><span class="kt">void</span> <span class="nf">myfunc_1</span><span class="p">(</span><span class="kt">int</span><span class="p">);</span>
+<span class="kt">void</span> <span class="nf">myfunc_2</span><span class="p">(</span><span class="kt">int</span><span class="p">,</span> <span class="kt">int</span><span class="p">);</span>
+    
+</pre></div>
+
 
     <p>
       However, this <i>can</i> be implemented, albeit in a slightly convoluted way,
@@ -44,38 +45,40 @@ void myfunc_2(int, int);
 
     <p>Here's the code in myfunc.h:</p>
 
-    <prism-js language="c">
-#ifndef MYFUNC_H
-#define MYFUNC_H
+    <div class="highlight"><pre><span></span><span class="cp">#ifndef MYFUNC_H</span>
+<span class="cp">#define MYFUNC_H</span>
 
-void _myfunc_1(int a)
-{
-    puts("Got 1 arg");
-}
+<span class="kt">void</span> <span class="nf">_myfunc_1</span><span class="p">(</span><span class="kt">int</span> <span class="n">a</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">puts</span><span class="p">(</span><span class="s">"Got 1 arg"</span><span class="p">);</span>
+<span class="p">}</span>
 
-void _myfunc_2(int a, int b)
-{
-    puts("Got 2 args");
-}
+<span class="kt">void</span> <span class="nf">_myfunc_2</span><span class="p">(</span><span class="kt">int</span> <span class="n">a</span><span class="p">,</span> <span class="kt">int</span> <span class="n">b</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">puts</span><span class="p">(</span><span class="s">"Got 2 args"</span><span class="p">);</span>
+<span class="p">}</span>
 
-#define _MYFUNC_SEL(_1, _2, _3, ...) _3
-#define myfunc(...) _MYFUNC_SEL(__VA_ARGS__, _myfunc_2, _myfunc_1)(__VA_ARGS__)
+<span class="cp">#define _MYFUNC_SEL(_1, _2, _3, ...) _3</span>
+<span class="cp">#define myfunc(...) _MYFUNC_SEL(__VA_ARGS__, _myfunc_2, _myfunc_1)(__VA_ARGS__)</span>
 
-#endif // MYFUNC_H
-    </prism-js>
+<span class="cp">#endif </span><span class="c1">// MYFUNC_H</span>
+    
+</pre></div>
+
 
     <p>and the main file:</p>
 
-    <prism-js language="c">
-#include "myfunc.h"
+    <div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">"myfunc.h"</span><span class="cp"></span>
 
-int main()
-{
-    myfunc(1); // Got 1 arg
-    myfunc(1, 2); // Got 2 args
-    return 0;
-}
-    </prism-js>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="n">myfunc</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span> <span class="c1">// Got 1 arg</span>
+    <span class="n">myfunc</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">);</span> <span class="c1">// Got 2 args</span>
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+    
+</pre></div>
+
 
     <p>
       What's going on here? The easiest way to see is to look at what happens in
@@ -83,24 +86,27 @@ int main()
 
     <p>The first call (<code>myfunc(1)</code>) expands to this:</p>
 
-    <prism-js language="c">
-_MYFUNC_SEL(1, _myfunc_2, _myfunc_1)(1)
-    </prism-js>
+    <div class="highlight"><pre><span></span><span class="n">_MYFUNC_SEL</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">_myfunc_2</span><span class="p">,</span> <span class="n">_myfunc_1</span><span class="p">)(</span><span class="mi">1</span><span class="p">)</span>
+    
+</pre></div>
+
 
     <p>
       Remember, <code>__VA_ARGS__</code> expands to the <code>...</code> arguments.
       The <code>_MYFUNC_SEL</code> macro returns the third argument,
       <code>_myfunc_1</code>. Therefore, the expansion is ends up being:</p>
 
-    <prism-js language="c">
-_myfunc_1(1)
-    </prism-js>
+    <div class="highlight"><pre><span></span><span class="n">_myfunc_1</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+    
+</pre></div>
+
 
     <p>The second call (<code>myfunc(1, 2)</code>) expands to this:</p>
 
-    <prism-js language="c">
-_MYFUNC_SEL(1, 2, _myfunc_2, _myfunc_1)(1, 2)
-    </prism-js>
+    <div class="highlight"><pre><span></span><span class="n">_MYFUNC_SEL</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">_myfunc_2</span><span class="p">,</span> <span class="n">_myfunc_1</span><span class="p">)(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+    
+</pre></div>
+
 
     <p>
       Again, <code>_MYFUNC_SEL</code> returns the third argument, which, in this
@@ -116,62 +122,66 @@ _MYFUNC_SEL(1, 2, _myfunc_2, _myfunc_1)(1, 2)
       <a href="http://www.robertgamble.net/2012/01/c11-generic-selections.html">
         this</a> for more info. Here's the new myfunc.h:</p>
 
-    <prism-js language="c">
-#ifndef MYFUNC_H
-#define MYFUNC_H
+    <div class="highlight"><pre><span></span><span class="cp">#ifndef MYFUNC_H</span>
+<span class="cp">#define MYFUNC_H</span>
 
-void _myfunc_1_int(int a)
-{
-    puts("Got 1 int");
-}
+<span class="kt">void</span> <span class="nf">_myfunc_1_int</span><span class="p">(</span><span class="kt">int</span> <span class="n">a</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">puts</span><span class="p">(</span><span class="s">"Got 1 int"</span><span class="p">);</span>
+<span class="p">}</span>
 
-void _myfunc_1_void(void* x)
-{
-    puts("Got 1 pointer");
-}
+<span class="kt">void</span> <span class="nf">_myfunc_1_void</span><span class="p">(</span><span class="kt">void</span><span class="o">*</span> <span class="n">x</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">puts</span><span class="p">(</span><span class="s">"Got 1 pointer"</span><span class="p">);</span>
+<span class="p">}</span>
 
-void _myfunc_2(int a, int b)
-{
-    puts("Got 2 args");
-}
+<span class="kt">void</span> <span class="nf">_myfunc_2</span><span class="p">(</span><span class="kt">int</span> <span class="n">a</span><span class="p">,</span> <span class="kt">int</span> <span class="n">b</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">puts</span><span class="p">(</span><span class="s">"Got 2 args"</span><span class="p">);</span>
+<span class="p">}</span>
 
-#define _MYFUNC_1(x) _Generic((x), int: _myfunc_1_int, void*: _myfunc_1_void)(x)
-#define _MYFUNC_SEL(_1, _2, _3, ...) _3
-#define myfunc(...) _MYFUNC_SEL(__VA_ARGS__, _myfunc_2, _MYFUNC_1)(__VA_ARGS__)
+<span class="cp">#define _MYFUNC_1(x) _Generic((x), int: _myfunc_1_int, void*: _myfunc_1_void)(x)</span>
+<span class="cp">#define _MYFUNC_SEL(_1, _2, _3, ...) _3</span>
+<span class="cp">#define myfunc(...) _MYFUNC_SEL(__VA_ARGS__, _myfunc_2, _MYFUNC_1)(__VA_ARGS__)</span>
 
-#endif // MYFUNC_H
-    </prism-js>
+<span class="cp">#endif </span><span class="c1">// MYFUNC_H</span>
+    
+</pre></div>
+
 
     <p>and the new main source file:</p>
 
-    <prism-js language="c">
-#include "myfunc.h"
+    <div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">"myfunc.h"</span><span class="cp"></span>
 
-int main()
-{
-    myfunc(1); // Got 1 int
-    myfunc((void*)NULL); // Got 1 pointer
-    myfunc(1, 2); // Got 2 args
-    return 0;
-}
-    </prism-js>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="n">myfunc</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span> <span class="c1">// Got 1 int</span>
+    <span class="n">myfunc</span><span class="p">((</span><span class="kt">void</span><span class="o">*</span><span class="p">)</span><span class="nb">NULL</span><span class="p">);</span> <span class="c1">// Got 1 pointer</span>
+    <span class="n">myfunc</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">);</span> <span class="c1">// Got 2 args</span>
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+    
+</pre></div>
+
 
     <p>Let's review the expansion process:</p>
 
-    <prism-js language="c">
-myfunc(1)
-_MYFUNC_SEL(1, _myfunc_2, _MYFUNC_1)(1)
-_MYFUNC_1(1)
-_Generic((1), int: _myfunc_1_int, void*: _myfunc_1_void)(1)
-    </prism-js>
+    <div class="highlight"><pre><span></span><span class="n">myfunc</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">_MYFUNC_SEL</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">_myfunc_2</span><span class="p">,</span> <span class="n">_MYFUNC_1</span><span class="p">)(</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">_MYFUNC_1</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">_Generic</span><span class="p">((</span><span class="mi">1</span><span class="p">),</span> <span class="kt">int</span><span class="o">:</span> <span class="n">_myfunc_1_int</span><span class="p">,</span> <span class="kt">void</span><span class="o">*:</span> <span class="n">_myfunc_1_void</span><span class="p">)(</span><span class="mi">1</span><span class="p">)</span>
+    
+</pre></div>
+
     <p>
       Now, the <code>_Generic</code> function basically is like pattern-matching on
       types. (See the linked article above for more info.) The <code>_Generic</code>
       call evaluates to:</p>
 
-    <prism-js language="c">
-_myfunc_1_int(1)
-    </prism-js>
+    <div class="highlight"><pre><span></span><span class="n">_myfunc_1_int</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+    
+</pre></div>
+
 
     <p>See how the magic works? </p>
 
@@ -183,4 +193,5 @@ _myfunc_1_int(1)
     <site-tags tags="hack, c, preprocessor, programming"></site-tags>
     <site-suffix></site-suffix>
   </div>
-</body>
+
+</body></html>
