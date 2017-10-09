@@ -57,7 +57,8 @@ class SiteSuffix extends VueComponentBase {
 
     whenDefined(window, 'muut', allowInterop(() {
       whenDefined(muut, 'language', allowInterop(() {
-        var url = '$MUUT_PREFIX${urlify(document.title)}\0\0\0\0\0\0\0\0\0\0';
+        var url = '$MUUT_PREFIX${urlify(document.title)}' +
+                  '\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00';
         jQuery(comments).muut(url);
       }));
     }));
