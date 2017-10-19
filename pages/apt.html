@@ -1,0 +1,41 @@
+<!DOCTYPE html><html><head>
+  <title>APT Repository</title>
+  <script defer="" src="/dist/pack.js"></script>
+  <link rel="stylesheet" href="/dist/pack.css">
+  <script defer="" src="../page.initialize.dart.js"></script>
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/KaTeX/0.2.0/katex.min.css">
+  <script src="//cdnjs.cloudflare.com/ajax/libs/KaTeX/0.2.0/katex.min.js">
+  </script>
+</head>
+
+<body vuedart="">
+  <div id="page" v-cloak="">
+    <site-navbar></site-navbar>
+
+    <h1>APT Repository</h1>
+
+    <link-header id="packages">Packages</link-header>
+
+    <ul>
+      <li>
+        <b>gn:</b> A packaged version of
+        <a href="https://chromium.googlesource.com/chromium/src/tools/gn/">Google's GN
+        build system</a>.</li>
+    </ul>
+
+    <link-header id="directions">Directions</link-header>
+
+    <div class="highlight"><pre><span></span>$ curl -s https://refi64.com/apt/PUBLIC.KEY | sudo apt-key add -
+$ echo "deb https://refi64.com/apt `lsb_release -sc` main" | sudo tee -a /etc/apt/sources.list
+$ sudo apt update
+    
+</pre></div>
+
+
+    <site-suffix></site-suffix>
+  </div>
+
+</body></html>
