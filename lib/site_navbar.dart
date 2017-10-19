@@ -32,6 +32,7 @@ class SiteNavbar extends VueComponentBase {
     ],
 
     'Misc': [
+      ['APT Repository', '/pages/apt.html'],
       ['Katex Previewer', '/pages/katex.html'],
     ],
 
