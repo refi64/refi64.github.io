@@ -29,7 +29,7 @@
     <link-header id="directions">Directions</link-header>
 
     <div class="highlight"><pre><span></span>$ curl -s https://refi64.com/apt/PUBLIC.KEY | sudo apt-key add -
-$ echo "deb https://refi64.com/apt `lsb_release -sc` main" | sudo tee -a /etc/apt/sources.list
+$ echo "deb https://refi64.com/apt `lsb_release -sc` `lsb_release -sc`" | sudo tee -a /etc/apt/sources.list
 $ sudo apt update
     
 </pre></div>
