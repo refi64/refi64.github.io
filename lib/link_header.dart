@@ -1,7 +1,7 @@
 import 'package:vue2/vue.dart';
 
 
-@VueComponent('link-header', template: '<<')
+@VueComponent(name: 'link-header', template: '<<')
 class LinkHeader extends VueComponentBase {
   LinkHeader(context): super(context);
 

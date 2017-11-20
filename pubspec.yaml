@@ -8,6 +8,7 @@ dependencies:
   vue2: any
 dependency_overrides:
   vue2:
+    # path: /home/ryan/vuedart
     git: "https://github.com/kirbyfan64/vuedart.git"
 transformers:
   - pygments:

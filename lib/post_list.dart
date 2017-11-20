@@ -6,7 +6,7 @@ import 'common.dart';
 import 'post_teaser.dart';
 
 
-@VueComponent('post-list', template: '<<')
+@VueComponent(name: 'post-list', template: '<<')
 class PostList extends VueComponentBase {
   PostList(context): super(context);
 

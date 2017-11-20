@@ -23,5 +23,3 @@ targets:
       prod: node_modules/better-share-button/dist/share-button.min.css
     - name: material-icons-css
       default: node_modules/material-design-icons/iconfont/material-icons.css
-    - name: style-css
-      default: web/styles.css

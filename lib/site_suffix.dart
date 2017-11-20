@@ -44,7 +44,7 @@ external void whenDefined(dynamic obj, String prop, dynamic func);
 const MUUT_PREFIX = 'https://muut.com/i/blockbyte/general:';
 
 
-@VueComponent('site-suffix', template: '<<')
+@VueComponent(name: 'site-suffix', template: '<<')
 class SiteSuffix extends VueComponentBase {
   SiteSuffix(context): super(context);
 

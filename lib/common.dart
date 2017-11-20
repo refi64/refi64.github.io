@@ -46,17 +46,11 @@ void appendScript(String src) {
 }
 
 
-@JS('Vue.config.ignoredElements')
-external get ignoredElements;
-@JS('Vue.config.ignoredElements')
-external set ignoredElements(elements);
-
-
 ScriptElement muutjs;
 
 
 Future init() async {
-  ignoredElements = ['share-button'];
+  VueConfig.ignoredElements = ['share-button'];
 
   appendStyle('https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,400italic');
   appendStyle('https://fonts.googleapis.com/icon?family=Material+Icons');
@@ -64,7 +58,6 @@ Future init() async {
   aspen.loadGlobal('vue-material-css');
   aspen.loadGlobal('share-button-css');
   // aspen.loadGlobal('material-icons-css');
-  aspen.loadGlobal('style-css');
 
   await initVue();
 

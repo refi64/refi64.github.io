@@ -10,7 +10,7 @@ import 'package:js/js.dart';
 external String _katexRenderToString(String math);
 
 
-@VueComponent('math-preview', template: '<<')
+@VueComponent(name: 'math-preview', template: '<<')
 class MathPreview extends VueComponentBase {
   MathPreview(context): super(context);
 

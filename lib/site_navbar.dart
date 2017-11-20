@@ -4,7 +4,7 @@ import 'package:vue2/plugins/vuematerial.dart';
 import 'if_mobile.dart';
 
 
-@VueComponent('site-navbar', template: '<<')
+@VueComponent(name: 'site-navbar', template: '<<')
 class SiteNavbar extends VueComponentBase {
   SiteNavbar(context): super(context);
 

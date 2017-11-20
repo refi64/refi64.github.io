@@ -6,7 +6,7 @@ import 'common.dart';
 import 'site_title.dart';
 
 
-@VueComponent('post-teaser', template: '<<')
+@VueComponent(name: 'post-teaser', template: '<<')
 class PostTeaser extends VueComponentBase {
   PostTeaser(context): super(context);
 

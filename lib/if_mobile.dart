@@ -8,7 +8,7 @@ import 'if_mobile.dart';
 bool isMobile() => document.body.clientWidth <= 480;
 
 
-@VueComponent('if-mobile', template: '<<')
+@VueComponent(name: 'if-mobile', template: '<<')
 class IfMobile extends VueComponentBase {
   IfMobile(context): super(context);
 

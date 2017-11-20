@@ -15,12 +15,14 @@ task_pygments() {
 task_pack_debug() {
   bask_depends pygments
   aspen
+  cp web/styles.css web/dist/pack.css # XXX
 }
 
 
 task_pack_release() {
   bask_depends pygments
   aspen -m prod
+  cp web/styles.css web/dist/pack.css # XXX
 }
 
 

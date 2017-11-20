@@ -8,7 +8,7 @@ import 'dart:async';
 import 'dart:html';
 
 
-@VueComponent('tag-list', template: '<<')
+@VueComponent(name: 'tag-list', template: '<<')
 class TagList extends VueComponentBase {
   TagList(context): super(context);
 

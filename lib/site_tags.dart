@@ -3,7 +3,7 @@ import 'package:vue2/vue.dart';
 import 'dart:html';
 
 
-@VueComponent('site-tags', template: '<<')
+@VueComponent(name: 'site-tags', template: '<<')
 class SiteTags extends VueComponentBase {
   SiteTags(context): super(context);
 

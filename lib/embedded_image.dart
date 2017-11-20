@@ -3,7 +3,7 @@ import 'package:vue2/vue.dart';
 import 'dart:html';
 
 
-@VueComponent('embedded-image', template: '<<')
+@VueComponent(name: 'embedded-image', template: '<<')
 class EmbeddedImage extends VueComponentBase {
   EmbeddedImage(context): super(context);
 

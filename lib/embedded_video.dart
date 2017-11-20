@@ -1,7 +1,7 @@
 import 'package:vue2/vue.dart';
 
 
-@VueComponent('embedded-video', template: '<<')
+@VueComponent(name: 'embedded-video', template: '<<')
 class EmbeddedVideo extends VueComponentBase {
   EmbeddedVideo(context): super(context);
 
