@@ -1,0 +1,336 @@
+<!DOCTYPE html><html><head>
+  <title>VueDart 0.3 released! Featuring scoped styles, mixins, a CLI, and more!</title>
+  <script defer="" src="/dist/pack.js"></script>
+  <link rel="stylesheet" href="/dist/pack.css">
+  <script defer="" src="../page.initialize.dart.js"></script>
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+  <div id="page" v-cloak="">
+    <site-navbar></site-navbar>
+    <site-title created-on="2017-11-19"></site-title>
+
+    <div id="teaser">
+      <p>
+        After a few months of quiet, I'm super proud to announce VueDart 0.3! Unlike
+        0.2 (which should've been a minor release, except I wasn't thinking clearly),
+        0.3 brings an enormous amount of new features, bugfixes, and more.</p>
+    </div>
+
+    <link-header id="new">New features</link-header>
+
+    <link-header small="" id="cli">The VueDart CLI</link-header>
+
+    <p>
+      One of my favorite new features is the VueDart CLI. Installable via
+      <code>pub global activate vue2_cli</code>, this supports both creating projects
+      from predefined templates <i>and</i> a basic migration tool (currently
+      supporting the 0.2 -&gt; 0.3 migration).</p>
+
+    <p>Now, creating a new project is as easy as:</p>
+
+    <div class="highlight"><pre><span></span>$ vuedart create my-project --aspen
+    
+</pre></div>
+
+
+    <p>(Aspen is covered below.)</p>
+
+    <p>Migrating from VueDart 0.2? Just run:</p>
+
+    <div class="highlight"><pre><span></span>$ vuedart migrate . pubspec.yaml lib/* any_other_files_to_migrate
+    
+</pre></div>
+
+
+    <p>I actually used the migration tool to update this website's components!</p>
+
+    <link-header small="" id="aspen">Aspen: A Dart-oriented asset acker</link-header>
+
+    <p>
+      As I started to create more VueDart projects, I found myself often having to
+      either depend on a CDN for all my JS dependencies, or manually concatenate
+      them all together in my build scripts. In order to alleviate this problem, I
+      created <a href="https://pub.dartlang.org/packages/aspen">Aspen</a>! Aspen is
+      by no means VueDart-specific, but it was designed with VueDart in mind.</p>
+
+    <p>Here's an example <code>aspen.yml</code> used by this website:</p>
+
+    <div class="highlight"><pre><span></span><span class="l l-Scalar l-Scalar-Plain">targets</span><span class="p p-Indicator">:</span>
+  <span class="l l-Scalar l-Scalar-Plain">default</span><span class="p p-Indicator">:</span>
+    <span class="l l-Scalar l-Scalar-Plain">outputs</span><span class="p p-Indicator">:</span>
+      <span class="l l-Scalar l-Scalar-Plain">default</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">web/dist/pack.js</span>
+
+    <span class="l l-Scalar l-Scalar-Plain">assets</span><span class="p p-Indicator">:</span>
+    <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">dev</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">node_modules/vue/dist/vue.js</span>
+      <span class="l l-Scalar l-Scalar-Plain">prod</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">node_modules/vue/dist/vue.min.js</span>
+    <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">dev</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">node_modules/vue-material/dist/vue-material.debug.js</span>
+      <span class="l l-Scalar l-Scalar-Plain">prod</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">node_modules/vue-material/dist/vue-material.debug.js</span>
+    <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">dev</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">node_modules/better-share-button/dist/share-button.js</span>
+      <span class="l l-Scalar l-Scalar-Plain">prod</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">node_modules/better-share-button/dist/share-button.min.js</span>
+    <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">dev</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">node_modules/whendefined/dist/whendefined.js</span>
+      <span class="l l-Scalar l-Scalar-Plain">prod</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">node_modules/whendefined/dist/whendefined.min.js</span>
+    <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">web/analytics.js</span>
+
+    <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">name</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">pygments-css</span>
+      <span class="l l-Scalar l-Scalar-Plain">default</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">web/dist/pygments.css</span>
+    <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">name</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">vue-material-css</span>
+      <span class="l l-Scalar l-Scalar-Plain">default</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">node_modules/vue-material/dist/vue-material.css</span>
+    <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">name</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">share-button-css</span>
+      <span class="l l-Scalar l-Scalar-Plain">dev</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">node_modules/better-share-button/dist/share-button.css</span>
+      <span class="l l-Scalar l-Scalar-Plain">prod</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">node_modules/better-share-button/dist/share-button.min.css</span>
+    <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">name</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">material-icons-css</span>
+      <span class="l l-Scalar l-Scalar-Plain">default</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">node_modules/material-design-icons/iconfont/material-icons.css</span>
+    
+</pre></div>
+
+
+    <p>
+      Now I just run <code>aspen</code> for development builds and
+      <code>aspen -m prod</code> for production builds, and it all "just works".</p>
+
+    <p>
+      Aspen is now the "official" way of handling assets for VueDart projects.
+      As shown above in the CLI examples, passing <code>--aspen</code> to the VueDart
+      CLI will generate an Aspen-and-npm/yarn-based project instead of generating
+      one that depends on CDNs.</p>
+
+    <link-header small="" id="scoped">Scoped styles</link-header>
+
+    <p>
+      Scoped styles are now supported in your components, via the
+      <a href="pub.dartlang.org/packages/scopify">scopify</a> package. Just toss
+      this into your templates:</p>
+
+    <div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">template</span> <span class="na">vuedart</span><span class="p">&gt;</span>
+  ...
+<span class="p">&lt;/</span><span class="nt">template</span><span class="p">&gt;</span>
+
+<span class="p">&lt;</span><span class="nt">style</span> <span class="na">scoped</span><span class="p">&gt;</span>
+  p {
+    background-color: purple;
+  }
+<span class="p">&lt;</span><span class="nt">style</span><span class="p">&gt;</span>
+    
+</pre></div>
+
+
+    <link-header small="" id="plugins">Support for the VueMaterial and VueRouter plugins</link-header>
+
+    <p>
+      VueDart now includes built-in support for VueRouter and VueMaterial. Both are
+      described in further detail in the documentation, but the short version is that
+      you can now use VueRouter from VueDart, and you can now access VueMaterial
+      component methods without needing to shell out to JS.</p>
+
+    <p>The syntax looks much like JavaScript:</p>
+
+    <div class="highlight"><pre><span></span><span class="kd">final</span> <span class="n">router</span> <span class="o">=</span> <span class="k">new</span> <span class="n">VueRouter</span><span class="p">(</span><span class="nl">routes:</span> <span class="p">[</span>
+  <span class="k">new</span> <span class="n">VueRoute</span><span class="p">(</span><span class="nl">path:</span> <span class="s1">'/item/:id'</span><span class="p">,</span> <span class="nl">component:</span> <span class="err">#</span><span class="n">RootComponent</span><span class="p">,</span> <span class="nl">children:</span> <span class="p">[</span>
+    <span class="k">new</span> <span class="n">VueRoute</span><span class="p">(</span><span class="nl">path:</span> <span class="s1">'info'</span><span class="p">,</span> <span class="nl">component:</span> <span class="err">#</span><span class="n">ChildComponent</span><span class="p">),</span>
+  <span class="p">]),</span>
+  <span class="k">new</span> <span class="n">VueRoute</span><span class="p">(</span><span class="nl">path:</span> <span class="s1">'/named-view/:id'</span><span class="p">,</span> <span class="nl">components:</span> <span class="p">{</span>
+    <span class="s1">'root'</span><span class="o">:</span> <span class="err">#</span><span class="n">RootComponent</span><span class="p">,</span>
+  <span class="p">}),</span>
+<span class="p">]);</span>
+    
+</pre></div>
+
+
+    <p>
+      In order to access <code>$router</code> and <code>$route</code>, you need to
+      use the <code>VueRouterMixin</code> mixin. Again, this is explained further
+      in the documentation.</p>
+
+    <p>
+      Part of the new router support also includes the ability to define an unnamed
+      component (which is why <a href="#name-positional">this breaking change</a> had
+      to occur).</p>
+
+    <link-header small="" id="mixins">Mixins and watchers</link-header>
+
+    <p>Mixins are supported now, too. Here's an example:</p>
+
+    <div class="highlight"><pre><span></span><span class="nd">@VueMixin</span><span class="p">()</span>
+<span class="kd">abstract</span> <span class="kd">class</span> <span class="nc">TodoMixin</span> <span class="p">{</span>
+  <span class="nd">@method</span>
+  <span class="kt">String</span> <span class="n">capitalize</span><span class="p">(</span><span class="kt">String</span> <span class="n">thing</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">thing</span><span class="p">.</span><span class="n">toUpperCase</span><span class="p">();</span>
+<span class="p">}</span>
+
+<span class="nd">@VueComponent</span><span class="p">(</span><span class="nl">name:</span> <span class="s1">'my-component'</span><span class="p">,</span> <span class="nl">template:</span> <span class="s1">'&lt;&lt;'</span><span class="p">,</span> <span class="nl">mixins:</span> <span class="kd">const</span> <span class="p">[</span><span class="n">TodoMixin</span><span class="p">])</span>
+<span class="kd">class</span> <span class="nc">ShowName</span> <span class="kd">extends</span> <span class="n">VueComponentBase</span> <span class="kd">with</span> <span class="n">TodoMixin</span> <span class="p">{</span>
+  <span class="c1">// ...</span>
+<span class="p">}</span>
+    
+</pre></div>
+
+
+    <p>Note that at the moment, only components can use mixins.</p>
+
+    <p>Watchers work now, too:</p>
+
+    <div class="highlight"><pre><span></span><span class="nd">@watch</span><span class="p">(</span><span class="s1">'my-value'</span><span class="p">)</span>
+<span class="kt">void</span> <span class="n">watchMyValue</span><span class="p">()</span> <span class="o">=&gt;</span> <span class="n">print</span><span class="p">(</span><span class="s1">'Watching my-value!'</span><span class="p">);</span>
+    
+</pre></div>
+
+
+    <link-header small="" id="instance">
+      <code>$emit</code>, <code>$nextTick</code>, and more instance properties/methods
+      </link-header>
+
+    <p>
+      As stated in the title, you can now emit events, and use <code>$on</code>,
+      <code>$off</code>, and <code>$once</code>:</p>
+
+    <div class="highlight"><pre><span></span><span class="n">$emit</span><span class="p">(</span><span class="s1">'my-custom-event'</span><span class="p">,</span> <span class="p">[</span><span class="s1">'some arg'</span><span class="p">,</span> <span class="s1">'some other arg'</span><span class="p">]);</span>
+
+<span class="n">$on</span><span class="p">(</span><span class="s1">'something'</span><span class="p">,</span> <span class="p">(</span><span class="n">event</span><span class="p">)</span> <span class="p">{</span>
+  <span class="n">print</span><span class="p">(</span><span class="m">123</span><span class="p">);</span>
+<span class="p">});</span>
+    
+</pre></div>
+
+
+    <p><code>$nextTick</code> also works:</p>
+
+    <div class="highlight"><pre><span></span><span class="n">$nextTick</span><span class="p">().</span><span class="n">then</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="n">print</span><span class="p">(</span><span class="s1">'In </span><span class="se">\$</span><span class="s1">nextTick callback!'</span><span class="p">);</span>
+<span class="p">});</span>
+    
+</pre></div>
+
+
+    <p>Several others work now, too.</p>
+
+    <link-header small="" id="config">
+      Support for setting Vue config options via <code>VueConfig</code></link-header>
+
+    <p>
+      <code>VueConfig</code> is making its debut with VueDart 0.3, though for now
+      all it supports is assigning ignoredElements:</p>
+
+    <div class="highlight"><pre><span></span>VueConfig.ignoredElements = ['my-element'];
+    
+</pre></div>
+
+
+    <link-header small="" id="rewriting">
+      HTML files won't be completely reformatted by the transformer</link-header>
+
+    <p>
+      A minor change, but a useful one nonetheless. Before, any HTML files would be
+      completely reformatted when they were run through the transformer, due to the
+      way it worked. This was revamped, so now the formatting will be preserved.</p>
+
+    <link-header small="" id="renaming">Better automated script path renaming</link-header>
+
+    <p>
+      By default, VueDart will automatically change your unpkg script tags when
+      building in release mode. For instance, this:</p>
+
+    <div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">script</span> <span class="na">src</span><span class="o">=</span><span class="s">"https://unpkg.com/vue"</span><span class="p">&gt;</span>
+    
+</pre></div>
+
+
+    <p>will be transformed into this:</p>
+
+    <div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">script</span> <span class="na">src</span><span class="o">=</span><span class="s">"https://unpkg.com/vue/dist/vue.min.js"</span><span class="p">&gt;</span>
+    
+</pre></div>
+
+
+    <p>
+      Now this will be done to any Vue imports, not just the ones from unpkg. Note
+      that Aspen is still the recommended way of loading your Vue JS files.</p>
+
+    <link-header id="breaking">Breaking Changes</link-header>
+
+    <link-header small="" id="entry-points">
+      Entry points must now be explicitly declared</link-header>
+
+    <p>
+      In previous versions, VueDart's transformer would try to infer which of your
+      Dart entry points (e.g. scripts containing a <code>main()</code> declaration)
+      required VueDart to be run. However, this was a buggy, error-prone process,
+      so now the <code>entry_points</code> must be explicitly declared in your
+      transformer configuration:</p>
+
+    <div class="highlight"><pre><span></span><span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">vue2</span><span class="p p-Indicator">:</span>
+    <span class="l l-Scalar l-Scalar-Plain">entry_points</span><span class="p p-Indicator">:</span>
+      <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">web/index.dart</span>
+    
+</pre></div>
+
+
+    <p>As mentioned above, the VueDart CLI will take care of this change for you.</p>
+
+    <link-header small="" id="name-positional">
+      The component name being passed to <code>VueComponent</code> is now a named
+      parameter</link-header>
+
+    <p><b>TL;DR:</b> Instead of this:</p>
+
+    <div class="highlight"><pre><span></span><span class="nd">@VueComponent</span><span class="p">(</span><span class="s1">'my-component'</span><span class="p">)</span>
+    
+</pre></div>
+
+
+    <p>You now need to do this:</p>
+
+    <div class="highlight"><pre><span></span><span class="nd">@VueComponent</span><span class="p">(</span><span class="nl">name:</span> <span class="s1">'my-component'</span><span class="p">)</span>
+    
+</pre></div>
+
+
+    <p>
+      Again, this is a minor change, and the CLI will automatically migrate your code.
+      (It's worth noting that this very website was migrated using the CLI, because
+      I didn't want to go through all 12 components and change it manually.)
+      It was necessary in order to allow a component to be unnamed (for VueRouter
+      support).</p>
+
+    <link-header id="fixes">Bugfixes</link-header>
+
+    <link-header small="" id="errors">Errors instead of crashing</link-header>
+
+    <p>
+      In many cases before, when there was a bug in your Dart components, VueDart's
+      transformer would crash. Obviously, this is a very bad thing, so VueDart 0.3
+      will show proper errors in these situations.</p>
+
+    <link-header small="" id="multiline">
+      Multiple data/prop declarations on one line no longer crash the transformer
+      </link-header>
+
+    <p>Before, stuff like this would crash the transformer:</p>
+
+    <div class="highlight"><pre><span></span><span class="nd">@prop</span>
+<span class="kt">String</span> <span class="n">myFirstProp</span><span class="p">,</span> <span class="n">mySecondProp</span><span class="p">;</span>
+    
+</pre></div>
+
+
+    <p>
+      Now, it works much like you'd expect: it declares multiple props on one line.
+      Same goes for <code>@data</code>, too.</p>
+
+    <link-header id="notes">Miscellaneous notes</link-header>
+
+    <p>
+      The VueDart docs have been reorganized a bit, and since the site now uses
+      Aspen, there shouldn't be any more problems with external upgrades on
+      CDN-hosted items screwing with the website.</p>
+
+    <p>
+      A <i>lot</i> of time and effort has gone into this release, and I hope you
+      enjoy it! Happy Darting! (<i>Is that even a thing? That's totally not a
+      thing...)</i></p>
+
+    <site-tags tags="vue, vuedart"></site-tags>
+    <site-suffix></site-suffix>
+
+</div></body></html>
