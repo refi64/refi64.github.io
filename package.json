@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "dependencies": {
     "better-share-button": "^0.1.0",
+    "material-design-icons": "^3.0.1",
     "vue": "^2.4.4",
     "vue-material": "^0.7.5",
     "whendefined": "^0.0.1"

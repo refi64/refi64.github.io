@@ -7,33 +7,6 @@ task_default() {
 }
 
 
-pack() {
-  mkdir -p web/dist
-  local mode="$1"
-
-  if [ "$mode" == "debug" ]; then
-    local vue=vue.js
-    local vuematerial=vue-material.debug.js
-    local sharejs=share-button.js
-    local sharecss=share-button.css
-    local whendefined=whendefined.js
-  else
-    local vue=vue.min.js
-    local vuematerial=vue-material.js
-    local sharejs=share-button.min.js
-    local sharecss=share-button.min.css
-    local whendefined=whendefined.min.js
-  fi
-
-  cat node_modules/vue/dist/$vue node_modules/vue-material/dist/$vuematerial \
-      node_modules/better-share-button/dist/$sharejs \
-      node_modules/whendefined/dist/$whendefined web/analytics.js > web/dist/pack.js
-  cat node_modules/vue-material/dist/vue-material.css \
-      node_modules/better-share-button/dist/$sharecss web/styles.css \
-      web/dist/pygments.css > web/dist/pack.css
-}
-
-
 task_pygments() {
   pygmentize -S friendly -f html -a .highlight > web/dist/pygments.css
 }
@@ -41,13 +14,13 @@ task_pygments() {
 
 task_pack_debug() {
   bask_depends pygments
-  pack debug
+  aspen
 }
 
 
 task_pack_release() {
   bask_depends pygments
-  pack release
+  aspen -m prod
 }
 
 

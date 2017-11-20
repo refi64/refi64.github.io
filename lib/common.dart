@@ -1,6 +1,7 @@
 @JS()
 library blockbyte.common;
 
+import 'package:aspen_assets/aspen_assets.dart' as aspen;
 import 'package:vue2/vue.dart';
 import 'package:vue2/plugins/vuematerial.dart';
 
@@ -30,18 +31,18 @@ Future<Document> getPost(String url) async {
 }
 
 
-void appendScript(String src) {
-  var script = new ScriptElement();
-  script.src = src;
-  document.head.append(script);
-}
-
-
 void appendStyle(String href) {
   var style = new LinkElement();
   style.rel = 'stylesheet';
   style.href = href;
   document.head.append(style);
+}
+
+
+void appendScript(String src) {
+  var script = new ScriptElement();
+  script.src = src;
+  document.head.append(script);
 }
 
 
@@ -59,6 +60,11 @@ Future init() async {
 
   appendStyle('https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,400italic');
   appendStyle('https://fonts.googleapis.com/icon?family=Material+Icons');
+  aspen.loadGlobal('pygments-css');
+  aspen.loadGlobal('vue-material-css');
+  aspen.loadGlobal('share-button-css');
+  // aspen.loadGlobal('material-icons-css');
+  aspen.loadGlobal('style-css');
 
   await initVue();
 

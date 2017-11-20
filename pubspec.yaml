@@ -1,5 +1,6 @@
 name: blockbyte
 dependencies:
+  aspen_assets: any
   browser: any
   dart_to_js_script_rewriter: any
   js: any
