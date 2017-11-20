@@ -1,0 +1,27 @@
+targets:
+  default:
+    outputs:
+      default: web/dist/pack.js
+
+    assets:
+    - dev: node_modules/vue/dist/vue.js
+      prod: node_modules/vue/dist/vue.min.js
+    - dev: node_modules/vue-material/dist/vue-material.debug.js
+      prod: node_modules/vue-material/dist/vue-material.debug.js
+    - dev: node_modules/better-share-button/dist/share-button.js
+      prod: node_modules/better-share-button/dist/share-button.min.js
+    - dev: node_modules/whendefined/dist/whendefined.js
+      prod: node_modules/whendefined/dist/whendefined.min.js
+    - web/analytics.js
+
+    - name: pygments-css
+      default: web/dist/pygments.css
+    - name: vue-material-css
+      default: node_modules/vue-material/dist/vue-material.css
+    - name: share-button-css
+      dev: node_modules/better-share-button/dist/share-button.css
+      prod: node_modules/better-share-button/dist/share-button.min.css
+    - name: material-icons-css
+      default: node_modules/material-design-icons/iconfont/material-icons.css
+    - name: style-css
+      default: web/styles.css
