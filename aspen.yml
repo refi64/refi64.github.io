@@ -14,12 +14,14 @@ targets:
       prod: node_modules/whendefined/dist/whendefined.min.js
     - web/analytics.js
 
-    - name: pygments-css
-      default: web/dist/pygments.css
-    - name: vue-material-css
-      default: node_modules/vue-material/dist/vue-material.css
-    - name: share-button-css
-      dev: node_modules/better-share-button/dist/share-button.css
+    - default: web/dist/pygments.css
+      autoload: true
+    - default: node_modules/vue-material/dist/vue-material.css
+      autoload: true
+    - dev: node_modules/better-share-button/dist/share-button.css
       prod: node_modules/better-share-button/dist/share-button.min.css
-    - name: material-icons-css
-      default: node_modules/material-design-icons/iconfont/material-icons.css
+      autoload: true
+    - default: node_modules/material-design-icons/iconfont/material-icons.css
+      autoload: true
+      options:
+        inline: true

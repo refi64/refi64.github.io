@@ -10,6 +10,8 @@ dependency_overrides:
   vue2:
     # path: /home/ryan/vuedart
     git: "https://github.com/kirbyfan64/vuedart.git"
+  # scopify:
+    # path: /home/ryan/scopify
 transformers:
   - pygments:
       classes:

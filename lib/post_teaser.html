@@ -1,15 +1,15 @@
 <template vuedart>
   <div>
-    <div v-if="!hasPost">
+    <template v-if="!hasPost">
       <p>Loading post teaser...</p>
       <md-spinner md-indeterminate></md-spinner>
-    </div>
+    </template>
 
-    <template v-if="hasPost">
+    <template v-else>
       <site-title :created-on="createdOn" :title="title" :url="url"></site-title>
       <div v-html="teaser"></div>
     </template>
 
-    <a :href="url">Read more...</a
+    <a :href="url">Read more...</a>
   </div>
 </template>
