@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+
+<head>
+  <title>VueDart 0.3.1 released!</title>
+  <script defer src="/dist/pack.js"></script>
+  <link rel="stylesheet" href="/dist/pack.css">
+  <script defer type="application/dart" src="../page.dart"></script>
+  <script defer src="packages/browser/dart.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body vuedart>
+  <div id="page" v-cloak>
+    <site-navbar></site-navbar>
+    <site-title created-on="2017-11-19"></site-title>
+
+    <div id="teaser">
+      This one is much smaller than the 0.3 release; it's just a minor release with
+      a few tweaks and bugfixes.
+    </div>
+
+    <link-header id="aspen">Aspen and aspen_assets 0.2</link-header>
+
+    <p>
+      VueDart 0.3.1's CLI (CLI version 0.1.1) brings in version 0.2 of
+      <a href="https://pub.dartlang.org/packages/aspen_assets">aspen_assets</a>.
+      Although aspen_assets itself does not have many changes, it is simply a way
+      of accessing the much-improved
+      <a href="https://pub.dartlang.org/packages/aspen">Aspen asset packer</a>, with
+      an improved CLI interface and automated global asset loading.</p>
+
+    <link-header id="scoped">Scoped styles no longer bleed</link-header>
+
+    <p>
+      This is technically a breaking change; however, as far as I know, no projects
+      depended on the old behavior.</p>
+
+    <p>
+      In VueDart 0.3, scoped styles would "bleed" by default into children, in order to
+      support the styling of <code>v-html</code> elements and other similar items
+      (e.g. jQuery plugins):</p>
+
+    <pygments class="html">
+&lt;template vuedart&gt;
+  &lt;div v-html="'&lt;p&gt;This is inside v-html!&lt;/p&gt;'"&gt;
+&lt;/template&gt;
+
+&lt;style scoped&gt;
+  p {
+    background-color: purple;
+  }
+&lt;style&gt;
+    </pygments>
+
+    <p>
+      However, there was a bug where these styles would also go into any child
+      components, which basically defeated the entire purpose of scoped styles. Now,
+      by default absolutely no bleeding will take place. If you want bleeding, you can
+      use the <code>bleeds</code> attribute:</p>
+
+    <pygments class="html">
+&lt;template vuedart&gt;
+  &lt;div v-html="'&lt;p&gt;This is inside v-html!&lt;/p&gt;'"&gt;
+&lt;/template&gt;
+
+&lt;style scoped bleeds&gt;
+  p {
+    background-color: purple;
+  }
+&lt;style&gt;
+    </pygments>
+
+    <p>
+      Note that now, even if you pass <i>bleeds</i>, styles will only bleed into
+      everything <i>except</i> VueDart components. This behavior is less error-prone
+      than before.</p>
+
+    <p>
+      The majority of these changes are thanks to
+      <a href="https://pub.dartlang.org/packages/scopify">scopify 0.2</a>.</p>
+
+    <link-header id="tweaks">Minor documentation tweaks</link-header>
+
+    <p>
+      The documentation now better explains the significance of the
+      <code>entry_points</code> argument to the VueDart transformer.</p>
+
+    <site-tags tags='vue, vuedart'></site-tags>
+    <site-suffix></site-suffix>
+  </div>
+</body>
