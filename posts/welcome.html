@@ -1,14 +1,16 @@
-<!DOCTYPE html><html><head>
+<!DOCTYPE html>
+
+<head>
   <title>Welcome!</title>
-  <script defer="" src="/dist/pack.js"></script>
+  <script defer src="/dist/pack.js"></script>
   <link rel="stylesheet" href="/dist/pack.css">
-  <script defer="" src="../page.initialize.dart.js"></script>
-  
+  <script defer type="application/dart" src="../page.initialize.dart"></script>
+  <script defer src="packages/browser/dart.js"></script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 
-<body>
-  <div id="page" v-cloak="">
+<body >
+  <div id="page" v-cloak>
     <site-navbar></site-navbar>
     <site-title created-on="2014-09-10 18:02"></site-title>
 
@@ -28,8 +30,7 @@
       <p>Have fun browsing!</p>
     </div>
 
-    <site-tags tags="miscellaneous"></site-tags>
+    <site-tags tags='miscellaneous'></site-tags>
     <site-suffix></site-suffix>
   </div>
-
-</body></html>
+</body>

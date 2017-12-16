@@ -1,16 +1,18 @@
-<!DOCTYPE html><html><head>
+<!DOCTYPE html>
+
+<head>
   <title>
     Functional programming isn't the answer to all problems (and neither is OOP)
   </title>
-  <script defer="" src="/dist/pack.js"></script>
+  <script defer src="/dist/pack.js"></script>
   <link rel="stylesheet" href="/dist/pack.css">
-  <script defer="" src="../page.initialize.dart.js"></script>
-  
+  <script defer type="application/dart" src="../page.initialize.dart"></script>
+  <script defer src="packages/browser/dart.js"></script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 
-<body>
-  <div id="page" v-cloak="">
+<body >
+  <div id="page" v-cloak>
     <site-navbar></site-navbar>
     <site-title created-on="2015-05-17 16:59"></site-title>
 
@@ -144,7 +146,7 @@
       ones:</p>
 
     <div class="highlight"><pre><span></span><span class="nf">f</span> <span class="ow">::</span> <span class="p">[</span><span class="kt">Int</span><span class="p">]</span> <span class="ow">-&gt;</span> <span class="kt">Int</span>
-<span class="nf">f</span> <span class="ow">=</span> <span class="n">foldl1'</span> <span class="p">(</span><span class="o">+</span><span class="p">)</span>
+<span class="nf">f</span> <span class="ow">=</span> <span class="n">foldl1&#39;</span> <span class="p">(</span><span class="o">+</span><span class="p">)</span>
     
 </pre></div>
 
@@ -157,7 +159,7 @@
     <div class="highlight"><pre><span></span><span class="kr">import</span> <span class="k">qualified</span> <span class="nn">Data.Vector</span> <span class="k">as</span> <span class="n">V</span>
 
 <span class="nf">f</span> <span class="ow">::</span> <span class="kt">V</span><span class="o">.</span><span class="kt">Vector</span> <span class="kt">Int</span> <span class="ow">-&gt;</span> <span class="kt">Int</span>
-<span class="nf">f</span> <span class="ow">=</span> <span class="kt">V</span><span class="o">.</span><span class="n">foldl1'</span> <span class="p">(</span><span class="o">+</span><span class="p">)</span>
+<span class="nf">f</span> <span class="ow">=</span> <span class="kt">V</span><span class="o">.</span><span class="n">foldl1&#39;</span> <span class="p">(</span><span class="o">+</span><span class="p">)</span>
 
 <span class="nf">main</span> <span class="ow">=</span> <span class="n">print</span> <span class="o">.</span> <span class="n">f</span> <span class="o">$</span> <span class="kt">V</span><span class="o">.</span><span class="n">replicate</span> <span class="mi">10000000</span> <span class="mi">1</span>
     
@@ -235,12 +237,11 @@
     <p><b>EDIT:</b> Apparently, this post is very controversial:</p>
 
     <embedded-image url="http://s5.postimg.org/wrbf628w7/contr_web.png"></embedded-image>
-    
+    </img>
 
     <p>:/</p>
 
-    <site-tags tags="function, programming, oop, haskell, c++"></site-tags>
+    <site-tags tags='function, programming, oop, haskell, c++'></site-tags>
     <site-suffix></site-suffix>
   </div>
-
-</body></html>
+</body>

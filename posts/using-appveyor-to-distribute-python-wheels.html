@@ -1,14 +1,16 @@
-<!DOCTYPE html><html><head>
+<!DOCTYPE html>
+
+<head>
   <title>Using AppVeyor to distribute Python wheels</title>
-  <script defer="" src="/dist/pack.js"></script>
+  <script defer src="/dist/pack.js"></script>
   <link rel="stylesheet" href="/dist/pack.css">
-  <script defer="" src="../page.initialize.dart.js"></script>
-  
+  <script defer type="application/dart" src="../page.initialize.dart"></script>
+  <script defer src="packages/browser/dart.js"></script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 
-<body>
-  <div id="page" v-cloak="">
+<body >
+  <div id="page" v-cloak>
     <site-navbar></site-navbar>
     <site-title created-on="2014-09-21 17:02"></site-title>
 
@@ -28,7 +30,7 @@
       config file for your project might look like:</p>
 
     <div class="highlight"><pre><span></span><span class="l l-Scalar l-Scalar-Plain">install</span><span class="p p-Indicator">:</span>
-  <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">ps</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">(new-object net.webclient).DownloadFile('https://raw.github.com/pypa/pip/master/contrib/get-pip.py', 'C:/get-pip.py')</span>
+  <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">ps</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">(new-object net.webclient).DownloadFile(&#39;https://raw.github.com/pypa/pip/master/contrib/get-pip.py&#39;, &#39;C:/get-pip.py&#39;)</span>
   <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">C:/Python34/python.exe C:/get-pip.py</span>
   <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">C:/Python34/Scripts/pip.exe install wheel</span>
 <span class="l l-Scalar l-Scalar-Plain">build_script</span><span class="p p-Indicator">:</span>
@@ -52,7 +54,7 @@
 
     <p>The install section defines commands to run for installation.</p>
 
-    <div class="highlight"><pre><span></span><span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">ps</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">(new-object net.webclient).DownloadFile('https://raw.github.com/pypa/pip/master/contrib/get-pip.py', 'C:/get-pip.py')</span>
+    <div class="highlight"><pre><span></span><span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">ps</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">(new-object net.webclient).DownloadFile(&#39;https://raw.github.com/pypa/pip/master/contrib/get-pip.py&#39;, &#39;C:/get-pip.py&#39;)</span>
 <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">C:/Python34/python.exe C:/get-pip.py</span>
     
 </pre></div>
@@ -134,17 +136,16 @@
           Data page. Then, change the deploy_script part to read this:</p>
 
         <div class="highlight"><pre><span></span><span class="l l-Scalar l-Scalar-Plain">deploy_script</span><span class="p p-Indicator">:</span>
-  <span class="p p-Indicator">-</span> <span class="s">"echo</span><span class="nv"> </span><span class="s">[pypi]</span><span class="nv"> </span><span class="s">&gt;</span><span class="nv"> </span><span class="s">%USERPROFILE%\\.pypirc"</span>
-  <span class="p p-Indicator">-</span> <span class="s">"echo</span><span class="nv"> </span><span class="s">username:</span><span class="nv"> </span><span class="s">user</span><span class="nv"> </span><span class="s">&gt;&gt;</span><span class="nv"> </span><span class="s">%USERPROFILE%\\.pypirc"</span>
-  <span class="p p-Indicator">-</span> <span class="s">"echo</span><span class="nv"> </span><span class="s">password:</span><span class="nv"> </span><span class="s">%password%</span><span class="nv"> </span><span class="s">&gt;&gt;</span><span class="nv"> </span><span class="s">%USERPROFILE%\\.pypirc"</span>
+  <span class="p p-Indicator">-</span> <span class="s">&quot;echo</span><span class="nv"> </span><span class="s">[pypi]</span><span class="nv"> </span><span class="s">&gt;</span><span class="nv"> </span><span class="s">%USERPROFILE%\\.pypirc&quot;</span>
+  <span class="p p-Indicator">-</span> <span class="s">&quot;echo</span><span class="nv"> </span><span class="s">username:</span><span class="nv"> </span><span class="s">user</span><span class="nv"> </span><span class="s">&gt;&gt;</span><span class="nv"> </span><span class="s">%USERPROFILE%\\.pypirc&quot;</span>
+  <span class="p p-Indicator">-</span> <span class="s">&quot;echo</span><span class="nv"> </span><span class="s">password:</span><span class="nv"> </span><span class="s">%password%</span><span class="nv"> </span><span class="s">&gt;&gt;</span><span class="nv"> </span><span class="s">%USERPROFILE%\\.pypirc&quot;</span>
   <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">python setup.py sdist bdist_wheel upload</span>
         
 </pre></div>
 </li>
     </ol>
 
-    <site-tags tags="appveyor, ci, python, wheels"></site-tags>
+    <site-tags tags='appveyor, ci, python, wheels'></site-tags>
     <site-suffix></site-suffix>
   </div>
-
-</body></html>
+</body>

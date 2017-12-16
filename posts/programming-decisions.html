@@ -1,14 +1,16 @@
-<!DOCTYPE html><html><head>
+<!DOCTYPE html>
+
+<head>
   <title>Programming Decisions</title>
-  <script defer="" src="/dist/pack.js"></script>
+  <script defer src="/dist/pack.js"></script>
   <link rel="stylesheet" href="/dist/pack.css">
-  <script defer="" src="../page.initialize.dart.js"></script>
-  
+  <script defer type="application/dart" src="../page.initialize.dart"></script>
+  <script defer src="packages/browser/dart.js"></script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 
-<body>
-  <div id="page" v-cloak="">
+<body >
+  <div id="page" v-cloak>
     <site-navbar></site-navbar>
     <site-title created-on="2015-06-19 17:54"></site-title>
 
@@ -237,8 +239,7 @@
       stop debating, you'll get either drowned in alcohol or eaten?" Yeah, that's a
       good one! :)</p>
 
-    <site-tags tags="programming, joke, satire"></site-tags>
+    <site-tags tags='programming, joke, satire'></site-tags>
     <site-suffix></site-suffix>
   </div>
-
-</body></html>
+</body>

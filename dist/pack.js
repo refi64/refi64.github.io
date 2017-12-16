@@ -4,7 +4,10185 @@ window.aspenAssets$v1 = window.aspenAssets$v1 || {};
  * (c) 2014-2017 Evan You
  * Released under the MIT License.
  */
-!function(t,e){"object"==typeof exports&&"undefined"!=typeof module?module.exports=e():"function"==typeof define&&define.amd?define(e):t.Vue=e()}(this,function(){"use strict";function t(t){return void 0===t||null===t}function e(t){return void 0!==t&&null!==t}function n(t){return!0===t}function r(t){return!1===t}function i(t){return"string"==typeof t||"number"==typeof t||"boolean"==typeof t}function o(t){return null!==t&&"object"==typeof t}function a(t){return"[object Object]"===hi.call(t)}function s(t){return"[object RegExp]"===hi.call(t)}function c(t){var e=parseFloat(t);return e>=0&&Math.floor(e)===e&&isFinite(t)}function u(t){return null==t?"":"object"==typeof t?JSON.stringify(t,null,2):String(t)}function l(t){var e=parseFloat(t);return isNaN(e)?t:e}function f(t,e){for(var n=Object.create(null),r=t.split(","),i=0;i<r.length;i++)n[r[i]]=!0;return e?function(t){return n[t.toLowerCase()]}:function(t){return n[t]}}function p(t,e){if(t.length){var n=t.indexOf(e);if(n>-1)return t.splice(n,1)}}function d(t,e){return gi.call(t,e)}function v(t){var e=Object.create(null);return function(n){return e[n]||(e[n]=t(n))}}function h(t,e){function n(n){var r=arguments.length;return r?r>1?t.apply(e,arguments):t.call(e,n):t.call(e)}return n._length=t.length,n}function m(t,e){e=e||0;for(var n=t.length-e,r=new Array(n);n--;)r[n]=t[n+e];return r}function y(t,e){for(var n in e)t[n]=e[n];return t}function g(t){for(var e={},n=0;n<t.length;n++)t[n]&&y(e,t[n]);return e}function _(t,e,n){}function b(t,e){if(t===e)return!0;var n=o(t),r=o(e);if(!n||!r)return!n&&!r&&String(t)===String(e);try{var i=Array.isArray(t),a=Array.isArray(e);if(i&&a)return t.length===e.length&&t.every(function(t,n){return b(t,e[n])});if(i||a)return!1;var s=Object.keys(t),c=Object.keys(e);return s.length===c.length&&s.every(function(n){return b(t[n],e[n])})}catch(t){return!1}}function $(t,e){for(var n=0;n<t.length;n++)if(b(t[n],e))return n;return-1}function C(t){var e=!1;return function(){e||(e=!0,t.apply(this,arguments))}}function w(t){var e=(t+"").charCodeAt(0);return 36===e||95===e}function x(t,e,n,r){Object.defineProperty(t,e,{value:n,enumerable:!!r,writable:!0,configurable:!0})}function A(t){if(!ji.test(t)){var e=t.split(".");return function(t){for(var n=0;n<e.length;n++){if(!t)return;t=t[e[n]]}return t}}}function k(t,e,n){if(Si.errorHandler)Si.errorHandler.call(null,t,e,n);else{if(!Mi||"undefined"==typeof console)throw t;console.error(t)}}function O(t){return"function"==typeof t&&/native code/.test(t.toString())}function T(t){Qi.target&&Xi.push(Qi.target),Qi.target=t}function S(){Qi.target=Xi.pop()}function E(t,e,n){t.__proto__=e}function j(t,e,n){for(var r=0,i=n.length;r<i;r++){var o=n[r];x(t,o,e[o])}}function L(t,e){if(o(t)){var n;return d(t,"__ob__")&&t.__ob__ instanceof io?n=t.__ob__:ro.shouldConvert&&!qi()&&(Array.isArray(t)||a(t))&&Object.isExtensible(t)&&!t._isVue&&(n=new io(t)),e&&n&&n.vmCount++,n}}function N(t,e,n,r,i){var o=new Qi,a=Object.getOwnPropertyDescriptor(t,e);if(!a||!1!==a.configurable){var s=a&&a.get,c=a&&a.set,u=!i&&L(n);Object.defineProperty(t,e,{enumerable:!0,configurable:!0,get:function(){var e=s?s.call(t):n;return Qi.target&&(o.depend(),u&&(u.dep.depend(),Array.isArray(e)&&D(e))),e},set:function(e){var r=s?s.call(t):n;e===r||e!==e&&r!==r||(c?c.call(t,e):n=e,u=!i&&L(e),o.notify())}})}}function M(t,e,n){if(Array.isArray(t)&&c(e))return t.length=Math.max(t.length,e),t.splice(e,1,n),n;if(d(t,e))return t[e]=n,n;var r=t.__ob__;return t._isVue||r&&r.vmCount?n:r?(N(r.value,e,n),r.dep.notify(),n):(t[e]=n,n)}function I(t,e){if(Array.isArray(t)&&c(e))t.splice(e,1);else{var n=t.__ob__;t._isVue||n&&n.vmCount||d(t,e)&&(delete t[e],n&&n.dep.notify())}}function D(t){for(var e=void 0,n=0,r=t.length;n<r;n++)(e=t[n])&&e.__ob__&&e.__ob__.dep.depend(),Array.isArray(e)&&D(e)}function P(t,e){if(!e)return t;for(var n,r,i,o=Object.keys(e),s=0;s<o.length;s++)r=t[n=o[s]],i=e[n],d(t,n)?a(r)&&a(i)&&P(r,i):M(t,n,i);return t}function F(t,e,n){return n?t||e?function(){var r="function"==typeof e?e.call(n):e,i="function"==typeof t?t.call(n):t;return r?P(r,i):i}:void 0:e?t?function(){return P("function"==typeof e?e.call(this):e,"function"==typeof t?t.call(this):t)}:e:t}function R(t,e){return e?t?t.concat(e):Array.isArray(e)?e:[e]:t}function H(t,e){var n=Object.create(t||null);return e?y(n,e):n}function B(t){var e=t.props;if(e){var n,r,i={};if(Array.isArray(e))for(n=e.length;n--;)"string"==typeof(r=e[n])&&(i[bi(r)]={type:null});else if(a(e))for(var o in e)r=e[o],i[bi(o)]=a(r)?r:{type:r};t.props=i}}function U(t){var e=t.inject;if(Array.isArray(e))for(var n=t.inject={},r=0;r<e.length;r++)n[e[r]]=e[r]}function V(t){var e=t.directives;if(e)for(var n in e){var r=e[n];"function"==typeof r&&(e[n]={bind:r,update:r})}}function z(t,e,n){function r(r){var i=oo[r]||ao;c[r]=i(t[r],e[r],n,r)}"function"==typeof e&&(e=e.options),B(e),U(e),V(e);var i=e.extends;if(i&&(t=z(t,i,n)),e.mixins)for(var o=0,a=e.mixins.length;o<a;o++)t=z(t,e.mixins[o],n);var s,c={};for(s in t)r(s);for(s in e)d(t,s)||r(s);return c}function K(t,e,n,r){if("string"==typeof n){var i=t[e];if(d(i,n))return i[n];var o=bi(n);if(d(i,o))return i[o];var a=$i(o);if(d(i,a))return i[a];var s=i[n]||i[o]||i[a];return s}}function J(t,e,n,r){var i=e[t],o=!d(n,t),a=n[t];if(G(Boolean,i.type)&&(o&&!d(i,"default")?a=!1:G(String,i.type)||""!==a&&a!==wi(t)||(a=!0)),void 0===a){a=q(r,i,t);var s=ro.shouldConvert;ro.shouldConvert=!0,L(a),ro.shouldConvert=s}return a}function q(t,e,n){if(d(e,"default")){var r=e.default;return t&&t.$options.propsData&&void 0===t.$options.propsData[n]&&void 0!==t._props[n]?t._props[n]:"function"==typeof r&&"Function"!==W(e.type)?r.call(t):r}}function W(t){var e=t&&t.toString().match(/^\s*function (\w+)/);return e?e[1]:""}function G(t,e){if(!Array.isArray(e))return W(e)===W(t);for(var n=0,r=e.length;n<r;n++)if(W(e[n])===W(t))return!0;return!1}function Z(t){return new so(void 0,void 0,void 0,String(t))}function Y(t,e){var n=new so(t.tag,t.data,t.children,t.text,t.elm,t.context,t.componentOptions,t.asyncFactory);return n.ns=t.ns,n.isStatic=t.isStatic,n.key=t.key,n.isComment=t.isComment,n.isCloned=!0,e&&t.children&&(n.children=Q(t.children)),n}function Q(t,e){for(var n=t.length,r=new Array(n),i=0;i<n;i++)r[i]=Y(t[i],e);return r}function X(t){function e(){var t=arguments,n=e.fns;if(!Array.isArray(n))return n.apply(null,arguments);for(var r=n.slice(),i=0;i<r.length;i++)r[i].apply(null,t)}return e.fns=t,e}function tt(t,e){return t.plain?-1:e.plain?1:0}function et(e,n,r,i,o){var a,s,c,u,l=[],f=!1;for(a in e)s=e[a],c=n[a],(u=fo(a)).plain||(f=!0),t(s)||(t(c)?(t(s.fns)&&(s=e[a]=X(s)),u.handler=s,l.push(u)):s!==c&&(c.fns=s,e[a]=c));if(l.length){f&&l.sort(tt);for(var p=0;p<l.length;p++){var d=l[p];r(d.name,d.handler,d.once,d.capture,d.passive)}}for(a in n)t(e[a])&&i((u=fo(a)).name,n[a],u.capture)}function nt(r,i,o){function a(){o.apply(this,arguments),p(s.fns,a)}var s,c=r[i];t(c)?s=X([a]):e(c.fns)&&n(c.merged)?(s=c).fns.push(a):s=X([c,a]),s.merged=!0,r[i]=s}function rt(n,r,i){var o=r.options.props;if(!t(o)){var a={},s=n.attrs,c=n.props;if(e(s)||e(c))for(var u in o){var l=wi(u);it(a,c,u,l,!0)||it(a,s,u,l,!1)}return a}}function it(t,n,r,i,o){if(e(n)){if(d(n,r))return t[r]=n[r],o||delete n[r],!0;if(d(n,i))return t[r]=n[i],o||delete n[i],!0}return!1}function ot(t){for(var e=0;e<t.length;e++)if(Array.isArray(t[e]))return Array.prototype.concat.apply([],t);return t}function at(t){return i(t)?[Z(t)]:Array.isArray(t)?ct(t):void 0}function st(t){return e(t)&&e(t.text)&&r(t.isComment)}function ct(r,o){var a,s,c,u=[];for(a=0;a<r.length;a++)t(s=r[a])||"boolean"==typeof s||(c=u[u.length-1],Array.isArray(s)?u.push.apply(u,ct(s,(o||"")+"_"+a)):i(s)?st(c)?c.text+=String(s):""!==s&&u.push(Z(s)):st(s)&&st(c)?u[u.length-1]=Z(c.text+s.text):(n(r._isVList)&&e(s.tag)&&t(s.key)&&e(o)&&(s.key="__vlist"+o+"_"+a+"__"),u.push(s)));return u}function ut(t,e){return t.__esModule&&t.default&&(t=t.default),o(t)?e.extend(t):t}function lt(t,e,n,r,i){var o=lo();return o.asyncFactory=t,o.asyncMeta={data:e,context:n,children:r,tag:i},o}function ft(r,i,a){if(n(r.error)&&e(r.errorComp))return r.errorComp;if(e(r.resolved))return r.resolved;if(n(r.loading)&&e(r.loadingComp))return r.loadingComp;if(!e(r.contexts)){var s=r.contexts=[a],c=!0,u=function(){for(var t=0,e=s.length;t<e;t++)s[t].$forceUpdate()},l=C(function(t){r.resolved=ut(t,i),c||u()}),f=C(function(t){e(r.errorComp)&&(r.error=!0,u())}),p=r(l,f);return o(p)&&("function"==typeof p.then?t(r.resolved)&&p.then(l,f):e(p.component)&&"function"==typeof p.component.then&&(p.component.then(l,f),e(p.error)&&(r.errorComp=ut(p.error,i)),e(p.loading)&&(r.loadingComp=ut(p.loading,i),0===p.delay?r.loading=!0:setTimeout(function(){t(r.resolved)&&t(r.error)&&(r.loading=!0,u())},p.delay||200)),e(p.timeout)&&setTimeout(function(){t(r.resolved)&&f(null)},p.timeout))),c=!1,r.loading?r.loadingComp:r.resolved}r.contexts.push(a)}function pt(t){return t.isComment&&t.asyncFactory}function dt(t){if(Array.isArray(t))for(var n=0;n<t.length;n++){var r=t[n];if(e(r)&&(e(r.componentOptions)||pt(r)))return r}}function vt(t){t._events=Object.create(null),t._hasHookEvent=!1;var e=t.$options._parentListeners;e&&yt(t,e)}function ht(t,e,n){n?uo.$once(t,e):uo.$on(t,e)}function mt(t,e){uo.$off(t,e)}function yt(t,e,n){uo=t,et(e,n||{},ht,mt,t)}function gt(t,e){var n={};if(!t)return n;for(var r=[],i=0,o=t.length;i<o;i++){var a=t[i],s=a.data;if(s&&s.attrs&&s.attrs.slot&&delete s.attrs.slot,a.context!==e&&a.functionalContext!==e||!s||null==s.slot)r.push(a);else{var c=a.data.slot,u=n[c]||(n[c]=[]);"template"===a.tag?u.push.apply(u,a.children):u.push(a)}}return r.every(_t)||(n.default=r),n}function _t(t){return t.isComment||" "===t.text}function bt(t,e){e=e||{};for(var n=0;n<t.length;n++)Array.isArray(t[n])?bt(t[n],e):e[t[n].key]=t[n].fn;return e}function $t(t){var e=t.$options,n=e.parent;if(n&&!e.abstract){for(;n.$options.abstract&&n.$parent;)n=n.$parent;n.$children.push(t)}t.$parent=n,t.$root=n?n.$root:t,t.$children=[],t.$refs={},t._watcher=null,t._inactive=null,t._directInactive=!1,t._isMounted=!1,t._isDestroyed=!1,t._isBeingDestroyed=!1}function Ct(t,e,n){t.$el=e,t.$options.render||(t.$options.render=lo),Ot(t,"beforeMount");var r;return r=function(){t._update(t._render(),n)},t._watcher=new $o(t,r,_),n=!1,null==t.$vnode&&(t._isMounted=!0,Ot(t,"mounted")),t}function wt(t,e,n,r,i){var o=!!(i||t.$options._renderChildren||r.data.scopedSlots||t.$scopedSlots!==Ei);if(t.$options._parentVnode=r,t.$vnode=r,t._vnode&&(t._vnode.parent=r),t.$options._renderChildren=i,t.$attrs=r.data&&r.data.attrs||Ei,t.$listeners=n||Ei,e&&t.$options.props){ro.shouldConvert=!1;for(var a=t._props,s=t.$options._propKeys||[],c=0;c<s.length;c++){var u=s[c];a[u]=J(u,t.$options.props,e,t)}ro.shouldConvert=!0,t.$options.propsData=e}if(n){var l=t.$options._parentListeners;t.$options._parentListeners=n,yt(t,n,l)}o&&(t.$slots=gt(i,r.context),t.$forceUpdate())}function xt(t){for(;t&&(t=t.$parent);)if(t._inactive)return!0;return!1}function At(t,e){if(e){if(t._directInactive=!1,xt(t))return}else if(t._directInactive)return;if(t._inactive||null===t._inactive){t._inactive=!1;for(var n=0;n<t.$children.length;n++)At(t.$children[n]);Ot(t,"activated")}}function kt(t,e){if(!(e&&(t._directInactive=!0,xt(t))||t._inactive)){t._inactive=!0;for(var n=0;n<t.$children.length;n++)kt(t.$children[n]);Ot(t,"deactivated")}}function Ot(t,e){var n=t.$options[e];if(n)for(var r=0,i=n.length;r<i;r++)try{n[r].call(t)}catch(n){k(n,t,e+" hook")}t._hasHookEvent&&t.$emit("hook:"+e)}function Tt(){_o=vo.length=ho.length=0,mo={},yo=go=!1}function St(){go=!0;var t,e;for(vo.sort(function(t,e){return t.id-e.id}),_o=0;_o<vo.length;_o++)e=(t=vo[_o]).id,mo[e]=null,t.run();var n=ho.slice(),r=vo.slice();Tt(),Lt(n),Et(r),Wi&&Si.devtools&&Wi.emit("flush")}function Et(t){for(var e=t.length;e--;){var n=t[e],r=n.vm;r._watcher===n&&r._isMounted&&Ot(r,"updated")}}function jt(t){t._inactive=!1,ho.push(t)}function Lt(t){for(var e=0;e<t.length;e++)t[e]._inactive=!0,At(t[e],!0)}function Nt(t){var e=t.id;if(null==mo[e]){if(mo[e]=!0,go){for(var n=vo.length-1;n>_o&&vo[n].id>t.id;)n--;vo.splice(n+1,0,t)}else vo.push(t);yo||(yo=!0,Zi(St))}}function Mt(t){Co.clear(),It(t,Co)}function It(t,e){var n,r,i=Array.isArray(t);if((i||o(t))&&Object.isExtensible(t)){if(t.__ob__){var a=t.__ob__.dep.id;if(e.has(a))return;e.add(a)}if(i)for(n=t.length;n--;)It(t[n],e);else for(n=(r=Object.keys(t)).length;n--;)It(t[r[n]],e)}}function Dt(t,e,n){wo.get=function(){return this[e][n]},wo.set=function(t){this[e][n]=t},Object.defineProperty(t,n,wo)}function Pt(t){t._watchers=[];var e=t.$options;e.props&&Ft(t,e.props),e.methods&&zt(t,e.methods),e.data?Rt(t):L(t._data={},!0),e.computed&&Bt(t,e.computed),e.watch&&e.watch!==Ui&&Kt(t,e.watch)}function Ft(t,e){var n=t.$options.propsData||{},r=t._props={},i=t.$options._propKeys=[],o=!t.$parent;ro.shouldConvert=o;for(var a in e)!function(o){i.push(o);var a=J(o,e,n,t);N(r,o,a),o in t||Dt(t,"_props",o)}(a);ro.shouldConvert=!0}function Rt(t){var e=t.$options.data;a(e=t._data="function"==typeof e?Ht(e,t):e||{})||(e={});for(var n=Object.keys(e),r=t.$options.props,i=(t.$options.methods,n.length);i--;){var o=n[i];r&&d(r,o)||w(o)||Dt(t,"_data",o)}L(e,!0)}function Ht(t,e){try{return t.call(e)}catch(t){return k(t,e,"data()"),{}}}function Bt(t,e){var n=t._computedWatchers=Object.create(null),r=qi();for(var i in e){var o=e[i],a="function"==typeof o?o:o.get;r||(n[i]=new $o(t,a||_,_,xo)),i in t||Ut(t,i,o)}}function Ut(t,e,n){var r=!qi();"function"==typeof n?(wo.get=r?Vt(e):n,wo.set=_):(wo.get=n.get?r&&!1!==n.cache?Vt(e):n.get:_,wo.set=n.set?n.set:_),Object.defineProperty(t,e,wo)}function Vt(t){return function(){var e=this._computedWatchers&&this._computedWatchers[t];if(e)return e.dirty&&e.evaluate(),Qi.target&&e.depend(),e.value}}function zt(t,e){t.$options.props;for(var n in e)t[n]=null==e[n]?_:h(e[n],t)}function Kt(t,e){for(var n in e){var r=e[n];if(Array.isArray(r))for(var i=0;i<r.length;i++)Jt(t,n,r[i]);else Jt(t,n,r)}}function Jt(t,e,n,r){return a(n)&&(r=n,n=n.handler),"string"==typeof n&&(n=t[n]),t.$watch(e,n,r)}function qt(t){var e=t.$options.provide;e&&(t._provided="function"==typeof e?e.call(t):e)}function Wt(t){var e=Gt(t.$options.inject,t);e&&(ro.shouldConvert=!1,Object.keys(e).forEach(function(n){N(t,n,e[n])}),ro.shouldConvert=!0)}function Gt(t,e){if(t){for(var n=Object.create(null),r=Gi?Reflect.ownKeys(t).filter(function(e){return Object.getOwnPropertyDescriptor(t,e).enumerable}):Object.keys(t),i=0;i<r.length;i++)for(var o=r[i],a=t[o],s=e;s;){if(s._provided&&a in s._provided){n[o]=s._provided[a];break}s=s.$parent}return n}}function Zt(t,n,r,i,o){var a={},s=t.options.props;if(e(s))for(var c in s)a[c]=J(c,s,n||Ei);else e(r.attrs)&&Yt(a,r.attrs),e(r.props)&&Yt(a,r.props);var u=Object.create(i),l=t.options.render.call(null,function(t,e,n,r){return re(u,t,e,n,r,!0)},{data:r,props:a,children:o,parent:i,listeners:r.on||Ei,injections:Gt(t.options.inject,i),slots:function(){return gt(o,i)}});return l instanceof so&&(l.functionalContext=i,l.functionalOptions=t.options,r.slot&&((l.data||(l.data={})).slot=r.slot)),l}function Yt(t,e){for(var n in e)t[bi(n)]=e[n]}function Qt(r,i,a,s,c){if(!t(r)){var u=a.$options._base;if(o(r)&&(r=u.extend(r)),"function"==typeof r){var l;if(t(r.cid)&&(l=r,void 0===(r=ft(l,u,a))))return lt(l,i,a,s,c);i=i||{},ge(r),e(i.model)&&ne(r.options,i);var f=rt(i,r,c);if(n(r.options.functional))return Zt(r,f,i,a,s);var p=i.on;if(i.on=i.nativeOn,n(r.options.abstract)){var d=i.slot;i={},d&&(i.slot=d)}te(i);var v=r.options.name||c;return new so("vue-component-"+r.cid+(v?"-"+v:""),i,void 0,void 0,void 0,a,{Ctor:r,propsData:f,listeners:p,tag:c,children:s},l)}}}function Xt(t,n,r,i){var o=t.componentOptions,a={_isComponent:!0,parent:n,propsData:o.propsData,_componentTag:o.tag,_parentVnode:t,_parentListeners:o.listeners,_renderChildren:o.children,_parentElm:r||null,_refElm:i||null},s=t.data.inlineTemplate;return e(s)&&(a.render=s.render,a.staticRenderFns=s.staticRenderFns),new o.Ctor(a)}function te(t){t.hook||(t.hook={});for(var e=0;e<ko.length;e++){var n=ko[e],r=t.hook[n],i=Ao[n];t.hook[n]=r?ee(i,r):i}}function ee(t,e){return function(n,r,i,o){t(n,r,i,o),e(n,r,i,o)}}function ne(t,n){var r=t.model&&t.model.prop||"value",i=t.model&&t.model.event||"input";(n.props||(n.props={}))[r]=n.model.value;var o=n.on||(n.on={});e(o[i])?o[i]=[n.model.callback].concat(o[i]):o[i]=n.model.callback}function re(t,e,r,o,a,s){return(Array.isArray(r)||i(r))&&(a=o,o=r,r=void 0),n(s)&&(a=To),ie(t,e,r,o,a)}function ie(t,n,r,i,o){if(e(r)&&e(r.__ob__))return lo();if(e(r)&&e(r.is)&&(n=r.is),!n)return lo();Array.isArray(i)&&"function"==typeof i[0]&&((r=r||{}).scopedSlots={default:i[0]},i.length=0),o===To?i=at(i):o===Oo&&(i=ot(i));var a,s;if("string"==typeof n){var c;s=t.$vnode&&t.$vnode.ns||Si.getTagNamespace(n),a=Si.isReservedTag(n)?new so(Si.parsePlatformTagName(n),r,i,void 0,void 0,t):e(c=K(t.$options,"components",n))?Qt(c,r,t,i,n):new so(n,r,i,void 0,void 0,t)}else a=Qt(n,r,t,i);return e(a)?(s&&oe(a,s),a):lo()}function oe(n,r){if(n.ns=r,"foreignObject"!==n.tag&&e(n.children))for(var i=0,o=n.children.length;i<o;i++){var a=n.children[i];e(a.tag)&&t(a.ns)&&oe(a,r)}}function ae(t,n){var r,i,a,s,c;if(Array.isArray(t)||"string"==typeof t)for(r=new Array(t.length),i=0,a=t.length;i<a;i++)r[i]=n(t[i],i);else if("number"==typeof t)for(r=new Array(t),i=0;i<t;i++)r[i]=n(i+1,i);else if(o(t))for(s=Object.keys(t),r=new Array(s.length),i=0,a=s.length;i<a;i++)c=s[i],r[i]=n(t[c],c,i);return e(r)&&(r._isVList=!0),r}function se(t,e,n,r){var i=this.$scopedSlots[t];if(i)return n=n||{},r&&(n=y(y({},r),n)),i(n)||e;var o=this.$slots[t];return o||e}function ce(t){return K(this.$options,"filters",t,!0)||Ai}function ue(t,e,n){var r=Si.keyCodes[e]||n;return Array.isArray(r)?-1===r.indexOf(t):r!==t}function le(t,e,n,r,i){if(n)if(o(n)){Array.isArray(n)&&(n=g(n));var a;for(var s in n)!function(o){if("class"===o||"style"===o||yi(o))a=t;else{var s=t.attrs&&t.attrs.type;a=r||Si.mustUseProp(e,s,o)?t.domProps||(t.domProps={}):t.attrs||(t.attrs={})}o in a||(a[o]=n[o],i&&((t.on||(t.on={}))["update:"+o]=function(t){n[o]=t}))}(s)}else;return t}function fe(t,e){var n=this._staticTrees[t];return n&&!e?Array.isArray(n)?Q(n):Y(n):(n=this._staticTrees[t]=this.$options.staticRenderFns[t].call(this._renderProxy),de(n,"__static__"+t,!1),n)}function pe(t,e,n){return de(t,"__once__"+e+(n?"_"+n:""),!0),t}function de(t,e,n){if(Array.isArray(t))for(var r=0;r<t.length;r++)t[r]&&"string"!=typeof t[r]&&ve(t[r],e+"_"+r,n);else ve(t,e,n)}function ve(t,e,n){t.isStatic=!0,t.key=e,t.isOnce=n}function he(t,e){if(e)if(a(e)){var n=t.on=t.on?y({},t.on):{};for(var r in e){var i=n[r],o=e[r];n[r]=i?[].concat(o,i):o}}else;return t}function me(t){t._vnode=null,t._staticTrees=null;var e=t.$vnode=t.$options._parentVnode,n=e&&e.context;t.$slots=gt(t.$options._renderChildren,n),t.$scopedSlots=Ei,t._c=function(e,n,r,i){return re(t,e,n,r,i,!1)},t.$createElement=function(e,n,r,i){return re(t,e,n,r,i,!0)};var r=e&&e.data;N(t,"$attrs",r&&r.attrs||Ei,null,!0),N(t,"$listeners",t.$options._parentListeners||Ei,null,!0)}function ye(t,e){var n=t.$options=Object.create(t.constructor.options);n.parent=e.parent,n.propsData=e.propsData,n._parentVnode=e._parentVnode,n._parentListeners=e._parentListeners,n._renderChildren=e._renderChildren,n._componentTag=e._componentTag,n._parentElm=e._parentElm,n._refElm=e._refElm,e.render&&(n.render=e.render,n.staticRenderFns=e.staticRenderFns)}function ge(t){var e=t.options;if(t.super){var n=ge(t.super);if(n!==t.superOptions){t.superOptions=n;var r=_e(t);r&&y(t.extendOptions,r),(e=t.options=z(n,t.extendOptions)).name&&(e.components[e.name]=t)}}return e}function _e(t){var e,n=t.options,r=t.extendOptions,i=t.sealedOptions;for(var o in n)n[o]!==i[o]&&(e||(e={}),e[o]=be(n[o],r[o],i[o]));return e}function be(t,e,n){if(Array.isArray(t)){var r=[];n=Array.isArray(n)?n:[n],e=Array.isArray(e)?e:[e];for(var i=0;i<t.length;i++)(e.indexOf(t[i])>=0||n.indexOf(t[i])<0)&&r.push(t[i]);return r}return t}function $e(t){this._init(t)}function Ce(t){t.use=function(t){var e=this._installedPlugins||(this._installedPlugins=[]);if(e.indexOf(t)>-1)return this;var n=m(arguments,1);return n.unshift(this),"function"==typeof t.install?t.install.apply(t,n):"function"==typeof t&&t.apply(null,n),e.push(t),this}}function we(t){t.mixin=function(t){return this.options=z(this.options,t),this}}function xe(t){t.cid=0;var e=1;t.extend=function(t){t=t||{};var n=this,r=n.cid,i=t._Ctor||(t._Ctor={});if(i[r])return i[r];var o=t.name||n.options.name,a=function(t){this._init(t)};return a.prototype=Object.create(n.prototype),a.prototype.constructor=a,a.cid=e++,a.options=z(n.options,t),a.super=n,a.options.props&&Ae(a),a.options.computed&&ke(a),a.extend=n.extend,a.mixin=n.mixin,a.use=n.use,Oi.forEach(function(t){a[t]=n[t]}),o&&(a.options.components[o]=a),a.superOptions=n.options,a.extendOptions=t,a.sealedOptions=y({},a.options),i[r]=a,a}}function Ae(t){var e=t.options.props;for(var n in e)Dt(t.prototype,"_props",n)}function ke(t){var e=t.options.computed;for(var n in e)Ut(t.prototype,n,e[n])}function Oe(t){Oi.forEach(function(e){t[e]=function(t,n){return n?("component"===e&&a(n)&&(n.name=n.name||t,n=this.options._base.extend(n)),"directive"===e&&"function"==typeof n&&(n={bind:n,update:n}),this.options[e+"s"][t]=n,n):this.options[e+"s"][t]}})}function Te(t){return t&&(t.Ctor.options.name||t.tag)}function Se(t,e){return Array.isArray(t)?t.indexOf(e)>-1:"string"==typeof t?t.split(",").indexOf(e)>-1:!!s(t)&&t.test(e)}function Ee(t,e,n){for(var r in t){var i=t[r];if(i){var o=Te(i.componentOptions);o&&!n(o)&&(i!==e&&je(i),t[r]=null)}}}function je(t){t&&t.componentInstance.$destroy()}function Le(t){for(var n=t.data,r=t,i=t;e(i.componentInstance);)(i=i.componentInstance._vnode).data&&(n=Ne(i.data,n));for(;e(r=r.parent);)r.data&&(n=Ne(n,r.data));return Me(n.staticClass,n.class)}function Ne(t,n){return{staticClass:Ie(t.staticClass,n.staticClass),class:e(t.class)?[t.class,n.class]:n.class}}function Me(t,n){return e(t)||e(n)?Ie(t,De(n)):""}function Ie(t,e){return t?e?t+" "+e:t:e||""}function De(t){return Array.isArray(t)?Pe(t):o(t)?Fe(t):"string"==typeof t?t:""}function Pe(t){for(var n,r="",i=0,o=t.length;i<o;i++)e(n=De(t[i]))&&""!==n&&(r&&(r+=" "),r+=n);return r}function Fe(t){var e="";for(var n in t)t[n]&&(e&&(e+=" "),e+=n);return e}function Re(t){return Qo(t)?"svg":"math"===t?"math":void 0}function He(t){if("string"==typeof t){var e=document.querySelector(t);return e||document.createElement("div")}return t}function Be(t,e){var n=t.data.ref;if(n){var r=t.context,i=t.componentInstance||t.elm,o=r.$refs;e?Array.isArray(o[n])?p(o[n],i):o[n]===i&&(o[n]=void 0):t.data.refInFor?Array.isArray(o[n])?o[n].indexOf(i)<0&&o[n].push(i):o[n]=[i]:o[n]=i}}function Ue(r,i){return r.key===i.key&&(r.tag===i.tag&&r.isComment===i.isComment&&e(r.data)===e(i.data)&&Ve(r,i)||n(r.isAsyncPlaceholder)&&r.asyncFactory===i.asyncFactory&&t(i.asyncFactory.error))}function Ve(t,n){if("input"!==t.tag)return!0;var r,i=e(r=t.data)&&e(r=r.attrs)&&r.type,o=e(r=n.data)&&e(r=r.attrs)&&r.type;return i===o||ea(i)&&ea(o)}function ze(t,n,r){var i,o,a={};for(i=n;i<=r;++i)e(o=t[i].key)&&(a[o]=i);return a}function Ke(t,e){(t.data.directives||e.data.directives)&&Je(t,e)}function Je(t,e){var n,r,i,o=t===ia,a=e===ia,s=qe(t.data.directives,t.context),c=qe(e.data.directives,e.context),u=[],l=[];for(n in c)r=s[n],i=c[n],r?(i.oldValue=r.value,Ge(i,"update",e,t),i.def&&i.def.componentUpdated&&l.push(i)):(Ge(i,"bind",e,t),i.def&&i.def.inserted&&u.push(i));if(u.length){var f=function(){for(var n=0;n<u.length;n++)Ge(u[n],"inserted",e,t)};o?nt(e.data.hook||(e.data.hook={}),"insert",f):f()}if(l.length&&nt(e.data.hook||(e.data.hook={}),"postpatch",function(){for(var n=0;n<l.length;n++)Ge(l[n],"componentUpdated",e,t)}),!o)for(n in s)c[n]||Ge(s[n],"unbind",t,t,a)}function qe(t,e){var n=Object.create(null);if(!t)return n;var r,i;for(r=0;r<t.length;r++)(i=t[r]).modifiers||(i.modifiers=sa),n[We(i)]=i,i.def=K(e.$options,"directives",i.name,!0);return n}function We(t){return t.rawName||t.name+"."+Object.keys(t.modifiers||{}).join(".")}function Ge(t,e,n,r,i){var o=t.def&&t.def[e];if(o)try{o(n.elm,t,n,r,i)}catch(r){k(r,n.context,"directive "+t.name+" "+e+" hook")}}function Ze(n,r){var i=r.componentOptions;if(!(e(i)&&!1===i.Ctor.options.inheritAttrs||t(n.data.attrs)&&t(r.data.attrs))){var o,a,s=r.elm,c=n.data.attrs||{},u=r.data.attrs||{};e(u.__ob__)&&(u=r.data.attrs=y({},u));for(o in u)a=u[o],c[o]!==a&&Ye(s,o,a);Pi&&u.value!==c.value&&Ye(s,"value",u.value);for(o in c)t(u[o])&&(qo(o)?s.removeAttributeNS(Jo,Wo(o)):zo(o)||s.removeAttribute(o))}}function Ye(t,e,n){Ko(e)?Go(n)?t.removeAttribute(e):(n="allowfullscreen"===e&&"EMBED"===t.tagName?"true":e,t.setAttribute(e,n)):zo(e)?t.setAttribute(e,Go(n)||"false"===n?"false":"true"):qo(e)?Go(n)?t.removeAttributeNS(Jo,Wo(e)):t.setAttributeNS(Jo,e,n):Go(n)?t.removeAttribute(e):t.setAttribute(e,n)}function Qe(n,r){var i=r.elm,o=r.data,a=n.data;if(!(t(o.staticClass)&&t(o.class)&&(t(a)||t(a.staticClass)&&t(a.class)))){var s=Le(r),c=i._transitionClasses;e(c)&&(s=Ie(s,De(c))),s!==i._prevClass&&(i.setAttribute("class",s),i._prevClass=s)}}function Xe(t){function e(){(a||(a=[])).push(t.slice(v,i).trim()),v=i+1}var n,r,i,o,a,s=!1,c=!1,u=!1,l=!1,f=0,p=0,d=0,v=0;for(i=0;i<t.length;i++)if(r=n,n=t.charCodeAt(i),s)39===n&&92!==r&&(s=!1);else if(c)34===n&&92!==r&&(c=!1);else if(u)96===n&&92!==r&&(u=!1);else if(l)47===n&&92!==r&&(l=!1);else if(124!==n||124===t.charCodeAt(i+1)||124===t.charCodeAt(i-1)||f||p||d){switch(n){case 34:c=!0;break;case 39:s=!0;break;case 96:u=!0;break;case 40:d++;break;case 41:d--;break;case 91:p++;break;case 93:p--;break;case 123:f++;break;case 125:f--}if(47===n){for(var h=i-1,m=void 0;h>=0&&" "===(m=t.charAt(h));h--);m&&fa.test(m)||(l=!0)}}else void 0===o?(v=i+1,o=t.slice(0,i).trim()):e();if(void 0===o?o=t.slice(0,i).trim():0!==v&&e(),a)for(i=0;i<a.length;i++)o=tn(o,a[i]);return o}function tn(t,e){var n=e.indexOf("(");return n<0?'_f("'+e+'")('+t+")":'_f("'+e.slice(0,n)+'")('+t+","+e.slice(n+1)}function en(t){console.error("[Vue compiler]: "+t)}function nn(t,e){return t?t.map(function(t){return t[e]}).filter(function(t){return t}):[]}function rn(t,e,n){(t.props||(t.props=[])).push({name:e,value:n})}function on(t,e,n){(t.attrs||(t.attrs=[])).push({name:e,value:n})}function an(t,e,n,r,i,o){(t.directives||(t.directives=[])).push({name:e,rawName:n,value:r,arg:i,modifiers:o})}function sn(t,e,n,r,i,o){r&&r.capture&&(delete r.capture,e="!"+e),r&&r.once&&(delete r.once,e="~"+e),r&&r.passive&&(delete r.passive,e="&"+e);var a;r&&r.native?(delete r.native,a=t.nativeEvents||(t.nativeEvents={})):a=t.events||(t.events={});var s={value:n,modifiers:r},c=a[e];Array.isArray(c)?i?c.unshift(s):c.push(s):a[e]=c?i?[s,c]:[c,s]:s}function cn(t,e,n){var r=un(t,":"+e)||un(t,"v-bind:"+e);if(null!=r)return Xe(r);if(!1!==n){var i=un(t,e);if(null!=i)return JSON.stringify(i)}}function un(t,e){var n;if(null!=(n=t.attrsMap[e]))for(var r=t.attrsList,i=0,o=r.length;i<o;i++)if(r[i].name===e){r.splice(i,1);break}return n}function ln(t,e,n){var r=n||{},i=r.number,o="$$v";r.trim&&(o="(typeof $$v === 'string'? $$v.trim(): $$v)"),i&&(o="_n("+o+")");var a=fn(e,o);t.model={value:"("+e+")",expression:'"'+e+'"',callback:"function ($$v) {"+a+"}"}}function fn(t,e){var n=pn(t);return null===n.idx?t+"="+e:"$set("+n.exp+", "+n.idx+", "+e+")"}function pn(t){if(No=t,Lo=No.length,Io=Do=Po=0,t.indexOf("[")<0||t.lastIndexOf("]")<Lo-1)return{exp:t,idx:null};for(;!vn();)hn(Mo=dn())?yn(Mo):91===Mo&&mn(Mo);return{exp:t.substring(0,Do),idx:t.substring(Do+1,Po)}}function dn(){return No.charCodeAt(++Io)}function vn(){return Io>=Lo}function hn(t){return 34===t||39===t}function mn(t){var e=1;for(Do=Io;!vn();)if(t=dn(),hn(t))yn(t);else if(91===t&&e++,93===t&&e--,0===e){Po=Io;break}}function yn(t){for(var e=t;!vn()&&(t=dn())!==e;);}function gn(t,e,n){var r=n&&n.number,i=cn(t,"value")||"null",o=cn(t,"true-value")||"true",a=cn(t,"false-value")||"false";rn(t,"checked","Array.isArray("+e+")?_i("+e+","+i+")>-1"+("true"===o?":("+e+")":":_q("+e+","+o+")")),sn(t,da,"var $$a="+e+",$$el=$event.target,$$c=$$el.checked?("+o+"):("+a+");if(Array.isArray($$a)){var $$v="+(r?"_n("+i+")":i)+",$$i=_i($$a,$$v);if($$el.checked){$$i<0&&("+e+"=$$a.concat([$$v]))}else{$$i>-1&&("+e+"=$$a.slice(0,$$i).concat($$a.slice($$i+1)))}}else{"+fn(e,"$$c")+"}",null,!0)}function _n(t,e,n){var r=n&&n.number,i=cn(t,"value")||"null";rn(t,"checked","_q("+e+","+(i=r?"_n("+i+")":i)+")"),sn(t,da,fn(e,i),null,!0)}function bn(t,e,n){var r="var $$selectedVal = "+('Array.prototype.filter.call($event.target.options,function(o){return o.selected}).map(function(o){var val = "_value" in o ? o._value : o.value;return '+(n&&n.number?"_n(val)":"val")+"})")+";";sn(t,"change",r=r+" "+fn(e,"$event.target.multiple ? $$selectedVal : $$selectedVal[0]"),null,!0)}function $n(t,e,n){var r=t.attrsMap.type,i=n||{},o=i.lazy,a=i.number,s=i.trim,c=!o&&"range"!==r,u=o?"change":"range"===r?pa:"input",l="$event.target.value";s&&(l="$event.target.value.trim()"),a&&(l="_n("+l+")");var f=fn(e,l);c&&(f="if($event.target.composing)return;"+f),rn(t,"value","("+e+")"),sn(t,u,f,null,!0),(s||a)&&sn(t,"blur","$forceUpdate()")}function Cn(t){var n;e(t[pa])&&(t[n=Di?"change":"input"]=[].concat(t[pa],t[n]||[]),delete t[pa]),e(t[da])&&(t[n=Bi?"click":"change"]=[].concat(t[da],t[n]||[]),delete t[da])}function wn(t,e,n,r,i){if(n){var o=e,a=Ro;e=function(n){null!==(1===arguments.length?o(n):o.apply(null,arguments))&&xn(t,e,r,a)}}Ro.addEventListener(t,e,Vi?{capture:r,passive:i}:r)}function xn(t,e,n,r){(r||Ro).removeEventListener(t,e,n)}function An(e,n){if(!t(e.data.on)||!t(n.data.on)){var r=n.data.on||{},i=e.data.on||{};Ro=n.elm,Cn(r),et(r,i,wn,xn,n.context)}}function kn(n,r){if(!t(n.data.domProps)||!t(r.data.domProps)){var i,o,a=r.elm,s=n.data.domProps||{},c=r.data.domProps||{};e(c.__ob__)&&(c=r.data.domProps=y({},c));for(i in s)t(c[i])&&(a[i]="");for(i in c)if(o=c[i],"textContent"!==i&&"innerHTML"!==i||(r.children&&(r.children.length=0),o!==s[i]))if("value"===i){a._value=o;var u=t(o)?"":String(o);On(a,r,u)&&(a.value=u)}else a[i]=o}}function On(t,e,n){return!t.composing&&("option"===e.tag||Tn(t,n)||Sn(t,n))}function Tn(t,e){var n=!0;try{n=document.activeElement!==t}catch(t){}return n&&t.value!==e}function Sn(t,n){var r=t.value,i=t._vModifiers;return e(i)&&i.number?l(r)!==l(n):e(i)&&i.trim?r.trim()!==n.trim():r!==n}function En(t){var e=jn(t.style);return t.staticStyle?y(t.staticStyle,e):e}function jn(t){return Array.isArray(t)?g(t):"string"==typeof t?ma(t):t}function Ln(t,e){var n,r={};if(e)for(var i=t;i.componentInstance;)(i=i.componentInstance._vnode).data&&(n=En(i.data))&&y(r,n);(n=En(t.data))&&y(r,n);for(var o=t;o=o.parent;)o.data&&(n=En(o.data))&&y(r,n);return r}function Nn(n,r){var i=r.data,o=n.data;if(!(t(i.staticStyle)&&t(i.style)&&t(o.staticStyle)&&t(o.style))){var a,s,c=r.elm,u=o.staticStyle,l=o.normalizedStyle||o.style||{},f=u||l,p=jn(r.data.style)||{};r.data.normalizedStyle=e(p.__ob__)?y({},p):p;var d=Ln(r,!0);for(s in f)t(d[s])&&_a(c,s,"");for(s in d)(a=d[s])!==f[s]&&_a(c,s,null==a?"":a)}}function Mn(t,e){if(e&&(e=e.trim()))if(t.classList)e.indexOf(" ")>-1?e.split(/\s+/).forEach(function(e){return t.classList.add(e)}):t.classList.add(e);else{var n=" "+(t.getAttribute("class")||"")+" ";n.indexOf(" "+e+" ")<0&&t.setAttribute("class",(n+e).trim())}}function In(t,e){if(e&&(e=e.trim()))if(t.classList)e.indexOf(" ")>-1?e.split(/\s+/).forEach(function(e){return t.classList.remove(e)}):t.classList.remove(e),t.classList.length||t.removeAttribute("class");else{for(var n=" "+(t.getAttribute("class")||"")+" ",r=" "+e+" ";n.indexOf(r)>=0;)n=n.replace(r," ");(n=n.trim())?t.setAttribute("class",n):t.removeAttribute("class")}}function Dn(t){if(t){if("object"==typeof t){var e={};return!1!==t.css&&y(e,wa(t.name||"v")),y(e,t),e}return"string"==typeof t?wa(t):void 0}}function Pn(t){ja(function(){ja(t)})}function Fn(t,e){var n=t._transitionClasses||(t._transitionClasses=[]);n.indexOf(e)<0&&(n.push(e),Mn(t,e))}function Rn(t,e){t._transitionClasses&&p(t._transitionClasses,e),In(t,e)}function Hn(t,e,n){var r=Bn(t,e),i=r.type,o=r.timeout,a=r.propCount;if(!i)return n();var s=i===Aa?Ta:Ea,c=0,u=function(){t.removeEventListener(s,l),n()},l=function(e){e.target===t&&++c>=a&&u()};setTimeout(function(){c<a&&u()},o+1),t.addEventListener(s,l)}function Bn(t,e){var n,r=window.getComputedStyle(t),i=r[Oa+"Delay"].split(", "),o=r[Oa+"Duration"].split(", "),a=Un(i,o),s=r[Sa+"Delay"].split(", "),c=r[Sa+"Duration"].split(", "),u=Un(s,c),l=0,f=0;return e===Aa?a>0&&(n=Aa,l=a,f=o.length):e===ka?u>0&&(n=ka,l=u,f=c.length):f=(n=(l=Math.max(a,u))>0?a>u?Aa:ka:null)?n===Aa?o.length:c.length:0,{type:n,timeout:l,propCount:f,hasTransform:n===Aa&&La.test(r[Oa+"Property"])}}function Un(t,e){for(;t.length<e.length;)t=t.concat(t);return Math.max.apply(null,e.map(function(e,n){return Vn(e)+Vn(t[n])}))}function Vn(t){return 1e3*Number(t.slice(0,-1))}function zn(n,r){var i=n.elm;e(i._leaveCb)&&(i._leaveCb.cancelled=!0,i._leaveCb());var a=Dn(n.data.transition);if(!t(a)&&!e(i._enterCb)&&1===i.nodeType){for(var s=a.css,c=a.type,u=a.enterClass,f=a.enterToClass,p=a.enterActiveClass,d=a.appearClass,v=a.appearToClass,h=a.appearActiveClass,m=a.beforeEnter,y=a.enter,g=a.afterEnter,_=a.enterCancelled,b=a.beforeAppear,$=a.appear,w=a.afterAppear,x=a.appearCancelled,A=a.duration,k=po,O=po.$vnode;O&&O.parent;)k=(O=O.parent).context;var T=!k._isMounted||!n.isRootInsert;if(!T||$||""===$){var S=T&&d?d:u,E=T&&h?h:p,j=T&&v?v:f,L=T?b||m:m,N=T&&"function"==typeof $?$:y,M=T?w||g:g,I=T?x||_:_,D=l(o(A)?A.enter:A),P=!1!==s&&!Pi,F=qn(N),R=i._enterCb=C(function(){P&&(Rn(i,j),Rn(i,E)),R.cancelled?(P&&Rn(i,S),I&&I(i)):M&&M(i),i._enterCb=null});n.data.show||nt(n.data.hook||(n.data.hook={}),"insert",function(){var t=i.parentNode,e=t&&t._pending&&t._pending[n.key];e&&e.tag===n.tag&&e.elm._leaveCb&&e.elm._leaveCb(),N&&N(i,R)}),L&&L(i),P&&(Fn(i,S),Fn(i,E),Pn(function(){Fn(i,j),Rn(i,S),R.cancelled||F||(Jn(D)?setTimeout(R,D):Hn(i,c,R))})),n.data.show&&(r&&r(),N&&N(i,R)),P||F||R()}}}function Kn(n,r){function i(){x.cancelled||(n.data.show||((a.parentNode._pending||(a.parentNode._pending={}))[n.key]=n),v&&v(a),b&&(Fn(a,f),Fn(a,d),Pn(function(){Fn(a,p),Rn(a,f),x.cancelled||$||(Jn(w)?setTimeout(x,w):Hn(a,u,x))})),h&&h(a,x),b||$||x())}var a=n.elm;e(a._enterCb)&&(a._enterCb.cancelled=!0,a._enterCb());var s=Dn(n.data.transition);if(t(s))return r();if(!e(a._leaveCb)&&1===a.nodeType){var c=s.css,u=s.type,f=s.leaveClass,p=s.leaveToClass,d=s.leaveActiveClass,v=s.beforeLeave,h=s.leave,m=s.afterLeave,y=s.leaveCancelled,g=s.delayLeave,_=s.duration,b=!1!==c&&!Pi,$=qn(h),w=l(o(_)?_.leave:_),x=a._leaveCb=C(function(){a.parentNode&&a.parentNode._pending&&(a.parentNode._pending[n.key]=null),b&&(Rn(a,p),Rn(a,d)),x.cancelled?(b&&Rn(a,f),y&&y(a)):(r(),m&&m(a)),a._leaveCb=null});g?g(i):i()}}function Jn(t){return"number"==typeof t&&!isNaN(t)}function qn(n){if(t(n))return!1;var r=n.fns;return e(r)?qn(Array.isArray(r)?r[0]:r):(n._length||n.length)>1}function Wn(t,e){!0!==e.data.show&&zn(e)}function Gn(t,e,n){Zn(t,e,n),(Di||Fi)&&setTimeout(function(){Zn(t,e,n)},0)}function Zn(t,e,n){var r=e.value,i=t.multiple;if(!i||Array.isArray(r)){for(var o,a,s=0,c=t.options.length;s<c;s++)if(a=t.options[s],i)o=$(r,Qn(a))>-1,a.selected!==o&&(a.selected=o);else if(b(Qn(a),r))return void(t.selectedIndex!==s&&(t.selectedIndex=s));i||(t.selectedIndex=-1)}}function Yn(t,e){return e.every(function(e){return!b(e,t)})}function Qn(t){return"_value"in t?t._value:t.value}function Xn(t){t.target.composing=!0}function tr(t){t.target.composing&&(t.target.composing=!1,er(t.target,"input"))}function er(t,e){var n=document.createEvent("HTMLEvents");n.initEvent(e,!0,!0),t.dispatchEvent(n)}function nr(t){return!t.componentInstance||t.data&&t.data.transition?t:nr(t.componentInstance._vnode)}function rr(t){var e=t&&t.componentOptions;return e&&e.Ctor.options.abstract?rr(dt(e.children)):t}function ir(t){var e={},n=t.$options;for(var r in n.propsData)e[r]=t[r];var i=n._parentListeners;for(var o in i)e[bi(o)]=i[o];return e}function or(t,e){if(/\d-keep-alive$/.test(e.tag))return t("keep-alive",{props:e.componentOptions.propsData})}function ar(t){for(;t=t.parent;)if(t.data.transition)return!0}function sr(t,e){return e.key===t.key&&e.tag===t.tag}function cr(t){t.elm._moveCb&&t.elm._moveCb(),t.elm._enterCb&&t.elm._enterCb()}function ur(t){t.data.newPos=t.elm.getBoundingClientRect()}function lr(t){var e=t.data.pos,n=t.data.newPos,r=e.left-n.left,i=e.top-n.top;if(r||i){t.data.moved=!0;var o=t.elm.style;o.transform=o.WebkitTransform="translate("+r+"px,"+i+"px)",o.transitionDuration="0s"}}function fr(t,e){var n=e?Va(e):Ba;if(n.test(t)){for(var r,i,o=[],a=n.lastIndex=0;r=n.exec(t);){(i=r.index)>a&&o.push(JSON.stringify(t.slice(a,i)));var s=Xe(r[1].trim());o.push("_s("+s+")"),a=i+r[0].length}return a<t.length&&o.push(JSON.stringify(t.slice(a))),o.join("+")}}function pr(t,e){var n=e?$s:bs;return t.replace(n,function(t){return _s[t]})}function dr(t,e){function n(e){l+=e,t=t.substring(e)}function r(t,n,r){var i,s;if(null==n&&(n=l),null==r&&(r=l),t&&(s=t.toLowerCase()),t)for(i=a.length-1;i>=0&&a[i].lowerCasedTag!==s;i--);else i=0;if(i>=0){for(var c=a.length-1;c>=i;c--)e.end&&e.end(a[c].tag,n,r);a.length=i,o=i&&a[i-1].tag}else"br"===s?e.start&&e.start(t,[],!0,n,r):"p"===s&&(e.start&&e.start(t,[],!1,n,r),e.end&&e.end(t,n,r))}for(var i,o,a=[],s=e.expectHTML,c=e.isUnaryTag||xi,u=e.canBeLeftOpenTag||xi,l=0;t;){if(i=t,o&&ys(o)){var f=0,p=o.toLowerCase(),d=gs[p]||(gs[p]=new RegExp("([\\s\\S]*?)(</"+p+"[^>]*>)","i")),v=t.replace(d,function(t,n,r){return f=r.length,ys(p)||"noscript"===p||(n=n.replace(/<!--([\s\S]*?)-->/g,"$1").replace(/<!\[CDATA\[([\s\S]*?)]]>/g,"$1")),ws(p,n)&&(n=n.slice(1)),e.chars&&e.chars(n),""});l+=t.length-v.length,t=v,r(p,l-f,l)}else{var h=t.indexOf("<");if(0===h){if(is.test(t)){var m=t.indexOf("--\x3e");if(m>=0){e.shouldKeepComment&&e.comment(t.substring(4,m)),n(m+3);continue}}if(os.test(t)){var y=t.indexOf("]>");if(y>=0){n(y+2);continue}}var g=t.match(rs);if(g){n(g[0].length);continue}var _=t.match(ns);if(_){var b=l;n(_[0].length),r(_[1],b,l);continue}var $=function(){var e=t.match(ts);if(e){var r={tagName:e[1],attrs:[],start:l};n(e[0].length);for(var i,o;!(i=t.match(es))&&(o=t.match(Ya));)n(o[0].length),r.attrs.push(o);if(i)return r.unarySlash=i[1],n(i[0].length),r.end=l,r}}();if($){!function(t){var n=t.tagName,i=t.unarySlash;s&&("p"===o&&Wa(n)&&r(o),u(n)&&o===n&&r(n));for(var l=c(n)||!!i,f=t.attrs.length,p=new Array(f),d=0;d<f;d++){var v=t.attrs[d];as&&-1===v[0].indexOf('""')&&(""===v[3]&&delete v[3],""===v[4]&&delete v[4],""===v[5]&&delete v[5]);var h=v[3]||v[4]||v[5]||"";p[d]={name:v[1],value:pr(h,e.shouldDecodeNewlines)}}l||(a.push({tag:n,lowerCasedTag:n.toLowerCase(),attrs:p}),o=n),e.start&&e.start(n,p,l,t.start,t.end)}($),ws(o,t)&&n(1);continue}}var C=void 0,w=void 0,x=void 0;if(h>=0){for(w=t.slice(h);!(ns.test(w)||ts.test(w)||is.test(w)||os.test(w)||(x=w.indexOf("<",1))<0);)h+=x,w=t.slice(h);C=t.substring(0,h),n(h)}h<0&&(C=t,t=""),e.chars&&C&&e.chars(C)}if(t===i){e.chars&&e.chars(t);break}}r()}function vr(t,e){function n(t){t.pre&&(s=!1),ps(t.tag)&&(c=!1)}ss=e.warn||en,ps=e.isPreTag||xi,ds=e.mustUseProp||xi,vs=e.getTagNamespace||xi,us=nn(e.modules,"transformNode"),ls=nn(e.modules,"preTransformNode"),fs=nn(e.modules,"postTransformNode"),cs=e.delimiters;var r,i,o=[],a=!1!==e.preserveWhitespace,s=!1,c=!1;return dr(t,{warn:ss,expectHTML:e.expectHTML,isUnaryTag:e.isUnaryTag,canBeLeftOpenTag:e.canBeLeftOpenTag,shouldDecodeNewlines:e.shouldDecodeNewlines,shouldKeepComment:e.comments,start:function(t,a,u){function l(t){}var f=i&&i.ns||vs(t);Di&&"svg"===f&&(a=Nr(a));var p={type:1,tag:t,attrsList:a,attrsMap:Er(a),parent:i,children:[]};f&&(p.ns=f),Lr(p)&&!qi()&&(p.forbidden=!0);for(var d=0;d<ls.length;d++)ls[d](p,e);if(s||(hr(p),p.pre&&(s=!0)),ps(p.tag)&&(c=!0),s)mr(p);else{_r(p),br(p),xr(p),yr(p),p.plain=!p.key&&!a.length,gr(p),Ar(p),kr(p);for(var v=0;v<us.length;v++)us[v](p,e);Or(p)}if(r?o.length||r.if&&(p.elseif||p.else)&&(l(),wr(r,{exp:p.elseif,block:p})):(r=p,l()),i&&!p.forbidden)if(p.elseif||p.else)$r(p,i);else if(p.slotScope){i.plain=!1;var h=p.slotTarget||'"default"';(i.scopedSlots||(i.scopedSlots={}))[h]=p}else i.children.push(p),p.parent=i;u?n(p):(i=p,o.push(p));for(var m=0;m<fs.length;m++)fs[m](p,e)},end:function(){var t=o[o.length-1],e=t.children[t.children.length-1];e&&3===e.type&&" "===e.text&&!c&&t.children.pop(),o.length-=1,i=o[o.length-1],n(t)},chars:function(t){if(i&&(!Di||"textarea"!==i.tag||i.attrsMap.placeholder!==t)){var e=i.children;if(t=c||t.trim()?jr(i)?t:js(t):a&&e.length?" ":""){var n;!s&&" "!==t&&(n=fr(t,cs))?e.push({type:2,expression:n,text:t}):" "===t&&e.length&&" "===e[e.length-1].text||e.push({type:3,text:t})}}},comment:function(t){i.children.push({type:3,text:t,isComment:!0})}}),r}function hr(t){null!=un(t,"v-pre")&&(t.pre=!0)}function mr(t){var e=t.attrsList.length;if(e)for(var n=t.attrs=new Array(e),r=0;r<e;r++)n[r]={name:t.attrsList[r].name,value:JSON.stringify(t.attrsList[r].value)};else t.pre||(t.plain=!0)}function yr(t){var e=cn(t,"key");e&&(t.key=e)}function gr(t){var e=cn(t,"ref");e&&(t.ref=e,t.refInFor=Tr(t))}function _r(t){var e;if(e=un(t,"v-for")){var n=e.match(ks);if(!n)return;t.for=n[2].trim();var r=n[1].trim(),i=r.match(Os);i?(t.alias=i[1].trim(),t.iterator1=i[2].trim(),i[3]&&(t.iterator2=i[3].trim())):t.alias=r}}function br(t){var e=un(t,"v-if");if(e)t.if=e,wr(t,{exp:e,block:t});else{null!=un(t,"v-else")&&(t.else=!0);var n=un(t,"v-else-if");n&&(t.elseif=n)}}function $r(t,e){var n=Cr(e.children);n&&n.if&&wr(n,{exp:t.elseif,block:t})}function Cr(t){for(var e=t.length;e--;){if(1===t[e].type)return t[e];t.pop()}}function wr(t,e){t.ifConditions||(t.ifConditions=[]),t.ifConditions.push(e)}function xr(t){null!=un(t,"v-once")&&(t.once=!0)}function Ar(t){if("slot"===t.tag)t.slotName=cn(t,"name");else{var e=cn(t,"slot");e&&(t.slotTarget='""'===e?'"default"':e,on(t,"slot",e)),"template"===t.tag&&(t.slotScope=un(t,"scope"))}}function kr(t){var e;(e=cn(t,"is"))&&(t.component=e),null!=un(t,"inline-template")&&(t.inlineTemplate=!0)}function Or(t){var e,n,r,i,o,a,s,c=t.attrsList;for(e=0,n=c.length;e<n;e++)if(r=i=c[e].name,o=c[e].value,As.test(r))if(t.hasBindings=!0,(a=Sr(r))&&(r=r.replace(Es,"")),Ss.test(r))r=r.replace(Ss,""),o=Xe(o),s=!1,a&&(a.prop&&(s=!0,"innerHtml"===(r=bi(r))&&(r="innerHTML")),a.camel&&(r=bi(r)),a.sync&&sn(t,"update:"+bi(r),fn(o,"$event"))),s||!t.component&&ds(t.tag,t.attrsMap.type,r)?rn(t,r,o):on(t,r,o);else if(xs.test(r))sn(t,r=r.replace(xs,""),o,a,!1,ss);else{var u=(r=r.replace(As,"")).match(Ts),l=u&&u[1];l&&(r=r.slice(0,-(l.length+1))),an(t,r,i,o,l,a)}else on(t,r,JSON.stringify(o))}function Tr(t){for(var e=t;e;){if(void 0!==e.for)return!0;e=e.parent}return!1}function Sr(t){var e=t.match(Es);if(e){var n={};return e.forEach(function(t){n[t.slice(1)]=!0}),n}}function Er(t){for(var e={},n=0,r=t.length;n<r;n++)e[t[n].name]=t[n].value;return e}function jr(t){return"script"===t.tag||"style"===t.tag}function Lr(t){return"style"===t.tag||"script"===t.tag&&(!t.attrsMap.type||"text/javascript"===t.attrsMap.type)}function Nr(t){for(var e=[],n=0;n<t.length;n++){var r=t[n];Ls.test(r.name)||(r.name=r.name.replace(Ns,""),e.push(r))}return e}function Mr(t,e){t&&(hs=Ms(e.staticKeys||""),ms=e.isReservedTag||xi,Ir(t),Dr(t,!1))}function Ir(t){if(t.static=Pr(t),1===t.type){if(!ms(t.tag)&&"slot"!==t.tag&&null==t.attrsMap["inline-template"])return;for(var e=0,n=t.children.length;e<n;e++){var r=t.children[e];Ir(r),r.static||(t.static=!1)}if(t.ifConditions)for(var i=1,o=t.ifConditions.length;i<o;i++){var a=t.ifConditions[i].block;Ir(a),a.static||(t.static=!1)}}}function Dr(t,e){if(1===t.type){if((t.static||t.once)&&(t.staticInFor=e),t.static&&t.children.length&&(1!==t.children.length||3!==t.children[0].type))return void(t.staticRoot=!0);if(t.staticRoot=!1,t.children)for(var n=0,r=t.children.length;n<r;n++)Dr(t.children[n],e||!!t.for);if(t.ifConditions)for(var i=1,o=t.ifConditions.length;i<o;i++)Dr(t.ifConditions[i].block,e)}}function Pr(t){return 2!==t.type&&(3===t.type||!(!t.pre&&(t.hasBindings||t.if||t.for||mi(t.tag)||!ms(t.tag)||Fr(t)||!Object.keys(t).every(hs))))}function Fr(t){for(;t.parent;){if("template"!==(t=t.parent).tag)return!1;if(t.for)return!0}return!1}function Rr(t,e,n){var r=e?"nativeOn:{":"on:{";for(var i in t){var o=t[i];r+='"'+i+'":'+Hr(i,o)+","}return r.slice(0,-1)+"}"}function Hr(t,e){if(!e)return"function(){}";if(Array.isArray(e))return"["+e.map(function(e){return Hr(t,e)}).join(",")+"]";var n=Ds.test(e.value),r=Is.test(e.value);if(e.modifiers){var i="",o="",a=[];for(var s in e.modifiers)Rs[s]?(o+=Rs[s],Ps[s]&&a.push(s)):a.push(s);return a.length&&(i+=Br(a)),o&&(i+=o),"function($event){"+i+(n?e.value+"($event)":r?"("+e.value+")($event)":e.value)+"}"}return n||r?e.value:"function($event){"+e.value+"}"}function Br(t){return"if(!('button' in $event)&&"+t.map(Ur).join("&&")+")return null;"}function Ur(t){var e=parseInt(t,10);if(e)return"$event.keyCode!=="+e;var n=Ps[t];return"_k($event.keyCode,"+JSON.stringify(t)+(n?","+JSON.stringify(n):"")+")"}function Vr(t,e){var n=new Bs(e);return{render:"with(this){return "+(t?zr(t,n):'_c("div")')+"}",staticRenderFns:n.staticRenderFns}}function zr(t,e){if(t.staticRoot&&!t.staticProcessed)return Kr(t,e);if(t.once&&!t.onceProcessed)return Jr(t,e);if(t.for&&!t.forProcessed)return Gr(t,e);if(t.if&&!t.ifProcessed)return qr(t,e);if("template"!==t.tag||t.slotTarget){if("slot"===t.tag)return ci(t,e);var n;if(t.component)n=ui(t.component,t,e);else{var r=t.plain?void 0:Zr(t,e),i=t.inlineTemplate?null:ni(t,e,!0);n="_c('"+t.tag+"'"+(r?","+r:"")+(i?","+i:"")+")"}for(var o=0;o<e.transforms.length;o++)n=e.transforms[o](t,n);return n}return ni(t,e)||"void 0"}function Kr(t,e){return t.staticProcessed=!0,e.staticRenderFns.push("with(this){return "+zr(t,e)+"}"),"_m("+(e.staticRenderFns.length-1)+(t.staticInFor?",true":"")+")"}function Jr(t,e){if(t.onceProcessed=!0,t.if&&!t.ifProcessed)return qr(t,e);if(t.staticInFor){for(var n="",r=t.parent;r;){if(r.for){n=r.key;break}r=r.parent}return n?"_o("+zr(t,e)+","+e.onceId+++","+n+")":zr(t,e)}return Kr(t,e)}function qr(t,e,n,r){return t.ifProcessed=!0,Wr(t.ifConditions.slice(),e,n,r)}function Wr(t,e,n,r){function i(t){return n?n(t,e):t.once?Jr(t,e):zr(t,e)}if(!t.length)return r||"_e()";var o=t.shift();return o.exp?"("+o.exp+")?"+i(o.block)+":"+Wr(t,e,n,r):""+i(o.block)}function Gr(t,e,n,r){var i=t.for,o=t.alias,a=t.iterator1?","+t.iterator1:"",s=t.iterator2?","+t.iterator2:"";return t.forProcessed=!0,(r||"_l")+"(("+i+"),function("+o+a+s+"){return "+(n||zr)(t,e)+"})"}function Zr(t,e){var n="{",r=Yr(t,e);r&&(n+=r+","),t.key&&(n+="key:"+t.key+","),t.ref&&(n+="ref:"+t.ref+","),t.refInFor&&(n+="refInFor:true,"),t.pre&&(n+="pre:true,"),t.component&&(n+='tag:"'+t.tag+'",');for(var i=0;i<e.dataGenFns.length;i++)n+=e.dataGenFns[i](t);if(t.attrs&&(n+="attrs:{"+li(t.attrs)+"},"),t.props&&(n+="domProps:{"+li(t.props)+"},"),t.events&&(n+=Rr(t.events,!1,e.warn)+","),t.nativeEvents&&(n+=Rr(t.nativeEvents,!0,e.warn)+","),t.slotTarget&&(n+="slot:"+t.slotTarget+","),t.scopedSlots&&(n+=Xr(t.scopedSlots,e)+","),t.model&&(n+="model:{value:"+t.model.value+",callback:"+t.model.callback+",expression:"+t.model.expression+"},"),t.inlineTemplate){var o=Qr(t,e);o&&(n+=o+",")}return n=n.replace(/,$/,"")+"}",t.wrapData&&(n=t.wrapData(n)),t.wrapListeners&&(n=t.wrapListeners(n)),n}function Yr(t,e){var n=t.directives;if(n){var r,i,o,a,s="directives:[",c=!1;for(r=0,i=n.length;r<i;r++){o=n[r],a=!0;var u=e.directives[o.name];u&&(a=!!u(t,o,e.warn)),a&&(c=!0,s+='{name:"'+o.name+'",rawName:"'+o.rawName+'"'+(o.value?",value:("+o.value+"),expression:"+JSON.stringify(o.value):"")+(o.arg?',arg:"'+o.arg+'"':"")+(o.modifiers?",modifiers:"+JSON.stringify(o.modifiers):"")+"},")}return c?s.slice(0,-1)+"]":void 0}}function Qr(t,e){var n=t.children[0];if(1===n.type){var r=Vr(n,e.options);return"inlineTemplate:{render:function(){"+r.render+"},staticRenderFns:["+r.staticRenderFns.map(function(t){return"function(){"+t+"}"}).join(",")+"]}"}}function Xr(t,e){return"scopedSlots:_u(["+Object.keys(t).map(function(n){return ti(n,t[n],e)}).join(",")+"])"}function ti(t,e,n){return e.for&&!e.forProcessed?ei(t,e,n):"{key:"+t+",fn:function("+String(e.attrsMap.scope)+"){return "+("template"===e.tag?ni(e,n)||"void 0":zr(e,n))+"}}"}function ei(t,e,n){var r=e.for,i=e.alias,o=e.iterator1?","+e.iterator1:"",a=e.iterator2?","+e.iterator2:"";return e.forProcessed=!0,"_l(("+r+"),function("+i+o+a+"){return "+ti(t,e,n)+"})"}function ni(t,e,n,r,i){var o=t.children;if(o.length){var a=o[0];if(1===o.length&&a.for&&"template"!==a.tag&&"slot"!==a.tag)return(r||zr)(a,e);var s=n?ri(o,e.maybeComponent):0,c=i||oi;return"["+o.map(function(t){return c(t,e)}).join(",")+"]"+(s?","+s:"")}}function ri(t,e){for(var n=0,r=0;r<t.length;r++){var i=t[r];if(1===i.type){if(ii(i)||i.ifConditions&&i.ifConditions.some(function(t){return ii(t.block)})){n=2;break}(e(i)||i.ifConditions&&i.ifConditions.some(function(t){return e(t.block)}))&&(n=1)}}return n}function ii(t){return void 0!==t.for||"template"===t.tag||"slot"===t.tag}function oi(t,e){return 1===t.type?zr(t,e):3===t.type&&t.isComment?si(t):ai(t)}function ai(t){return"_v("+(2===t.type?t.expression:fi(JSON.stringify(t.text)))+")"}function si(t){return"_e("+JSON.stringify(t.text)+")"}function ci(t,e){var n=t.slotName||'"default"',r=ni(t,e),i="_t("+n+(r?","+r:""),o=t.attrs&&"{"+t.attrs.map(function(t){return bi(t.name)+":"+t.value}).join(",")+"}",a=t.attrsMap["v-bind"];return!o&&!a||r||(i+=",null"),o&&(i+=","+o),a&&(i+=(o?"":",null")+","+a),i+")"}function ui(t,e,n){var r=e.inlineTemplate?null:ni(e,n,!0);return"_c("+t+","+Zr(e,n)+(r?","+r:"")+")"}function li(t){for(var e="",n=0;n<t.length;n++){var r=t[n];e+='"'+r.name+'":'+fi(r.value)+","}return e.slice(0,-1)}function fi(t){return t.replace(/\u2028/g,"\\u2028").replace(/\u2029/g,"\\u2029")}function pi(t,e){try{return new Function(t)}catch(n){return e.push({err:n,code:t}),_}}function di(t){var e=Object.create(null);return function(n,r,i){var o=(r=r||{}).delimiters?String(r.delimiters)+n:n;if(e[o])return e[o];var a=t(n,r),s={},c=[];return s.render=pi(a.render,c),s.staticRenderFns=a.staticRenderFns.map(function(t){return pi(t,c)}),e[o]=s}}function vi(t){if(t.outerHTML)return t.outerHTML;var e=document.createElement("div");return e.appendChild(t.cloneNode(!0)),e.innerHTML}var hi=Object.prototype.toString,mi=f("slot,component",!0),yi=f("key,ref,slot,is"),gi=Object.prototype.hasOwnProperty,_i=/-(\w)/g,bi=v(function(t){return t.replace(_i,function(t,e){return e?e.toUpperCase():""})}),$i=v(function(t){return t.charAt(0).toUpperCase()+t.slice(1)}),Ci=/\B([A-Z])/g,wi=v(function(t){return t.replace(Ci,"-$1").toLowerCase()}),xi=function(t,e,n){return!1},Ai=function(t){return t},ki="data-server-rendered",Oi=["component","directive","filter"],Ti=["beforeCreate","created","beforeMount","mounted","beforeUpdate","updated","beforeDestroy","destroyed","activated","deactivated"],Si={optionMergeStrategies:Object.create(null),silent:!1,productionTip:!1,devtools:!1,performance:!1,errorHandler:null,warnHandler:null,ignoredElements:[],keyCodes:Object.create(null),isReservedTag:xi,isReservedAttr:xi,isUnknownElement:xi,getTagNamespace:_,parsePlatformTagName:Ai,mustUseProp:xi,_lifecycleHooks:Ti},Ei=Object.freeze({}),ji=/[^\w.$]/,Li=_,Ni="__proto__"in{},Mi="undefined"!=typeof window,Ii=Mi&&window.navigator.userAgent.toLowerCase(),Di=Ii&&/msie|trident/.test(Ii),Pi=Ii&&Ii.indexOf("msie 9.0")>0,Fi=Ii&&Ii.indexOf("edge/")>0,Ri=Ii&&Ii.indexOf("android")>0,Hi=Ii&&/iphone|ipad|ipod|ios/.test(Ii),Bi=Ii&&/chrome\/\d+/.test(Ii)&&!Fi,Ui={}.watch,Vi=!1;if(Mi)try{var zi={};Object.defineProperty(zi,"passive",{get:function(){Vi=!0}}),window.addEventListener("test-passive",null,zi)}catch(t){}var Ki,Ji,qi=function(){return void 0===Ki&&(Ki=!Mi&&"undefined"!=typeof global&&"server"===global.process.env.VUE_ENV),Ki},Wi=Mi&&window.__VUE_DEVTOOLS_GLOBAL_HOOK__,Gi="undefined"!=typeof Symbol&&O(Symbol)&&"undefined"!=typeof Reflect&&O(Reflect.ownKeys),Zi=function(){function t(){r=!1;var t=n.slice(0);n.length=0;for(var e=0;e<t.length;e++)t[e]()}var e,n=[],r=!1;if("undefined"!=typeof Promise&&O(Promise)){var i=Promise.resolve(),o=function(t){console.error(t)};e=function(){i.then(t).catch(o),Hi&&setTimeout(_)}}else if(Di||"undefined"==typeof MutationObserver||!O(MutationObserver)&&"[object MutationObserverConstructor]"!==MutationObserver.toString())e=function(){setTimeout(t,0)};else{var a=1,s=new MutationObserver(t),c=document.createTextNode(String(a));s.observe(c,{characterData:!0}),e=function(){a=(a+1)%2,c.data=String(a)}}return function(t,i){var o;if(n.push(function(){if(t)try{t.call(i)}catch(t){k(t,i,"nextTick")}else o&&o(i)}),r||(r=!0,e()),!t&&"undefined"!=typeof Promise)return new Promise(function(t,e){o=t})}}();Ji="undefined"!=typeof Set&&O(Set)?Set:function(){function t(){this.set=Object.create(null)}return t.prototype.has=function(t){return!0===this.set[t]},t.prototype.add=function(t){this.set[t]=!0},t.prototype.clear=function(){this.set=Object.create(null)},t}();var Yi=0,Qi=function(){this.id=Yi++,this.subs=[]};Qi.prototype.addSub=function(t){this.subs.push(t)},Qi.prototype.removeSub=function(t){p(this.subs,t)},Qi.prototype.depend=function(){Qi.target&&Qi.target.addDep(this)},Qi.prototype.notify=function(){for(var t=this.subs.slice(),e=0,n=t.length;e<n;e++)t[e].update()},Qi.target=null;var Xi=[],to=Array.prototype,eo=Object.create(to);["push","pop","shift","unshift","splice","sort","reverse"].forEach(function(t){var e=to[t];x(eo,t,function(){for(var n=[],r=arguments.length;r--;)n[r]=arguments[r];var i,o=e.apply(this,n),a=this.__ob__;switch(t){case"push":case"unshift":i=n;break;case"splice":i=n.slice(2)}return i&&a.observeArray(i),a.dep.notify(),o})});var no=Object.getOwnPropertyNames(eo),ro={shouldConvert:!0},io=function(t){this.value=t,this.dep=new Qi,this.vmCount=0,x(t,"__ob__",this),Array.isArray(t)?((Ni?E:j)(t,eo,no),this.observeArray(t)):this.walk(t)};io.prototype.walk=function(t){for(var e=Object.keys(t),n=0;n<e.length;n++)N(t,e[n],t[e[n]])},io.prototype.observeArray=function(t){for(var e=0,n=t.length;e<n;e++)L(t[e])};var oo=Si.optionMergeStrategies;oo.data=function(t,e,n){return n?F(t,e,n):e&&"function"!=typeof e?t:F.call(this,t,e)},Ti.forEach(function(t){oo[t]=R}),Oi.forEach(function(t){oo[t+"s"]=H}),oo.watch=function(t,e){if(t===Ui&&(t=void 0),e===Ui&&(e=void 0),!e)return Object.create(t||null);if(!t)return e;var n={};y(n,t);for(var r in e){var i=n[r],o=e[r];i&&!Array.isArray(i)&&(i=[i]),n[r]=i?i.concat(o):Array.isArray(o)?o:[o]}return n},oo.props=oo.methods=oo.inject=oo.computed=function(t,e){if(!t)return e;var n=Object.create(null);return y(n,t),e&&y(n,e),n},oo.provide=F;var ao=function(t,e){return void 0===e?t:e},so=function(t,e,n,r,i,o,a,s){this.tag=t,this.data=e,this.children=n,this.text=r,this.elm=i,this.ns=void 0,this.context=o,this.functionalContext=void 0,this.key=e&&e.key,this.componentOptions=a,this.componentInstance=void 0,this.parent=void 0,this.raw=!1,this.isStatic=!1,this.isRootInsert=!0,this.isComment=!1,this.isCloned=!1,this.isOnce=!1,this.asyncFactory=s,this.asyncMeta=void 0,this.isAsyncPlaceholder=!1},co={child:{}};co.child.get=function(){return this.componentInstance},Object.defineProperties(so.prototype,co);var uo,lo=function(t){void 0===t&&(t="");var e=new so;return e.text=t,e.isComment=!0,e},fo=v(function(t){var e="&"===t.charAt(0),n="~"===(t=e?t.slice(1):t).charAt(0),r="!"===(t=n?t.slice(1):t).charAt(0);return{name:t=r?t.slice(1):t,plain:!(e||n||r),once:n,capture:r,passive:e}}),po=null,vo=[],ho=[],mo={},yo=!1,go=!1,_o=0,bo=0,$o=function(t,e,n,r){this.vm=t,t._watchers.push(this),r?(this.deep=!!r.deep,this.user=!!r.user,this.lazy=!!r.lazy,this.sync=!!r.sync):this.deep=this.user=this.lazy=this.sync=!1,this.cb=n,this.id=++bo,this.active=!0,this.dirty=this.lazy,this.deps=[],this.newDeps=[],this.depIds=new Ji,this.newDepIds=new Ji,this.expression="","function"==typeof e?this.getter=e:(this.getter=A(e),this.getter||(this.getter=function(){})),this.value=this.lazy?void 0:this.get()};$o.prototype.get=function(){T(this);var t,e=this.vm;try{t=this.getter.call(e,e)}catch(t){if(!this.user)throw t;k(t,e,'getter for watcher "'+this.expression+'"')}finally{this.deep&&Mt(t),S(),this.cleanupDeps()}return t},$o.prototype.addDep=function(t){var e=t.id;this.newDepIds.has(e)||(this.newDepIds.add(e),this.newDeps.push(t),this.depIds.has(e)||t.addSub(this))},$o.prototype.cleanupDeps=function(){for(var t=this,e=this.deps.length;e--;){var n=t.deps[e];t.newDepIds.has(n.id)||n.removeSub(t)}var r=this.depIds;this.depIds=this.newDepIds,this.newDepIds=r,this.newDepIds.clear(),r=this.deps,this.deps=this.newDeps,this.newDeps=r,this.newDeps.length=0},$o.prototype.update=function(){this.lazy?this.dirty=!0:this.sync?this.run():Nt(this)},$o.prototype.run=function(){if(this.active){var t=this.get();if(t!==this.value||o(t)||this.deep){var e=this.value;if(this.value=t,this.user)try{this.cb.call(this.vm,t,e)}catch(t){k(t,this.vm,'callback for watcher "'+this.expression+'"')}else this.cb.call(this.vm,t,e)}}},$o.prototype.evaluate=function(){this.value=this.get(),this.dirty=!1},$o.prototype.depend=function(){for(var t=this,e=this.deps.length;e--;)t.deps[e].depend()},$o.prototype.teardown=function(){var t=this;if(this.active){this.vm._isBeingDestroyed||p(this.vm._watchers,this);for(var e=this.deps.length;e--;)t.deps[e].removeSub(t);this.active=!1}};var Co=new Ji,wo={enumerable:!0,configurable:!0,get:_,set:_},xo={lazy:!0},Ao={init:function(t,e,n,r){if(!t.componentInstance||t.componentInstance._isDestroyed)(t.componentInstance=Xt(t,po,n,r)).$mount(e?t.elm:void 0,e);else if(t.data.keepAlive){var i=t;Ao.prepatch(i,i)}},prepatch:function(t,e){var n=e.componentOptions;wt(e.componentInstance=t.componentInstance,n.propsData,n.listeners,e,n.children)},insert:function(t){var e=t.context,n=t.componentInstance;n._isMounted||(n._isMounted=!0,Ot(n,"mounted")),t.data.keepAlive&&(e._isMounted?jt(n):At(n,!0))},destroy:function(t){var e=t.componentInstance;e._isDestroyed||(t.data.keepAlive?kt(e,!0):e.$destroy())}},ko=Object.keys(Ao),Oo=1,To=2,So=0;!function(t){t.prototype._init=function(t){var e=this;e._uid=So++,e._isVue=!0,t&&t._isComponent?ye(e,t):e.$options=z(ge(e.constructor),t||{},e),e._renderProxy=e,e._self=e,$t(e),vt(e),me(e),Ot(e,"beforeCreate"),Wt(e),Pt(e),qt(e),Ot(e,"created"),e.$options.el&&e.$mount(e.$options.el)}}($e),function(t){var e={};e.get=function(){return this._data};var n={};n.get=function(){return this._props},Object.defineProperty(t.prototype,"$data",e),Object.defineProperty(t.prototype,"$props",n),t.prototype.$set=M,t.prototype.$delete=I,t.prototype.$watch=function(t,e,n){var r=this;if(a(e))return Jt(r,t,e,n);(n=n||{}).user=!0;var i=new $o(r,t,e,n);return n.immediate&&e.call(r,i.value),function(){i.teardown()}}}($e),function(t){var e=/^hook:/;t.prototype.$on=function(t,n){var r=this,i=this;if(Array.isArray(t))for(var o=0,a=t.length;o<a;o++)r.$on(t[o],n);else(i._events[t]||(i._events[t]=[])).push(n),e.test(t)&&(i._hasHookEvent=!0);return i},t.prototype.$once=function(t,e){function n(){r.$off(t,n),e.apply(r,arguments)}var r=this;return n.fn=e,r.$on(t,n),r},t.prototype.$off=function(t,e){var n=this,r=this;if(!arguments.length)return r._events=Object.create(null),r;if(Array.isArray(t)){for(var i=0,o=t.length;i<o;i++)n.$off(t[i],e);return r}var a=r._events[t];if(!a)return r;if(1===arguments.length)return r._events[t]=null,r;if(e)for(var s,c=a.length;c--;)if((s=a[c])===e||s.fn===e){a.splice(c,1);break}return r},t.prototype.$emit=function(t){var e=this,n=e._events[t];if(n){n=n.length>1?m(n):n;for(var r=m(arguments,1),i=0,o=n.length;i<o;i++)try{n[i].apply(e,r)}catch(n){k(n,e,'event handler for "'+t+'"')}}return e}}($e),function(t){t.prototype._update=function(t,e){var n=this;n._isMounted&&Ot(n,"beforeUpdate");var r=n.$el,i=n._vnode,o=po;po=n,n._vnode=t,i?n.$el=n.__patch__(i,t):(n.$el=n.__patch__(n.$el,t,e,!1,n.$options._parentElm,n.$options._refElm),n.$options._parentElm=n.$options._refElm=null),po=o,r&&(r.__vue__=null),n.$el&&(n.$el.__vue__=n),n.$vnode&&n.$parent&&n.$vnode===n.$parent._vnode&&(n.$parent.$el=n.$el)},t.prototype.$forceUpdate=function(){var t=this;t._watcher&&t._watcher.update()},t.prototype.$destroy=function(){var t=this;if(!t._isBeingDestroyed){Ot(t,"beforeDestroy"),t._isBeingDestroyed=!0;var e=t.$parent;!e||e._isBeingDestroyed||t.$options.abstract||p(e.$children,t),t._watcher&&t._watcher.teardown();for(var n=t._watchers.length;n--;)t._watchers[n].teardown();t._data.__ob__&&t._data.__ob__.vmCount--,t._isDestroyed=!0,t.__patch__(t._vnode,null),Ot(t,"destroyed"),t.$off(),t.$el&&(t.$el.__vue__=null)}}}($e),function(t){t.prototype.$nextTick=function(t){return Zi(t,this)},t.prototype._render=function(){var t=this,e=t.$options,n=e.render,r=e.staticRenderFns,i=e._parentVnode;if(t._isMounted)for(var o in t.$slots){var a=t.$slots[o];a._rendered&&(t.$slots[o]=Q(a,!0))}t.$scopedSlots=i&&i.data.scopedSlots||Ei,r&&!t._staticTrees&&(t._staticTrees=[]),t.$vnode=i;var s;try{s=n.call(t._renderProxy,t.$createElement)}catch(e){k(e,t,"render function"),s=t._vnode}return s instanceof so||(s=lo()),s.parent=i,s},t.prototype._o=pe,t.prototype._n=l,t.prototype._s=u,t.prototype._l=ae,t.prototype._t=se,t.prototype._q=b,t.prototype._i=$,t.prototype._m=fe,t.prototype._f=ce,t.prototype._k=ue,t.prototype._b=le,t.prototype._v=Z,t.prototype._e=lo,t.prototype._u=bt,t.prototype._g=he}($e);var Eo=[String,RegExp,Array],jo={KeepAlive:{name:"keep-alive",abstract:!0,props:{include:Eo,exclude:Eo},created:function(){this.cache=Object.create(null)},destroyed:function(){var t=this;for(var e in t.cache)je(t.cache[e])},watch:{include:function(t){Ee(this.cache,this._vnode,function(e){return Se(t,e)})},exclude:function(t){Ee(this.cache,this._vnode,function(e){return!Se(t,e)})}},render:function(){var t=dt(this.$slots.default),e=t&&t.componentOptions;if(e){var n=Te(e);if(n&&(this.include&&!Se(this.include,n)||this.exclude&&Se(this.exclude,n)))return t;var r=null==t.key?e.Ctor.cid+(e.tag?"::"+e.tag:""):t.key;this.cache[r]?t.componentInstance=this.cache[r].componentInstance:this.cache[r]=t,t.data.keepAlive=!0}return t}}};!function(t){var e={};e.get=function(){return Si},Object.defineProperty(t,"config",e),t.util={warn:Li,extend:y,mergeOptions:z,defineReactive:N},t.set=M,t.delete=I,t.nextTick=Zi,t.options=Object.create(null),Oi.forEach(function(e){t.options[e+"s"]=Object.create(null)}),t.options._base=t,y(t.options.components,jo),Ce(t),we(t),xe(t),Oe(t)}($e),Object.defineProperty($e.prototype,"$isServer",{get:qi}),Object.defineProperty($e.prototype,"$ssrContext",{get:function(){return this.$vnode&&this.$vnode.ssrContext}}),$e.version="2.4.4";var Lo,No,Mo,Io,Do,Po,Fo,Ro,Ho,Bo=f("style,class"),Uo=f("input,textarea,option,select,progress"),Vo=function(t,e,n){return"value"===n&&Uo(t)&&"button"!==e||"selected"===n&&"option"===t||"checked"===n&&"input"===t||"muted"===n&&"video"===t},zo=f("contenteditable,draggable,spellcheck"),Ko=f("allowfullscreen,async,autofocus,autoplay,checked,compact,controls,declare,default,defaultchecked,defaultmuted,defaultselected,defer,disabled,enabled,formnovalidate,hidden,indeterminate,inert,ismap,itemscope,loop,multiple,muted,nohref,noresize,noshade,novalidate,nowrap,open,pauseonexit,readonly,required,reversed,scoped,seamless,selected,sortable,translate,truespeed,typemustmatch,visible"),Jo="http://www.w3.org/1999/xlink",qo=function(t){return":"===t.charAt(5)&&"xlink"===t.slice(0,5)},Wo=function(t){return qo(t)?t.slice(6,t.length):""},Go=function(t){return null==t||!1===t},Zo={svg:"http://www.w3.org/2000/svg",math:"http://www.w3.org/1998/Math/MathML"},Yo=f("html,body,base,head,link,meta,style,title,address,article,aside,footer,header,h1,h2,h3,h4,h5,h6,hgroup,nav,section,div,dd,dl,dt,figcaption,figure,picture,hr,img,li,main,ol,p,pre,ul,a,b,abbr,bdi,bdo,br,cite,code,data,dfn,em,i,kbd,mark,q,rp,rt,rtc,ruby,s,samp,small,span,strong,sub,sup,time,u,var,wbr,area,audio,map,track,video,embed,object,param,source,canvas,script,noscript,del,ins,caption,col,colgroup,table,thead,tbody,td,th,tr,button,datalist,fieldset,form,input,label,legend,meter,optgroup,option,output,progress,select,textarea,details,dialog,menu,menuitem,summary,content,element,shadow,template,blockquote,iframe,tfoot"),Qo=f("svg,animate,circle,clippath,cursor,defs,desc,ellipse,filter,font-face,foreignObject,g,glyph,image,line,marker,mask,missing-glyph,path,pattern,polygon,polyline,rect,switch,symbol,text,textpath,tspan,use,view",!0),Xo=function(t){return Yo(t)||Qo(t)},ta=Object.create(null),ea=f("text,number,password,search,email,tel,url"),na=Object.freeze({createElement:function(t,e){var n=document.createElement(t);return"select"!==t?n:(e.data&&e.data.attrs&&void 0!==e.data.attrs.multiple&&n.setAttribute("multiple","multiple"),n)},createElementNS:function(t,e){return document.createElementNS(Zo[t],e)},createTextNode:function(t){return document.createTextNode(t)},createComment:function(t){return document.createComment(t)},insertBefore:function(t,e,n){t.insertBefore(e,n)},removeChild:function(t,e){t.removeChild(e)},appendChild:function(t,e){t.appendChild(e)},parentNode:function(t){return t.parentNode},nextSibling:function(t){return t.nextSibling},tagName:function(t){return t.tagName},setTextContent:function(t,e){t.textContent=e},setAttribute:function(t,e,n){t.setAttribute(e,n)}}),ra={create:function(t,e){Be(e)},update:function(t,e){t.data.ref!==e.data.ref&&(Be(t,!0),Be(e))},destroy:function(t){Be(t,!0)}},ia=new so("",{},[]),oa=["create","activate","update","remove","destroy"],aa={create:Ke,update:Ke,destroy:function(t){Ke(t,ia)}},sa=Object.create(null),ca=[ra,aa],ua={create:Ze,update:Ze},la={create:Qe,update:Qe},fa=/[\w).+\-_$\]]/,pa="__r",da="__c",va={create:An,update:An},ha={create:kn,update:kn},ma=v(function(t){var e={},n=/;(?![^(]*\))/g,r=/:(.+)/;return t.split(n).forEach(function(t){if(t){var n=t.split(r);n.length>1&&(e[n[0].trim()]=n[1].trim())}}),e}),ya=/^--/,ga=/\s*!important$/,_a=function(t,e,n){if(ya.test(e))t.style.setProperty(e,n);else if(ga.test(n))t.style.setProperty(e,n.replace(ga,""),"important");else{var r=$a(e);if(Array.isArray(n))for(var i=0,o=n.length;i<o;i++)t.style[r]=n[i];else t.style[r]=n}},ba=["Webkit","Moz","ms"],$a=v(function(t){if(Ho=Ho||document.createElement("div").style,"filter"!==(t=bi(t))&&t in Ho)return t;for(var e=t.charAt(0).toUpperCase()+t.slice(1),n=0;n<ba.length;n++){var r=ba[n]+e;if(r in Ho)return r}}),Ca={create:Nn,update:Nn},wa=v(function(t){return{enterClass:t+"-enter",enterToClass:t+"-enter-to",enterActiveClass:t+"-enter-active",leaveClass:t+"-leave",leaveToClass:t+"-leave-to",leaveActiveClass:t+"-leave-active"}}),xa=Mi&&!Pi,Aa="transition",ka="animation",Oa="transition",Ta="transitionend",Sa="animation",Ea="animationend";xa&&(void 0===window.ontransitionend&&void 0!==window.onwebkittransitionend&&(Oa="WebkitTransition",Ta="webkitTransitionEnd"),void 0===window.onanimationend&&void 0!==window.onwebkitanimationend&&(Sa="WebkitAnimation",Ea="webkitAnimationEnd"));var ja=Mi&&window.requestAnimationFrame?window.requestAnimationFrame.bind(window):setTimeout,La=/\b(transform|all)(,|$)/,Na=function(r){function o(t){return new so(j.tagName(t).toLowerCase(),{},[],void 0,t)}function a(t,e){function n(){0==--n.listeners&&s(t)}return n.listeners=e,n}function s(t){var n=j.parentNode(t);e(n)&&j.removeChild(n,t)}function c(t,r,i,o,a){if(t.isRootInsert=!a,!u(t,r,i,o)){var s=t.data,c=t.children,l=t.tag;e(l)?(t.elm=t.ns?j.createElementNS(t.ns,l):j.createElement(l,t),y(t),v(t,c,r),e(s)&&m(t,r),d(i,t.elm,o)):n(t.isComment)?(t.elm=j.createComment(t.text),d(i,t.elm,o)):(t.elm=j.createTextNode(t.text),d(i,t.elm,o))}}function u(t,r,i,o){var a=t.data;if(e(a)){var s=e(t.componentInstance)&&a.keepAlive;if(e(a=a.hook)&&e(a=a.init)&&a(t,!1,i,o),e(t.componentInstance))return l(t,r),n(s)&&p(t,r,i,o),!0}}function l(t,n){e(t.data.pendingInsert)&&(n.push.apply(n,t.data.pendingInsert),t.data.pendingInsert=null),t.elm=t.componentInstance.$el,h(t)?(m(t,n),y(t)):(Be(t),n.push(t))}function p(t,n,r,i){for(var o,a=t;a.componentInstance;)if(a=a.componentInstance._vnode,e(o=a.data)&&e(o=o.transition)){for(o=0;o<S.activate.length;++o)S.activate[o](ia,a);n.push(a);break}d(r,t.elm,i)}function d(t,n,r){e(t)&&(e(r)?r.parentNode===t&&j.insertBefore(t,n,r):j.appendChild(t,n))}function v(t,e,n){if(Array.isArray(e))for(var r=0;r<e.length;++r)c(e[r],n,t.elm,null,!0);else i(t.text)&&j.appendChild(t.elm,j.createTextNode(t.text))}function h(t){for(;t.componentInstance;)t=t.componentInstance._vnode;return e(t.tag)}function m(t,n){for(var r=0;r<S.create.length;++r)S.create[r](ia,t);e(O=t.data.hook)&&(e(O.create)&&O.create(ia,t),e(O.insert)&&n.push(t))}function y(t){for(var n,r=t;r;)e(n=r.context)&&e(n=n.$options._scopeId)&&j.setAttribute(t.elm,n,""),r=r.parent;e(n=po)&&n!==t.context&&e(n=n.$options._scopeId)&&j.setAttribute(t.elm,n,"")}function g(t,e,n,r,i,o){for(;r<=i;++r)c(n[r],o,t,e)}function _(t){var n,r,i=t.data;if(e(i))for(e(n=i.hook)&&e(n=n.destroy)&&n(t),n=0;n<S.destroy.length;++n)S.destroy[n](t);if(e(n=t.children))for(r=0;r<t.children.length;++r)_(t.children[r])}function b(t,n,r,i){for(;r<=i;++r){var o=n[r];e(o)&&(e(o.tag)?($(o),_(o)):s(o.elm))}}function $(t,n){if(e(n)||e(t.data)){var r,i=S.remove.length+1;for(e(n)?n.listeners+=i:n=a(t.elm,i),e(r=t.componentInstance)&&e(r=r._vnode)&&e(r.data)&&$(r,n),r=0;r<S.remove.length;++r)S.remove[r](t,n);e(r=t.data.hook)&&e(r=r.remove)?r(t,n):n()}else s(t.elm)}function C(n,r,i,o,a){for(var s,u,l,f=0,p=0,d=r.length-1,v=r[0],h=r[d],m=i.length-1,y=i[0],_=i[m],$=!a;f<=d&&p<=m;)t(v)?v=r[++f]:t(h)?h=r[--d]:Ue(v,y)?(x(v,y,o),v=r[++f],y=i[++p]):Ue(h,_)?(x(h,_,o),h=r[--d],_=i[--m]):Ue(v,_)?(x(v,_,o),$&&j.insertBefore(n,v.elm,j.nextSibling(h.elm)),v=r[++f],_=i[--m]):Ue(h,y)?(x(h,y,o),$&&j.insertBefore(n,h.elm,v.elm),h=r[--d],y=i[++p]):(t(s)&&(s=ze(r,f,d)),t(u=e(y.key)?s[y.key]:w(y,r,f,d))?c(y,o,n,v.elm):Ue(l=r[u],y)?(x(l,y,o),r[u]=void 0,$&&j.insertBefore(n,l.elm,v.elm)):c(y,o,n,v.elm),y=i[++p]);f>d?g(n,t(i[m+1])?null:i[m+1].elm,i,p,m,o):p>m&&b(n,r,f,d)}function w(t,n,r,i){for(var o=r;o<i;o++){var a=n[o];if(e(a)&&Ue(t,a))return o}}function x(r,i,o,a){if(r!==i){var s=i.elm=r.elm;if(n(r.isAsyncPlaceholder))e(i.asyncFactory.resolved)?k(r.elm,i,o):i.isAsyncPlaceholder=!0;else if(n(i.isStatic)&&n(r.isStatic)&&i.key===r.key&&(n(i.isCloned)||n(i.isOnce)))i.componentInstance=r.componentInstance;else{var c,u=i.data;e(u)&&e(c=u.hook)&&e(c=c.prepatch)&&c(r,i);var l=r.children,f=i.children;if(e(u)&&h(i)){for(c=0;c<S.update.length;++c)S.update[c](r,i);e(c=u.hook)&&e(c=c.update)&&c(r,i)}t(i.text)?e(l)&&e(f)?l!==f&&C(s,l,f,o,a):e(f)?(e(r.text)&&j.setTextContent(s,""),g(s,null,f,0,f.length-1,o)):e(l)?b(s,l,0,l.length-1):e(r.text)&&j.setTextContent(s,""):r.text!==i.text&&j.setTextContent(s,i.text),e(u)&&e(c=u.hook)&&e(c=c.postpatch)&&c(r,i)}}}function A(t,r,i){if(n(i)&&e(t.parent))t.parent.data.pendingInsert=r;else for(var o=0;o<r.length;++o)r[o].data.hook.insert(r[o])}function k(t,r,i){if(n(r.isComment)&&e(r.asyncFactory))return r.elm=t,r.isAsyncPlaceholder=!0,!0;r.elm=t;var o=r.tag,a=r.data,s=r.children;if(e(a)&&(e(O=a.hook)&&e(O=O.init)&&O(r,!0),e(O=r.componentInstance)))return l(r,i),!0;if(e(o)){if(e(s))if(t.hasChildNodes())if(e(O=a)&&e(O=O.domProps)&&e(O=O.innerHTML)){if(O!==t.innerHTML)return!1}else{for(var c=!0,u=t.firstChild,f=0;f<s.length;f++){if(!u||!k(u,s[f],i)){c=!1;break}u=u.nextSibling}if(!c||u)return!1}else v(r,s,i);if(e(a))for(var p in a)if(!L(p)){m(r,i);break}}else t.data!==r.text&&(t.data=r.text);return!0}var O,T,S={},E=r.modules,j=r.nodeOps;for(O=0;O<oa.length;++O)for(S[oa[O]]=[],T=0;T<E.length;++T)e(E[T][oa[O]])&&S[oa[O]].push(E[T][oa[O]]);var L=f("attrs,style,class,staticClass,staticStyle,key");return function(r,i,a,s,u,l){if(!t(i)){var f=!1,p=[];if(t(r))f=!0,c(i,p,u,l);else{var d=e(r.nodeType);if(!d&&Ue(r,i))x(r,i,p,s);else{if(d){if(1===r.nodeType&&r.hasAttribute(ki)&&(r.removeAttribute(ki),a=!0),n(a)&&k(r,i,p))return A(i,p,!0),r;r=o(r)}var v=r.elm,m=j.parentNode(v);if(c(i,p,v._leaveCb?null:m,j.nextSibling(v)),e(i.parent))for(var y=i.parent,g=h(i);y;){for(var $=0;$<S.destroy.length;++$)S.destroy[$](y);if(y.elm=i.elm,g){for(var C=0;C<S.create.length;++C)S.create[C](ia,y);var w=y.data.hook.insert;if(w.merged)for(var O=1;O<w.fns.length;O++)w.fns[O]()}y=y.parent}e(m)?b(m,[r],0,0):e(r.tag)&&_(r)}}return A(i,p,f),i.elm}e(r)&&_(r)}}({nodeOps:na,modules:[ua,la,va,ha,Ca,Mi?{create:Wn,activate:Wn,remove:function(t,e){!0!==t.data.show?Kn(t,e):e()}}:{}].concat(ca)});Pi&&document.addEventListener("selectionchange",function(){var t=document.activeElement;t&&t.vmodel&&er(t,"input")});var Ma={model:{inserted:function(t,e,n){"select"===n.tag?(Gn(t,e,n.context),t._vOptions=[].map.call(t.options,Qn)):("textarea"===n.tag||ea(t.type))&&(t._vModifiers=e.modifiers,e.modifiers.lazy||(t.addEventListener("change",tr),Ri||(t.addEventListener("compositionstart",Xn),t.addEventListener("compositionend",tr)),Pi&&(t.vmodel=!0)))},componentUpdated:function(t,e,n){if("select"===n.tag){Gn(t,e,n.context);var r=t._vOptions,i=t._vOptions=[].map.call(t.options,Qn);i.some(function(t,e){return!b(t,r[e])})&&(t.multiple?e.value.some(function(t){return Yn(t,i)}):e.value!==e.oldValue&&Yn(e.value,i))&&er(t,"change")}}},show:{bind:function(t,e,n){var r=e.value,i=(n=nr(n)).data&&n.data.transition,o=t.__vOriginalDisplay="none"===t.style.display?"":t.style.display;r&&i?(n.data.show=!0,zn(n,function(){t.style.display=o})):t.style.display=r?o:"none"},update:function(t,e,n){var r=e.value;r!==e.oldValue&&((n=nr(n)).data&&n.data.transition?(n.data.show=!0,r?zn(n,function(){t.style.display=t.__vOriginalDisplay}):Kn(n,function(){t.style.display="none"})):t.style.display=r?t.__vOriginalDisplay:"none")},unbind:function(t,e,n,r,i){i||(t.style.display=t.__vOriginalDisplay)}}},Ia={name:String,appear:Boolean,css:Boolean,mode:String,type:String,enterClass:String,leaveClass:String,enterToClass:String,leaveToClass:String,enterActiveClass:String,leaveActiveClass:String,appearClass:String,appearActiveClass:String,appearToClass:String,duration:[Number,String,Object]},Da={name:"transition",props:Ia,abstract:!0,render:function(t){var e=this,n=this.$options._renderChildren;if(n&&(n=n.filter(function(t){return t.tag||pt(t)})).length){var r=this.mode,o=n[0];if(ar(this.$vnode))return o;var a=rr(o);if(!a)return o;if(this._leaving)return or(t,o);var s="__transition-"+this._uid+"-";a.key=null==a.key?a.isComment?s+"comment":s+a.tag:i(a.key)?0===String(a.key).indexOf(s)?a.key:s+a.key:a.key;var c=(a.data||(a.data={})).transition=ir(this),u=this._vnode,l=rr(u);if(a.data.directives&&a.data.directives.some(function(t){return"show"===t.name})&&(a.data.show=!0),l&&l.data&&!sr(a,l)&&!pt(l)){var f=l&&(l.data.transition=y({},c));if("out-in"===r)return this._leaving=!0,nt(f,"afterLeave",function(){e._leaving=!1,e.$forceUpdate()}),or(t,o);if("in-out"===r){if(pt(a))return u;var p,d=function(){p()};nt(c,"afterEnter",d),nt(c,"enterCancelled",d),nt(f,"delayLeave",function(t){p=t})}}return o}}},Pa=y({tag:String,moveClass:String},Ia);delete Pa.mode;var Fa={Transition:Da,TransitionGroup:{props:Pa,render:function(t){for(var e=this.tag||this.$vnode.data.tag||"span",n=Object.create(null),r=this.prevChildren=this.children,i=this.$slots.default||[],o=this.children=[],a=ir(this),s=0;s<i.length;s++){var c=i[s];c.tag&&null!=c.key&&0!==String(c.key).indexOf("__vlist")&&(o.push(c),n[c.key]=c,(c.data||(c.data={})).transition=a)}if(r){for(var u=[],l=[],f=0;f<r.length;f++){var p=r[f];p.data.transition=a,p.data.pos=p.elm.getBoundingClientRect(),n[p.key]?u.push(p):l.push(p)}this.kept=t(e,null,u),this.removed=l}return t(e,null,o)},beforeUpdate:function(){this.__patch__(this._vnode,this.kept,!1,!0),this._vnode=this.kept},updated:function(){var t=this.prevChildren,e=this.moveClass||(this.name||"v")+"-move";if(t.length&&this.hasMove(t[0].elm,e)){t.forEach(cr),t.forEach(ur),t.forEach(lr);document.body.offsetHeight;t.forEach(function(t){if(t.data.moved){var n=t.elm,r=n.style;Fn(n,e),r.transform=r.WebkitTransform=r.transitionDuration="",n.addEventListener(Ta,n._moveCb=function t(r){r&&!/transform$/.test(r.propertyName)||(n.removeEventListener(Ta,t),n._moveCb=null,Rn(n,e))})}})}},methods:{hasMove:function(t,e){if(!xa)return!1;if(this._hasMove)return this._hasMove;var n=t.cloneNode();t._transitionClasses&&t._transitionClasses.forEach(function(t){In(n,t)}),Mn(n,e),n.style.display="none",this.$el.appendChild(n);var r=Bn(n);return this.$el.removeChild(n),this._hasMove=r.hasTransform}}}};$e.config.mustUseProp=Vo,$e.config.isReservedTag=Xo,$e.config.isReservedAttr=Bo,$e.config.getTagNamespace=Re,$e.config.isUnknownElement=function(t){if(!Mi)return!0;if(Xo(t))return!1;if(t=t.toLowerCase(),null!=ta[t])return ta[t];var e=document.createElement(t);return t.indexOf("-")>-1?ta[t]=e.constructor===window.HTMLUnknownElement||e.constructor===window.HTMLElement:ta[t]=/HTMLUnknownElement/.test(e.toString())},y($e.options.directives,Ma),y($e.options.components,Fa),$e.prototype.__patch__=Mi?Na:_,$e.prototype.$mount=function(t,e){return t=t&&Mi?He(t):void 0,Ct(this,t,e)},setTimeout(function(){Si.devtools&&Wi&&Wi.emit("init",$e)},0);var Ra,Ha=!!Mi&&function(t,e){var n=document.createElement("div");return n.innerHTML='<div a="'+t+'"/>',n.innerHTML.indexOf(e)>0}("\n","&#10;"),Ba=/\{\{((?:.|\n)+?)\}\}/g,Ua=/[-.*+?^${}()|[\]\/\\]/g,Va=v(function(t){var e=t[0].replace(Ua,"\\$&"),n=t[1].replace(Ua,"\\$&");return new RegExp(e+"((?:.|\\n)+?)"+n,"g")}),za=[{staticKeys:["staticClass"],transformNode:function(t,e){e.warn;var n=un(t,"class");n&&(t.staticClass=JSON.stringify(n));var r=cn(t,"class",!1);r&&(t.classBinding=r)},genData:function(t){var e="";return t.staticClass&&(e+="staticClass:"+t.staticClass+","),t.classBinding&&(e+="class:"+t.classBinding+","),e}},{staticKeys:["staticStyle"],transformNode:function(t,e){e.warn;var n=un(t,"style");n&&(t.staticStyle=JSON.stringify(ma(n)));var r=cn(t,"style",!1);r&&(t.styleBinding=r)},genData:function(t){var e="";return t.staticStyle&&(e+="staticStyle:"+t.staticStyle+","),t.styleBinding&&(e+="style:("+t.styleBinding+"),"),e}}],Ka={model:function(t,e,n){Fo=n;var r=e.value,i=e.modifiers,o=t.tag,a=t.attrsMap.type;if(t.component)return ln(t,r,i),!1;if("select"===o)bn(t,r,i);else if("input"===o&&"checkbox"===a)gn(t,r,i);else if("input"===o&&"radio"===a)_n(t,r,i);else if("input"===o||"textarea"===o)$n(t,r,i);else if(!Si.isReservedTag(o))return ln(t,r,i),!1;return!0},text:function(t,e){e.value&&rn(t,"textContent","_s("+e.value+")")},html:function(t,e){e.value&&rn(t,"innerHTML","_s("+e.value+")")}},Ja=f("area,base,br,col,embed,frame,hr,img,input,isindex,keygen,link,meta,param,source,track,wbr"),qa=f("colgroup,dd,dt,li,options,p,td,tfoot,th,thead,tr,source"),Wa=f("address,article,aside,base,blockquote,body,caption,col,colgroup,dd,details,dialog,div,dl,dt,fieldset,figcaption,figure,footer,form,h1,h2,h3,h4,h5,h6,head,header,hgroup,hr,html,legend,li,menuitem,meta,optgroup,option,param,rp,rt,source,style,summary,tbody,td,tfoot,th,thead,title,tr,track"),Ga={expectHTML:!0,modules:za,directives:Ka,isPreTag:function(t){return"pre"===t},isUnaryTag:Ja,mustUseProp:Vo,canBeLeftOpenTag:qa,isReservedTag:Xo,getTagNamespace:Re,staticKeys:function(t){return t.reduce(function(t,e){return t.concat(e.staticKeys||[])},[]).join(",")}(za)},Za={decode:function(t){return Ra=Ra||document.createElement("div"),Ra.innerHTML=t,Ra.textContent}},Ya=/^\s*([^\s"'<>\/=]+)(?:\s*(=)\s*(?:"([^"]*)"+|'([^']*)'+|([^\s"'=<>`]+)))?/,Qa="[a-zA-Z_][\\w\\-\\.]*",Xa="((?:"+Qa+"\\:)?"+Qa+")",ts=new RegExp("^<"+Xa),es=/^\s*(\/?)>/,ns=new RegExp("^<\\/"+Xa+"[^>]*>"),rs=/^<!DOCTYPE [^>]+>/i,is=/^<!--/,os=/^<!\[/,as=!1;"x".replace(/x(.)?/g,function(t,e){as=""===e});var ss,cs,us,ls,fs,ps,ds,vs,hs,ms,ys=f("script,style,textarea",!0),gs={},_s={"&lt;":"<","&gt;":">","&quot;":'"',"&amp;":"&","&#10;":"\n"},bs=/&(?:lt|gt|quot|amp);/g,$s=/&(?:lt|gt|quot|amp|#10);/g,Cs=f("pre,textarea",!0),ws=function(t,e){return t&&Cs(t)&&"\n"===e[0]},xs=/^@|^v-on:/,As=/^v-|^@|^:/,ks=/(.*?)\s+(?:in|of)\s+(.*)/,Os=/\((\{[^}]*\}|[^,]*),([^,]*)(?:,([^,]*))?\)/,Ts=/:(.*)$/,Ss=/^:|^v-bind:/,Es=/\.[^.]+/g,js=v(Za.decode),Ls=/^xmlns:NS\d+/,Ns=/^NS\d+:/,Ms=v(function(t){return f("type,tag,attrsList,attrsMap,plain,parent,children,attrs"+(t?","+t:""))}),Is=/^\s*([\w$_]+|\([^)]*?\))\s*=>|^function\s*\(/,Ds=/^\s*[A-Za-z_$][\w$]*(?:\.[A-Za-z_$][\w$]*|\['.*?']|\[".*?"]|\[\d+]|\[[A-Za-z_$][\w$]*])*\s*$/,Ps={esc:27,tab:9,enter:13,space:32,up:38,left:37,right:39,down:40,delete:[8,46]},Fs=function(t){return"if("+t+")return null;"},Rs={stop:"$event.stopPropagation();",prevent:"$event.preventDefault();",self:Fs("$event.target !== $event.currentTarget"),ctrl:Fs("!$event.ctrlKey"),shift:Fs("!$event.shiftKey"),alt:Fs("!$event.altKey"),meta:Fs("!$event.metaKey"),left:Fs("'button' in $event && $event.button !== 0"),middle:Fs("'button' in $event && $event.button !== 1"),right:Fs("'button' in $event && $event.button !== 2")},Hs={on:function(t,e){t.wrapListeners=function(t){return"_g("+t+","+e.value+")"}},bind:function(t,e){t.wrapData=function(n){return"_b("+n+",'"+t.tag+"',"+e.value+","+(e.modifiers&&e.modifiers.prop?"true":"false")+(e.modifiers&&e.modifiers.sync?",true":"")+")"}},cloak:_},Bs=function(t){this.options=t,this.warn=t.warn||en,this.transforms=nn(t.modules,"transformCode"),this.dataGenFns=nn(t.modules,"genData"),this.directives=y(y({},Hs),t.directives);var e=t.isReservedTag||xi;this.maybeComponent=function(t){return!e(t.tag)},this.onceId=0,this.staticRenderFns=[]},Us=function(t){return function(e){function n(n,r){var i=Object.create(e),o=[],a=[];if(i.warn=function(t,e){(e?a:o).push(t)},r){r.modules&&(i.modules=(e.modules||[]).concat(r.modules)),r.directives&&(i.directives=y(Object.create(e.directives),r.directives));for(var s in r)"modules"!==s&&"directives"!==s&&(i[s]=r[s])}var c=t(n,i);return c.errors=o,c.tips=a,c}return{compile:n,compileToFunctions:di(n)}}}(function(t,e){var n=vr(t.trim(),e);Mr(n,e);var r=Vr(n,e);return{ast:n,render:r.render,staticRenderFns:r.staticRenderFns}})(Ga).compileToFunctions,Vs=v(function(t){var e=He(t);return e&&e.innerHTML}),zs=$e.prototype.$mount;return $e.prototype.$mount=function(t,e){if((t=t&&He(t))===document.body||t===document.documentElement)return this;var n=this.$options;if(!n.render){var r=n.template;if(r)if("string"==typeof r)"#"===r.charAt(0)&&(r=Vs(r));else{if(!r.nodeType)return this;r=r.innerHTML}else t&&(r=vi(t));if(r){var i=Us(r,{shouldDecodeNewlines:Ha,delimiters:n.delimiters,comments:n.comments},this),o=i.render,a=i.staticRenderFns;n.render=o,n.staticRenderFns=a}}return zs.call(this,t,e)},$e.compile=Us,$e});
+(function (global, factory) {
+	typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
+	typeof define === 'function' && define.amd ? define(factory) :
+	(global.Vue = factory());
+}(this, (function () { 'use strict';
+
+/*  */
+
+// these helpers produces better vm code in JS engines due to their
+// explicitness and function inlining
+function isUndef (v) {
+  return v === undefined || v === null
+}
+
+function isDef (v) {
+  return v !== undefined && v !== null
+}
+
+function isTrue (v) {
+  return v === true
+}
+
+function isFalse (v) {
+  return v === false
+}
+
+/**
+ * Check if value is primitive
+ */
+function isPrimitive (value) {
+  return (
+    typeof value === 'string' ||
+    typeof value === 'number' ||
+    typeof value === 'boolean'
+  )
+}
+
+/**
+ * Quick object check - this is primarily used to tell
+ * Objects from primitive values when we know the value
+ * is a JSON-compliant type.
+ */
+function isObject (obj) {
+  return obj !== null && typeof obj === 'object'
+}
+
+var _toString = Object.prototype.toString;
+
+/**
+ * Strict object type check. Only returns true
+ * for plain JavaScript objects.
+ */
+function isPlainObject (obj) {
+  return _toString.call(obj) === '[object Object]'
+}
+
+function isRegExp (v) {
+  return _toString.call(v) === '[object RegExp]'
+}
+
+/**
+ * Check if val is a valid array index.
+ */
+function isValidArrayIndex (val) {
+  var n = parseFloat(val);
+  return n >= 0 && Math.floor(n) === n && isFinite(val)
+}
+
+/**
+ * Convert a value to a string that is actually rendered.
+ */
+function toString (val) {
+  return val == null
+    ? ''
+    : typeof val === 'object'
+      ? JSON.stringify(val, null, 2)
+      : String(val)
+}
+
+/**
+ * Convert a input value to a number for persistence.
+ * If the conversion fails, return original string.
+ */
+function toNumber (val) {
+  var n = parseFloat(val);
+  return isNaN(n) ? val : n
+}
+
+/**
+ * Make a map and return a function for checking if a key
+ * is in that map.
+ */
+function makeMap (
+  str,
+  expectsLowerCase
+) {
+  var map = Object.create(null);
+  var list = str.split(',');
+  for (var i = 0; i < list.length; i++) {
+    map[list[i]] = true;
+  }
+  return expectsLowerCase
+    ? function (val) { return map[val.toLowerCase()]; }
+    : function (val) { return map[val]; }
+}
+
+/**
+ * Check if a tag is a built-in tag.
+ */
+var isBuiltInTag = makeMap('slot,component', true);
+
+/**
+ * Check if a attribute is a reserved attribute.
+ */
+var isReservedAttribute = makeMap('key,ref,slot,is');
+
+/**
+ * Remove an item from an array
+ */
+function remove (arr, item) {
+  if (arr.length) {
+    var index = arr.indexOf(item);
+    if (index > -1) {
+      return arr.splice(index, 1)
+    }
+  }
+}
+
+/**
+ * Check whether the object has the property.
+ */
+var hasOwnProperty = Object.prototype.hasOwnProperty;
+function hasOwn (obj, key) {
+  return hasOwnProperty.call(obj, key)
+}
+
+/**
+ * Create a cached version of a pure function.
+ */
+function cached (fn) {
+  var cache = Object.create(null);
+  return (function cachedFn (str) {
+    var hit = cache[str];
+    return hit || (cache[str] = fn(str))
+  })
+}
+
+/**
+ * Camelize a hyphen-delimited string.
+ */
+var camelizeRE = /-(\w)/g;
+var camelize = cached(function (str) {
+  return str.replace(camelizeRE, function (_, c) { return c ? c.toUpperCase() : ''; })
+});
+
+/**
+ * Capitalize a string.
+ */
+var capitalize = cached(function (str) {
+  return str.charAt(0).toUpperCase() + str.slice(1)
+});
+
+/**
+ * Hyphenate a camelCase string.
+ */
+var hyphenateRE = /\B([A-Z])/g;
+var hyphenate = cached(function (str) {
+  return str.replace(hyphenateRE, '-$1').toLowerCase()
+});
+
+/**
+ * Simple bind, faster than native
+ */
+function bind (fn, ctx) {
+  function boundFn (a) {
+    var l = arguments.length;
+    return l
+      ? l > 1
+        ? fn.apply(ctx, arguments)
+        : fn.call(ctx, a)
+      : fn.call(ctx)
+  }
+  // record original fn length
+  boundFn._length = fn.length;
+  return boundFn
+}
+
+/**
+ * Convert an Array-like object to a real Array.
+ */
+function toArray (list, start) {
+  start = start || 0;
+  var i = list.length - start;
+  var ret = new Array(i);
+  while (i--) {
+    ret[i] = list[i + start];
+  }
+  return ret
+}
+
+/**
+ * Mix properties into target object.
+ */
+function extend (to, _from) {
+  for (var key in _from) {
+    to[key] = _from[key];
+  }
+  return to
+}
+
+/**
+ * Merge an Array of Objects into a single Object.
+ */
+function toObject (arr) {
+  var res = {};
+  for (var i = 0; i < arr.length; i++) {
+    if (arr[i]) {
+      extend(res, arr[i]);
+    }
+  }
+  return res
+}
+
+/**
+ * Perform no operation.
+ * Stubbing args to make Flow happy without leaving useless transpiled code
+ * with ...rest (https://flow.org/blog/2017/05/07/Strict-Function-Call-Arity/)
+ */
+function noop (a, b, c) {}
+
+/**
+ * Always return false.
+ */
+var no = function (a, b, c) { return false; };
+
+/**
+ * Return same value
+ */
+var identity = function (_) { return _; };
+
+/**
+ * Generate a static keys string from compiler modules.
+ */
+function genStaticKeys (modules) {
+  return modules.reduce(function (keys, m) {
+    return keys.concat(m.staticKeys || [])
+  }, []).join(',')
+}
+
+/**
+ * Check if two values are loosely equal - that is,
+ * if they are plain objects, do they have the same shape?
+ */
+function looseEqual (a, b) {
+  if (a === b) { return true }
+  var isObjectA = isObject(a);
+  var isObjectB = isObject(b);
+  if (isObjectA && isObjectB) {
+    try {
+      var isArrayA = Array.isArray(a);
+      var isArrayB = Array.isArray(b);
+      if (isArrayA && isArrayB) {
+        return a.length === b.length && a.every(function (e, i) {
+          return looseEqual(e, b[i])
+        })
+      } else if (!isArrayA && !isArrayB) {
+        var keysA = Object.keys(a);
+        var keysB = Object.keys(b);
+        return keysA.length === keysB.length && keysA.every(function (key) {
+          return looseEqual(a[key], b[key])
+        })
+      } else {
+        /* istanbul ignore next */
+        return false
+      }
+    } catch (e) {
+      /* istanbul ignore next */
+      return false
+    }
+  } else if (!isObjectA && !isObjectB) {
+    return String(a) === String(b)
+  } else {
+    return false
+  }
+}
+
+function looseIndexOf (arr, val) {
+  for (var i = 0; i < arr.length; i++) {
+    if (looseEqual(arr[i], val)) { return i }
+  }
+  return -1
+}
+
+/**
+ * Ensure a function is called only once.
+ */
+function once (fn) {
+  var called = false;
+  return function () {
+    if (!called) {
+      called = true;
+      fn.apply(this, arguments);
+    }
+  }
+}
+
+var SSR_ATTR = 'data-server-rendered';
+
+var ASSET_TYPES = [
+  'component',
+  'directive',
+  'filter'
+];
+
+var LIFECYCLE_HOOKS = [
+  'beforeCreate',
+  'created',
+  'beforeMount',
+  'mounted',
+  'beforeUpdate',
+  'updated',
+  'beforeDestroy',
+  'destroyed',
+  'activated',
+  'deactivated'
+];
+
+/*  */
+
+var config = ({
+  /**
+   * Option merge strategies (used in core/util/options)
+   */
+  optionMergeStrategies: Object.create(null),
+
+  /**
+   * Whether to suppress warnings.
+   */
+  silent: false,
+
+  /**
+   * Show production mode tip message on boot?
+   */
+  productionTip: "development" !== 'production',
+
+  /**
+   * Whether to enable devtools
+   */
+  devtools: "development" !== 'production',
+
+  /**
+   * Whether to record perf
+   */
+  performance: false,
+
+  /**
+   * Error handler for watcher errors
+   */
+  errorHandler: null,
+
+  /**
+   * Warn handler for watcher warns
+   */
+  warnHandler: null,
+
+  /**
+   * Ignore certain custom elements
+   */
+  ignoredElements: [],
+
+  /**
+   * Custom user key aliases for v-on
+   */
+  keyCodes: Object.create(null),
+
+  /**
+   * Check if a tag is reserved so that it cannot be registered as a
+   * component. This is platform-dependent and may be overwritten.
+   */
+  isReservedTag: no,
+
+  /**
+   * Check if an attribute is reserved so that it cannot be used as a component
+   * prop. This is platform-dependent and may be overwritten.
+   */
+  isReservedAttr: no,
+
+  /**
+   * Check if a tag is an unknown element.
+   * Platform-dependent.
+   */
+  isUnknownElement: no,
+
+  /**
+   * Get the namespace of an element
+   */
+  getTagNamespace: noop,
+
+  /**
+   * Parse the real tag name for the specific platform.
+   */
+  parsePlatformTagName: identity,
+
+  /**
+   * Check if an attribute must be bound using property, e.g. value
+   * Platform-dependent.
+   */
+  mustUseProp: no,
+
+  /**
+   * Exposed for legacy reasons
+   */
+  _lifecycleHooks: LIFECYCLE_HOOKS
+});
+
+/*  */
+
+var emptyObject = Object.freeze({});
+
+/**
+ * Check if a string starts with $ or _
+ */
+function isReserved (str) {
+  var c = (str + '').charCodeAt(0);
+  return c === 0x24 || c === 0x5F
+}
+
+/**
+ * Define a property.
+ */
+function def (obj, key, val, enumerable) {
+  Object.defineProperty(obj, key, {
+    value: val,
+    enumerable: !!enumerable,
+    writable: true,
+    configurable: true
+  });
+}
+
+/**
+ * Parse simple path.
+ */
+var bailRE = /[^\w.$]/;
+function parsePath (path) {
+  if (bailRE.test(path)) {
+    return
+  }
+  var segments = path.split('.');
+  return function (obj) {
+    for (var i = 0; i < segments.length; i++) {
+      if (!obj) { return }
+      obj = obj[segments[i]];
+    }
+    return obj
+  }
+}
+
+/*  */
+
+var warn = noop;
+var tip = noop;
+var formatComponentName = (null); // work around flow check
+
+{
+  var hasConsole = typeof console !== 'undefined';
+  var classifyRE = /(?:^|[-_])(\w)/g;
+  var classify = function (str) { return str
+    .replace(classifyRE, function (c) { return c.toUpperCase(); })
+    .replace(/[-_]/g, ''); };
+
+  warn = function (msg, vm) {
+    var trace = vm ? generateComponentTrace(vm) : '';
+
+    if (config.warnHandler) {
+      config.warnHandler.call(null, msg, vm, trace);
+    } else if (hasConsole && (!config.silent)) {
+      console.error(("[Vue warn]: " + msg + trace));
+    }
+  };
+
+  tip = function (msg, vm) {
+    if (hasConsole && (!config.silent)) {
+      console.warn("[Vue tip]: " + msg + (
+        vm ? generateComponentTrace(vm) : ''
+      ));
+    }
+  };
+
+  formatComponentName = function (vm, includeFile) {
+    if (vm.$root === vm) {
+      return '<Root>'
+    }
+    var name = typeof vm === 'string'
+      ? vm
+      : typeof vm === 'function' && vm.options
+        ? vm.options.name
+        : vm._isVue
+          ? vm.$options.name || vm.$options._componentTag
+          : vm.name;
+
+    var file = vm._isVue && vm.$options.__file;
+    if (!name && file) {
+      var match = file.match(/([^/\\]+)\.vue$/);
+      name = match && match[1];
+    }
+
+    return (
+      (name ? ("<" + (classify(name)) + ">") : "<Anonymous>") +
+      (file && includeFile !== false ? (" at " + file) : '')
+    )
+  };
+
+  var repeat = function (str, n) {
+    var res = '';
+    while (n) {
+      if (n % 2 === 1) { res += str; }
+      if (n > 1) { str += str; }
+      n >>= 1;
+    }
+    return res
+  };
+
+  var generateComponentTrace = function (vm) {
+    if (vm._isVue && vm.$parent) {
+      var tree = [];
+      var currentRecursiveSequence = 0;
+      while (vm) {
+        if (tree.length > 0) {
+          var last = tree[tree.length - 1];
+          if (last.constructor === vm.constructor) {
+            currentRecursiveSequence++;
+            vm = vm.$parent;
+            continue
+          } else if (currentRecursiveSequence > 0) {
+            tree[tree.length - 1] = [last, currentRecursiveSequence];
+            currentRecursiveSequence = 0;
+          }
+        }
+        tree.push(vm);
+        vm = vm.$parent;
+      }
+      return '\n\nfound in\n\n' + tree
+        .map(function (vm, i) { return ("" + (i === 0 ? '---> ' : repeat(' ', 5 + i * 2)) + (Array.isArray(vm)
+            ? ((formatComponentName(vm[0])) + "... (" + (vm[1]) + " recursive calls)")
+            : formatComponentName(vm))); })
+        .join('\n')
+    } else {
+      return ("\n\n(found in " + (formatComponentName(vm)) + ")")
+    }
+  };
+}
+
+/*  */
+
+function handleError (err, vm, info) {
+  if (config.errorHandler) {
+    config.errorHandler.call(null, err, vm, info);
+  } else {
+    {
+      warn(("Error in " + info + ": \"" + (err.toString()) + "\""), vm);
+    }
+    /* istanbul ignore else */
+    if (inBrowser && typeof console !== 'undefined') {
+      console.error(err);
+    } else {
+      throw err
+    }
+  }
+}
+
+/*  */
+/* globals MutationObserver */
+
+// can we use __proto__?
+var hasProto = '__proto__' in {};
+
+// Browser environment sniffing
+var inBrowser = typeof window !== 'undefined';
+var UA = inBrowser && window.navigator.userAgent.toLowerCase();
+var isIE = UA && /msie|trident/.test(UA);
+var isIE9 = UA && UA.indexOf('msie 9.0') > 0;
+var isEdge = UA && UA.indexOf('edge/') > 0;
+var isAndroid = UA && UA.indexOf('android') > 0;
+var isIOS = UA && /iphone|ipad|ipod|ios/.test(UA);
+var isChrome = UA && /chrome\/\d+/.test(UA) && !isEdge;
+
+// Firefox has a "watch" function on Object.prototype...
+var nativeWatch = ({}).watch;
+
+var supportsPassive = false;
+if (inBrowser) {
+  try {
+    var opts = {};
+    Object.defineProperty(opts, 'passive', ({
+      get: function get () {
+        /* istanbul ignore next */
+        supportsPassive = true;
+      }
+    })); // https://github.com/facebook/flow/issues/285
+    window.addEventListener('test-passive', null, opts);
+  } catch (e) {}
+}
+
+// this needs to be lazy-evaled because vue may be required before
+// vue-server-renderer can set VUE_ENV
+var _isServer;
+var isServerRendering = function () {
+  if (_isServer === undefined) {
+    /* istanbul ignore if */
+    if (!inBrowser && typeof global !== 'undefined') {
+      // detect presence of vue-server-renderer and avoid
+      // Webpack shimming the process
+      _isServer = global['process'].env.VUE_ENV === 'server';
+    } else {
+      _isServer = false;
+    }
+  }
+  return _isServer
+};
+
+// detect devtools
+var devtools = inBrowser && window.__VUE_DEVTOOLS_GLOBAL_HOOK__;
+
+/* istanbul ignore next */
+function isNative (Ctor) {
+  return typeof Ctor === 'function' && /native code/.test(Ctor.toString())
+}
+
+var hasSymbol =
+  typeof Symbol !== 'undefined' && isNative(Symbol) &&
+  typeof Reflect !== 'undefined' && isNative(Reflect.ownKeys);
+
+/**
+ * Defer a task to execute it asynchronously.
+ */
+var nextTick = (function () {
+  var callbacks = [];
+  var pending = false;
+  var timerFunc;
+
+  function nextTickHandler () {
+    pending = false;
+    var copies = callbacks.slice(0);
+    callbacks.length = 0;
+    for (var i = 0; i < copies.length; i++) {
+      copies[i]();
+    }
+  }
+
+  // the nextTick behavior leverages the microtask queue, which can be accessed
+  // via either native Promise.then or MutationObserver.
+  // MutationObserver has wider support, however it is seriously bugged in
+  // UIWebView in iOS >= 9.3.3 when triggered in touch event handlers. It
+  // completely stops working after triggering a few times... so, if native
+  // Promise is available, we will use it:
+  /* istanbul ignore if */
+  if (typeof Promise !== 'undefined' && isNative(Promise)) {
+    var p = Promise.resolve();
+    var logError = function (err) { console.error(err); };
+    timerFunc = function () {
+      p.then(nextTickHandler).catch(logError);
+      // in problematic UIWebViews, Promise.then doesn't completely break, but
+      // it can get stuck in a weird state where callbacks are pushed into the
+      // microtask queue but the queue isn't being flushed, until the browser
+      // needs to do some other work, e.g. handle a timer. Therefore we can
+      // "force" the microtask queue to be flushed by adding an empty timer.
+      if (isIOS) { setTimeout(noop); }
+    };
+  } else if (!isIE && typeof MutationObserver !== 'undefined' && (
+    isNative(MutationObserver) ||
+    // PhantomJS and iOS 7.x
+    MutationObserver.toString() === '[object MutationObserverConstructor]'
+  )) {
+    // use MutationObserver where native Promise is not available,
+    // e.g. PhantomJS, iOS7, Android 4.4
+    var counter = 1;
+    var observer = new MutationObserver(nextTickHandler);
+    var textNode = document.createTextNode(String(counter));
+    observer.observe(textNode, {
+      characterData: true
+    });
+    timerFunc = function () {
+      counter = (counter + 1) % 2;
+      textNode.data = String(counter);
+    };
+  } else {
+    // fallback to setTimeout
+    /* istanbul ignore next */
+    timerFunc = function () {
+      setTimeout(nextTickHandler, 0);
+    };
+  }
+
+  return function queueNextTick (cb, ctx) {
+    var _resolve;
+    callbacks.push(function () {
+      if (cb) {
+        try {
+          cb.call(ctx);
+        } catch (e) {
+          handleError(e, ctx, 'nextTick');
+        }
+      } else if (_resolve) {
+        _resolve(ctx);
+      }
+    });
+    if (!pending) {
+      pending = true;
+      timerFunc();
+    }
+    if (!cb && typeof Promise !== 'undefined') {
+      return new Promise(function (resolve, reject) {
+        _resolve = resolve;
+      })
+    }
+  }
+})();
+
+var _Set;
+/* istanbul ignore if */
+if (typeof Set !== 'undefined' && isNative(Set)) {
+  // use native Set when available.
+  _Set = Set;
+} else {
+  // a non-standard Set polyfill that only works with primitive keys.
+  _Set = (function () {
+    function Set () {
+      this.set = Object.create(null);
+    }
+    Set.prototype.has = function has (key) {
+      return this.set[key] === true
+    };
+    Set.prototype.add = function add (key) {
+      this.set[key] = true;
+    };
+    Set.prototype.clear = function clear () {
+      this.set = Object.create(null);
+    };
+
+    return Set;
+  }());
+}
+
+/*  */
+
+
+var uid = 0;
+
+/**
+ * A dep is an observable that can have multiple
+ * directives subscribing to it.
+ */
+var Dep = function Dep () {
+  this.id = uid++;
+  this.subs = [];
+};
+
+Dep.prototype.addSub = function addSub (sub) {
+  this.subs.push(sub);
+};
+
+Dep.prototype.removeSub = function removeSub (sub) {
+  remove(this.subs, sub);
+};
+
+Dep.prototype.depend = function depend () {
+  if (Dep.target) {
+    Dep.target.addDep(this);
+  }
+};
+
+Dep.prototype.notify = function notify () {
+  // stabilize the subscriber list first
+  var subs = this.subs.slice();
+  for (var i = 0, l = subs.length; i < l; i++) {
+    subs[i].update();
+  }
+};
+
+// the current target watcher being evaluated.
+// this is globally unique because there could be only one
+// watcher being evaluated at any time.
+Dep.target = null;
+var targetStack = [];
+
+function pushTarget (_target) {
+  if (Dep.target) { targetStack.push(Dep.target); }
+  Dep.target = _target;
+}
+
+function popTarget () {
+  Dep.target = targetStack.pop();
+}
+
+/*
+ * not type checking this file because flow doesn't play well with
+ * dynamically accessing methods on Array prototype
+ */
+
+var arrayProto = Array.prototype;
+var arrayMethods = Object.create(arrayProto);[
+  'push',
+  'pop',
+  'shift',
+  'unshift',
+  'splice',
+  'sort',
+  'reverse'
+]
+.forEach(function (method) {
+  // cache original method
+  var original = arrayProto[method];
+  def(arrayMethods, method, function mutator () {
+    var args = [], len = arguments.length;
+    while ( len-- ) args[ len ] = arguments[ len ];
+
+    var result = original.apply(this, args);
+    var ob = this.__ob__;
+    var inserted;
+    switch (method) {
+      case 'push':
+      case 'unshift':
+        inserted = args;
+        break
+      case 'splice':
+        inserted = args.slice(2);
+        break
+    }
+    if (inserted) { ob.observeArray(inserted); }
+    // notify change
+    ob.dep.notify();
+    return result
+  });
+});
+
+/*  */
+
+var arrayKeys = Object.getOwnPropertyNames(arrayMethods);
+
+/**
+ * By default, when a reactive property is set, the new value is
+ * also converted to become reactive. However when passing down props,
+ * we don't want to force conversion because the value may be a nested value
+ * under a frozen data structure. Converting it would defeat the optimization.
+ */
+var observerState = {
+  shouldConvert: true
+};
+
+/**
+ * Observer class that are attached to each observed
+ * object. Once attached, the observer converts target
+ * object's property keys into getter/setters that
+ * collect dependencies and dispatches updates.
+ */
+var Observer = function Observer (value) {
+  this.value = value;
+  this.dep = new Dep();
+  this.vmCount = 0;
+  def(value, '__ob__', this);
+  if (Array.isArray(value)) {
+    var augment = hasProto
+      ? protoAugment
+      : copyAugment;
+    augment(value, arrayMethods, arrayKeys);
+    this.observeArray(value);
+  } else {
+    this.walk(value);
+  }
+};
+
+/**
+ * Walk through each property and convert them into
+ * getter/setters. This method should only be called when
+ * value type is Object.
+ */
+Observer.prototype.walk = function walk (obj) {
+  var keys = Object.keys(obj);
+  for (var i = 0; i < keys.length; i++) {
+    defineReactive$$1(obj, keys[i], obj[keys[i]]);
+  }
+};
+
+/**
+ * Observe a list of Array items.
+ */
+Observer.prototype.observeArray = function observeArray (items) {
+  for (var i = 0, l = items.length; i < l; i++) {
+    observe(items[i]);
+  }
+};
+
+// helpers
+
+/**
+ * Augment an target Object or Array by intercepting
+ * the prototype chain using __proto__
+ */
+function protoAugment (target, src, keys) {
+  /* eslint-disable no-proto */
+  target.__proto__ = src;
+  /* eslint-enable no-proto */
+}
+
+/**
+ * Augment an target Object or Array by defining
+ * hidden properties.
+ */
+/* istanbul ignore next */
+function copyAugment (target, src, keys) {
+  for (var i = 0, l = keys.length; i < l; i++) {
+    var key = keys[i];
+    def(target, key, src[key]);
+  }
+}
+
+/**
+ * Attempt to create an observer instance for a value,
+ * returns the new observer if successfully observed,
+ * or the existing observer if the value already has one.
+ */
+function observe (value, asRootData) {
+  if (!isObject(value)) {
+    return
+  }
+  var ob;
+  if (hasOwn(value, '__ob__') && value.__ob__ instanceof Observer) {
+    ob = value.__ob__;
+  } else if (
+    observerState.shouldConvert &&
+    !isServerRendering() &&
+    (Array.isArray(value) || isPlainObject(value)) &&
+    Object.isExtensible(value) &&
+    !value._isVue
+  ) {
+    ob = new Observer(value);
+  }
+  if (asRootData && ob) {
+    ob.vmCount++;
+  }
+  return ob
+}
+
+/**
+ * Define a reactive property on an Object.
+ */
+function defineReactive$$1 (
+  obj,
+  key,
+  val,
+  customSetter,
+  shallow
+) {
+  var dep = new Dep();
+
+  var property = Object.getOwnPropertyDescriptor(obj, key);
+  if (property && property.configurable === false) {
+    return
+  }
+
+  // cater for pre-defined getter/setters
+  var getter = property && property.get;
+  var setter = property && property.set;
+
+  var childOb = !shallow && observe(val);
+  Object.defineProperty(obj, key, {
+    enumerable: true,
+    configurable: true,
+    get: function reactiveGetter () {
+      var value = getter ? getter.call(obj) : val;
+      if (Dep.target) {
+        dep.depend();
+        if (childOb) {
+          childOb.dep.depend();
+          if (Array.isArray(value)) {
+            dependArray(value);
+          }
+        }
+      }
+      return value
+    },
+    set: function reactiveSetter (newVal) {
+      var value = getter ? getter.call(obj) : val;
+      /* eslint-disable no-self-compare */
+      if (newVal === value || (newVal !== newVal && value !== value)) {
+        return
+      }
+      /* eslint-enable no-self-compare */
+      if ("development" !== 'production' && customSetter) {
+        customSetter();
+      }
+      if (setter) {
+        setter.call(obj, newVal);
+      } else {
+        val = newVal;
+      }
+      childOb = !shallow && observe(newVal);
+      dep.notify();
+    }
+  });
+}
+
+/**
+ * Set a property on an object. Adds the new property and
+ * triggers change notification if the property doesn't
+ * already exist.
+ */
+function set (target, key, val) {
+  if (Array.isArray(target) && isValidArrayIndex(key)) {
+    target.length = Math.max(target.length, key);
+    target.splice(key, 1, val);
+    return val
+  }
+  if (hasOwn(target, key)) {
+    target[key] = val;
+    return val
+  }
+  var ob = (target).__ob__;
+  if (target._isVue || (ob && ob.vmCount)) {
+    "development" !== 'production' && warn(
+      'Avoid adding reactive properties to a Vue instance or its root $data ' +
+      'at runtime - declare it upfront in the data option.'
+    );
+    return val
+  }
+  if (!ob) {
+    target[key] = val;
+    return val
+  }
+  defineReactive$$1(ob.value, key, val);
+  ob.dep.notify();
+  return val
+}
+
+/**
+ * Delete a property and trigger change if necessary.
+ */
+function del (target, key) {
+  if (Array.isArray(target) && isValidArrayIndex(key)) {
+    target.splice(key, 1);
+    return
+  }
+  var ob = (target).__ob__;
+  if (target._isVue || (ob && ob.vmCount)) {
+    "development" !== 'production' && warn(
+      'Avoid deleting properties on a Vue instance or its root $data ' +
+      '- just set it to null.'
+    );
+    return
+  }
+  if (!hasOwn(target, key)) {
+    return
+  }
+  delete target[key];
+  if (!ob) {
+    return
+  }
+  ob.dep.notify();
+}
+
+/**
+ * Collect dependencies on array elements when the array is touched, since
+ * we cannot intercept array element access like property getters.
+ */
+function dependArray (value) {
+  for (var e = (void 0), i = 0, l = value.length; i < l; i++) {
+    e = value[i];
+    e && e.__ob__ && e.__ob__.dep.depend();
+    if (Array.isArray(e)) {
+      dependArray(e);
+    }
+  }
+}
+
+/*  */
+
+/**
+ * Option overwriting strategies are functions that handle
+ * how to merge a parent option value and a child option
+ * value into the final value.
+ */
+var strats = config.optionMergeStrategies;
+
+/**
+ * Options with restrictions
+ */
+{
+  strats.el = strats.propsData = function (parent, child, vm, key) {
+    if (!vm) {
+      warn(
+        "option \"" + key + "\" can only be used during instance " +
+        'creation with the `new` keyword.'
+      );
+    }
+    return defaultStrat(parent, child)
+  };
+}
+
+/**
+ * Helper that recursively merges two data objects together.
+ */
+function mergeData (to, from) {
+  if (!from) { return to }
+  var key, toVal, fromVal;
+  var keys = Object.keys(from);
+  for (var i = 0; i < keys.length; i++) {
+    key = keys[i];
+    toVal = to[key];
+    fromVal = from[key];
+    if (!hasOwn(to, key)) {
+      set(to, key, fromVal);
+    } else if (isPlainObject(toVal) && isPlainObject(fromVal)) {
+      mergeData(toVal, fromVal);
+    }
+  }
+  return to
+}
+
+/**
+ * Data
+ */
+function mergeDataOrFn (
+  parentVal,
+  childVal,
+  vm
+) {
+  if (!vm) {
+    // in a Vue.extend merge, both should be functions
+    if (!childVal) {
+      return parentVal
+    }
+    if (!parentVal) {
+      return childVal
+    }
+    // when parentVal & childVal are both present,
+    // we need to return a function that returns the
+    // merged result of both functions... no need to
+    // check if parentVal is a function here because
+    // it has to be a function to pass previous merges.
+    return function mergedDataFn () {
+      return mergeData(
+        typeof childVal === 'function' ? childVal.call(this) : childVal,
+        typeof parentVal === 'function' ? parentVal.call(this) : parentVal
+      )
+    }
+  } else if (parentVal || childVal) {
+    return function mergedInstanceDataFn () {
+      // instance merge
+      var instanceData = typeof childVal === 'function'
+        ? childVal.call(vm)
+        : childVal;
+      var defaultData = typeof parentVal === 'function'
+        ? parentVal.call(vm)
+        : parentVal;
+      if (instanceData) {
+        return mergeData(instanceData, defaultData)
+      } else {
+        return defaultData
+      }
+    }
+  }
+}
+
+strats.data = function (
+  parentVal,
+  childVal,
+  vm
+) {
+  if (!vm) {
+    if (childVal && typeof childVal !== 'function') {
+      "development" !== 'production' && warn(
+        'The "data" option should be a function ' +
+        'that returns a per-instance value in component ' +
+        'definitions.',
+        vm
+      );
+
+      return parentVal
+    }
+    return mergeDataOrFn.call(this, parentVal, childVal)
+  }
+
+  return mergeDataOrFn(parentVal, childVal, vm)
+};
+
+/**
+ * Hooks and props are merged as arrays.
+ */
+function mergeHook (
+  parentVal,
+  childVal
+) {
+  return childVal
+    ? parentVal
+      ? parentVal.concat(childVal)
+      : Array.isArray(childVal)
+        ? childVal
+        : [childVal]
+    : parentVal
+}
+
+LIFECYCLE_HOOKS.forEach(function (hook) {
+  strats[hook] = mergeHook;
+});
+
+/**
+ * Assets
+ *
+ * When a vm is present (instance creation), we need to do
+ * a three-way merge between constructor options, instance
+ * options and parent options.
+ */
+function mergeAssets (parentVal, childVal) {
+  var res = Object.create(parentVal || null);
+  return childVal
+    ? extend(res, childVal)
+    : res
+}
+
+ASSET_TYPES.forEach(function (type) {
+  strats[type + 's'] = mergeAssets;
+});
+
+/**
+ * Watchers.
+ *
+ * Watchers hashes should not overwrite one
+ * another, so we merge them as arrays.
+ */
+strats.watch = function (parentVal, childVal) {
+  // work around Firefox's Object.prototype.watch...
+  if (parentVal === nativeWatch) { parentVal = undefined; }
+  if (childVal === nativeWatch) { childVal = undefined; }
+  /* istanbul ignore if */
+  if (!childVal) { return Object.create(parentVal || null) }
+  if (!parentVal) { return childVal }
+  var ret = {};
+  extend(ret, parentVal);
+  for (var key in childVal) {
+    var parent = ret[key];
+    var child = childVal[key];
+    if (parent && !Array.isArray(parent)) {
+      parent = [parent];
+    }
+    ret[key] = parent
+      ? parent.concat(child)
+      : Array.isArray(child) ? child : [child];
+  }
+  return ret
+};
+
+/**
+ * Other object hashes.
+ */
+strats.props =
+strats.methods =
+strats.inject =
+strats.computed = function (parentVal, childVal) {
+  if (!parentVal) { return childVal }
+  var ret = Object.create(null);
+  extend(ret, parentVal);
+  if (childVal) { extend(ret, childVal); }
+  return ret
+};
+strats.provide = mergeDataOrFn;
+
+/**
+ * Default strategy.
+ */
+var defaultStrat = function (parentVal, childVal) {
+  return childVal === undefined
+    ? parentVal
+    : childVal
+};
+
+/**
+ * Validate component names
+ */
+function checkComponents (options) {
+  for (var key in options.components) {
+    var lower = key.toLowerCase();
+    if (isBuiltInTag(lower) || config.isReservedTag(lower)) {
+      warn(
+        'Do not use built-in or reserved HTML elements as component ' +
+        'id: ' + key
+      );
+    }
+  }
+}
+
+/**
+ * Ensure all props option syntax are normalized into the
+ * Object-based format.
+ */
+function normalizeProps (options) {
+  var props = options.props;
+  if (!props) { return }
+  var res = {};
+  var i, val, name;
+  if (Array.isArray(props)) {
+    i = props.length;
+    while (i--) {
+      val = props[i];
+      if (typeof val === 'string') {
+        name = camelize(val);
+        res[name] = { type: null };
+      } else {
+        warn('props must be strings when using array syntax.');
+      }
+    }
+  } else if (isPlainObject(props)) {
+    for (var key in props) {
+      val = props[key];
+      name = camelize(key);
+      res[name] = isPlainObject(val)
+        ? val
+        : { type: val };
+    }
+  }
+  options.props = res;
+}
+
+/**
+ * Normalize all injections into Object-based format
+ */
+function normalizeInject (options) {
+  var inject = options.inject;
+  if (Array.isArray(inject)) {
+    var normalized = options.inject = {};
+    for (var i = 0; i < inject.length; i++) {
+      normalized[inject[i]] = inject[i];
+    }
+  }
+}
+
+/**
+ * Normalize raw function directives into object format.
+ */
+function normalizeDirectives (options) {
+  var dirs = options.directives;
+  if (dirs) {
+    for (var key in dirs) {
+      var def = dirs[key];
+      if (typeof def === 'function') {
+        dirs[key] = { bind: def, update: def };
+      }
+    }
+  }
+}
+
+/**
+ * Merge two option objects into a new one.
+ * Core utility used in both instantiation and inheritance.
+ */
+function mergeOptions (
+  parent,
+  child,
+  vm
+) {
+  {
+    checkComponents(child);
+  }
+
+  if (typeof child === 'function') {
+    child = child.options;
+  }
+
+  normalizeProps(child);
+  normalizeInject(child);
+  normalizeDirectives(child);
+  var extendsFrom = child.extends;
+  if (extendsFrom) {
+    parent = mergeOptions(parent, extendsFrom, vm);
+  }
+  if (child.mixins) {
+    for (var i = 0, l = child.mixins.length; i < l; i++) {
+      parent = mergeOptions(parent, child.mixins[i], vm);
+    }
+  }
+  var options = {};
+  var key;
+  for (key in parent) {
+    mergeField(key);
+  }
+  for (key in child) {
+    if (!hasOwn(parent, key)) {
+      mergeField(key);
+    }
+  }
+  function mergeField (key) {
+    var strat = strats[key] || defaultStrat;
+    options[key] = strat(parent[key], child[key], vm, key);
+  }
+  return options
+}
+
+/**
+ * Resolve an asset.
+ * This function is used because child instances need access
+ * to assets defined in its ancestor chain.
+ */
+function resolveAsset (
+  options,
+  type,
+  id,
+  warnMissing
+) {
+  /* istanbul ignore if */
+  if (typeof id !== 'string') {
+    return
+  }
+  var assets = options[type];
+  // check local registration variations first
+  if (hasOwn(assets, id)) { return assets[id] }
+  var camelizedId = camelize(id);
+  if (hasOwn(assets, camelizedId)) { return assets[camelizedId] }
+  var PascalCaseId = capitalize(camelizedId);
+  if (hasOwn(assets, PascalCaseId)) { return assets[PascalCaseId] }
+  // fallback to prototype chain
+  var res = assets[id] || assets[camelizedId] || assets[PascalCaseId];
+  if ("development" !== 'production' && warnMissing && !res) {
+    warn(
+      'Failed to resolve ' + type.slice(0, -1) + ': ' + id,
+      options
+    );
+  }
+  return res
+}
+
+/*  */
+
+function validateProp (
+  key,
+  propOptions,
+  propsData,
+  vm
+) {
+  var prop = propOptions[key];
+  var absent = !hasOwn(propsData, key);
+  var value = propsData[key];
+  // handle boolean props
+  if (isType(Boolean, prop.type)) {
+    if (absent && !hasOwn(prop, 'default')) {
+      value = false;
+    } else if (!isType(String, prop.type) && (value === '' || value === hyphenate(key))) {
+      value = true;
+    }
+  }
+  // check default value
+  if (value === undefined) {
+    value = getPropDefaultValue(vm, prop, key);
+    // since the default value is a fresh copy,
+    // make sure to observe it.
+    var prevShouldConvert = observerState.shouldConvert;
+    observerState.shouldConvert = true;
+    observe(value);
+    observerState.shouldConvert = prevShouldConvert;
+  }
+  {
+    assertProp(prop, key, value, vm, absent);
+  }
+  return value
+}
+
+/**
+ * Get the default value of a prop.
+ */
+function getPropDefaultValue (vm, prop, key) {
+  // no default, return undefined
+  if (!hasOwn(prop, 'default')) {
+    return undefined
+  }
+  var def = prop.default;
+  // warn against non-factory defaults for Object & Array
+  if ("development" !== 'production' && isObject(def)) {
+    warn(
+      'Invalid default value for prop "' + key + '": ' +
+      'Props with type Object/Array must use a factory function ' +
+      'to return the default value.',
+      vm
+    );
+  }
+  // the raw prop value was also undefined from previous render,
+  // return previous default value to avoid unnecessary watcher trigger
+  if (vm && vm.$options.propsData &&
+    vm.$options.propsData[key] === undefined &&
+    vm._props[key] !== undefined
+  ) {
+    return vm._props[key]
+  }
+  // call factory function for non-Function types
+  // a value is Function if its prototype is function even across different execution context
+  return typeof def === 'function' && getType(prop.type) !== 'Function'
+    ? def.call(vm)
+    : def
+}
+
+/**
+ * Assert whether a prop is valid.
+ */
+function assertProp (
+  prop,
+  name,
+  value,
+  vm,
+  absent
+) {
+  if (prop.required && absent) {
+    warn(
+      'Missing required prop: "' + name + '"',
+      vm
+    );
+    return
+  }
+  if (value == null && !prop.required) {
+    return
+  }
+  var type = prop.type;
+  var valid = !type || type === true;
+  var expectedTypes = [];
+  if (type) {
+    if (!Array.isArray(type)) {
+      type = [type];
+    }
+    for (var i = 0; i < type.length && !valid; i++) {
+      var assertedType = assertType(value, type[i]);
+      expectedTypes.push(assertedType.expectedType || '');
+      valid = assertedType.valid;
+    }
+  }
+  if (!valid) {
+    warn(
+      'Invalid prop: type check failed for prop "' + name + '".' +
+      ' Expected ' + expectedTypes.map(capitalize).join(', ') +
+      ', got ' + Object.prototype.toString.call(value).slice(8, -1) + '.',
+      vm
+    );
+    return
+  }
+  var validator = prop.validator;
+  if (validator) {
+    if (!validator(value)) {
+      warn(
+        'Invalid prop: custom validator check failed for prop "' + name + '".',
+        vm
+      );
+    }
+  }
+}
+
+var simpleCheckRE = /^(String|Number|Boolean|Function|Symbol)$/;
+
+function assertType (value, type) {
+  var valid;
+  var expectedType = getType(type);
+  if (simpleCheckRE.test(expectedType)) {
+    var t = typeof value;
+    valid = t === expectedType.toLowerCase();
+    // for primitive wrapper objects
+    if (!valid && t === 'object') {
+      valid = value instanceof type;
+    }
+  } else if (expectedType === 'Object') {
+    valid = isPlainObject(value);
+  } else if (expectedType === 'Array') {
+    valid = Array.isArray(value);
+  } else {
+    valid = value instanceof type;
+  }
+  return {
+    valid: valid,
+    expectedType: expectedType
+  }
+}
+
+/**
+ * Use function string name to check built-in types,
+ * because a simple equality check will fail when running
+ * across different vms / iframes.
+ */
+function getType (fn) {
+  var match = fn && fn.toString().match(/^\s*function (\w+)/);
+  return match ? match[1] : ''
+}
+
+function isType (type, fn) {
+  if (!Array.isArray(fn)) {
+    return getType(fn) === getType(type)
+  }
+  for (var i = 0, len = fn.length; i < len; i++) {
+    if (getType(fn[i]) === getType(type)) {
+      return true
+    }
+  }
+  /* istanbul ignore next */
+  return false
+}
+
+/*  */
+
+var mark;
+var measure;
+
+{
+  var perf = inBrowser && window.performance;
+  /* istanbul ignore if */
+  if (
+    perf &&
+    perf.mark &&
+    perf.measure &&
+    perf.clearMarks &&
+    perf.clearMeasures
+  ) {
+    mark = function (tag) { return perf.mark(tag); };
+    measure = function (name, startTag, endTag) {
+      perf.measure(name, startTag, endTag);
+      perf.clearMarks(startTag);
+      perf.clearMarks(endTag);
+      perf.clearMeasures(name);
+    };
+  }
+}
+
+/* not type checking this file because flow doesn't play well with Proxy */
+
+var initProxy;
+
+{
+  var allowedGlobals = makeMap(
+    'Infinity,undefined,NaN,isFinite,isNaN,' +
+    'parseFloat,parseInt,decodeURI,decodeURIComponent,encodeURI,encodeURIComponent,' +
+    'Math,Number,Date,Array,Object,Boolean,String,RegExp,Map,Set,JSON,Intl,' +
+    'require' // for Webpack/Browserify
+  );
+
+  var warnNonPresent = function (target, key) {
+    warn(
+      "Property or method \"" + key + "\" is not defined on the instance but " +
+      "referenced during render. Make sure to declare reactive data " +
+      "properties in the data option.",
+      target
+    );
+  };
+
+  var hasProxy =
+    typeof Proxy !== 'undefined' &&
+    Proxy.toString().match(/native code/);
+
+  if (hasProxy) {
+    var isBuiltInModifier = makeMap('stop,prevent,self,ctrl,shift,alt,meta');
+    config.keyCodes = new Proxy(config.keyCodes, {
+      set: function set (target, key, value) {
+        if (isBuiltInModifier(key)) {
+          warn(("Avoid overwriting built-in modifier in config.keyCodes: ." + key));
+          return false
+        } else {
+          target[key] = value;
+          return true
+        }
+      }
+    });
+  }
+
+  var hasHandler = {
+    has: function has (target, key) {
+      var has = key in target;
+      var isAllowed = allowedGlobals(key) || key.charAt(0) === '_';
+      if (!has && !isAllowed) {
+        warnNonPresent(target, key);
+      }
+      return has || !isAllowed
+    }
+  };
+
+  var getHandler = {
+    get: function get (target, key) {
+      if (typeof key === 'string' && !(key in target)) {
+        warnNonPresent(target, key);
+      }
+      return target[key]
+    }
+  };
+
+  initProxy = function initProxy (vm) {
+    if (hasProxy) {
+      // determine which proxy handler to use
+      var options = vm.$options;
+      var handlers = options.render && options.render._withStripped
+        ? getHandler
+        : hasHandler;
+      vm._renderProxy = new Proxy(vm, handlers);
+    } else {
+      vm._renderProxy = vm;
+    }
+  };
+}
+
+/*  */
+
+var VNode = function VNode (
+  tag,
+  data,
+  children,
+  text,
+  elm,
+  context,
+  componentOptions,
+  asyncFactory
+) {
+  this.tag = tag;
+  this.data = data;
+  this.children = children;
+  this.text = text;
+  this.elm = elm;
+  this.ns = undefined;
+  this.context = context;
+  this.functionalContext = undefined;
+  this.key = data && data.key;
+  this.componentOptions = componentOptions;
+  this.componentInstance = undefined;
+  this.parent = undefined;
+  this.raw = false;
+  this.isStatic = false;
+  this.isRootInsert = true;
+  this.isComment = false;
+  this.isCloned = false;
+  this.isOnce = false;
+  this.asyncFactory = asyncFactory;
+  this.asyncMeta = undefined;
+  this.isAsyncPlaceholder = false;
+};
+
+var prototypeAccessors = { child: {} };
+
+// DEPRECATED: alias for componentInstance for backwards compat.
+/* istanbul ignore next */
+prototypeAccessors.child.get = function () {
+  return this.componentInstance
+};
+
+Object.defineProperties( VNode.prototype, prototypeAccessors );
+
+var createEmptyVNode = function (text) {
+  if ( text === void 0 ) text = '';
+
+  var node = new VNode();
+  node.text = text;
+  node.isComment = true;
+  return node
+};
+
+function createTextVNode (val) {
+  return new VNode(undefined, undefined, undefined, String(val))
+}
+
+// optimized shallow clone
+// used for static nodes and slot nodes because they may be reused across
+// multiple renders, cloning them avoids errors when DOM manipulations rely
+// on their elm reference.
+function cloneVNode (vnode, deep) {
+  var cloned = new VNode(
+    vnode.tag,
+    vnode.data,
+    vnode.children,
+    vnode.text,
+    vnode.elm,
+    vnode.context,
+    vnode.componentOptions,
+    vnode.asyncFactory
+  );
+  cloned.ns = vnode.ns;
+  cloned.isStatic = vnode.isStatic;
+  cloned.key = vnode.key;
+  cloned.isComment = vnode.isComment;
+  cloned.isCloned = true;
+  if (deep && vnode.children) {
+    cloned.children = cloneVNodes(vnode.children);
+  }
+  return cloned
+}
+
+function cloneVNodes (vnodes, deep) {
+  var len = vnodes.length;
+  var res = new Array(len);
+  for (var i = 0; i < len; i++) {
+    res[i] = cloneVNode(vnodes[i], deep);
+  }
+  return res
+}
+
+/*  */
+
+var normalizeEvent = cached(function (name) {
+  var passive = name.charAt(0) === '&';
+  name = passive ? name.slice(1) : name;
+  var once$$1 = name.charAt(0) === '~'; // Prefixed last, checked first
+  name = once$$1 ? name.slice(1) : name;
+  var capture = name.charAt(0) === '!';
+  name = capture ? name.slice(1) : name;
+  var plain = !(passive || once$$1 || capture);
+  return {
+    name: name,
+    plain: plain,
+    once: once$$1,
+    capture: capture,
+    passive: passive
+  }
+});
+
+function createFnInvoker (fns) {
+  function invoker () {
+    var arguments$1 = arguments;
+
+    var fns = invoker.fns;
+    if (Array.isArray(fns)) {
+      var cloned = fns.slice();
+      for (var i = 0; i < cloned.length; i++) {
+        cloned[i].apply(null, arguments$1);
+      }
+    } else {
+      // return handler return value for single handlers
+      return fns.apply(null, arguments)
+    }
+  }
+  invoker.fns = fns;
+  return invoker
+}
+
+// #6552
+function prioritizePlainEvents (a, b) {
+  return a.plain ? -1 : b.plain ? 1 : 0
+}
+
+function updateListeners (
+  on,
+  oldOn,
+  add,
+  remove$$1,
+  vm
+) {
+  var name, cur, old, event;
+  var toAdd = [];
+  var hasModifier = false;
+  for (name in on) {
+    cur = on[name];
+    old = oldOn[name];
+    event = normalizeEvent(name);
+    if (!event.plain) { hasModifier = true; }
+    if (isUndef(cur)) {
+      "development" !== 'production' && warn(
+        "Invalid handler for event \"" + (event.name) + "\": got " + String(cur),
+        vm
+      );
+    } else if (isUndef(old)) {
+      if (isUndef(cur.fns)) {
+        cur = on[name] = createFnInvoker(cur);
+      }
+      event.handler = cur;
+      toAdd.push(event);
+    } else if (cur !== old) {
+      old.fns = cur;
+      on[name] = old;
+    }
+  }
+  if (toAdd.length) {
+    if (hasModifier) { toAdd.sort(prioritizePlainEvents); }
+    for (var i = 0; i < toAdd.length; i++) {
+      var event$1 = toAdd[i];
+      add(event$1.name, event$1.handler, event$1.once, event$1.capture, event$1.passive);
+    }
+  }
+  for (name in oldOn) {
+    if (isUndef(on[name])) {
+      event = normalizeEvent(name);
+      remove$$1(event.name, oldOn[name], event.capture);
+    }
+  }
+}
+
+/*  */
+
+function mergeVNodeHook (def, hookKey, hook) {
+  var invoker;
+  var oldHook = def[hookKey];
+
+  function wrappedHook () {
+    hook.apply(this, arguments);
+    // important: remove merged hook to ensure it's called only once
+    // and prevent memory leak
+    remove(invoker.fns, wrappedHook);
+  }
+
+  if (isUndef(oldHook)) {
+    // no existing hook
+    invoker = createFnInvoker([wrappedHook]);
+  } else {
+    /* istanbul ignore if */
+    if (isDef(oldHook.fns) && isTrue(oldHook.merged)) {
+      // already a merged invoker
+      invoker = oldHook;
+      invoker.fns.push(wrappedHook);
+    } else {
+      // existing plain hook
+      invoker = createFnInvoker([oldHook, wrappedHook]);
+    }
+  }
+
+  invoker.merged = true;
+  def[hookKey] = invoker;
+}
+
+/*  */
+
+function extractPropsFromVNodeData (
+  data,
+  Ctor,
+  tag
+) {
+  // we are only extracting raw values here.
+  // validation and default values are handled in the child
+  // component itself.
+  var propOptions = Ctor.options.props;
+  if (isUndef(propOptions)) {
+    return
+  }
+  var res = {};
+  var attrs = data.attrs;
+  var props = data.props;
+  if (isDef(attrs) || isDef(props)) {
+    for (var key in propOptions) {
+      var altKey = hyphenate(key);
+      {
+        var keyInLowerCase = key.toLowerCase();
+        if (
+          key !== keyInLowerCase &&
+          attrs && hasOwn(attrs, keyInLowerCase)
+        ) {
+          tip(
+            "Prop \"" + keyInLowerCase + "\" is passed to component " +
+            (formatComponentName(tag || Ctor)) + ", but the declared prop name is" +
+            " \"" + key + "\". " +
+            "Note that HTML attributes are case-insensitive and camelCased " +
+            "props need to use their kebab-case equivalents when using in-DOM " +
+            "templates. You should probably use \"" + altKey + "\" instead of \"" + key + "\"."
+          );
+        }
+      }
+      checkProp(res, props, key, altKey, true) ||
+      checkProp(res, attrs, key, altKey, false);
+    }
+  }
+  return res
+}
+
+function checkProp (
+  res,
+  hash,
+  key,
+  altKey,
+  preserve
+) {
+  if (isDef(hash)) {
+    if (hasOwn(hash, key)) {
+      res[key] = hash[key];
+      if (!preserve) {
+        delete hash[key];
+      }
+      return true
+    } else if (hasOwn(hash, altKey)) {
+      res[key] = hash[altKey];
+      if (!preserve) {
+        delete hash[altKey];
+      }
+      return true
+    }
+  }
+  return false
+}
+
+/*  */
+
+// The template compiler attempts to minimize the need for normalization by
+// statically analyzing the template at compile time.
+//
+// For plain HTML markup, normalization can be completely skipped because the
+// generated render function is guaranteed to return Array<VNode>. There are
+// two cases where extra normalization is needed:
+
+// 1. When the children contains components - because a functional component
+// may return an Array instead of a single root. In this case, just a simple
+// normalization is needed - if any child is an Array, we flatten the whole
+// thing with Array.prototype.concat. It is guaranteed to be only 1-level deep
+// because functional components already normalize their own children.
+function simpleNormalizeChildren (children) {
+  for (var i = 0; i < children.length; i++) {
+    if (Array.isArray(children[i])) {
+      return Array.prototype.concat.apply([], children)
+    }
+  }
+  return children
+}
+
+// 2. When the children contains constructs that always generated nested Arrays,
+// e.g. <template>, <slot>, v-for, or when the children is provided by user
+// with hand-written render functions / JSX. In such cases a full normalization
+// is needed to cater to all possible types of children values.
+function normalizeChildren (children) {
+  return isPrimitive(children)
+    ? [createTextVNode(children)]
+    : Array.isArray(children)
+      ? normalizeArrayChildren(children)
+      : undefined
+}
+
+function isTextNode (node) {
+  return isDef(node) && isDef(node.text) && isFalse(node.isComment)
+}
+
+function normalizeArrayChildren (children, nestedIndex) {
+  var res = [];
+  var i, c, last;
+  for (i = 0; i < children.length; i++) {
+    c = children[i];
+    if (isUndef(c) || typeof c === 'boolean') { continue }
+    last = res[res.length - 1];
+    //  nested
+    if (Array.isArray(c)) {
+      res.push.apply(res, normalizeArrayChildren(c, ((nestedIndex || '') + "_" + i)));
+    } else if (isPrimitive(c)) {
+      if (isTextNode(last)) {
+        // merge adjacent text nodes
+        // this is necessary for SSR hydration because text nodes are
+        // essentially merged when rendered to HTML strings
+        (last).text += String(c);
+      } else if (c !== '') {
+        // convert primitive to vnode
+        res.push(createTextVNode(c));
+      }
+    } else {
+      if (isTextNode(c) && isTextNode(last)) {
+        // merge adjacent text nodes
+        res[res.length - 1] = createTextVNode(last.text + c.text);
+      } else {
+        // default key for nested array children (likely generated by v-for)
+        if (isTrue(children._isVList) &&
+          isDef(c.tag) &&
+          isUndef(c.key) &&
+          isDef(nestedIndex)) {
+          c.key = "__vlist" + nestedIndex + "_" + i + "__";
+        }
+        res.push(c);
+      }
+    }
+  }
+  return res
+}
+
+/*  */
+
+function ensureCtor (comp, base) {
+  if (comp.__esModule && comp.default) {
+    comp = comp.default;
+  }
+  return isObject(comp)
+    ? base.extend(comp)
+    : comp
+}
+
+function createAsyncPlaceholder (
+  factory,
+  data,
+  context,
+  children,
+  tag
+) {
+  var node = createEmptyVNode();
+  node.asyncFactory = factory;
+  node.asyncMeta = { data: data, context: context, children: children, tag: tag };
+  return node
+}
+
+function resolveAsyncComponent (
+  factory,
+  baseCtor,
+  context
+) {
+  if (isTrue(factory.error) && isDef(factory.errorComp)) {
+    return factory.errorComp
+  }
+
+  if (isDef(factory.resolved)) {
+    return factory.resolved
+  }
+
+  if (isTrue(factory.loading) && isDef(factory.loadingComp)) {
+    return factory.loadingComp
+  }
+
+  if (isDef(factory.contexts)) {
+    // already pending
+    factory.contexts.push(context);
+  } else {
+    var contexts = factory.contexts = [context];
+    var sync = true;
+
+    var forceRender = function () {
+      for (var i = 0, l = contexts.length; i < l; i++) {
+        contexts[i].$forceUpdate();
+      }
+    };
+
+    var resolve = once(function (res) {
+      // cache resolved
+      factory.resolved = ensureCtor(res, baseCtor);
+      // invoke callbacks only if this is not a synchronous resolve
+      // (async resolves are shimmed as synchronous during SSR)
+      if (!sync) {
+        forceRender();
+      }
+    });
+
+    var reject = once(function (reason) {
+      "development" !== 'production' && warn(
+        "Failed to resolve async component: " + (String(factory)) +
+        (reason ? ("\nReason: " + reason) : '')
+      );
+      if (isDef(factory.errorComp)) {
+        factory.error = true;
+        forceRender();
+      }
+    });
+
+    var res = factory(resolve, reject);
+
+    if (isObject(res)) {
+      if (typeof res.then === 'function') {
+        // () => Promise
+        if (isUndef(factory.resolved)) {
+          res.then(resolve, reject);
+        }
+      } else if (isDef(res.component) && typeof res.component.then === 'function') {
+        res.component.then(resolve, reject);
+
+        if (isDef(res.error)) {
+          factory.errorComp = ensureCtor(res.error, baseCtor);
+        }
+
+        if (isDef(res.loading)) {
+          factory.loadingComp = ensureCtor(res.loading, baseCtor);
+          if (res.delay === 0) {
+            factory.loading = true;
+          } else {
+            setTimeout(function () {
+              if (isUndef(factory.resolved) && isUndef(factory.error)) {
+                factory.loading = true;
+                forceRender();
+              }
+            }, res.delay || 200);
+          }
+        }
+
+        if (isDef(res.timeout)) {
+          setTimeout(function () {
+            if (isUndef(factory.resolved)) {
+              reject(
+                "timeout (" + (res.timeout) + "ms)"
+              );
+            }
+          }, res.timeout);
+        }
+      }
+    }
+
+    sync = false;
+    // return in case resolved synchronously
+    return factory.loading
+      ? factory.loadingComp
+      : factory.resolved
+  }
+}
+
+/*  */
+
+function isAsyncPlaceholder (node) {
+  return node.isComment && node.asyncFactory
+}
+
+/*  */
+
+function getFirstComponentChild (children) {
+  if (Array.isArray(children)) {
+    for (var i = 0; i < children.length; i++) {
+      var c = children[i];
+      if (isDef(c) && (isDef(c.componentOptions) || isAsyncPlaceholder(c))) {
+        return c
+      }
+    }
+  }
+}
+
+/*  */
+
+/*  */
+
+function initEvents (vm) {
+  vm._events = Object.create(null);
+  vm._hasHookEvent = false;
+  // init parent attached events
+  var listeners = vm.$options._parentListeners;
+  if (listeners) {
+    updateComponentListeners(vm, listeners);
+  }
+}
+
+var target;
+
+function add (event, fn, once$$1) {
+  if (once$$1) {
+    target.$once(event, fn);
+  } else {
+    target.$on(event, fn);
+  }
+}
+
+function remove$1 (event, fn) {
+  target.$off(event, fn);
+}
+
+function updateComponentListeners (
+  vm,
+  listeners,
+  oldListeners
+) {
+  target = vm;
+  updateListeners(listeners, oldListeners || {}, add, remove$1, vm);
+}
+
+function eventsMixin (Vue) {
+  var hookRE = /^hook:/;
+  Vue.prototype.$on = function (event, fn) {
+    var this$1 = this;
+
+    var vm = this;
+    if (Array.isArray(event)) {
+      for (var i = 0, l = event.length; i < l; i++) {
+        this$1.$on(event[i], fn);
+      }
+    } else {
+      (vm._events[event] || (vm._events[event] = [])).push(fn);
+      // optimize hook:event cost by using a boolean flag marked at registration
+      // instead of a hash lookup
+      if (hookRE.test(event)) {
+        vm._hasHookEvent = true;
+      }
+    }
+    return vm
+  };
+
+  Vue.prototype.$once = function (event, fn) {
+    var vm = this;
+    function on () {
+      vm.$off(event, on);
+      fn.apply(vm, arguments);
+    }
+    on.fn = fn;
+    vm.$on(event, on);
+    return vm
+  };
+
+  Vue.prototype.$off = function (event, fn) {
+    var this$1 = this;
+
+    var vm = this;
+    // all
+    if (!arguments.length) {
+      vm._events = Object.create(null);
+      return vm
+    }
+    // array of events
+    if (Array.isArray(event)) {
+      for (var i = 0, l = event.length; i < l; i++) {
+        this$1.$off(event[i], fn);
+      }
+      return vm
+    }
+    // specific event
+    var cbs = vm._events[event];
+    if (!cbs) {
+      return vm
+    }
+    if (arguments.length === 1) {
+      vm._events[event] = null;
+      return vm
+    }
+    if (fn) {
+      // specific handler
+      var cb;
+      var i$1 = cbs.length;
+      while (i$1--) {
+        cb = cbs[i$1];
+        if (cb === fn || cb.fn === fn) {
+          cbs.splice(i$1, 1);
+          break
+        }
+      }
+    }
+    return vm
+  };
+
+  Vue.prototype.$emit = function (event) {
+    var vm = this;
+    {
+      var lowerCaseEvent = event.toLowerCase();
+      if (lowerCaseEvent !== event && vm._events[lowerCaseEvent]) {
+        tip(
+          "Event \"" + lowerCaseEvent + "\" is emitted in component " +
+          (formatComponentName(vm)) + " but the handler is registered for \"" + event + "\". " +
+          "Note that HTML attributes are case-insensitive and you cannot use " +
+          "v-on to listen to camelCase events when using in-DOM templates. " +
+          "You should probably use \"" + (hyphenate(event)) + "\" instead of \"" + event + "\"."
+        );
+      }
+    }
+    var cbs = vm._events[event];
+    if (cbs) {
+      cbs = cbs.length > 1 ? toArray(cbs) : cbs;
+      var args = toArray(arguments, 1);
+      for (var i = 0, l = cbs.length; i < l; i++) {
+        try {
+          cbs[i].apply(vm, args);
+        } catch (e) {
+          handleError(e, vm, ("event handler for \"" + event + "\""));
+        }
+      }
+    }
+    return vm
+  };
+}
+
+/*  */
+
+/**
+ * Runtime helper for resolving raw children VNodes into a slot object.
+ */
+function resolveSlots (
+  children,
+  context
+) {
+  var slots = {};
+  if (!children) {
+    return slots
+  }
+  var defaultSlot = [];
+  for (var i = 0, l = children.length; i < l; i++) {
+    var child = children[i];
+    var data = child.data;
+    // remove slot attribute if the node is resolved as a Vue slot node
+    if (data && data.attrs && data.attrs.slot) {
+      delete data.attrs.slot;
+    }
+    // named slots should only be respected if the vnode was rendered in the
+    // same context.
+    if ((child.context === context || child.functionalContext === context) &&
+      data && data.slot != null
+    ) {
+      var name = child.data.slot;
+      var slot = (slots[name] || (slots[name] = []));
+      if (child.tag === 'template') {
+        slot.push.apply(slot, child.children);
+      } else {
+        slot.push(child);
+      }
+    } else {
+      defaultSlot.push(child);
+    }
+  }
+  // ignore whitespace
+  if (!defaultSlot.every(isWhitespace)) {
+    slots.default = defaultSlot;
+  }
+  return slots
+}
+
+function isWhitespace (node) {
+  return node.isComment || node.text === ' '
+}
+
+function resolveScopedSlots (
+  fns, // see flow/vnode
+  res
+) {
+  res = res || {};
+  for (var i = 0; i < fns.length; i++) {
+    if (Array.isArray(fns[i])) {
+      resolveScopedSlots(fns[i], res);
+    } else {
+      res[fns[i].key] = fns[i].fn;
+    }
+  }
+  return res
+}
+
+/*  */
+
+var activeInstance = null;
+var isUpdatingChildComponent = false;
+
+function initLifecycle (vm) {
+  var options = vm.$options;
+
+  // locate first non-abstract parent
+  var parent = options.parent;
+  if (parent && !options.abstract) {
+    while (parent.$options.abstract && parent.$parent) {
+      parent = parent.$parent;
+    }
+    parent.$children.push(vm);
+  }
+
+  vm.$parent = parent;
+  vm.$root = parent ? parent.$root : vm;
+
+  vm.$children = [];
+  vm.$refs = {};
+
+  vm._watcher = null;
+  vm._inactive = null;
+  vm._directInactive = false;
+  vm._isMounted = false;
+  vm._isDestroyed = false;
+  vm._isBeingDestroyed = false;
+}
+
+function lifecycleMixin (Vue) {
+  Vue.prototype._update = function (vnode, hydrating) {
+    var vm = this;
+    if (vm._isMounted) {
+      callHook(vm, 'beforeUpdate');
+    }
+    var prevEl = vm.$el;
+    var prevVnode = vm._vnode;
+    var prevActiveInstance = activeInstance;
+    activeInstance = vm;
+    vm._vnode = vnode;
+    // Vue.prototype.__patch__ is injected in entry points
+    // based on the rendering backend used.
+    if (!prevVnode) {
+      // initial render
+      vm.$el = vm.__patch__(
+        vm.$el, vnode, hydrating, false /* removeOnly */,
+        vm.$options._parentElm,
+        vm.$options._refElm
+      );
+      // no need for the ref nodes after initial patch
+      // this prevents keeping a detached DOM tree in memory (#5851)
+      vm.$options._parentElm = vm.$options._refElm = null;
+    } else {
+      // updates
+      vm.$el = vm.__patch__(prevVnode, vnode);
+    }
+    activeInstance = prevActiveInstance;
+    // update __vue__ reference
+    if (prevEl) {
+      prevEl.__vue__ = null;
+    }
+    if (vm.$el) {
+      vm.$el.__vue__ = vm;
+    }
+    // if parent is an HOC, update its $el as well
+    if (vm.$vnode && vm.$parent && vm.$vnode === vm.$parent._vnode) {
+      vm.$parent.$el = vm.$el;
+    }
+    // updated hook is called by the scheduler to ensure that children are
+    // updated in a parent's updated hook.
+  };
+
+  Vue.prototype.$forceUpdate = function () {
+    var vm = this;
+    if (vm._watcher) {
+      vm._watcher.update();
+    }
+  };
+
+  Vue.prototype.$destroy = function () {
+    var vm = this;
+    if (vm._isBeingDestroyed) {
+      return
+    }
+    callHook(vm, 'beforeDestroy');
+    vm._isBeingDestroyed = true;
+    // remove self from parent
+    var parent = vm.$parent;
+    if (parent && !parent._isBeingDestroyed && !vm.$options.abstract) {
+      remove(parent.$children, vm);
+    }
+    // teardown watchers
+    if (vm._watcher) {
+      vm._watcher.teardown();
+    }
+    var i = vm._watchers.length;
+    while (i--) {
+      vm._watchers[i].teardown();
+    }
+    // remove reference from data ob
+    // frozen object may not have observer.
+    if (vm._data.__ob__) {
+      vm._data.__ob__.vmCount--;
+    }
+    // call the last hook...
+    vm._isDestroyed = true;
+    // invoke destroy hooks on current rendered tree
+    vm.__patch__(vm._vnode, null);
+    // fire destroyed hook
+    callHook(vm, 'destroyed');
+    // turn off all instance listeners.
+    vm.$off();
+    // remove __vue__ reference
+    if (vm.$el) {
+      vm.$el.__vue__ = null;
+    }
+  };
+}
+
+function mountComponent (
+  vm,
+  el,
+  hydrating
+) {
+  vm.$el = el;
+  if (!vm.$options.render) {
+    vm.$options.render = createEmptyVNode;
+    {
+      /* istanbul ignore if */
+      if ((vm.$options.template && vm.$options.template.charAt(0) !== '#') ||
+        vm.$options.el || el) {
+        warn(
+          'You are using the runtime-only build of Vue where the template ' +
+          'compiler is not available. Either pre-compile the templates into ' +
+          'render functions, or use the compiler-included build.',
+          vm
+        );
+      } else {
+        warn(
+          'Failed to mount component: template or render function not defined.',
+          vm
+        );
+      }
+    }
+  }
+  callHook(vm, 'beforeMount');
+
+  var updateComponent;
+  /* istanbul ignore if */
+  if ("development" !== 'production' && config.performance && mark) {
+    updateComponent = function () {
+      var name = vm._name;
+      var id = vm._uid;
+      var startTag = "vue-perf-start:" + id;
+      var endTag = "vue-perf-end:" + id;
+
+      mark(startTag);
+      var vnode = vm._render();
+      mark(endTag);
+      measure((name + " render"), startTag, endTag);
+
+      mark(startTag);
+      vm._update(vnode, hydrating);
+      mark(endTag);
+      measure((name + " patch"), startTag, endTag);
+    };
+  } else {
+    updateComponent = function () {
+      vm._update(vm._render(), hydrating);
+    };
+  }
+
+  vm._watcher = new Watcher(vm, updateComponent, noop);
+  hydrating = false;
+
+  // manually mounted instance, call mounted on self
+  // mounted is called for render-created child components in its inserted hook
+  if (vm.$vnode == null) {
+    vm._isMounted = true;
+    callHook(vm, 'mounted');
+  }
+  return vm
+}
+
+function updateChildComponent (
+  vm,
+  propsData,
+  listeners,
+  parentVnode,
+  renderChildren
+) {
+  {
+    isUpdatingChildComponent = true;
+  }
+
+  // determine whether component has slot children
+  // we need to do this before overwriting $options._renderChildren
+  var hasChildren = !!(
+    renderChildren ||               // has new static slots
+    vm.$options._renderChildren ||  // has old static slots
+    parentVnode.data.scopedSlots || // has new scoped slots
+    vm.$scopedSlots !== emptyObject // has old scoped slots
+  );
+
+  vm.$options._parentVnode = parentVnode;
+  vm.$vnode = parentVnode; // update vm's placeholder node without re-render
+
+  if (vm._vnode) { // update child tree's parent
+    vm._vnode.parent = parentVnode;
+  }
+  vm.$options._renderChildren = renderChildren;
+
+  // update $attrs and $listeners hash
+  // these are also reactive so they may trigger child update if the child
+  // used them during render
+  vm.$attrs = (parentVnode.data && parentVnode.data.attrs) || emptyObject;
+  vm.$listeners = listeners || emptyObject;
+
+  // update props
+  if (propsData && vm.$options.props) {
+    observerState.shouldConvert = false;
+    var props = vm._props;
+    var propKeys = vm.$options._propKeys || [];
+    for (var i = 0; i < propKeys.length; i++) {
+      var key = propKeys[i];
+      props[key] = validateProp(key, vm.$options.props, propsData, vm);
+    }
+    observerState.shouldConvert = true;
+    // keep a copy of raw propsData
+    vm.$options.propsData = propsData;
+  }
+
+  // update listeners
+  if (listeners) {
+    var oldListeners = vm.$options._parentListeners;
+    vm.$options._parentListeners = listeners;
+    updateComponentListeners(vm, listeners, oldListeners);
+  }
+  // resolve slots + force update if has children
+  if (hasChildren) {
+    vm.$slots = resolveSlots(renderChildren, parentVnode.context);
+    vm.$forceUpdate();
+  }
+
+  {
+    isUpdatingChildComponent = false;
+  }
+}
+
+function isInInactiveTree (vm) {
+  while (vm && (vm = vm.$parent)) {
+    if (vm._inactive) { return true }
+  }
+  return false
+}
+
+function activateChildComponent (vm, direct) {
+  if (direct) {
+    vm._directInactive = false;
+    if (isInInactiveTree(vm)) {
+      return
+    }
+  } else if (vm._directInactive) {
+    return
+  }
+  if (vm._inactive || vm._inactive === null) {
+    vm._inactive = false;
+    for (var i = 0; i < vm.$children.length; i++) {
+      activateChildComponent(vm.$children[i]);
+    }
+    callHook(vm, 'activated');
+  }
+}
+
+function deactivateChildComponent (vm, direct) {
+  if (direct) {
+    vm._directInactive = true;
+    if (isInInactiveTree(vm)) {
+      return
+    }
+  }
+  if (!vm._inactive) {
+    vm._inactive = true;
+    for (var i = 0; i < vm.$children.length; i++) {
+      deactivateChildComponent(vm.$children[i]);
+    }
+    callHook(vm, 'deactivated');
+  }
+}
+
+function callHook (vm, hook) {
+  var handlers = vm.$options[hook];
+  if (handlers) {
+    for (var i = 0, j = handlers.length; i < j; i++) {
+      try {
+        handlers[i].call(vm);
+      } catch (e) {
+        handleError(e, vm, (hook + " hook"));
+      }
+    }
+  }
+  if (vm._hasHookEvent) {
+    vm.$emit('hook:' + hook);
+  }
+}
+
+/*  */
+
+
+var MAX_UPDATE_COUNT = 100;
+
+var queue = [];
+var activatedChildren = [];
+var has = {};
+var circular = {};
+var waiting = false;
+var flushing = false;
+var index = 0;
+
+/**
+ * Reset the scheduler's state.
+ */
+function resetSchedulerState () {
+  index = queue.length = activatedChildren.length = 0;
+  has = {};
+  {
+    circular = {};
+  }
+  waiting = flushing = false;
+}
+
+/**
+ * Flush both queues and run the watchers.
+ */
+function flushSchedulerQueue () {
+  flushing = true;
+  var watcher, id;
+
+  // Sort queue before flush.
+  // This ensures that:
+  // 1. Components are updated from parent to child. (because parent is always
+  //    created before the child)
+  // 2. A component's user watchers are run before its render watcher (because
+  //    user watchers are created before the render watcher)
+  // 3. If a component is destroyed during a parent component's watcher run,
+  //    its watchers can be skipped.
+  queue.sort(function (a, b) { return a.id - b.id; });
+
+  // do not cache length because more watchers might be pushed
+  // as we run existing watchers
+  for (index = 0; index < queue.length; index++) {
+    watcher = queue[index];
+    id = watcher.id;
+    has[id] = null;
+    watcher.run();
+    // in dev build, check and stop circular updates.
+    if ("development" !== 'production' && has[id] != null) {
+      circular[id] = (circular[id] || 0) + 1;
+      if (circular[id] > MAX_UPDATE_COUNT) {
+        warn(
+          'You may have an infinite update loop ' + (
+            watcher.user
+              ? ("in watcher with expression \"" + (watcher.expression) + "\"")
+              : "in a component render function."
+          ),
+          watcher.vm
+        );
+        break
+      }
+    }
+  }
+
+  // keep copies of post queues before resetting state
+  var activatedQueue = activatedChildren.slice();
+  var updatedQueue = queue.slice();
+
+  resetSchedulerState();
+
+  // call component updated and activated hooks
+  callActivatedHooks(activatedQueue);
+  callUpdatedHooks(updatedQueue);
+
+  // devtool hook
+  /* istanbul ignore if */
+  if (devtools && config.devtools) {
+    devtools.emit('flush');
+  }
+}
+
+function callUpdatedHooks (queue) {
+  var i = queue.length;
+  while (i--) {
+    var watcher = queue[i];
+    var vm = watcher.vm;
+    if (vm._watcher === watcher && vm._isMounted) {
+      callHook(vm, 'updated');
+    }
+  }
+}
+
+/**
+ * Queue a kept-alive component that was activated during patch.
+ * The queue will be processed after the entire tree has been patched.
+ */
+function queueActivatedComponent (vm) {
+  // setting _inactive to false here so that a render function can
+  // rely on checking whether it's in an inactive tree (e.g. router-view)
+  vm._inactive = false;
+  activatedChildren.push(vm);
+}
+
+function callActivatedHooks (queue) {
+  for (var i = 0; i < queue.length; i++) {
+    queue[i]._inactive = true;
+    activateChildComponent(queue[i], true /* true */);
+  }
+}
+
+/**
+ * Push a watcher into the watcher queue.
+ * Jobs with duplicate IDs will be skipped unless it's
+ * pushed when the queue is being flushed.
+ */
+function queueWatcher (watcher) {
+  var id = watcher.id;
+  if (has[id] == null) {
+    has[id] = true;
+    if (!flushing) {
+      queue.push(watcher);
+    } else {
+      // if already flushing, splice the watcher based on its id
+      // if already past its id, it will be run next immediately.
+      var i = queue.length - 1;
+      while (i > index && queue[i].id > watcher.id) {
+        i--;
+      }
+      queue.splice(i + 1, 0, watcher);
+    }
+    // queue the flush
+    if (!waiting) {
+      waiting = true;
+      nextTick(flushSchedulerQueue);
+    }
+  }
+}
+
+/*  */
+
+var uid$2 = 0;
+
+/**
+ * A watcher parses an expression, collects dependencies,
+ * and fires callback when the expression value changes.
+ * This is used for both the $watch() api and directives.
+ */
+var Watcher = function Watcher (
+  vm,
+  expOrFn,
+  cb,
+  options
+) {
+  this.vm = vm;
+  vm._watchers.push(this);
+  // options
+  if (options) {
+    this.deep = !!options.deep;
+    this.user = !!options.user;
+    this.lazy = !!options.lazy;
+    this.sync = !!options.sync;
+  } else {
+    this.deep = this.user = this.lazy = this.sync = false;
+  }
+  this.cb = cb;
+  this.id = ++uid$2; // uid for batching
+  this.active = true;
+  this.dirty = this.lazy; // for lazy watchers
+  this.deps = [];
+  this.newDeps = [];
+  this.depIds = new _Set();
+  this.newDepIds = new _Set();
+  this.expression = expOrFn.toString();
+  // parse expression for getter
+  if (typeof expOrFn === 'function') {
+    this.getter = expOrFn;
+  } else {
+    this.getter = parsePath(expOrFn);
+    if (!this.getter) {
+      this.getter = function () {};
+      "development" !== 'production' && warn(
+        "Failed watching path: \"" + expOrFn + "\" " +
+        'Watcher only accepts simple dot-delimited paths. ' +
+        'For full control, use a function instead.',
+        vm
+      );
+    }
+  }
+  this.value = this.lazy
+    ? undefined
+    : this.get();
+};
+
+/**
+ * Evaluate the getter, and re-collect dependencies.
+ */
+Watcher.prototype.get = function get () {
+  pushTarget(this);
+  var value;
+  var vm = this.vm;
+  try {
+    value = this.getter.call(vm, vm);
+  } catch (e) {
+    if (this.user) {
+      handleError(e, vm, ("getter for watcher \"" + (this.expression) + "\""));
+    } else {
+      throw e
+    }
+  } finally {
+    // "touch" every property so they are all tracked as
+    // dependencies for deep watching
+    if (this.deep) {
+      traverse(value);
+    }
+    popTarget();
+    this.cleanupDeps();
+  }
+  return value
+};
+
+/**
+ * Add a dependency to this directive.
+ */
+Watcher.prototype.addDep = function addDep (dep) {
+  var id = dep.id;
+  if (!this.newDepIds.has(id)) {
+    this.newDepIds.add(id);
+    this.newDeps.push(dep);
+    if (!this.depIds.has(id)) {
+      dep.addSub(this);
+    }
+  }
+};
+
+/**
+ * Clean up for dependency collection.
+ */
+Watcher.prototype.cleanupDeps = function cleanupDeps () {
+    var this$1 = this;
+
+  var i = this.deps.length;
+  while (i--) {
+    var dep = this$1.deps[i];
+    if (!this$1.newDepIds.has(dep.id)) {
+      dep.removeSub(this$1);
+    }
+  }
+  var tmp = this.depIds;
+  this.depIds = this.newDepIds;
+  this.newDepIds = tmp;
+  this.newDepIds.clear();
+  tmp = this.deps;
+  this.deps = this.newDeps;
+  this.newDeps = tmp;
+  this.newDeps.length = 0;
+};
+
+/**
+ * Subscriber interface.
+ * Will be called when a dependency changes.
+ */
+Watcher.prototype.update = function update () {
+  /* istanbul ignore else */
+  if (this.lazy) {
+    this.dirty = true;
+  } else if (this.sync) {
+    this.run();
+  } else {
+    queueWatcher(this);
+  }
+};
+
+/**
+ * Scheduler job interface.
+ * Will be called by the scheduler.
+ */
+Watcher.prototype.run = function run () {
+  if (this.active) {
+    var value = this.get();
+    if (
+      value !== this.value ||
+      // Deep watchers and watchers on Object/Arrays should fire even
+      // when the value is the same, because the value may
+      // have mutated.
+      isObject(value) ||
+      this.deep
+    ) {
+      // set new value
+      var oldValue = this.value;
+      this.value = value;
+      if (this.user) {
+        try {
+          this.cb.call(this.vm, value, oldValue);
+        } catch (e) {
+          handleError(e, this.vm, ("callback for watcher \"" + (this.expression) + "\""));
+        }
+      } else {
+        this.cb.call(this.vm, value, oldValue);
+      }
+    }
+  }
+};
+
+/**
+ * Evaluate the value of the watcher.
+ * This only gets called for lazy watchers.
+ */
+Watcher.prototype.evaluate = function evaluate () {
+  this.value = this.get();
+  this.dirty = false;
+};
+
+/**
+ * Depend on all deps collected by this watcher.
+ */
+Watcher.prototype.depend = function depend () {
+    var this$1 = this;
+
+  var i = this.deps.length;
+  while (i--) {
+    this$1.deps[i].depend();
+  }
+};
+
+/**
+ * Remove self from all dependencies' subscriber list.
+ */
+Watcher.prototype.teardown = function teardown () {
+    var this$1 = this;
+
+  if (this.active) {
+    // remove self from vm's watcher list
+    // this is a somewhat expensive operation so we skip it
+    // if the vm is being destroyed.
+    if (!this.vm._isBeingDestroyed) {
+      remove(this.vm._watchers, this);
+    }
+    var i = this.deps.length;
+    while (i--) {
+      this$1.deps[i].removeSub(this$1);
+    }
+    this.active = false;
+  }
+};
+
+/**
+ * Recursively traverse an object to evoke all converted
+ * getters, so that every nested property inside the object
+ * is collected as a "deep" dependency.
+ */
+var seenObjects = new _Set();
+function traverse (val) {
+  seenObjects.clear();
+  _traverse(val, seenObjects);
+}
+
+function _traverse (val, seen) {
+  var i, keys;
+  var isA = Array.isArray(val);
+  if ((!isA && !isObject(val)) || !Object.isExtensible(val)) {
+    return
+  }
+  if (val.__ob__) {
+    var depId = val.__ob__.dep.id;
+    if (seen.has(depId)) {
+      return
+    }
+    seen.add(depId);
+  }
+  if (isA) {
+    i = val.length;
+    while (i--) { _traverse(val[i], seen); }
+  } else {
+    keys = Object.keys(val);
+    i = keys.length;
+    while (i--) { _traverse(val[keys[i]], seen); }
+  }
+}
+
+/*  */
+
+var sharedPropertyDefinition = {
+  enumerable: true,
+  configurable: true,
+  get: noop,
+  set: noop
+};
+
+function proxy (target, sourceKey, key) {
+  sharedPropertyDefinition.get = function proxyGetter () {
+    return this[sourceKey][key]
+  };
+  sharedPropertyDefinition.set = function proxySetter (val) {
+    this[sourceKey][key] = val;
+  };
+  Object.defineProperty(target, key, sharedPropertyDefinition);
+}
+
+function initState (vm) {
+  vm._watchers = [];
+  var opts = vm.$options;
+  if (opts.props) { initProps(vm, opts.props); }
+  if (opts.methods) { initMethods(vm, opts.methods); }
+  if (opts.data) {
+    initData(vm);
+  } else {
+    observe(vm._data = {}, true /* asRootData */);
+  }
+  if (opts.computed) { initComputed(vm, opts.computed); }
+  if (opts.watch && opts.watch !== nativeWatch) {
+    initWatch(vm, opts.watch);
+  }
+}
+
+function checkOptionType (vm, name) {
+  var option = vm.$options[name];
+  if (!isPlainObject(option)) {
+    warn(
+      ("component option \"" + name + "\" should be an object."),
+      vm
+    );
+  }
+}
+
+function initProps (vm, propsOptions) {
+  var propsData = vm.$options.propsData || {};
+  var props = vm._props = {};
+  // cache prop keys so that future props updates can iterate using Array
+  // instead of dynamic object key enumeration.
+  var keys = vm.$options._propKeys = [];
+  var isRoot = !vm.$parent;
+  // root instance props should be converted
+  observerState.shouldConvert = isRoot;
+  var loop = function ( key ) {
+    keys.push(key);
+    var value = validateProp(key, propsOptions, propsData, vm);
+    /* istanbul ignore else */
+    {
+      if (isReservedAttribute(key) || config.isReservedAttr(key)) {
+        warn(
+          ("\"" + key + "\" is a reserved attribute and cannot be used as component prop."),
+          vm
+        );
+      }
+      defineReactive$$1(props, key, value, function () {
+        if (vm.$parent && !isUpdatingChildComponent) {
+          warn(
+            "Avoid mutating a prop directly since the value will be " +
+            "overwritten whenever the parent component re-renders. " +
+            "Instead, use a data or computed property based on the prop's " +
+            "value. Prop being mutated: \"" + key + "\"",
+            vm
+          );
+        }
+      });
+    }
+    // static props are already proxied on the component's prototype
+    // during Vue.extend(). We only need to proxy props defined at
+    // instantiation here.
+    if (!(key in vm)) {
+      proxy(vm, "_props", key);
+    }
+  };
+
+  for (var key in propsOptions) loop( key );
+  observerState.shouldConvert = true;
+}
+
+function initData (vm) {
+  var data = vm.$options.data;
+  data = vm._data = typeof data === 'function'
+    ? getData(data, vm)
+    : data || {};
+  if (!isPlainObject(data)) {
+    data = {};
+    "development" !== 'production' && warn(
+      'data functions should return an object:\n' +
+      'https://vuejs.org/v2/guide/components.html#data-Must-Be-a-Function',
+      vm
+    );
+  }
+  // proxy data on instance
+  var keys = Object.keys(data);
+  var props = vm.$options.props;
+  var methods = vm.$options.methods;
+  var i = keys.length;
+  while (i--) {
+    var key = keys[i];
+    {
+      if (methods && hasOwn(methods, key)) {
+        warn(
+          ("Method \"" + key + "\" has already been defined as a data property."),
+          vm
+        );
+      }
+    }
+    if (props && hasOwn(props, key)) {
+      "development" !== 'production' && warn(
+        "The data property \"" + key + "\" is already declared as a prop. " +
+        "Use prop default value instead.",
+        vm
+      );
+    } else if (!isReserved(key)) {
+      proxy(vm, "_data", key);
+    }
+  }
+  // observe data
+  observe(data, true /* asRootData */);
+}
+
+function getData (data, vm) {
+  try {
+    return data.call(vm)
+  } catch (e) {
+    handleError(e, vm, "data()");
+    return {}
+  }
+}
+
+var computedWatcherOptions = { lazy: true };
+
+function initComputed (vm, computed) {
+  "development" !== 'production' && checkOptionType(vm, 'computed');
+  var watchers = vm._computedWatchers = Object.create(null);
+  // computed properties are just getters during SSR
+  var isSSR = isServerRendering();
+
+  for (var key in computed) {
+    var userDef = computed[key];
+    var getter = typeof userDef === 'function' ? userDef : userDef.get;
+    if ("development" !== 'production' && getter == null) {
+      warn(
+        ("Getter is missing for computed property \"" + key + "\"."),
+        vm
+      );
+    }
+
+    if (!isSSR) {
+      // create internal watcher for the computed property.
+      watchers[key] = new Watcher(
+        vm,
+        getter || noop,
+        noop,
+        computedWatcherOptions
+      );
+    }
+
+    // component-defined computed properties are already defined on the
+    // component prototype. We only need to define computed properties defined
+    // at instantiation here.
+    if (!(key in vm)) {
+      defineComputed(vm, key, userDef);
+    } else {
+      if (key in vm.$data) {
+        warn(("The computed property \"" + key + "\" is already defined in data."), vm);
+      } else if (vm.$options.props && key in vm.$options.props) {
+        warn(("The computed property \"" + key + "\" is already defined as a prop."), vm);
+      }
+    }
+  }
+}
+
+function defineComputed (
+  target,
+  key,
+  userDef
+) {
+  var shouldCache = !isServerRendering();
+  if (typeof userDef === 'function') {
+    sharedPropertyDefinition.get = shouldCache
+      ? createComputedGetter(key)
+      : userDef;
+    sharedPropertyDefinition.set = noop;
+  } else {
+    sharedPropertyDefinition.get = userDef.get
+      ? shouldCache && userDef.cache !== false
+        ? createComputedGetter(key)
+        : userDef.get
+      : noop;
+    sharedPropertyDefinition.set = userDef.set
+      ? userDef.set
+      : noop;
+  }
+  if ("development" !== 'production' &&
+      sharedPropertyDefinition.set === noop) {
+    sharedPropertyDefinition.set = function () {
+      warn(
+        ("Computed property \"" + key + "\" was assigned to but it has no setter."),
+        this
+      );
+    };
+  }
+  Object.defineProperty(target, key, sharedPropertyDefinition);
+}
+
+function createComputedGetter (key) {
+  return function computedGetter () {
+    var watcher = this._computedWatchers && this._computedWatchers[key];
+    if (watcher) {
+      if (watcher.dirty) {
+        watcher.evaluate();
+      }
+      if (Dep.target) {
+        watcher.depend();
+      }
+      return watcher.value
+    }
+  }
+}
+
+function initMethods (vm, methods) {
+  "development" !== 'production' && checkOptionType(vm, 'methods');
+  var props = vm.$options.props;
+  for (var key in methods) {
+    {
+      if (methods[key] == null) {
+        warn(
+          "Method \"" + key + "\" has an undefined value in the component definition. " +
+          "Did you reference the function correctly?",
+          vm
+        );
+      }
+      if (props && hasOwn(props, key)) {
+        warn(
+          ("Method \"" + key + "\" has already been defined as a prop."),
+          vm
+        );
+      }
+      if ((key in vm) && isReserved(key)) {
+        warn(
+          "Method \"" + key + "\" conflicts with an existing Vue instance method. " +
+          "Avoid defining component methods that start with _ or $."
+        );
+      }
+    }
+    vm[key] = methods[key] == null ? noop : bind(methods[key], vm);
+  }
+}
+
+function initWatch (vm, watch) {
+  "development" !== 'production' && checkOptionType(vm, 'watch');
+  for (var key in watch) {
+    var handler = watch[key];
+    if (Array.isArray(handler)) {
+      for (var i = 0; i < handler.length; i++) {
+        createWatcher(vm, key, handler[i]);
+      }
+    } else {
+      createWatcher(vm, key, handler);
+    }
+  }
+}
+
+function createWatcher (
+  vm,
+  keyOrFn,
+  handler,
+  options
+) {
+  if (isPlainObject(handler)) {
+    options = handler;
+    handler = handler.handler;
+  }
+  if (typeof handler === 'string') {
+    handler = vm[handler];
+  }
+  return vm.$watch(keyOrFn, handler, options)
+}
+
+function stateMixin (Vue) {
+  // flow somehow has problems with directly declared definition object
+  // when using Object.defineProperty, so we have to procedurally build up
+  // the object here.
+  var dataDef = {};
+  dataDef.get = function () { return this._data };
+  var propsDef = {};
+  propsDef.get = function () { return this._props };
+  {
+    dataDef.set = function (newData) {
+      warn(
+        'Avoid replacing instance root $data. ' +
+        'Use nested data properties instead.',
+        this
+      );
+    };
+    propsDef.set = function () {
+      warn("$props is readonly.", this);
+    };
+  }
+  Object.defineProperty(Vue.prototype, '$data', dataDef);
+  Object.defineProperty(Vue.prototype, '$props', propsDef);
+
+  Vue.prototype.$set = set;
+  Vue.prototype.$delete = del;
+
+  Vue.prototype.$watch = function (
+    expOrFn,
+    cb,
+    options
+  ) {
+    var vm = this;
+    if (isPlainObject(cb)) {
+      return createWatcher(vm, expOrFn, cb, options)
+    }
+    options = options || {};
+    options.user = true;
+    var watcher = new Watcher(vm, expOrFn, cb, options);
+    if (options.immediate) {
+      cb.call(vm, watcher.value);
+    }
+    return function unwatchFn () {
+      watcher.teardown();
+    }
+  };
+}
+
+/*  */
+
+function initProvide (vm) {
+  var provide = vm.$options.provide;
+  if (provide) {
+    vm._provided = typeof provide === 'function'
+      ? provide.call(vm)
+      : provide;
+  }
+}
+
+function initInjections (vm) {
+  var result = resolveInject(vm.$options.inject, vm);
+  if (result) {
+    observerState.shouldConvert = false;
+    Object.keys(result).forEach(function (key) {
+      /* istanbul ignore else */
+      {
+        defineReactive$$1(vm, key, result[key], function () {
+          warn(
+            "Avoid mutating an injected value directly since the changes will be " +
+            "overwritten whenever the provided component re-renders. " +
+            "injection being mutated: \"" + key + "\"",
+            vm
+          );
+        });
+      }
+    });
+    observerState.shouldConvert = true;
+  }
+}
+
+function resolveInject (inject, vm) {
+  if (inject) {
+    // inject is :any because flow is not smart enough to figure out cached
+    var result = Object.create(null);
+    var keys = hasSymbol
+        ? Reflect.ownKeys(inject).filter(function (key) {
+          /* istanbul ignore next */
+          return Object.getOwnPropertyDescriptor(inject, key).enumerable
+        })
+        : Object.keys(inject);
+
+    for (var i = 0; i < keys.length; i++) {
+      var key = keys[i];
+      var provideKey = inject[key];
+      var source = vm;
+      while (source) {
+        if (source._provided && provideKey in source._provided) {
+          result[key] = source._provided[provideKey];
+          break
+        }
+        source = source.$parent;
+      }
+      if ("development" !== 'production' && !source) {
+        warn(("Injection \"" + key + "\" not found"), vm);
+      }
+    }
+    return result
+  }
+}
+
+/*  */
+
+function createFunctionalComponent (
+  Ctor,
+  propsData,
+  data,
+  context,
+  children
+) {
+  var props = {};
+  var propOptions = Ctor.options.props;
+  if (isDef(propOptions)) {
+    for (var key in propOptions) {
+      props[key] = validateProp(key, propOptions, propsData || emptyObject);
+    }
+  } else {
+    if (isDef(data.attrs)) { mergeProps(props, data.attrs); }
+    if (isDef(data.props)) { mergeProps(props, data.props); }
+  }
+  // ensure the createElement function in functional components
+  // gets a unique context - this is necessary for correct named slot check
+  var _context = Object.create(context);
+  var h = function (a, b, c, d) { return createElement(_context, a, b, c, d, true); };
+  var vnode = Ctor.options.render.call(null, h, {
+    data: data,
+    props: props,
+    children: children,
+    parent: context,
+    listeners: data.on || emptyObject,
+    injections: resolveInject(Ctor.options.inject, context),
+    slots: function () { return resolveSlots(children, context); }
+  });
+  if (vnode instanceof VNode) {
+    vnode.functionalContext = context;
+    vnode.functionalOptions = Ctor.options;
+    if (data.slot) {
+      (vnode.data || (vnode.data = {})).slot = data.slot;
+    }
+  }
+  return vnode
+}
+
+function mergeProps (to, from) {
+  for (var key in from) {
+    to[camelize(key)] = from[key];
+  }
+}
+
+/*  */
+
+// hooks to be invoked on component VNodes during patch
+var componentVNodeHooks = {
+  init: function init (
+    vnode,
+    hydrating,
+    parentElm,
+    refElm
+  ) {
+    if (!vnode.componentInstance || vnode.componentInstance._isDestroyed) {
+      var child = vnode.componentInstance = createComponentInstanceForVnode(
+        vnode,
+        activeInstance,
+        parentElm,
+        refElm
+      );
+      child.$mount(hydrating ? vnode.elm : undefined, hydrating);
+    } else if (vnode.data.keepAlive) {
+      // kept-alive components, treat as a patch
+      var mountedNode = vnode; // work around flow
+      componentVNodeHooks.prepatch(mountedNode, mountedNode);
+    }
+  },
+
+  prepatch: function prepatch (oldVnode, vnode) {
+    var options = vnode.componentOptions;
+    var child = vnode.componentInstance = oldVnode.componentInstance;
+    updateChildComponent(
+      child,
+      options.propsData, // updated props
+      options.listeners, // updated listeners
+      vnode, // new parent vnode
+      options.children // new children
+    );
+  },
+
+  insert: function insert (vnode) {
+    var context = vnode.context;
+    var componentInstance = vnode.componentInstance;
+    if (!componentInstance._isMounted) {
+      componentInstance._isMounted = true;
+      callHook(componentInstance, 'mounted');
+    }
+    if (vnode.data.keepAlive) {
+      if (context._isMounted) {
+        // vue-router#1212
+        // During updates, a kept-alive component's child components may
+        // change, so directly walking the tree here may call activated hooks
+        // on incorrect children. Instead we push them into a queue which will
+        // be processed after the whole patch process ended.
+        queueActivatedComponent(componentInstance);
+      } else {
+        activateChildComponent(componentInstance, true /* direct */);
+      }
+    }
+  },
+
+  destroy: function destroy (vnode) {
+    var componentInstance = vnode.componentInstance;
+    if (!componentInstance._isDestroyed) {
+      if (!vnode.data.keepAlive) {
+        componentInstance.$destroy();
+      } else {
+        deactivateChildComponent(componentInstance, true /* direct */);
+      }
+    }
+  }
+};
+
+var hooksToMerge = Object.keys(componentVNodeHooks);
+
+function createComponent (
+  Ctor,
+  data,
+  context,
+  children,
+  tag
+) {
+  if (isUndef(Ctor)) {
+    return
+  }
+
+  var baseCtor = context.$options._base;
+
+  // plain options object: turn it into a constructor
+  if (isObject(Ctor)) {
+    Ctor = baseCtor.extend(Ctor);
+  }
+
+  // if at this stage it's not a constructor or an async component factory,
+  // reject.
+  if (typeof Ctor !== 'function') {
+    {
+      warn(("Invalid Component definition: " + (String(Ctor))), context);
+    }
+    return
+  }
+
+  // async component
+  var asyncFactory;
+  if (isUndef(Ctor.cid)) {
+    asyncFactory = Ctor;
+    Ctor = resolveAsyncComponent(asyncFactory, baseCtor, context);
+    if (Ctor === undefined) {
+      // return a placeholder node for async component, which is rendered
+      // as a comment node but preserves all the raw information for the node.
+      // the information will be used for async server-rendering and hydration.
+      return createAsyncPlaceholder(
+        asyncFactory,
+        data,
+        context,
+        children,
+        tag
+      )
+    }
+  }
+
+  data = data || {};
+
+  // resolve constructor options in case global mixins are applied after
+  // component constructor creation
+  resolveConstructorOptions(Ctor);
+
+  // transform component v-model data into props & events
+  if (isDef(data.model)) {
+    transformModel(Ctor.options, data);
+  }
+
+  // extract props
+  var propsData = extractPropsFromVNodeData(data, Ctor, tag);
+
+  // functional component
+  if (isTrue(Ctor.options.functional)) {
+    return createFunctionalComponent(Ctor, propsData, data, context, children)
+  }
+
+  // extract listeners, since these needs to be treated as
+  // child component listeners instead of DOM listeners
+  var listeners = data.on;
+  // replace with listeners with .native modifier
+  // so it gets processed during parent component patch.
+  data.on = data.nativeOn;
+
+  if (isTrue(Ctor.options.abstract)) {
+    // abstract components do not keep anything
+    // other than props & listeners & slot
+
+    // work around flow
+    var slot = data.slot;
+    data = {};
+    if (slot) {
+      data.slot = slot;
+    }
+  }
+
+  // merge component management hooks onto the placeholder node
+  mergeHooks(data);
+
+  // return a placeholder vnode
+  var name = Ctor.options.name || tag;
+  var vnode = new VNode(
+    ("vue-component-" + (Ctor.cid) + (name ? ("-" + name) : '')),
+    data, undefined, undefined, undefined, context,
+    { Ctor: Ctor, propsData: propsData, listeners: listeners, tag: tag, children: children },
+    asyncFactory
+  );
+  return vnode
+}
+
+function createComponentInstanceForVnode (
+  vnode, // we know it's MountedComponentVNode but flow doesn't
+  parent, // activeInstance in lifecycle state
+  parentElm,
+  refElm
+) {
+  var vnodeComponentOptions = vnode.componentOptions;
+  var options = {
+    _isComponent: true,
+    parent: parent,
+    propsData: vnodeComponentOptions.propsData,
+    _componentTag: vnodeComponentOptions.tag,
+    _parentVnode: vnode,
+    _parentListeners: vnodeComponentOptions.listeners,
+    _renderChildren: vnodeComponentOptions.children,
+    _parentElm: parentElm || null,
+    _refElm: refElm || null
+  };
+  // check inline-template render functions
+  var inlineTemplate = vnode.data.inlineTemplate;
+  if (isDef(inlineTemplate)) {
+    options.render = inlineTemplate.render;
+    options.staticRenderFns = inlineTemplate.staticRenderFns;
+  }
+  return new vnodeComponentOptions.Ctor(options)
+}
+
+function mergeHooks (data) {
+  if (!data.hook) {
+    data.hook = {};
+  }
+  for (var i = 0; i < hooksToMerge.length; i++) {
+    var key = hooksToMerge[i];
+    var fromParent = data.hook[key];
+    var ours = componentVNodeHooks[key];
+    data.hook[key] = fromParent ? mergeHook$1(ours, fromParent) : ours;
+  }
+}
+
+function mergeHook$1 (one, two) {
+  return function (a, b, c, d) {
+    one(a, b, c, d);
+    two(a, b, c, d);
+  }
+}
+
+// transform component v-model info (value and callback) into
+// prop and event handler respectively.
+function transformModel (options, data) {
+  var prop = (options.model && options.model.prop) || 'value';
+  var event = (options.model && options.model.event) || 'input';(data.props || (data.props = {}))[prop] = data.model.value;
+  var on = data.on || (data.on = {});
+  if (isDef(on[event])) {
+    on[event] = [data.model.callback].concat(on[event]);
+  } else {
+    on[event] = data.model.callback;
+  }
+}
+
+/*  */
+
+var SIMPLE_NORMALIZE = 1;
+var ALWAYS_NORMALIZE = 2;
+
+// wrapper function for providing a more flexible interface
+// without getting yelled at by flow
+function createElement (
+  context,
+  tag,
+  data,
+  children,
+  normalizationType,
+  alwaysNormalize
+) {
+  if (Array.isArray(data) || isPrimitive(data)) {
+    normalizationType = children;
+    children = data;
+    data = undefined;
+  }
+  if (isTrue(alwaysNormalize)) {
+    normalizationType = ALWAYS_NORMALIZE;
+  }
+  return _createElement(context, tag, data, children, normalizationType)
+}
+
+function _createElement (
+  context,
+  tag,
+  data,
+  children,
+  normalizationType
+) {
+  if (isDef(data) && isDef((data).__ob__)) {
+    "development" !== 'production' && warn(
+      "Avoid using observed data object as vnode data: " + (JSON.stringify(data)) + "\n" +
+      'Always create fresh vnode data objects in each render!',
+      context
+    );
+    return createEmptyVNode()
+  }
+  // object syntax in v-bind
+  if (isDef(data) && isDef(data.is)) {
+    tag = data.is;
+  }
+  if (!tag) {
+    // in case of component :is set to falsy value
+    return createEmptyVNode()
+  }
+  // warn against non-primitive key
+  if ("development" !== 'production' &&
+    isDef(data) && isDef(data.key) && !isPrimitive(data.key)
+  ) {
+    warn(
+      'Avoid using non-primitive value as key, ' +
+      'use string/number value instead.',
+      context
+    );
+  }
+  // support single function children as default scoped slot
+  if (Array.isArray(children) &&
+    typeof children[0] === 'function'
+  ) {
+    data = data || {};
+    data.scopedSlots = { default: children[0] };
+    children.length = 0;
+  }
+  if (normalizationType === ALWAYS_NORMALIZE) {
+    children = normalizeChildren(children);
+  } else if (normalizationType === SIMPLE_NORMALIZE) {
+    children = simpleNormalizeChildren(children);
+  }
+  var vnode, ns;
+  if (typeof tag === 'string') {
+    var Ctor;
+    ns = (context.$vnode && context.$vnode.ns) || config.getTagNamespace(tag);
+    if (config.isReservedTag(tag)) {
+      // platform built-in elements
+      vnode = new VNode(
+        config.parsePlatformTagName(tag), data, children,
+        undefined, undefined, context
+      );
+    } else if (isDef(Ctor = resolveAsset(context.$options, 'components', tag))) {
+      // component
+      vnode = createComponent(Ctor, data, context, children, tag);
+    } else {
+      // unknown or unlisted namespaced elements
+      // check at runtime because it may get assigned a namespace when its
+      // parent normalizes children
+      vnode = new VNode(
+        tag, data, children,
+        undefined, undefined, context
+      );
+    }
+  } else {
+    // direct component options / constructor
+    vnode = createComponent(tag, data, context, children);
+  }
+  if (isDef(vnode)) {
+    if (ns) { applyNS(vnode, ns); }
+    return vnode
+  } else {
+    return createEmptyVNode()
+  }
+}
+
+function applyNS (vnode, ns) {
+  vnode.ns = ns;
+  if (vnode.tag === 'foreignObject') {
+    // use default namespace inside foreignObject
+    return
+  }
+  if (isDef(vnode.children)) {
+    for (var i = 0, l = vnode.children.length; i < l; i++) {
+      var child = vnode.children[i];
+      if (isDef(child.tag) && isUndef(child.ns)) {
+        applyNS(child, ns);
+      }
+    }
+  }
+}
+
+/*  */
+
+/**
+ * Runtime helper for rendering v-for lists.
+ */
+function renderList (
+  val,
+  render
+) {
+  var ret, i, l, keys, key;
+  if (Array.isArray(val) || typeof val === 'string') {
+    ret = new Array(val.length);
+    for (i = 0, l = val.length; i < l; i++) {
+      ret[i] = render(val[i], i);
+    }
+  } else if (typeof val === 'number') {
+    ret = new Array(val);
+    for (i = 0; i < val; i++) {
+      ret[i] = render(i + 1, i);
+    }
+  } else if (isObject(val)) {
+    keys = Object.keys(val);
+    ret = new Array(keys.length);
+    for (i = 0, l = keys.length; i < l; i++) {
+      key = keys[i];
+      ret[i] = render(val[key], key, i);
+    }
+  }
+  if (isDef(ret)) {
+    (ret)._isVList = true;
+  }
+  return ret
+}
+
+/*  */
+
+/**
+ * Runtime helper for rendering <slot>
+ */
+function renderSlot (
+  name,
+  fallback,
+  props,
+  bindObject
+) {
+  var scopedSlotFn = this.$scopedSlots[name];
+  if (scopedSlotFn) { // scoped slot
+    props = props || {};
+    if (bindObject) {
+      props = extend(extend({}, bindObject), props);
+    }
+    return scopedSlotFn(props) || fallback
+  } else {
+    var slotNodes = this.$slots[name];
+    // warn duplicate slot usage
+    if (slotNodes && "development" !== 'production') {
+      slotNodes._rendered && warn(
+        "Duplicate presence of slot \"" + name + "\" found in the same render tree " +
+        "- this will likely cause render errors.",
+        this
+      );
+      slotNodes._rendered = true;
+    }
+    return slotNodes || fallback
+  }
+}
+
+/*  */
+
+/**
+ * Runtime helper for resolving filters
+ */
+function resolveFilter (id) {
+  return resolveAsset(this.$options, 'filters', id, true) || identity
+}
+
+/*  */
+
+/**
+ * Runtime helper for checking keyCodes from config.
+ */
+function checkKeyCodes (
+  eventKeyCode,
+  key,
+  builtInAlias
+) {
+  var keyCodes = config.keyCodes[key] || builtInAlias;
+  if (Array.isArray(keyCodes)) {
+    return keyCodes.indexOf(eventKeyCode) === -1
+  } else {
+    return keyCodes !== eventKeyCode
+  }
+}
+
+/*  */
+
+/**
+ * Runtime helper for merging v-bind="object" into a VNode's data.
+ */
+function bindObjectProps (
+  data,
+  tag,
+  value,
+  asProp,
+  isSync
+) {
+  if (value) {
+    if (!isObject(value)) {
+      "development" !== 'production' && warn(
+        'v-bind without argument expects an Object or Array value',
+        this
+      );
+    } else {
+      if (Array.isArray(value)) {
+        value = toObject(value);
+      }
+      var hash;
+      var loop = function ( key ) {
+        if (
+          key === 'class' ||
+          key === 'style' ||
+          isReservedAttribute(key)
+        ) {
+          hash = data;
+        } else {
+          var type = data.attrs && data.attrs.type;
+          hash = asProp || config.mustUseProp(tag, type, key)
+            ? data.domProps || (data.domProps = {})
+            : data.attrs || (data.attrs = {});
+        }
+        if (!(key in hash)) {
+          hash[key] = value[key];
+
+          if (isSync) {
+            var on = data.on || (data.on = {});
+            on[("update:" + key)] = function ($event) {
+              value[key] = $event;
+            };
+          }
+        }
+      };
+
+      for (var key in value) loop( key );
+    }
+  }
+  return data
+}
+
+/*  */
+
+/**
+ * Runtime helper for rendering static trees.
+ */
+function renderStatic (
+  index,
+  isInFor
+) {
+  var tree = this._staticTrees[index];
+  // if has already-rendered static tree and not inside v-for,
+  // we can reuse the same tree by doing a shallow clone.
+  if (tree && !isInFor) {
+    return Array.isArray(tree)
+      ? cloneVNodes(tree)
+      : cloneVNode(tree)
+  }
+  // otherwise, render a fresh tree.
+  tree = this._staticTrees[index] =
+    this.$options.staticRenderFns[index].call(this._renderProxy);
+  markStatic(tree, ("__static__" + index), false);
+  return tree
+}
+
+/**
+ * Runtime helper for v-once.
+ * Effectively it means marking the node as static with a unique key.
+ */
+function markOnce (
+  tree,
+  index,
+  key
+) {
+  markStatic(tree, ("__once__" + index + (key ? ("_" + key) : "")), true);
+  return tree
+}
+
+function markStatic (
+  tree,
+  key,
+  isOnce
+) {
+  if (Array.isArray(tree)) {
+    for (var i = 0; i < tree.length; i++) {
+      if (tree[i] && typeof tree[i] !== 'string') {
+        markStaticNode(tree[i], (key + "_" + i), isOnce);
+      }
+    }
+  } else {
+    markStaticNode(tree, key, isOnce);
+  }
+}
+
+function markStaticNode (node, key, isOnce) {
+  node.isStatic = true;
+  node.key = key;
+  node.isOnce = isOnce;
+}
+
+/*  */
+
+function bindObjectListeners (data, value) {
+  if (value) {
+    if (!isPlainObject(value)) {
+      "development" !== 'production' && warn(
+        'v-on without argument expects an Object value',
+        this
+      );
+    } else {
+      var on = data.on = data.on ? extend({}, data.on) : {};
+      for (var key in value) {
+        var existing = on[key];
+        var ours = value[key];
+        on[key] = existing ? [].concat(ours, existing) : ours;
+      }
+    }
+  }
+  return data
+}
+
+/*  */
+
+function initRender (vm) {
+  vm._vnode = null; // the root of the child tree
+  vm._staticTrees = null;
+  var parentVnode = vm.$vnode = vm.$options._parentVnode; // the placeholder node in parent tree
+  var renderContext = parentVnode && parentVnode.context;
+  vm.$slots = resolveSlots(vm.$options._renderChildren, renderContext);
+  vm.$scopedSlots = emptyObject;
+  // bind the createElement fn to this instance
+  // so that we get proper render context inside it.
+  // args order: tag, data, children, normalizationType, alwaysNormalize
+  // internal version is used by render functions compiled from templates
+  vm._c = function (a, b, c, d) { return createElement(vm, a, b, c, d, false); };
+  // normalization is always applied for the public version, used in
+  // user-written render functions.
+  vm.$createElement = function (a, b, c, d) { return createElement(vm, a, b, c, d, true); };
+
+  // $attrs & $listeners are exposed for easier HOC creation.
+  // they need to be reactive so that HOCs using them are always updated
+  var parentData = parentVnode && parentVnode.data;
+
+  /* istanbul ignore else */
+  {
+    defineReactive$$1(vm, '$attrs', parentData && parentData.attrs || emptyObject, function () {
+      !isUpdatingChildComponent && warn("$attrs is readonly.", vm);
+    }, true);
+    defineReactive$$1(vm, '$listeners', vm.$options._parentListeners || emptyObject, function () {
+      !isUpdatingChildComponent && warn("$listeners is readonly.", vm);
+    }, true);
+  }
+}
+
+function renderMixin (Vue) {
+  Vue.prototype.$nextTick = function (fn) {
+    return nextTick(fn, this)
+  };
+
+  Vue.prototype._render = function () {
+    var vm = this;
+    var ref = vm.$options;
+    var render = ref.render;
+    var staticRenderFns = ref.staticRenderFns;
+    var _parentVnode = ref._parentVnode;
+
+    if (vm._isMounted) {
+      // if the parent didn't update, the slot nodes will be the ones from
+      // last render. They need to be cloned to ensure "freshness" for this render.
+      for (var key in vm.$slots) {
+        var slot = vm.$slots[key];
+        if (slot._rendered) {
+          vm.$slots[key] = cloneVNodes(slot, true /* deep */);
+        }
+      }
+    }
+
+    vm.$scopedSlots = (_parentVnode && _parentVnode.data.scopedSlots) || emptyObject;
+
+    if (staticRenderFns && !vm._staticTrees) {
+      vm._staticTrees = [];
+    }
+    // set parent vnode. this allows render functions to have access
+    // to the data on the placeholder node.
+    vm.$vnode = _parentVnode;
+    // render self
+    var vnode;
+    try {
+      vnode = render.call(vm._renderProxy, vm.$createElement);
+    } catch (e) {
+      handleError(e, vm, "render function");
+      // return error render result,
+      // or previous vnode to prevent render error causing blank component
+      /* istanbul ignore else */
+      {
+        vnode = vm.$options.renderError
+          ? vm.$options.renderError.call(vm._renderProxy, vm.$createElement, e)
+          : vm._vnode;
+      }
+    }
+    // return empty vnode in case the render function errored out
+    if (!(vnode instanceof VNode)) {
+      if ("development" !== 'production' && Array.isArray(vnode)) {
+        warn(
+          'Multiple root nodes returned from render function. Render function ' +
+          'should return a single root node.',
+          vm
+        );
+      }
+      vnode = createEmptyVNode();
+    }
+    // set parent
+    vnode.parent = _parentVnode;
+    return vnode
+  };
+
+  // internal render helpers.
+  // these are exposed on the instance prototype to reduce generated render
+  // code size.
+  Vue.prototype._o = markOnce;
+  Vue.prototype._n = toNumber;
+  Vue.prototype._s = toString;
+  Vue.prototype._l = renderList;
+  Vue.prototype._t = renderSlot;
+  Vue.prototype._q = looseEqual;
+  Vue.prototype._i = looseIndexOf;
+  Vue.prototype._m = renderStatic;
+  Vue.prototype._f = resolveFilter;
+  Vue.prototype._k = checkKeyCodes;
+  Vue.prototype._b = bindObjectProps;
+  Vue.prototype._v = createTextVNode;
+  Vue.prototype._e = createEmptyVNode;
+  Vue.prototype._u = resolveScopedSlots;
+  Vue.prototype._g = bindObjectListeners;
+}
+
+/*  */
+
+var uid$1 = 0;
+
+function initMixin (Vue) {
+  Vue.prototype._init = function (options) {
+    var vm = this;
+    // a uid
+    vm._uid = uid$1++;
+
+    var startTag, endTag;
+    /* istanbul ignore if */
+    if ("development" !== 'production' && config.performance && mark) {
+      startTag = "vue-perf-init:" + (vm._uid);
+      endTag = "vue-perf-end:" + (vm._uid);
+      mark(startTag);
+    }
+
+    // a flag to avoid this being observed
+    vm._isVue = true;
+    // merge options
+    if (options && options._isComponent) {
+      // optimize internal component instantiation
+      // since dynamic options merging is pretty slow, and none of the
+      // internal component options needs special treatment.
+      initInternalComponent(vm, options);
+    } else {
+      vm.$options = mergeOptions(
+        resolveConstructorOptions(vm.constructor),
+        options || {},
+        vm
+      );
+    }
+    /* istanbul ignore else */
+    {
+      initProxy(vm);
+    }
+    // expose real self
+    vm._self = vm;
+    initLifecycle(vm);
+    initEvents(vm);
+    initRender(vm);
+    callHook(vm, 'beforeCreate');
+    initInjections(vm); // resolve injections before data/props
+    initState(vm);
+    initProvide(vm); // resolve provide after data/props
+    callHook(vm, 'created');
+
+    /* istanbul ignore if */
+    if ("development" !== 'production' && config.performance && mark) {
+      vm._name = formatComponentName(vm, false);
+      mark(endTag);
+      measure(((vm._name) + " init"), startTag, endTag);
+    }
+
+    if (vm.$options.el) {
+      vm.$mount(vm.$options.el);
+    }
+  };
+}
+
+function initInternalComponent (vm, options) {
+  var opts = vm.$options = Object.create(vm.constructor.options);
+  // doing this because it's faster than dynamic enumeration.
+  opts.parent = options.parent;
+  opts.propsData = options.propsData;
+  opts._parentVnode = options._parentVnode;
+  opts._parentListeners = options._parentListeners;
+  opts._renderChildren = options._renderChildren;
+  opts._componentTag = options._componentTag;
+  opts._parentElm = options._parentElm;
+  opts._refElm = options._refElm;
+  if (options.render) {
+    opts.render = options.render;
+    opts.staticRenderFns = options.staticRenderFns;
+  }
+}
+
+function resolveConstructorOptions (Ctor) {
+  var options = Ctor.options;
+  if (Ctor.super) {
+    var superOptions = resolveConstructorOptions(Ctor.super);
+    var cachedSuperOptions = Ctor.superOptions;
+    if (superOptions !== cachedSuperOptions) {
+      // super option changed,
+      // need to resolve new options.
+      Ctor.superOptions = superOptions;
+      // check if there are any late-modified/attached options (#4976)
+      var modifiedOptions = resolveModifiedOptions(Ctor);
+      // update base extend options
+      if (modifiedOptions) {
+        extend(Ctor.extendOptions, modifiedOptions);
+      }
+      options = Ctor.options = mergeOptions(superOptions, Ctor.extendOptions);
+      if (options.name) {
+        options.components[options.name] = Ctor;
+      }
+    }
+  }
+  return options
+}
+
+function resolveModifiedOptions (Ctor) {
+  var modified;
+  var latest = Ctor.options;
+  var extended = Ctor.extendOptions;
+  var sealed = Ctor.sealedOptions;
+  for (var key in latest) {
+    if (latest[key] !== sealed[key]) {
+      if (!modified) { modified = {}; }
+      modified[key] = dedupe(latest[key], extended[key], sealed[key]);
+    }
+  }
+  return modified
+}
+
+function dedupe (latest, extended, sealed) {
+  // compare latest and sealed to ensure lifecycle hooks won't be duplicated
+  // between merges
+  if (Array.isArray(latest)) {
+    var res = [];
+    sealed = Array.isArray(sealed) ? sealed : [sealed];
+    extended = Array.isArray(extended) ? extended : [extended];
+    for (var i = 0; i < latest.length; i++) {
+      // push original options and not sealed options to exclude duplicated options
+      if (extended.indexOf(latest[i]) >= 0 || sealed.indexOf(latest[i]) < 0) {
+        res.push(latest[i]);
+      }
+    }
+    return res
+  } else {
+    return latest
+  }
+}
+
+function Vue$3 (options) {
+  if ("development" !== 'production' &&
+    !(this instanceof Vue$3)
+  ) {
+    warn('Vue is a constructor and should be called with the `new` keyword');
+  }
+  this._init(options);
+}
+
+initMixin(Vue$3);
+stateMixin(Vue$3);
+eventsMixin(Vue$3);
+lifecycleMixin(Vue$3);
+renderMixin(Vue$3);
+
+/*  */
+
+function initUse (Vue) {
+  Vue.use = function (plugin) {
+    var installedPlugins = (this._installedPlugins || (this._installedPlugins = []));
+    if (installedPlugins.indexOf(plugin) > -1) {
+      return this
+    }
+
+    // additional parameters
+    var args = toArray(arguments, 1);
+    args.unshift(this);
+    if (typeof plugin.install === 'function') {
+      plugin.install.apply(plugin, args);
+    } else if (typeof plugin === 'function') {
+      plugin.apply(null, args);
+    }
+    installedPlugins.push(plugin);
+    return this
+  };
+}
+
+/*  */
+
+function initMixin$1 (Vue) {
+  Vue.mixin = function (mixin) {
+    this.options = mergeOptions(this.options, mixin);
+    return this
+  };
+}
+
+/*  */
+
+function initExtend (Vue) {
+  /**
+   * Each instance constructor, including Vue, has a unique
+   * cid. This enables us to create wrapped "child
+   * constructors" for prototypal inheritance and cache them.
+   */
+  Vue.cid = 0;
+  var cid = 1;
+
+  /**
+   * Class inheritance
+   */
+  Vue.extend = function (extendOptions) {
+    extendOptions = extendOptions || {};
+    var Super = this;
+    var SuperId = Super.cid;
+    var cachedCtors = extendOptions._Ctor || (extendOptions._Ctor = {});
+    if (cachedCtors[SuperId]) {
+      return cachedCtors[SuperId]
+    }
+
+    var name = extendOptions.name || Super.options.name;
+    {
+      if (!/^[a-zA-Z][\w-]*$/.test(name)) {
+        warn(
+          'Invalid component name: "' + name + '". Component names ' +
+          'can only contain alphanumeric characters and the hyphen, ' +
+          'and must start with a letter.'
+        );
+      }
+    }
+
+    var Sub = function VueComponent (options) {
+      this._init(options);
+    };
+    Sub.prototype = Object.create(Super.prototype);
+    Sub.prototype.constructor = Sub;
+    Sub.cid = cid++;
+    Sub.options = mergeOptions(
+      Super.options,
+      extendOptions
+    );
+    Sub['super'] = Super;
+
+    // For props and computed properties, we define the proxy getters on
+    // the Vue instances at extension time, on the extended prototype. This
+    // avoids Object.defineProperty calls for each instance created.
+    if (Sub.options.props) {
+      initProps$1(Sub);
+    }
+    if (Sub.options.computed) {
+      initComputed$1(Sub);
+    }
+
+    // allow further extension/mixin/plugin usage
+    Sub.extend = Super.extend;
+    Sub.mixin = Super.mixin;
+    Sub.use = Super.use;
+
+    // create asset registers, so extended classes
+    // can have their private assets too.
+    ASSET_TYPES.forEach(function (type) {
+      Sub[type] = Super[type];
+    });
+    // enable recursive self-lookup
+    if (name) {
+      Sub.options.components[name] = Sub;
+    }
+
+    // keep a reference to the super options at extension time.
+    // later at instantiation we can check if Super's options have
+    // been updated.
+    Sub.superOptions = Super.options;
+    Sub.extendOptions = extendOptions;
+    Sub.sealedOptions = extend({}, Sub.options);
+
+    // cache constructor
+    cachedCtors[SuperId] = Sub;
+    return Sub
+  };
+}
+
+function initProps$1 (Comp) {
+  var props = Comp.options.props;
+  for (var key in props) {
+    proxy(Comp.prototype, "_props", key);
+  }
+}
+
+function initComputed$1 (Comp) {
+  var computed = Comp.options.computed;
+  for (var key in computed) {
+    defineComputed(Comp.prototype, key, computed[key]);
+  }
+}
+
+/*  */
+
+function initAssetRegisters (Vue) {
+  /**
+   * Create asset registration methods.
+   */
+  ASSET_TYPES.forEach(function (type) {
+    Vue[type] = function (
+      id,
+      definition
+    ) {
+      if (!definition) {
+        return this.options[type + 's'][id]
+      } else {
+        /* istanbul ignore if */
+        {
+          if (type === 'component' && config.isReservedTag(id)) {
+            warn(
+              'Do not use built-in or reserved HTML elements as component ' +
+              'id: ' + id
+            );
+          }
+        }
+        if (type === 'component' && isPlainObject(definition)) {
+          definition.name = definition.name || id;
+          definition = this.options._base.extend(definition);
+        }
+        if (type === 'directive' && typeof definition === 'function') {
+          definition = { bind: definition, update: definition };
+        }
+        this.options[type + 's'][id] = definition;
+        return definition
+      }
+    };
+  });
+}
+
+/*  */
+
+var patternTypes = [String, RegExp, Array];
+
+function getComponentName (opts) {
+  return opts && (opts.Ctor.options.name || opts.tag)
+}
+
+function matches (pattern, name) {
+  if (Array.isArray(pattern)) {
+    return pattern.indexOf(name) > -1
+  } else if (typeof pattern === 'string') {
+    return pattern.split(',').indexOf(name) > -1
+  } else if (isRegExp(pattern)) {
+    return pattern.test(name)
+  }
+  /* istanbul ignore next */
+  return false
+}
+
+function pruneCache (cache, current, filter) {
+  for (var key in cache) {
+    var cachedNode = cache[key];
+    if (cachedNode) {
+      var name = getComponentName(cachedNode.componentOptions);
+      if (name && !filter(name)) {
+        if (cachedNode !== current) {
+          pruneCacheEntry(cachedNode);
+        }
+        cache[key] = null;
+      }
+    }
+  }
+}
+
+function pruneCacheEntry (vnode) {
+  if (vnode) {
+    vnode.componentInstance.$destroy();
+  }
+}
+
+var KeepAlive = {
+  name: 'keep-alive',
+  abstract: true,
+
+  props: {
+    include: patternTypes,
+    exclude: patternTypes
+  },
+
+  created: function created () {
+    this.cache = Object.create(null);
+  },
+
+  destroyed: function destroyed () {
+    var this$1 = this;
+
+    for (var key in this$1.cache) {
+      pruneCacheEntry(this$1.cache[key]);
+    }
+  },
+
+  watch: {
+    include: function include (val) {
+      pruneCache(this.cache, this._vnode, function (name) { return matches(val, name); });
+    },
+    exclude: function exclude (val) {
+      pruneCache(this.cache, this._vnode, function (name) { return !matches(val, name); });
+    }
+  },
+
+  render: function render () {
+    var vnode = getFirstComponentChild(this.$slots.default);
+    var componentOptions = vnode && vnode.componentOptions;
+    if (componentOptions) {
+      // check pattern
+      var name = getComponentName(componentOptions);
+      if (name && (
+        (this.include && !matches(this.include, name)) ||
+        (this.exclude && matches(this.exclude, name))
+      )) {
+        return vnode
+      }
+      var key = vnode.key == null
+        // same constructor may get registered as different local components
+        // so cid alone is not enough (#3269)
+        ? componentOptions.Ctor.cid + (componentOptions.tag ? ("::" + (componentOptions.tag)) : '')
+        : vnode.key;
+      if (this.cache[key]) {
+        vnode.componentInstance = this.cache[key].componentInstance;
+      } else {
+        this.cache[key] = vnode;
+      }
+      vnode.data.keepAlive = true;
+    }
+    return vnode
+  }
+};
+
+var builtInComponents = {
+  KeepAlive: KeepAlive
+};
+
+/*  */
+
+function initGlobalAPI (Vue) {
+  // config
+  var configDef = {};
+  configDef.get = function () { return config; };
+  {
+    configDef.set = function () {
+      warn(
+        'Do not replace the Vue.config object, set individual fields instead.'
+      );
+    };
+  }
+  Object.defineProperty(Vue, 'config', configDef);
+
+  // exposed util methods.
+  // NOTE: these are not considered part of the public API - avoid relying on
+  // them unless you are aware of the risk.
+  Vue.util = {
+    warn: warn,
+    extend: extend,
+    mergeOptions: mergeOptions,
+    defineReactive: defineReactive$$1
+  };
+
+  Vue.set = set;
+  Vue.delete = del;
+  Vue.nextTick = nextTick;
+
+  Vue.options = Object.create(null);
+  ASSET_TYPES.forEach(function (type) {
+    Vue.options[type + 's'] = Object.create(null);
+  });
+
+  // this is used to identify the "base" constructor to extend all plain-object
+  // components with in Weex's multi-instance scenarios.
+  Vue.options._base = Vue;
+
+  extend(Vue.options.components, builtInComponents);
+
+  initUse(Vue);
+  initMixin$1(Vue);
+  initExtend(Vue);
+  initAssetRegisters(Vue);
+}
+
+initGlobalAPI(Vue$3);
+
+Object.defineProperty(Vue$3.prototype, '$isServer', {
+  get: isServerRendering
+});
+
+Object.defineProperty(Vue$3.prototype, '$ssrContext', {
+  get: function get () {
+    /* istanbul ignore next */
+    return this.$vnode && this.$vnode.ssrContext
+  }
+});
+
+Vue$3.version = '2.4.4';
+
+/*  */
+
+// these are reserved for web because they are directly compiled away
+// during template compilation
+var isReservedAttr = makeMap('style,class');
+
+// attributes that should be using props for binding
+var acceptValue = makeMap('input,textarea,option,select,progress');
+var mustUseProp = function (tag, type, attr) {
+  return (
+    (attr === 'value' && acceptValue(tag)) && type !== 'button' ||
+    (attr === 'selected' && tag === 'option') ||
+    (attr === 'checked' && tag === 'input') ||
+    (attr === 'muted' && tag === 'video')
+  )
+};
+
+var isEnumeratedAttr = makeMap('contenteditable,draggable,spellcheck');
+
+var isBooleanAttr = makeMap(
+  'allowfullscreen,async,autofocus,autoplay,checked,compact,controls,declare,' +
+  'default,defaultchecked,defaultmuted,defaultselected,defer,disabled,' +
+  'enabled,formnovalidate,hidden,indeterminate,inert,ismap,itemscope,loop,multiple,' +
+  'muted,nohref,noresize,noshade,novalidate,nowrap,open,pauseonexit,readonly,' +
+  'required,reversed,scoped,seamless,selected,sortable,translate,' +
+  'truespeed,typemustmatch,visible'
+);
+
+var xlinkNS = 'http://www.w3.org/1999/xlink';
+
+var isXlink = function (name) {
+  return name.charAt(5) === ':' && name.slice(0, 5) === 'xlink'
+};
+
+var getXlinkProp = function (name) {
+  return isXlink(name) ? name.slice(6, name.length) : ''
+};
+
+var isFalsyAttrValue = function (val) {
+  return val == null || val === false
+};
+
+/*  */
+
+function genClassForVnode (vnode) {
+  var data = vnode.data;
+  var parentNode = vnode;
+  var childNode = vnode;
+  while (isDef(childNode.componentInstance)) {
+    childNode = childNode.componentInstance._vnode;
+    if (childNode.data) {
+      data = mergeClassData(childNode.data, data);
+    }
+  }
+  while (isDef(parentNode = parentNode.parent)) {
+    if (parentNode.data) {
+      data = mergeClassData(data, parentNode.data);
+    }
+  }
+  return renderClass(data.staticClass, data.class)
+}
+
+function mergeClassData (child, parent) {
+  return {
+    staticClass: concat(child.staticClass, parent.staticClass),
+    class: isDef(child.class)
+      ? [child.class, parent.class]
+      : parent.class
+  }
+}
+
+function renderClass (
+  staticClass,
+  dynamicClass
+) {
+  if (isDef(staticClass) || isDef(dynamicClass)) {
+    return concat(staticClass, stringifyClass(dynamicClass))
+  }
+  /* istanbul ignore next */
+  return ''
+}
+
+function concat (a, b) {
+  return a ? b ? (a + ' ' + b) : a : (b || '')
+}
+
+function stringifyClass (value) {
+  if (Array.isArray(value)) {
+    return stringifyArray(value)
+  }
+  if (isObject(value)) {
+    return stringifyObject(value)
+  }
+  if (typeof value === 'string') {
+    return value
+  }
+  /* istanbul ignore next */
+  return ''
+}
+
+function stringifyArray (value) {
+  var res = '';
+  var stringified;
+  for (var i = 0, l = value.length; i < l; i++) {
+    if (isDef(stringified = stringifyClass(value[i])) && stringified !== '') {
+      if (res) { res += ' '; }
+      res += stringified;
+    }
+  }
+  return res
+}
+
+function stringifyObject (value) {
+  var res = '';
+  for (var key in value) {
+    if (value[key]) {
+      if (res) { res += ' '; }
+      res += key;
+    }
+  }
+  return res
+}
+
+/*  */
+
+var namespaceMap = {
+  svg: 'http://www.w3.org/2000/svg',
+  math: 'http://www.w3.org/1998/Math/MathML'
+};
+
+var isHTMLTag = makeMap(
+  'html,body,base,head,link,meta,style,title,' +
+  'address,article,aside,footer,header,h1,h2,h3,h4,h5,h6,hgroup,nav,section,' +
+  'div,dd,dl,dt,figcaption,figure,picture,hr,img,li,main,ol,p,pre,ul,' +
+  'a,b,abbr,bdi,bdo,br,cite,code,data,dfn,em,i,kbd,mark,q,rp,rt,rtc,ruby,' +
+  's,samp,small,span,strong,sub,sup,time,u,var,wbr,area,audio,map,track,video,' +
+  'embed,object,param,source,canvas,script,noscript,del,ins,' +
+  'caption,col,colgroup,table,thead,tbody,td,th,tr,' +
+  'button,datalist,fieldset,form,input,label,legend,meter,optgroup,option,' +
+  'output,progress,select,textarea,' +
+  'details,dialog,menu,menuitem,summary,' +
+  'content,element,shadow,template,blockquote,iframe,tfoot'
+);
+
+// this map is intentionally selective, only covering SVG elements that may
+// contain child elements.
+var isSVG = makeMap(
+  'svg,animate,circle,clippath,cursor,defs,desc,ellipse,filter,font-face,' +
+  'foreignObject,g,glyph,image,line,marker,mask,missing-glyph,path,pattern,' +
+  'polygon,polyline,rect,switch,symbol,text,textpath,tspan,use,view',
+  true
+);
+
+var isPreTag = function (tag) { return tag === 'pre'; };
+
+var isReservedTag = function (tag) {
+  return isHTMLTag(tag) || isSVG(tag)
+};
+
+function getTagNamespace (tag) {
+  if (isSVG(tag)) {
+    return 'svg'
+  }
+  // basic support for MathML
+  // note it doesn't support other MathML elements being component roots
+  if (tag === 'math') {
+    return 'math'
+  }
+}
+
+var unknownElementCache = Object.create(null);
+function isUnknownElement (tag) {
+  /* istanbul ignore if */
+  if (!inBrowser) {
+    return true
+  }
+  if (isReservedTag(tag)) {
+    return false
+  }
+  tag = tag.toLowerCase();
+  /* istanbul ignore if */
+  if (unknownElementCache[tag] != null) {
+    return unknownElementCache[tag]
+  }
+  var el = document.createElement(tag);
+  if (tag.indexOf('-') > -1) {
+    // http://stackoverflow.com/a/28210364/1070244
+    return (unknownElementCache[tag] = (
+      el.constructor === window.HTMLUnknownElement ||
+      el.constructor === window.HTMLElement
+    ))
+  } else {
+    return (unknownElementCache[tag] = /HTMLUnknownElement/.test(el.toString()))
+  }
+}
+
+var isTextInputType = makeMap('text,number,password,search,email,tel,url');
+
+/*  */
+
+/**
+ * Query an element selector if it's not an element already.
+ */
+function query (el) {
+  if (typeof el === 'string') {
+    var selected = document.querySelector(el);
+    if (!selected) {
+      "development" !== 'production' && warn(
+        'Cannot find element: ' + el
+      );
+      return document.createElement('div')
+    }
+    return selected
+  } else {
+    return el
+  }
+}
+
+/*  */
+
+function createElement$1 (tagName, vnode) {
+  var elm = document.createElement(tagName);
+  if (tagName !== 'select') {
+    return elm
+  }
+  // false or null will remove the attribute but undefined will not
+  if (vnode.data && vnode.data.attrs && vnode.data.attrs.multiple !== undefined) {
+    elm.setAttribute('multiple', 'multiple');
+  }
+  return elm
+}
+
+function createElementNS (namespace, tagName) {
+  return document.createElementNS(namespaceMap[namespace], tagName)
+}
+
+function createTextNode (text) {
+  return document.createTextNode(text)
+}
+
+function createComment (text) {
+  return document.createComment(text)
+}
+
+function insertBefore (parentNode, newNode, referenceNode) {
+  parentNode.insertBefore(newNode, referenceNode);
+}
+
+function removeChild (node, child) {
+  node.removeChild(child);
+}
+
+function appendChild (node, child) {
+  node.appendChild(child);
+}
+
+function parentNode (node) {
+  return node.parentNode
+}
+
+function nextSibling (node) {
+  return node.nextSibling
+}
+
+function tagName (node) {
+  return node.tagName
+}
+
+function setTextContent (node, text) {
+  node.textContent = text;
+}
+
+function setAttribute (node, key, val) {
+  node.setAttribute(key, val);
+}
+
+
+var nodeOps = Object.freeze({
+	createElement: createElement$1,
+	createElementNS: createElementNS,
+	createTextNode: createTextNode,
+	createComment: createComment,
+	insertBefore: insertBefore,
+	removeChild: removeChild,
+	appendChild: appendChild,
+	parentNode: parentNode,
+	nextSibling: nextSibling,
+	tagName: tagName,
+	setTextContent: setTextContent,
+	setAttribute: setAttribute
+});
+
+/*  */
+
+var ref = {
+  create: function create (_, vnode) {
+    registerRef(vnode);
+  },
+  update: function update (oldVnode, vnode) {
+    if (oldVnode.data.ref !== vnode.data.ref) {
+      registerRef(oldVnode, true);
+      registerRef(vnode);
+    }
+  },
+  destroy: function destroy (vnode) {
+    registerRef(vnode, true);
+  }
+};
+
+function registerRef (vnode, isRemoval) {
+  var key = vnode.data.ref;
+  if (!key) { return }
+
+  var vm = vnode.context;
+  var ref = vnode.componentInstance || vnode.elm;
+  var refs = vm.$refs;
+  if (isRemoval) {
+    if (Array.isArray(refs[key])) {
+      remove(refs[key], ref);
+    } else if (refs[key] === ref) {
+      refs[key] = undefined;
+    }
+  } else {
+    if (vnode.data.refInFor) {
+      if (!Array.isArray(refs[key])) {
+        refs[key] = [ref];
+      } else if (refs[key].indexOf(ref) < 0) {
+        // $flow-disable-line
+        refs[key].push(ref);
+      }
+    } else {
+      refs[key] = ref;
+    }
+  }
+}
+
+/**
+ * Virtual DOM patching algorithm based on Snabbdom by
+ * Simon Friis Vindum (@paldepind)
+ * Licensed under the MIT License
+ * https://github.com/paldepind/snabbdom/blob/master/LICENSE
+ *
+ * modified by Evan You (@yyx990803)
+ *
+ * Not type-checking this because this file is perf-critical and the cost
+ * of making flow understand it is not worth it.
+ */
+
+var emptyNode = new VNode('', {}, []);
+
+var hooks = ['create', 'activate', 'update', 'remove', 'destroy'];
+
+function sameVnode (a, b) {
+  return (
+    a.key === b.key && (
+      (
+        a.tag === b.tag &&
+        a.isComment === b.isComment &&
+        isDef(a.data) === isDef(b.data) &&
+        sameInputType(a, b)
+      ) || (
+        isTrue(a.isAsyncPlaceholder) &&
+        a.asyncFactory === b.asyncFactory &&
+        isUndef(b.asyncFactory.error)
+      )
+    )
+  )
+}
+
+function sameInputType (a, b) {
+  if (a.tag !== 'input') { return true }
+  var i;
+  var typeA = isDef(i = a.data) && isDef(i = i.attrs) && i.type;
+  var typeB = isDef(i = b.data) && isDef(i = i.attrs) && i.type;
+  return typeA === typeB || isTextInputType(typeA) && isTextInputType(typeB)
+}
+
+function createKeyToOldIdx (children, beginIdx, endIdx) {
+  var i, key;
+  var map = {};
+  for (i = beginIdx; i <= endIdx; ++i) {
+    key = children[i].key;
+    if (isDef(key)) { map[key] = i; }
+  }
+  return map
+}
+
+function createPatchFunction (backend) {
+  var i, j;
+  var cbs = {};
+
+  var modules = backend.modules;
+  var nodeOps = backend.nodeOps;
+
+  for (i = 0; i < hooks.length; ++i) {
+    cbs[hooks[i]] = [];
+    for (j = 0; j < modules.length; ++j) {
+      if (isDef(modules[j][hooks[i]])) {
+        cbs[hooks[i]].push(modules[j][hooks[i]]);
+      }
+    }
+  }
+
+  function emptyNodeAt (elm) {
+    return new VNode(nodeOps.tagName(elm).toLowerCase(), {}, [], undefined, elm)
+  }
+
+  function createRmCb (childElm, listeners) {
+    function remove$$1 () {
+      if (--remove$$1.listeners === 0) {
+        removeNode(childElm);
+      }
+    }
+    remove$$1.listeners = listeners;
+    return remove$$1
+  }
+
+  function removeNode (el) {
+    var parent = nodeOps.parentNode(el);
+    // element may have already been removed due to v-html / v-text
+    if (isDef(parent)) {
+      nodeOps.removeChild(parent, el);
+    }
+  }
+
+  var inPre = 0;
+  function createElm (vnode, insertedVnodeQueue, parentElm, refElm, nested) {
+    vnode.isRootInsert = !nested; // for transition enter check
+    if (createComponent(vnode, insertedVnodeQueue, parentElm, refElm)) {
+      return
+    }
+
+    var data = vnode.data;
+    var children = vnode.children;
+    var tag = vnode.tag;
+    if (isDef(tag)) {
+      {
+        if (data && data.pre) {
+          inPre++;
+        }
+        if (
+          !inPre &&
+          !vnode.ns &&
+          !(config.ignoredElements.length && config.ignoredElements.indexOf(tag) > -1) &&
+          config.isUnknownElement(tag)
+        ) {
+          warn(
+            'Unknown custom element: <' + tag + '> - did you ' +
+            'register the component correctly? For recursive components, ' +
+            'make sure to provide the "name" option.',
+            vnode.context
+          );
+        }
+      }
+      vnode.elm = vnode.ns
+        ? nodeOps.createElementNS(vnode.ns, tag)
+        : nodeOps.createElement(tag, vnode);
+      setScope(vnode);
+
+      /* istanbul ignore if */
+      {
+        createChildren(vnode, children, insertedVnodeQueue);
+        if (isDef(data)) {
+          invokeCreateHooks(vnode, insertedVnodeQueue);
+        }
+        insert(parentElm, vnode.elm, refElm);
+      }
+
+      if ("development" !== 'production' && data && data.pre) {
+        inPre--;
+      }
+    } else if (isTrue(vnode.isComment)) {
+      vnode.elm = nodeOps.createComment(vnode.text);
+      insert(parentElm, vnode.elm, refElm);
+    } else {
+      vnode.elm = nodeOps.createTextNode(vnode.text);
+      insert(parentElm, vnode.elm, refElm);
+    }
+  }
+
+  function createComponent (vnode, insertedVnodeQueue, parentElm, refElm) {
+    var i = vnode.data;
+    if (isDef(i)) {
+      var isReactivated = isDef(vnode.componentInstance) && i.keepAlive;
+      if (isDef(i = i.hook) && isDef(i = i.init)) {
+        i(vnode, false /* hydrating */, parentElm, refElm);
+      }
+      // after calling the init hook, if the vnode is a child component
+      // it should've created a child instance and mounted it. the child
+      // component also has set the placeholder vnode's elm.
+      // in that case we can just return the element and be done.
+      if (isDef(vnode.componentInstance)) {
+        initComponent(vnode, insertedVnodeQueue);
+        if (isTrue(isReactivated)) {
+          reactivateComponent(vnode, insertedVnodeQueue, parentElm, refElm);
+        }
+        return true
+      }
+    }
+  }
+
+  function initComponent (vnode, insertedVnodeQueue) {
+    if (isDef(vnode.data.pendingInsert)) {
+      insertedVnodeQueue.push.apply(insertedVnodeQueue, vnode.data.pendingInsert);
+      vnode.data.pendingInsert = null;
+    }
+    vnode.elm = vnode.componentInstance.$el;
+    if (isPatchable(vnode)) {
+      invokeCreateHooks(vnode, insertedVnodeQueue);
+      setScope(vnode);
+    } else {
+      // empty component root.
+      // skip all element-related modules except for ref (#3455)
+      registerRef(vnode);
+      // make sure to invoke the insert hook
+      insertedVnodeQueue.push(vnode);
+    }
+  }
+
+  function reactivateComponent (vnode, insertedVnodeQueue, parentElm, refElm) {
+    var i;
+    // hack for #4339: a reactivated component with inner transition
+    // does not trigger because the inner node's created hooks are not called
+    // again. It's not ideal to involve module-specific logic in here but
+    // there doesn't seem to be a better way to do it.
+    var innerNode = vnode;
+    while (innerNode.componentInstance) {
+      innerNode = innerNode.componentInstance._vnode;
+      if (isDef(i = innerNode.data) && isDef(i = i.transition)) {
+        for (i = 0; i < cbs.activate.length; ++i) {
+          cbs.activate[i](emptyNode, innerNode);
+        }
+        insertedVnodeQueue.push(innerNode);
+        break
+      }
+    }
+    // unlike a newly created component,
+    // a reactivated keep-alive component doesn't insert itself
+    insert(parentElm, vnode.elm, refElm);
+  }
+
+  function insert (parent, elm, ref$$1) {
+    if (isDef(parent)) {
+      if (isDef(ref$$1)) {
+        if (ref$$1.parentNode === parent) {
+          nodeOps.insertBefore(parent, elm, ref$$1);
+        }
+      } else {
+        nodeOps.appendChild(parent, elm);
+      }
+    }
+  }
+
+  function createChildren (vnode, children, insertedVnodeQueue) {
+    if (Array.isArray(children)) {
+      for (var i = 0; i < children.length; ++i) {
+        createElm(children[i], insertedVnodeQueue, vnode.elm, null, true);
+      }
+    } else if (isPrimitive(vnode.text)) {
+      nodeOps.appendChild(vnode.elm, nodeOps.createTextNode(vnode.text));
+    }
+  }
+
+  function isPatchable (vnode) {
+    while (vnode.componentInstance) {
+      vnode = vnode.componentInstance._vnode;
+    }
+    return isDef(vnode.tag)
+  }
+
+  function invokeCreateHooks (vnode, insertedVnodeQueue) {
+    for (var i$1 = 0; i$1 < cbs.create.length; ++i$1) {
+      cbs.create[i$1](emptyNode, vnode);
+    }
+    i = vnode.data.hook; // Reuse variable
+    if (isDef(i)) {
+      if (isDef(i.create)) { i.create(emptyNode, vnode); }
+      if (isDef(i.insert)) { insertedVnodeQueue.push(vnode); }
+    }
+  }
+
+  // set scope id attribute for scoped CSS.
+  // this is implemented as a special case to avoid the overhead
+  // of going through the normal attribute patching process.
+  function setScope (vnode) {
+    var i;
+    var ancestor = vnode;
+    while (ancestor) {
+      if (isDef(i = ancestor.context) && isDef(i = i.$options._scopeId)) {
+        nodeOps.setAttribute(vnode.elm, i, '');
+      }
+      ancestor = ancestor.parent;
+    }
+    // for slot content they should also get the scopeId from the host instance.
+    if (isDef(i = activeInstance) &&
+      i !== vnode.context &&
+      isDef(i = i.$options._scopeId)
+    ) {
+      nodeOps.setAttribute(vnode.elm, i, '');
+    }
+  }
+
+  function addVnodes (parentElm, refElm, vnodes, startIdx, endIdx, insertedVnodeQueue) {
+    for (; startIdx <= endIdx; ++startIdx) {
+      createElm(vnodes[startIdx], insertedVnodeQueue, parentElm, refElm);
+    }
+  }
+
+  function invokeDestroyHook (vnode) {
+    var i, j;
+    var data = vnode.data;
+    if (isDef(data)) {
+      if (isDef(i = data.hook) && isDef(i = i.destroy)) { i(vnode); }
+      for (i = 0; i < cbs.destroy.length; ++i) { cbs.destroy[i](vnode); }
+    }
+    if (isDef(i = vnode.children)) {
+      for (j = 0; j < vnode.children.length; ++j) {
+        invokeDestroyHook(vnode.children[j]);
+      }
+    }
+  }
+
+  function removeVnodes (parentElm, vnodes, startIdx, endIdx) {
+    for (; startIdx <= endIdx; ++startIdx) {
+      var ch = vnodes[startIdx];
+      if (isDef(ch)) {
+        if (isDef(ch.tag)) {
+          removeAndInvokeRemoveHook(ch);
+          invokeDestroyHook(ch);
+        } else { // Text node
+          removeNode(ch.elm);
+        }
+      }
+    }
+  }
+
+  function removeAndInvokeRemoveHook (vnode, rm) {
+    if (isDef(rm) || isDef(vnode.data)) {
+      var i;
+      var listeners = cbs.remove.length + 1;
+      if (isDef(rm)) {
+        // we have a recursively passed down rm callback
+        // increase the listeners count
+        rm.listeners += listeners;
+      } else {
+        // directly removing
+        rm = createRmCb(vnode.elm, listeners);
+      }
+      // recursively invoke hooks on child component root node
+      if (isDef(i = vnode.componentInstance) && isDef(i = i._vnode) && isDef(i.data)) {
+        removeAndInvokeRemoveHook(i, rm);
+      }
+      for (i = 0; i < cbs.remove.length; ++i) {
+        cbs.remove[i](vnode, rm);
+      }
+      if (isDef(i = vnode.data.hook) && isDef(i = i.remove)) {
+        i(vnode, rm);
+      } else {
+        rm();
+      }
+    } else {
+      removeNode(vnode.elm);
+    }
+  }
+
+  function updateChildren (parentElm, oldCh, newCh, insertedVnodeQueue, removeOnly) {
+    var oldStartIdx = 0;
+    var newStartIdx = 0;
+    var oldEndIdx = oldCh.length - 1;
+    var oldStartVnode = oldCh[0];
+    var oldEndVnode = oldCh[oldEndIdx];
+    var newEndIdx = newCh.length - 1;
+    var newStartVnode = newCh[0];
+    var newEndVnode = newCh[newEndIdx];
+    var oldKeyToIdx, idxInOld, elmToMove, refElm;
+
+    // removeOnly is a special flag used only by <transition-group>
+    // to ensure removed elements stay in correct relative positions
+    // during leaving transitions
+    var canMove = !removeOnly;
+
+    while (oldStartIdx <= oldEndIdx && newStartIdx <= newEndIdx) {
+      if (isUndef(oldStartVnode)) {
+        oldStartVnode = oldCh[++oldStartIdx]; // Vnode has been moved left
+      } else if (isUndef(oldEndVnode)) {
+        oldEndVnode = oldCh[--oldEndIdx];
+      } else if (sameVnode(oldStartVnode, newStartVnode)) {
+        patchVnode(oldStartVnode, newStartVnode, insertedVnodeQueue);
+        oldStartVnode = oldCh[++oldStartIdx];
+        newStartVnode = newCh[++newStartIdx];
+      } else if (sameVnode(oldEndVnode, newEndVnode)) {
+        patchVnode(oldEndVnode, newEndVnode, insertedVnodeQueue);
+        oldEndVnode = oldCh[--oldEndIdx];
+        newEndVnode = newCh[--newEndIdx];
+      } else if (sameVnode(oldStartVnode, newEndVnode)) { // Vnode moved right
+        patchVnode(oldStartVnode, newEndVnode, insertedVnodeQueue);
+        canMove && nodeOps.insertBefore(parentElm, oldStartVnode.elm, nodeOps.nextSibling(oldEndVnode.elm));
+        oldStartVnode = oldCh[++oldStartIdx];
+        newEndVnode = newCh[--newEndIdx];
+      } else if (sameVnode(oldEndVnode, newStartVnode)) { // Vnode moved left
+        patchVnode(oldEndVnode, newStartVnode, insertedVnodeQueue);
+        canMove && nodeOps.insertBefore(parentElm, oldEndVnode.elm, oldStartVnode.elm);
+        oldEndVnode = oldCh[--oldEndIdx];
+        newStartVnode = newCh[++newStartIdx];
+      } else {
+        if (isUndef(oldKeyToIdx)) { oldKeyToIdx = createKeyToOldIdx(oldCh, oldStartIdx, oldEndIdx); }
+        idxInOld = isDef(newStartVnode.key)
+          ? oldKeyToIdx[newStartVnode.key]
+          : findIdxInOld(newStartVnode, oldCh, oldStartIdx, oldEndIdx);
+        if (isUndef(idxInOld)) { // New element
+          createElm(newStartVnode, insertedVnodeQueue, parentElm, oldStartVnode.elm);
+        } else {
+          elmToMove = oldCh[idxInOld];
+          /* istanbul ignore if */
+          if ("development" !== 'production' && !elmToMove) {
+            warn(
+              'It seems there are duplicate keys that is causing an update error. ' +
+              'Make sure each v-for item has a unique key.'
+            );
+          }
+          if (sameVnode(elmToMove, newStartVnode)) {
+            patchVnode(elmToMove, newStartVnode, insertedVnodeQueue);
+            oldCh[idxInOld] = undefined;
+            canMove && nodeOps.insertBefore(parentElm, elmToMove.elm, oldStartVnode.elm);
+          } else {
+            // same key but different element. treat as new element
+            createElm(newStartVnode, insertedVnodeQueue, parentElm, oldStartVnode.elm);
+          }
+        }
+        newStartVnode = newCh[++newStartIdx];
+      }
+    }
+    if (oldStartIdx > oldEndIdx) {
+      refElm = isUndef(newCh[newEndIdx + 1]) ? null : newCh[newEndIdx + 1].elm;
+      addVnodes(parentElm, refElm, newCh, newStartIdx, newEndIdx, insertedVnodeQueue);
+    } else if (newStartIdx > newEndIdx) {
+      removeVnodes(parentElm, oldCh, oldStartIdx, oldEndIdx);
+    }
+  }
+
+  function findIdxInOld (node, oldCh, start, end) {
+    for (var i = start; i < end; i++) {
+      var c = oldCh[i];
+      if (isDef(c) && sameVnode(node, c)) { return i }
+    }
+  }
+
+  function patchVnode (oldVnode, vnode, insertedVnodeQueue, removeOnly) {
+    if (oldVnode === vnode) {
+      return
+    }
+
+    var elm = vnode.elm = oldVnode.elm;
+
+    if (isTrue(oldVnode.isAsyncPlaceholder)) {
+      if (isDef(vnode.asyncFactory.resolved)) {
+        hydrate(oldVnode.elm, vnode, insertedVnodeQueue);
+      } else {
+        vnode.isAsyncPlaceholder = true;
+      }
+      return
+    }
+
+    // reuse element for static trees.
+    // note we only do this if the vnode is cloned -
+    // if the new node is not cloned it means the render functions have been
+    // reset by the hot-reload-api and we need to do a proper re-render.
+    if (isTrue(vnode.isStatic) &&
+      isTrue(oldVnode.isStatic) &&
+      vnode.key === oldVnode.key &&
+      (isTrue(vnode.isCloned) || isTrue(vnode.isOnce))
+    ) {
+      vnode.componentInstance = oldVnode.componentInstance;
+      return
+    }
+
+    var i;
+    var data = vnode.data;
+    if (isDef(data) && isDef(i = data.hook) && isDef(i = i.prepatch)) {
+      i(oldVnode, vnode);
+    }
+
+    var oldCh = oldVnode.children;
+    var ch = vnode.children;
+    if (isDef(data) && isPatchable(vnode)) {
+      for (i = 0; i < cbs.update.length; ++i) { cbs.update[i](oldVnode, vnode); }
+      if (isDef(i = data.hook) && isDef(i = i.update)) { i(oldVnode, vnode); }
+    }
+    if (isUndef(vnode.text)) {
+      if (isDef(oldCh) && isDef(ch)) {
+        if (oldCh !== ch) { updateChildren(elm, oldCh, ch, insertedVnodeQueue, removeOnly); }
+      } else if (isDef(ch)) {
+        if (isDef(oldVnode.text)) { nodeOps.setTextContent(elm, ''); }
+        addVnodes(elm, null, ch, 0, ch.length - 1, insertedVnodeQueue);
+      } else if (isDef(oldCh)) {
+        removeVnodes(elm, oldCh, 0, oldCh.length - 1);
+      } else if (isDef(oldVnode.text)) {
+        nodeOps.setTextContent(elm, '');
+      }
+    } else if (oldVnode.text !== vnode.text) {
+      nodeOps.setTextContent(elm, vnode.text);
+    }
+    if (isDef(data)) {
+      if (isDef(i = data.hook) && isDef(i = i.postpatch)) { i(oldVnode, vnode); }
+    }
+  }
+
+  function invokeInsertHook (vnode, queue, initial) {
+    // delay insert hooks for component root nodes, invoke them after the
+    // element is really inserted
+    if (isTrue(initial) && isDef(vnode.parent)) {
+      vnode.parent.data.pendingInsert = queue;
+    } else {
+      for (var i = 0; i < queue.length; ++i) {
+        queue[i].data.hook.insert(queue[i]);
+      }
+    }
+  }
+
+  var bailed = false;
+  // list of modules that can skip create hook during hydration because they
+  // are already rendered on the client or has no need for initialization
+  var isRenderedModule = makeMap('attrs,style,class,staticClass,staticStyle,key');
+
+  // Note: this is a browser-only function so we can assume elms are DOM nodes.
+  function hydrate (elm, vnode, insertedVnodeQueue) {
+    if (isTrue(vnode.isComment) && isDef(vnode.asyncFactory)) {
+      vnode.elm = elm;
+      vnode.isAsyncPlaceholder = true;
+      return true
+    }
+    {
+      if (!assertNodeMatch(elm, vnode)) {
+        return false
+      }
+    }
+    vnode.elm = elm;
+    var tag = vnode.tag;
+    var data = vnode.data;
+    var children = vnode.children;
+    if (isDef(data)) {
+      if (isDef(i = data.hook) && isDef(i = i.init)) { i(vnode, true /* hydrating */); }
+      if (isDef(i = vnode.componentInstance)) {
+        // child component. it should have hydrated its own tree.
+        initComponent(vnode, insertedVnodeQueue);
+        return true
+      }
+    }
+    if (isDef(tag)) {
+      if (isDef(children)) {
+        // empty element, allow client to pick up and populate children
+        if (!elm.hasChildNodes()) {
+          createChildren(vnode, children, insertedVnodeQueue);
+        } else {
+          // v-html and domProps: innerHTML
+          if (isDef(i = data) && isDef(i = i.domProps) && isDef(i = i.innerHTML)) {
+            if (i !== elm.innerHTML) {
+              /* istanbul ignore if */
+              if ("development" !== 'production' &&
+                typeof console !== 'undefined' &&
+                !bailed
+              ) {
+                bailed = true;
+                console.warn('Parent: ', elm);
+                console.warn('server innerHTML: ', i);
+                console.warn('client innerHTML: ', elm.innerHTML);
+              }
+              return false
+            }
+          } else {
+            // iterate and compare children lists
+            var childrenMatch = true;
+            var childNode = elm.firstChild;
+            for (var i$1 = 0; i$1 < children.length; i$1++) {
+              if (!childNode || !hydrate(childNode, children[i$1], insertedVnodeQueue)) {
+                childrenMatch = false;
+                break
+              }
+              childNode = childNode.nextSibling;
+            }
+            // if childNode is not null, it means the actual childNodes list is
+            // longer than the virtual children list.
+            if (!childrenMatch || childNode) {
+              /* istanbul ignore if */
+              if ("development" !== 'production' &&
+                typeof console !== 'undefined' &&
+                !bailed
+              ) {
+                bailed = true;
+                console.warn('Parent: ', elm);
+                console.warn('Mismatching childNodes vs. VNodes: ', elm.childNodes, children);
+              }
+              return false
+            }
+          }
+        }
+      }
+      if (isDef(data)) {
+        for (var key in data) {
+          if (!isRenderedModule(key)) {
+            invokeCreateHooks(vnode, insertedVnodeQueue);
+            break
+          }
+        }
+      }
+    } else if (elm.data !== vnode.text) {
+      elm.data = vnode.text;
+    }
+    return true
+  }
+
+  function assertNodeMatch (node, vnode) {
+    if (isDef(vnode.tag)) {
+      return (
+        vnode.tag.indexOf('vue-component') === 0 ||
+        vnode.tag.toLowerCase() === (node.tagName && node.tagName.toLowerCase())
+      )
+    } else {
+      return node.nodeType === (vnode.isComment ? 8 : 3)
+    }
+  }
+
+  return function patch (oldVnode, vnode, hydrating, removeOnly, parentElm, refElm) {
+    if (isUndef(vnode)) {
+      if (isDef(oldVnode)) { invokeDestroyHook(oldVnode); }
+      return
+    }
+
+    var isInitialPatch = false;
+    var insertedVnodeQueue = [];
+
+    if (isUndef(oldVnode)) {
+      // empty mount (likely as component), create new root element
+      isInitialPatch = true;
+      createElm(vnode, insertedVnodeQueue, parentElm, refElm);
+    } else {
+      var isRealElement = isDef(oldVnode.nodeType);
+      if (!isRealElement && sameVnode(oldVnode, vnode)) {
+        // patch existing root node
+        patchVnode(oldVnode, vnode, insertedVnodeQueue, removeOnly);
+      } else {
+        if (isRealElement) {
+          // mounting to a real element
+          // check if this is server-rendered content and if we can perform
+          // a successful hydration.
+          if (oldVnode.nodeType === 1 && oldVnode.hasAttribute(SSR_ATTR)) {
+            oldVnode.removeAttribute(SSR_ATTR);
+            hydrating = true;
+          }
+          if (isTrue(hydrating)) {
+            if (hydrate(oldVnode, vnode, insertedVnodeQueue)) {
+              invokeInsertHook(vnode, insertedVnodeQueue, true);
+              return oldVnode
+            } else {
+              warn(
+                'The client-side rendered virtual DOM tree is not matching ' +
+                'server-rendered content. This is likely caused by incorrect ' +
+                'HTML markup, for example nesting block-level elements inside ' +
+                '<p>, or missing <tbody>. Bailing hydration and performing ' +
+                'full client-side render.'
+              );
+            }
+          }
+          // either not server-rendered, or hydration failed.
+          // create an empty node and replace it
+          oldVnode = emptyNodeAt(oldVnode);
+        }
+        // replacing existing element
+        var oldElm = oldVnode.elm;
+        var parentElm$1 = nodeOps.parentNode(oldElm);
+        createElm(
+          vnode,
+          insertedVnodeQueue,
+          // extremely rare edge case: do not insert if old element is in a
+          // leaving transition. Only happens when combining transition +
+          // keep-alive + HOCs. (#4590)
+          oldElm._leaveCb ? null : parentElm$1,
+          nodeOps.nextSibling(oldElm)
+        );
+
+        if (isDef(vnode.parent)) {
+          // component root element replaced.
+          // update parent placeholder node element, recursively
+          var ancestor = vnode.parent;
+          var patchable = isPatchable(vnode);
+          while (ancestor) {
+            for (var i = 0; i < cbs.destroy.length; ++i) {
+              cbs.destroy[i](ancestor);
+            }
+            ancestor.elm = vnode.elm;
+            if (patchable) {
+              for (var i$1 = 0; i$1 < cbs.create.length; ++i$1) {
+                cbs.create[i$1](emptyNode, ancestor);
+              }
+              // #6513
+              // invoke insert hooks that may have been merged by create hooks.
+              // e.g. for directives that uses the "inserted" hook.
+              var insert = ancestor.data.hook.insert;
+              if (insert.merged) {
+                // start at index 1 to avoid re-invoking component mounted hook
+                for (var i$2 = 1; i$2 < insert.fns.length; i$2++) {
+                  insert.fns[i$2]();
+                }
+              }
+            }
+            ancestor = ancestor.parent;
+          }
+        }
+
+        if (isDef(parentElm$1)) {
+          removeVnodes(parentElm$1, [oldVnode], 0, 0);
+        } else if (isDef(oldVnode.tag)) {
+          invokeDestroyHook(oldVnode);
+        }
+      }
+    }
+
+    invokeInsertHook(vnode, insertedVnodeQueue, isInitialPatch);
+    return vnode.elm
+  }
+}
+
+/*  */
+
+var directives = {
+  create: updateDirectives,
+  update: updateDirectives,
+  destroy: function unbindDirectives (vnode) {
+    updateDirectives(vnode, emptyNode);
+  }
+};
+
+function updateDirectives (oldVnode, vnode) {
+  if (oldVnode.data.directives || vnode.data.directives) {
+    _update(oldVnode, vnode);
+  }
+}
+
+function _update (oldVnode, vnode) {
+  var isCreate = oldVnode === emptyNode;
+  var isDestroy = vnode === emptyNode;
+  var oldDirs = normalizeDirectives$1(oldVnode.data.directives, oldVnode.context);
+  var newDirs = normalizeDirectives$1(vnode.data.directives, vnode.context);
+
+  var dirsWithInsert = [];
+  var dirsWithPostpatch = [];
+
+  var key, oldDir, dir;
+  for (key in newDirs) {
+    oldDir = oldDirs[key];
+    dir = newDirs[key];
+    if (!oldDir) {
+      // new directive, bind
+      callHook$1(dir, 'bind', vnode, oldVnode);
+      if (dir.def && dir.def.inserted) {
+        dirsWithInsert.push(dir);
+      }
+    } else {
+      // existing directive, update
+      dir.oldValue = oldDir.value;
+      callHook$1(dir, 'update', vnode, oldVnode);
+      if (dir.def && dir.def.componentUpdated) {
+        dirsWithPostpatch.push(dir);
+      }
+    }
+  }
+
+  if (dirsWithInsert.length) {
+    var callInsert = function () {
+      for (var i = 0; i < dirsWithInsert.length; i++) {
+        callHook$1(dirsWithInsert[i], 'inserted', vnode, oldVnode);
+      }
+    };
+    if (isCreate) {
+      mergeVNodeHook(vnode.data.hook || (vnode.data.hook = {}), 'insert', callInsert);
+    } else {
+      callInsert();
+    }
+  }
+
+  if (dirsWithPostpatch.length) {
+    mergeVNodeHook(vnode.data.hook || (vnode.data.hook = {}), 'postpatch', function () {
+      for (var i = 0; i < dirsWithPostpatch.length; i++) {
+        callHook$1(dirsWithPostpatch[i], 'componentUpdated', vnode, oldVnode);
+      }
+    });
+  }
+
+  if (!isCreate) {
+    for (key in oldDirs) {
+      if (!newDirs[key]) {
+        // no longer present, unbind
+        callHook$1(oldDirs[key], 'unbind', oldVnode, oldVnode, isDestroy);
+      }
+    }
+  }
+}
+
+var emptyModifiers = Object.create(null);
+
+function normalizeDirectives$1 (
+  dirs,
+  vm
+) {
+  var res = Object.create(null);
+  if (!dirs) {
+    return res
+  }
+  var i, dir;
+  for (i = 0; i < dirs.length; i++) {
+    dir = dirs[i];
+    if (!dir.modifiers) {
+      dir.modifiers = emptyModifiers;
+    }
+    res[getRawDirName(dir)] = dir;
+    dir.def = resolveAsset(vm.$options, 'directives', dir.name, true);
+  }
+  return res
+}
+
+function getRawDirName (dir) {
+  return dir.rawName || ((dir.name) + "." + (Object.keys(dir.modifiers || {}).join('.')))
+}
+
+function callHook$1 (dir, hook, vnode, oldVnode, isDestroy) {
+  var fn = dir.def && dir.def[hook];
+  if (fn) {
+    try {
+      fn(vnode.elm, dir, vnode, oldVnode, isDestroy);
+    } catch (e) {
+      handleError(e, vnode.context, ("directive " + (dir.name) + " " + hook + " hook"));
+    }
+  }
+}
+
+var baseModules = [
+  ref,
+  directives
+];
+
+/*  */
+
+function updateAttrs (oldVnode, vnode) {
+  var opts = vnode.componentOptions;
+  if (isDef(opts) && opts.Ctor.options.inheritAttrs === false) {
+    return
+  }
+  if (isUndef(oldVnode.data.attrs) && isUndef(vnode.data.attrs)) {
+    return
+  }
+  var key, cur, old;
+  var elm = vnode.elm;
+  var oldAttrs = oldVnode.data.attrs || {};
+  var attrs = vnode.data.attrs || {};
+  // clone observed objects, as the user probably wants to mutate it
+  if (isDef(attrs.__ob__)) {
+    attrs = vnode.data.attrs = extend({}, attrs);
+  }
+
+  for (key in attrs) {
+    cur = attrs[key];
+    old = oldAttrs[key];
+    if (old !== cur) {
+      setAttr(elm, key, cur);
+    }
+  }
+  // #4391: in IE9, setting type can reset value for input[type=radio]
+  /* istanbul ignore if */
+  if (isIE9 && attrs.value !== oldAttrs.value) {
+    setAttr(elm, 'value', attrs.value);
+  }
+  for (key in oldAttrs) {
+    if (isUndef(attrs[key])) {
+      if (isXlink(key)) {
+        elm.removeAttributeNS(xlinkNS, getXlinkProp(key));
+      } else if (!isEnumeratedAttr(key)) {
+        elm.removeAttribute(key);
+      }
+    }
+  }
+}
+
+function setAttr (el, key, value) {
+  if (isBooleanAttr(key)) {
+    // set attribute for blank value
+    // e.g. <option disabled>Select one</option>
+    if (isFalsyAttrValue(value)) {
+      el.removeAttribute(key);
+    } else {
+      // technically allowfullscreen is a boolean attribute for <iframe>,
+      // but Flash expects a value of "true" when used on <embed> tag
+      value = key === 'allowfullscreen' && el.tagName === 'EMBED'
+        ? 'true'
+        : key;
+      el.setAttribute(key, value);
+    }
+  } else if (isEnumeratedAttr(key)) {
+    el.setAttribute(key, isFalsyAttrValue(value) || value === 'false' ? 'false' : 'true');
+  } else if (isXlink(key)) {
+    if (isFalsyAttrValue(value)) {
+      el.removeAttributeNS(xlinkNS, getXlinkProp(key));
+    } else {
+      el.setAttributeNS(xlinkNS, key, value);
+    }
+  } else {
+    if (isFalsyAttrValue(value)) {
+      el.removeAttribute(key);
+    } else {
+      el.setAttribute(key, value);
+    }
+  }
+}
+
+var attrs = {
+  create: updateAttrs,
+  update: updateAttrs
+};
+
+/*  */
+
+function updateClass (oldVnode, vnode) {
+  var el = vnode.elm;
+  var data = vnode.data;
+  var oldData = oldVnode.data;
+  if (
+    isUndef(data.staticClass) &&
+    isUndef(data.class) && (
+      isUndef(oldData) || (
+        isUndef(oldData.staticClass) &&
+        isUndef(oldData.class)
+      )
+    )
+  ) {
+    return
+  }
+
+  var cls = genClassForVnode(vnode);
+
+  // handle transition classes
+  var transitionClass = el._transitionClasses;
+  if (isDef(transitionClass)) {
+    cls = concat(cls, stringifyClass(transitionClass));
+  }
+
+  // set the class
+  if (cls !== el._prevClass) {
+    el.setAttribute('class', cls);
+    el._prevClass = cls;
+  }
+}
+
+var klass = {
+  create: updateClass,
+  update: updateClass
+};
+
+/*  */
+
+var validDivisionCharRE = /[\w).+\-_$\]]/;
+
+function parseFilters (exp) {
+  var inSingle = false;
+  var inDouble = false;
+  var inTemplateString = false;
+  var inRegex = false;
+  var curly = 0;
+  var square = 0;
+  var paren = 0;
+  var lastFilterIndex = 0;
+  var c, prev, i, expression, filters;
+
+  for (i = 0; i < exp.length; i++) {
+    prev = c;
+    c = exp.charCodeAt(i);
+    if (inSingle) {
+      if (c === 0x27 && prev !== 0x5C) { inSingle = false; }
+    } else if (inDouble) {
+      if (c === 0x22 && prev !== 0x5C) { inDouble = false; }
+    } else if (inTemplateString) {
+      if (c === 0x60 && prev !== 0x5C) { inTemplateString = false; }
+    } else if (inRegex) {
+      if (c === 0x2f && prev !== 0x5C) { inRegex = false; }
+    } else if (
+      c === 0x7C && // pipe
+      exp.charCodeAt(i + 1) !== 0x7C &&
+      exp.charCodeAt(i - 1) !== 0x7C &&
+      !curly && !square && !paren
+    ) {
+      if (expression === undefined) {
+        // first filter, end of expression
+        lastFilterIndex = i + 1;
+        expression = exp.slice(0, i).trim();
+      } else {
+        pushFilter();
+      }
+    } else {
+      switch (c) {
+        case 0x22: inDouble = true; break         // "
+        case 0x27: inSingle = true; break         // '
+        case 0x60: inTemplateString = true; break // `
+        case 0x28: paren++; break                 // (
+        case 0x29: paren--; break                 // )
+        case 0x5B: square++; break                // [
+        case 0x5D: square--; break                // ]
+        case 0x7B: curly++; break                 // {
+        case 0x7D: curly--; break                 // }
+      }
+      if (c === 0x2f) { // /
+        var j = i - 1;
+        var p = (void 0);
+        // find first non-whitespace prev char
+        for (; j >= 0; j--) {
+          p = exp.charAt(j);
+          if (p !== ' ') { break }
+        }
+        if (!p || !validDivisionCharRE.test(p)) {
+          inRegex = true;
+        }
+      }
+    }
+  }
+
+  if (expression === undefined) {
+    expression = exp.slice(0, i).trim();
+  } else if (lastFilterIndex !== 0) {
+    pushFilter();
+  }
+
+  function pushFilter () {
+    (filters || (filters = [])).push(exp.slice(lastFilterIndex, i).trim());
+    lastFilterIndex = i + 1;
+  }
+
+  if (filters) {
+    for (i = 0; i < filters.length; i++) {
+      expression = wrapFilter(expression, filters[i]);
+    }
+  }
+
+  return expression
+}
+
+function wrapFilter (exp, filter) {
+  var i = filter.indexOf('(');
+  if (i < 0) {
+    // _f: resolveFilter
+    return ("_f(\"" + filter + "\")(" + exp + ")")
+  } else {
+    var name = filter.slice(0, i);
+    var args = filter.slice(i + 1);
+    return ("_f(\"" + name + "\")(" + exp + "," + args)
+  }
+}
+
+/*  */
+
+function baseWarn (msg) {
+  console.error(("[Vue compiler]: " + msg));
+}
+
+function pluckModuleFunction (
+  modules,
+  key
+) {
+  return modules
+    ? modules.map(function (m) { return m[key]; }).filter(function (_) { return _; })
+    : []
+}
+
+function addProp (el, name, value) {
+  (el.props || (el.props = [])).push({ name: name, value: value });
+}
+
+function addAttr (el, name, value) {
+  (el.attrs || (el.attrs = [])).push({ name: name, value: value });
+}
+
+function addDirective (
+  el,
+  name,
+  rawName,
+  value,
+  arg,
+  modifiers
+) {
+  (el.directives || (el.directives = [])).push({ name: name, rawName: rawName, value: value, arg: arg, modifiers: modifiers });
+}
+
+function addHandler (
+  el,
+  name,
+  value,
+  modifiers,
+  important,
+  warn
+) {
+  // warn prevent and passive modifier
+  /* istanbul ignore if */
+  if (
+    "development" !== 'production' && warn &&
+    modifiers && modifiers.prevent && modifiers.passive
+  ) {
+    warn(
+      'passive and prevent can\'t be used together. ' +
+      'Passive handler can\'t prevent default event.'
+    );
+  }
+  // check capture modifier
+  if (modifiers && modifiers.capture) {
+    delete modifiers.capture;
+    name = '!' + name; // mark the event as captured
+  }
+  if (modifiers && modifiers.once) {
+    delete modifiers.once;
+    name = '~' + name; // mark the event as once
+  }
+  /* istanbul ignore if */
+  if (modifiers && modifiers.passive) {
+    delete modifiers.passive;
+    name = '&' + name; // mark the event as passive
+  }
+  var events;
+  if (modifiers && modifiers.native) {
+    delete modifiers.native;
+    events = el.nativeEvents || (el.nativeEvents = {});
+  } else {
+    events = el.events || (el.events = {});
+  }
+  var newHandler = { value: value, modifiers: modifiers };
+  var handlers = events[name];
+  /* istanbul ignore if */
+  if (Array.isArray(handlers)) {
+    important ? handlers.unshift(newHandler) : handlers.push(newHandler);
+  } else if (handlers) {
+    events[name] = important ? [newHandler, handlers] : [handlers, newHandler];
+  } else {
+    events[name] = newHandler;
+  }
+}
+
+function getBindingAttr (
+  el,
+  name,
+  getStatic
+) {
+  var dynamicValue =
+    getAndRemoveAttr(el, ':' + name) ||
+    getAndRemoveAttr(el, 'v-bind:' + name);
+  if (dynamicValue != null) {
+    return parseFilters(dynamicValue)
+  } else if (getStatic !== false) {
+    var staticValue = getAndRemoveAttr(el, name);
+    if (staticValue != null) {
+      return JSON.stringify(staticValue)
+    }
+  }
+}
+
+function getAndRemoveAttr (el, name) {
+  var val;
+  if ((val = el.attrsMap[name]) != null) {
+    var list = el.attrsList;
+    for (var i = 0, l = list.length; i < l; i++) {
+      if (list[i].name === name) {
+        list.splice(i, 1);
+        break
+      }
+    }
+  }
+  return val
+}
+
+/*  */
+
+/**
+ * Cross-platform code generation for component v-model
+ */
+function genComponentModel (
+  el,
+  value,
+  modifiers
+) {
+  var ref = modifiers || {};
+  var number = ref.number;
+  var trim = ref.trim;
+
+  var baseValueExpression = '$$v';
+  var valueExpression = baseValueExpression;
+  if (trim) {
+    valueExpression =
+      "(typeof " + baseValueExpression + " === 'string'" +
+        "? " + baseValueExpression + ".trim()" +
+        ": " + baseValueExpression + ")";
+  }
+  if (number) {
+    valueExpression = "_n(" + valueExpression + ")";
+  }
+  var assignment = genAssignmentCode(value, valueExpression);
+
+  el.model = {
+    value: ("(" + value + ")"),
+    expression: ("\"" + value + "\""),
+    callback: ("function (" + baseValueExpression + ") {" + assignment + "}")
+  };
+}
+
+/**
+ * Cross-platform codegen helper for generating v-model value assignment code.
+ */
+function genAssignmentCode (
+  value,
+  assignment
+) {
+  var modelRs = parseModel(value);
+  if (modelRs.idx === null) {
+    return (value + "=" + assignment)
+  } else {
+    return ("$set(" + (modelRs.exp) + ", " + (modelRs.idx) + ", " + assignment + ")")
+  }
+}
+
+/**
+ * parse directive model to do the array update transform. a[idx] = val => $$a.splice($$idx, 1, val)
+ *
+ * for loop possible cases:
+ *
+ * - test
+ * - test[idx]
+ * - test[test1[idx]]
+ * - test["a"][idx]
+ * - xxx.test[a[a].test1[idx]]
+ * - test.xxx.a["asa"][test1[idx]]
+ *
+ */
+
+var len;
+var str;
+var chr;
+var index$1;
+var expressionPos;
+var expressionEndPos;
+
+function parseModel (val) {
+  str = val;
+  len = str.length;
+  index$1 = expressionPos = expressionEndPos = 0;
+
+  if (val.indexOf('[') < 0 || val.lastIndexOf(']') < len - 1) {
+    return {
+      exp: val,
+      idx: null
+    }
+  }
+
+  while (!eof()) {
+    chr = next();
+    /* istanbul ignore if */
+    if (isStringStart(chr)) {
+      parseString(chr);
+    } else if (chr === 0x5B) {
+      parseBracket(chr);
+    }
+  }
+
+  return {
+    exp: val.substring(0, expressionPos),
+    idx: val.substring(expressionPos + 1, expressionEndPos)
+  }
+}
+
+function next () {
+  return str.charCodeAt(++index$1)
+}
+
+function eof () {
+  return index$1 >= len
+}
+
+function isStringStart (chr) {
+  return chr === 0x22 || chr === 0x27
+}
+
+function parseBracket (chr) {
+  var inBracket = 1;
+  expressionPos = index$1;
+  while (!eof()) {
+    chr = next();
+    if (isStringStart(chr)) {
+      parseString(chr);
+      continue
+    }
+    if (chr === 0x5B) { inBracket++; }
+    if (chr === 0x5D) { inBracket--; }
+    if (inBracket === 0) {
+      expressionEndPos = index$1;
+      break
+    }
+  }
+}
+
+function parseString (chr) {
+  var stringQuote = chr;
+  while (!eof()) {
+    chr = next();
+    if (chr === stringQuote) {
+      break
+    }
+  }
+}
+
+/*  */
+
+var warn$1;
+
+// in some cases, the event used has to be determined at runtime
+// so we used some reserved tokens during compile.
+var RANGE_TOKEN = '__r';
+var CHECKBOX_RADIO_TOKEN = '__c';
+
+function model (
+  el,
+  dir,
+  _warn
+) {
+  warn$1 = _warn;
+  var value = dir.value;
+  var modifiers = dir.modifiers;
+  var tag = el.tag;
+  var type = el.attrsMap.type;
+
+  {
+    var dynamicType = el.attrsMap['v-bind:type'] || el.attrsMap[':type'];
+    if (tag === 'input' && dynamicType) {
+      warn$1(
+        "<input :type=\"" + dynamicType + "\" v-model=\"" + value + "\">:\n" +
+        "v-model does not support dynamic input types. Use v-if branches instead."
+      );
+    }
+    // inputs with type="file" are read only and setting the input's
+    // value will throw an error.
+    if (tag === 'input' && type === 'file') {
+      warn$1(
+        "<" + (el.tag) + " v-model=\"" + value + "\" type=\"file\">:\n" +
+        "File inputs are read only. Use a v-on:change listener instead."
+      );
+    }
+  }
+
+  if (el.component) {
+    genComponentModel(el, value, modifiers);
+    // component v-model doesn't need extra runtime
+    return false
+  } else if (tag === 'select') {
+    genSelect(el, value, modifiers);
+  } else if (tag === 'input' && type === 'checkbox') {
+    genCheckboxModel(el, value, modifiers);
+  } else if (tag === 'input' && type === 'radio') {
+    genRadioModel(el, value, modifiers);
+  } else if (tag === 'input' || tag === 'textarea') {
+    genDefaultModel(el, value, modifiers);
+  } else if (!config.isReservedTag(tag)) {
+    genComponentModel(el, value, modifiers);
+    // component v-model doesn't need extra runtime
+    return false
+  } else {
+    warn$1(
+      "<" + (el.tag) + " v-model=\"" + value + "\">: " +
+      "v-model is not supported on this element type. " +
+      'If you are working with contenteditable, it\'s recommended to ' +
+      'wrap a library dedicated for that purpose inside a custom component.'
+    );
+  }
+
+  // ensure runtime directive metadata
+  return true
+}
+
+function genCheckboxModel (
+  el,
+  value,
+  modifiers
+) {
+  var number = modifiers && modifiers.number;
+  var valueBinding = getBindingAttr(el, 'value') || 'null';
+  var trueValueBinding = getBindingAttr(el, 'true-value') || 'true';
+  var falseValueBinding = getBindingAttr(el, 'false-value') || 'false';
+  addProp(el, 'checked',
+    "Array.isArray(" + value + ")" +
+      "?_i(" + value + "," + valueBinding + ")>-1" + (
+        trueValueBinding === 'true'
+          ? (":(" + value + ")")
+          : (":_q(" + value + "," + trueValueBinding + ")")
+      )
+  );
+  addHandler(el, CHECKBOX_RADIO_TOKEN,
+    "var $$a=" + value + "," +
+        '$$el=$event.target,' +
+        "$$c=$$el.checked?(" + trueValueBinding + "):(" + falseValueBinding + ");" +
+    'if(Array.isArray($$a)){' +
+      "var $$v=" + (number ? '_n(' + valueBinding + ')' : valueBinding) + "," +
+          '$$i=_i($$a,$$v);' +
+      "if($$el.checked){$$i<0&&(" + value + "=$$a.concat([$$v]))}" +
+      "else{$$i>-1&&(" + value + "=$$a.slice(0,$$i).concat($$a.slice($$i+1)))}" +
+    "}else{" + (genAssignmentCode(value, '$$c')) + "}",
+    null, true
+  );
+}
+
+function genRadioModel (
+    el,
+    value,
+    modifiers
+) {
+  var number = modifiers && modifiers.number;
+  var valueBinding = getBindingAttr(el, 'value') || 'null';
+  valueBinding = number ? ("_n(" + valueBinding + ")") : valueBinding;
+  addProp(el, 'checked', ("_q(" + value + "," + valueBinding + ")"));
+  addHandler(el, CHECKBOX_RADIO_TOKEN, genAssignmentCode(value, valueBinding), null, true);
+}
+
+function genSelect (
+    el,
+    value,
+    modifiers
+) {
+  var number = modifiers && modifiers.number;
+  var selectedVal = "Array.prototype.filter" +
+    ".call($event.target.options,function(o){return o.selected})" +
+    ".map(function(o){var val = \"_value\" in o ? o._value : o.value;" +
+    "return " + (number ? '_n(val)' : 'val') + "})";
+
+  var assignment = '$event.target.multiple ? $$selectedVal : $$selectedVal[0]';
+  var code = "var $$selectedVal = " + selectedVal + ";";
+  code = code + " " + (genAssignmentCode(value, assignment));
+  addHandler(el, 'change', code, null, true);
+}
+
+function genDefaultModel (
+  el,
+  value,
+  modifiers
+) {
+  var type = el.attrsMap.type;
+  var ref = modifiers || {};
+  var lazy = ref.lazy;
+  var number = ref.number;
+  var trim = ref.trim;
+  var needCompositionGuard = !lazy && type !== 'range';
+  var event = lazy
+    ? 'change'
+    : type === 'range'
+      ? RANGE_TOKEN
+      : 'input';
+
+  var valueExpression = '$event.target.value';
+  if (trim) {
+    valueExpression = "$event.target.value.trim()";
+  }
+  if (number) {
+    valueExpression = "_n(" + valueExpression + ")";
+  }
+
+  var code = genAssignmentCode(value, valueExpression);
+  if (needCompositionGuard) {
+    code = "if($event.target.composing)return;" + code;
+  }
+
+  addProp(el, 'value', ("(" + value + ")"));
+  addHandler(el, event, code, null, true);
+  if (trim || number) {
+    addHandler(el, 'blur', '$forceUpdate()');
+  }
+}
+
+/*  */
+
+// normalize v-model event tokens that can only be determined at runtime.
+// it's important to place the event as the first in the array because
+// the whole point is ensuring the v-model callback gets called before
+// user-attached handlers.
+function normalizeEvents (on) {
+  var event;
+  /* istanbul ignore if */
+  if (isDef(on[RANGE_TOKEN])) {
+    // IE input[type=range] only supports `change` event
+    event = isIE ? 'change' : 'input';
+    on[event] = [].concat(on[RANGE_TOKEN], on[event] || []);
+    delete on[RANGE_TOKEN];
+  }
+  if (isDef(on[CHECKBOX_RADIO_TOKEN])) {
+    // Chrome fires microtasks in between click/change, leads to #4521
+    event = isChrome ? 'click' : 'change';
+    on[event] = [].concat(on[CHECKBOX_RADIO_TOKEN], on[event] || []);
+    delete on[CHECKBOX_RADIO_TOKEN];
+  }
+}
+
+var target$1;
+
+function add$1 (
+  event,
+  handler,
+  once$$1,
+  capture,
+  passive
+) {
+  if (once$$1) {
+    var oldHandler = handler;
+    var _target = target$1; // save current target element in closure
+    handler = function (ev) {
+      var res = arguments.length === 1
+        ? oldHandler(ev)
+        : oldHandler.apply(null, arguments);
+      if (res !== null) {
+        remove$2(event, handler, capture, _target);
+      }
+    };
+  }
+  target$1.addEventListener(
+    event,
+    handler,
+    supportsPassive
+      ? { capture: capture, passive: passive }
+      : capture
+  );
+}
+
+function remove$2 (
+  event,
+  handler,
+  capture,
+  _target
+) {
+  (_target || target$1).removeEventListener(event, handler, capture);
+}
+
+function updateDOMListeners (oldVnode, vnode) {
+  if (isUndef(oldVnode.data.on) && isUndef(vnode.data.on)) {
+    return
+  }
+  var on = vnode.data.on || {};
+  var oldOn = oldVnode.data.on || {};
+  target$1 = vnode.elm;
+  normalizeEvents(on);
+  updateListeners(on, oldOn, add$1, remove$2, vnode.context);
+}
+
+var events = {
+  create: updateDOMListeners,
+  update: updateDOMListeners
+};
+
+/*  */
+
+function updateDOMProps (oldVnode, vnode) {
+  if (isUndef(oldVnode.data.domProps) && isUndef(vnode.data.domProps)) {
+    return
+  }
+  var key, cur;
+  var elm = vnode.elm;
+  var oldProps = oldVnode.data.domProps || {};
+  var props = vnode.data.domProps || {};
+  // clone observed objects, as the user probably wants to mutate it
+  if (isDef(props.__ob__)) {
+    props = vnode.data.domProps = extend({}, props);
+  }
+
+  for (key in oldProps) {
+    if (isUndef(props[key])) {
+      elm[key] = '';
+    }
+  }
+  for (key in props) {
+    cur = props[key];
+    // ignore children if the node has textContent or innerHTML,
+    // as these will throw away existing DOM nodes and cause removal errors
+    // on subsequent patches (#3360)
+    if (key === 'textContent' || key === 'innerHTML') {
+      if (vnode.children) { vnode.children.length = 0; }
+      if (cur === oldProps[key]) { continue }
+    }
+
+    if (key === 'value') {
+      // store value as _value as well since
+      // non-string values will be stringified
+      elm._value = cur;
+      // avoid resetting cursor position when value is the same
+      var strCur = isUndef(cur) ? '' : String(cur);
+      if (shouldUpdateValue(elm, vnode, strCur)) {
+        elm.value = strCur;
+      }
+    } else {
+      elm[key] = cur;
+    }
+  }
+}
+
+// check platforms/web/util/attrs.js acceptValue
+
+
+function shouldUpdateValue (
+  elm,
+  vnode,
+  checkVal
+) {
+  return (!elm.composing && (
+    vnode.tag === 'option' ||
+    isDirty(elm, checkVal) ||
+    isInputChanged(elm, checkVal)
+  ))
+}
+
+function isDirty (elm, checkVal) {
+  // return true when textbox (.number and .trim) loses focus and its value is
+  // not equal to the updated value
+  var notInFocus = true;
+  // #6157
+  // work around IE bug when accessing document.activeElement in an iframe
+  try { notInFocus = document.activeElement !== elm; } catch (e) {}
+  return notInFocus && elm.value !== checkVal
+}
+
+function isInputChanged (elm, newVal) {
+  var value = elm.value;
+  var modifiers = elm._vModifiers; // injected by v-model runtime
+  if (isDef(modifiers) && modifiers.number) {
+    return toNumber(value) !== toNumber(newVal)
+  }
+  if (isDef(modifiers) && modifiers.trim) {
+    return value.trim() !== newVal.trim()
+  }
+  return value !== newVal
+}
+
+var domProps = {
+  create: updateDOMProps,
+  update: updateDOMProps
+};
+
+/*  */
+
+var parseStyleText = cached(function (cssText) {
+  var res = {};
+  var listDelimiter = /;(?![^(]*\))/g;
+  var propertyDelimiter = /:(.+)/;
+  cssText.split(listDelimiter).forEach(function (item) {
+    if (item) {
+      var tmp = item.split(propertyDelimiter);
+      tmp.length > 1 && (res[tmp[0].trim()] = tmp[1].trim());
+    }
+  });
+  return res
+});
+
+// merge static and dynamic style data on the same vnode
+function normalizeStyleData (data) {
+  var style = normalizeStyleBinding(data.style);
+  // static style is pre-processed into an object during compilation
+  // and is always a fresh object, so it's safe to merge into it
+  return data.staticStyle
+    ? extend(data.staticStyle, style)
+    : style
+}
+
+// normalize possible array / string values into Object
+function normalizeStyleBinding (bindingStyle) {
+  if (Array.isArray(bindingStyle)) {
+    return toObject(bindingStyle)
+  }
+  if (typeof bindingStyle === 'string') {
+    return parseStyleText(bindingStyle)
+  }
+  return bindingStyle
+}
+
+/**
+ * parent component style should be after child's
+ * so that parent component's style could override it
+ */
+function getStyle (vnode, checkChild) {
+  var res = {};
+  var styleData;
+
+  if (checkChild) {
+    var childNode = vnode;
+    while (childNode.componentInstance) {
+      childNode = childNode.componentInstance._vnode;
+      if (childNode.data && (styleData = normalizeStyleData(childNode.data))) {
+        extend(res, styleData);
+      }
+    }
+  }
+
+  if ((styleData = normalizeStyleData(vnode.data))) {
+    extend(res, styleData);
+  }
+
+  var parentNode = vnode;
+  while ((parentNode = parentNode.parent)) {
+    if (parentNode.data && (styleData = normalizeStyleData(parentNode.data))) {
+      extend(res, styleData);
+    }
+  }
+  return res
+}
+
+/*  */
+
+var cssVarRE = /^--/;
+var importantRE = /\s*!important$/;
+var setProp = function (el, name, val) {
+  /* istanbul ignore if */
+  if (cssVarRE.test(name)) {
+    el.style.setProperty(name, val);
+  } else if (importantRE.test(val)) {
+    el.style.setProperty(name, val.replace(importantRE, ''), 'important');
+  } else {
+    var normalizedName = normalize(name);
+    if (Array.isArray(val)) {
+      // Support values array created by autoprefixer, e.g.
+      // {display: ["-webkit-box", "-ms-flexbox", "flex"]}
+      // Set them one by one, and the browser will only set those it can recognize
+      for (var i = 0, len = val.length; i < len; i++) {
+        el.style[normalizedName] = val[i];
+      }
+    } else {
+      el.style[normalizedName] = val;
+    }
+  }
+};
+
+var vendorNames = ['Webkit', 'Moz', 'ms'];
+
+var emptyStyle;
+var normalize = cached(function (prop) {
+  emptyStyle = emptyStyle || document.createElement('div').style;
+  prop = camelize(prop);
+  if (prop !== 'filter' && (prop in emptyStyle)) {
+    return prop
+  }
+  var capName = prop.charAt(0).toUpperCase() + prop.slice(1);
+  for (var i = 0; i < vendorNames.length; i++) {
+    var name = vendorNames[i] + capName;
+    if (name in emptyStyle) {
+      return name
+    }
+  }
+});
+
+function updateStyle (oldVnode, vnode) {
+  var data = vnode.data;
+  var oldData = oldVnode.data;
+
+  if (isUndef(data.staticStyle) && isUndef(data.style) &&
+    isUndef(oldData.staticStyle) && isUndef(oldData.style)
+  ) {
+    return
+  }
+
+  var cur, name;
+  var el = vnode.elm;
+  var oldStaticStyle = oldData.staticStyle;
+  var oldStyleBinding = oldData.normalizedStyle || oldData.style || {};
+
+  // if static style exists, stylebinding already merged into it when doing normalizeStyleData
+  var oldStyle = oldStaticStyle || oldStyleBinding;
+
+  var style = normalizeStyleBinding(vnode.data.style) || {};
+
+  // store normalized style under a different key for next diff
+  // make sure to clone it if it's reactive, since the user likely wants
+  // to mutate it.
+  vnode.data.normalizedStyle = isDef(style.__ob__)
+    ? extend({}, style)
+    : style;
+
+  var newStyle = getStyle(vnode, true);
+
+  for (name in oldStyle) {
+    if (isUndef(newStyle[name])) {
+      setProp(el, name, '');
+    }
+  }
+  for (name in newStyle) {
+    cur = newStyle[name];
+    if (cur !== oldStyle[name]) {
+      // ie9 setting to null has no effect, must use empty string
+      setProp(el, name, cur == null ? '' : cur);
+    }
+  }
+}
+
+var style = {
+  create: updateStyle,
+  update: updateStyle
+};
+
+/*  */
+
+/**
+ * Add class with compatibility for SVG since classList is not supported on
+ * SVG elements in IE
+ */
+function addClass (el, cls) {
+  /* istanbul ignore if */
+  if (!cls || !(cls = cls.trim())) {
+    return
+  }
+
+  /* istanbul ignore else */
+  if (el.classList) {
+    if (cls.indexOf(' ') > -1) {
+      cls.split(/\s+/).forEach(function (c) { return el.classList.add(c); });
+    } else {
+      el.classList.add(cls);
+    }
+  } else {
+    var cur = " " + (el.getAttribute('class') || '') + " ";
+    if (cur.indexOf(' ' + cls + ' ') < 0) {
+      el.setAttribute('class', (cur + cls).trim());
+    }
+  }
+}
+
+/**
+ * Remove class with compatibility for SVG since classList is not supported on
+ * SVG elements in IE
+ */
+function removeClass (el, cls) {
+  /* istanbul ignore if */
+  if (!cls || !(cls = cls.trim())) {
+    return
+  }
+
+  /* istanbul ignore else */
+  if (el.classList) {
+    if (cls.indexOf(' ') > -1) {
+      cls.split(/\s+/).forEach(function (c) { return el.classList.remove(c); });
+    } else {
+      el.classList.remove(cls);
+    }
+    if (!el.classList.length) {
+      el.removeAttribute('class');
+    }
+  } else {
+    var cur = " " + (el.getAttribute('class') || '') + " ";
+    var tar = ' ' + cls + ' ';
+    while (cur.indexOf(tar) >= 0) {
+      cur = cur.replace(tar, ' ');
+    }
+    cur = cur.trim();
+    if (cur) {
+      el.setAttribute('class', cur);
+    } else {
+      el.removeAttribute('class');
+    }
+  }
+}
+
+/*  */
+
+function resolveTransition (def$$1) {
+  if (!def$$1) {
+    return
+  }
+  /* istanbul ignore else */
+  if (typeof def$$1 === 'object') {
+    var res = {};
+    if (def$$1.css !== false) {
+      extend(res, autoCssTransition(def$$1.name || 'v'));
+    }
+    extend(res, def$$1);
+    return res
+  } else if (typeof def$$1 === 'string') {
+    return autoCssTransition(def$$1)
+  }
+}
+
+var autoCssTransition = cached(function (name) {
+  return {
+    enterClass: (name + "-enter"),
+    enterToClass: (name + "-enter-to"),
+    enterActiveClass: (name + "-enter-active"),
+    leaveClass: (name + "-leave"),
+    leaveToClass: (name + "-leave-to"),
+    leaveActiveClass: (name + "-leave-active")
+  }
+});
+
+var hasTransition = inBrowser && !isIE9;
+var TRANSITION = 'transition';
+var ANIMATION = 'animation';
+
+// Transition property/event sniffing
+var transitionProp = 'transition';
+var transitionEndEvent = 'transitionend';
+var animationProp = 'animation';
+var animationEndEvent = 'animationend';
+if (hasTransition) {
+  /* istanbul ignore if */
+  if (window.ontransitionend === undefined &&
+    window.onwebkittransitionend !== undefined
+  ) {
+    transitionProp = 'WebkitTransition';
+    transitionEndEvent = 'webkitTransitionEnd';
+  }
+  if (window.onanimationend === undefined &&
+    window.onwebkitanimationend !== undefined
+  ) {
+    animationProp = 'WebkitAnimation';
+    animationEndEvent = 'webkitAnimationEnd';
+  }
+}
+
+// binding to window is necessary to make hot reload work in IE in strict mode
+var raf = inBrowser && window.requestAnimationFrame
+  ? window.requestAnimationFrame.bind(window)
+  : setTimeout;
+
+function nextFrame (fn) {
+  raf(function () {
+    raf(fn);
+  });
+}
+
+function addTransitionClass (el, cls) {
+  var transitionClasses = el._transitionClasses || (el._transitionClasses = []);
+  if (transitionClasses.indexOf(cls) < 0) {
+    transitionClasses.push(cls);
+    addClass(el, cls);
+  }
+}
+
+function removeTransitionClass (el, cls) {
+  if (el._transitionClasses) {
+    remove(el._transitionClasses, cls);
+  }
+  removeClass(el, cls);
+}
+
+function whenTransitionEnds (
+  el,
+  expectedType,
+  cb
+) {
+  var ref = getTransitionInfo(el, expectedType);
+  var type = ref.type;
+  var timeout = ref.timeout;
+  var propCount = ref.propCount;
+  if (!type) { return cb() }
+  var event = type === TRANSITION ? transitionEndEvent : animationEndEvent;
+  var ended = 0;
+  var end = function () {
+    el.removeEventListener(event, onEnd);
+    cb();
+  };
+  var onEnd = function (e) {
+    if (e.target === el) {
+      if (++ended >= propCount) {
+        end();
+      }
+    }
+  };
+  setTimeout(function () {
+    if (ended < propCount) {
+      end();
+    }
+  }, timeout + 1);
+  el.addEventListener(event, onEnd);
+}
+
+var transformRE = /\b(transform|all)(,|$)/;
+
+function getTransitionInfo (el, expectedType) {
+  var styles = window.getComputedStyle(el);
+  var transitionDelays = styles[transitionProp + 'Delay'].split(', ');
+  var transitionDurations = styles[transitionProp + 'Duration'].split(', ');
+  var transitionTimeout = getTimeout(transitionDelays, transitionDurations);
+  var animationDelays = styles[animationProp + 'Delay'].split(', ');
+  var animationDurations = styles[animationProp + 'Duration'].split(', ');
+  var animationTimeout = getTimeout(animationDelays, animationDurations);
+
+  var type;
+  var timeout = 0;
+  var propCount = 0;
+  /* istanbul ignore if */
+  if (expectedType === TRANSITION) {
+    if (transitionTimeout > 0) {
+      type = TRANSITION;
+      timeout = transitionTimeout;
+      propCount = transitionDurations.length;
+    }
+  } else if (expectedType === ANIMATION) {
+    if (animationTimeout > 0) {
+      type = ANIMATION;
+      timeout = animationTimeout;
+      propCount = animationDurations.length;
+    }
+  } else {
+    timeout = Math.max(transitionTimeout, animationTimeout);
+    type = timeout > 0
+      ? transitionTimeout > animationTimeout
+        ? TRANSITION
+        : ANIMATION
+      : null;
+    propCount = type
+      ? type === TRANSITION
+        ? transitionDurations.length
+        : animationDurations.length
+      : 0;
+  }
+  var hasTransform =
+    type === TRANSITION &&
+    transformRE.test(styles[transitionProp + 'Property']);
+  return {
+    type: type,
+    timeout: timeout,
+    propCount: propCount,
+    hasTransform: hasTransform
+  }
+}
+
+function getTimeout (delays, durations) {
+  /* istanbul ignore next */
+  while (delays.length < durations.length) {
+    delays = delays.concat(delays);
+  }
+
+  return Math.max.apply(null, durations.map(function (d, i) {
+    return toMs(d) + toMs(delays[i])
+  }))
+}
+
+function toMs (s) {
+  return Number(s.slice(0, -1)) * 1000
+}
+
+/*  */
+
+function enter (vnode, toggleDisplay) {
+  var el = vnode.elm;
+
+  // call leave callback now
+  if (isDef(el._leaveCb)) {
+    el._leaveCb.cancelled = true;
+    el._leaveCb();
+  }
+
+  var data = resolveTransition(vnode.data.transition);
+  if (isUndef(data)) {
+    return
+  }
+
+  /* istanbul ignore if */
+  if (isDef(el._enterCb) || el.nodeType !== 1) {
+    return
+  }
+
+  var css = data.css;
+  var type = data.type;
+  var enterClass = data.enterClass;
+  var enterToClass = data.enterToClass;
+  var enterActiveClass = data.enterActiveClass;
+  var appearClass = data.appearClass;
+  var appearToClass = data.appearToClass;
+  var appearActiveClass = data.appearActiveClass;
+  var beforeEnter = data.beforeEnter;
+  var enter = data.enter;
+  var afterEnter = data.afterEnter;
+  var enterCancelled = data.enterCancelled;
+  var beforeAppear = data.beforeAppear;
+  var appear = data.appear;
+  var afterAppear = data.afterAppear;
+  var appearCancelled = data.appearCancelled;
+  var duration = data.duration;
+
+  // activeInstance will always be the <transition> component managing this
+  // transition. One edge case to check is when the <transition> is placed
+  // as the root node of a child component. In that case we need to check
+  // <transition>'s parent for appear check.
+  var context = activeInstance;
+  var transitionNode = activeInstance.$vnode;
+  while (transitionNode && transitionNode.parent) {
+    transitionNode = transitionNode.parent;
+    context = transitionNode.context;
+  }
+
+  var isAppear = !context._isMounted || !vnode.isRootInsert;
+
+  if (isAppear && !appear && appear !== '') {
+    return
+  }
+
+  var startClass = isAppear && appearClass
+    ? appearClass
+    : enterClass;
+  var activeClass = isAppear && appearActiveClass
+    ? appearActiveClass
+    : enterActiveClass;
+  var toClass = isAppear && appearToClass
+    ? appearToClass
+    : enterToClass;
+
+  var beforeEnterHook = isAppear
+    ? (beforeAppear || beforeEnter)
+    : beforeEnter;
+  var enterHook = isAppear
+    ? (typeof appear === 'function' ? appear : enter)
+    : enter;
+  var afterEnterHook = isAppear
+    ? (afterAppear || afterEnter)
+    : afterEnter;
+  var enterCancelledHook = isAppear
+    ? (appearCancelled || enterCancelled)
+    : enterCancelled;
+
+  var explicitEnterDuration = toNumber(
+    isObject(duration)
+      ? duration.enter
+      : duration
+  );
+
+  if ("development" !== 'production' && explicitEnterDuration != null) {
+    checkDuration(explicitEnterDuration, 'enter', vnode);
+  }
+
+  var expectsCSS = css !== false && !isIE9;
+  var userWantsControl = getHookArgumentsLength(enterHook);
+
+  var cb = el._enterCb = once(function () {
+    if (expectsCSS) {
+      removeTransitionClass(el, toClass);
+      removeTransitionClass(el, activeClass);
+    }
+    if (cb.cancelled) {
+      if (expectsCSS) {
+        removeTransitionClass(el, startClass);
+      }
+      enterCancelledHook && enterCancelledHook(el);
+    } else {
+      afterEnterHook && afterEnterHook(el);
+    }
+    el._enterCb = null;
+  });
+
+  if (!vnode.data.show) {
+    // remove pending leave element on enter by injecting an insert hook
+    mergeVNodeHook(vnode.data.hook || (vnode.data.hook = {}), 'insert', function () {
+      var parent = el.parentNode;
+      var pendingNode = parent && parent._pending && parent._pending[vnode.key];
+      if (pendingNode &&
+        pendingNode.tag === vnode.tag &&
+        pendingNode.elm._leaveCb
+      ) {
+        pendingNode.elm._leaveCb();
+      }
+      enterHook && enterHook(el, cb);
+    });
+  }
+
+  // start enter transition
+  beforeEnterHook && beforeEnterHook(el);
+  if (expectsCSS) {
+    addTransitionClass(el, startClass);
+    addTransitionClass(el, activeClass);
+    nextFrame(function () {
+      addTransitionClass(el, toClass);
+      removeTransitionClass(el, startClass);
+      if (!cb.cancelled && !userWantsControl) {
+        if (isValidDuration(explicitEnterDuration)) {
+          setTimeout(cb, explicitEnterDuration);
+        } else {
+          whenTransitionEnds(el, type, cb);
+        }
+      }
+    });
+  }
+
+  if (vnode.data.show) {
+    toggleDisplay && toggleDisplay();
+    enterHook && enterHook(el, cb);
+  }
+
+  if (!expectsCSS && !userWantsControl) {
+    cb();
+  }
+}
+
+function leave (vnode, rm) {
+  var el = vnode.elm;
+
+  // call enter callback now
+  if (isDef(el._enterCb)) {
+    el._enterCb.cancelled = true;
+    el._enterCb();
+  }
+
+  var data = resolveTransition(vnode.data.transition);
+  if (isUndef(data)) {
+    return rm()
+  }
+
+  /* istanbul ignore if */
+  if (isDef(el._leaveCb) || el.nodeType !== 1) {
+    return
+  }
+
+  var css = data.css;
+  var type = data.type;
+  var leaveClass = data.leaveClass;
+  var leaveToClass = data.leaveToClass;
+  var leaveActiveClass = data.leaveActiveClass;
+  var beforeLeave = data.beforeLeave;
+  var leave = data.leave;
+  var afterLeave = data.afterLeave;
+  var leaveCancelled = data.leaveCancelled;
+  var delayLeave = data.delayLeave;
+  var duration = data.duration;
+
+  var expectsCSS = css !== false && !isIE9;
+  var userWantsControl = getHookArgumentsLength(leave);
+
+  var explicitLeaveDuration = toNumber(
+    isObject(duration)
+      ? duration.leave
+      : duration
+  );
+
+  if ("development" !== 'production' && isDef(explicitLeaveDuration)) {
+    checkDuration(explicitLeaveDuration, 'leave', vnode);
+  }
+
+  var cb = el._leaveCb = once(function () {
+    if (el.parentNode && el.parentNode._pending) {
+      el.parentNode._pending[vnode.key] = null;
+    }
+    if (expectsCSS) {
+      removeTransitionClass(el, leaveToClass);
+      removeTransitionClass(el, leaveActiveClass);
+    }
+    if (cb.cancelled) {
+      if (expectsCSS) {
+        removeTransitionClass(el, leaveClass);
+      }
+      leaveCancelled && leaveCancelled(el);
+    } else {
+      rm();
+      afterLeave && afterLeave(el);
+    }
+    el._leaveCb = null;
+  });
+
+  if (delayLeave) {
+    delayLeave(performLeave);
+  } else {
+    performLeave();
+  }
+
+  function performLeave () {
+    // the delayed leave may have already been cancelled
+    if (cb.cancelled) {
+      return
+    }
+    // record leaving element
+    if (!vnode.data.show) {
+      (el.parentNode._pending || (el.parentNode._pending = {}))[(vnode.key)] = vnode;
+    }
+    beforeLeave && beforeLeave(el);
+    if (expectsCSS) {
+      addTransitionClass(el, leaveClass);
+      addTransitionClass(el, leaveActiveClass);
+      nextFrame(function () {
+        addTransitionClass(el, leaveToClass);
+        removeTransitionClass(el, leaveClass);
+        if (!cb.cancelled && !userWantsControl) {
+          if (isValidDuration(explicitLeaveDuration)) {
+            setTimeout(cb, explicitLeaveDuration);
+          } else {
+            whenTransitionEnds(el, type, cb);
+          }
+        }
+      });
+    }
+    leave && leave(el, cb);
+    if (!expectsCSS && !userWantsControl) {
+      cb();
+    }
+  }
+}
+
+// only used in dev mode
+function checkDuration (val, name, vnode) {
+  if (typeof val !== 'number') {
+    warn(
+      "<transition> explicit " + name + " duration is not a valid number - " +
+      "got " + (JSON.stringify(val)) + ".",
+      vnode.context
+    );
+  } else if (isNaN(val)) {
+    warn(
+      "<transition> explicit " + name + " duration is NaN - " +
+      'the duration expression might be incorrect.',
+      vnode.context
+    );
+  }
+}
+
+function isValidDuration (val) {
+  return typeof val === 'number' && !isNaN(val)
+}
+
+/**
+ * Normalize a transition hook's argument length. The hook may be:
+ * - a merged hook (invoker) with the original in .fns
+ * - a wrapped component method (check ._length)
+ * - a plain function (.length)
+ */
+function getHookArgumentsLength (fn) {
+  if (isUndef(fn)) {
+    return false
+  }
+  var invokerFns = fn.fns;
+  if (isDef(invokerFns)) {
+    // invoker
+    return getHookArgumentsLength(
+      Array.isArray(invokerFns)
+        ? invokerFns[0]
+        : invokerFns
+    )
+  } else {
+    return (fn._length || fn.length) > 1
+  }
+}
+
+function _enter (_, vnode) {
+  if (vnode.data.show !== true) {
+    enter(vnode);
+  }
+}
+
+var transition = inBrowser ? {
+  create: _enter,
+  activate: _enter,
+  remove: function remove$$1 (vnode, rm) {
+    /* istanbul ignore else */
+    if (vnode.data.show !== true) {
+      leave(vnode, rm);
+    } else {
+      rm();
+    }
+  }
+} : {};
+
+var platformModules = [
+  attrs,
+  klass,
+  events,
+  domProps,
+  style,
+  transition
+];
+
+/*  */
+
+// the directive module should be applied last, after all
+// built-in modules have been applied.
+var modules = platformModules.concat(baseModules);
+
+var patch = createPatchFunction({ nodeOps: nodeOps, modules: modules });
+
+/**
+ * Not type checking this file because flow doesn't like attaching
+ * properties to Elements.
+ */
+
+/* istanbul ignore if */
+if (isIE9) {
+  // http://www.matts411.com/post/internet-explorer-9-oninput/
+  document.addEventListener('selectionchange', function () {
+    var el = document.activeElement;
+    if (el && el.vmodel) {
+      trigger(el, 'input');
+    }
+  });
+}
+
+var model$1 = {
+  inserted: function inserted (el, binding, vnode) {
+    if (vnode.tag === 'select') {
+      setSelected(el, binding, vnode.context);
+      el._vOptions = [].map.call(el.options, getValue);
+    } else if (vnode.tag === 'textarea' || isTextInputType(el.type)) {
+      el._vModifiers = binding.modifiers;
+      if (!binding.modifiers.lazy) {
+        // Safari < 10.2 & UIWebView doesn't fire compositionend when
+        // switching focus before confirming composition choice
+        // this also fixes the issue where some browsers e.g. iOS Chrome
+        // fires "change" instead of "input" on autocomplete.
+        el.addEventListener('change', onCompositionEnd);
+        if (!isAndroid) {
+          el.addEventListener('compositionstart', onCompositionStart);
+          el.addEventListener('compositionend', onCompositionEnd);
+        }
+        /* istanbul ignore if */
+        if (isIE9) {
+          el.vmodel = true;
+        }
+      }
+    }
+  },
+  componentUpdated: function componentUpdated (el, binding, vnode) {
+    if (vnode.tag === 'select') {
+      setSelected(el, binding, vnode.context);
+      // in case the options rendered by v-for have changed,
+      // it's possible that the value is out-of-sync with the rendered options.
+      // detect such cases and filter out values that no longer has a matching
+      // option in the DOM.
+      var prevOptions = el._vOptions;
+      var curOptions = el._vOptions = [].map.call(el.options, getValue);
+      if (curOptions.some(function (o, i) { return !looseEqual(o, prevOptions[i]); })) {
+        // trigger change event if
+        // no matching option found for at least one value
+        var needReset = el.multiple
+          ? binding.value.some(function (v) { return hasNoMatchingOption(v, curOptions); })
+          : binding.value !== binding.oldValue && hasNoMatchingOption(binding.value, curOptions);
+        if (needReset) {
+          trigger(el, 'change');
+        }
+      }
+    }
+  }
+};
+
+function setSelected (el, binding, vm) {
+  actuallySetSelected(el, binding, vm);
+  /* istanbul ignore if */
+  if (isIE || isEdge) {
+    setTimeout(function () {
+      actuallySetSelected(el, binding, vm);
+    }, 0);
+  }
+}
+
+function actuallySetSelected (el, binding, vm) {
+  var value = binding.value;
+  var isMultiple = el.multiple;
+  if (isMultiple && !Array.isArray(value)) {
+    "development" !== 'production' && warn(
+      "<select multiple v-model=\"" + (binding.expression) + "\"> " +
+      "expects an Array value for its binding, but got " + (Object.prototype.toString.call(value).slice(8, -1)),
+      vm
+    );
+    return
+  }
+  var selected, option;
+  for (var i = 0, l = el.options.length; i < l; i++) {
+    option = el.options[i];
+    if (isMultiple) {
+      selected = looseIndexOf(value, getValue(option)) > -1;
+      if (option.selected !== selected) {
+        option.selected = selected;
+      }
+    } else {
+      if (looseEqual(getValue(option), value)) {
+        if (el.selectedIndex !== i) {
+          el.selectedIndex = i;
+        }
+        return
+      }
+    }
+  }
+  if (!isMultiple) {
+    el.selectedIndex = -1;
+  }
+}
+
+function hasNoMatchingOption (value, options) {
+  return options.every(function (o) { return !looseEqual(o, value); })
+}
+
+function getValue (option) {
+  return '_value' in option
+    ? option._value
+    : option.value
+}
+
+function onCompositionStart (e) {
+  e.target.composing = true;
+}
+
+function onCompositionEnd (e) {
+  // prevent triggering an input event for no reason
+  if (!e.target.composing) { return }
+  e.target.composing = false;
+  trigger(e.target, 'input');
+}
+
+function trigger (el, type) {
+  var e = document.createEvent('HTMLEvents');
+  e.initEvent(type, true, true);
+  el.dispatchEvent(e);
+}
+
+/*  */
+
+// recursively search for possible transition defined inside the component root
+function locateNode (vnode) {
+  return vnode.componentInstance && (!vnode.data || !vnode.data.transition)
+    ? locateNode(vnode.componentInstance._vnode)
+    : vnode
+}
+
+var show = {
+  bind: function bind (el, ref, vnode) {
+    var value = ref.value;
+
+    vnode = locateNode(vnode);
+    var transition$$1 = vnode.data && vnode.data.transition;
+    var originalDisplay = el.__vOriginalDisplay =
+      el.style.display === 'none' ? '' : el.style.display;
+    if (value && transition$$1) {
+      vnode.data.show = true;
+      enter(vnode, function () {
+        el.style.display = originalDisplay;
+      });
+    } else {
+      el.style.display = value ? originalDisplay : 'none';
+    }
+  },
+
+  update: function update (el, ref, vnode) {
+    var value = ref.value;
+    var oldValue = ref.oldValue;
+
+    /* istanbul ignore if */
+    if (value === oldValue) { return }
+    vnode = locateNode(vnode);
+    var transition$$1 = vnode.data && vnode.data.transition;
+    if (transition$$1) {
+      vnode.data.show = true;
+      if (value) {
+        enter(vnode, function () {
+          el.style.display = el.__vOriginalDisplay;
+        });
+      } else {
+        leave(vnode, function () {
+          el.style.display = 'none';
+        });
+      }
+    } else {
+      el.style.display = value ? el.__vOriginalDisplay : 'none';
+    }
+  },
+
+  unbind: function unbind (
+    el,
+    binding,
+    vnode,
+    oldVnode,
+    isDestroy
+  ) {
+    if (!isDestroy) {
+      el.style.display = el.__vOriginalDisplay;
+    }
+  }
+};
+
+var platformDirectives = {
+  model: model$1,
+  show: show
+};
+
+/*  */
+
+// Provides transition support for a single element/component.
+// supports transition mode (out-in / in-out)
+
+var transitionProps = {
+  name: String,
+  appear: Boolean,
+  css: Boolean,
+  mode: String,
+  type: String,
+  enterClass: String,
+  leaveClass: String,
+  enterToClass: String,
+  leaveToClass: String,
+  enterActiveClass: String,
+  leaveActiveClass: String,
+  appearClass: String,
+  appearActiveClass: String,
+  appearToClass: String,
+  duration: [Number, String, Object]
+};
+
+// in case the child is also an abstract component, e.g. <keep-alive>
+// we want to recursively retrieve the real component to be rendered
+function getRealChild (vnode) {
+  var compOptions = vnode && vnode.componentOptions;
+  if (compOptions && compOptions.Ctor.options.abstract) {
+    return getRealChild(getFirstComponentChild(compOptions.children))
+  } else {
+    return vnode
+  }
+}
+
+function extractTransitionData (comp) {
+  var data = {};
+  var options = comp.$options;
+  // props
+  for (var key in options.propsData) {
+    data[key] = comp[key];
+  }
+  // events.
+  // extract listeners and pass them directly to the transition methods
+  var listeners = options._parentListeners;
+  for (var key$1 in listeners) {
+    data[camelize(key$1)] = listeners[key$1];
+  }
+  return data
+}
+
+function placeholder (h, rawChild) {
+  if (/\d-keep-alive$/.test(rawChild.tag)) {
+    return h('keep-alive', {
+      props: rawChild.componentOptions.propsData
+    })
+  }
+}
+
+function hasParentTransition (vnode) {
+  while ((vnode = vnode.parent)) {
+    if (vnode.data.transition) {
+      return true
+    }
+  }
+}
+
+function isSameChild (child, oldChild) {
+  return oldChild.key === child.key && oldChild.tag === child.tag
+}
+
+var Transition = {
+  name: 'transition',
+  props: transitionProps,
+  abstract: true,
+
+  render: function render (h) {
+    var this$1 = this;
+
+    var children = this.$options._renderChildren;
+    if (!children) {
+      return
+    }
+
+    // filter out text nodes (possible whitespaces)
+    children = children.filter(function (c) { return c.tag || isAsyncPlaceholder(c); });
+    /* istanbul ignore if */
+    if (!children.length) {
+      return
+    }
+
+    // warn multiple elements
+    if ("development" !== 'production' && children.length > 1) {
+      warn(
+        '<transition> can only be used on a single element. Use ' +
+        '<transition-group> for lists.',
+        this.$parent
+      );
+    }
+
+    var mode = this.mode;
+
+    // warn invalid mode
+    if ("development" !== 'production' &&
+      mode && mode !== 'in-out' && mode !== 'out-in'
+    ) {
+      warn(
+        'invalid <transition> mode: ' + mode,
+        this.$parent
+      );
+    }
+
+    var rawChild = children[0];
+
+    // if this is a component root node and the component's
+    // parent container node also has transition, skip.
+    if (hasParentTransition(this.$vnode)) {
+      return rawChild
+    }
+
+    // apply transition data to child
+    // use getRealChild() to ignore abstract components e.g. keep-alive
+    var child = getRealChild(rawChild);
+    /* istanbul ignore if */
+    if (!child) {
+      return rawChild
+    }
+
+    if (this._leaving) {
+      return placeholder(h, rawChild)
+    }
+
+    // ensure a key that is unique to the vnode type and to this transition
+    // component instance. This key will be used to remove pending leaving nodes
+    // during entering.
+    var id = "__transition-" + (this._uid) + "-";
+    child.key = child.key == null
+      ? child.isComment
+        ? id + 'comment'
+        : id + child.tag
+      : isPrimitive(child.key)
+        ? (String(child.key).indexOf(id) === 0 ? child.key : id + child.key)
+        : child.key;
+
+    var data = (child.data || (child.data = {})).transition = extractTransitionData(this);
+    var oldRawChild = this._vnode;
+    var oldChild = getRealChild(oldRawChild);
+
+    // mark v-show
+    // so that the transition module can hand over the control to the directive
+    if (child.data.directives && child.data.directives.some(function (d) { return d.name === 'show'; })) {
+      child.data.show = true;
+    }
+
+    if (
+      oldChild &&
+      oldChild.data &&
+      !isSameChild(child, oldChild) &&
+      !isAsyncPlaceholder(oldChild)
+    ) {
+      // replace old child transition data with fresh one
+      // important for dynamic transitions!
+      var oldData = oldChild && (oldChild.data.transition = extend({}, data));
+      // handle transition mode
+      if (mode === 'out-in') {
+        // return placeholder node and queue update when leave finishes
+        this._leaving = true;
+        mergeVNodeHook(oldData, 'afterLeave', function () {
+          this$1._leaving = false;
+          this$1.$forceUpdate();
+        });
+        return placeholder(h, rawChild)
+      } else if (mode === 'in-out') {
+        if (isAsyncPlaceholder(child)) {
+          return oldRawChild
+        }
+        var delayedLeave;
+        var performLeave = function () { delayedLeave(); };
+        mergeVNodeHook(data, 'afterEnter', performLeave);
+        mergeVNodeHook(data, 'enterCancelled', performLeave);
+        mergeVNodeHook(oldData, 'delayLeave', function (leave) { delayedLeave = leave; });
+      }
+    }
+
+    return rawChild
+  }
+};
+
+/*  */
+
+// Provides transition support for list items.
+// supports move transitions using the FLIP technique.
+
+// Because the vdom's children update algorithm is "unstable" - i.e.
+// it doesn't guarantee the relative positioning of removed elements,
+// we force transition-group to update its children into two passes:
+// in the first pass, we remove all nodes that need to be removed,
+// triggering their leaving transition; in the second pass, we insert/move
+// into the final desired state. This way in the second pass removed
+// nodes will remain where they should be.
+
+var props = extend({
+  tag: String,
+  moveClass: String
+}, transitionProps);
+
+delete props.mode;
+
+var TransitionGroup = {
+  props: props,
+
+  render: function render (h) {
+    var tag = this.tag || this.$vnode.data.tag || 'span';
+    var map = Object.create(null);
+    var prevChildren = this.prevChildren = this.children;
+    var rawChildren = this.$slots.default || [];
+    var children = this.children = [];
+    var transitionData = extractTransitionData(this);
+
+    for (var i = 0; i < rawChildren.length; i++) {
+      var c = rawChildren[i];
+      if (c.tag) {
+        if (c.key != null && String(c.key).indexOf('__vlist') !== 0) {
+          children.push(c);
+          map[c.key] = c
+          ;(c.data || (c.data = {})).transition = transitionData;
+        } else {
+          var opts = c.componentOptions;
+          var name = opts ? (opts.Ctor.options.name || opts.tag || '') : c.tag;
+          warn(("<transition-group> children must be keyed: <" + name + ">"));
+        }
+      }
+    }
+
+    if (prevChildren) {
+      var kept = [];
+      var removed = [];
+      for (var i$1 = 0; i$1 < prevChildren.length; i$1++) {
+        var c$1 = prevChildren[i$1];
+        c$1.data.transition = transitionData;
+        c$1.data.pos = c$1.elm.getBoundingClientRect();
+        if (map[c$1.key]) {
+          kept.push(c$1);
+        } else {
+          removed.push(c$1);
+        }
+      }
+      this.kept = h(tag, null, kept);
+      this.removed = removed;
+    }
+
+    return h(tag, null, children)
+  },
+
+  beforeUpdate: function beforeUpdate () {
+    // force removing pass
+    this.__patch__(
+      this._vnode,
+      this.kept,
+      false, // hydrating
+      true // removeOnly (!important, avoids unnecessary moves)
+    );
+    this._vnode = this.kept;
+  },
+
+  updated: function updated () {
+    var children = this.prevChildren;
+    var moveClass = this.moveClass || ((this.name || 'v') + '-move');
+    if (!children.length || !this.hasMove(children[0].elm, moveClass)) {
+      return
+    }
+
+    // we divide the work into three loops to avoid mixing DOM reads and writes
+    // in each iteration - which helps prevent layout thrashing.
+    children.forEach(callPendingCbs);
+    children.forEach(recordPosition);
+    children.forEach(applyTranslation);
+
+    // force reflow to put everything in position
+    var body = document.body;
+    var f = body.offsetHeight; // eslint-disable-line
+
+    children.forEach(function (c) {
+      if (c.data.moved) {
+        var el = c.elm;
+        var s = el.style;
+        addTransitionClass(el, moveClass);
+        s.transform = s.WebkitTransform = s.transitionDuration = '';
+        el.addEventListener(transitionEndEvent, el._moveCb = function cb (e) {
+          if (!e || /transform$/.test(e.propertyName)) {
+            el.removeEventListener(transitionEndEvent, cb);
+            el._moveCb = null;
+            removeTransitionClass(el, moveClass);
+          }
+        });
+      }
+    });
+  },
+
+  methods: {
+    hasMove: function hasMove (el, moveClass) {
+      /* istanbul ignore if */
+      if (!hasTransition) {
+        return false
+      }
+      /* istanbul ignore if */
+      if (this._hasMove) {
+        return this._hasMove
+      }
+      // Detect whether an element with the move class applied has
+      // CSS transitions. Since the element may be inside an entering
+      // transition at this very moment, we make a clone of it and remove
+      // all other transition classes applied to ensure only the move class
+      // is applied.
+      var clone = el.cloneNode();
+      if (el._transitionClasses) {
+        el._transitionClasses.forEach(function (cls) { removeClass(clone, cls); });
+      }
+      addClass(clone, moveClass);
+      clone.style.display = 'none';
+      this.$el.appendChild(clone);
+      var info = getTransitionInfo(clone);
+      this.$el.removeChild(clone);
+      return (this._hasMove = info.hasTransform)
+    }
+  }
+};
+
+function callPendingCbs (c) {
+  /* istanbul ignore if */
+  if (c.elm._moveCb) {
+    c.elm._moveCb();
+  }
+  /* istanbul ignore if */
+  if (c.elm._enterCb) {
+    c.elm._enterCb();
+  }
+}
+
+function recordPosition (c) {
+  c.data.newPos = c.elm.getBoundingClientRect();
+}
+
+function applyTranslation (c) {
+  var oldPos = c.data.pos;
+  var newPos = c.data.newPos;
+  var dx = oldPos.left - newPos.left;
+  var dy = oldPos.top - newPos.top;
+  if (dx || dy) {
+    c.data.moved = true;
+    var s = c.elm.style;
+    s.transform = s.WebkitTransform = "translate(" + dx + "px," + dy + "px)";
+    s.transitionDuration = '0s';
+  }
+}
+
+var platformComponents = {
+  Transition: Transition,
+  TransitionGroup: TransitionGroup
+};
+
+/*  */
+
+// install platform specific utils
+Vue$3.config.mustUseProp = mustUseProp;
+Vue$3.config.isReservedTag = isReservedTag;
+Vue$3.config.isReservedAttr = isReservedAttr;
+Vue$3.config.getTagNamespace = getTagNamespace;
+Vue$3.config.isUnknownElement = isUnknownElement;
+
+// install platform runtime directives & components
+extend(Vue$3.options.directives, platformDirectives);
+extend(Vue$3.options.components, platformComponents);
+
+// install platform patch function
+Vue$3.prototype.__patch__ = inBrowser ? patch : noop;
+
+// public mount method
+Vue$3.prototype.$mount = function (
+  el,
+  hydrating
+) {
+  el = el && inBrowser ? query(el) : undefined;
+  return mountComponent(this, el, hydrating)
+};
+
+// devtools global hook
+/* istanbul ignore next */
+setTimeout(function () {
+  if (config.devtools) {
+    if (devtools) {
+      devtools.emit('init', Vue$3);
+    } else if ("development" !== 'production' && isChrome) {
+      console[console.info ? 'info' : 'log'](
+        'Download the Vue Devtools extension for a better development experience:\n' +
+        'https://github.com/vuejs/vue-devtools'
+      );
+    }
+  }
+  if ("development" !== 'production' &&
+    config.productionTip !== false &&
+    inBrowser && typeof console !== 'undefined'
+  ) {
+    console[console.info ? 'info' : 'log'](
+      "You are running Vue in development mode.\n" +
+      "Make sure to turn on production mode when deploying for production.\n" +
+      "See more tips at https://vuejs.org/guide/deployment.html"
+    );
+  }
+}, 0);
+
+/*  */
+
+// check whether current browser encodes a char inside attribute values
+function shouldDecode (content, encoded) {
+  var div = document.createElement('div');
+  div.innerHTML = "<div a=\"" + content + "\"/>";
+  return div.innerHTML.indexOf(encoded) > 0
+}
+
+// #3663
+// IE encodes newlines inside attribute values while other browsers don't
+var shouldDecodeNewlines = inBrowser ? shouldDecode('\n', '&#10;') : false;
+
+/*  */
+
+var defaultTagRE = /\{\{((?:.|\n)+?)\}\}/g;
+var regexEscapeRE = /[-.*+?^${}()|[\]\/\\]/g;
+
+var buildRegex = cached(function (delimiters) {
+  var open = delimiters[0].replace(regexEscapeRE, '\\$&');
+  var close = delimiters[1].replace(regexEscapeRE, '\\$&');
+  return new RegExp(open + '((?:.|\\n)+?)' + close, 'g')
+});
+
+function parseText (
+  text,
+  delimiters
+) {
+  var tagRE = delimiters ? buildRegex(delimiters) : defaultTagRE;
+  if (!tagRE.test(text)) {
+    return
+  }
+  var tokens = [];
+  var lastIndex = tagRE.lastIndex = 0;
+  var match, index;
+  while ((match = tagRE.exec(text))) {
+    index = match.index;
+    // push text token
+    if (index > lastIndex) {
+      tokens.push(JSON.stringify(text.slice(lastIndex, index)));
+    }
+    // tag token
+    var exp = parseFilters(match[1].trim());
+    tokens.push(("_s(" + exp + ")"));
+    lastIndex = index + match[0].length;
+  }
+  if (lastIndex < text.length) {
+    tokens.push(JSON.stringify(text.slice(lastIndex)));
+  }
+  return tokens.join('+')
+}
+
+/*  */
+
+function transformNode (el, options) {
+  var warn = options.warn || baseWarn;
+  var staticClass = getAndRemoveAttr(el, 'class');
+  if ("development" !== 'production' && staticClass) {
+    var expression = parseText(staticClass, options.delimiters);
+    if (expression) {
+      warn(
+        "class=\"" + staticClass + "\": " +
+        'Interpolation inside attributes has been removed. ' +
+        'Use v-bind or the colon shorthand instead. For example, ' +
+        'instead of <div class="{{ val }}">, use <div :class="val">.'
+      );
+    }
+  }
+  if (staticClass) {
+    el.staticClass = JSON.stringify(staticClass);
+  }
+  var classBinding = getBindingAttr(el, 'class', false /* getStatic */);
+  if (classBinding) {
+    el.classBinding = classBinding;
+  }
+}
+
+function genData (el) {
+  var data = '';
+  if (el.staticClass) {
+    data += "staticClass:" + (el.staticClass) + ",";
+  }
+  if (el.classBinding) {
+    data += "class:" + (el.classBinding) + ",";
+  }
+  return data
+}
+
+var klass$1 = {
+  staticKeys: ['staticClass'],
+  transformNode: transformNode,
+  genData: genData
+};
+
+/*  */
+
+function transformNode$1 (el, options) {
+  var warn = options.warn || baseWarn;
+  var staticStyle = getAndRemoveAttr(el, 'style');
+  if (staticStyle) {
+    /* istanbul ignore if */
+    {
+      var expression = parseText(staticStyle, options.delimiters);
+      if (expression) {
+        warn(
+          "style=\"" + staticStyle + "\": " +
+          'Interpolation inside attributes has been removed. ' +
+          'Use v-bind or the colon shorthand instead. For example, ' +
+          'instead of <div style="{{ val }}">, use <div :style="val">.'
+        );
+      }
+    }
+    el.staticStyle = JSON.stringify(parseStyleText(staticStyle));
+  }
+
+  var styleBinding = getBindingAttr(el, 'style', false /* getStatic */);
+  if (styleBinding) {
+    el.styleBinding = styleBinding;
+  }
+}
+
+function genData$1 (el) {
+  var data = '';
+  if (el.staticStyle) {
+    data += "staticStyle:" + (el.staticStyle) + ",";
+  }
+  if (el.styleBinding) {
+    data += "style:(" + (el.styleBinding) + "),";
+  }
+  return data
+}
+
+var style$1 = {
+  staticKeys: ['staticStyle'],
+  transformNode: transformNode$1,
+  genData: genData$1
+};
+
+var modules$1 = [
+  klass$1,
+  style$1
+];
+
+/*  */
+
+function text (el, dir) {
+  if (dir.value) {
+    addProp(el, 'textContent', ("_s(" + (dir.value) + ")"));
+  }
+}
+
+/*  */
+
+function html (el, dir) {
+  if (dir.value) {
+    addProp(el, 'innerHTML', ("_s(" + (dir.value) + ")"));
+  }
+}
+
+var directives$1 = {
+  model: model,
+  text: text,
+  html: html
+};
+
+/*  */
+
+var isUnaryTag = makeMap(
+  'area,base,br,col,embed,frame,hr,img,input,isindex,keygen,' +
+  'link,meta,param,source,track,wbr'
+);
+
+// Elements that you can, intentionally, leave open
+// (and which close themselves)
+var canBeLeftOpenTag = makeMap(
+  'colgroup,dd,dt,li,options,p,td,tfoot,th,thead,tr,source'
+);
+
+// HTML5 tags https://html.spec.whatwg.org/multipage/indices.html#elements-3
+// Phrasing Content https://html.spec.whatwg.org/multipage/dom.html#phrasing-content
+var isNonPhrasingTag = makeMap(
+  'address,article,aside,base,blockquote,body,caption,col,colgroup,dd,' +
+  'details,dialog,div,dl,dt,fieldset,figcaption,figure,footer,form,' +
+  'h1,h2,h3,h4,h5,h6,head,header,hgroup,hr,html,legend,li,menuitem,meta,' +
+  'optgroup,option,param,rp,rt,source,style,summary,tbody,td,tfoot,th,thead,' +
+  'title,tr,track'
+);
+
+/*  */
+
+var baseOptions = {
+  expectHTML: true,
+  modules: modules$1,
+  directives: directives$1,
+  isPreTag: isPreTag,
+  isUnaryTag: isUnaryTag,
+  mustUseProp: mustUseProp,
+  canBeLeftOpenTag: canBeLeftOpenTag,
+  isReservedTag: isReservedTag,
+  getTagNamespace: getTagNamespace,
+  staticKeys: genStaticKeys(modules$1)
+};
+
+/*  */
+
+var decoder;
+
+var he = {
+  decode: function decode (html) {
+    decoder = decoder || document.createElement('div');
+    decoder.innerHTML = html;
+    return decoder.textContent
+  }
+};
+
+/**
+ * Not type-checking this file because it's mostly vendor code.
+ */
+
+/*!
+ * HTML Parser By John Resig (ejohn.org)
+ * Modified by Juriy "kangax" Zaytsev
+ * Original code by Erik Arvidsson, Mozilla Public License
+ * http://erik.eae.net/simplehtmlparser/simplehtmlparser.js
+ */
+
+// Regular Expressions for parsing tags and attributes
+var attribute = /^\s*([^\s"'<>\/=]+)(?:\s*(=)\s*(?:"([^"]*)"+|'([^']*)'+|([^\s"'=<>`]+)))?/;
+// could use https://www.w3.org/TR/1999/REC-xml-names-19990114/#NT-QName
+// but for Vue templates we can enforce a simple charset
+var ncname = '[a-zA-Z_][\\w\\-\\.]*';
+var qnameCapture = "((?:" + ncname + "\\:)?" + ncname + ")";
+var startTagOpen = new RegExp(("^<" + qnameCapture));
+var startTagClose = /^\s*(\/?)>/;
+var endTag = new RegExp(("^<\\/" + qnameCapture + "[^>]*>"));
+var doctype = /^<!DOCTYPE [^>]+>/i;
+var comment = /^<!--/;
+var conditionalComment = /^<!\[/;
+
+var IS_REGEX_CAPTURING_BROKEN = false;
+'x'.replace(/x(.)?/g, function (m, g) {
+  IS_REGEX_CAPTURING_BROKEN = g === '';
+});
+
+// Special Elements (can contain anything)
+var isPlainTextElement = makeMap('script,style,textarea', true);
+var reCache = {};
+
+var decodingMap = {
+  '&lt;': '<',
+  '&gt;': '>',
+  '&quot;': '"',
+  '&amp;': '&',
+  '&#10;': '\n'
+};
+var encodedAttr = /&(?:lt|gt|quot|amp);/g;
+var encodedAttrWithNewLines = /&(?:lt|gt|quot|amp|#10);/g;
+
+// #5992
+var isIgnoreNewlineTag = makeMap('pre,textarea', true);
+var shouldIgnoreFirstNewline = function (tag, html) { return tag && isIgnoreNewlineTag(tag) && html[0] === '\n'; };
+
+function decodeAttr (value, shouldDecodeNewlines) {
+  var re = shouldDecodeNewlines ? encodedAttrWithNewLines : encodedAttr;
+  return value.replace(re, function (match) { return decodingMap[match]; })
+}
+
+function parseHTML (html, options) {
+  var stack = [];
+  var expectHTML = options.expectHTML;
+  var isUnaryTag$$1 = options.isUnaryTag || no;
+  var canBeLeftOpenTag$$1 = options.canBeLeftOpenTag || no;
+  var index = 0;
+  var last, lastTag;
+  while (html) {
+    last = html;
+    // Make sure we're not in a plaintext content element like script/style
+    if (!lastTag || !isPlainTextElement(lastTag)) {
+      var textEnd = html.indexOf('<');
+      if (textEnd === 0) {
+        // Comment:
+        if (comment.test(html)) {
+          var commentEnd = html.indexOf('-->');
+
+          if (commentEnd >= 0) {
+            if (options.shouldKeepComment) {
+              options.comment(html.substring(4, commentEnd));
+            }
+            advance(commentEnd + 3);
+            continue
+          }
+        }
+
+        // http://en.wikipedia.org/wiki/Conditional_comment#Downlevel-revealed_conditional_comment
+        if (conditionalComment.test(html)) {
+          var conditionalEnd = html.indexOf(']>');
+
+          if (conditionalEnd >= 0) {
+            advance(conditionalEnd + 2);
+            continue
+          }
+        }
+
+        // Doctype:
+        var doctypeMatch = html.match(doctype);
+        if (doctypeMatch) {
+          advance(doctypeMatch[0].length);
+          continue
+        }
+
+        // End tag:
+        var endTagMatch = html.match(endTag);
+        if (endTagMatch) {
+          var curIndex = index;
+          advance(endTagMatch[0].length);
+          parseEndTag(endTagMatch[1], curIndex, index);
+          continue
+        }
+
+        // Start tag:
+        var startTagMatch = parseStartTag();
+        if (startTagMatch) {
+          handleStartTag(startTagMatch);
+          if (shouldIgnoreFirstNewline(lastTag, html)) {
+            advance(1);
+          }
+          continue
+        }
+      }
+
+      var text = (void 0), rest = (void 0), next = (void 0);
+      if (textEnd >= 0) {
+        rest = html.slice(textEnd);
+        while (
+          !endTag.test(rest) &&
+          !startTagOpen.test(rest) &&
+          !comment.test(rest) &&
+          !conditionalComment.test(rest)
+        ) {
+          // < in plain text, be forgiving and treat it as text
+          next = rest.indexOf('<', 1);
+          if (next < 0) { break }
+          textEnd += next;
+          rest = html.slice(textEnd);
+        }
+        text = html.substring(0, textEnd);
+        advance(textEnd);
+      }
+
+      if (textEnd < 0) {
+        text = html;
+        html = '';
+      }
+
+      if (options.chars && text) {
+        options.chars(text);
+      }
+    } else {
+      var endTagLength = 0;
+      var stackedTag = lastTag.toLowerCase();
+      var reStackedTag = reCache[stackedTag] || (reCache[stackedTag] = new RegExp('([\\s\\S]*?)(</' + stackedTag + '[^>]*>)', 'i'));
+      var rest$1 = html.replace(reStackedTag, function (all, text, endTag) {
+        endTagLength = endTag.length;
+        if (!isPlainTextElement(stackedTag) && stackedTag !== 'noscript') {
+          text = text
+            .replace(/<!--([\s\S]*?)-->/g, '$1')
+            .replace(/<!\[CDATA\[([\s\S]*?)]]>/g, '$1');
+        }
+        if (shouldIgnoreFirstNewline(stackedTag, text)) {
+          text = text.slice(1);
+        }
+        if (options.chars) {
+          options.chars(text);
+        }
+        return ''
+      });
+      index += html.length - rest$1.length;
+      html = rest$1;
+      parseEndTag(stackedTag, index - endTagLength, index);
+    }
+
+    if (html === last) {
+      options.chars && options.chars(html);
+      if ("development" !== 'production' && !stack.length && options.warn) {
+        options.warn(("Mal-formatted tag at end of template: \"" + html + "\""));
+      }
+      break
+    }
+  }
+
+  // Clean up any remaining tags
+  parseEndTag();
+
+  function advance (n) {
+    index += n;
+    html = html.substring(n);
+  }
+
+  function parseStartTag () {
+    var start = html.match(startTagOpen);
+    if (start) {
+      var match = {
+        tagName: start[1],
+        attrs: [],
+        start: index
+      };
+      advance(start[0].length);
+      var end, attr;
+      while (!(end = html.match(startTagClose)) && (attr = html.match(attribute))) {
+        advance(attr[0].length);
+        match.attrs.push(attr);
+      }
+      if (end) {
+        match.unarySlash = end[1];
+        advance(end[0].length);
+        match.end = index;
+        return match
+      }
+    }
+  }
+
+  function handleStartTag (match) {
+    var tagName = match.tagName;
+    var unarySlash = match.unarySlash;
+
+    if (expectHTML) {
+      if (lastTag === 'p' && isNonPhrasingTag(tagName)) {
+        parseEndTag(lastTag);
+      }
+      if (canBeLeftOpenTag$$1(tagName) && lastTag === tagName) {
+        parseEndTag(tagName);
+      }
+    }
+
+    var unary = isUnaryTag$$1(tagName) || !!unarySlash;
+
+    var l = match.attrs.length;
+    var attrs = new Array(l);
+    for (var i = 0; i < l; i++) {
+      var args = match.attrs[i];
+      // hackish work around FF bug https://bugzilla.mozilla.org/show_bug.cgi?id=369778
+      if (IS_REGEX_CAPTURING_BROKEN && args[0].indexOf('""') === -1) {
+        if (args[3] === '') { delete args[3]; }
+        if (args[4] === '') { delete args[4]; }
+        if (args[5] === '') { delete args[5]; }
+      }
+      var value = args[3] || args[4] || args[5] || '';
+      attrs[i] = {
+        name: args[1],
+        value: decodeAttr(
+          value,
+          options.shouldDecodeNewlines
+        )
+      };
+    }
+
+    if (!unary) {
+      stack.push({ tag: tagName, lowerCasedTag: tagName.toLowerCase(), attrs: attrs });
+      lastTag = tagName;
+    }
+
+    if (options.start) {
+      options.start(tagName, attrs, unary, match.start, match.end);
+    }
+  }
+
+  function parseEndTag (tagName, start, end) {
+    var pos, lowerCasedTagName;
+    if (start == null) { start = index; }
+    if (end == null) { end = index; }
+
+    if (tagName) {
+      lowerCasedTagName = tagName.toLowerCase();
+    }
+
+    // Find the closest opened tag of the same type
+    if (tagName) {
+      for (pos = stack.length - 1; pos >= 0; pos--) {
+        if (stack[pos].lowerCasedTag === lowerCasedTagName) {
+          break
+        }
+      }
+    } else {
+      // If no tag name is provided, clean shop
+      pos = 0;
+    }
+
+    if (pos >= 0) {
+      // Close all the open elements, up the stack
+      for (var i = stack.length - 1; i >= pos; i--) {
+        if ("development" !== 'production' &&
+          (i > pos || !tagName) &&
+          options.warn
+        ) {
+          options.warn(
+            ("tag <" + (stack[i].tag) + "> has no matching end tag.")
+          );
+        }
+        if (options.end) {
+          options.end(stack[i].tag, start, end);
+        }
+      }
+
+      // Remove the open elements from the stack
+      stack.length = pos;
+      lastTag = pos && stack[pos - 1].tag;
+    } else if (lowerCasedTagName === 'br') {
+      if (options.start) {
+        options.start(tagName, [], true, start, end);
+      }
+    } else if (lowerCasedTagName === 'p') {
+      if (options.start) {
+        options.start(tagName, [], false, start, end);
+      }
+      if (options.end) {
+        options.end(tagName, start, end);
+      }
+    }
+  }
+}
+
+/*  */
+
+var onRE = /^@|^v-on:/;
+var dirRE = /^v-|^@|^:/;
+var forAliasRE = /(.*?)\s+(?:in|of)\s+(.*)/;
+var forIteratorRE = /\((\{[^}]*\}|[^,]*),([^,]*)(?:,([^,]*))?\)/;
+
+var argRE = /:(.*)$/;
+var bindRE = /^:|^v-bind:/;
+var modifierRE = /\.[^.]+/g;
+
+var decodeHTMLCached = cached(he.decode);
+
+// configurable state
+var warn$2;
+var delimiters;
+var transforms;
+var preTransforms;
+var postTransforms;
+var platformIsPreTag;
+var platformMustUseProp;
+var platformGetTagNamespace;
+
+/**
+ * Convert HTML string to AST.
+ */
+function parse (
+  template,
+  options
+) {
+  warn$2 = options.warn || baseWarn;
+
+  platformIsPreTag = options.isPreTag || no;
+  platformMustUseProp = options.mustUseProp || no;
+  platformGetTagNamespace = options.getTagNamespace || no;
+
+  transforms = pluckModuleFunction(options.modules, 'transformNode');
+  preTransforms = pluckModuleFunction(options.modules, 'preTransformNode');
+  postTransforms = pluckModuleFunction(options.modules, 'postTransformNode');
+
+  delimiters = options.delimiters;
+
+  var stack = [];
+  var preserveWhitespace = options.preserveWhitespace !== false;
+  var root;
+  var currentParent;
+  var inVPre = false;
+  var inPre = false;
+  var warned = false;
+
+  function warnOnce (msg) {
+    if (!warned) {
+      warned = true;
+      warn$2(msg);
+    }
+  }
+
+  function endPre (element) {
+    // check pre state
+    if (element.pre) {
+      inVPre = false;
+    }
+    if (platformIsPreTag(element.tag)) {
+      inPre = false;
+    }
+  }
+
+  parseHTML(template, {
+    warn: warn$2,
+    expectHTML: options.expectHTML,
+    isUnaryTag: options.isUnaryTag,
+    canBeLeftOpenTag: options.canBeLeftOpenTag,
+    shouldDecodeNewlines: options.shouldDecodeNewlines,
+    shouldKeepComment: options.comments,
+    start: function start (tag, attrs, unary) {
+      // check namespace.
+      // inherit parent ns if there is one
+      var ns = (currentParent && currentParent.ns) || platformGetTagNamespace(tag);
+
+      // handle IE svg bug
+      /* istanbul ignore if */
+      if (isIE && ns === 'svg') {
+        attrs = guardIESVGBug(attrs);
+      }
+
+      var element = {
+        type: 1,
+        tag: tag,
+        attrsList: attrs,
+        attrsMap: makeAttrsMap(attrs),
+        parent: currentParent,
+        children: []
+      };
+      if (ns) {
+        element.ns = ns;
+      }
+
+      if (isForbiddenTag(element) && !isServerRendering()) {
+        element.forbidden = true;
+        "development" !== 'production' && warn$2(
+          'Templates should only be responsible for mapping the state to the ' +
+          'UI. Avoid placing tags with side-effects in your templates, such as ' +
+          "<" + tag + ">" + ', as they will not be parsed.'
+        );
+      }
+
+      // apply pre-transforms
+      for (var i = 0; i < preTransforms.length; i++) {
+        preTransforms[i](element, options);
+      }
+
+      if (!inVPre) {
+        processPre(element);
+        if (element.pre) {
+          inVPre = true;
+        }
+      }
+      if (platformIsPreTag(element.tag)) {
+        inPre = true;
+      }
+      if (inVPre) {
+        processRawAttrs(element);
+      } else {
+        processFor(element);
+        processIf(element);
+        processOnce(element);
+        processKey(element);
+
+        // determine whether this is a plain element after
+        // removing structural attributes
+        element.plain = !element.key && !attrs.length;
+
+        processRef(element);
+        processSlot(element);
+        processComponent(element);
+        for (var i$1 = 0; i$1 < transforms.length; i$1++) {
+          transforms[i$1](element, options);
+        }
+        processAttrs(element);
+      }
+
+      function checkRootConstraints (el) {
+        {
+          if (el.tag === 'slot' || el.tag === 'template') {
+            warnOnce(
+              "Cannot use <" + (el.tag) + "> as component root element because it may " +
+              'contain multiple nodes.'
+            );
+          }
+          if (el.attrsMap.hasOwnProperty('v-for')) {
+            warnOnce(
+              'Cannot use v-for on stateful component root element because ' +
+              'it renders multiple elements.'
+            );
+          }
+        }
+      }
+
+      // tree management
+      if (!root) {
+        root = element;
+        checkRootConstraints(root);
+      } else if (!stack.length) {
+        // allow root elements with v-if, v-else-if and v-else
+        if (root.if && (element.elseif || element.else)) {
+          checkRootConstraints(element);
+          addIfCondition(root, {
+            exp: element.elseif,
+            block: element
+          });
+        } else {
+          warnOnce(
+            "Component template should contain exactly one root element. " +
+            "If you are using v-if on multiple elements, " +
+            "use v-else-if to chain them instead."
+          );
+        }
+      }
+      if (currentParent && !element.forbidden) {
+        if (element.elseif || element.else) {
+          processIfConditions(element, currentParent);
+        } else if (element.slotScope) { // scoped slot
+          currentParent.plain = false;
+          var name = element.slotTarget || '"default"';(currentParent.scopedSlots || (currentParent.scopedSlots = {}))[name] = element;
+        } else {
+          currentParent.children.push(element);
+          element.parent = currentParent;
+        }
+      }
+      if (!unary) {
+        currentParent = element;
+        stack.push(element);
+      } else {
+        endPre(element);
+      }
+      // apply post-transforms
+      for (var i$2 = 0; i$2 < postTransforms.length; i$2++) {
+        postTransforms[i$2](element, options);
+      }
+    },
+
+    end: function end () {
+      // remove trailing whitespace
+      var element = stack[stack.length - 1];
+      var lastNode = element.children[element.children.length - 1];
+      if (lastNode && lastNode.type === 3 && lastNode.text === ' ' && !inPre) {
+        element.children.pop();
+      }
+      // pop stack
+      stack.length -= 1;
+      currentParent = stack[stack.length - 1];
+      endPre(element);
+    },
+
+    chars: function chars (text) {
+      if (!currentParent) {
+        {
+          if (text === template) {
+            warnOnce(
+              'Component template requires a root element, rather than just text.'
+            );
+          } else if ((text = text.trim())) {
+            warnOnce(
+              ("text \"" + text + "\" outside root element will be ignored.")
+            );
+          }
+        }
+        return
+      }
+      // IE textarea placeholder bug
+      /* istanbul ignore if */
+      if (isIE &&
+        currentParent.tag === 'textarea' &&
+        currentParent.attrsMap.placeholder === text
+      ) {
+        return
+      }
+      var children = currentParent.children;
+      text = inPre || text.trim()
+        ? isTextTag(currentParent) ? text : decodeHTMLCached(text)
+        // only preserve whitespace if its not right after a starting tag
+        : preserveWhitespace && children.length ? ' ' : '';
+      if (text) {
+        var expression;
+        if (!inVPre && text !== ' ' && (expression = parseText(text, delimiters))) {
+          children.push({
+            type: 2,
+            expression: expression,
+            text: text
+          });
+        } else if (text !== ' ' || !children.length || children[children.length - 1].text !== ' ') {
+          children.push({
+            type: 3,
+            text: text
+          });
+        }
+      }
+    },
+    comment: function comment (text) {
+      currentParent.children.push({
+        type: 3,
+        text: text,
+        isComment: true
+      });
+    }
+  });
+  return root
+}
+
+function processPre (el) {
+  if (getAndRemoveAttr(el, 'v-pre') != null) {
+    el.pre = true;
+  }
+}
+
+function processRawAttrs (el) {
+  var l = el.attrsList.length;
+  if (l) {
+    var attrs = el.attrs = new Array(l);
+    for (var i = 0; i < l; i++) {
+      attrs[i] = {
+        name: el.attrsList[i].name,
+        value: JSON.stringify(el.attrsList[i].value)
+      };
+    }
+  } else if (!el.pre) {
+    // non root node in pre blocks with no attributes
+    el.plain = true;
+  }
+}
+
+function processKey (el) {
+  var exp = getBindingAttr(el, 'key');
+  if (exp) {
+    if ("development" !== 'production' && el.tag === 'template') {
+      warn$2("<template> cannot be keyed. Place the key on real elements instead.");
+    }
+    el.key = exp;
+  }
+}
+
+function processRef (el) {
+  var ref = getBindingAttr(el, 'ref');
+  if (ref) {
+    el.ref = ref;
+    el.refInFor = checkInFor(el);
+  }
+}
+
+function processFor (el) {
+  var exp;
+  if ((exp = getAndRemoveAttr(el, 'v-for'))) {
+    var inMatch = exp.match(forAliasRE);
+    if (!inMatch) {
+      "development" !== 'production' && warn$2(
+        ("Invalid v-for expression: " + exp)
+      );
+      return
+    }
+    el.for = inMatch[2].trim();
+    var alias = inMatch[1].trim();
+    var iteratorMatch = alias.match(forIteratorRE);
+    if (iteratorMatch) {
+      el.alias = iteratorMatch[1].trim();
+      el.iterator1 = iteratorMatch[2].trim();
+      if (iteratorMatch[3]) {
+        el.iterator2 = iteratorMatch[3].trim();
+      }
+    } else {
+      el.alias = alias;
+    }
+  }
+}
+
+function processIf (el) {
+  var exp = getAndRemoveAttr(el, 'v-if');
+  if (exp) {
+    el.if = exp;
+    addIfCondition(el, {
+      exp: exp,
+      block: el
+    });
+  } else {
+    if (getAndRemoveAttr(el, 'v-else') != null) {
+      el.else = true;
+    }
+    var elseif = getAndRemoveAttr(el, 'v-else-if');
+    if (elseif) {
+      el.elseif = elseif;
+    }
+  }
+}
+
+function processIfConditions (el, parent) {
+  var prev = findPrevElement(parent.children);
+  if (prev && prev.if) {
+    addIfCondition(prev, {
+      exp: el.elseif,
+      block: el
+    });
+  } else {
+    warn$2(
+      "v-" + (el.elseif ? ('else-if="' + el.elseif + '"') : 'else') + " " +
+      "used on element <" + (el.tag) + "> without corresponding v-if."
+    );
+  }
+}
+
+function findPrevElement (children) {
+  var i = children.length;
+  while (i--) {
+    if (children[i].type === 1) {
+      return children[i]
+    } else {
+      if ("development" !== 'production' && children[i].text !== ' ') {
+        warn$2(
+          "text \"" + (children[i].text.trim()) + "\" between v-if and v-else(-if) " +
+          "will be ignored."
+        );
+      }
+      children.pop();
+    }
+  }
+}
+
+function addIfCondition (el, condition) {
+  if (!el.ifConditions) {
+    el.ifConditions = [];
+  }
+  el.ifConditions.push(condition);
+}
+
+function processOnce (el) {
+  var once$$1 = getAndRemoveAttr(el, 'v-once');
+  if (once$$1 != null) {
+    el.once = true;
+  }
+}
+
+function processSlot (el) {
+  if (el.tag === 'slot') {
+    el.slotName = getBindingAttr(el, 'name');
+    if ("development" !== 'production' && el.key) {
+      warn$2(
+        "`key` does not work on <slot> because slots are abstract outlets " +
+        "and can possibly expand into multiple elements. " +
+        "Use the key on a wrapping element instead."
+      );
+    }
+  } else {
+    var slotTarget = getBindingAttr(el, 'slot');
+    if (slotTarget) {
+      el.slotTarget = slotTarget === '""' ? '"default"' : slotTarget;
+      // preserve slot as an attribute for native shadow DOM compat
+      addAttr(el, 'slot', slotTarget);
+    }
+    if (el.tag === 'template') {
+      el.slotScope = getAndRemoveAttr(el, 'scope');
+    }
+  }
+}
+
+function processComponent (el) {
+  var binding;
+  if ((binding = getBindingAttr(el, 'is'))) {
+    el.component = binding;
+  }
+  if (getAndRemoveAttr(el, 'inline-template') != null) {
+    el.inlineTemplate = true;
+  }
+}
+
+function processAttrs (el) {
+  var list = el.attrsList;
+  var i, l, name, rawName, value, modifiers, isProp;
+  for (i = 0, l = list.length; i < l; i++) {
+    name = rawName = list[i].name;
+    value = list[i].value;
+    if (dirRE.test(name)) {
+      // mark element as dynamic
+      el.hasBindings = true;
+      // modifiers
+      modifiers = parseModifiers(name);
+      if (modifiers) {
+        name = name.replace(modifierRE, '');
+      }
+      if (bindRE.test(name)) { // v-bind
+        name = name.replace(bindRE, '');
+        value = parseFilters(value);
+        isProp = false;
+        if (modifiers) {
+          if (modifiers.prop) {
+            isProp = true;
+            name = camelize(name);
+            if (name === 'innerHtml') { name = 'innerHTML'; }
+          }
+          if (modifiers.camel) {
+            name = camelize(name);
+          }
+          if (modifiers.sync) {
+            addHandler(
+              el,
+              ("update:" + (camelize(name))),
+              genAssignmentCode(value, "$event")
+            );
+          }
+        }
+        if (isProp || (
+          !el.component && platformMustUseProp(el.tag, el.attrsMap.type, name)
+        )) {
+          addProp(el, name, value);
+        } else {
+          addAttr(el, name, value);
+        }
+      } else if (onRE.test(name)) { // v-on
+        name = name.replace(onRE, '');
+        addHandler(el, name, value, modifiers, false, warn$2);
+      } else { // normal directives
+        name = name.replace(dirRE, '');
+        // parse arg
+        var argMatch = name.match(argRE);
+        var arg = argMatch && argMatch[1];
+        if (arg) {
+          name = name.slice(0, -(arg.length + 1));
+        }
+        addDirective(el, name, rawName, value, arg, modifiers);
+        if ("development" !== 'production' && name === 'model') {
+          checkForAliasModel(el, value);
+        }
+      }
+    } else {
+      // literal attribute
+      {
+        var expression = parseText(value, delimiters);
+        if (expression) {
+          warn$2(
+            name + "=\"" + value + "\": " +
+            'Interpolation inside attributes has been removed. ' +
+            'Use v-bind or the colon shorthand instead. For example, ' +
+            'instead of <div id="{{ val }}">, use <div :id="val">.'
+          );
+        }
+      }
+      addAttr(el, name, JSON.stringify(value));
+    }
+  }
+}
+
+function checkInFor (el) {
+  var parent = el;
+  while (parent) {
+    if (parent.for !== undefined) {
+      return true
+    }
+    parent = parent.parent;
+  }
+  return false
+}
+
+function parseModifiers (name) {
+  var match = name.match(modifierRE);
+  if (match) {
+    var ret = {};
+    match.forEach(function (m) { ret[m.slice(1)] = true; });
+    return ret
+  }
+}
+
+function makeAttrsMap (attrs) {
+  var map = {};
+  for (var i = 0, l = attrs.length; i < l; i++) {
+    if (
+      "development" !== 'production' &&
+      map[attrs[i].name] && !isIE && !isEdge
+    ) {
+      warn$2('duplicate attribute: ' + attrs[i].name);
+    }
+    map[attrs[i].name] = attrs[i].value;
+  }
+  return map
+}
+
+// for script (e.g. type="x/template") or style, do not decode content
+function isTextTag (el) {
+  return el.tag === 'script' || el.tag === 'style'
+}
+
+function isForbiddenTag (el) {
+  return (
+    el.tag === 'style' ||
+    (el.tag === 'script' && (
+      !el.attrsMap.type ||
+      el.attrsMap.type === 'text/javascript'
+    ))
+  )
+}
+
+var ieNSBug = /^xmlns:NS\d+/;
+var ieNSPrefix = /^NS\d+:/;
+
+/* istanbul ignore next */
+function guardIESVGBug (attrs) {
+  var res = [];
+  for (var i = 0; i < attrs.length; i++) {
+    var attr = attrs[i];
+    if (!ieNSBug.test(attr.name)) {
+      attr.name = attr.name.replace(ieNSPrefix, '');
+      res.push(attr);
+    }
+  }
+  return res
+}
+
+function checkForAliasModel (el, value) {
+  var _el = el;
+  while (_el) {
+    if (_el.for && _el.alias === value) {
+      warn$2(
+        "<" + (el.tag) + " v-model=\"" + value + "\">: " +
+        "You are binding v-model directly to a v-for iteration alias. " +
+        "This will not be able to modify the v-for source array because " +
+        "writing to the alias is like modifying a function local variable. " +
+        "Consider using an array of objects and use v-model on an object property instead."
+      );
+    }
+    _el = _el.parent;
+  }
+}
+
+/*  */
+
+var isStaticKey;
+var isPlatformReservedTag;
+
+var genStaticKeysCached = cached(genStaticKeys$1);
+
+/**
+ * Goal of the optimizer: walk the generated template AST tree
+ * and detect sub-trees that are purely static, i.e. parts of
+ * the DOM that never needs to change.
+ *
+ * Once we detect these sub-trees, we can:
+ *
+ * 1. Hoist them into constants, so that we no longer need to
+ *    create fresh nodes for them on each re-render;
+ * 2. Completely skip them in the patching process.
+ */
+function optimize (root, options) {
+  if (!root) { return }
+  isStaticKey = genStaticKeysCached(options.staticKeys || '');
+  isPlatformReservedTag = options.isReservedTag || no;
+  // first pass: mark all non-static nodes.
+  markStatic$1(root);
+  // second pass: mark static roots.
+  markStaticRoots(root, false);
+}
+
+function genStaticKeys$1 (keys) {
+  return makeMap(
+    'type,tag,attrsList,attrsMap,plain,parent,children,attrs' +
+    (keys ? ',' + keys : '')
+  )
+}
+
+function markStatic$1 (node) {
+  node.static = isStatic(node);
+  if (node.type === 1) {
+    // do not make component slot content static. this avoids
+    // 1. components not able to mutate slot nodes
+    // 2. static slot content fails for hot-reloading
+    if (
+      !isPlatformReservedTag(node.tag) &&
+      node.tag !== 'slot' &&
+      node.attrsMap['inline-template'] == null
+    ) {
+      return
+    }
+    for (var i = 0, l = node.children.length; i < l; i++) {
+      var child = node.children[i];
+      markStatic$1(child);
+      if (!child.static) {
+        node.static = false;
+      }
+    }
+    if (node.ifConditions) {
+      for (var i$1 = 1, l$1 = node.ifConditions.length; i$1 < l$1; i$1++) {
+        var block = node.ifConditions[i$1].block;
+        markStatic$1(block);
+        if (!block.static) {
+          node.static = false;
+        }
+      }
+    }
+  }
+}
+
+function markStaticRoots (node, isInFor) {
+  if (node.type === 1) {
+    if (node.static || node.once) {
+      node.staticInFor = isInFor;
+    }
+    // For a node to qualify as a static root, it should have children that
+    // are not just static text. Otherwise the cost of hoisting out will
+    // outweigh the benefits and it's better off to just always render it fresh.
+    if (node.static && node.children.length && !(
+      node.children.length === 1 &&
+      node.children[0].type === 3
+    )) {
+      node.staticRoot = true;
+      return
+    } else {
+      node.staticRoot = false;
+    }
+    if (node.children) {
+      for (var i = 0, l = node.children.length; i < l; i++) {
+        markStaticRoots(node.children[i], isInFor || !!node.for);
+      }
+    }
+    if (node.ifConditions) {
+      for (var i$1 = 1, l$1 = node.ifConditions.length; i$1 < l$1; i$1++) {
+        markStaticRoots(node.ifConditions[i$1].block, isInFor);
+      }
+    }
+  }
+}
+
+function isStatic (node) {
+  if (node.type === 2) { // expression
+    return false
+  }
+  if (node.type === 3) { // text
+    return true
+  }
+  return !!(node.pre || (
+    !node.hasBindings && // no dynamic bindings
+    !node.if && !node.for && // not v-if or v-for or v-else
+    !isBuiltInTag(node.tag) && // not a built-in
+    isPlatformReservedTag(node.tag) && // not a component
+    !isDirectChildOfTemplateFor(node) &&
+    Object.keys(node).every(isStaticKey)
+  ))
+}
+
+function isDirectChildOfTemplateFor (node) {
+  while (node.parent) {
+    node = node.parent;
+    if (node.tag !== 'template') {
+      return false
+    }
+    if (node.for) {
+      return true
+    }
+  }
+  return false
+}
+
+/*  */
+
+var fnExpRE = /^\s*([\w$_]+|\([^)]*?\))\s*=>|^function\s*\(/;
+var simplePathRE = /^\s*[A-Za-z_$][\w$]*(?:\.[A-Za-z_$][\w$]*|\['.*?']|\[".*?"]|\[\d+]|\[[A-Za-z_$][\w$]*])*\s*$/;
+
+// keyCode aliases
+var keyCodes = {
+  esc: 27,
+  tab: 9,
+  enter: 13,
+  space: 32,
+  up: 38,
+  left: 37,
+  right: 39,
+  down: 40,
+  'delete': [8, 46]
+};
+
+// #4868: modifiers that prevent the execution of the listener
+// need to explicitly return null so that we can determine whether to remove
+// the listener for .once
+var genGuard = function (condition) { return ("if(" + condition + ")return null;"); };
+
+var modifierCode = {
+  stop: '$event.stopPropagation();',
+  prevent: '$event.preventDefault();',
+  self: genGuard("$event.target !== $event.currentTarget"),
+  ctrl: genGuard("!$event.ctrlKey"),
+  shift: genGuard("!$event.shiftKey"),
+  alt: genGuard("!$event.altKey"),
+  meta: genGuard("!$event.metaKey"),
+  left: genGuard("'button' in $event && $event.button !== 0"),
+  middle: genGuard("'button' in $event && $event.button !== 1"),
+  right: genGuard("'button' in $event && $event.button !== 2")
+};
+
+function genHandlers (
+  events,
+  isNative,
+  warn
+) {
+  var res = isNative ? 'nativeOn:{' : 'on:{';
+  for (var name in events) {
+    var handler = events[name];
+    // #5330: warn click.right, since right clicks do not actually fire click events.
+    if ("development" !== 'production' &&
+      name === 'click' &&
+      handler && handler.modifiers && handler.modifiers.right
+    ) {
+      warn(
+        "Use \"contextmenu\" instead of \"click.right\" since right clicks " +
+        "do not actually fire \"click\" events."
+      );
+    }
+    res += "\"" + name + "\":" + (genHandler(name, handler)) + ",";
+  }
+  return res.slice(0, -1) + '}'
+}
+
+function genHandler (
+  name,
+  handler
+) {
+  if (!handler) {
+    return 'function(){}'
+  }
+
+  if (Array.isArray(handler)) {
+    return ("[" + (handler.map(function (handler) { return genHandler(name, handler); }).join(',')) + "]")
+  }
+
+  var isMethodPath = simplePathRE.test(handler.value);
+  var isFunctionExpression = fnExpRE.test(handler.value);
+
+  if (!handler.modifiers) {
+    return isMethodPath || isFunctionExpression
+      ? handler.value
+      : ("function($event){" + (handler.value) + "}") // inline statement
+  } else {
+    var code = '';
+    var genModifierCode = '';
+    var keys = [];
+    for (var key in handler.modifiers) {
+      if (modifierCode[key]) {
+        genModifierCode += modifierCode[key];
+        // left/right
+        if (keyCodes[key]) {
+          keys.push(key);
+        }
+      } else {
+        keys.push(key);
+      }
+    }
+    if (keys.length) {
+      code += genKeyFilter(keys);
+    }
+    // Make sure modifiers like prevent and stop get executed after key filtering
+    if (genModifierCode) {
+      code += genModifierCode;
+    }
+    var handlerCode = isMethodPath
+      ? handler.value + '($event)'
+      : isFunctionExpression
+        ? ("(" + (handler.value) + ")($event)")
+        : handler.value;
+    return ("function($event){" + code + handlerCode + "}")
+  }
+}
+
+function genKeyFilter (keys) {
+  return ("if(!('button' in $event)&&" + (keys.map(genFilterCode).join('&&')) + ")return null;")
+}
+
+function genFilterCode (key) {
+  var keyVal = parseInt(key, 10);
+  if (keyVal) {
+    return ("$event.keyCode!==" + keyVal)
+  }
+  var alias = keyCodes[key];
+  return ("_k($event.keyCode," + (JSON.stringify(key)) + (alias ? ',' + JSON.stringify(alias) : '') + ")")
+}
+
+/*  */
+
+function on (el, dir) {
+  if ("development" !== 'production' && dir.modifiers) {
+    warn("v-on without argument does not support modifiers.");
+  }
+  el.wrapListeners = function (code) { return ("_g(" + code + "," + (dir.value) + ")"); };
+}
+
+/*  */
+
+function bind$1 (el, dir) {
+  el.wrapData = function (code) {
+    return ("_b(" + code + ",'" + (el.tag) + "'," + (dir.value) + "," + (dir.modifiers && dir.modifiers.prop ? 'true' : 'false') + (dir.modifiers && dir.modifiers.sync ? ',true' : '') + ")")
+  };
+}
+
+/*  */
+
+var baseDirectives = {
+  on: on,
+  bind: bind$1,
+  cloak: noop
+};
+
+/*  */
+
+var CodegenState = function CodegenState (options) {
+  this.options = options;
+  this.warn = options.warn || baseWarn;
+  this.transforms = pluckModuleFunction(options.modules, 'transformCode');
+  this.dataGenFns = pluckModuleFunction(options.modules, 'genData');
+  this.directives = extend(extend({}, baseDirectives), options.directives);
+  var isReservedTag = options.isReservedTag || no;
+  this.maybeComponent = function (el) { return !isReservedTag(el.tag); };
+  this.onceId = 0;
+  this.staticRenderFns = [];
+};
+
+
+
+function generate (
+  ast,
+  options
+) {
+  var state = new CodegenState(options);
+  var code = ast ? genElement(ast, state) : '_c("div")';
+  return {
+    render: ("with(this){return " + code + "}"),
+    staticRenderFns: state.staticRenderFns
+  }
+}
+
+function genElement (el, state) {
+  if (el.staticRoot && !el.staticProcessed) {
+    return genStatic(el, state)
+  } else if (el.once && !el.onceProcessed) {
+    return genOnce(el, state)
+  } else if (el.for && !el.forProcessed) {
+    return genFor(el, state)
+  } else if (el.if && !el.ifProcessed) {
+    return genIf(el, state)
+  } else if (el.tag === 'template' && !el.slotTarget) {
+    return genChildren(el, state) || 'void 0'
+  } else if (el.tag === 'slot') {
+    return genSlot(el, state)
+  } else {
+    // component or element
+    var code;
+    if (el.component) {
+      code = genComponent(el.component, el, state);
+    } else {
+      var data = el.plain ? undefined : genData$2(el, state);
+
+      var children = el.inlineTemplate ? null : genChildren(el, state, true);
+      code = "_c('" + (el.tag) + "'" + (data ? ("," + data) : '') + (children ? ("," + children) : '') + ")";
+    }
+    // module transforms
+    for (var i = 0; i < state.transforms.length; i++) {
+      code = state.transforms[i](el, code);
+    }
+    return code
+  }
+}
+
+// hoist static sub-trees out
+function genStatic (el, state) {
+  el.staticProcessed = true;
+  state.staticRenderFns.push(("with(this){return " + (genElement(el, state)) + "}"));
+  return ("_m(" + (state.staticRenderFns.length - 1) + (el.staticInFor ? ',true' : '') + ")")
+}
+
+// v-once
+function genOnce (el, state) {
+  el.onceProcessed = true;
+  if (el.if && !el.ifProcessed) {
+    return genIf(el, state)
+  } else if (el.staticInFor) {
+    var key = '';
+    var parent = el.parent;
+    while (parent) {
+      if (parent.for) {
+        key = parent.key;
+        break
+      }
+      parent = parent.parent;
+    }
+    if (!key) {
+      "development" !== 'production' && state.warn(
+        "v-once can only be used inside v-for that is keyed. "
+      );
+      return genElement(el, state)
+    }
+    return ("_o(" + (genElement(el, state)) + "," + (state.onceId++) + "," + key + ")")
+  } else {
+    return genStatic(el, state)
+  }
+}
+
+function genIf (
+  el,
+  state,
+  altGen,
+  altEmpty
+) {
+  el.ifProcessed = true; // avoid recursion
+  return genIfConditions(el.ifConditions.slice(), state, altGen, altEmpty)
+}
+
+function genIfConditions (
+  conditions,
+  state,
+  altGen,
+  altEmpty
+) {
+  if (!conditions.length) {
+    return altEmpty || '_e()'
+  }
+
+  var condition = conditions.shift();
+  if (condition.exp) {
+    return ("(" + (condition.exp) + ")?" + (genTernaryExp(condition.block)) + ":" + (genIfConditions(conditions, state, altGen, altEmpty)))
+  } else {
+    return ("" + (genTernaryExp(condition.block)))
+  }
+
+  // v-if with v-once should generate code like (a)?_m(0):_m(1)
+  function genTernaryExp (el) {
+    return altGen
+      ? altGen(el, state)
+      : el.once
+        ? genOnce(el, state)
+        : genElement(el, state)
+  }
+}
+
+function genFor (
+  el,
+  state,
+  altGen,
+  altHelper
+) {
+  var exp = el.for;
+  var alias = el.alias;
+  var iterator1 = el.iterator1 ? ("," + (el.iterator1)) : '';
+  var iterator2 = el.iterator2 ? ("," + (el.iterator2)) : '';
+
+  if ("development" !== 'production' &&
+    state.maybeComponent(el) &&
+    el.tag !== 'slot' &&
+    el.tag !== 'template' &&
+    !el.key
+  ) {
+    state.warn(
+      "<" + (el.tag) + " v-for=\"" + alias + " in " + exp + "\">: component lists rendered with " +
+      "v-for should have explicit keys. " +
+      "See https://vuejs.org/guide/list.html#key for more info.",
+      true /* tip */
+    );
+  }
+
+  el.forProcessed = true; // avoid recursion
+  return (altHelper || '_l') + "((" + exp + ")," +
+    "function(" + alias + iterator1 + iterator2 + "){" +
+      "return " + ((altGen || genElement)(el, state)) +
+    '})'
+}
+
+function genData$2 (el, state) {
+  var data = '{';
+
+  // directives first.
+  // directives may mutate the el's other properties before they are generated.
+  var dirs = genDirectives(el, state);
+  if (dirs) { data += dirs + ','; }
+
+  // key
+  if (el.key) {
+    data += "key:" + (el.key) + ",";
+  }
+  // ref
+  if (el.ref) {
+    data += "ref:" + (el.ref) + ",";
+  }
+  if (el.refInFor) {
+    data += "refInFor:true,";
+  }
+  // pre
+  if (el.pre) {
+    data += "pre:true,";
+  }
+  // record original tag name for components using "is" attribute
+  if (el.component) {
+    data += "tag:\"" + (el.tag) + "\",";
+  }
+  // module data generation functions
+  for (var i = 0; i < state.dataGenFns.length; i++) {
+    data += state.dataGenFns[i](el);
+  }
+  // attributes
+  if (el.attrs) {
+    data += "attrs:{" + (genProps(el.attrs)) + "},";
+  }
+  // DOM props
+  if (el.props) {
+    data += "domProps:{" + (genProps(el.props)) + "},";
+  }
+  // event handlers
+  if (el.events) {
+    data += (genHandlers(el.events, false, state.warn)) + ",";
+  }
+  if (el.nativeEvents) {
+    data += (genHandlers(el.nativeEvents, true, state.warn)) + ",";
+  }
+  // slot target
+  if (el.slotTarget) {
+    data += "slot:" + (el.slotTarget) + ",";
+  }
+  // scoped slots
+  if (el.scopedSlots) {
+    data += (genScopedSlots(el.scopedSlots, state)) + ",";
+  }
+  // component v-model
+  if (el.model) {
+    data += "model:{value:" + (el.model.value) + ",callback:" + (el.model.callback) + ",expression:" + (el.model.expression) + "},";
+  }
+  // inline-template
+  if (el.inlineTemplate) {
+    var inlineTemplate = genInlineTemplate(el, state);
+    if (inlineTemplate) {
+      data += inlineTemplate + ",";
+    }
+  }
+  data = data.replace(/,$/, '') + '}';
+  // v-bind data wrap
+  if (el.wrapData) {
+    data = el.wrapData(data);
+  }
+  // v-on data wrap
+  if (el.wrapListeners) {
+    data = el.wrapListeners(data);
+  }
+  return data
+}
+
+function genDirectives (el, state) {
+  var dirs = el.directives;
+  if (!dirs) { return }
+  var res = 'directives:[';
+  var hasRuntime = false;
+  var i, l, dir, needRuntime;
+  for (i = 0, l = dirs.length; i < l; i++) {
+    dir = dirs[i];
+    needRuntime = true;
+    var gen = state.directives[dir.name];
+    if (gen) {
+      // compile-time directive that manipulates AST.
+      // returns true if it also needs a runtime counterpart.
+      needRuntime = !!gen(el, dir, state.warn);
+    }
+    if (needRuntime) {
+      hasRuntime = true;
+      res += "{name:\"" + (dir.name) + "\",rawName:\"" + (dir.rawName) + "\"" + (dir.value ? (",value:(" + (dir.value) + "),expression:" + (JSON.stringify(dir.value))) : '') + (dir.arg ? (",arg:\"" + (dir.arg) + "\"") : '') + (dir.modifiers ? (",modifiers:" + (JSON.stringify(dir.modifiers))) : '') + "},";
+    }
+  }
+  if (hasRuntime) {
+    return res.slice(0, -1) + ']'
+  }
+}
+
+function genInlineTemplate (el, state) {
+  var ast = el.children[0];
+  if ("development" !== 'production' && (
+    el.children.length > 1 || ast.type !== 1
+  )) {
+    state.warn('Inline-template components must have exactly one child element.');
+  }
+  if (ast.type === 1) {
+    var inlineRenderFns = generate(ast, state.options);
+    return ("inlineTemplate:{render:function(){" + (inlineRenderFns.render) + "},staticRenderFns:[" + (inlineRenderFns.staticRenderFns.map(function (code) { return ("function(){" + code + "}"); }).join(',')) + "]}")
+  }
+}
+
+function genScopedSlots (
+  slots,
+  state
+) {
+  return ("scopedSlots:_u([" + (Object.keys(slots).map(function (key) {
+      return genScopedSlot(key, slots[key], state)
+    }).join(',')) + "])")
+}
+
+function genScopedSlot (
+  key,
+  el,
+  state
+) {
+  if (el.for && !el.forProcessed) {
+    return genForScopedSlot(key, el, state)
+  }
+  return "{key:" + key + ",fn:function(" + (String(el.attrsMap.scope)) + "){" +
+    "return " + (el.tag === 'template'
+      ? genChildren(el, state) || 'void 0'
+      : genElement(el, state)) + "}}"
+}
+
+function genForScopedSlot (
+  key,
+  el,
+  state
+) {
+  var exp = el.for;
+  var alias = el.alias;
+  var iterator1 = el.iterator1 ? ("," + (el.iterator1)) : '';
+  var iterator2 = el.iterator2 ? ("," + (el.iterator2)) : '';
+  el.forProcessed = true; // avoid recursion
+  return "_l((" + exp + ")," +
+    "function(" + alias + iterator1 + iterator2 + "){" +
+      "return " + (genScopedSlot(key, el, state)) +
+    '})'
+}
+
+function genChildren (
+  el,
+  state,
+  checkSkip,
+  altGenElement,
+  altGenNode
+) {
+  var children = el.children;
+  if (children.length) {
+    var el$1 = children[0];
+    // optimize single v-for
+    if (children.length === 1 &&
+      el$1.for &&
+      el$1.tag !== 'template' &&
+      el$1.tag !== 'slot'
+    ) {
+      return (altGenElement || genElement)(el$1, state)
+    }
+    var normalizationType = checkSkip
+      ? getNormalizationType(children, state.maybeComponent)
+      : 0;
+    var gen = altGenNode || genNode;
+    return ("[" + (children.map(function (c) { return gen(c, state); }).join(',')) + "]" + (normalizationType ? ("," + normalizationType) : ''))
+  }
+}
+
+// determine the normalization needed for the children array.
+// 0: no normalization needed
+// 1: simple normalization needed (possible 1-level deep nested array)
+// 2: full normalization needed
+function getNormalizationType (
+  children,
+  maybeComponent
+) {
+  var res = 0;
+  for (var i = 0; i < children.length; i++) {
+    var el = children[i];
+    if (el.type !== 1) {
+      continue
+    }
+    if (needsNormalization(el) ||
+        (el.ifConditions && el.ifConditions.some(function (c) { return needsNormalization(c.block); }))) {
+      res = 2;
+      break
+    }
+    if (maybeComponent(el) ||
+        (el.ifConditions && el.ifConditions.some(function (c) { return maybeComponent(c.block); }))) {
+      res = 1;
+    }
+  }
+  return res
+}
+
+function needsNormalization (el) {
+  return el.for !== undefined || el.tag === 'template' || el.tag === 'slot'
+}
+
+function genNode (node, state) {
+  if (node.type === 1) {
+    return genElement(node, state)
+  } if (node.type === 3 && node.isComment) {
+    return genComment(node)
+  } else {
+    return genText(node)
+  }
+}
+
+function genText (text) {
+  return ("_v(" + (text.type === 2
+    ? text.expression // no need for () because already wrapped in _s()
+    : transformSpecialNewlines(JSON.stringify(text.text))) + ")")
+}
+
+function genComment (comment) {
+  return ("_e(" + (JSON.stringify(comment.text)) + ")")
+}
+
+function genSlot (el, state) {
+  var slotName = el.slotName || '"default"';
+  var children = genChildren(el, state);
+  var res = "_t(" + slotName + (children ? ("," + children) : '');
+  var attrs = el.attrs && ("{" + (el.attrs.map(function (a) { return ((camelize(a.name)) + ":" + (a.value)); }).join(',')) + "}");
+  var bind$$1 = el.attrsMap['v-bind'];
+  if ((attrs || bind$$1) && !children) {
+    res += ",null";
+  }
+  if (attrs) {
+    res += "," + attrs;
+  }
+  if (bind$$1) {
+    res += (attrs ? '' : ',null') + "," + bind$$1;
+  }
+  return res + ')'
+}
+
+// componentName is el.component, take it as argument to shun flow's pessimistic refinement
+function genComponent (
+  componentName,
+  el,
+  state
+) {
+  var children = el.inlineTemplate ? null : genChildren(el, state, true);
+  return ("_c(" + componentName + "," + (genData$2(el, state)) + (children ? ("," + children) : '') + ")")
+}
+
+function genProps (props) {
+  var res = '';
+  for (var i = 0; i < props.length; i++) {
+    var prop = props[i];
+    res += "\"" + (prop.name) + "\":" + (transformSpecialNewlines(prop.value)) + ",";
+  }
+  return res.slice(0, -1)
+}
+
+// #3895, #4268
+function transformSpecialNewlines (text) {
+  return text
+    .replace(/\u2028/g, '\\u2028')
+    .replace(/\u2029/g, '\\u2029')
+}
+
+/*  */
+
+// these keywords should not appear inside expressions, but operators like
+// typeof, instanceof and in are allowed
+var prohibitedKeywordRE = new RegExp('\\b' + (
+  'do,if,for,let,new,try,var,case,else,with,await,break,catch,class,const,' +
+  'super,throw,while,yield,delete,export,import,return,switch,default,' +
+  'extends,finally,continue,debugger,function,arguments'
+).split(',').join('\\b|\\b') + '\\b');
+
+// these unary operators should not be used as property/method names
+var unaryOperatorsRE = new RegExp('\\b' + (
+  'delete,typeof,void'
+).split(',').join('\\s*\\([^\\)]*\\)|\\b') + '\\s*\\([^\\)]*\\)');
+
+// check valid identifier for v-for
+var identRE = /[A-Za-z_$][\w$]*/;
+
+// strip strings in expressions
+var stripStringRE = /'(?:[^'\\]|\\.)*'|"(?:[^"\\]|\\.)*"|`(?:[^`\\]|\\.)*\$\{|\}(?:[^`\\]|\\.)*`|`(?:[^`\\]|\\.)*`/g;
+
+// detect problematic expressions in a template
+function detectErrors (ast) {
+  var errors = [];
+  if (ast) {
+    checkNode(ast, errors);
+  }
+  return errors
+}
+
+function checkNode (node, errors) {
+  if (node.type === 1) {
+    for (var name in node.attrsMap) {
+      if (dirRE.test(name)) {
+        var value = node.attrsMap[name];
+        if (value) {
+          if (name === 'v-for') {
+            checkFor(node, ("v-for=\"" + value + "\""), errors);
+          } else if (onRE.test(name)) {
+            checkEvent(value, (name + "=\"" + value + "\""), errors);
+          } else {
+            checkExpression(value, (name + "=\"" + value + "\""), errors);
+          }
+        }
+      }
+    }
+    if (node.children) {
+      for (var i = 0; i < node.children.length; i++) {
+        checkNode(node.children[i], errors);
+      }
+    }
+  } else if (node.type === 2) {
+    checkExpression(node.expression, node.text, errors);
+  }
+}
+
+function checkEvent (exp, text, errors) {
+  var stipped = exp.replace(stripStringRE, '');
+  var keywordMatch = stipped.match(unaryOperatorsRE);
+  if (keywordMatch && stipped.charAt(keywordMatch.index - 1) !== '$') {
+    errors.push(
+      "avoid using JavaScript unary operator as property name: " +
+      "\"" + (keywordMatch[0]) + "\" in expression " + (text.trim())
+    );
+  }
+  checkExpression(exp, text, errors);
+}
+
+function checkFor (node, text, errors) {
+  checkExpression(node.for || '', text, errors);
+  checkIdentifier(node.alias, 'v-for alias', text, errors);
+  checkIdentifier(node.iterator1, 'v-for iterator', text, errors);
+  checkIdentifier(node.iterator2, 'v-for iterator', text, errors);
+}
+
+function checkIdentifier (ident, type, text, errors) {
+  if (typeof ident === 'string' && !identRE.test(ident)) {
+    errors.push(("invalid " + type + " \"" + ident + "\" in expression: " + (text.trim())));
+  }
+}
+
+function checkExpression (exp, text, errors) {
+  try {
+    new Function(("return " + exp));
+  } catch (e) {
+    var keywordMatch = exp.replace(stripStringRE, '').match(prohibitedKeywordRE);
+    if (keywordMatch) {
+      errors.push(
+        "avoid using JavaScript keyword as property name: " +
+        "\"" + (keywordMatch[0]) + "\" in expression " + (text.trim())
+      );
+    } else {
+      errors.push(("invalid expression: " + (text.trim())));
+    }
+  }
+}
+
+/*  */
+
+function createFunction (code, errors) {
+  try {
+    return new Function(code)
+  } catch (err) {
+    errors.push({ err: err, code: code });
+    return noop
+  }
+}
+
+function createCompileToFunctionFn (compile) {
+  var cache = Object.create(null);
+
+  return function compileToFunctions (
+    template,
+    options,
+    vm
+  ) {
+    options = options || {};
+
+    /* istanbul ignore if */
+    {
+      // detect possible CSP restriction
+      try {
+        new Function('return 1');
+      } catch (e) {
+        if (e.toString().match(/unsafe-eval|CSP/)) {
+          warn(
+            'It seems you are using the standalone build of Vue.js in an ' +
+            'environment with Content Security Policy that prohibits unsafe-eval. ' +
+            'The template compiler cannot work in this environment. Consider ' +
+            'relaxing the policy to allow unsafe-eval or pre-compiling your ' +
+            'templates into render functions.'
+          );
+        }
+      }
+    }
+
+    // check cache
+    var key = options.delimiters
+      ? String(options.delimiters) + template
+      : template;
+    if (cache[key]) {
+      return cache[key]
+    }
+
+    // compile
+    var compiled = compile(template, options);
+
+    // check compilation errors/tips
+    {
+      if (compiled.errors && compiled.errors.length) {
+        warn(
+          "Error compiling template:\n\n" + template + "\n\n" +
+          compiled.errors.map(function (e) { return ("- " + e); }).join('\n') + '\n',
+          vm
+        );
+      }
+      if (compiled.tips && compiled.tips.length) {
+        compiled.tips.forEach(function (msg) { return tip(msg, vm); });
+      }
+    }
+
+    // turn code into functions
+    var res = {};
+    var fnGenErrors = [];
+    res.render = createFunction(compiled.render, fnGenErrors);
+    res.staticRenderFns = compiled.staticRenderFns.map(function (code) {
+      return createFunction(code, fnGenErrors)
+    });
+
+    // check function generation errors.
+    // this should only happen if there is a bug in the compiler itself.
+    // mostly for codegen development use
+    /* istanbul ignore if */
+    {
+      if ((!compiled.errors || !compiled.errors.length) && fnGenErrors.length) {
+        warn(
+          "Failed to generate render function:\n\n" +
+          fnGenErrors.map(function (ref) {
+            var err = ref.err;
+            var code = ref.code;
+
+            return ((err.toString()) + " in\n\n" + code + "\n");
+        }).join('\n'),
+          vm
+        );
+      }
+    }
+
+    return (cache[key] = res)
+  }
+}
+
+/*  */
+
+function createCompilerCreator (baseCompile) {
+  return function createCompiler (baseOptions) {
+    function compile (
+      template,
+      options
+    ) {
+      var finalOptions = Object.create(baseOptions);
+      var errors = [];
+      var tips = [];
+      finalOptions.warn = function (msg, tip) {
+        (tip ? tips : errors).push(msg);
+      };
+
+      if (options) {
+        // merge custom modules
+        if (options.modules) {
+          finalOptions.modules =
+            (baseOptions.modules || []).concat(options.modules);
+        }
+        // merge custom directives
+        if (options.directives) {
+          finalOptions.directives = extend(
+            Object.create(baseOptions.directives),
+            options.directives
+          );
+        }
+        // copy other options
+        for (var key in options) {
+          if (key !== 'modules' && key !== 'directives') {
+            finalOptions[key] = options[key];
+          }
+        }
+      }
+
+      var compiled = baseCompile(template, finalOptions);
+      {
+        errors.push.apply(errors, detectErrors(compiled.ast));
+      }
+      compiled.errors = errors;
+      compiled.tips = tips;
+      return compiled
+    }
+
+    return {
+      compile: compile,
+      compileToFunctions: createCompileToFunctionFn(compile)
+    }
+  }
+}
+
+/*  */
+
+// `createCompilerCreator` allows creating compilers that use alternative
+// parser/optimizer/codegen, e.g the SSR optimizing compiler.
+// Here we just export a default compiler using the default parts.
+var createCompiler = createCompilerCreator(function baseCompile (
+  template,
+  options
+) {
+  var ast = parse(template.trim(), options);
+  optimize(ast, options);
+  var code = generate(ast, options);
+  return {
+    ast: ast,
+    render: code.render,
+    staticRenderFns: code.staticRenderFns
+  }
+});
+
+/*  */
+
+var ref$1 = createCompiler(baseOptions);
+var compileToFunctions = ref$1.compileToFunctions;
+
+/*  */
+
+var idToTemplate = cached(function (id) {
+  var el = query(id);
+  return el && el.innerHTML
+});
+
+var mount = Vue$3.prototype.$mount;
+Vue$3.prototype.$mount = function (
+  el,
+  hydrating
+) {
+  el = el && query(el);
+
+  /* istanbul ignore if */
+  if (el === document.body || el === document.documentElement) {
+    "development" !== 'production' && warn(
+      "Do not mount Vue to <html> or <body> - mount to normal elements instead."
+    );
+    return this
+  }
+
+  var options = this.$options;
+  // resolve template/el and convert to render function
+  if (!options.render) {
+    var template = options.template;
+    if (template) {
+      if (typeof template === 'string') {
+        if (template.charAt(0) === '#') {
+          template = idToTemplate(template);
+          /* istanbul ignore if */
+          if ("development" !== 'production' && !template) {
+            warn(
+              ("Template element not found or is empty: " + (options.template)),
+              this
+            );
+          }
+        }
+      } else if (template.nodeType) {
+        template = template.innerHTML;
+      } else {
+        {
+          warn('invalid template option:' + template, this);
+        }
+        return this
+      }
+    } else if (el) {
+      template = getOuterHTML(el);
+    }
+    if (template) {
+      /* istanbul ignore if */
+      if ("development" !== 'production' && config.performance && mark) {
+        mark('compile');
+      }
+
+      var ref = compileToFunctions(template, {
+        shouldDecodeNewlines: shouldDecodeNewlines,
+        delimiters: options.delimiters,
+        comments: options.comments
+      }, this);
+      var render = ref.render;
+      var staticRenderFns = ref.staticRenderFns;
+      options.render = render;
+      options.staticRenderFns = staticRenderFns;
+
+      /* istanbul ignore if */
+      if ("development" !== 'production' && config.performance && mark) {
+        mark('compile end');
+        measure(((this._name) + " compile"), 'compile', 'compile end');
+      }
+    }
+  }
+  return mount.call(this, el, hydrating)
+};
+
+/**
+ * Get outerHTML of elements, taking care
+ * of SVG elements in IE as well.
+ */
+function getOuterHTML (el) {
+  if (el.outerHTML) {
+    return el.outerHTML
+  } else {
+    var container = document.createElement('div');
+    container.appendChild(el.cloneNode(true));
+    return container.innerHTML
+  }
+}
+
+Vue$3.compile = compileToFunctions;
+
+return Vue$3;
+
+})));
+
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
 		module.exports = factory(require("vue"));
@@ -19227,9 +29405,2106 @@ module.exports = __webpack_require__(446);
 /***/ }))
 /******/ ]);
 }));
-!function(e){if("object"==typeof exports)module.exports=e();else if("function"==typeof define&&define.amd)define(e);else{var t;"undefined"!=typeof window?t=window:"undefined"!=typeof global?t=global:"undefined"!=typeof self&&(t=self),t.ShareButton=e()}}(function(){return function e(t,n,o){function i(s,a){if(!n[s]){if(!t[s]){var c="function"==typeof require&&require;if(!a&&c)return c(s,!0);if(r)return r(s,!0);throw new Error("Cannot find module '"+s+"'")}var u=n[s]={exports:{}};t[s][0].call(u.exports,function(e){var n=t[s][1][e];return i(n?n:e)},u,u.exports,e,t,n,o)}return n[s].exports}for(var r="function"==typeof require&&require,s=0;s<o.length;s++)i(o[s]);return i}({1:[function(e,t,n){e("../../modules/es6.array.iterator"),t.exports=e("../../modules/$.core").Array.values},{"../../modules/$.core":9,"../../modules/es6.array.iterator":37}],2:[function(e,t,n){e("../../modules/es6.math.trunc"),t.exports=e("../../modules/$.core").Math.trunc},{"../../modules/$.core":9,"../../modules/es6.math.trunc":38}],3:[function(e,t,n){e("../../modules/es6.symbol"),e("../../modules/es6.object.to-string"),t.exports=e("../../modules/$.core").Symbol},{"../../modules/$.core":9,"../../modules/es6.object.to-string":39,"../../modules/es6.symbol":40}],4:[function(e,t,n){t.exports=function(e){if("function"!=typeof e)throw TypeError(e+" is not a function!");return e}},{}],5:[function(e,t,n){var o=e("./$.wks")("unscopables"),i=Array.prototype;void 0==i[o]&&e("./$.hide")(i,o,{}),t.exports=function(e){i[o][e]=!0}},{"./$.hide":19,"./$.wks":36}],6:[function(e,t,n){var o=e("./$.is-object");t.exports=function(e){if(!o(e))throw TypeError(e+" is not an object!");return e}},{"./$.is-object":22}],7:[function(e,t,n){var o=e("./$.cof"),i=e("./$.wks")("toStringTag"),r="Arguments"==o(function(){return arguments}());t.exports=function(e){var t,n,s;return void 0===e?"Undefined":null===e?"Null":"string"==typeof(n=(t=Object(e))[i])?n:r?o(t):"Object"==(s=o(t))&&"function"==typeof t.callee?"Arguments":s}},{"./$.cof":8,"./$.wks":36}],8:[function(e,t,n){var o={}.toString;t.exports=function(e){return o.call(e).slice(8,-1)}},{}],9:[function(e,t,n){var o=t.exports={version:"1.2.6"};"number"==typeof __e&&(__e=o)},{}],10:[function(e,t,n){var o=e("./$.a-function");t.exports=function(e,t,n){if(o(e),void 0===t)return e;switch(n){case 1:return function(n){return e.call(t,n)};case 2:return function(n,o){return e.call(t,n,o)};case 3:return function(n,o,i){return e.call(t,n,o,i)}}return function(){return e.apply(t,arguments)}}},{"./$.a-function":4}],11:[function(e,t,n){t.exports=function(e){if(void 0==e)throw TypeError("Can't call method on  "+e);return e}},{}],12:[function(e,t,n){t.exports=!e("./$.fails")(function(){return 7!=Object.defineProperty({},"a",{get:function(){return 7}}).a})},{"./$.fails":15}],13:[function(e,t,n){var o=e("./$");t.exports=function(e){var t=o.getKeys(e),n=o.getSymbols;if(n)for(var i,r=n(e),s=o.isEnum,a=0;r.length>a;)s.call(e,i=r[a++])&&t.push(i);return t}},{"./$":27}],14:[function(e,t,n){var o=e("./$.global"),i=e("./$.core"),r=e("./$.hide"),s=e("./$.redefine"),a=e("./$.ctx"),c="prototype",u=function(e,t,n){var l,f,d,h,p=e&u.F,g=e&u.G,y=e&u.S,m=e&u.P,v=e&u.B,b=g?o:y?o[t]||(o[t]={}):(o[t]||{})[c],w=g?i:i[t]||(i[t]={}),k=w[c]||(w[c]={});g&&(n=t);for(l in n)f=!p&&b&&l in b,d=(f?b:n)[l],h=v&&f?a(d,o):m&&"function"==typeof d?a(Function.call,d):d,b&&!f&&s(b,l,d),w[l]!=d&&r(w,l,h),m&&k[l]!=d&&(k[l]=d)};o.core=i,u.F=1,u.G=2,u.S=4,u.P=8,u.B=16,u.W=32,t.exports=u},{"./$.core":9,"./$.ctx":10,"./$.global":17,"./$.hide":19,"./$.redefine":31}],15:[function(e,t,n){t.exports=function(e){try{return!!e()}catch(t){return!0}}},{}],16:[function(e,t,n){var o=e("./$.to-iobject"),i=e("./$").getNames,r={}.toString,s="object"==typeof window&&Object.getOwnPropertyNames?Object.getOwnPropertyNames(window):[],a=function(e){try{return i(e)}catch(t){return s.slice()}};t.exports.get=function(e){return s&&"[object Window]"==r.call(e)?a(e):i(o(e))}},{"./$":27,"./$.to-iobject":34}],17:[function(e,t,n){var o=t.exports="undefined"!=typeof window&&window.Math==Math?window:"undefined"!=typeof self&&self.Math==Math?self:Function("return this")();"number"==typeof __g&&(__g=o)},{}],18:[function(e,t,n){var o={}.hasOwnProperty;t.exports=function(e,t){return o.call(e,t)}},{}],19:[function(e,t,n){var o=e("./$"),i=e("./$.property-desc");t.exports=e("./$.descriptors")?function(e,t,n){return o.setDesc(e,t,i(1,n))}:function(e,t,n){return e[t]=n,e}},{"./$":27,"./$.descriptors":12,"./$.property-desc":30}],20:[function(e,t,n){var o=e("./$.cof");t.exports=Object("z").propertyIsEnumerable(0)?Object:function(e){return"String"==o(e)?e.split(""):Object(e)}},{"./$.cof":8}],21:[function(e,t,n){var o=e("./$.cof");t.exports=Array.isArray||function(e){return"Array"==o(e)}},{"./$.cof":8}],22:[function(e,t,n){t.exports=function(e){return"object"==typeof e?null!==e:"function"==typeof e}},{}],23:[function(e,t,n){"use strict";var o=e("./$"),i=e("./$.property-desc"),r=e("./$.set-to-string-tag"),s={};e("./$.hide")(s,e("./$.wks")("iterator"),function(){return this}),t.exports=function(e,t,n){e.prototype=o.create(s,{next:i(1,n)}),r(e,t+" Iterator")}},{"./$":27,"./$.hide":19,"./$.property-desc":30,"./$.set-to-string-tag":32,"./$.wks":36}],24:[function(e,t,n){"use strict";var o=e("./$.library"),i=e("./$.export"),r=e("./$.redefine"),s=e("./$.hide"),a=e("./$.has"),c=e("./$.iterators"),u=e("./$.iter-create"),l=e("./$.set-to-string-tag"),f=e("./$").getProto,d=e("./$.wks")("iterator"),h=!([].keys&&"next"in[].keys()),p="@@iterator",g="keys",y="values",m=function(){return this};t.exports=function(e,t,n,v,b,w,k){u(n,t,v);var $,_,S=function(e){if(!h&&e in C)return C[e];switch(e){case g:return function(){return new n(this,e)};case y:return function(){return new n(this,e)}}return function(){return new n(this,e)}},j=t+" Iterator",x=b==y,O=!1,C=e.prototype,P=C[d]||C[p]||b&&C[b],L=P||S(b);if(P){var E=f(L.call(new e));l(E,j,!0),!o&&a(C,p)&&s(E,d,m),x&&P.name!==y&&(O=!0,L=function(){return P.call(this)})}if(o&&!k||!h&&!O&&C[d]||s(C,d,L),c[t]=L,c[j]=m,b)if($={values:x?L:S(y),keys:w?L:S(g),entries:x?S("entries"):L},k)for(_ in $)_ in C||r(C,_,$[_]);else i(i.P+i.F*(h||O),t,$);return $}},{"./$":27,"./$.export":14,"./$.has":18,"./$.hide":19,"./$.iter-create":23,"./$.iterators":26,"./$.library":29,"./$.redefine":31,"./$.set-to-string-tag":32,"./$.wks":36}],25:[function(e,t,n){t.exports=function(e,t){return{value:t,done:!!e}}},{}],26:[function(e,t,n){t.exports={}},{}],27:[function(e,t,n){var o=Object;t.exports={create:o.create,getProto:o.getPrototypeOf,isEnum:{}.propertyIsEnumerable,getDesc:o.getOwnPropertyDescriptor,setDesc:o.defineProperty,setDescs:o.defineProperties,getKeys:o.keys,getNames:o.getOwnPropertyNames,getSymbols:o.getOwnPropertySymbols,each:[].forEach}},{}],28:[function(e,t,n){var o=e("./$"),i=e("./$.to-iobject");t.exports=function(e,t){for(var n,r=i(e),s=o.getKeys(r),a=s.length,c=0;a>c;)if(r[n=s[c++]]===t)return n}},{"./$":27,"./$.to-iobject":34}],29:[function(e,t,n){t.exports=!1},{}],30:[function(e,t,n){t.exports=function(e,t){return{enumerable:!(1&e),configurable:!(2&e),writable:!(4&e),value:t}}},{}],31:[function(e,t,n){var o=e("./$.global"),i=e("./$.hide"),r=e("./$.uid")("src"),s="toString",a=Function[s],c=(""+a).split(s);e("./$.core").inspectSource=function(e){return a.call(e)},(t.exports=function(e,t,n,s){"function"==typeof n&&(n.hasOwnProperty(r)||i(n,r,e[t]?""+e[t]:c.join(String(t))),n.hasOwnProperty("name")||i(n,"name",t)),e===o?e[t]=n:(s||delete e[t],i(e,t,n))})(Function.prototype,s,function(){return"function"==typeof this&&this[r]||a.call(this)})},{"./$.core":9,"./$.global":17,"./$.hide":19,"./$.uid":35}],32:[function(e,t,n){var o=e("./$").setDesc,i=e("./$.has"),r=e("./$.wks")("toStringTag");t.exports=function(e,t,n){e&&!i(e=n?e:e.prototype,r)&&o(e,r,{configurable:!0,value:t})}},{"./$":27,"./$.has":18,"./$.wks":36}],33:[function(e,t,n){var o=e("./$.global"),i="__core-js_shared__",r=o[i]||(o[i]={});t.exports=function(e){return r[e]||(r[e]={})}},{"./$.global":17}],34:[function(e,t,n){var o=e("./$.iobject"),i=e("./$.defined");t.exports=function(e){return o(i(e))}},{"./$.defined":11,"./$.iobject":20}],35:[function(e,t,n){var o=0,i=Math.random();t.exports=function(e){return"Symbol(".concat(void 0===e?"":e,")_",(++o+i).toString(36))}},{}],36:[function(e,t,n){var o=e("./$.shared")("wks"),i=e("./$.uid"),r=e("./$.global").Symbol;t.exports=function(e){return o[e]||(o[e]=r&&r[e]||(r||i)("Symbol."+e))}},{"./$.global":17,"./$.shared":33,"./$.uid":35}],37:[function(e,t,n){"use strict";var o=e("./$.add-to-unscopables"),i=e("./$.iter-step"),r=e("./$.iterators"),s=e("./$.to-iobject");t.exports=e("./$.iter-define")(Array,"Array",function(e,t){this._t=s(e),this._i=0,this._k=t},function(){var e=this._t,t=this._k,n=this._i++;return!e||n>=e.length?(this._t=void 0,i(1)):"keys"==t?i(0,n):"values"==t?i(0,e[n]):i(0,[n,e[n]])},"values"),r.Arguments=r.Array,o("keys"),o("values"),o("entries")},{"./$.add-to-unscopables":5,"./$.iter-define":24,"./$.iter-step":25,"./$.iterators":26,"./$.to-iobject":34}],38:[function(e,t,n){var o=e("./$.export");o(o.S,"Math",{trunc:function(e){return(e>0?Math.floor:Math.ceil)(e)}})},{"./$.export":14}],39:[function(e,t,n){"use strict";var o=e("./$.classof"),i={};i[e("./$.wks")("toStringTag")]="z",i+""!="[object z]"&&e("./$.redefine")(Object.prototype,"toString",function(){return"[object "+o(this)+"]"},!0)},{"./$.classof":7,"./$.redefine":31,"./$.wks":36}],40:[function(e,t,n){"use strict";var o=e("./$"),i=e("./$.global"),r=e("./$.has"),s=e("./$.descriptors"),a=e("./$.export"),c=e("./$.redefine"),u=e("./$.fails"),l=e("./$.shared"),f=e("./$.set-to-string-tag"),d=e("./$.uid"),h=e("./$.wks"),p=e("./$.keyof"),g=e("./$.get-names"),y=e("./$.enum-keys"),m=e("./$.is-array"),v=e("./$.an-object"),b=e("./$.to-iobject"),w=e("./$.property-desc"),k=o.getDesc,$=o.setDesc,_=o.create,S=g.get,j=i.Symbol,x=i.JSON,O=x&&x.stringify,C=!1,P=h("_hidden"),L=o.isEnum,E=l("symbol-registry"),A=l("symbols"),T="function"==typeof j,F=Object.prototype,I=s&&u(function(){return 7!=_($({},"a",{get:function(){return $(this,"a",{value:7}).a}})).a})?function(e,t,n){var o=k(F,t);o&&delete F[t],$(e,t,n),o&&e!==F&&$(F,t,o)}:$,N=function(e){var t=A[e]=_(j.prototype);return t._k=e,s&&C&&I(F,e,{configurable:!0,set:function(t){r(this,P)&&r(this[P],e)&&(this[P][e]=!1),I(this,e,w(1,t))}}),t},D=function(e){return"symbol"==typeof e},M=function(e,t,n){return n&&r(A,t)?(n.enumerable?(r(e,P)&&e[P][t]&&(e[P][t]=!1),n=_(n,{enumerable:w(0,!1)})):(r(e,P)||$(e,P,w(1,{})),e[P][t]=!0),I(e,t,n)):$(e,t,n)},B=function(e,t){v(e);for(var n,o=y(t=b(t)),i=0,r=o.length;r>i;)M(e,n=o[i++],t[n]);return e},q=function(e,t){return void 0===t?_(e):B(_(e),t)},H=function(e){var t=L.call(this,e);return!(t||!r(this,e)||!r(A,e)||r(this,P)&&this[P][e])||t},W=function(e,t){var n=k(e=b(e),t);return!n||!r(A,t)||r(e,P)&&e[P][t]||(n.enumerable=!0),n},z=function(e){for(var t,n=S(b(e)),o=[],i=0;n.length>i;)r(A,t=n[i++])||t==P||o.push(t);return o},U=function(e){for(var t,n=S(b(e)),o=[],i=0;n.length>i;)r(A,t=n[i++])&&o.push(A[t]);return o},R=function(e){if(void 0!==e&&!D(e)){for(var t,n,o=[e],i=1,r=arguments;r.length>i;)o.push(r[i++]);return t=o[1],"function"==typeof t&&(n=t),!n&&m(t)||(t=function(e,t){if(n&&(t=n.call(this,e,t)),!D(t))return t}),o[1]=t,O.apply(x,o)}},J=u(function(){var e=j();return"[null]"!=O([e])||"{}"!=O({a:e})||"{}"!=O(Object(e))});T||(j=function(){if(D(this))throw TypeError("Symbol is not a constructor");return N(d(arguments.length>0?arguments[0]:void 0))},c(j.prototype,"toString",function(){return this._k}),D=function(e){return e instanceof j},o.create=q,o.isEnum=H,o.getDesc=W,o.setDesc=M,o.setDescs=B,o.getNames=g.get=z,o.getSymbols=U,s&&!e("./$.library")&&c(F,"propertyIsEnumerable",H,!0));var G={"for":function(e){return r(E,e+="")?E[e]:E[e]=j(e)},keyFor:function(e){return p(E,e)},useSetter:function(){C=!0},useSimple:function(){C=!1}};o.each.call("hasInstance,isConcatSpreadable,iterator,match,replace,search,species,split,toPrimitive,toStringTag,unscopables".split(","),function(e){var t=h(e);G[e]=T?t:N(t)}),C=!0,a(a.G+a.W,{Symbol:j}),a(a.S,"Symbol",G),a(a.S+a.F*!T,"Object",{create:q,defineProperty:M,defineProperties:B,getOwnPropertyDescriptor:W,getOwnPropertyNames:z,getOwnPropertySymbols:U}),x&&a(a.S+a.F*(!T||J),"JSON",{stringify:R}),f(j,"Symbol"),f(Math,"Math",!0),f(i.JSON,"JSON",!0)},{"./$":27,"./$.an-object":6,"./$.descriptors":12,"./$.enum-keys":13,"./$.export":14,"./$.fails":15,"./$.get-names":16,"./$.global":17,"./$.has":18,"./$.is-array":21,"./$.keyof":28,"./$.library":29,"./$.property-desc":30,"./$.redefine":31,"./$.set-to-string-tag":32,"./$.shared":33,"./$.to-iobject":34,"./$.uid":35,"./$.wks":36}],41:[function(e,t,n){"use strict";function o(e){return e&&e.__esModule?e:{"default":e}}function i(e,t){if(!(e instanceof t))throw new TypeError("Cannot call a class as a function")}function r(e,t){if("function"!=typeof t&&null!==t)throw new TypeError("Super expression must either be null or a function, not "+typeof t);e.prototype=Object.create(t&&t.prototype,{constructor:{value:e,enumerable:!1,writable:!0,configurable:!0}}),t&&(Object.setPrototypeOf?Object.setPrototypeOf(e,t):e.__proto__=t)}var s=function(){function e(e,t){for(var n=0;n<t.length;n++){var o=t[n];o.enumerable=o.enumerable||!1,o.configurable=!0,"value"in o&&(o.writable=!0),Object.defineProperty(e,o.key,o)}}return function(t,n,o){return n&&e(t.prototype,n),o&&e(t,o),t}}(),a=function(e,t,n){for(var o=!0;o;){var i=e,r=t,s=n;o=!1,null===i&&(i=Function.prototype);var a=Object.getOwnPropertyDescriptor(i,r);if(void 0!==a){if("value"in a)return a.value;var c=a.get;if(void 0===c)return;return c.call(s)}var u=Object.getPrototypeOf(i);if(null===u)return;e=u,t=r,n=s,o=!0,a=u=void 0}},c=e("./share-utils"),u=o(c),l=e("./string-utils"),f=o(l);e("core-js/fn/symbol"),e("core-js/fn/array/iterator"),e("core-js/fn/math/trunc");var d=function(e){function t(e,n){i(this,t),a(Object.getPrototypeOf(t.prototype),"constructor",this).call(this),"object"==typeof e?(this.element=void 0,n=e):this.element=e,this.el={head:document.getElementsByTagName("head")[0],body:document.getElementsByTagName("body")[0]},this.config={enabledNetworks:0,protocol:"//",url:window.location.href,caption:null,title:this._defaultTitle(),image:this._defaultImage(),description:this._defaultDescription(),root:document,ui:{flyout:"sb-top sb-center",buttonText:"Share",namespace:"sb-",networkOrder:[],collision:!1},networks:{googlePlus:{enabled:!0,url:null},twitter:{enabled:!0,url:null,description:null},facebook:{enabled:!0,loadSdk:!0,url:null,appId:null,title:null,caption:null,description:null,image:null},pinterest:{enabled:!0,url:null,image:null,description:null},reddit:{enabled:!0,url:null,title:null},linkedin:{enabled:!0,url:null,title:null,description:null},whatsapp:{enabled:!0,description:null,url:null},email:{enabled:!0,title:null,description:null}}},this.listener=null,this._setup(this.element,n)}return r(t,e),s(t,[{key:"open",value:function(){this._public("Open")}},{key:"close",value:function(){this._public("Close")}},{key:"toggle",value:function(){this._public("Toggle")}},{key:"toggleListen",value:function(){this._public("Listen")}},{key:"_public",value:function(e){var n=void 0;n="undefined"==typeof element?a(Object.getPrototypeOf(t.prototype),"_objToArray",this).call(this,this.config.root.querySelectorAll("share-button")):document.querySelectorAll(element);var o=!0,i=!1,r=void 0;try{for(var s,c=n[Symbol.iterator]();!(o=(s=c.next()).done);o=!0){var u=s.value,l=u.getElementsByClassName(this.config.ui.namespace+"social")[0];this["_event"+e](u,l)}}catch(f){i=!0,r=f}finally{try{!o&&c["return"]&&c["return"]()}finally{if(i)throw r}}}},{key:"_setup",value:function(e,n){this._merge(this.config,n);var o=void 0;"undefined"==typeof e?o=a(Object.getPrototypeOf(t.prototype),"_objToArray",this).call(this,this.config.root.querySelectorAll("share-button")):(o=this.config.root.querySelectorAll("share-button"+e),"object"==typeof o&&(o=a(Object.getPrototypeOf(t.prototype),"_objToArray",this).call(this,o))),this.config.networks.whatsapp.enabled&&!this._isMobile()&&(this.config.networks.whatsapp.enabled=!1),0===this.config.ui.networkOrder.length&&(this.config.ui.networkOrder=["pinterest","twitter","facebook","whatsapp","googlePlus","reddit","linkedin","email"]);var i=!0,r=!1,s=void 0;try{for(var c,u=Object.keys(this.config.networks)[Symbol.iterator]();!(i=(c=u.next()).done);i=!0){var l=c.value;this.config.ui.networkOrder.indexOf(l.toString())<0&&(this.config.networks[l].enabled=!1,this.config.ui.networkOrder.push(l))}}catch(f){r=!0,s=f}finally{try{!i&&u["return"]&&u["return"]()}finally{if(r)throw s}}this._fixFlyout(),this._detectNetworks(),this._normalizeNetworkConfiguration(),this.config.networks.facebook.enabled&&this.config.networks.facebook.loadSdk&&this._injectFacebookSdk();var d=0,h=!0,p=!1,g=void 0;try{for(var y,m=o[Symbol.iterator]();!(h=(y=m.next()).done);h=!0){var v=y.value;this._setupInstance(v,d++)}}catch(f){p=!0,g=f}finally{try{!h&&m["return"]&&m["return"]()}finally{if(p)throw g}}}},{key:"_setupInstance",value:function(e,t){var n=this;this._hide(e),this._addClass(e,"sharer-"+t),this._injectHtml(e),this._show(e);var o=e.getElementsByClassName(this.config.ui.namespace+"social")[0],i=e.getElementsByTagName("li");this._addClass(o,"networks-"+this.config.enabledNetworks),e.addEventListener("click",function(){return n._eventToggle(e,o)});var r=function(t){var o=i[t];"undefined"!=typeof o&&!function(){var t=o.getAttribute("data-network"),i=o.getElementsByTagName("a")[0];n._addClass(o,n.config.networks[t]["class"]),o.className.indexOf("email")<0&&i.setAttribute("onclick","return false"),i.addEventListener("mousedown",function(){n._hook("before",t,e)}),i.addEventListener("mouseup",function(){n["_network"+f["default"].capFLetter(t)](o)}),i.addEventListener("click",function(){n._hook("after",t,e)})}()};for(var s in Object.keys(i))r(s)}},{key:"_eventToggle",value:function(e,t){this._hasClass(t,"active")?this._eventClose(t):this._eventOpen(e,t)}},{key:"_eventOpen",value:function(e,t){this._hasClass(t,"load")&&this._removeClass(t,"load"),this.collision&&this._collisionDetection(e,t),this._addClass(t,"active")}},{key:"_eventClose",value:function(e){this._removeClass(e,"active")}},{key:"_eventListen",value:function(e,t){var n=this,o=this._getDimensions(e,t);null===this.listener?this.listener=window.setInterval(function(){return n._adjustClasses(e,t,o)},100):(window.clearInterval(this.listener),this.listener=null)}},{key:"_fixFlyout",value:function(){var e=this.config.ui.flyout.split(" ");e[0].substring(0,this.config.ui.namespace.length)!==this.config.ui.namespace&&(e[0]=""+this.config.ui.namespace+e[0]),e[1].substring(0,this.config.ui.namespace.length)!==this.config.ui.namespace&&(e[1]=""+this.config.ui.namespace+e[1]),this.config.ui.flyout=e.join(" ")}},{key:"_collisionDetection",value:function(e,t){var n=this,o=this._getDimensions(e,t);this._adjustClasses(e,t,o),e.classList.contains("clicked")||(window.addEventListener("scroll",function(){return n._adjustClasses(e,o)}),window.addEventListener("resize",function(){return n._adjustClasses(e,o)}),e.classList.add("clicked"))}},{key:"_getDimensions",value:function(e,t){return{networksWidth:t.offsetWidth,buttonHeight:e.offsetHeight,buttonWidth:e.offsetWidth}}},{key:"_adjustClasses",value:function(e,t,n){var o=window.innerWidth,i=window.innerHeight,r=e.getBoundingClientRect().left+n.buttonWidth/2,s=o-r,a=e.getBoundingClientRect().top+n.buttonHeight/2,c=this._findLocation(r,a,o,i);if("middle"===c[1]&&"center"!==c[0]&&("left"===c[0]&&o<=r+220+n.buttonWidth/2||"right"===c[0]&&o<=s+220+n.buttonWidth/2))t.classList.add(this.config.ui.namespace+"top"),t.classList.remove(this.config.ui.namespace+"middle"),t.classList.remove(this.config.ui.namespace+"bottom");else{switch(c[0]){case"left":t.classList.add(this.config.ui.namespace+"right"),t.classList.remove(this.config.ui.namespace+"center"),t.classList.remove(this.config.ui.namespace+"left");break;case"center":"top"!==c[1]&&t.classList.add(this.config.ui.namespace+"top"),t.classList.add(this.config.ui.namespace+"center"),t.classList.remove(this.config.ui.namespace+"left"),t.classList.remove(this.config.ui.namespace+"right"),t.classList.remove(this.config.ui.namespace+"middle");break;case"right":t.classList.add(this.config.ui.namespace+"left"),t.classList.remove(this.config.ui.namespace+"center"),t.classList.remove(this.config.ui.namespace+"right")}switch(c[1]){case"top":t.classList.add(this.config.ui.namespace+"bottom"),t.classList.remove(this.config.ui.namespace+"middle"),"center"!==c[0]&&t.classList.remove(this.config.ui.namespace+"top");break;case"middle":"center"!==c[0]&&(t.classList.add(this.config.ui.namespace+"middle"),t.classList.remove(this.config.ui.namespace+"top")),t.classList.remove(this.config.ui.namespace+"bottom");break;case"bottom":t.classList.add(this.config.ui.namespace+"top"),t.classList.remove(this.config.ui.namespace+"middle"),t.classList.remove(this.config.ui.namespace+"bottom")}}}},{key:"_findLocation",value:function(e,t,n,o){var i=["left","center","right"],r=["top","middle","bottom"],s=Math.trunc(3*(1-(n-e)/n)),a=Math.trunc(3*(1-(o-t)/o));return s>=3?s=2:s<=-1&&(s=0),a>=3?a=2:a<=-1&&(a=0),[i[s],r[a]]}},{key:"_networkFacebook",value:function(e){return this.config.networks.facebook.loadSdk?window.FB?FB.ui({method:"feed",name:this.config.networks.facebook.title,link:this.config.networks.facebook.url,picture:this.config.networks.facebook.image,caption:this.config.networks.facebook.caption,description:this.config.networks.facebook.description}):(console.error("The Facebook JS SDK hasn't loaded yet."),this._updateHref(e,"https://www.facebook.com/sharer/sharer.php",{u:this.config.networks.facebook.url})):this._updateHref(e,"https://www.facebook.com/sharer/sharer.php",{u:this.config.networks.facebook.url})}},{key:"_networkTwitter",value:function(e){this._updateHref(e,"https://twitter.com/intent/tweet",{text:this.config.networks.twitter.description,url:this.config.networks.twitter.url})}},{key:"_networkGooglePlus",value:function(e){this._updateHref(e,"https://plus.google.com/share",{url:this.config.networks.googlePlus.url})}},{key:"_networkPinterest",value:function(e){this._updateHref(e,"https://www.pinterest.com/pin/create/button",{url:this.config.networks.pinterest.url,media:this.config.networks.pinterest.image,description:this.config.networks.pinterest.description})}},{key:"_networkLinkedin",value:function(e){this._updateHref(e,"https://www.linkedin.com/shareArticle",{mini:"true",url:this.config.networks.linkedin.url,title:this.config.networks.linkedin.title,summary:this.config.networks.linkedin.description})}},{key:"_networkEmail",value:function(e){this._updateHref(e,"mailto:",{subject:this.config.networks.email.title,body:this.config.networks.email.description})}},{key:"_networkReddit",value:function(e){this._updateHref(e,"http://www.reddit.com/submit",{url:this.config.networks.reddit.url,title:this.config.networks.reddit.title})}},{key:"_networkWhatsapp",value:function(e){this._updateHref(e,"whatsapp://send",{text:this.config.networks.whatsapp.description+" "+this.config.networks.whatsapp.url})}},{key:"_injectStylesheet",value:function(e){if(!this.el.head.querySelector("link[href='"+e+"']")){var t=document.createElement("link");t.setAttribute("rel","stylesheet"),t.setAttribute("href",e),this.el.head.appendChild(t)}}},{key:"_injectHtml",value:function(e){var t=this.config.ui.networkOrder,n="",o=!0,i=!1,r=void 0;try{for(var s,a=t[Symbol.iterator]();!(o=(s=a.next()).done);o=!0){var c=s.value;n+="<li class='"+c+"' data-network='"+c+"'><a></a></li>"}}catch(u){i=!0,r=u}finally{try{!o&&a["return"]&&a["return"]()}finally{if(i)throw r}}e.innerHTML=this.config.ui.buttonText+"<div class='"+this.config.ui.namespace+"social load "+this.config.ui.flyout+"'><ul>"+n+"</ul></div>"}},{key:"_injectFacebookSdk",value:function(){if(!window.FB&&this.config.networks.facebook.appId&&!this.el.body.querySelector("#fb-root")){var e=document.createElement("script");e.text="window.fbAsyncInit=function(){FB.init({appId:'"+this.config.networks.facebook.appId+"',status:true,xfbml:true})};(function(e,t,n){var r,i=e.getElementsByTagName(t)[0];if (e.getElementById(n)){return}r=e.createElement(t);r.id=n;r.src='//connect.facebook.net/en_US/all.js';i.parentNode.insertBefore(r,i)})(document,'script','facebook-jssdk');";var t=document.createElement("div");t.id="fb-root",this.el.body.appendChild(t),this.el.body.appendChild(e)}}},{key:"_hook",value:function(e,t,n){var o=this.config.networks[t][e];if("function"==typeof o){var i=o.call(this.config.networks[t],n);void 0!==i&&(i=this._normalizeFilterConfigUpdates(i),this.extend(this.config.networks[t],i,!0),this._normalizeNetworkConfiguration())}}},{key:"_defaultTitle",value:function(){var e=void 0;return(e=document.querySelector('meta[property="og:title"]')||document.querySelector('meta[name="twitter:title"]'))?e.getAttribute("content"):(e=document.querySelector("title"))?e.textContent||e.innerText:void 0}},{key:"_defaultImage",value:function(){var e=void 0;if(e=document.querySelector('meta[property="og:image"]')||document.querySelector('meta[name="twitter:image"]'))return e.getAttribute("content")}},{key:"_defaultDescription",value:function(){var e=void 0;return(e=document.querySelector('meta[property="og:description"]')||document.querySelector('meta[name="twitter:description"]')||document.querySelector('meta[name="description"]'))?e.getAttribute("content"):""}},{key:"_detectNetworks",value:function(){var e=!0,t=!1,n=void 0;try{for(var o,i=Object.keys(this.config.networks)[Symbol.iterator]();!(e=(o=i.next()).done);e=!0){var r=o.value,s=!0,a=!1,c=void 0;try{for(var u,l=Object.keys(this.config.networks[r])[Symbol.iterator]();!(s=(u=l.next()).done);s=!0){var f=u.value;null===this.config.networks[r][f]&&(this.config.networks[r][f]=this.config[f])}}catch(d){a=!0,c=d}finally{try{!s&&l["return"]&&l["return"]()}finally{if(a)throw c}}this.config.networks[r].enabled?(this["class"]="enabled",this.config.enabledNetworks+=1):this["class"]="disabled",this.config.networks[r]["class"]=this["class"]}}catch(d){t=!0,n=d}finally{try{!e&&i["return"]&&i["return"]()}finally{if(t)throw n}}}},{key:"_normalizeNetworkConfiguration",value:function(){this.config.networks.facebook.appId||(this.config.networks.facebook.loadSdk=!1),this.config.networks.twitter.description&&(this._isEncoded(this.config.networks.twitter.description)||(this.config.networks.twitter.description=encodeURIComponent(this.config.networks.twitter.description))),"number"==typeof this.config.networks.facebook.appId&&(this.config.networks.facebook.appId=this.config.networks.facebook.appId.toString())}},{key:"_normalizeFilterConfigUpdates",value:function(e){return this.config.networks.facebook.appId!==e.appId&&(console.warn("You are unable to change the Facebook appId after the button has been initialized. Please update your Facebook filters accordingly."),delete e.appId),this.config.networks.facebook.loadSdk!==e.loadSdk&&(console.warn("You are unable to change the Facebook loadSdk option after the button has been initialized. Please update your Facebook filters accordingly."),delete e.appId),e}}]),t}(u["default"]);t.exports=d},{"./share-utils":42,"./string-utils":43,"core-js/fn/array/iterator":1,"core-js/fn/math/trunc":2,"core-js/fn/symbol":3}],42:[function(e,t,n){"use strict";function o(e){return e&&e.__esModule?e:{"default":e}}function i(e,t){if(!(e instanceof t))throw new TypeError("Cannot call a class as a function")}Object.defineProperty(n,"__esModule",{value:!0});var r=function(){function e(e,t){for(var n=0;n<t.length;n++){var o=t[n];o.enumerable=o.enumerable||!1,o.configurable=!0,"value"in o&&(o.writable=!0),Object.defineProperty(e,o.key,o)}}return function(t,n,o){return n&&e(t.prototype,n),o&&e(t,o),t}}(),s=e("./string-utils"),a=o(s),c=function(){function e(){i(this,e)}return r(e,[{key:"_getStyle",value:function(e,t){var n="";return document.defaultView&&document.defaultView.getComputedStyle?n=document.defaultView.getComputedStyle(e,"").getPropertyValue(t):e.currentStyle&&(t=t.replace(/\-(\w)/g,function(e,t){return t.toUpperCase()}),n=e.currentStyle[t]),n}},{key:"_hide",value:function(e){e.style.display="none"}},{key:"_show",value:function(e){e.style.display="initial"}},{key:"_hasClass",value:function(e,t){return e.classList.contains(t)}},{key:"_addClass",value:function(e,t){e.classList.add(t)}},{key:"_removeClass",value:function(e,t){e.classList.remove(t)}},{key:"_isEncoded",value:function(e){return e=a["default"].toRFC3986(e),decodeURIComponent(e)!==e}},{key:"_encode",value:function(e){return"undefined"==typeof e||null===e||this._isEncoded(e)?encodeURIComponent(e):a["default"].toRFC3986(e)}},{key:"_getUrl",value:function(e){var t=this,n=(!(arguments.length<=1||void 0===arguments[1])&&arguments[1],arguments.length<=2||void 0===arguments[2]?{}:arguments[2]),o=function(){var e=[],o=!0,i=!1,r=void 0;try{for(var s,a=Object.keys(n)[Symbol.iterator]();!(o=(s=a.next()).done);o=!0){var c=s.value,u=n[c];e.push(c+"="+t._encode(u))}}catch(l){i=!0,r=l}finally{try{!o&&a["return"]&&a["return"]()}finally{if(i)throw r}}return e.join("&")}();return o&&(o="?"+o),e+o}},{key:"_updateHref",value:function(e,t,n){var o=t.indexOf("mailto:")>=0,i=e.getElementsByTagName("a")[0];if(i.setAttribute("href",this._getUrl(t,!o,n)),!(o||this.config.networks.facebook.loadSdk&&"facebook"===e.getAttribute("class"))){var r={width:500,height:350};r.top=screen.height/2-r.height/2,r.left=screen.width/2-r.width/2,window.open(i.href,"targetWindow","\n          toolbar=no,\n          location=no,\n          status=no,\n          menubar=no,\n          scrollbars=yes,\n          resizable=yes,\n          left="+r.left+",\n          top="+r.top+",\n          width="+r.width+",\n          height="+r.height+"\n        ")}}},{key:"popup",value:function t(e){var n=this,o=arguments.length<=1||void 0===arguments[1]?{}:arguments[1],t={width:500,height:350};t.top=screen.height/2-t.height/2,t.left=screen.width/2-t.width/2;var i=function(){var e=[],t=!0,i=!1,r=void 0;try{for(var s,a=Object.keys(o)[Symbol.iterator]();!(t=(s=a.next()).done);t=!0){var c=s.value,u=o[c];e.push(c+"="+n._encode(u))}}catch(l){i=!0,r=l}finally{try{!t&&a["return"]&&a["return"]()}finally{if(i)throw r}}return e.join("&")}();i&&(i="?"+i),window.open(e+i,"targetWindow","\n        toolbar=no,\n        location=no,\n        status=no,\n        menubar=no,\n        scrollbars=yes,\n        resizable=yes,\n        left="+t.left+",\n        top="+t.top+",\n        width="+t.width+",\n        height="+t.height+"\n      ")}},{key:"_merge",value:function(e){function t(t,n){return e.apply(this,arguments)}return t.toString=function(){return e.toString()},t}(function(e,t){"object"!=typeof e&&(e={});for(var n in t)if(t.hasOwnProperty(n)){var o=t[n];if("object"==typeof o&&!(o instanceof Node)){e[n]=this._merge(e[n],o);continue}e[n]=o}for(var i=2,r=arguments.length;i<r;i++)_merge(e,arguments[i]);return e})},{key:"_objToArray",value:function(e){var t=[];for(var n in e)"object"==typeof e[n]&&t.push(e[n]);return t}},{key:"_isMobile",value:function(){return navigator.userAgent.match(/Android|iPhone|PhantomJS/i)&&!navigator.userAgent.match(/iPod|iPad/i)}}]),e}();n["default"]=c,t.exports=n["default"]},{"./string-utils":43}],43:[function(e,t,n){"use strict";function o(e,t){if(!(e instanceof t))throw new TypeError("Cannot call a class as a function")}Object.defineProperty(n,"__esModule",{value:!0});var i=function(){function e(e,t){for(var n=0;n<t.length;n++){var o=t[n];o.enumerable=o.enumerable||!1,o.configurable=!0,"value"in o&&(o.writable=!0),Object.defineProperty(e,o.key,o)}}return function(t,n,o){return n&&e(t.prototype,n),o&&e(t,o),t}}(),r=function(){function e(){o(this,e)}return i(e,null,[{key:"toRFC3986",value:function(e){var t=encodeURIComponent(e);t.replace(/[!'()*]/g,function(e){return"%"+e.charCodeAt(0).toString(16)})}},{key:"capFLetter",value:function(e){return e.charAt(0).toUpperCase()+e.slice(1)}}]),
-e}();n["default"]=r,t.exports=n["default"]},{}]},{},[41])(41)});
-(function(){window.whenDefined=function(a,b,c){a[b]?c():Object.defineProperty(a,b,{configurable:!0,enumerable:!0,writeable:!0,get:function(){return this["_"+b]},set:function(a){this["_"+b]=a,c()}})}}).call(this);
+!function(e){if("object"==typeof exports)module.exports=e();else if("function"==typeof define&&define.amd)define(e);else{var f;"undefined"!=typeof window?f=window:"undefined"!=typeof global?f=global:"undefined"!=typeof self&&(f=self),f.ShareButton=e()}}(function(){var define,module,exports;return (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);throw new Error("Cannot find module '"+o+"'")}var f=n[o]={exports:{}};t[o][0].call(f.exports,function(e){var n=t[o][1][e];return s(n?n:e)},f,f.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(_dereq_,module,exports){
+_dereq_('../../modules/es6.array.iterator');
+module.exports = _dereq_('../../modules/$.core').Array.values;
+},{"../../modules/$.core":9,"../../modules/es6.array.iterator":37}],2:[function(_dereq_,module,exports){
+_dereq_('../../modules/es6.math.trunc');
+module.exports = _dereq_('../../modules/$.core').Math.trunc;
+},{"../../modules/$.core":9,"../../modules/es6.math.trunc":38}],3:[function(_dereq_,module,exports){
+_dereq_('../../modules/es6.symbol');
+_dereq_('../../modules/es6.object.to-string');
+module.exports = _dereq_('../../modules/$.core').Symbol;
+},{"../../modules/$.core":9,"../../modules/es6.object.to-string":39,"../../modules/es6.symbol":40}],4:[function(_dereq_,module,exports){
+module.exports = function(it){
+  if(typeof it != 'function')throw TypeError(it + ' is not a function!');
+  return it;
+};
+},{}],5:[function(_dereq_,module,exports){
+// 22.1.3.31 Array.prototype[@@unscopables]
+var UNSCOPABLES = _dereq_('./$.wks')('unscopables')
+  , ArrayProto  = Array.prototype;
+if(ArrayProto[UNSCOPABLES] == undefined)_dereq_('./$.hide')(ArrayProto, UNSCOPABLES, {});
+module.exports = function(key){
+  ArrayProto[UNSCOPABLES][key] = true;
+};
+},{"./$.hide":19,"./$.wks":36}],6:[function(_dereq_,module,exports){
+var isObject = _dereq_('./$.is-object');
+module.exports = function(it){
+  if(!isObject(it))throw TypeError(it + ' is not an object!');
+  return it;
+};
+},{"./$.is-object":22}],7:[function(_dereq_,module,exports){
+// getting tag from 19.1.3.6 Object.prototype.toString()
+var cof = _dereq_('./$.cof')
+  , TAG = _dereq_('./$.wks')('toStringTag')
+  // ES3 wrong here
+  , ARG = cof(function(){ return arguments; }()) == 'Arguments';
+
+module.exports = function(it){
+  var O, T, B;
+  return it === undefined ? 'Undefined' : it === null ? 'Null'
+    // @@toStringTag case
+    : typeof (T = (O = Object(it))[TAG]) == 'string' ? T
+    // builtinTag case
+    : ARG ? cof(O)
+    // ES3 arguments fallback
+    : (B = cof(O)) == 'Object' && typeof O.callee == 'function' ? 'Arguments' : B;
+};
+},{"./$.cof":8,"./$.wks":36}],8:[function(_dereq_,module,exports){
+var toString = {}.toString;
+
+module.exports = function(it){
+  return toString.call(it).slice(8, -1);
+};
+},{}],9:[function(_dereq_,module,exports){
+var core = module.exports = {version: '1.2.6'};
+if(typeof __e == 'number')__e = core; // eslint-disable-line no-undef
+},{}],10:[function(_dereq_,module,exports){
+// optional / simple context binding
+var aFunction = _dereq_('./$.a-function');
+module.exports = function(fn, that, length){
+  aFunction(fn);
+  if(that === undefined)return fn;
+  switch(length){
+    case 1: return function(a){
+      return fn.call(that, a);
+    };
+    case 2: return function(a, b){
+      return fn.call(that, a, b);
+    };
+    case 3: return function(a, b, c){
+      return fn.call(that, a, b, c);
+    };
+  }
+  return function(/* ...args */){
+    return fn.apply(that, arguments);
+  };
+};
+},{"./$.a-function":4}],11:[function(_dereq_,module,exports){
+// 7.2.1 RequireObjectCoercible(argument)
+module.exports = function(it){
+  if(it == undefined)throw TypeError("Can't call method on  " + it);
+  return it;
+};
+},{}],12:[function(_dereq_,module,exports){
+// Thank's IE8 for his funny defineProperty
+module.exports = !_dereq_('./$.fails')(function(){
+  return Object.defineProperty({}, 'a', {get: function(){ return 7; }}).a != 7;
+});
+},{"./$.fails":15}],13:[function(_dereq_,module,exports){
+// all enumerable object keys, includes symbols
+var $ = _dereq_('./$');
+module.exports = function(it){
+  var keys       = $.getKeys(it)
+    , getSymbols = $.getSymbols;
+  if(getSymbols){
+    var symbols = getSymbols(it)
+      , isEnum  = $.isEnum
+      , i       = 0
+      , key;
+    while(symbols.length > i)if(isEnum.call(it, key = symbols[i++]))keys.push(key);
+  }
+  return keys;
+};
+},{"./$":27}],14:[function(_dereq_,module,exports){
+var global    = _dereq_('./$.global')
+  , core      = _dereq_('./$.core')
+  , hide      = _dereq_('./$.hide')
+  , redefine  = _dereq_('./$.redefine')
+  , ctx       = _dereq_('./$.ctx')
+  , PROTOTYPE = 'prototype';
+
+var $export = function(type, name, source){
+  var IS_FORCED = type & $export.F
+    , IS_GLOBAL = type & $export.G
+    , IS_STATIC = type & $export.S
+    , IS_PROTO  = type & $export.P
+    , IS_BIND   = type & $export.B
+    , target    = IS_GLOBAL ? global : IS_STATIC ? global[name] || (global[name] = {}) : (global[name] || {})[PROTOTYPE]
+    , exports   = IS_GLOBAL ? core : core[name] || (core[name] = {})
+    , expProto  = exports[PROTOTYPE] || (exports[PROTOTYPE] = {})
+    , key, own, out, exp;
+  if(IS_GLOBAL)source = name;
+  for(key in source){
+    // contains in native
+    own = !IS_FORCED && target && key in target;
+    // export native or passed
+    out = (own ? target : source)[key];
+    // bind timers to global for call from export context
+    exp = IS_BIND && own ? ctx(out, global) : IS_PROTO && typeof out == 'function' ? ctx(Function.call, out) : out;
+    // extend global
+    if(target && !own)redefine(target, key, out);
+    // export
+    if(exports[key] != out)hide(exports, key, exp);
+    if(IS_PROTO && expProto[key] != out)expProto[key] = out;
+  }
+};
+global.core = core;
+// type bitmap
+$export.F = 1;  // forced
+$export.G = 2;  // global
+$export.S = 4;  // static
+$export.P = 8;  // proto
+$export.B = 16; // bind
+$export.W = 32; // wrap
+module.exports = $export;
+},{"./$.core":9,"./$.ctx":10,"./$.global":17,"./$.hide":19,"./$.redefine":31}],15:[function(_dereq_,module,exports){
+module.exports = function(exec){
+  try {
+    return !!exec();
+  } catch(e){
+    return true;
+  }
+};
+},{}],16:[function(_dereq_,module,exports){
+// fallback for IE11 buggy Object.getOwnPropertyNames with iframe and window
+var toIObject = _dereq_('./$.to-iobject')
+  , getNames  = _dereq_('./$').getNames
+  , toString  = {}.toString;
+
+var windowNames = typeof window == 'object' && Object.getOwnPropertyNames
+  ? Object.getOwnPropertyNames(window) : [];
+
+var getWindowNames = function(it){
+  try {
+    return getNames(it);
+  } catch(e){
+    return windowNames.slice();
+  }
+};
+
+module.exports.get = function getOwnPropertyNames(it){
+  if(windowNames && toString.call(it) == '[object Window]')return getWindowNames(it);
+  return getNames(toIObject(it));
+};
+},{"./$":27,"./$.to-iobject":34}],17:[function(_dereq_,module,exports){
+// https://github.com/zloirock/core-js/issues/86#issuecomment-115759028
+var global = module.exports = typeof window != 'undefined' && window.Math == Math
+  ? window : typeof self != 'undefined' && self.Math == Math ? self : Function('return this')();
+if(typeof __g == 'number')__g = global; // eslint-disable-line no-undef
+},{}],18:[function(_dereq_,module,exports){
+var hasOwnProperty = {}.hasOwnProperty;
+module.exports = function(it, key){
+  return hasOwnProperty.call(it, key);
+};
+},{}],19:[function(_dereq_,module,exports){
+var $          = _dereq_('./$')
+  , createDesc = _dereq_('./$.property-desc');
+module.exports = _dereq_('./$.descriptors') ? function(object, key, value){
+  return $.setDesc(object, key, createDesc(1, value));
+} : function(object, key, value){
+  object[key] = value;
+  return object;
+};
+},{"./$":27,"./$.descriptors":12,"./$.property-desc":30}],20:[function(_dereq_,module,exports){
+// fallback for non-array-like ES3 and non-enumerable old V8 strings
+var cof = _dereq_('./$.cof');
+module.exports = Object('z').propertyIsEnumerable(0) ? Object : function(it){
+  return cof(it) == 'String' ? it.split('') : Object(it);
+};
+},{"./$.cof":8}],21:[function(_dereq_,module,exports){
+// 7.2.2 IsArray(argument)
+var cof = _dereq_('./$.cof');
+module.exports = Array.isArray || function(arg){
+  return cof(arg) == 'Array';
+};
+},{"./$.cof":8}],22:[function(_dereq_,module,exports){
+module.exports = function(it){
+  return typeof it === 'object' ? it !== null : typeof it === 'function';
+};
+},{}],23:[function(_dereq_,module,exports){
+'use strict';
+var $              = _dereq_('./$')
+  , descriptor     = _dereq_('./$.property-desc')
+  , setToStringTag = _dereq_('./$.set-to-string-tag')
+  , IteratorPrototype = {};
+
+// 25.1.2.1.1 %IteratorPrototype%[@@iterator]()
+_dereq_('./$.hide')(IteratorPrototype, _dereq_('./$.wks')('iterator'), function(){ return this; });
+
+module.exports = function(Constructor, NAME, next){
+  Constructor.prototype = $.create(IteratorPrototype, {next: descriptor(1, next)});
+  setToStringTag(Constructor, NAME + ' Iterator');
+};
+},{"./$":27,"./$.hide":19,"./$.property-desc":30,"./$.set-to-string-tag":32,"./$.wks":36}],24:[function(_dereq_,module,exports){
+'use strict';
+var LIBRARY        = _dereq_('./$.library')
+  , $export        = _dereq_('./$.export')
+  , redefine       = _dereq_('./$.redefine')
+  , hide           = _dereq_('./$.hide')
+  , has            = _dereq_('./$.has')
+  , Iterators      = _dereq_('./$.iterators')
+  , $iterCreate    = _dereq_('./$.iter-create')
+  , setToStringTag = _dereq_('./$.set-to-string-tag')
+  , getProto       = _dereq_('./$').getProto
+  , ITERATOR       = _dereq_('./$.wks')('iterator')
+  , BUGGY          = !([].keys && 'next' in [].keys()) // Safari has buggy iterators w/o `next`
+  , FF_ITERATOR    = '@@iterator'
+  , KEYS           = 'keys'
+  , VALUES         = 'values';
+
+var returnThis = function(){ return this; };
+
+module.exports = function(Base, NAME, Constructor, next, DEFAULT, IS_SET, FORCED){
+  $iterCreate(Constructor, NAME, next);
+  var getMethod = function(kind){
+    if(!BUGGY && kind in proto)return proto[kind];
+    switch(kind){
+      case KEYS: return function keys(){ return new Constructor(this, kind); };
+      case VALUES: return function values(){ return new Constructor(this, kind); };
+    } return function entries(){ return new Constructor(this, kind); };
+  };
+  var TAG        = NAME + ' Iterator'
+    , DEF_VALUES = DEFAULT == VALUES
+    , VALUES_BUG = false
+    , proto      = Base.prototype
+    , $native    = proto[ITERATOR] || proto[FF_ITERATOR] || DEFAULT && proto[DEFAULT]
+    , $default   = $native || getMethod(DEFAULT)
+    , methods, key;
+  // Fix native
+  if($native){
+    var IteratorPrototype = getProto($default.call(new Base));
+    // Set @@toStringTag to native iterators
+    setToStringTag(IteratorPrototype, TAG, true);
+    // FF fix
+    if(!LIBRARY && has(proto, FF_ITERATOR))hide(IteratorPrototype, ITERATOR, returnThis);
+    // fix Array#{values, @@iterator}.name in V8 / FF
+    if(DEF_VALUES && $native.name !== VALUES){
+      VALUES_BUG = true;
+      $default = function values(){ return $native.call(this); };
+    }
+  }
+  // Define iterator
+  if((!LIBRARY || FORCED) && (BUGGY || VALUES_BUG || !proto[ITERATOR])){
+    hide(proto, ITERATOR, $default);
+  }
+  // Plug for library
+  Iterators[NAME] = $default;
+  Iterators[TAG]  = returnThis;
+  if(DEFAULT){
+    methods = {
+      values:  DEF_VALUES  ? $default : getMethod(VALUES),
+      keys:    IS_SET      ? $default : getMethod(KEYS),
+      entries: !DEF_VALUES ? $default : getMethod('entries')
+    };
+    if(FORCED)for(key in methods){
+      if(!(key in proto))redefine(proto, key, methods[key]);
+    } else $export($export.P + $export.F * (BUGGY || VALUES_BUG), NAME, methods);
+  }
+  return methods;
+};
+},{"./$":27,"./$.export":14,"./$.has":18,"./$.hide":19,"./$.iter-create":23,"./$.iterators":26,"./$.library":29,"./$.redefine":31,"./$.set-to-string-tag":32,"./$.wks":36}],25:[function(_dereq_,module,exports){
+module.exports = function(done, value){
+  return {value: value, done: !!done};
+};
+},{}],26:[function(_dereq_,module,exports){
+module.exports = {};
+},{}],27:[function(_dereq_,module,exports){
+var $Object = Object;
+module.exports = {
+  create:     $Object.create,
+  getProto:   $Object.getPrototypeOf,
+  isEnum:     {}.propertyIsEnumerable,
+  getDesc:    $Object.getOwnPropertyDescriptor,
+  setDesc:    $Object.defineProperty,
+  setDescs:   $Object.defineProperties,
+  getKeys:    $Object.keys,
+  getNames:   $Object.getOwnPropertyNames,
+  getSymbols: $Object.getOwnPropertySymbols,
+  each:       [].forEach
+};
+},{}],28:[function(_dereq_,module,exports){
+var $         = _dereq_('./$')
+  , toIObject = _dereq_('./$.to-iobject');
+module.exports = function(object, el){
+  var O      = toIObject(object)
+    , keys   = $.getKeys(O)
+    , length = keys.length
+    , index  = 0
+    , key;
+  while(length > index)if(O[key = keys[index++]] === el)return key;
+};
+},{"./$":27,"./$.to-iobject":34}],29:[function(_dereq_,module,exports){
+module.exports = false;
+},{}],30:[function(_dereq_,module,exports){
+module.exports = function(bitmap, value){
+  return {
+    enumerable  : !(bitmap & 1),
+    configurable: !(bitmap & 2),
+    writable    : !(bitmap & 4),
+    value       : value
+  };
+};
+},{}],31:[function(_dereq_,module,exports){
+// add fake Function#toString
+// for correct work wrapped methods / constructors with methods like LoDash isNative
+var global    = _dereq_('./$.global')
+  , hide      = _dereq_('./$.hide')
+  , SRC       = _dereq_('./$.uid')('src')
+  , TO_STRING = 'toString'
+  , $toString = Function[TO_STRING]
+  , TPL       = ('' + $toString).split(TO_STRING);
+
+_dereq_('./$.core').inspectSource = function(it){
+  return $toString.call(it);
+};
+
+(module.exports = function(O, key, val, safe){
+  if(typeof val == 'function'){
+    val.hasOwnProperty(SRC) || hide(val, SRC, O[key] ? '' + O[key] : TPL.join(String(key)));
+    val.hasOwnProperty('name') || hide(val, 'name', key);
+  }
+  if(O === global){
+    O[key] = val;
+  } else {
+    if(!safe)delete O[key];
+    hide(O, key, val);
+  }
+})(Function.prototype, TO_STRING, function toString(){
+  return typeof this == 'function' && this[SRC] || $toString.call(this);
+});
+},{"./$.core":9,"./$.global":17,"./$.hide":19,"./$.uid":35}],32:[function(_dereq_,module,exports){
+var def = _dereq_('./$').setDesc
+  , has = _dereq_('./$.has')
+  , TAG = _dereq_('./$.wks')('toStringTag');
+
+module.exports = function(it, tag, stat){
+  if(it && !has(it = stat ? it : it.prototype, TAG))def(it, TAG, {configurable: true, value: tag});
+};
+},{"./$":27,"./$.has":18,"./$.wks":36}],33:[function(_dereq_,module,exports){
+var global = _dereq_('./$.global')
+  , SHARED = '__core-js_shared__'
+  , store  = global[SHARED] || (global[SHARED] = {});
+module.exports = function(key){
+  return store[key] || (store[key] = {});
+};
+},{"./$.global":17}],34:[function(_dereq_,module,exports){
+// to indexed object, toObject with fallback for non-array-like ES3 strings
+var IObject = _dereq_('./$.iobject')
+  , defined = _dereq_('./$.defined');
+module.exports = function(it){
+  return IObject(defined(it));
+};
+},{"./$.defined":11,"./$.iobject":20}],35:[function(_dereq_,module,exports){
+var id = 0
+  , px = Math.random();
+module.exports = function(key){
+  return 'Symbol('.concat(key === undefined ? '' : key, ')_', (++id + px).toString(36));
+};
+},{}],36:[function(_dereq_,module,exports){
+var store  = _dereq_('./$.shared')('wks')
+  , uid    = _dereq_('./$.uid')
+  , Symbol = _dereq_('./$.global').Symbol;
+module.exports = function(name){
+  return store[name] || (store[name] =
+    Symbol && Symbol[name] || (Symbol || uid)('Symbol.' + name));
+};
+},{"./$.global":17,"./$.shared":33,"./$.uid":35}],37:[function(_dereq_,module,exports){
+'use strict';
+var addToUnscopables = _dereq_('./$.add-to-unscopables')
+  , step             = _dereq_('./$.iter-step')
+  , Iterators        = _dereq_('./$.iterators')
+  , toIObject        = _dereq_('./$.to-iobject');
+
+// 22.1.3.4 Array.prototype.entries()
+// 22.1.3.13 Array.prototype.keys()
+// 22.1.3.29 Array.prototype.values()
+// 22.1.3.30 Array.prototype[@@iterator]()
+module.exports = _dereq_('./$.iter-define')(Array, 'Array', function(iterated, kind){
+  this._t = toIObject(iterated); // target
+  this._i = 0;                   // next index
+  this._k = kind;                // kind
+// 22.1.5.2.1 %ArrayIteratorPrototype%.next()
+}, function(){
+  var O     = this._t
+    , kind  = this._k
+    , index = this._i++;
+  if(!O || index >= O.length){
+    this._t = undefined;
+    return step(1);
+  }
+  if(kind == 'keys'  )return step(0, index);
+  if(kind == 'values')return step(0, O[index]);
+  return step(0, [index, O[index]]);
+}, 'values');
+
+// argumentsList[@@iterator] is %ArrayProto_values% (9.4.4.6, 9.4.4.7)
+Iterators.Arguments = Iterators.Array;
+
+addToUnscopables('keys');
+addToUnscopables('values');
+addToUnscopables('entries');
+},{"./$.add-to-unscopables":5,"./$.iter-define":24,"./$.iter-step":25,"./$.iterators":26,"./$.to-iobject":34}],38:[function(_dereq_,module,exports){
+// 20.2.2.34 Math.trunc(x)
+var $export = _dereq_('./$.export');
+
+$export($export.S, 'Math', {
+  trunc: function trunc(it){
+    return (it > 0 ? Math.floor : Math.ceil)(it);
+  }
+});
+},{"./$.export":14}],39:[function(_dereq_,module,exports){
+'use strict';
+// 19.1.3.6 Object.prototype.toString()
+var classof = _dereq_('./$.classof')
+  , test    = {};
+test[_dereq_('./$.wks')('toStringTag')] = 'z';
+if(test + '' != '[object z]'){
+  _dereq_('./$.redefine')(Object.prototype, 'toString', function toString(){
+    return '[object ' + classof(this) + ']';
+  }, true);
+}
+},{"./$.classof":7,"./$.redefine":31,"./$.wks":36}],40:[function(_dereq_,module,exports){
+'use strict';
+// ECMAScript 6 symbols shim
+var $              = _dereq_('./$')
+  , global         = _dereq_('./$.global')
+  , has            = _dereq_('./$.has')
+  , DESCRIPTORS    = _dereq_('./$.descriptors')
+  , $export        = _dereq_('./$.export')
+  , redefine       = _dereq_('./$.redefine')
+  , $fails         = _dereq_('./$.fails')
+  , shared         = _dereq_('./$.shared')
+  , setToStringTag = _dereq_('./$.set-to-string-tag')
+  , uid            = _dereq_('./$.uid')
+  , wks            = _dereq_('./$.wks')
+  , keyOf          = _dereq_('./$.keyof')
+  , $names         = _dereq_('./$.get-names')
+  , enumKeys       = _dereq_('./$.enum-keys')
+  , isArray        = _dereq_('./$.is-array')
+  , anObject       = _dereq_('./$.an-object')
+  , toIObject      = _dereq_('./$.to-iobject')
+  , createDesc     = _dereq_('./$.property-desc')
+  , getDesc        = $.getDesc
+  , setDesc        = $.setDesc
+  , _create        = $.create
+  , getNames       = $names.get
+  , $Symbol        = global.Symbol
+  , $JSON          = global.JSON
+  , _stringify     = $JSON && $JSON.stringify
+  , setter         = false
+  , HIDDEN         = wks('_hidden')
+  , isEnum         = $.isEnum
+  , SymbolRegistry = shared('symbol-registry')
+  , AllSymbols     = shared('symbols')
+  , useNative      = typeof $Symbol == 'function'
+  , ObjectProto    = Object.prototype;
+
+// fallback for old Android, https://code.google.com/p/v8/issues/detail?id=687
+var setSymbolDesc = DESCRIPTORS && $fails(function(){
+  return _create(setDesc({}, 'a', {
+    get: function(){ return setDesc(this, 'a', {value: 7}).a; }
+  })).a != 7;
+}) ? function(it, key, D){
+  var protoDesc = getDesc(ObjectProto, key);
+  if(protoDesc)delete ObjectProto[key];
+  setDesc(it, key, D);
+  if(protoDesc && it !== ObjectProto)setDesc(ObjectProto, key, protoDesc);
+} : setDesc;
+
+var wrap = function(tag){
+  var sym = AllSymbols[tag] = _create($Symbol.prototype);
+  sym._k = tag;
+  DESCRIPTORS && setter && setSymbolDesc(ObjectProto, tag, {
+    configurable: true,
+    set: function(value){
+      if(has(this, HIDDEN) && has(this[HIDDEN], tag))this[HIDDEN][tag] = false;
+      setSymbolDesc(this, tag, createDesc(1, value));
+    }
+  });
+  return sym;
+};
+
+var isSymbol = function(it){
+  return typeof it == 'symbol';
+};
+
+var $defineProperty = function defineProperty(it, key, D){
+  if(D && has(AllSymbols, key)){
+    if(!D.enumerable){
+      if(!has(it, HIDDEN))setDesc(it, HIDDEN, createDesc(1, {}));
+      it[HIDDEN][key] = true;
+    } else {
+      if(has(it, HIDDEN) && it[HIDDEN][key])it[HIDDEN][key] = false;
+      D = _create(D, {enumerable: createDesc(0, false)});
+    } return setSymbolDesc(it, key, D);
+  } return setDesc(it, key, D);
+};
+var $defineProperties = function defineProperties(it, P){
+  anObject(it);
+  var keys = enumKeys(P = toIObject(P))
+    , i    = 0
+    , l = keys.length
+    , key;
+  while(l > i)$defineProperty(it, key = keys[i++], P[key]);
+  return it;
+};
+var $create = function create(it, P){
+  return P === undefined ? _create(it) : $defineProperties(_create(it), P);
+};
+var $propertyIsEnumerable = function propertyIsEnumerable(key){
+  var E = isEnum.call(this, key);
+  return E || !has(this, key) || !has(AllSymbols, key) || has(this, HIDDEN) && this[HIDDEN][key]
+    ? E : true;
+};
+var $getOwnPropertyDescriptor = function getOwnPropertyDescriptor(it, key){
+  var D = getDesc(it = toIObject(it), key);
+  if(D && has(AllSymbols, key) && !(has(it, HIDDEN) && it[HIDDEN][key]))D.enumerable = true;
+  return D;
+};
+var $getOwnPropertyNames = function getOwnPropertyNames(it){
+  var names  = getNames(toIObject(it))
+    , result = []
+    , i      = 0
+    , key;
+  while(names.length > i)if(!has(AllSymbols, key = names[i++]) && key != HIDDEN)result.push(key);
+  return result;
+};
+var $getOwnPropertySymbols = function getOwnPropertySymbols(it){
+  var names  = getNames(toIObject(it))
+    , result = []
+    , i      = 0
+    , key;
+  while(names.length > i)if(has(AllSymbols, key = names[i++]))result.push(AllSymbols[key]);
+  return result;
+};
+var $stringify = function stringify(it){
+  if(it === undefined || isSymbol(it))return; // IE8 returns string on undefined
+  var args = [it]
+    , i    = 1
+    , $$   = arguments
+    , replacer, $replacer;
+  while($$.length > i)args.push($$[i++]);
+  replacer = args[1];
+  if(typeof replacer == 'function')$replacer = replacer;
+  if($replacer || !isArray(replacer))replacer = function(key, value){
+    if($replacer)value = $replacer.call(this, key, value);
+    if(!isSymbol(value))return value;
+  };
+  args[1] = replacer;
+  return _stringify.apply($JSON, args);
+};
+var buggyJSON = $fails(function(){
+  var S = $Symbol();
+  // MS Edge converts symbol values to JSON as {}
+  // WebKit converts symbol values to JSON as null
+  // V8 throws on boxed symbols
+  return _stringify([S]) != '[null]' || _stringify({a: S}) != '{}' || _stringify(Object(S)) != '{}';
+});
+
+// 19.4.1.1 Symbol([description])
+if(!useNative){
+  $Symbol = function Symbol(){
+    if(isSymbol(this))throw TypeError('Symbol is not a constructor');
+    return wrap(uid(arguments.length > 0 ? arguments[0] : undefined));
+  };
+  redefine($Symbol.prototype, 'toString', function toString(){
+    return this._k;
+  });
+
+  isSymbol = function(it){
+    return it instanceof $Symbol;
+  };
+
+  $.create     = $create;
+  $.isEnum     = $propertyIsEnumerable;
+  $.getDesc    = $getOwnPropertyDescriptor;
+  $.setDesc    = $defineProperty;
+  $.setDescs   = $defineProperties;
+  $.getNames   = $names.get = $getOwnPropertyNames;
+  $.getSymbols = $getOwnPropertySymbols;
+
+  if(DESCRIPTORS && !_dereq_('./$.library')){
+    redefine(ObjectProto, 'propertyIsEnumerable', $propertyIsEnumerable, true);
+  }
+}
+
+var symbolStatics = {
+  // 19.4.2.1 Symbol.for(key)
+  'for': function(key){
+    return has(SymbolRegistry, key += '')
+      ? SymbolRegistry[key]
+      : SymbolRegistry[key] = $Symbol(key);
+  },
+  // 19.4.2.5 Symbol.keyFor(sym)
+  keyFor: function keyFor(key){
+    return keyOf(SymbolRegistry, key);
+  },
+  useSetter: function(){ setter = true; },
+  useSimple: function(){ setter = false; }
+};
+// 19.4.2.2 Symbol.hasInstance
+// 19.4.2.3 Symbol.isConcatSpreadable
+// 19.4.2.4 Symbol.iterator
+// 19.4.2.6 Symbol.match
+// 19.4.2.8 Symbol.replace
+// 19.4.2.9 Symbol.search
+// 19.4.2.10 Symbol.species
+// 19.4.2.11 Symbol.split
+// 19.4.2.12 Symbol.toPrimitive
+// 19.4.2.13 Symbol.toStringTag
+// 19.4.2.14 Symbol.unscopables
+$.each.call((
+  'hasInstance,isConcatSpreadable,iterator,match,replace,search,' +
+  'species,split,toPrimitive,toStringTag,unscopables'
+).split(','), function(it){
+  var sym = wks(it);
+  symbolStatics[it] = useNative ? sym : wrap(sym);
+});
+
+setter = true;
+
+$export($export.G + $export.W, {Symbol: $Symbol});
+
+$export($export.S, 'Symbol', symbolStatics);
+
+$export($export.S + $export.F * !useNative, 'Object', {
+  // 19.1.2.2 Object.create(O [, Properties])
+  create: $create,
+  // 19.1.2.4 Object.defineProperty(O, P, Attributes)
+  defineProperty: $defineProperty,
+  // 19.1.2.3 Object.defineProperties(O, Properties)
+  defineProperties: $defineProperties,
+  // 19.1.2.6 Object.getOwnPropertyDescriptor(O, P)
+  getOwnPropertyDescriptor: $getOwnPropertyDescriptor,
+  // 19.1.2.7 Object.getOwnPropertyNames(O)
+  getOwnPropertyNames: $getOwnPropertyNames,
+  // 19.1.2.8 Object.getOwnPropertySymbols(O)
+  getOwnPropertySymbols: $getOwnPropertySymbols
+});
+
+// 24.3.2 JSON.stringify(value [, replacer [, space]])
+$JSON && $export($export.S + $export.F * (!useNative || buggyJSON), 'JSON', {stringify: $stringify});
+
+// 19.4.3.5 Symbol.prototype[@@toStringTag]
+setToStringTag($Symbol, 'Symbol');
+// 20.2.1.9 Math[@@toStringTag]
+setToStringTag(Math, 'Math', true);
+// 24.3.3 JSON[@@toStringTag]
+setToStringTag(global.JSON, 'JSON', true);
+},{"./$":27,"./$.an-object":6,"./$.descriptors":12,"./$.enum-keys":13,"./$.export":14,"./$.fails":15,"./$.get-names":16,"./$.global":17,"./$.has":18,"./$.is-array":21,"./$.keyof":28,"./$.library":29,"./$.property-desc":30,"./$.redefine":31,"./$.set-to-string-tag":32,"./$.shared":33,"./$.to-iobject":34,"./$.uid":35,"./$.wks":36}],41:[function(_dereq_,module,exports){
+'use strict';
+
+var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+
+var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; desc = parent = undefined; continue _function; } } else if ('value' in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var _shareUtils = _dereq_('./share-utils');
+
+var _shareUtils2 = _interopRequireDefault(_shareUtils);
+
+var _stringUtils = _dereq_('./string-utils');
+
+var _stringUtils2 = _interopRequireDefault(_stringUtils);
+
+/**
+ * Sharebutton
+ * @class
+ * @classdesc
+ * @extends ShareUtils
+
+ * @param {String} element
+ * @param {Object} options
+ */
+_dereq_('core-js/fn/symbol');
+_dereq_('core-js/fn/array/iterator');
+_dereq_('core-js/fn/math/trunc');
+
+var ShareButton = (function (_ShareUtils) {
+  _inherits(ShareButton, _ShareUtils);
+
+  function ShareButton(element, options) {
+    _classCallCheck(this, ShareButton);
+
+    _get(Object.getPrototypeOf(ShareButton.prototype), 'constructor', this).call(this);
+
+    if (typeof element === 'object') {
+      this.element = undefined;
+      options = element;
+    } else this.element = element;
+
+    this.el = {
+      head: document.getElementsByTagName('head')[0],
+      body: document.getElementsByTagName('body')[0]
+    };
+
+    this.config = {
+      enabledNetworks: 0,
+      protocol: '//',
+      url: window.location.href,
+      caption: null,
+      title: this._defaultTitle(),
+      image: this._defaultImage(),
+      description: this._defaultDescription(),
+      root: document,
+
+      ui: {
+        flyout: 'sb-top sb-center',
+        buttonText: 'Share',
+        namespace: 'sb-',
+        networkOrder: [],
+        collision: false
+      },
+
+      networks: {
+        googlePlus: {
+          enabled: true,
+          url: null
+        },
+        twitter: {
+          enabled: true,
+          url: null,
+          description: null
+        },
+        facebook: {
+          enabled: true,
+          loadSdk: true,
+          url: null,
+          appId: null,
+          title: null,
+          caption: null,
+          description: null,
+          image: null
+        },
+        pinterest: {
+          enabled: true,
+          url: null,
+          image: null,
+          description: null
+        },
+        reddit: {
+          enabled: true,
+          url: null,
+          title: null
+        },
+        linkedin: {
+          enabled: true,
+          url: null,
+          title: null,
+          description: null
+        },
+        whatsapp: {
+          enabled: true,
+          description: null,
+          url: null
+        },
+        email: {
+          enabled: true,
+          title: null,
+          description: null
+        }
+      }
+    };
+
+    this.listener = null;
+    this._setup(this.element, options);
+  }
+
+  /**
+   * @method open
+   * @description Opens Share Button
+   */
+
+  _createClass(ShareButton, [{
+    key: 'open',
+    value: function open() {
+      this._public('Open');
+    }
+
+    /**
+     * @method close
+     * @description Cpens Share Button
+     */
+  }, {
+    key: 'close',
+    value: function close() {
+      this._public('Close');
+    }
+
+    /**
+     * @method toggle
+     * @description Toggles Share Button
+     */
+  }, {
+    key: 'toggle',
+    value: function toggle() {
+      this._public('Toggle');
+    }
+
+    /**
+     * @method toggleListen
+     * @description Toggles the Share Button listener, good for updaing share
+     * button for CSS animations.
+     */
+  }, {
+    key: 'toggleListen',
+    value: function toggleListen() {
+      this._public('Listen');
+    }
+
+    /**
+     * @method _public
+     * @description Executes action
+     * @private
+     *
+     * @param {String} action
+     */
+  }, {
+    key: '_public',
+    value: function _public(action) {
+      var instances = undefined;
+
+      if (typeof element === 'undefined') instances = _get(Object.getPrototypeOf(ShareButton.prototype), '_objToArray', this).call(this, this.config.root.querySelectorAll('share-button'));else instances = document.querySelectorAll(element);
+
+      var _iteratorNormalCompletion = true;
+      var _didIteratorError = false;
+      var _iteratorError = undefined;
+
+      try {
+        for (var _iterator = instances[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+          var instance = _step.value;
+
+          var networks = instance.getElementsByClassName(this.config.ui.namespace + 'social')[0];
+          this['_event' + action](instance, networks);
+        }
+      } catch (err) {
+        _didIteratorError = true;
+        _iteratorError = err;
+      } finally {
+        try {
+          if (!_iteratorNormalCompletion && _iterator['return']) {
+            _iterator['return']();
+          }
+        } finally {
+          if (_didIteratorError) {
+            throw _iteratorError;
+          }
+        }
+      }
+    }
+
+    /**
+     * @method _setup
+     * @description Sets up Share Button
+     * @private
+     *
+     * @param {String} element selector
+     * @param {Object} opts
+     */
+  }, {
+    key: '_setup',
+    value: function _setup(element, opts) {
+      // Adding user configs to default configs
+      this._merge(this.config, opts);
+
+      var instances = undefined;
+
+      if (typeof element === 'undefined') instances = _get(Object.getPrototypeOf(ShareButton.prototype), '_objToArray', this).call(this, this.config.root.querySelectorAll('share-button'));else {
+        instances = this.config.root.querySelectorAll('share-button' + element);
+        if (typeof instances === 'object') instances = _get(Object.getPrototypeOf(ShareButton.prototype), '_objToArray', this).call(this, instances);
+      }
+
+      // Disable whatsapp display if not a mobile device
+      if (this.config.networks.whatsapp.enabled && !this._isMobile()) this.config.networks.whatsapp.enabled = false;
+
+      // Default order of networks if no network order entered
+      if (this.config.ui.networkOrder.length === 0) this.config.ui.networkOrder = ['pinterest', 'twitter', 'facebook', 'whatsapp', 'googlePlus', 'reddit', 'linkedin', 'email'];
+
+      var _iteratorNormalCompletion2 = true;
+      var _didIteratorError2 = false;
+      var _iteratorError2 = undefined;
+
+      try {
+        for (var _iterator2 = Object.keys(this.config.networks)[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
+          var network = _step2.value;
+
+          if (this.config.ui.networkOrder.indexOf(network.toString()) < 0) {
+            this.config.networks[network].enabled = false;
+            this.config.ui.networkOrder.push(network);
+          }
+        }
+      } catch (err) {
+        _didIteratorError2 = true;
+        _iteratorError2 = err;
+      } finally {
+        try {
+          if (!_iteratorNormalCompletion2 && _iterator2['return']) {
+            _iterator2['return']();
+          }
+        } finally {
+          if (_didIteratorError2) {
+            throw _iteratorError2;
+          }
+        }
+      }
+
+      this._fixFlyout();
+      this._detectNetworks();
+      this._normalizeNetworkConfiguration();
+
+      // Inject Facebook JS SDK (if Facebook is enabled)
+      if (this.config.networks.facebook.enabled && this.config.networks.facebook.loadSdk) this._injectFacebookSdk();
+
+      // Initialize instances
+      var index = 0;
+      var _iteratorNormalCompletion3 = true;
+      var _didIteratorError3 = false;
+      var _iteratorError3 = undefined;
+
+      try {
+        for (var _iterator3 = instances[Symbol.iterator](), _step3; !(_iteratorNormalCompletion3 = (_step3 = _iterator3.next()).done); _iteratorNormalCompletion3 = true) {
+          var instance = _step3.value;
+
+          this._setupInstance(instance, index++);
+        }
+      } catch (err) {
+        _didIteratorError3 = true;
+        _iteratorError3 = err;
+      } finally {
+        try {
+          if (!_iteratorNormalCompletion3 && _iterator3['return']) {
+            _iterator3['return']();
+          }
+        } finally {
+          if (_didIteratorError3) {
+            throw _iteratorError3;
+          }
+        }
+      }
+    }
+
+    /**
+     * @method _setupInstance
+     * @description Sets up each instance with config and styles
+     * @private
+     *
+     * @param {DOMNode} instance
+     * @param {Integer} index
+     */
+  }, {
+    key: '_setupInstance',
+    value: function _setupInstance(instance, index) {
+      var _this = this;
+
+      this._hide(instance);
+
+      // Add necessary classes to instance
+      // (Note: FF doesn't support adding multiple classes in a single call)
+      this._addClass(instance, 'sharer-' + index);
+      this._injectHtml(instance);
+      this._show(instance);
+
+      var networksCon = instance.getElementsByClassName(this.config.ui.namespace + 'social')[0];
+      var networks = instance.getElementsByTagName('li');
+
+      this._addClass(networksCon, 'networks-' + this.config.enabledNetworks);
+      instance.addEventListener('click', function () {
+        return _this._eventToggle(instance, networksCon);
+      });
+
+      // Add listener to activate networks and close button
+
+      var _loop = function (k) {
+        var network = networks[k];
+
+        if (typeof network !== "undefined") {
+          (function () {
+            var name = network.getAttribute('data-network');
+            var a = network.getElementsByTagName('a')[0];
+
+            _this._addClass(network, _this.config.networks[name]['class']);
+
+            if (network.className.indexOf('email') < 0) a.setAttribute('onclick', 'return false');
+
+            a.addEventListener('mousedown', function () {
+              _this._hook('before', name, instance);
+            });
+            a.addEventListener('mouseup', function () {
+              _this['_network' + _stringUtils2['default'].capFLetter(name)](network);
+            });
+            a.addEventListener('click', function () {
+              _this._hook('after', name, instance);
+            });
+          })();
+        }
+      };
+
+      for (var k in Object.keys(networks)) {
+        _loop(k);
+      }
+    }
+
+    /**
+     * @method _eventToggle
+     * @description Toggles 'active' class on button
+     * @private
+     *
+     * @param {DOMNode} button
+     * @param {DOMNode} networks
+     */
+  }, {
+    key: '_eventToggle',
+    value: function _eventToggle(button, networks) {
+      if (this._hasClass(networks, 'active')) this._eventClose(networks);else this._eventOpen(button, networks);
+    }
+
+    /**
+     * @method _eventOpen
+     * @description Add 'active' class & remove 'load' class on button
+     * @private
+     *
+     * @param {DOMNode} button
+     * @param {DOMNode} networks
+     */
+  }, {
+    key: '_eventOpen',
+    value: function _eventOpen(button, networks) {
+      if (this._hasClass(networks, 'load')) this._removeClass(networks, 'load');
+      if (this.collision) this._collisionDetection(button, networks);
+
+      this._addClass(networks, 'active');
+    }
+
+    /**
+     * @method _eventClose
+     * @description Remove 'active' class on button
+     * @private
+     *
+     * @param {DOMNode} button
+     */
+  }, {
+    key: '_eventClose',
+    value: function _eventClose(button) {
+      this._removeClass(button, 'active');
+    }
+
+    /**
+     * @method _eventListen
+     * @description Toggles weather or not a button's classes are being
+     * constantly updated regardless of scrolls or window resizes.
+     * @private
+     *
+     * @param {DOMNode} button
+     * @param {DOMNode} networks
+     */
+  }, {
+    key: '_eventListen',
+    value: function _eventListen(button, networks) {
+      var _this2 = this;
+
+      var dimensions = this._getDimensions(button, networks);
+      if (this.listener === null) this.listener = window.setInterval(function () {
+        return _this2._adjustClasses(button, networks, dimensions);
+      }, 100);else {
+        window.clearInterval(this.listener);
+        this.listener = null;
+      }
+    }
+
+    /**
+     * @method _fixFlyout
+     * @description Fixes the flyout entered by the user to match their provided
+     * namespace
+     *@private
+     */
+  }, {
+    key: '_fixFlyout',
+    value: function _fixFlyout() {
+      var flyouts = this.config.ui.flyout.split(' ');
+      if (flyouts[0].substring(0, this.config.ui.namespace.length) !== this.config.ui.namespace) flyouts[0] = '' + this.config.ui.namespace + flyouts[0];
+      if (flyouts[1].substring(0, this.config.ui.namespace.length) !== this.config.ui.namespace) flyouts[1] = '' + this.config.ui.namespace + flyouts[1];
+      this.config.ui.flyout = flyouts.join(' ');
+    }
+
+    /**
+     * @method _collisionDetection
+     * @description Adds listeners the first time a button is clicked to call
+     * this._adjustClasses during scrolls and resizes.
+     * @private
+     *
+     * @param {DOMNode} button - share button
+     * @param {DOMNode} networks - list of social networks
+     */
+  }, {
+    key: '_collisionDetection',
+    value: function _collisionDetection(button, networks) {
+      var _this3 = this;
+
+      var dimensions = this._getDimensions(button, networks);
+      this._adjustClasses(button, networks, dimensions);
+
+      if (!button.classList.contains('clicked')) {
+        window.addEventListener('scroll', function () {
+          return _this3._adjustClasses(button, dimensions);
+        });
+        window.addEventListener('resize', function () {
+          return _this3._adjustClasses(button, dimensions);
+        });
+        button.classList.add('clicked');
+      }
+    }
+
+    /**
+     * @method _getDimensions
+     * @description Returns an object with the dimensions of the button and
+     * label elements of a Share Button.
+     * @private
+     *
+     * @param {DOMNode} button
+     * @param {DOMNode} networks
+     * @returns {Object}
+     */
+  }, {
+    key: '_getDimensions',
+    value: function _getDimensions(button, networks) {
+      return {
+        networksWidth: networks.offsetWidth,
+        buttonHeight: button.offsetHeight,
+        buttonWidth: button.offsetWidth
+      };
+    }
+
+    /**
+     * @method _adjustClasses
+     * @description Adjusts the positioning of the list of social networks based
+     * off of where the share button is relative to the window.
+     *
+     * @private
+     * @param {DOMNode} button
+     * @param {DOMNode} networks
+     * @param {Object} dimensions
+     */
+  }, {
+    key: '_adjustClasses',
+    value: function _adjustClasses(button, networks, dimensions) {
+      var windowWidth = window.innerWidth;
+      var windowHeight = window.innerHeight;
+      var leftOffset = button.getBoundingClientRect().left + dimensions.buttonWidth / 2;
+      var rightOffset = windowWidth - leftOffset;
+      var topOffset = button.getBoundingClientRect().top + dimensions.buttonHeight / 2;
+      var position = this._findLocation(leftOffset, topOffset, windowWidth, windowHeight);
+
+      if (position[1] === "middle" && position[0] !== "center" && (position[0] === "left" && windowWidth <= leftOffset + 220 + dimensions.buttonWidth / 2 || position[0] === "right" && windowWidth <= rightOffset + 220 + dimensions.buttonWidth / 2)) {
+        networks.classList.add(this.config.ui.namespace + 'top');
+        networks.classList.remove(this.config.ui.namespace + 'middle');
+        networks.classList.remove(this.config.ui.namespace + 'bottom');
+      } else {
+        switch (position[0]) {
+          case "left":
+            networks.classList.add(this.config.ui.namespace + 'right');
+            networks.classList.remove(this.config.ui.namespace + 'center');
+            networks.classList.remove(this.config.ui.namespace + 'left');
+            break;
+          case "center":
+            if (position[1] !== "top") networks.classList.add(this.config.ui.namespace + 'top');
+            networks.classList.add(this.config.ui.namespace + 'center');
+            networks.classList.remove(this.config.ui.namespace + 'left');
+            networks.classList.remove(this.config.ui.namespace + 'right');
+            networks.classList.remove(this.config.ui.namespace + 'middle');
+            break;
+          case "right":
+            networks.classList.add(this.config.ui.namespace + 'left');
+            networks.classList.remove(this.config.ui.namespace + 'center');
+            networks.classList.remove(this.config.ui.namespace + 'right');
+            break;
+        }
+        switch (position[1]) {
+          case "top":
+            networks.classList.add(this.config.ui.namespace + 'bottom');
+            networks.classList.remove(this.config.ui.namespace + 'middle');
+            if (position[0] !== "center") networks.classList.remove(this.config.ui.namespace + 'top');
+            break;
+          case "middle":
+            if (position[0] !== "center") {
+              networks.classList.add(this.config.ui.namespace + 'middle');
+              networks.classList.remove(this.config.ui.namespace + 'top');
+            }
+            networks.classList.remove(this.config.ui.namespace + 'bottom');
+            break;
+          case "bottom":
+            networks.classList.add(this.config.ui.namespace + 'top');
+            networks.classList.remove(this.config.ui.namespace + 'middle');
+            networks.classList.remove(this.config.ui.namespace + 'bottom');
+            break;
+        }
+      }
+    }
+
+    /**
+     * @method _findLocation
+     * @description Finds the location of the label given by its x and y value
+     * with respect to the window width and window height given.
+     * @private
+     *
+     * @param {number} labelX
+     * @param {number} labelY
+     * @param {number} windowWidth
+     * @param {number} windowHeight
+     * @returns {Array}
+     */
+  }, {
+    key: '_findLocation',
+    value: function _findLocation(labelX, labelY, windowWidth, windowHeight) {
+      var xPosition = ["left", "center", "right"];
+      var yPosition = ["top", "middle", "bottom"];
+      var xLocation = Math.trunc(3 * (1 - (windowWidth - labelX) / windowWidth));
+      var yLocation = Math.trunc(3 * (1 - (windowHeight - labelY) / windowHeight));
+      if (xLocation >= 3) xLocation = 2;else if (xLocation <= -1) xLocation = 0;
+      if (yLocation >= 3) yLocation = 2;else if (yLocation <= -1) yLocation = 0;
+      return [xPosition[xLocation], yPosition[yLocation]];
+    }
+
+    /**
+     * @method _networkFacebook
+     * @description Create & display a Facebook window
+     * @private
+     */
+  }, {
+    key: '_networkFacebook',
+    value: function _networkFacebook(element) {
+      if (this.config.networks.facebook.loadSdk) {
+        if (!window.FB) {
+          console.error('The Facebook JS SDK hasn\'t loaded yet.');
+          return this._updateHref(element, 'https://www.facebook.com/sharer/sharer.php', {
+            u: this.config.networks.facebook.url
+          });
+        }
+        return FB.ui({
+          method: 'feed',
+          name: this.config.networks.facebook.title,
+          link: this.config.networks.facebook.url,
+          picture: this.config.networks.facebook.image,
+          caption: this.config.networks.facebook.caption,
+          description: this.config.networks.facebook.description
+        });
+      } else {
+        return this._updateHref(element, 'https://www.facebook.com/sharer/sharer.php', {
+          u: this.config.networks.facebook.url
+        });
+      }
+    }
+
+    /**
+     * @method _networkTwitter
+     * @description Create & display a Twitter window
+     * @private
+     */
+  }, {
+    key: '_networkTwitter',
+    value: function _networkTwitter(element) {
+      this._updateHref(element, 'https://twitter.com/intent/tweet', {
+        text: this.config.networks.twitter.description,
+        url: this.config.networks.twitter.url
+      });
+    }
+
+    /**
+     * @method _networkGooglePlus
+     * @description Create & display a Google Plus window
+     * @private
+     */
+  }, {
+    key: '_networkGooglePlus',
+    value: function _networkGooglePlus(element) {
+      this._updateHref(element, 'https://plus.google.com/share', {
+        url: this.config.networks.googlePlus.url
+      });
+    }
+
+    /**
+     * @method _networkPinterest
+     * @description Create & display a Pinterest window
+     * @private
+     */
+  }, {
+    key: '_networkPinterest',
+    value: function _networkPinterest(element) {
+      this._updateHref(element, 'https://www.pinterest.com/pin/create/button', {
+        url: this.config.networks.pinterest.url,
+        media: this.config.networks.pinterest.image,
+        description: this.config.networks.pinterest.description
+      });
+    }
+
+    /**
+     * @method _networkLinkedIn
+     * @description Create & display a Linkedin window
+     * @private
+     */
+  }, {
+    key: '_networkLinkedin',
+    value: function _networkLinkedin(element) {
+      this._updateHref(element, 'https://www.linkedin.com/shareArticle', {
+        mini: 'true',
+        url: this.config.networks.linkedin.url,
+        title: this.config.networks.linkedin.title,
+        summary: this.config.networks.linkedin.description
+      });
+    }
+
+    /**
+     * @method _networkEmail
+     * @description Create & display an Email window
+     * @private
+     */
+  }, {
+    key: '_networkEmail',
+    value: function _networkEmail(element) {
+      this._updateHref(element, 'mailto:', {
+        subject: this.config.networks.email.title,
+        body: this.config.networks.email.description
+      });
+    }
+
+    /**
+     * @method _networkReddit
+     * @description Create & display a Reddit window
+     * @private
+     */
+  }, {
+    key: '_networkReddit',
+    value: function _networkReddit(element) {
+      this._updateHref(element, 'http://www.reddit.com/submit', {
+        url: this.config.networks.reddit.url,
+        title: this.config.networks.reddit.title
+      });
+    }
+
+    /**
+     * @method _networkWhatsapp
+     * @description Create & display a Whatsapp window
+     * @private
+     */
+  }, {
+    key: '_networkWhatsapp',
+    value: function _networkWhatsapp(element) {
+      this._updateHref(element, 'whatsapp://send', {
+        text: this.config.networks.whatsapp.description + " " + this.config.networks.whatsapp.url
+      });
+    }
+
+    /**
+     * @method _injectStylesheet
+     * @description Inject link to stylesheet
+     * @private
+     *
+     * @param {String} url
+     */
+  }, {
+    key: '_injectStylesheet',
+    value: function _injectStylesheet(url) {
+      if (!this.el.head.querySelector('link[href=\'' + url + '\']')) {
+        var link = document.createElement("link");
+        link.setAttribute("rel", "stylesheet");
+        link.setAttribute("href", url);
+        this.el.head.appendChild(link);
+      }
+    }
+
+    /**
+     * @method _injectHtml
+     * @description Inject button structure
+     * @private
+     *
+     * @param {DOMNode} instance
+     */
+  }, {
+    key: '_injectHtml',
+    value: function _injectHtml(instance) {
+      var networks = this.config.ui.networkOrder;
+      var networkList = '';
+
+      var _iteratorNormalCompletion4 = true;
+      var _didIteratorError4 = false;
+      var _iteratorError4 = undefined;
+
+      try {
+        for (var _iterator4 = networks[Symbol.iterator](), _step4; !(_iteratorNormalCompletion4 = (_step4 = _iterator4.next()).done); _iteratorNormalCompletion4 = true) {
+          var network = _step4.value;
+
+          networkList += '<li class=\'' + network + '\' data-network=\'' + network + '\'><a></a></li>';
+        }
+      } catch (err) {
+        _didIteratorError4 = true;
+        _iteratorError4 = err;
+      } finally {
+        try {
+          if (!_iteratorNormalCompletion4 && _iterator4['return']) {
+            _iterator4['return']();
+          }
+        } finally {
+          if (_didIteratorError4) {
+            throw _iteratorError4;
+          }
+        }
+      }
+
+      instance.innerHTML = this.config.ui.buttonText + '<div class=\'' + this.config.ui.namespace + 'social load ' + this.config.ui.flyout + '\'><ul>' + networkList + '</ul></div>';
+    }
+
+    /**
+     * @method _injectFacebookSdk
+     * @description Inject Facebook SDK
+     * @private
+     */
+  }, {
+    key: '_injectFacebookSdk',
+    value: function _injectFacebookSdk() {
+      if (!window.FB && this.config.networks.facebook.appId && !this.el.body.querySelector('#fb-root')) {
+        var script = document.createElement('script');
+        script.text = 'window.fbAsyncInit=function(){FB.init({appId:\'' + this.config.networks.facebook.appId + '\',status:true,xfbml:true})};(function(e,t,n){var r,i=e.getElementsByTagName(t)[0];if (e.getElementById(n)){return}r=e.createElement(t);r.id=n;r.src=\'//connect.facebook.net/en_US/all.js\';i.parentNode.insertBefore(r,i)})(document,\'script\',\'facebook-jssdk\');';
+
+        var fbRoot = document.createElement('div');
+        fbRoot.id = 'fb-root';
+
+        this.el.body.appendChild(fbRoot);
+        this.el.body.appendChild(script);
+      }
+    }
+
+    /**
+     * @method _hook
+     * @description Hook helper function
+     * @private
+     *
+     * @param {String}   type
+     * @param {String}   network
+     * @param {DOMNode}  instance
+     */
+  }, {
+    key: '_hook',
+    value: function _hook(type, network, instance) {
+      var fn = this.config.networks[network][type];
+
+      if (typeof fn === 'function') {
+        var opts = fn.call(this.config.networks[network], instance);
+
+        if (opts !== undefined) {
+          opts = this._normalizeFilterConfigUpdates(opts);
+          this.extend(this.config.networks[network], opts, true);
+          this._normalizeNetworkConfiguration();
+        }
+      }
+    }
+
+    /**
+     * @method _defaultTitle
+     * @description Gets default title
+     * @private
+     *
+     * @returns {String}
+     */
+  }, {
+    key: '_defaultTitle',
+    value: function _defaultTitle() {
+      var content = undefined;
+      if (content = document.querySelector('meta[property="og:title"]') || document.querySelector('meta[name="twitter:title"]')) return content.getAttribute('content');else if (content = document.querySelector('title')) return content.textContent || content.innerText;
+    }
+
+    /**
+     * @method _defaultImage
+     * @description Gets default image
+     * @private
+     *
+     * @returns {String}
+     */
+  }, {
+    key: '_defaultImage',
+    value: function _defaultImage() {
+      var content = undefined;
+      if (content = document.querySelector('meta[property="og:image"]') || document.querySelector('meta[name="twitter:image"]')) return content.getAttribute('content');
+    }
+
+    /**
+     * @method _defaultDescription
+     * @description Gets default description
+     * @private
+     *
+     * @returns {String}
+     */
+  }, {
+    key: '_defaultDescription',
+    value: function _defaultDescription() {
+      var content = undefined;
+      if (content = document.querySelector('meta[property="og:description"]') || document.querySelector('meta[name="twitter:description"]') || document.querySelector('meta[name="description"]')) return content.getAttribute('content');else return '';
+    }
+
+    /**
+     * @method _detectNetworks
+     * @description Detect number of networks in use and display/hide
+     * @private
+     */
+  }, {
+    key: '_detectNetworks',
+    value: function _detectNetworks() {
+      // Update network-specific configuration with global configurations
+      var _iteratorNormalCompletion5 = true;
+      var _didIteratorError5 = false;
+      var _iteratorError5 = undefined;
+
+      try {
+        for (var _iterator5 = Object.keys(this.config.networks)[Symbol.iterator](), _step5; !(_iteratorNormalCompletion5 = (_step5 = _iterator5.next()).done); _iteratorNormalCompletion5 = true) {
+          var network = _step5.value;
+
+          var display = undefined;
+          var _iteratorNormalCompletion6 = true;
+          var _didIteratorError6 = false;
+          var _iteratorError6 = undefined;
+
+          try {
+            for (var _iterator6 = Object.keys(this.config.networks[network])[Symbol.iterator](), _step6; !(_iteratorNormalCompletion6 = (_step6 = _iterator6.next()).done); _iteratorNormalCompletion6 = true) {
+              var option = _step6.value;
+
+              if (this.config.networks[network][option] === null) {
+                this.config.networks[network][option] = this.config[option];
+              }
+            }
+
+            // Check for enabled networks and display them
+          } catch (err) {
+            _didIteratorError6 = true;
+            _iteratorError6 = err;
+          } finally {
+            try {
+              if (!_iteratorNormalCompletion6 && _iterator6['return']) {
+                _iterator6['return']();
+              }
+            } finally {
+              if (_didIteratorError6) {
+                throw _iteratorError6;
+              }
+            }
+          }
+
+          if (this.config.networks[network].enabled) {
+            this['class'] = 'enabled';
+            this.config.enabledNetworks += 1;
+          } else this['class'] = 'disabled';
+
+          this.config.networks[network]['class'] = this['class'];
+        }
+      } catch (err) {
+        _didIteratorError5 = true;
+        _iteratorError5 = err;
+      } finally {
+        try {
+          if (!_iteratorNormalCompletion5 && _iterator5['return']) {
+            _iterator5['return']();
+          }
+        } finally {
+          if (_didIteratorError5) {
+            throw _iteratorError5;
+          }
+        }
+      }
+    }
+
+    /**
+     * @method _normalizeNetworkConfiguration
+     * @description Normalizes network configuration for Facebook & Twitter
+     * @private
+     */
+  }, {
+    key: '_normalizeNetworkConfiguration',
+    value: function _normalizeNetworkConfiguration() {
+      // Don't load FB SDK if FB appId isn't present
+      if (!this.config.networks.facebook.appId) this.config.networks.facebook.loadSdk = false;
+
+      // Encode Twitter description for URL
+      if (!!this.config.networks.twitter.description) if (!this._isEncoded(this.config.networks.twitter.description)) this.config.networks.twitter.description = encodeURIComponent(this.config.networks.twitter.description);
+
+      // Typecast Facebook appId to a String
+      if (typeof this.config.networks.facebook.appId === 'number') this.config.networks.facebook.appId = this.config.networks.facebook.appId.toString();
+    }
+
+    /**
+     * @method _normalizeFilterConfigUpdates
+     * @description Normalizes Facebook config
+     * @private
+     *
+     * @param {Object} opts
+     * @returns {Object}
+     */
+  }, {
+    key: '_normalizeFilterConfigUpdates',
+    value: function _normalizeFilterConfigUpdates(opts) {
+      if (this.config.networks.facebook.appId !== opts.appId) {
+        console.warn('You are unable to change the Facebook appId after the button has been initialized. Please update your Facebook filters accordingly.');
+        delete opts.appId;
+      }
+
+      if (this.config.networks.facebook.loadSdk !== opts.loadSdk) {
+        console.warn('You are unable to change the Facebook loadSdk option after the button has been initialized. Please update your Facebook filters accordingly.');
+        delete opts.appId;
+      }
+
+      return opts;
+    }
+  }]);
+
+  return ShareButton;
+})(_shareUtils2['default']);
+
+module.exports = ShareButton;
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9tZWRpYS9yeWFuL3N0dWZmL3NoYXJlLWJ1dHRvbi9zcmMvc2hhcmUtYnV0dG9uLmpzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7Ozs7Ozs7Ozs7OzswQkFHdUIsZUFBZTs7OzsyQkFDZCxnQkFBZ0I7Ozs7Ozs7Ozs7Ozs7QUFKeEMsT0FBTyxDQUFDLG1CQUFtQixDQUFDLENBQUM7QUFDN0IsT0FBTyxDQUFDLDJCQUEyQixDQUFDLENBQUM7QUFDckMsT0FBTyxDQUFDLHVCQUF1QixDQUFDLENBQUM7O0lBYTNCLFdBQVc7WUFBWCxXQUFXOztBQUNKLFdBRFAsV0FBVyxDQUNILE9BQU8sRUFBRSxPQUFPLEVBQUU7MEJBRDFCLFdBQVc7O0FBRWIsK0JBRkUsV0FBVyw2Q0FFTDs7QUFFUixRQUFJLE9BQU8sT0FBTyxLQUFLLFFBQVEsRUFBRTtBQUMvQixVQUFJLENBQUMsT0FBTyxHQUFHLFNBQVMsQ0FBQztBQUN6QixhQUFPLEdBQUcsT0FBTyxDQUFDO0tBQ25CLE1BQ0MsSUFBSSxDQUFDLE9BQU8sR0FBRyxPQUFPLENBQUM7O0FBRXpCLFFBQUksQ0FBQyxFQUFFLEdBQUc7QUFDUixVQUFJLEVBQUUsUUFBUSxDQUFDLG9CQUFvQixDQUFDLE1BQU0sQ0FBQyxDQUFDLENBQUMsQ0FBQztBQUM5QyxVQUFJLEVBQUUsUUFBUSxDQUFDLG9CQUFvQixDQUFDLE1BQU0sQ0FBQyxDQUFDLENBQUMsQ0FBQztLQUMvQyxDQUFDOztBQUVGLFFBQUksQ0FBQyxNQUFNLEdBQUc7QUFDWixxQkFBZSxFQUFFLENBQUM7QUFDbEIsY0FBUSxFQUFFLElBQUk7QUFDZCxTQUFHLEVBQUUsTUFBTSxDQUFDLFFBQVEsQ0FBQyxJQUFJO0FBQ3pCLGFBQU8sRUFBRSxJQUFJO0FBQ2IsV0FBSyxFQUFFLElBQUksQ0FBQyxhQUFhLEVBQUU7QUFDM0IsV0FBSyxFQUFFLElBQUksQ0FBQyxhQUFhLEVBQUU7QUFDM0IsaUJBQVcsRUFBRSxJQUFJLENBQUMsbUJBQW1CLEVBQUU7QUFDdkMsVUFB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QUMsRUFBRSxDQUFDLFNBQVMsV0FBUSxDQUFDO0FBQzNELG9CQUFRLENBQUMsU0FBUyxDQUFDLE1BQU0sQ0FBSSxJQUFJLENBQUMsTUFBTSxDQUFDLEVBQUUsQ0FBQyxTQUFTLFlBQVMsQ0FBQztBQUMvRCxvQkFBUSxDQUFDLFNBQVMsQ0FBQyxNQUFNLENBQUksSUFBSSxDQUFDLE1BQU0sQ0FBQyxFQUFFLENBQUMsU0FBUyxVQUFPLENBQUM7QUFDN0Qsa0JBQU07QUFBQSxBQUNSLGVBQUssUUFBUTtBQUNYLGdCQUFJLFFBQVEsQ0FBQyxDQUFDLENBQUMsS0FBSyxLQUFLLEVBQ3ZCLFFBQVEsQ0FBQyxTQUFTLENBQUMsR0FBRyxDQUFJLElBQUksQ0FBQyxNQUFNLENBQUMsRUFBRSxDQUFDLFNBQVMsU0FBTSxDQUFDO0FBQzNELG9CQUFRLENBQUMsU0FBUyxDQUFDLEdBQUcsQ0FBSSxJQUFJLENBQUMsTUFBTSxDQUFDLEVBQUUsQ0FBQyxTQUFTLFlBQVMsQ0FBQztBQUM1RCxvQkFBUSxDQUFDLFNBQVMsQ0FBQyxNQUFNLENBQUksSUFBSSxDQUFDLE1BQU0sQ0FBQyxFQUFFLENBQUMsU0FBUyxVQUFPLENBQUM7QUFDN0Qsb0JBQVEsQ0FBQyxTQUFTLENBQUMsTUFBTSxDQUFJLElBQUksQ0FBQyxNQUFNLENBQUMsRUFBRSxDQUFDLFNBQVMsV0FBUSxDQUFDO0FBQzlELG9CQUFRLENBQUMsU0FBUyxDQUFDLE1BQU0sQ0FBSSxJQUFJLENBQUMsTUFBTSxDQUFDLEVBQUUsQ0FBQyxTQUFTLFlBQVMsQ0FBQztBQUMvRCxrQkFBTTtBQUFBLEFBQ1IsZUFBSyxPQUFPO0FBQ1Ysb0JBQVEsQ0FBQyxTQUFTLENBQUMsR0FBRyxDQUFJLElBQUksQ0FBQyxNQUFNLENBQUMsRUFBRSxDQUFDLFNBQVMsVUFBTyxDQUFDO0FBQzFELG9CQUFRLENBQUMsU0FBUyxDQUFDLE1BQU0sQ0FBSSxJQUFJLENBQUMsTUFBTSxDQUFDLEVBQUUsQ0FBQyxTQUFTLFlBQVMsQ0FBQztBQUMvRCxvQkFBUSxDQUFDLFNBQVMsQ0FBQyxNQUFN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RUFBRTtBQUNsQyxVQUFJLElBQUksQ0FBQyxNQUFNLENBQUMsUUFBUSxDQUFDLFFBQVEsQ0FBQyxLQUFLLEtBQUssSUFBSSxDQUFDLEtBQUssRUFBRTtBQUN0RCxlQUFPLENBQUMsSUFBSSxDQUFDLHFJQUFxSSxDQUFDLENBQUM7QUFDcEosZUFBTyxJQUFJLENBQUMsS0FBSyxBQUFDLENBQUM7T0FDcEI7O0FBRUQsVUFBSSxJQUFJLENBQUMsTUFBTSxDQUFDLFFBQVEsQ0FBQyxRQUFRLENBQUMsT0FBTyxLQUFLLElBQUksQ0FBQyxPQUFPLEVBQUU7QUFDMUQsZUFBTyxDQUFDLElBQUksQ0FBQyw4SUFBOEksQ0FBQyxDQUFDO0FBQzdKLGVBQU8sSUFBSSxDQUFDLEtBQUssQUFBQyxDQUFDO09BQ3BCOztBQUVELGFBQU8sSUFBSSxDQUFDO0tBQ2I7OztTQTd3QkcsV0FBVzs7O0FBZ3hCakIsTUFBTSxDQUFDLE9BQU8sR0FBRyxXQUFXLENBQUMiLCJmaWxlIjoiL21lZGlhL3J5YW4vc3R1ZmYvc2hhcmUtYnV0dG9uL3NyYy9zaGFyZS1idXR0b24uanMiLCJzb3VyY2VzQ29udGVudCI6WyJyZXF1aXJlKCdjb3JlLWpzL2ZuL3N5bWJvbCcpO1xucmVxdWlyZSgnY29yZS1qcy9mbi9hcnJheS9pdGVyYXRvcicpO1xucmVxdWlyZSgnY29yZS1qcy9mbi9tYXRoL3RydW5jJyk7XG5pbXBvcnQgU2hhcmVVdGlscyBmcm9tICcuL3NoYXJlLXV0aWxzJztcbmltcG9ydCBTdHJpbmdVdGlscyBmcm9tICcuL3N0cmluZy11dGlscyc7XG5cbi8qKlxuICogU2hhcmVidXR0b25cbiAqIEBjbGFzc1xuICogQGNsYXNzZGVzY1xuICogQGV4dGVuZHMgU2hhcmVVdGlsc1xuXG4gKiBAcGFyYW0ge1N0cmluZ30gZWxlbWVudFxuICogQHBhcmFtIHtPYmplY3R9IG9wdGlvbnNcbiAqL1xuY2xhc3MgU2hhcmVCdXR0b24gZXh0ZW5kcyBTaGFyZVV0aWxzIHtcbiAgY29uc3RydWN0b3IoZWxlbWVudCwgb3B0aW9ucykge1xuICAgIHN1cGVyKCk7XG5cbiAgICBpZiAodHlwZW9mIGVsZW1lbnQgPT09ICdvYmplY3QnKSB7XG4gICAgICB0aGlzLmVsZW1lbnQgPSB1bmRlZmluZWQ7XG4gICAgICBvcHRpb25zID0gZWxlbWVudDtcbiAgICB9IGVsc2VcbiAgICAgIHRoaXMuZWxlbWVudCA9IGVsZW1lbnQ7XG5cbiAgICB0aGlzLmVsID0ge1xuICAgICAgaGVhZDogZG9jdW1lbnQuZ2V0RWxlbWVudHNCeVRhZ05hbWUoJ2hlYWQnKVswXSxcbiAgICAgIGJvZHk6IGRvY3VtZW50LmdldEVsZW1lbnRzQnlUYWdOYW1lKCdib2R5JylbMF1cbiAgICB9O1xuXG4gICAgdGhpcy5jb25maWcgPSB7XG4gICAgICBlbmFibGVkTmV0d29ya3M6IDAsXG4gICAgICBwcm90b2NvbDogJy8vJyxcbiAgICAgIHVybDogd2luZG93LmxvY2F0aW9uLmhyZWYsXG4gICAgICBjYXB0aW9uOiBudWxsLFxuICAgICAgdGl0bGU6IHRoaXMuX2RlZmF1bHRUaXRsZSgpLFxuICAgICAgaW1hZ2U6IHRoaXMuX2RlZmF1bHRJbWFnZSgpLFxuICAgICAgZGVzY3JpcHRpb246IHRoaXMuX2RlZmF1bHREZXNjcmlwdGlvbigpLFxuICAgICAgcm9vdDogZG9jdW1lbnQsXG5cbiAgICAgIHVpOiB7XG4gICAgICAgIGZseW91dDogJ3NiLXRvcCBzYi1jZW50ZXInLFxuICAgICAgICBidXR0b25UZXh0OiAnU2hhcmUnLFxuICAgICAgICBuYW1lc3BhY2U6ICdzYi0nLFxuICAgICAgICBuZXR3b3JrT3JkZXI6IFtdLFxuICAgICAgICBjb2xsaXNpb246IGZhbHNlLFxuICAgICAgfSxcblxuICAgICAgbmV0d29ya3M6IHtcbiAgICAgICAgZ29vZ2xlUGx1czoge1xuICAgICAgICAgIGVuYWJsZWQ6IHRydWUsXG4gICAgICAgICAgdXJsOiBudWxsXG4gICAgICAgIH0sXG4gICAgICAgIHR3aXR0ZXI6IHtcbiAgICAgICAgICBlbmFibGVkOiB0cnVlLFxuICAgICAgICAgIHVybDogbnVsbCxcbiAgICAgICAgICBkZXNjcmlwdGlvbjogbnVsbFxuICAgICAgICB9LFxuICAgICAgICBmYWNlYm9vazoge1xuICAgICAgICAgIGVuYWJsZWQ6IHRydWUsXG4gICAgICAgICAgbG9hZFNkazogdHJ1ZSxcbiAgICAgICAgICB1cmw6IG51bGwsXG4gICAgICAgICAgYXBwSWQ6IG51bGwsXG4gICAgICAgICAgdGl0bGU6IG51bGwsXG4gICAgICAgICAgY2FwdGlvbjogbnVsbCxcbiAgICAgICAgICBkZXNjcmlwdGlvbjogbnVsbCxcbiAgICAgICAgICBpbWFnZTogbnVsbFxuICAgICAgICB9LFxuICAgICAgICBwaW50ZXJlc3Q6IHtcbiAgICAgICAgICBlbmFibGVkOiB0cnVlLFxuICAgICAgICAgIHVybDogbnVsbCxcbiAgICAgICAgICBpbWFnZTogbnVsbCxcbiAgICAgICAgICBkZXNjcmlwdGlvbjogbnVsbFxuICAgICAgICB9LFxuICAgICAgICByZWRkaXQ6IHtcbiAgICAgICAgICBlbmFibGVkOiB0cnVlLFxuICAgICAgICAgIHVybDogbnVsbCxcbiAgICAgICAgICB0aXRsZTogbnVsbFxuICAgICAgICB9LFxuICAgICAgICBsaW5rZWRpbjoge1xuICAgICAgICAgIGVuYWJsZWQ6IHRydWUsXG4gICAgICAgICAgdXJsOiBudWxsLFxuICAgICAgICAgIHRpdGxlOiBudWxsLFxuICAgICAgICAgIGRlc2NyaXB0aW9uOiBudWxsXG4gICAgICAgIH0sXG4gICAgICAgIHdoYXRzYXBwOiB7XG4gICAgICAgICAgZW5hYmxlZDogdHJ1ZSxcbiAgICAgICAgICBkZXNjcmlwdGlvbjogbnVsbCxcbiAgICAgICAgICB1cmw6IG51bGxcbiAgICAgICAgfSxcbiAgICAgICAgZW1haWw6IHtcbiAgICAgICAgICBlbmFibGVkOiB0cnVlLFxuICAgICAgICAgIHRpdGxlOiBudWxsLFxuICAgICAgICAgIGRlc2NyaXB0aW9uOiBudWxsXG4gICAgICAgIH1cbiAgICAgIH1cbiAgICB9O1xuXG4gICAgdGhpcy5saXN0ZW5lciA9IG51bGw7XG4gICAgdGhpcy5fc2V0dXAodGhpcy5lbGVtZW50LCBvcHRpb25zKTtcbiAgfVxuXG4gIC8qKlxuICAgKiBAbWV0aG9kIG9wZW5cbiAgICogQGRlc2NyaXB0aW9uIE9wZW5zIFNoYXJlIEJ1dHRvblxuICAgKi9cbiAgb3BlbigpIHsgdGhpcy5fcHVibGljKCdPcGVuJyk7IH1cblxuICAvKipcbiAgICogQG1ldGhvZCBjbG9zZVxuICAgKiBAZGVzY3JpcHRpb24gQ3BlbnMgU2hhcmUgQnV0dG9uXG4gICAqL1xuICBjbG9zZSgpIHsgdGhpcy5fcHVibGljKCdDbG9zZScpOyB9XG5cbiAgLyoqXG4gICAqIEBtZXRob2QgdG9nZ2xlXG4gICAqIEBkZXNjcmlwdGlvbiBUb2dnbGVzIFNoYXJlIEJ1dHRvblxuICAgKi9cbiAgdG9nZ2xlKCkgeyB0aGlzLl9wdWJsaWMoJ1RvZ2dsZScpOyB9XG5cbiAgLyoqXG4gICAqIEBtZXRob2QgdG9nZ2xlTGlzdGVuXG4gICAqIEBkZXNjcmlwdGlvbiBUb2dnbGVzIHRoZSBTaGFyZSBCdXR0b24gbGlzdGVuZXIsIGdvb2QgZm9yIHVwZGFpbmcgc2hhcmVcbiAgICogYnV0dG9uIGZvciBDU1MgYW5pbWF0aW9ucy5cbiAgICovXG4gIHRvZ2dsZUxpc3RlbigpIHsgdGhpcy5fcHVibGljKCdMaXN0ZW4nKTsgfVxuXG4gIC8qKlxuICAgKiBAbWV0aG9kIF9wdWJsaWNcbiAgICogQGRlc2NyaXB0aW9uIEV4ZWN1dGVzIGFjdGlvblxuICAgKiBAcHJpdmF0ZVxuICAgKlxuICAgKiBAcGFyYW0ge1N0cmluZ30gYWN0aW9uXG4gICAqL1xuICBfcHVibGljKGFjdGlvbikge1xuICAgIGxldCBpbnN0YW5jZXM7XG5cbiAgICBpZiAodHlwZW9mIGVsZW1lbnQgPT09ICd1bmRlZmluZWQnKVxuICAgICAgaW5zdGFuY2VzID1cbiAgICAgICAgc3VwZXIuX29ialRvQXJyYXkodGhpcy5jb25maWcucm9vdC5xdWVyeVNlbGVjdG9yQWxsKCdzaGFyZS1idXR0b24nKSk7XG4gICAgZWxzZVxuICAgICAgaW5zdGFuY2VzID0gZG9jdW1lbnQucXVlcnlTZWxlY3RvckFsbChlbGVtZW50KTtcblxuICAgIGZvciAobGV0IGluc3RhbmNlIG9mIGluc3RhbmNlcykge1xuICAgICAgbGV0IG5ldHdvcmtzID1cbiAgICAgICAgaW5zdGFuY2UuZ2V0RWxlbWVudHNCeUNsYXNzTmFtZShgJHt0aGlzLmNvbmZpZy51aS5uYW1lc3BhY2V9c29jaWFsYClbMF07XG4gICAgICB0aGlzW2BfZXZlbnQke2FjdGlvbn1gXShpbnN0YW5jZSwgbmV0d29ya3MpO1xuICAgIH1cbiAgfVxuXG4gIC8qKlxuICAgKiBAbWV0aG9kIF9zZXR1cFxuICAgKiBAZGVzY3JpcHRpb24gU2V0cyB1cCBTaGFyZSBCdXR0b25cbiAgICogQHByaXZhdGVcbiAgICpcbiAgICogQHBhcmFtIHtTdHJpbmd9IGVsZW1lbnQgc2VsZWN0b3JcbiAgICogQHBhcmFtIHtPYmplY3R9IG9wdHNcbiAgICovXG4gIF9zZXR1cChlbGVtZW50LCBvcHRzKSB7XG4gICAgLy8gQWRkaW5nIHVzZXIgY29uZmlncyB0byBkZWZhdWx0IGNvbmZpZ3NcbiAgICB0aGlzLl9tZXJnZSh0aGlzLmNvbmZpZywgb3B0cyk7XG5cbiAgICBsZXQgaW5zdGFuY2VzO1xuXG4gICAgaWYgKHR5cGVvZiBlbGVtZW50ID09PSAndW5kZWZpbmVkJylcbiAgICAgIGluc3RhbmNlcyA9XG4gICAgICAgIHN1cGVyLl9vYmpUb0FycmF5KHRoaXMuY29uZmlnLnJvb3QucXVlcnlTZWxlY3RvckFsbCgnc2hhcmUtYnV0dG9uJykpO1xuICAgIGVsc2Uge1xuICAgICAgaW5zdGFuY2VzID0gdGhpcy5jb25maWcucm9vdC5xdWVyeVNlbGVjdG9yQWxsKGBzaGFyZS1idXR0b24ke2VsZW1lbnR9YCk7XG4gICAgICBpZiAodHlwZW9mIGluc3RhbmNlcyA9PT0gJ29iamVjdCcpXG4gICAgICAgIGluc3RhbmNlcyA9IHN1cGVyLl9vYmpUb0FycmF5KGluc3RhbmNlcyk7XG4gICAgfVxuXG4gICAgLy8gRGlzYWJsZSB3aGF0c2FwcCBkaXNwbGF5IGlmIG5vdCBhIG1vYmlsZSBkZXZpY2VcbiAgICBpZiAodGhpcy5jb25maWcubmV0d29ya3Mud2hhdHNhcHAuZW5hYmxlZCAmJiAhdGhpcy5faXNNb2JpbGUoKSlcbiAgICAgIHRoaXMuY29uZmlnLm5ldHdvcmtzLndoYXRzYXBwLmVuYWJsZWQgPSBmYWxzZTtcblxuICAgIC8vIERlZmF1bHQgb3JkZXIgb2YgbmV0d29ya3MgaWYgbm8gbmV0d29yayBvcmRlciBlbnRlcmVkXG4gICAgaWYgKHRoaXMuY29uZmlnLnVpLm5ldHdvcmtPcmRlci5sZW5ndGggPT09IDApXG4gICAgICB0aGlzLmNvbmZpZy51aS5uZXR3b3JrT3JkZXIgPSBbXG4gICAgICAgICdwaW50ZXJlc3QnLFxuICAgICAgICAndHdpdHRlcicsXG4gICAgICAgICdmYWNlYm9vaycsXG4gICAgICAgICd3aGF0c2FwcCcsXG4gICAgICAgICdnb29nbGVQbHVzJyxcbiAgICAgICAgJ3JlZGRpdCcsXG4gICAgICAgICdsaW5rZWRpbicsXG4gICAgICAgICdlbWFpbCdcbiAgICAgIF07XG5cbiAgICBmb3IgKGxldCBuZXR3b3JrIG9mIE9iamVjdC5rZXlzKHRoaXMuY29uZmlnLm5ldHdvcmtzKSkge1xuICAgICAgaWYgKHRoaXMuY29uZmlnLnVpLm5ldHdvcmtPcmRlci5pbmRleE9mKG5ldHdvcmsudG9TdHJpbmcoKSkgPCAwKSB7XG4gICAgICAgIHRoaXMuY29uZmlnLm5ldHdvcmtzW25ldHdvcmtdLmVuYWJsZWQgPSBmYWxzZTtcbiAgICAgICAgdGhpcy5jb25maWcudWkubmV0d29ya09yZGVyLnB1c2gobmV0d29yayk7XG4gICAgICB9XG4gICAgfVxuXG4gICAgdGhpcy5fZml4Rmx5b3V0KCk7XG4gICAgdGhpcy5fZGV0ZWN0TmV0d29ya3MoKTtcbiAgICB0aGlzLl9ub3JtYWxpemVOZXR3b3JrQ29uZmlndXJhdGlvbigpO1xuXG4gICAgLy8gSW5qZWN0IEZhY2Vib29rIEpTIFNESyAoaWYgRmFjZWJvb2sgaXMgZW5hYmxlZClcbiAgICBpZiAodGhpcy5jb25maWcubmV0d29ya3MuZmFjZWJvb2suZW5hYmxlZCAmJlxuICAgICAgIHRoaXMuY29uZmlnLm5ldHdvcmtzLmZhY2Vib29rLmxvYWRTZGspXG4gICAgICAgdGhpcy5faW5qZWN0RmFjZWJvb2tTZGsoKTtcblxuICAgIC8vIEluaXRpYWxpemUgaW5zdGFuY2VzXG4gICAgbGV0IGluZGV4ID0gMDtcbiAgICBmb3IgKGxldCBpbnN0YW5jZSBvZiBpbnN0YW5jZXMpIHtcbiAgICAgIHRoaXMuX3NldHVwSW5zdGFuY2UoaW5zdGFuY2UsIGluZGV4KyspO1xuICAgIH1cbiAgfVxuXG4gIC8qKlxuICAgKiBAbWV0aG9kIF9zZXR1cEluc3RhbmNlXG4gICAqIEBkZXNjcmlwdGlvbiBTZXRzIHVwIGVhY2ggaW5zdGFuY2Ugd2l0aCBjb25maWcgYW5kIHN0eWxlc1xuICAgKiBAcHJpdmF0ZVxuICAgKlxuICAgKiBAcGFyYW0ge0RPTU5vZGV9IGluc3RhbmNlXG4gICAqIEBwYXJhbSB7SW50ZWdlcn0gaW5kZXhcbiAgICovXG4gIF9zZXR1cEluc3RhbmNlKGluc3RhbmNlLCBpbmRleCkge1xuICAgIHRoaXMuX2hpZGUoaW5zdGFuY2UpO1xuXG4gICAgLy8gQWRkIG5lY2Vzc2FyeSBjbGFzc2VzIHRvIGluc3RhbmNlXG4gICAgLy8gKE5vdGU6IEZGIGRvZXNuJ3Qgc3VwcG9ydCBhZGRpbmcgbXVsdGlwbGUgY2xhc3NlcyBpbiBhIHNpbmdsZSBjYWxsKVxuICAgIHRoaXMuX2FkZENsYXNzKGluc3RhbmNlLCBgc2hhcmVyLSR7aW5kZXh9YCk7XG4gICAgdGhpcy5faW5qZWN0SHRtbChpbnN0YW5jZSk7XG4gICAgdGhpcy5fc2hvdyhpbnN0YW5jZSk7XG5cbiAgICBsZXQgbmV0d29ya3NDb24gPVxuICAgICAgaW5zdGFuY2UuZ2V0RWxlbWVudHNCeUNsYXNzTmFtZShgJHt0aGlzLmNvbmZpZy51aS5uYW1lc3BhY2V9c29jaWFsYClbMF07XG4gICAgbGV0IG5ldHdvcmtzID0gaW5zdGFuY2UuZ2V0RWxlbWVudHNCeVRhZ05hbWUoJ2xpJyk7XG5cbiAgICB0aGlzLl9hZGRDbGFzcyhuZXR3b3Jrc0NvbiwgYG5ldHdvcmtzLSR7dGhpcy5jb25maWcuZW5hYmxlZE5ldHdvcmtzfWApO1xuICAgIGluc3RhbmNlLmFkZEV2ZW50TGlzdGVuZXIoJ2NsaWNrJywgKCkgPT5cbiAgICAgIHRoaXMuX2V2ZW50VG9nZ2xlKGluc3RhbmNlLCBuZXR3b3Jrc0NvbilcbiAgICApO1xuXG4gICAgLy8gQWRkIGxpc3RlbmVyIHRvIGFjdGl2YXRlIG5ldHdvcmtzIGFuZCBjbG9zZSBidXR0b25cbiAgICBmb3IgKGxldCBrIGluIE9iamVjdC5rZXlzKG5ldHdvcmtzKSkge1xuICAgICAgbGV0IG5ldHdvcmsgPSBuZXR3b3Jrc1trXTtcblxuICAgICAgaWYgKHR5cGVvZihuZXR3b3JrKSAhPT0gXCJ1bmRlZmluZWRcIikge1xuICAgICAgICBsZXQgbmFtZSA9IG5ldHdvcmsuZ2V0QXR0cmlidXRlKCdkYXRhLW5ldHdvcmsnKTtcbiAgICAgICAgbGV0IGEgPSBuZXR3b3JrLmdldEVsZW1lbnRzQnlUYWdOYW1lKCdhJylbMF07XG5cbiAgICAgICAgdGhpcy5fYWRkQ2xhc3MobmV0d29yaywgdGhpcy5jb25maWcubmV0d29ya3NbbmFtZV0uY2xhc3MpO1xuXG4gICAgICAgIGlmIChuZXR3b3JrLmNsYXNzTmFtZS5pbmRleE9mKCdlbWFpbCcpIDwgMClcbiAgICAgICAgICBhLnNldEF0dHJpYnV0ZSgnb25jbGljaycsICdyZXR1cm4gZmFsc2UnKTtcblxuICAgICAgICBhLmFkZEV2ZW50TGlzdGVuZXIoJ21vdXNlZG93bicsICgpID0+IHtcbiAgICAgICAgICB0aGlzLl9ob29rKCdiZWZvcmUnLCBuYW1lLCBpbnN0YW5jZSk7XG4gICAgICAgIH0pO1xuICAgICAgICBhLmFkZEV2ZW50TGlzdGVuZXIoJ21vdXNldXAnLCAoKSA9PiB7XG4gICAgICAgICAgdGhpc1tgX25ldHdvcmske1N0cmluZ1V0aWxzLmNhcEZMZXR0ZXIobmFtZSl9YF0obmV0d29yayk7XG4gICAgICAgIH0pO1xuICAgICAgICBhLmFkZEV2ZW50TGlzdGVuZXIoJ2NsaWNrJywgKCkgPT4ge1xuICAgICAgICAgIHRoaXMuX2hvb2soJ2FmdGVyJywgbmFtZSwgaW5zdGFuY2UpO1xuICAgICAgICB9KTtcbiAgICAgIH1cbiAgICB9XG4gIH1cblxuICAvKipcbiAgICogQG1ldGhvZCBfZXZlbnRUb2dnbGVcbiAgICogQGRlc2NyaXB0aW9uIFRvZ2dsZXMgJ2FjdGl2ZScgY2xhc3Mgb24gYnV0dG9uXG4gICAqIEBwcml2YXRlXG4gICAqXG4gICAqIEBwYXJhbSB7RE9NTm9kZX0gYnV0dG9uXG4gICAqIEBwYXJhbSB7RE9NTm9kZX0gbmV0d29ya3NcbiAgICovXG4gIF9ldmVudFRvZ2dsZShidXR0b24sIG5ldHdvcmtzKSB7XG4gICAgaWYgKHRoaXMuX2hhc0NsYXNzKG5ldHdvcmtzLCAnYWN0aXZlJykpXG4gICAgICB0aGlzLl9ldmVudENsb3NlKG5ldHdvcmtzKTtcbiAgICBlbHNlXG4gICAgICB0aGlzLl9ldmVudE9wZW4oYnV0dG9uLCBuZXR3b3Jrcyk7XG4gIH1cblxuICAvKipcbiAgICogQG1ldGhvZCBfZXZlbnRPcGVuXG4gICAqIEBkZXNjcmlwdGlvbiBBZGQgJ2FjdGl2ZScgY2xhc3MgJiByZW1vdmUgJ2xvYWQnIGNsYXNzIG9uIGJ1dHRvblxuICAgKiBAcHJpdmF0ZVxuICAgKlxuICAgKiBAcGFyYW0ge0RPTU5vZGV9IGJ1dHRvblxuICAgKiBAcGFyYW0ge0RPTU5vZGV9IG5ldHdvcmtzXG4gICAqL1xuICBfZXZlbnRPcGVuKGJ1dHRvbiwgbmV0d29ya3MpIHtcbiAgICBpZiAodGhpcy5faGFzQ2xhc3MobmV0d29ya3MsICdsb2FkJykpXG4gICAgICB0aGlzLl9yZW1vdmVDbGFzcyhuZXR3b3JrcywgJ2xvYWQnKTtcbiAgICBpZiAodGhpcy5jb2xsaXNpb24pXG4gICAgICB0aGlzLl9jb2xsaXNpb25EZXRlY3Rpb24oYnV0dG9uLCBuZXR3b3Jrcyk7XG5cbiAgICB0aGlzLl9hZGRDbGFzcyhuZXR3b3JrcywgJ2FjdGl2ZScpO1xuICB9XG5cbiAgLyoqXG4gICAqIEBtZXRob2QgX2V2ZW50Q2xvc2VcbiAgICogQGRlc2NyaXB0aW9uIFJlbW92ZSAnYWN0aXZlJyBjbGFzcyBvbiBidXR0b25cbiAgICogQHByaXZhdGVcbiAgICpcbiAgICogQHBhcmFtIHtET01Ob2RlfSBidXR0b25cbiAgICovXG4gIF9ldmVudENsb3NlKGJ1dHRvbikge1xuICAgIHRoaXMuX3JlbW92ZUNsYXNzKGJ1dHRvbiwgJ2FjdGl2ZScpO1xuICB9XG5cbiAgLyoqXG4gICAqIEBtZXRob2QgX2V2ZW50TGlzdGVuXG4gICAqIEBkZXNjcmlwdGlvbiBUb2dnbGVzIHdlYXRoZXIgb3Igbm90IGEgYnV0dG9uJ3MgY2xhc3NlcyBhcmUgYmVpbmdcbiAgICogY29uc3RhbnRseSB1cGRhdGVkIHJlZ2FyZGxlc3Mgb2Ygc2Nyb2xscyBvciB3aW5kb3cgcmVzaXplcy5cbiAgICogQHByaXZhdGVcbiAgICpcbiAgICogQHBhcmFtIHtET01Ob2RlfSBidXR0b25cbiAgICogQHBhcmFtIHtET01Ob2RlfSBuZXR3b3Jrc1xuICAgKi9cbiAgX2V2ZW50TGlzdGVuKGJ1dHRvbiwgbmV0d29ya3MpIHtcbiAgICBsZXQgZGltZW5zaW9ucyA9IHRoaXMuX2dldERpbWVuc2lvbnMoYnV0dG9uLCBuZXR3b3Jrcyk7XG4gICAgaWYgKHRoaXMubGlzdGVuZXIgPT09IG51bGwpXG4gICAgICB0aGlzLmxpc3RlbmVyID0gd2luZG93LnNldEludGVydmFsKCgpID0+XG4gICAgICAgIHRoaXMuX2FkanVzdENsYXNzZXMoYnV0dG9uLCBuZXR3b3JrcywgZGltZW5zaW9ucyksIDEwMFxuICAgICAgKTtcbiAgICBlbHNlIHtcbiAgICAgIHdpbmRvdy5jbGVhckludGVydmFsKHRoaXMubGlzdGVuZXIpO1xuICAgICAgdGhpcy5saXN0ZW5lciA9IG51bGw7XG4gICAgfVxuICB9XG5cbiAgLyoqXG4gICAqIEBtZXRob2QgX2ZpeEZseW91dFxuICAgKiBAZGVzY3JpcHRpb24gRml4ZXMgdGhlIGZseW91dCBlbnRlcmVkIGJ5IHRoZSB1c2VyIHRvIG1hdGNoIHRoZWlyIHByb3ZpZGVkXG4gICAqIG5hbWVzcGFjZVxuICAgKkBwcml2YXRlXG4gICAqL1xuICBfZml4Rmx5b3V0KCkge1xuICAgIGxldCBmbHlvdXRzID0gdGhpcy5jb25maWcudWkuZmx5b3V0LnNwbGl0KCcgJyk7XG4gICAgaWYgKGZseW91dHNbMF0uc3Vic3RyaW5nKDAsdGhpcy5jb25maWcudWkubmFtZXNwYWNlLmxlbmd0aCkgIT09XG4gICAgICAgdGhpcy5jb25maWcudWkubmFtZXNwYWNlKVxuICAgICAgZmx5b3V0c1swXSA9IGAke3RoaXMuY29uZmlnLnVpLm5hbWVzcGFjZX0ke2ZseW91dHNbMF19YDtcbiAgICBpZiAoZmx5b3V0c1sxXS5zdWJzdHJpbmcoMCx0aGlzLmNvbmZpZy51aS5uYW1lc3BhY2UubGVuZ3RoKSAhPT1cbiAgICAgICB0aGlzLmNvbmZpZy51aS5uYW1lc3BhY2UpXG4gICAgICBmbHlvdXRzWzFdID0gYCR7dGhpcy5jb25maWcudWkubmFtZXNwYWNlfSR7Zmx5b3V0c1sxXX1gO1xuICAgIHRoaXMuY29uZmlnLnVpLmZseW91dCA9IGZseW91dHMuam9pbignICcpO1xuICB9XG5cbiAgLyoqXG4gICAqIEBtZXRob2QgX2NvbGxpc2lvbkRldGVjdGlvblxuICAgKiBAZGVzY3JpcHRpb24gQWRkcyBsaXN0ZW5lcnMgdGhlIGZpcnN0IHRpbWUgYSBidXR0b24gaXMgY2xpY2tlZCB0byBjYWxsXG4gICAqIHRoaXMuX2FkanVzdENsYXNzZXMgZHVyaW5nIHNjcm9sbHMgYW5kIHJlc2l6ZXMuXG4gICAqIEBwcml2YXRlXG4gICAqXG4gICAqIEBwYXJhbSB7RE9NTm9kZX0gYnV0dG9uIC0gc2hhcmUgYnV0dG9uXG4gICAqIEBwYXJhbSB7RE9NTm9kZX0gbmV0d29ya3MgLSBsaXN0IG9mIHNvY2lhbCBuZXR3b3Jrc1xuICAgKi9cbiAgX2NvbGxpc2lvbkRldGVjdGlvbihidXR0b24sIG5ldHdvcmtzKSB7XG4gICAgbGV0IGRpbWVuc2lvbnMgPSB0aGlzLl9nZXREaW1lbnNpb25zKGJ1dHRvbiwgbmV0d29ya3MpO1xuICAgIHRoaXMuX2FkanVzdENsYXNzZXMoYnV0dG9uLCBuZXR3b3JrcywgZGltZW5zaW9ucyk7XG5cbiAgICBpZiAoIWJ1dHRvbi5jbGFzc0xpc3QuY29udGFpbnMoJ2NsaWNrZWQnKSkge1xuICAgICAgd2luZG93LmFkZEV2ZW50TGlzdGVuZXIoJ3Njcm9sbCcsICgpID0+XG4gICAgICAgIHRoaXMuX2FkanVzdENsYXNzZXMoYnV0dG9uLCBkaW1lbnNpb25zKSk7XG4gICAgICB3aW5kb3cuYWRkRXZlbnRMaXN0ZW5lcigncmVzaXplJywgKCkgPT5cbiAgICAgICAgdGhpcy5fYWRqdXN0Q2xhc3NlcyhidXR0b24sIGRpbWVuc2lvbnMpKTtcbiAgICAgIGJ1dHRvbi5jbGFzc0xpc3QuYWRkKCdjbGlja2VkJyk7XG4gICAgfVxuICB9XG5cbiAgLyoqXG4gICAqIEBtZXRob2QgX2dldERpbWVuc2lvbnNcbiAgICogQGRlc2NyaXB0aW9uIFJldHVybnMgYW4gb2JqZWN0IHdpdGggdGhlIGRpbWVuc2lvbnMgb2YgdGhlIGJ1dHRvbiBhbmRcbiAgICogbGFiZWwgZWxlbWVudHMgb2YgYSBTaGFyZSBCdXR0b24uXG4gICAqIEBwcml2YXRlXG4gICAqXG4gICAqIEBwYXJhbSB7RE9NTm9kZX0gYnV0dG9uXG4gICAqIEBwYXJhbSB7RE9NTm9kZX0gbmV0d29ya3NcbiAgICogQHJldHVybnMge09iamVjdH1cbiAgICovXG4gIF9nZXREaW1lbnNpb25zKGJ1dHRvbiwgbmV0d29ya3MpIHtcbiAgICByZXR1cm4ge1xuICAgICAgbmV0d29ya3NXaWR0aDogbmV0d29ya3Mub2Zmc2V0V2lkdGgsXG4gICAgICBidXR0b25IZWlnaHQ6IGJ1dHRvbi5vZmZzZXRIZWlnaHQsXG4gICAgICBidXR0b25XaWR0aDogYnV0dG9uLm9mZnNldFdpZHRoXG4gICAgfTtcbiAgfVxuXG4gIC8qKlxuICAgKiBAbWV0aG9kIF9hZGp1c3RDbGFzc2VzXG4gICAqIEBkZXNjcmlwdGlvbiBBZGp1c3RzIHRoZSBwb3NpdGlvbmluZyBvZiB0aGUgbGlzdCBvZiBzb2NpYWwgbmV0d29ya3MgYmFzZWRcbiAgICogb2ZmIG9mIHdoZXJlIHRoZSBzaGFyZSBidXR0b24gaXMgcmVsYXRpdmUgdG8gdGhlIHdpbmRvdy5cbiAgICpcbiAgICogQHByaXZhdGVcbiAgICogQHBhcmFtIHtET01Ob2RlfSBidXR0b25cbiAgICogQHBhcmFtIHtET01Ob2RlfSBuZXR3b3Jrc1xuICAgKiBAcGFyYW0ge09iamVjdH0gZGltZW5zaW9uc1xuICAgKi9cbiAgX2FkanVzdENsYXNzZXMoYnV0dG9uLCBuZXR3b3JrcywgZGltZW5zaW9ucykge1xuICAgIGxldCB3aW5kb3dXaWR0aCA9IHdpbmRvdy5pbm5lcldpZHRoO1xuICAgIGxldCB3aW5kb3dIZWlnaHQgPSB3aW5kb3cuaW5uZXJIZWlnaHQ7XG4gICAgbGV0IGxlZnRPZmZzZXQgPSBidXR0b24uZ2V0Qm91bmRpbmdDbGllbnRSZWN0KCkubGVmdCArXG4gICAgICBkaW1lbnNpb25zLmJ1dHRvbldpZHRoIC8gMjtcbiAgICBsZXQgcmlnaHRPZmZzZXQgPSB3aW5kb3dXaWR0aCAtIGxlZnRPZmZzZXQ7XG4gICAgbGV0IHRvcE9mZnNldCA9IGJ1dHRvbi5nZXRCb3VuZGluZ0NsaWVudFJlY3QoKS50b3AgK1xuICAgICAgZGltZW5zaW9ucy5idXR0b25IZWlnaHQgLyAyO1xuICAgIGxldCBwb3NpdGlvbiA9XG4gICAgICB0aGlzLl9maW5kTG9jYXRpb24obGVmdE9mZnNldCwgdG9wT2Zmc2V0LCB3aW5kb3dXaWR0aCwgd2luZG93SGVpZ2h0KTtcblxuICAgIGlmIChwb3NpdGlvblsxXSA9PT0gXCJtaWRkbGVcIiAmJiBwb3NpdGlvblswXSAhPT0gXCJjZW50ZXJcIiAmJlxuICAgICAgICAoKHBvc2l0aW9uWzBdID09PSBcImxlZnRcIiAmJlxuICAgICAgICAgIHdpbmRvd1dpZHRoIDw9IGxlZnRPZmZzZXQgKyAyMjAgKyBkaW1lbnNpb25zLmJ1dHRvbldpZHRoIC8gMikgfHxcbiAgICAgICAgKHBvc2l0aW9uWzBdID09PSBcInJpZ2h0XCIgJiZcbiAgICAgICAgICB3aW5kb3dXaWR0aCA8PSByaWdodE9mZnNldCArIDIyMCArIGRpbWVuc2lvbnMuYnV0dG9uV2lkdGggLyAyKVxuICAgICAgICApXG4gICAgICApIHtcbiAgICAgICAgbmV0d29ya3MuY2xhc3NMaXN0LmFkZChgJHt0aGlzLmNvbmZpZy51aS5uYW1lc3BhY2V9dG9wYCk7XG4gICAgICAgIG5ldHdvcmtzLmNsYXNzTGlzdC5yZW1vdmUoYCR7dGhpcy5jb25maWcudWkubmFtZXNwYWNlfW1pZGRsZWApO1xuICAgICAgICBuZXR3b3Jrcy5jbGFzc0xpc3QucmVtb3ZlKGAke3RoaXMuY29uZmlnLnVpLm5hbWVzcGFjZX1ib3R0b21gKTtcbiAgICB9XG4gICAgZWxzZSB7XG4gICAgICBzd2l0Y2gocG9zaXRpb25bMF0pIHtcbiAgICAgICAgY2FzZSBcImxlZnRcIjpcbiAgICAgICAgICBuZXR3b3Jrcy5jbGFzc0xpc3QuYWRkKGAke3RoaXMuY29uZmlnLnVpLm5hbWVzcGFjZX1yaWdodGApO1xuICAgICAgICAgIG5ldHdvcmtzLmNsYXNzTGlzdC5yZW1vdmUoYCR7dGhpcy5jb25maWcudWkubmFtZXNwYWNlfWNlbnRlcmApO1xuICAgICAgICAgIG5ldHdvcmtzLmNsYXNzTGlzdC5yZW1vdmUoYCR7dGhpcy5jb25maWcudWkubmFtZXNwYWNlfWxlZnRgKTtcbiAgICAgICAgICBicmVhaztcbiAgICAgICAgY2FzZSBcImNlbnRlclwiOlxuICAgICAgICAgIGlmIChwb3NpdGlvblsxXSAhPT0gXCJ0b3BcIilcbiAgICAgICAgICAgIG5ldHdvcmtzLmNsYXNzTGlzdC5hZGQoYCR7dGhpcy5jb25maWcudWkubmFtZXNwYWNlfXRvcGApO1xuICAgICAgICAgIG5ldHdvcmtzLmNsYXNzTGlzdC5hZGQoYCR7dGhpcy5jb25maWcudWkubmFtZXNwYWNlfWNlbnRlcmApO1xuICAgICAgICAgIG5ldHdvcmtzLmNsYXNzTGlzdC5yZW1vdmUoYCR7dGhpcy5jb25maWcudWkubmFtZXNwYWNlfWxlZnRgKTtcbiAgICAgICAgICBuZXR3b3Jrcy5jbGFzc0xpc3QucmVtb3ZlKGAke3RoaXMuY29uZmlnLnVpLm5hbWVzcGFjZX1yaWdodGApO1xuICAgICAgICAgIG5ldHdvcmtzLmNsYXNzTGlzdC5yZW1vdmUoYCR7dGhpcy5jb25maWcudWkubmFtZXNwYWNlfW1pZGRsZWApO1xuICAgICAgICAgIGJyZWFrO1xuICAgICAgICBjYXNlIFwicmlnaHRcIjpcbiAgICAgICAgICBuZXR3b3Jrcy5jbGFzc0xpc3QuYWRkKGAke3RoaXMuY29uZmlnLnVpLm5hbWVzcGFjZX1sZWZ0YCk7XG4gICAgICAgICAgbmV0d29ya3MuY2xhc3NMaXN0LnJlbW92ZShgJHt0aGlzLmNvbmZpZy51aS5uYW1lc3BhY2V9Y2VudGVyYCk7XG4gICAgICAgICAgbmV0d29ya3MuY2xhc3NMaXN0LnJlbW92ZShgJHt0aGlzLmNvbmZpZy51aS5uYW1lc3BhY2V9cmlnaHRgKTtcbiAgICAgICAgICBicmVhaztcbiAgICAgIH1cbiAgICAgIHN3aXRjaChwb3NpdGlvblsxXSkge1xuICAgICAgICBjYXNlIFwidG9wXCI6XG4gICAgICAgICAgbmV0d29ya3MuY2xhc3NMaXN0LmFkZChgJHt0aGlzLmNvbmZpZy51aS5uYW1lc3BhY2V9Ym90dG9tYCk7XG4gICAgICAgICAgbmV0d29ya3MuY2xhc3NMaXN0LnJlbW92ZShgJHt0aGlzLmNvbmZpZy51aS5uYW1lc3BhY2V9bWlkZGxlYCk7XG4gICAgICAgICAgaWYgKHBvc2l0aW9uWzBdICE9PSBcImNlbnRlclwiKVxuICAgICAgICAgICAgbmV0d29ya3MuY2xhc3NMaXN0LnJlbW92ZShgJHt0aGlzLmNvbmZpZy51aS5uYW1lc3BhY2V9dG9wYCk7XG4gICAgICAgICAgYnJlYWs7XG4gICAgICAgIGNhc2UgXCJtaWRkbGVcIjpcbiAgICAgICAgICBpZiAocG9zaXRpb25bMF0gIT09IFwiY2VudGVyXCIpIHtcbiAgICAgICAgICAgIG5ldHdvcmtzLmNsYXNzTGlzdC5hZGQoYCR7dGhpcy5jb25maWcudWkubmFtZXNwYWNlfW1pZGRsZWApO1xuICAgICAgICAgICAgbmV0d29ya3MuY2xhc3NMaXN0LnJlbW92ZShgJHt0aGlzLmNvbmZpZy51aS5uYW1lc3BhY2V9dG9wYCk7XG4gICAgICAgICAgfVxuICAgICAgICAgIG5ldHdvcmtzLmNsYXNzTGlzdC5yZW1vdmUoYCR7dGhpcy5jb25maWcudWkubmFtZXNwYWNlfWJvdHRvbWApO1xuICAgICAgICAgIGJyZWFrO1xuICAgICAgICBjYXNlIFwiYm90dG9tXCI6XG4gICAgICAgICAgbmV0d29ya3MuY2xhc3NMaXN0LmFkZChgJHt0aGlzLmNvbmZpZy51aS5uYW1lc3BhY2V9dG9wYCk7XG4gICAgICAgICAgbmV0d29ya3MuY2xhc3NMaXN0LnJlbW92ZShgJHt0aGlzLmNvbmZpZy51aS5uYW1lc3BhY2V9bWlkZGxlYCk7XG4gICAgICAgICAgbmV0d29ya3MuY2xhc3NMaXN0LnJlbW92ZShgJHt0aGlzLmNvbmZpZy51aS5uYW1lc3BhY2V9Ym90dG9tYCk7XG4gICAgICAgICAgYnJlYWs7XG4gICAgICB9XG4gICAgfVxuICB9XG5cbiAgLyoqXG4gICAqIEBtZXRob2QgX2ZpbmRMb2NhdGlvblxuICAgKiBAZGVzY3JpcHRpb24gRmluZHMgdGhlIGxvY2F0aW9uIG9mIHRoZSBsYWJlbCBnaXZlbiBieSBpdHMgeCBhbmQgeSB2YWx1ZVxuICAgKiB3aXRoIHJlc3BlY3QgdG8gdGhlIHdpbmRvdyB3aWR0aCBhbmQgd2luZG93IGhlaWdodCBnaXZlbi5cbiAgICogQHByaXZhdGVcbiAgICpcbiAgICogQHBhcmFtIHtudW1iZXJ9IGxhYmVsWFxuICAgKiBAcGFyYW0ge251bWJlcn0gbGFiZWxZXG4gICAqIEBwYXJhbSB7bnVtYmVyfSB3aW5kb3dXaWR0aFxuICAgKiBAcGFyYW0ge251bWJlcn0gd2luZG93SGVpZ2h0XG4gICAqIEByZXR1cm5zIHtBcnJheX1cbiAgICovXG4gIF9maW5kTG9jYXRpb24obGFiZWxYLCBsYWJlbFksIHdpbmRvd1dpZHRoLCB3aW5kb3dIZWlnaHQpIHtcbiAgICBsZXQgeFBvc2l0aW9uID0gW1wibGVmdFwiLCBcImNlbnRlclwiLCBcInJpZ2h0XCJdO1xuICAgIGxldCB5UG9zaXRpb24gPSBbXCJ0b3BcIiwgXCJtaWRkbGVcIiwgXCJib3R0b21cIl07XG4gICAgbGV0IHhMb2NhdGlvbiA9XG4gICAgICBNYXRoLnRydW5jKDMgKiAoMSAtICgod2luZG93V2lkdGggLSBsYWJlbFgpIC8gd2luZG93V2lkdGgpKSk7XG4gICAgbGV0IHlMb2NhdGlvbiA9XG4gICAgICBNYXRoLnRydW5jKDMgKiAoMSAtICgod2luZG93SGVpZ2h0IC0gbGFiZWxZKSAvIHdpbmRvd0hlaWdodCkpKTtcbiAgICBpZiAoeExvY2F0aW9uID49IDMpIHhMb2NhdGlvbiA9IDI7XG4gICAgZWxzZSBpZiAoeExvY2F0aW9uIDw9IC0xKSB4TG9jYXRpb24gPSAwO1xuICAgIGlmICh5TG9jYXRpb24gPj0gMykgeUxvY2F0aW9uID0gMjtcbiAgICBlbHNlIGlmICh5TG9jYXRpb24gPD0gLTEpIHlMb2NhdGlvbiA9IDA7XG4gICAgcmV0dXJuIFt4UG9zaXRpb25beExvY2F0aW9uXSwgeVBvc2l0aW9uW3lMb2NhdGlvbl1dO1xuICB9XG5cbiAgLyoqXG4gICAqIEBtZXRob2QgX25ldHdvcmtGYWNlYm9va1xuICAgKiBAZGVzY3JpcHRpb24gQ3JlYXRlICYgZGlzcGxheSBhIEZhY2Vib29rIHdpbmRvd1xuICAgKiBAcHJpdmF0ZVxuICAgKi9cbiAgX25ldHdvcmtGYWNlYm9vayhlbGVtZW50KSB7XG4gICAgaWYgKHRoaXMuY29uZmlnLm5ldHdvcmtzLmZhY2Vib29rLmxvYWRTZGspIHtcbiAgICAgIGlmICghd2luZG93LkZCKSB7XG4gICAgICAgIGNvbnNvbGUuZXJyb3IoJ1RoZSBGYWNlYm9vayBKUyBTREsgaGFzblxcJ3QgbG9hZGVkIHlldC4nKTtcbiAgICAgICAgcmV0dXJuIHRoaXMuX3VwZGF0ZUhyZWYoZWxlbWVudCwgJ2h0dHBzOi8vd3d3LmZhY2Vib29rLmNvbS9zaGFyZXIvc2hhcmVyLnBocCcsIHtcbiAgICAgICAgICB1OiB0aGlzLmNvbmZpZy5uZXR3b3Jrcy5mYWNlYm9vay51cmxcbiAgICAgICAgfSk7XG4gICAgICB9XG4gICAgICByZXR1cm4gRkIudWkoe1xuICAgICAgICBtZXRob2Q6J2ZlZWQnLFxuICAgICAgICBuYW1lOiB0aGlzLmNvbmZpZy5uZXR3b3Jrcy5mYWNlYm9vay50aXRsZSxcbiAgICAgICAgbGluazogdGhpcy5jb25maWcubmV0d29ya3MuZmFjZWJvb2sudXJsLFxuICAgICAgICBwaWN0dXJlOiB0aGlzLmNvbmZpZy5uZXR3b3Jrcy5mYWNlYm9vay5pbWFnZSxcbiAgICAgICAgY2FwdGlvbjogdGhpcy5jb25maWcubmV0d29ya3MuZmFjZWJvb2suY2FwdGlvbixcbiAgICAgICAgZGVzY3JpcHRpb246IHRoaXMuY29uZmlnLm5ldHdvcmtzLmZhY2Vib29rLmRlc2NyaXB0aW9uXG4gICAgICB9KTtcbiAgICB9IGVsc2Uge1xuICAgICAgcmV0dXJuIHRoaXMuX3VwZGF0ZUhyZWYoXG4gICAgICAgIGVsZW1lbnQsXG4gICAgICAgICdodHRwczovL3d3dy5mYWNlYm9vay5jb20vc2hhcmVyL3NoYXJlci5waHAnLCB7XG4gICAgICAgICAgdTogdGhpcy5jb25maWcubmV0d29ya3MuZmFjZWJvb2sudXJsXG4gICAgICAgIH1cbiAgICAgICk7XG4gICAgfVxuICB9XG5cbiAgLyoqXG4gICAqIEBtZXRob2QgX25ldHdvcmtUd2l0dGVyXG4gICAqIEBkZXNjcmlwdGlvbiBDcmVhdGUgJiBkaXNwbGF5IGEgVHdpdHRlciB3aW5kb3dcbiAgICogQHByaXZhdGVcbiAgICovXG4gIF9uZXR3b3JrVHdpdHRlcihlbGVtZW50KSB7XG4gICAgdGhpcy5fdXBkYXRlSHJlZihlbGVtZW50LCAnaHR0cHM6Ly90d2l0dGVyLmNvbS9pbnRlbnQvdHdlZXQnLCB7XG4gICAgICB0ZXh0OiB0aGlzLmNvbmZpZy5uZXR3b3Jrcy50d2l0dGVyLmRlc2NyaXB0aW9uLFxuICAgICAgdXJsOiB0aGlzLmNvbmZpZy5uZXR3b3Jrcy50d2l0dGVyLnVybFxuICAgIH0pO1xuICB9XG5cbiAgLyoqXG4gICAqIEBtZXRob2QgX25ldHdvcmtHb29nbGVQbHVzXG4gICAqIEBkZXNjcmlwdGlvbiBDcmVhdGUgJiBkaXNwbGF5IGEgR29vZ2xlIFBsdXMgd2luZG93XG4gICAqIEBwcml2YXRlXG4gICAqL1xuICBfbmV0d29ya0dvb2dsZVBsdXMoZWxlbWVudCkge1xuICAgIHRoaXMuX3VwZGF0ZUhyZWYoZWxlbWVudCwgJ2h0dHBzOi8vcGx1cy5nb29nbGUuY29tL3NoYXJlJywge1xuICAgICAgdXJsOiB0aGlzLmNvbmZpZy5uZXR3b3Jrcy5nb29nbGVQbHVzLnVybFxuICAgIH0pO1xuICB9XG5cbiAgLyoqXG4gICAqIEBtZXRob2QgX25ldHdvcmtQaW50ZXJlc3RcbiAgICogQGRlc2NyaXB0aW9uIENyZWF0ZSAmIGRpc3BsYXkgYSBQaW50ZXJlc3Qgd2luZG93XG4gICAqIEBwcml2YXRlXG4gICAqL1xuICBfbmV0d29ya1BpbnRlcmVzdChlbGVtZW50KSB7XG4gICAgdGhpcy5fdXBkYXRlSHJlZihlbGVtZW50LCAnaHR0cHM6Ly93d3cucGludGVyZXN0LmNvbS9waW4vY3JlYXRlL2J1dHRvbicsIHtcbiAgICAgIHVybDogdGhpcy5jb25maWcubmV0d29ya3MucGludGVyZXN0LnVybCxcbiAgICAgIG1lZGlhOiB0aGlzLmNvbmZpZy5uZXR3b3Jrcy5waW50ZXJlc3QuaW1hZ2UsXG4gICAgICBkZXNjcmlwdGlvbjogdGhpcy5jb25maWcubmV0d29ya3MucGludGVyZXN0LmRlc2NyaXB0aW9uXG4gICAgfSk7XG4gIH1cblxuICAvKipcbiAgICogQG1ldGhvZCBfbmV0d29ya0xpbmtlZEluXG4gICAqIEBkZXNjcmlwdGlvbiBDcmVhdGUgJiBkaXNwbGF5IGEgTGlua2VkaW4gd2luZG93XG4gICAqIEBwcml2YXRlXG4gICAqL1xuICBfbmV0d29ya0xpbmtlZGluKGVsZW1lbnQpIHtcbiAgICB0aGlzLl91cGRhdGVIcmVmKGVsZW1lbnQsICdodHRwczovL3d3dy5saW5rZWRpbi5jb20vc2hhcmVBcnRpY2xlJywge1xuICAgICAgbWluaTogJ3RydWUnLFxuICAgICAgdXJsOiB0aGlzLmNvbmZpZy5uZXR3b3Jrcy5saW5rZWRpbi51cmwsXG4gICAgICB0aXRsZTogdGhpcy5jb25maWcubmV0d29ya3MubGlua2VkaW4udGl0bGUsXG4gICAgICBzdW1tYXJ5OiB0aGlzLmNvbmZpZy5uZXR3b3Jrcy5saW5rZWRpbi5kZXNjcmlwdGlvblxuICAgIH0pO1xuICB9XG5cbiAgLyoqXG4gICAqIEBtZXRob2QgX25ldHdvcmtFbWFpbFxuICAgKiBAZGVzY3JpcHRpb24gQ3JlYXRlICYgZGlzcGxheSBhbiBFbWFpbCB3aW5kb3dcbiAgICogQHByaXZhdGVcbiAgICovXG4gIF9uZXR3b3JrRW1haWwoZWxlbWVudCkge1xuICAgIHRoaXMuX3VwZGF0ZUhyZWYoZWxlbWVudCwgJ21haWx0bzonLCB7XG4gICAgICBzdWJqZWN0OiB0aGlzLmNvbmZpZy5uZXR3b3Jrcy5lbWFpbC50aXRsZSxcbiAgICAgIGJvZHk6IHRoaXMuY29uZmlnLm5ldHdvcmtzLmVtYWlsLmRlc2NyaXB0aW9uXG4gICAgfSk7XG4gIH1cblxuICAvKipcbiAgICogQG1ldGhvZCBfbmV0d29ya1JlZGRpdFxuICAgKiBAZGVzY3JpcHRpb24gQ3JlYXRlICYgZGlzcGxheSBhIFJlZGRpdCB3aW5kb3dcbiAgICogQHByaXZhdGVcbiAgICovXG4gIF9uZXR3b3JrUmVkZGl0KGVsZW1lbnQpIHtcbiAgICB0aGlzLl91cGRhdGVIcmVmKGVsZW1lbnQsICdodHRwOi8vd3d3LnJlZGRpdC5jb20vc3VibWl0Jywge1xuICAgICAgdXJsOiB0aGlzLmNvbmZpZy5uZXR3b3Jrcy5yZWRkaXQudXJsLFxuICAgICAgdGl0bGU6IHRoaXMuY29uZmlnLm5ldHdvcmtzLnJlZGRpdC50aXRsZVxuICAgIH0pO1xuICB9XG5cbiAgLyoqXG4gICAqIEBtZXRob2QgX25ldHdvcmtXaGF0c2FwcFxuICAgKiBAZGVzY3JpcHRpb24gQ3JlYXRlICYgZGlzcGxheSBhIFdoYXRzYXBwIHdpbmRvd1xuICAgKiBAcHJpdmF0ZVxuICAgKi9cbiAgX25ldHdvcmtXaGF0c2FwcChlbGVtZW50KSB7XG4gICAgdGhpcy5fdXBkYXRlSHJlZihlbGVtZW50LCAnd2hhdHNhcHA6Ly9zZW5kJywge1xuICAgICAgdGV4dDogdGhpcy5jb25maWcubmV0d29ya3Mud2hhdHNhcHAuZGVzY3JpcHRpb24gKyBcIiBcIiArXG4gICAgICAgIHRoaXMuY29uZmlnLm5ldHdvcmtzLndoYXRzYXBwLnVybFxuICAgIH0pO1xuICB9XG5cbiAgLyoqXG4gICAqIEBtZXRob2QgX2luamVjdFN0eWxlc2hlZXRcbiAgICogQGRlc2NyaXB0aW9uIEluamVjdCBsaW5rIHRvIHN0eWxlc2hlZXRcbiAgICogQHByaXZhdGVcbiAgICpcbiAgICogQHBhcmFtIHtTdHJpbmd9IHVybFxuICAgKi9cbiAgX2luamVjdFN0eWxlc2hlZXQodXJsKSB7XG4gICAgaWYgKCF0aGlzLmVsLmhlYWQucXVlcnlTZWxlY3RvcihgbGlua1tocmVmPScke3VybH0nXWApKSB7XG4gICAgICBsZXQgbGluayA9IGRvY3VtZW50LmNyZWF0ZUVsZW1lbnQoXCJsaW5rXCIpO1xuICAgICAgbGluay5zZXRBdHRyaWJ1dGUoXCJyZWxcIiwgXCJzdHlsZXNoZWV0XCIpO1xuICAgICAgbGluay5zZXRBdHRyaWJ1dGUoXCJocmVmXCIsIHVybCk7XG4gICAgICB0aGlzLmVsLmhlYWQuYXBwZW5kQ2hpbGQobGluayk7XG4gICAgfVxuICB9XG5cbiAgLyoqXG4gICAqIEBtZXRob2QgX2luamVjdEh0bWxcbiAgICogQGRlc2NyaXB0aW9uIEluamVjdCBidXR0b24gc3RydWN0dXJlXG4gICAqIEBwcml2YXRlXG4gICAqXG4gICAqIEBwYXJhbSB7RE9NTm9kZX0gaW5zdGFuY2VcbiAgICovXG4gIF9pbmplY3RIdG1sKGluc3RhbmNlKSB7XG4gICAgbGV0IG5ldHdvcmtzID0gdGhpcy5jb25maWcudWkubmV0d29ya09yZGVyO1xuICAgIGxldCBuZXR3b3JrTGlzdCA9ICcnO1xuXG4gICAgZm9yIChsZXQgbmV0d29yayBvZiBuZXR3b3Jrcykge1xuICAgICAgbmV0d29ya0xpc3QgKz0gYDxsaSBjbGFzcz0nJHtuZXR3b3JrfScgZGF0YS1uZXR3b3JrPScke25ldHdvcmt9Jz48YT48L2E+PC9saT5gO1xuICAgIH1cbiAgICBpbnN0YW5jZS5pbm5lckhUTUwgPSBgJHt0aGlzLmNvbmZpZy51aS5idXR0b25UZXh0fTxkaXYgY2xhc3M9JyR7dGhpcy5jb25maWcudWkubmFtZXNwYWNlfXNvY2lhbCBsb2FkICR7dGhpcy5jb25maWcudWkuZmx5b3V0fSc+PHVsPmAgKyBuZXR3b3JrTGlzdCArIGA8L3VsPjwvZGl2PmA7XG4gIH1cblxuICAvKipcbiAgICogQG1ldGhvZCBfaW5qZWN0RmFjZWJvb2tTZGtcbiAgICogQGRlc2NyaXB0aW9uIEluamVjdCBGYWNlYm9vayBTREtcbiAgICogQHByaXZhdGVcbiAgICovXG4gIF9pbmplY3RGYWNlYm9va1NkaygpIHtcbiAgICBpZiAoIXdpbmRvdy5GQiAmJiB0aGlzLmNvbmZpZy5uZXR3b3Jrcy5mYWNlYm9vay5hcHBJZCAmJlxuICAgICAgICAhdGhpcy5lbC5ib2R5LnF1ZXJ5U2VsZWN0b3IoJyNmYi1yb290JykpIHtcbiAgICAgIGxldCBzY3JpcHQgPSBkb2N1bWVudC5jcmVhdGVFbGVtZW50KCdzY3JpcHQnKTtcbiAgICAgIHNjcmlwdC50ZXh0ID0gYHdpbmRvdy5mYkFzeW5jSW5pdD1mdW5jdGlvbigpe0ZCLmluaXQoe2FwcElkOicke3RoaXMuY29uZmlnLm5ldHdvcmtzLmZhY2Vib29rLmFwcElkfScsc3RhdHVzOnRydWUseGZibWw6dHJ1ZX0pfTsoZnVuY3Rpb24oZSx0LG4pe3ZhciByLGk9ZS5nZXRFbGVtZW50c0J5VGFnTmFtZSh0KVswXTtpZiAoZS5nZXRFbGVtZW50QnlJZChuKSl7cmV0dXJufXI9ZS5jcmVhdGVFbGVtZW50KHQpO3IuaWQ9bjtyLnNyYz0nLy9jb25uZWN0LmZhY2Vib29rLm5ldC9lbl9VUy9hbGwuanMnO2kucGFyZW50Tm9kZS5pbnNlcnRCZWZvcmUocixpKX0pKGRvY3VtZW50LCdzY3JpcHQnLCdmYWNlYm9vay1qc3NkaycpO2A7XG5cbiAgICAgIGxldCBmYlJvb3QgPSBkb2N1bWVudC5jcmVhdGVFbGVtZW50KCdkaXYnKTtcbiAgICAgIGZiUm9vdC5pZCA9ICdmYi1yb290JztcblxuICAgICAgdGhpcy5lbC5ib2R5LmFwcGVuZENoaWxkKGZiUm9vdCk7XG4gICAgICB0aGlzLmVsLmJvZHkuYXBwZW5kQ2hpbGQoc2NyaXB0KTtcbiAgICB9XG4gIH1cblxuICAvKipcbiAgICogQG1ldGhvZCBfaG9va1xuICAgKiBAZGVzY3JpcHRpb24gSG9vayBoZWxwZXIgZnVuY3Rpb25cbiAgICogQHByaXZhdGVcbiAgICpcbiAgICogQHBhcmFtIHtTdHJpbmd9ICAgdHlwZVxuICAgKiBAcGFyYW0ge1N0cmluZ30gICBuZXR3b3JrXG4gICAqIEBwYXJhbSB7RE9NTm9kZX0gIGluc3RhbmNlXG4gICAqL1xuICBfaG9vayh0eXBlLCBuZXR3b3JrLCBpbnN0YW5jZSkge1xuICAgIGxldCBmbiA9IHRoaXMuY29uZmlnLm5ldHdvcmtzW25ldHdvcmtdW3R5cGVdO1xuXG4gICAgaWYgKHR5cGVvZiBmbiA9PT0gJ2Z1bmN0aW9uJykge1xuICAgICAgbGV0IG9wdHMgPSBmbi5jYWxsKHRoaXMuY29uZmlnLm5ldHdvcmtzW25ldHdvcmtdLCBpbnN0YW5jZSk7XG5cbiAgICAgIGlmIChvcHRzICE9PSB1bmRlZmluZWQpIHtcbiAgICAgICAgb3B0cyA9IHRoaXMuX25vcm1hbGl6ZUZpbHRlckNvbmZpZ1VwZGF0ZXMob3B0cyk7XG4gICAgICAgIHRoaXMuZXh0ZW5kKHRoaXMuY29uZmlnLm5ldHdvcmtzW25ldHdvcmtdLCBvcHRzLCB0cnVlKTtcbiAgICAgICAgdGhpcy5fbm9ybWFsaXplTmV0d29ya0NvbmZpZ3VyYXRpb24oKTtcbiAgICAgIH1cbiAgICB9XG4gIH1cblxuICAvKipcbiAgICogQG1ldGhvZCBfZGVmYXVsdFRpdGxlXG4gICAqIEBkZXNjcmlwdGlvbiBHZXRzIGRlZmF1bHQgdGl0bGVcbiAgICogQHByaXZhdGVcbiAgICpcbiAgICogQHJldHVybnMge1N0cmluZ31cbiAgICovXG4gIF9kZWZhdWx0VGl0bGUoKSB7XG4gICAgbGV0IGNvbnRlbnQ7XG4gICAgaWYgKChjb250ZW50ID0gKGRvY3VtZW50LnF1ZXJ5U2VsZWN0b3IoJ21ldGFbcHJvcGVydHk9XCJvZzp0aXRsZVwiXScpIHx8XG4gICAgICAgICAgICAgICAgICBkb2N1bWVudC5xdWVyeVNlbGVjdG9yKCdtZXRhW25hbWU9XCJ0d2l0dGVyOnRpdGxlXCJdJykpKSlcbiAgICAgIHJldHVybiBjb250ZW50LmdldEF0dHJpYnV0ZSgnY29udGVudCcpO1xuICAgIGVsc2UgaWYgKChjb250ZW50ID0gZG9jdW1lbnQucXVlcnlTZWxlY3RvcigndGl0bGUnKSkpXG4gICAgICByZXR1cm4gY29udGVudC50ZXh0Q29udGVudCB8fCBjb250ZW50LmlubmVyVGV4dDtcbiAgfVxuXG4gIC8qKlxuICAgKiBAbWV0aG9kIF9kZWZhdWx0SW1hZ2VcbiAgICogQGRlc2NyaXB0aW9uIEdldHMgZGVmYXVsdCBpbWFnZVxuICAgKiBAcHJpdmF0ZVxuICAgKlxuICAgKiBAcmV0dXJucyB7U3RyaW5nfVxuICAgKi9cbiAgX2RlZmF1bHRJbWFnZSgpIHtcbiAgICBsZXQgY29udGVudDtcbiAgICBpZiAoKGNvbnRlbnQgPSAoZG9jdW1lbnQucXVlcnlTZWxlY3RvcignbWV0YVtwcm9wZXJ0eT1cIm9nOmltYWdlXCJdJykgfHxcbiAgICAgICAgICAgICAgICAgICAgZG9jdW1lbnQucXVlcnlTZWxlY3RvcignbWV0YVtuYW1lPVwidHdpdHRlcjppbWFnZVwiXScpKSkpXG4gICAgICByZXR1cm4gY29udGVudC5nZXRBdHRyaWJ1dGUoJ2NvbnRlbnQnKTtcbiAgfVxuXG4gIC8qKlxuICAgKiBAbWV0aG9kIF9kZWZhdWx0RGVzY3JpcHRpb25cbiAgICogQGRlc2NyaXB0aW9uIEdldHMgZGVmYXVsdCBkZXNjcmlwdGlvblxuICAgKiBAcHJpdmF0ZVxuICAgKlxuICAgKiBAcmV0dXJucyB7U3RyaW5nfVxuICAgKi9cbiAgX2RlZmF1bHREZXNjcmlwdGlvbigpIHtcbiAgICBsZXQgY29udGVudDtcbiAgICBpZiAoKGNvbnRlbnQgPSAoZG9jdW1lbnQucXVlcnlTZWxlY3RvcignbWV0YVtwcm9wZXJ0eT1cIm9nOmRlc2NyaXB0aW9uXCJdJykgfHxcbiAgICAgICAgICAgICAgICAgIGRvY3VtZW50LnF1ZXJ5U2VsZWN0b3IoJ21ldGFbbmFtZT1cInR3aXR0ZXI6ZGVzY3JpcHRpb25cIl0nKSB8fFxuICAgICAgICAgICAgICAgICAgZG9jdW1lbnQucXVlcnlTZWxlY3RvcignbWV0YVtuYW1lPVwiZGVzY3JpcHRpb25cIl0nKSkpKVxuICAgICAgcmV0dXJuIGNvbnRlbnQuZ2V0QXR0cmlidXRlKCdjb250ZW50Jyk7XG4gICAgZWxzZVxuICAgICAgcmV0dXJuICcnO1xuICB9XG5cbiAgLyoqXG4gICAqIEBtZXRob2QgX2RldGVjdE5ldHdvcmtzXG4gICAqIEBkZXNjcmlwdGlvbiBEZXRlY3QgbnVtYmVyIG9mIG5ldHdvcmtzIGluIHVzZSBhbmQgZGlzcGxheS9oaWRlXG4gICAqIEBwcml2YXRlXG4gICAqL1xuICBfZGV0ZWN0TmV0d29ya3MoKSB7XG4gICAgLy8gVXBkYXRlIG5ldHdvcmstc3BlY2lmaWMgY29uZmlndXJhdGlvbiB3aXRoIGdsb2JhbCBjb25maWd1cmF0aW9uc1xuICAgIGZvciAobGV0IG5ldHdvcmsgb2YgT2JqZWN0LmtleXModGhpcy5jb25maWcubmV0d29ya3MpKSB7XG4gICAgICBsZXQgZGlzcGxheTtcbiAgICAgIGZvciAobGV0IG9wdGlvbiBvZiBPYmplY3Qua2V5cyh0aGlzLmNvbmZpZy5uZXR3b3Jrc1tuZXR3b3JrXSkpIHtcbiAgICAgICAgaWYgKHRoaXMuY29uZmlnLm5ldHdvcmtzW25ldHdvcmtdW29wdGlvbl0gPT09IG51bGwpIHtcbiAgICAgICAgICB0aGlzLmNvbmZpZy5uZXR3b3Jrc1tuZXR3b3JrXVtvcHRpb25dID0gdGhpcy5jb25maWdbb3B0aW9uXTtcbiAgICAgICAgfVxuICAgICAgfVxuXG4gICAgICAvLyBDaGVjayBmb3IgZW5hYmxlZCBuZXR3b3JrcyBhbmQgZGlzcGxheSB0aGVtXG4gICAgICBpZiAodGhpcy5jb25maWcubmV0d29ya3NbbmV0d29ya10uZW5hYmxlZCkge1xuICAgICAgICB0aGlzLmNsYXNzID0gJ2VuYWJsZWQnO1xuICAgICAgICB0aGlzLmNvbmZpZy5lbmFibGVkTmV0d29ya3MgKz0gMTtcbiAgICAgIH1cbiAgICAgIGVsc2VcbiAgICAgICAgdGhpcy5jbGFzcyA9ICdkaXNhYmxlZCc7XG5cbiAgICAgIHRoaXMuY29uZmlnLm5ldHdvcmtzW25ldHdvcmtdLmNsYXNzID0gdGhpcy5jbGFzcztcbiAgICB9XG4gIH1cblxuICAvKipcbiAgICogQG1ldGhvZCBfbm9ybWFsaXplTmV0d29ya0NvbmZpZ3VyYXRpb25cbiAgICogQGRlc2NyaXB0aW9uIE5vcm1hbGl6ZXMgbmV0d29yayBjb25maWd1cmF0aW9uIGZvciBGYWNlYm9vayAmIFR3aXR0ZXJcbiAgICogQHByaXZhdGVcbiAgICovXG4gIF9ub3JtYWxpemVOZXR3b3JrQ29uZmlndXJhdGlvbigpIHtcbiAgICAvLyBEb24ndCBsb2FkIEZCIFNESyBpZiBGQiBhcHBJZCBpc24ndCBwcmVzZW50XG4gICAgaWYgKCF0aGlzLmNvbmZpZy5uZXR3b3Jrcy5mYWNlYm9vay5hcHBJZClcbiAgICAgIHRoaXMuY29uZmlnLm5ldHdvcmtzLmZhY2Vib29rLmxvYWRTZGsgPSBmYWxzZTtcblxuICAgIC8vIEVuY29kZSBUd2l0dGVyIGRlc2NyaXB0aW9uIGZvciBVUkxcbiAgICBpZiAoISF0aGlzLmNvbmZpZy5uZXR3b3Jrcy50d2l0dGVyLmRlc2NyaXB0aW9uKVxuICAgICAgaWYgKCF0aGlzLl9pc0VuY29kZWQodGhpcy5jb25maWcubmV0d29ya3MudHdpdHRlci5kZXNjcmlwdGlvbikpXG4gICAgICAgIHRoaXMuY29uZmlnLm5ldHdvcmtzLnR3aXR0ZXIuZGVzY3JpcHRpb24gPVxuICAgICAgICAgIGVuY29kZVVSSUNvbXBvbmVudCh0aGlzLmNvbmZpZy5uZXR3b3Jrcy50d2l0dGVyLmRlc2NyaXB0aW9uKTtcblxuICAgIC8vIFR5cGVjYXN0IEZhY2Vib29rIGFwcElkIHRvIGEgU3RyaW5nXG4gICAgaWYgKHR5cGVvZiB0aGlzLmNvbmZpZy5uZXR3b3Jrcy5mYWNlYm9vay5hcHBJZCA9PT0gJ251bWJlcicpXG4gICAgICB0aGlzLmNvbmZpZy5uZXR3b3Jrcy5mYWNlYm9vay5hcHBJZCA9XG4gICAgICAgIHRoaXMuY29uZmlnLm5ldHdvcmtzLmZhY2Vib29rLmFwcElkLnRvU3RyaW5nKCk7XG4gIH1cblxuICAvKipcbiAgICogQG1ldGhvZCBfbm9ybWFsaXplRmlsdGVyQ29uZmlnVXBkYXRlc1xuICAgKiBAZGVzY3JpcHRpb24gTm9ybWFsaXplcyBGYWNlYm9vayBjb25maWdcbiAgICogQHByaXZhdGVcbiAgICpcbiAgICogQHBhcmFtIHtPYmplY3R9IG9wdHNcbiAgICogQHJldHVybnMge09iamVjdH1cbiAgICovXG4gIF9ub3JtYWxpemVGaWx0ZXJDb25maWdVcGRhdGVzKG9wdHMpIHtcbiAgICBpZiAodGhpcy5jb25maWcubmV0d29ya3MuZmFjZWJvb2suYXBwSWQgIT09IG9wdHMuYXBwSWQpIHtcbiAgICAgIGNvbnNvbGUud2FybignWW91IGFyZSB1bmFibGUgdG8gY2hhbmdlIHRoZSBGYWNlYm9vayBhcHBJZCBhZnRlciB0aGUgYnV0dG9uIGhhcyBiZWVuIGluaXRpYWxpemVkLiBQbGVhc2UgdXBkYXRlIHlvdXIgRmFjZWJvb2sgZmlsdGVycyBhY2NvcmRpbmdseS4nKTtcbiAgICAgIGRlbGV0ZShvcHRzLmFwcElkKTtcbiAgICB9XG5cbiAgICBpZiAodGhpcy5jb25maWcubmV0d29ya3MuZmFjZWJvb2subG9hZFNkayAhPT0gb3B0cy5sb2FkU2RrKSB7XG4gICAgICBjb25zb2xlLndhcm4oJ1lvdSBhcmUgdW5hYmxlIHRvIGNoYW5nZSB0aGUgRmFjZWJvb2sgbG9hZFNkayBvcHRpb24gYWZ0ZXIgdGhlIGJ1dHRvbiBoYXMgYmVlbiBpbml0aWFsaXplZC4gUGxlYXNlIHVwZGF0ZSB5b3VyIEZhY2Vib29rIGZpbHRlcnMgYWNjb3JkaW5nbHkuJyk7XG4gICAgICBkZWxldGUob3B0cy5hcHBJZCk7XG4gICAgfVxuXG4gICAgcmV0dXJuIG9wdHM7XG4gIH1cbn1cblxubW9kdWxlLmV4cG9ydHMgPSBTaGFyZUJ1dHRvbjtcbiJdfQ==
+},{"./share-utils":42,"./string-utils":43,"core-js/fn/array/iterator":1,"core-js/fn/math/trunc":2,"core-js/fn/symbol":3}],42:[function(_dereq_,module,exports){
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var _stringUtils = _dereq_('./string-utils');
+
+var _stringUtils2 = _interopRequireDefault(_stringUtils);
+
+/**
+ * ShareUtils
+ * @class
+ * @classdesc A nice set of utilities.
+ */
+
+var ShareUtils = (function () {
+  function ShareUtils() {
+    _classCallCheck(this, ShareUtils);
+  }
+
+  _createClass(ShareUtils, [{
+    key: "_getStyle",
+    value: function _getStyle(ele, css) {
+      var strValue = "";
+
+      if (document.defaultView && document.defaultView.getComputedStyle) {
+        strValue = document.defaultView.getComputedStyle(ele, "").getPropertyValue(css);
+      } else if (ele.currentStyle) {
+        css = css.replace(/\-(\w)/g, function (strMatch, p1) {
+          return p1.toUpperCase();
+        });
+        strValue = ele.currentStyle[css];
+      }
+
+      return strValue;
+    }
+
+    /**
+     * @method _hide
+     * @description Change element's display to 'none'
+     * @private
+     *
+     * @param {DOMNode} el
+     */
+  }, {
+    key: "_hide",
+    value: function _hide(el) {
+      el.style.display = "none";
+    }
+
+    /**
+     * @method _show
+     * @description Change element's display to 'block'
+     * @private
+     *
+     * @param {DOMNode} el
+     */
+  }, {
+    key: "_show",
+    value: function _show(el) {
+      el.style.display = "initial";
+    }
+
+    /**
+     * @method _hasClass
+     * @description Wrapper to see if an element contains a class.
+     * @private
+     *
+     * @param {DOMNode} el
+     * @param {String}  className
+     * @returns {Boolean}
+     */
+  }, {
+    key: "_hasClass",
+    value: function _hasClass(el, className) {
+      return el.classList.contains(className);
+    }
+
+    /**
+     * @method addClass
+     * @description Wrapper to add class to element.
+     * @private
+     *
+     * @param {DOMNode} el
+     * @param {String}  className
+     */
+  }, {
+    key: "_addClass",
+    value: function _addClass(el, className) {
+      el.classList.add(className);
+    }
+
+    /**
+     * @method removeClass
+     * @description Wrapper to remove class from element.
+     * @private
+     *
+     * @param {DOMNode} el
+     * @param {String}  className
+     */
+  }, {
+    key: "_removeClass",
+    value: function _removeClass(el, className) {
+      el.classList.remove(className);
+    }
+
+    /**
+     * @method _isEncoded
+     * @description Wrapper to check if the string is encoded.
+     * @private
+     *
+     * @param {String}  str
+     * @param {Boolean}
+     */
+  }, {
+    key: "_isEncoded",
+    value: function _isEncoded(str) {
+      str = _stringUtils2["default"].toRFC3986(str);
+      return decodeURIComponent(str) !== str;
+    }
+
+    /**
+     * @method _encode
+     * @description Wrapper to _encode a string if the string isn't already encoded.
+     * @private
+     *
+     * @param {DOMNode} el
+     * @param {String}  className
+     */
+  }, {
+    key: "_encode",
+    value: function _encode(str) {
+      if (typeof str === 'undefined' || str === null || this._isEncoded(str)) return encodeURIComponent(str);else return _stringUtils2["default"].toRFC3986(str);
+    }
+
+    /**
+     * @method _getUrl
+     * @description Returns the correct share URL based off of the incoming
+     * URL and parameters given
+     * @private
+     *
+     * @param {String} url
+     * @param {boolean} encode
+     * @param {Object} params
+     */
+  }, {
+    key: "_getUrl",
+    value: function _getUrl(url) {
+      var _this = this;
+
+      var encode = arguments.length <= 1 || arguments[1] === undefined ? false : arguments[1];
+      var params = arguments.length <= 2 || arguments[2] === undefined ? {} : arguments[2];
+
+      var qs = (function () {
+        var results = [];
+        var _iteratorNormalCompletion = true;
+        var _didIteratorError = false;
+        var _iteratorError = undefined;
+
+        try {
+          for (var _iterator = Object.keys(params)[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+            var k = _step.value;
+
+            var v = params[k];
+            results.push(k + "=" + _this._encode(v));
+          }
+        } catch (err) {
+          _didIteratorError = true;
+          _iteratorError = err;
+        } finally {
+          try {
+            if (!_iteratorNormalCompletion && _iterator["return"]) {
+              _iterator["return"]();
+            }
+          } finally {
+            if (_didIteratorError) {
+              throw _iteratorError;
+            }
+          }
+        }
+
+        return results.join('&');
+      })();
+
+      if (qs) qs = "?" + qs;
+
+      return url + qs;
+    }
+
+    /**
+     * @method _updateHref
+     * @description Makes the elements a tag have a href of the popup link and
+     * as pops up the share window for the element
+     * @private
+     *
+     * @param {DOMNode} element
+     * @param {String} url
+     * @param {Object} params
+     */
+  }, {
+    key: "_updateHref",
+    value: function _updateHref(element, url, params) {
+      var encode = url.indexOf('mailto:') >= 0;
+      var a = element.getElementsByTagName('a')[0];
+      a.setAttribute('href', this._getUrl(url, !encode, params));
+      if (!encode && (!this.config.networks.facebook.loadSdk || element.getAttribute('class') !== 'facebook')) {
+        var popup = {
+          width: 500,
+          height: 350
+        };
+
+        popup.top = screen.height / 2 - popup.height / 2;
+        popup.left = screen.width / 2 - popup.width / 2;
+
+        window.open(a.href, 'targetWindow', "\n          toolbar=no,\n          location=no,\n          status=no,\n          menubar=no,\n          scrollbars=yes,\n          resizable=yes,\n          left=" + popup.left + ",\n          top=" + popup.top + ",\n          width=" + popup.width + ",\n          height=" + popup.height + "\n        ");
+      }
+    }
+
+    /**
+     * @method popup
+     * @description Create a window for specified network
+     *
+     * @param {String}  url
+     * @param {Object}  params
+     */
+  }, {
+    key: "popup",
+    value: function popup(url) {
+      var _this2 = this;
+
+      var params = arguments.length <= 1 || arguments[1] === undefined ? {} : arguments[1];
+
+      var popup = {
+        width: 500,
+        height: 350
+      };
+
+      popup.top = screen.height / 2 - popup.height / 2;
+      popup.left = screen.width / 2 - popup.width / 2;
+
+      var qs = (function () {
+        var results = [];
+        var _iteratorNormalCompletion2 = true;
+        var _didIteratorError2 = false;
+        var _iteratorError2 = undefined;
+
+        try {
+          for (var _iterator2 = Object.keys(params)[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
+            var k = _step2.value;
+
+            var v = params[k];
+            results.push(k + "=" + _this2._encode(v));
+          }
+        } catch (err) {
+          _didIteratorError2 = true;
+          _iteratorError2 = err;
+        } finally {
+          try {
+            if (!_iteratorNormalCompletion2 && _iterator2["return"]) {
+              _iterator2["return"]();
+            }
+          } finally {
+            if (_didIteratorError2) {
+              throw _iteratorError2;
+            }
+          }
+        }
+
+        return results.join('&');
+      })();
+
+      if (qs) qs = "?" + qs;
+
+      // This does work even though it contains \n once converted.
+      window.open(url + qs, 'targetWindow', "\n        toolbar=no,\n        location=no,\n        status=no,\n        menubar=no,\n        scrollbars=yes,\n        resizable=yes,\n        left=" + popup.left + ",\n        top=" + popup.top + ",\n        width=" + popup.width + ",\n        height=" + popup.height + "\n      ");
+    }
+
+    /**
+     * @method _merge
+     * @description Combines two (or more) objects, giving the last one precedence
+     * @author svlasov-gists
+     * [Original Gist]{@link https://gist.github.com/svlasov-gists/2383751}
+     *
+     * @param {Object}  target
+     * @param {Object}  source
+     * @return {Object} target
+     */
+  }, {
+    key: "_merge",
+    value: (function (_merge2) {
+      function _merge(_x, _x2) {
+        return _merge2.apply(this, arguments);
+      }
+
+      _merge.toString = function () {
+        return _merge2.toString();
+      };
+
+      return _merge;
+    })(function (target, source) {
+      if (typeof target !== 'object') target = {};
+
+      for (var property in source) {
+        if (source.hasOwnProperty(property)) {
+          var sourceProperty = source[property];
+
+          if (typeof sourceProperty === 'object' &&
+          // Avoid an infinite loop if a DOM element is hit.
+          !(sourceProperty instanceof Node)) {
+            target[property] = this._merge(target[property], sourceProperty);
+            continue;
+          }
+
+          target[property] = sourceProperty;
+        }
+      }
+
+      for (var a = 2, l = arguments.length; a < l; a++) {
+        _merge(target, arguments[a]);
+      }return target;
+    })
+
+    /**
+     * @method _objectToArray
+     * @description Takes an Object and converts it into an array of Objects. This is used when converting a list of DOMNodes into an array.
+     *
+     * @param {Object} obj
+     * @returns {Array} arr
+     */
+  }, {
+    key: "_objToArray",
+    value: function _objToArray(obj) {
+      var arr = [];
+
+      for (var k in obj) {
+        if (typeof obj[k] === 'object') arr.push(obj[k]);
+      }return arr;
+    }
+
+    /**
+     * @method _isMobile
+     * @description Returns true if current device is mobile (or PhantomJS for
+     * testing purposes), and false otherwise
+     * @author kriskbx
+     * [Original Gist] {@link https://github.com/kriskbx/whatsapp-sharing/blob/master/src/button.js}
+     * @private
+     */
+  }, {
+    key: "_isMobile",
+    value: function _isMobile() {
+      return navigator.userAgent.match(/Android|iPhone|PhantomJS/i) && !navigator.userAgent.match(/iPod|iPad/i);
+    }
+  }]);
+
+  return ShareUtils;
+})();
+
+exports["default"] = ShareUtils;
+module.exports = exports["default"];
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9tZWRpYS9yeWFuL3N0dWZmL3NoYXJlLWJ1dHRvbi9zcmMvc2hhcmUtdXRpbHMuanMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6Ijs7Ozs7Ozs7Ozs7OzJCQUF3QixnQkFBZ0I7Ozs7Ozs7Ozs7SUFPbEMsVUFBVTtXQUFWLFVBQVU7MEJBQVYsVUFBVTs7O2VBQVYsVUFBVTs7V0FDTCxtQkFBQyxHQUFHLEVBQUUsR0FBRyxFQUFFO0FBQ2xCLFVBQUksUUFBUSxHQUFHLEVBQUUsQ0FBQzs7QUFFbEIsVUFBSSxRQUFRLENBQUMsV0FBVyxJQUFJLFFBQVEsQ0FBQyxXQUFXLENBQUMsZ0JBQWdCLEVBQUU7QUFDakUsZ0JBQVEsR0FBRyxRQUFRLENBQUMsV0FBVyxDQUFDLGdCQUFnQixDQUFDLEdBQUcsRUFBRSxFQUFFLENBQUMsQ0FDdEQsZ0JBQWdCLENBQUMsR0FBRyxDQUFDLENBQUM7T0FDMUIsTUFBTSxJQUFJLEdBQUcsQ0FBQyxZQUFZLEVBQUU7QUFDM0IsV0FBRyxHQUFHLEdBQUcsQ0FBQyxPQUFPLENBQUMsU0FBUyxFQUFFLFVBQVUsUUFBUSxFQUFFLEVBQUUsRUFBRTtBQUNuRCxpQkFBTyxFQUFFLENBQUMsV0FBVyxFQUFFLENBQUM7U0FDekIsQ0FBQyxDQUFDO0FBQ0gsZ0JBQVEsR0FBRyxHQUFHLENBQUMsWUFBWSxDQUFDLEdBQUcsQ0FBQyxDQUFDO09BQ2xDOztBQUVELGFBQU8sUUFBUSxDQUFDO0tBQ2pCOzs7Ozs7Ozs7OztXQVNJLGVBQUMsRUFBRSxFQUFFO0FBQ1IsUUFBRSxDQUFDLEtBQUssQ0FBQyxPQUFPLEdBQUcsTUFBTSxDQUFDO0tBQzNCOzs7Ozs7Ozs7OztXQVNJLGVBQUMsRUFBRSxFQUFFO0FBQ1IsUUFBRSxDQUFDLEtBQUssQ0FBQyxPQUFPLEdBQUcsU0FBUyxDQUFDO0tBQzlCOzs7Ozs7Ozs7Ozs7O1dBV1EsbUJBQUMsRUFBRSxFQUFFLFNBQVMsRUFBRTtBQUN2QixhQUFPLEVBQUUsQ0FBQyxTQUFTLENBQUMsUUFBUSxDQUFDLFNB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QUFBLEFBRW5ELE9BQU8sR0FBRyxDQUFDO0tBQ1o7Ozs7Ozs7Ozs7OztXQVVRLHFCQUFHO0FBQ1YsYUFBTyxTQUFTLENBQUMsU0FBUyxDQUFDLEtBQUssQ0FBQywyQkFBMkIsQ0FBQyxJQUN0RCxDQUFDLFNBQVMsQ0FBQyxTQUFTLENBQUMsS0FBSyxDQUFDLFlBQVksQ0FBQyxDQUFDO0tBQ2pEOzs7U0FwUkcsVUFBVTs7O3FCQXVSRCxVQUFVIiwiZmlsZSI6Ii9tZWRpYS9yeWFuL3N0dWZmL3NoYXJlLWJ1dHRvbi9zcmMvc2hhcmUtdXRpbHMuanMiLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgU3RyaW5nVXRpbHMgZnJvbSAnLi9zdHJpbmctdXRpbHMnO1xuXG4vKipcbiAqIFNoYXJlVXRpbHNcbiAqIEBjbGFzc1xuICogQGNsYXNzZGVzYyBBIG5pY2Ugc2V0IG9mIHV0aWxpdGllcy5cbiAqL1xuY2xhc3MgU2hhcmVVdGlscyB7XG4gIF9nZXRTdHlsZShlbGUsIGNzcykge1xuICAgIHZhciBzdHJWYWx1ZSA9IFwiXCI7XG5cbiAgICBpZiAoZG9jdW1lbnQuZGVmYXVsdFZpZXcgJiYgZG9jdW1lbnQuZGVmYXVsdFZpZXcuZ2V0Q29tcHV0ZWRTdHlsZSkge1xuICAgICAgc3RyVmFsdWUgPSBkb2N1bWVudC5kZWZhdWx0Vmlldy5nZXRDb21wdXRlZFN0eWxlKGVsZSwgXCJcIilcbiAgICAgICAgLmdldFByb3BlcnR5VmFsdWUoY3NzKTtcbiAgICB9IGVsc2UgaWYgKGVsZS5jdXJyZW50U3R5bGUpIHtcbiAgICAgIGNzcyA9IGNzcy5yZXBsYWNlKC9cXC0oXFx3KS9nLCBmdW5jdGlvbiAoc3RyTWF0Y2gsIHAxKSB7XG4gICAgICAgIHJldHVybiBwMS50b1VwcGVyQ2FzZSgpO1xuICAgICAgfSk7XG4gICAgICBzdHJWYWx1ZSA9IGVsZS5jdXJyZW50U3R5bGVbY3NzXTtcbiAgICB9XG5cbiAgICByZXR1cm4gc3RyVmFsdWU7XG4gIH1cblxuICAvKipcbiAgICogQG1ldGhvZCBfaGlkZVxuICAgKiBAZGVzY3JpcHRpb24gQ2hhbmdlIGVsZW1lbnQncyBkaXNwbGF5IHRvICdub25lJ1xuICAgKiBAcHJpdmF0ZVxuICAgKlxuICAgKiBAcGFyYW0ge0RPTU5vZGV9IGVsXG4gICAqL1xuICBfaGlkZShlbCkge1xuICAgIGVsLnN0eWxlLmRpc3BsYXkgPSBcIm5vbmVcIjtcbiAgfVxuXG4gIC8qKlxuICAgKiBAbWV0aG9kIF9zaG93XG4gICAqIEBkZXNjcmlwdGlvbiBDaGFuZ2UgZWxlbWVudCdzIGRpc3BsYXkgdG8gJ2Jsb2NrJ1xuICAgKiBAcHJpdmF0ZVxuICAgKlxuICAgKiBAcGFyYW0ge0RPTU5vZGV9IGVsXG4gICAqL1xuICBfc2hvdyhlbCkge1xuICAgIGVsLnN0eWxlLmRpc3BsYXkgPSBcImluaXRpYWxcIjtcbiAgfVxuXG4gIC8qKlxuICAgKiBAbWV0aG9kIF9oYXNDbGFzc1xuICAgKiBAZGVzY3JpcHRpb24gV3JhcHBlciB0byBzZWUgaWYgYW4gZWxlbWVudCBjb250YWlucyBhIGNsYXNzLlxuICAgKiBAcHJpdmF0ZVxuICAgKlxuICAgKiBAcGFyYW0ge0RPTU5vZGV9IGVsXG4gICAqIEBwYXJhbSB7U3RyaW5nfSAgY2xhc3NOYW1lXG4gICAqIEByZXR1cm5zIHtCb29sZWFufVxuICAgKi9cbiAgX2hhc0NsYXNzKGVsLCBjbGFzc05hbWUpIHtcbiAgICByZXR1cm4gZWwuY2xhc3NMaXN0LmNvbnRhaW5zKGNsYXNzTmFtZSk7XG4gIH1cblxuICAvKipcbiAgICogQG1ldGhvZCBhZGRDbGFzc1xuICAgKiBAZGVzY3JpcHRpb24gV3JhcHBlciB0byBhZGQgY2xhc3MgdG8gZWxlbWVudC5cbiAgICogQHByaXZhdGVcbiAgICpcbiAgICogQHBhcmFtIHtET01Ob2RlfSBlbFxuICAgKiBAcGFyYW0ge1N0cmluZ30gIGNsYXNzTmFtZVxuICAgKi9cbiAgX2FkZENsYXNzKGVsLCBjbGFzc05hbWUpIHtcbiAgICBlbC5jbGFzc0xpc3QuYWRkKGNsYXNzTmFtZSk7XG4gIH1cblxuICAvKipcbiAgICogQG1ldGhvZCByZW1vdmVDbGFzc1xuICAgKiBAZGVzY3JpcHRpb24gV3JhcHBlciB0byByZW1vdmUgY2xhc3MgZnJvbSBlbGVtZW50LlxuICAgKiBAcHJpdmF0ZVxuICAgKlxuICAgKiBAcGFyYW0ge0RPTU5vZGV9IGVsXG4gICAqIEBwYXJhbSB7U3RyaW5nfSAgY2xhc3NOYW1lXG4gICAqL1xuICBfcmVtb3ZlQ2xhc3MoZWwsIGNsYXNzTmFtZSkge1xuICAgIGVsLmNsYXNzTGlzdC5yZW1vdmUoY2xhc3NOYW1lKTtcbiAgfVxuXG4gIC8qKlxuICAgKiBAbWV0aG9kIF9pc0VuY29kZWRcbiAgICogQGRlc2NyaXB0aW9uIFdyYXBwZXIgdG8gY2hlY2sgaWYgdGhlIHN0cmluZyBpcyBlbmNvZGVkLlxuICAgKiBAcHJpdmF0ZVxuICAgKlxuICAgKiBAcGFyYW0ge1N0cmluZ30gIHN0clxuICAgKiBAcGFyYW0ge0Jvb2xlYW59XG4gICAqL1xuICBfaXNFbmNvZGVkKHN0cikge1xuICAgIHN0ciA9IFN0cmluZ1V0aWxzLnRvUkZDMzk4NihzdHIpO1xuICAgIHJldHVybiBkZWNvZGVVUklDb21wb25lbnQoc3RyKSAhPT0gc3RyO1xuICB9XG5cbiAgLyoqXG4gICAqIEBtZXRob2QgX2VuY29kZVxuICAgKiBAZGVzY3JpcHRpb24gV3JhcHBlciB0byBfZW5jb2RlIGEgc3RyaW5nIGlmIHRoZSBzdHJpbmcgaXNuJ3QgYWxyZWFkeSBlbmNvZGVkLlxuICAgKiBAcHJpdmF0ZVxuICAgKlxuICAgKiBAcGFyYW0ge0RPTU5vZGV9IGVsXG4gICAqIEBwYXJhbSB7U3RyaW5nfSAgY2xhc3NOYW1lXG4gICAqL1xuICBfZW5jb2RlKHN0cikge1xuICAgIGlmICh0eXBlb2Ygc3RyID09PSAndW5kZWZpbmVkJyB8fCBzdHIgPT09IG51bGwgfHwgdGhpcy5faXNFbmNvZGVkKHN0cikpXG4gICAgICByZXR1cm4gZW5jb2RlVVJJQ29tcG9uZW50KHN0cik7XG4gICAgZWxzZVxuICAgICAgcmV0dXJuIFN0cmluZ1V0aWxzLnRvUkZDMzk4NihzdHIpO1xuICB9XG5cbiAgLyoqXG4gICAqIEBtZXRob2QgX2dldFVybFxuICAgKiBAZGVzY3JpcHRpb24gUmV0dXJucyB0aGUgY29ycmVjdCBzaGFyZSBVUkwgYmFzZWQgb2ZmIG9mIHRoZSBpbmNvbWluZ1xuICAgKiBVUkwgYW5kIHBhcmFtZXRlcnMgZ2l2ZW5cbiAgICogQHByaXZhdGVcbiAgICpcbiAgICogQHBhcmFtIHtTdHJpbmd9IHVybFxuICAgKiBAcGFyYW0ge2Jvb2xlYW59IGVuY29kZVxuICAgKiBAcGFyYW0ge09iamVjdH0gcGFyYW1zXG4gICAqL1xuICBfZ2V0VXJsKHVybCwgZW5jb2RlPWZhbHNlLCBwYXJhbXM9e30pIHtcbiAgICBsZXQgcXMgPSAoKCkgPT4ge1xuICAgICAgbGV0IHJlc3VsdHMgPSBbXTtcbiAgICAgIGZvciAobGV0IGsgb2YgT2JqZWN0LmtleXMocGFyYW1zKSkge1xuICAgICAgICBsZXQgdiA9IHBhcmFtc1trXTtcbiAgICAgICAgcmVzdWx0cy5wdXNoKGAke2t9PSR7dGhpcy5fZW5jb2RlKHYpfWApO1xuICAgICAgfVxuICAgICAgcmV0dXJuIHJlc3VsdHMuam9pbignJicpO1xuICAgIH0pKCk7XG5cbiAgICBpZiAocXMpIHFzID0gYD8ke3FzfWA7XG5cbiAgICByZXR1cm4gdXJsICsgcXM7XG4gIH1cblxuICAvKipcbiAgICogQG1ldGhvZCBfdXBkYXRlSHJlZlxuICAgKiBAZGVzY3JpcHRpb24gTWFrZXMgdGhlIGVsZW1lbnRzIGEgdGFnIGhhdmUgYSBocmVmIG9mIHRoZSBwb3B1cCBsaW5rIGFuZFxuICAgKiBhcyBwb3BzIHVwIHRoZSBzaGFyZSB3aW5kb3cgZm9yIHRoZSBlbGVtZW50XG4gICAqIEBwcml2YXRlXG4gICAqXG4gICAqIEBwYXJhbSB7RE9NTm9kZX0gZWxlbWVudFxuICAgKiBAcGFyYW0ge1N0cmluZ30gdXJsXG4gICAqIEBwYXJhbSB7T2JqZWN0fSBwYXJhbXNcbiAgICovXG4gIF91cGRhdGVIcmVmKGVsZW1lbnQsIHVybCwgcGFyYW1zKSB7XG4gICAgbGV0IGVuY29kZSA9IHVybC5pbmRleE9mKCdtYWlsdG86JykgPj0gMDtcbiAgICBsZXQgYSA9IGVsZW1lbnQuZ2V0RWxlbWVudHNCeVRhZ05hbWUoJ2EnKVswXTtcbiAgICBhLnNldEF0dHJpYnV0ZSgnaHJlZicsIHRoaXMuX2dldFVybCh1cmwsICFlbmNvZGUsIHBhcmFtcykpO1xuICAgIGlmKCFlbmNvZGUgJiYgKCF0aGlzLmNvbmZpZy5uZXR3b3Jrcy5mYWNlYm9vay5sb2FkU2RrIHx8IGVsZW1lbnQuZ2V0QXR0cmlidXRlKCdjbGFzcycpICE9PSAnZmFjZWJvb2snKSkge1xuICAgICAgbGV0IHBvcHVwID0ge1xuICAgICAgICB3aWR0aDogNTAwLFxuICAgICAgICBoZWlnaHQ6IDM1MFxuICAgICAgfTtcblxuICAgICAgcG9wdXAudG9wID0gKHNjcmVlbi5oZWlnaHQgLyAyKSAtIChwb3B1cC5oZWlnaHQgLyAyKTtcbiAgICAgIHBvcHVwLmxlZnQgPSAoc2NyZWVuLndpZHRoIC8gMikgIC0gKHBvcHVwLndpZHRoIC8gMik7XG5cbiAgICAgIHdpbmRvdy5vcGVuKFxuICAgICAgICBhLmhyZWYsXG4gICAgICAgICd0YXJnZXRXaW5kb3cnLCBgXG4gICAgICAgICAgdG9vbGJhcj1ubyxcbiAgICAgICAgICBsb2NhdGlvbj1ubyxcbiAgICAgICAgICBzdGF0dXM9bm8sXG4gICAgICAgICAgbWVudWJhcj1ubyxcbiAgICAgICAgICBzY3JvbGxiYXJzPXllcyxcbiAgICAgICAgICByZXNpemFibGU9eWVzLFxuICAgICAgICAgIGxlZnQ9JHtwb3B1cC5sZWZ0fSxcbiAgICAgICAgICB0b3A9JHtwb3B1cC50b3B9LFxuICAgICAgICAgIHdpZHRoPSR7cG9wdXAud2lkdGh9LFxuICAgICAgICAgIGhlaWdodD0ke3BvcHVwLmhlaWdodH1cbiAgICAgICAgYFxuICAgICAgKTtcbiAgICB9XG4gIH1cblxuICAvKipcbiAgICogQG1ldGhvZCBwb3B1cFxuICAgKiBAZGVzY3JpcHRpb24gQ3JlYXRlIGEgd2luZG93IGZvciBzcGVjaWZpZWQgbmV0d29ya1xuICAgKlxuICAgKiBAcGFyYW0ge1N0cmluZ30gIHVybFxuICAgKiBAcGFyYW0ge09iamVjdH0gIHBhcmFtc1xuICAgKi9cbiAgcG9wdXAodXJsLCBwYXJhbXM9e30pIHtcbiAgICBsZXQgcG9wdXAgPSB7XG4gICAgICB3aWR0aDogNTAwLFxuICAgICAgaGVpZ2h0OiAzNTBcbiAgICB9O1xuXG4gICAgcG9wdXAudG9wID0gKHNjcmVlbi5oZWlnaHQgLyAyKSAtIChwb3B1cC5oZWlnaHQgLyAyKTtcbiAgICBwb3B1cC5sZWZ0ID0gKHNjcmVlbi53aWR0aCAvIDIpICAtIChwb3B1cC53aWR0aCAvIDIpO1xuXG4gICAgbGV0IHFzID0gKCgpID0+IHtcbiAgICAgIGxldCByZXN1bHRzID0gW107XG4gICAgICBmb3IgKGxldCBrIG9mIE9iamVjdC5rZXlzKHBhcmFtcykpIHtcbiAgICAgICAgbGV0IHYgPSBwYXJhbXNba107XG4gICAgICAgIHJlc3VsdHMucHVzaChgJHtrfT0ke3RoaXMuX2VuY29kZSh2KX1gKTtcbiAgICAgIH1cbiAgICAgIHJldHVybiByZXN1bHRzLmpvaW4oJyYnKTtcbiAgICB9KSgpO1xuXG4gICAgaWYgKHFzKSBxcyA9IGA/JHtxc31gO1xuXG4gICAgLy8gVGhpcyBkb2VzIHdvcmsgZXZlbiB0aG91Z2ggaXQgY29udGFpbnMgXFxuIG9uY2UgY29udmVydGVkLlxuICAgIHdpbmRvdy5vcGVuKFxuICAgICAgdXJsK3FzLFxuICAgICAgJ3RhcmdldFdpbmRvdycsIGBcbiAgICAgICAgdG9vbGJhcj1ubyxcbiAgICAgICAgbG9jYXRpb249bm8sXG4gICAgICAgIHN0YXR1cz1ubyxcbiAgICAgICAgbWVudWJhcj1ubyxcbiAgICAgICAgc2Nyb2xsYmFycz15ZXMsXG4gICAgICAgIHJlc2l6YWJsZT15ZXMsXG4gICAgICAgIGxlZnQ9JHtwb3B1cC5sZWZ0fSxcbiAgICAgICAgdG9wPSR7cG9wdXAudG9wfSxcbiAgICAgICAgd2lkdGg9JHtwb3B1cC53aWR0aH0sXG4gICAgICAgIGhlaWdodD0ke3BvcHVwLmhlaWdodH1cbiAgICAgIGBcbiAgICApO1xuICB9XG5cbiAgLyoqXG4gICAqIEBtZXRob2QgX21lcmdlXG4gICAqIEBkZXNjcmlwdGlvbiBDb21iaW5lcyB0d28gKG9yIG1vcmUpIG9iamVjdHMsIGdpdmluZyB0aGUgbGFzdCBvbmUgcHJlY2VkZW5jZVxuICAgKiBAYXV0aG9yIHN2bGFzb3YtZ2lzdHNcbiAgICogW09yaWdpbmFsIEdpc3Rde0BsaW5rIGh0dHBzOi8vZ2lzdC5naXRodWIuY29tL3N2bGFzb3YtZ2lzdHMvMjM4Mzc1MX1cbiAgICpcbiAgICogQHBhcmFtIHtPYmplY3R9ICB0YXJnZXRcbiAgICogQHBhcmFtIHtPYmplY3R9ICBzb3VyY2VcbiAgICogQHJldHVybiB7T2JqZWN0fSB0YXJnZXRcbiAgICovXG4gIF9tZXJnZSh0YXJnZXQsIHNvdXJjZSkge1xuICAgIGlmICh0eXBlb2YgdGFyZ2V0ICE9PSAnb2JqZWN0JykgdGFyZ2V0ID0ge307XG5cbiAgICBmb3IgKGxldCBwcm9wZXJ0eSBpbiBzb3VyY2UpIHtcbiAgICAgIGlmIChzb3VyY2UuaGFzT3duUHJvcGVydHkocHJvcGVydHkpKSB7XG4gICAgICAgIGxldCBzb3VyY2VQcm9wZXJ0eSA9IHNvdXJjZVtwcm9wZXJ0eV07XG5cbiAgICAgICAgaWYgKHR5cGVvZiBzb3VyY2VQcm9wZXJ0eSA9PT0gJ29iamVjdCcgJiZcbiAgICAgICAgICAgIC8vIEF2b2lkIGFuIGluZmluaXRlIGxvb3AgaWYgYSBET00gZWxlbWVudCBpcyBoaXQuXG4gICAgICAgICAgICAhKHNvdXJjZVByb3BlcnR5IGluc3RhbmNlb2YgTm9kZSkpIHtcbiAgICAgICAgICB0YXJnZXRbcHJvcGVydHldID0gdGhpcy5fbWVyZ2UodGFyZ2V0W3Byb3BlcnR5XSwgc291cmNlUHJvcGVydHkpO1xuICAgICAgICAgIGNvbnRpbnVlO1xuICAgICAgICB9XG5cbiAgICAgICAgdGFyZ2V0W3Byb3BlcnR5XSA9IHNvdXJjZVByb3BlcnR5O1xuICAgICAgfVxuICAgIH1cblxuICAgIGZvciAobGV0IGEgPSAyLCBsID0gYXJndW1lbnRzLmxlbmd0aDsgYSA8IGw7IGErKylcbiAgICAgIF9tZXJnZSh0YXJnZXQsIGFyZ3VtZW50c1thXSk7XG5cbiAgICByZXR1cm4gdGFyZ2V0O1xuICB9XG5cbiAgLyoqXG4gICAqIEBtZXRob2QgX29iamVjdFRvQXJyYXlcbiAgICogQGRlc2NyaXB0aW9uIFRha2VzIGFuIE9iamVjdCBhbmQgY29udmVydHMgaXQgaW50byBhbiBhcnJheSBvZiBPYmplY3RzLiBUaGlzIGlzIHVzZWQgd2hlbiBjb252ZXJ0aW5nIGEgbGlzdCBvZiBET01Ob2RlcyBpbnRvIGFuIGFycmF5LlxuICAgKlxuICAgKiBAcGFyYW0ge09iamVjdH0gb2JqXG4gICAqIEByZXR1cm5zIHtBcnJheX0gYXJyXG4gICAqL1xuICBfb2JqVG9BcnJheShvYmopIHtcbiAgICBsZXQgYXJyID0gW107XG5cbiAgICBmb3IgKGxldCBrIGluIG9iailcbiAgICAgIGlmICh0eXBlb2Ygb2JqW2tdID09PSAnb2JqZWN0JykgYXJyLnB1c2gob2JqW2tdKTtcblxuICAgIHJldHVybiBhcnI7XG4gIH1cblxuICAvKipcbiAgICogQG1ldGhvZCBfaXNNb2JpbGVcbiAgICogQGRlc2NyaXB0aW9uIFJldHVybnMgdHJ1ZSBpZiBjdXJyZW50IGRldmljZSBpcyBtb2JpbGUgKG9yIFBoYW50b21KUyBmb3JcbiAgICogdGVzdGluZyBwdXJwb3NlcyksIGFuZCBmYWxzZSBvdGhlcndpc2VcbiAgICogQGF1dGhvciBrcmlza2J4XG4gICAqIFtPcmlnaW5hbCBHaXN0XSB7QGxpbmsgaHR0cHM6Ly9naXRodWIuY29tL2tyaXNrYngvd2hhdHNhcHAtc2hhcmluZy9ibG9iL21hc3Rlci9zcmMvYnV0dG9uLmpzfVxuICAgKiBAcHJpdmF0ZVxuICAgKi9cbiAgX2lzTW9iaWxlKCkge1xuICAgIHJldHVybiBuYXZpZ2F0b3IudXNlckFnZW50Lm1hdGNoKC9BbmRyb2lkfGlQaG9uZXxQaGFudG9tSlMvaSkgJiZcbiAgICAgICAgICAgIW5hdmlnYXRvci51c2VyQWdlbnQubWF0Y2goL2lQb2R8aVBhZC9pKTtcbiAgfVxufVxuXG5leHBvcnQgZGVmYXVsdCBTaGFyZVV0aWxzO1xuIl19
+},{"./string-utils":43}],43:[function(_dereq_,module,exports){
+/**
+ * StringUtils
+ * @class
+ * @classdesc String utilities.
+ */
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var StringUtils = (function () {
+  function StringUtils() {
+    _classCallCheck(this, StringUtils);
+  }
+
+  _createClass(StringUtils, null, [{
+    key: "toRFC3986",
+
+    /**
+     * @method toRFC3986
+     * @description Encodes the string in RFC3986
+     *
+     * @param {String}
+     * @return {String}
+     */
+    value: function toRFC3986(s) {
+      var tmp = encodeURIComponent(s);
+      tmp.replace(/[!'()*]/g, function (c) {
+        return "%" + c.charCodeAt(0).toString(16);
+      });
+    }
+
+    /**
+     * @method capFLetter
+     * @description Returns a capitalized version of the string
+     *
+     * @param {String}
+     * @return {String}
+     */
+  }, {
+    key: "capFLetter",
+    value: function capFLetter(s) {
+      return s.charAt(0).toUpperCase() + s.slice(1);
+    }
+  }]);
+
+  return StringUtils;
+})();
+
+exports["default"] = StringUtils;
+module.exports = exports["default"];
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9tZWRpYS9yeWFuL3N0dWZmL3NoYXJlLWJ1dHRvbi9zcmMvc3RyaW5nLXV0aWxzLmpzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7Ozs7Ozs7Ozs7Ozs7OztJQUtNLFdBQVc7V0FBWCxXQUFXOzBCQUFYLFdBQVc7OztlQUFYLFdBQVc7Ozs7Ozs7Ozs7V0FRQyxtQkFBQyxDQUFDLEVBQUU7QUFDbEIsVUFBSSxHQUFHLEdBQUcsa0JBQWtCLENBQUMsQ0FBQyxDQUFDLENBQUM7QUFDaEMsU0FBRyxDQUFDLE9BQU8sQ0FBQyxVQUFVLEVBQUUsVUFBUyxDQUFDLEVBQUU7QUFDbEMscUJBQVcsQ0FBQyxDQUFDLFVBQVUsQ0FBQyxDQUFDLENBQUMsQ0FBQyxRQUFRLENBQUMsRUFBRSxDQUFDLENBQUc7T0FDM0MsQ0FBQyxDQUFDO0tBQ0o7Ozs7Ozs7Ozs7O1dBU2dCLG9CQUFDLENBQUMsRUFBRTtBQUNuQixhQUFPLENBQUMsQ0FBQyxNQUFNLENBQUMsQ0FBQyxDQUFDLENBQUMsV0FBVyxFQUFFLEdBQUcsQ0FBQyxDQUFDLEtBQUssQ0FBQyxDQUFDLENBQUMsQ0FBQztLQUMvQzs7O1NBeEJHLFdBQVc7OztxQkEyQkYsV0FBVyIsImZpbGUiOiIvbWVkaWEvcnlhbi9zdHVmZi9zaGFyZS1idXR0b24vc3JjL3N0cmluZy11dGlscy5qcyIsInNvdXJjZXNDb250ZW50IjpbIi8qKlxuICogU3RyaW5nVXRpbHNcbiAqIEBjbGFzc1xuICogQGNsYXNzZGVzYyBTdHJpbmcgdXRpbGl0aWVzLlxuICovXG5jbGFzcyBTdHJpbmdVdGlscyB7XG4gIC8qKlxuICAgKiBAbWV0aG9kIHRvUkZDMzk4NlxuICAgKiBAZGVzY3JpcHRpb24gRW5jb2RlcyB0aGUgc3RyaW5nIGluIFJGQzM5ODZcbiAgICpcbiAgICogQHBhcmFtIHtTdHJpbmd9XG4gICAqIEByZXR1cm4ge1N0cmluZ31cbiAgICovXG4gIHN0YXRpYyB0b1JGQzM5ODYocykge1xuICAgIGxldCB0bXAgPSBlbmNvZGVVUklDb21wb25lbnQocyk7XG4gICAgdG1wLnJlcGxhY2UoL1shJygpKl0vZywgZnVuY3Rpb24oYykge1xuICAgICAgcmV0dXJuIGAlJHtjLmNoYXJDb2RlQXQoMCkudG9TdHJpbmcoMTYpfWA7XG4gICAgfSk7XG4gIH1cblxuICAvKipcbiAgICogQG1ldGhvZCBjYXBGTGV0dGVyXG4gICAqIEBkZXNjcmlwdGlvbiBSZXR1cm5zIGEgY2FwaXRhbGl6ZWQgdmVyc2lvbiBvZiB0aGUgc3RyaW5nXG4gICAqXG4gICAqIEBwYXJhbSB7U3RyaW5nfVxuICAgKiBAcmV0dXJuIHtTdHJpbmd9XG4gICAqL1xuICBzdGF0aWMgY2FwRkxldHRlcihzKSB7XG4gICAgcmV0dXJuIHMuY2hhckF0KDApLnRvVXBwZXJDYXNlKCkgKyBzLnNsaWNlKDEpO1xuICB9XG59XG5cbmV4cG9ydCBkZWZhdWx0IFN0cmluZ1V0aWxzO1xuIl19
+},{}]},{},[41])
+(41)
+});
+(function() {
+  window.whenDefined = function($context, $variable, $callback) {
+    if ($context[$variable]) {
+      $callback();
+    } else {
+      Object.defineProperty($context, $variable, {
+        configurable: true,
+        enumerable: true,
+        writeable: true,
+        get: function() {
+          return this['_' + $variable];
+        },
+        set: function(val) {
+          this['_' + $variable] = val;
+          $callback();
+        }
+      });
+    }
+  };
+
+}).call(this);
+
 (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
 (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
 m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
@@ -19255,7 +31530,7 @@ window.aspenAssets$v1 = window.aspenAssets$v1 || {};
     st.appendChild(document.createTextNode(data));
     document.head.appendChild(st);
   }
-  )(window.atob('c2hhcmUtYnV0dG9ue3Bvc2l0aW9uOnJlbGF0aXZlO2ZvbnQtc2l6ZToxNnB4O2NvbG9yOiMzMzM7YmFja2dyb3VuZDojYTI5YmFhO3BhZGRpbmc6NXB4IDEwcHggNXB4IDEuNzVlbTtib3JkZXItcmFkaXVzOjVweDtmb250LWZhbWlseTpMYXRvLHNhbnMtc2VyaWY7Zm9udC13ZWlnaHQ6ODAwOy13ZWJraXQtZm9udC1zbW9vdGhpbmc6YW50aWFsaWFzZWQ7Y3Vyc29yOnBvaW50ZXI7d2hpdGUtc3BhY2U6bm93cmFwO3RyYW5zaXRpb246YWxsIC4zcyBlYXNlO3RleHQtdHJhbnNmb3JtOnVwcGVyY2FzZX1zaGFyZS1idXR0b246aG92ZXJ7Y29sb3I6cmdiYSg1MSw1MSw1MSwwLjgpO2JhY2tncm91bmQ6cmdiYSgxNjIsMTU1LDE3MCwwLjgpfXNoYXJlLWJ1dHRvbjpiZWZvcmV7cG9zaXRpb246YWJzb2x1dGU7bGluZS1oZWlnaHQ6MWVtO2xlZnQ6MC42ZW07d2lkdGg6MWVtO2hlaWdodDoxZW07Y29udGVudDonICc7YmFja2dyb3VuZDp1cmwoZGF0YTppbWFnZS9zdmcreG1sO2NoYXJzZXQ9dXRmLTgsJTNDc3ZnJTIweG1sbnMlM0QlMjJodHRwJTNBJTJGJTJGd3d3LnczLm9yZyUyRjIwMDAlMkZzdmclMjIlMjB2aWV3Qm94JTNEJTIyMCUyMDAlMjAyMCUyMDIwJTIyJTIwc3R5bGUlM0QlMjJmaWxsJTNBJTIzMDAwJTNCJTIyJTIwaGVpZ2h0JTNEJTIyMTAwJTI1JTIyJTIwd2lkdGglM0QlMjIxMDAlMjUlMjIlM0UlMEElMjAlMjAlMjAlMjAlM0NwYXRoJTIwZCUzRCUyMk0xNSUyMDE1SDJWNmgyLjU5NXMuNjktLjg5NiUyMDIuMTctMkgxYy0uNTUzJTIwMC0xJTIwLjQ1LTElMjAxdjExYzAlMjAuNTUzLjQ0NyUyMDElMjAxJTIwMWgxNWMuNTUzJTIwMCUyMDEtLjQ0NyUyMDEtMXYtMy43NDZMMTUlMjAxMy45VjE1em0tMS42NC02Ljk1djMuNTVMMjAlMjA2LjRsLTYuNjQtNXYzLjEzMkM1LjMlMjA0LjUzMiUyMDUuMyUyMDEyLjUlMjA1LjMlMjAxMi41YzIuMjgyLTMuNzQ4JTIwMy42ODYtNC40NSUyMDguMDYtNC40NXolMjIlMkYlM0UlMEElM0MlMkZzdmclM0UpIG5vLXJlcGVhdH1zaGFyZS1idXR0b24gLnNiLXNvY2lhbHtwb3NpdGlvbjphYnNvbHV0ZTtvcGFjaXR5OjA7dmlzaWJpbGl0eTpoaWRkZW47dHJhbnNpdGlvbjphbGwgMC40cyBlYXNlfXNoYXJlLWJ1dHRvbiAuc2Itc29jaWFsLnNiLWNlbnRlcntsZWZ0OjUwJX1zaGFyZS1idXR0b24gLnNiLXNvY2lhbC5zYi1jZW50ZXIuc2ItdG9we3RvcDowOy13ZWJraXQtdHJhbnNmb3JtOnRyYW5zbGF0ZSgtNTAlLC0xMDAlKTt0cmFuc2Zvcm06dHJhbnNsYXRlKC01MCUsLTEwMCUpfXNoYXJlLWJ1dHRvbiAuc2Itc29jaWFsLnNiLWNlbnRlci5zYi1ib3R0b217Ym90dG9tOjA7LXdlYmtpdC10cmFuc2Zvcm06dHJhbnNsYXRlKC01MCUsMTAwJSk7dHJhbnNmb3JtOnRyYW5zbGF0ZSgtNTAlLDEwMCUpfXNoYXJlLWJ1dHRvbiAuc2Itc29jaWFsLnNiLWNlbnRlci5hY3RpdmUuc2ItdG9we3RvcDotMWVtfXNoYXJlLWJ1dHRvbiAuc2Itc29jaWFsLnNiLWNlbnRlci5hY3RpdmUuc2ItYm90dG9te2JvdHRvbTotMWVtfXNoYXJlLWJ1dHRvbiAuc2Itc29jaWFsLnNiLWxlZnR7bGVmdDo1MCV9c2hhcmUtYnV0dG9uIC5zYi1zb2NpYWwuc2ItbGVmdC5zYi10b3B7dG9wOjA7LXdlYmtpdC10cmFuc2Zvcm06dHJhbnNsYXRlKGNhbGMoLTEwMCUgKyAzMHB4KSwtMTAwJSk7dHJhbnNmb3JtOnRyYW5zbGF0ZShjYWxjKC0xMDAlICsgMzBweCksLTEwMCUpfXNoYXJlLWJ1dHRvbiAuc2Itc29jaWFsLnNiLWxlZnQuc2ItbWlkZGxle3RvcDo1MCU7bGVmdDowOy13ZWJraXQtdHJhbnNmb3JtOnRyYW5zbGF0ZSgtMTAwJSwtNTAlKTt0cmFuc2Zvcm06dHJhbnNsYXRlKC0xMDAlLC01MCUpfXNoYXJlLWJ1dHRvbiAuc2Itc29jaWFsLnNiLWxlZnQuc2ItYm90dG9te2JvdHRvbTowOy13ZWJraXQtdHJhbnNmb3JtOnRyYW5zbGF0ZShjYWxjKC0xMDAlICsgMzBweCksMTAwJSk7dHJhbnNmb3JtOnRyYW5zbGF0ZShjYWxjKC0xMDAlICsgMzBweCksMTAwJSl9c2hhcmUtYnV0dG9uIC5zYi1zb2NpYWwuc2ItbGVmdC5hY3RpdmUuc2ItdG9we3RvcDotMWVtfXNoYXJlLWJ1dHRvbiAuc2Itc29jaWFsLnNiLWxlZnQuYWN0aXZlLnNiLW1pZGRsZXtsZWZ0Oi0xZW19c2hhcmUtYnV0dG9uIC5zYi1zb2NpYWwuc2ItbGVmdC5hY3RpdmUuc2ItYm90dG9te2JvdHRvbTotMWVtfXNoYXJlLWJ1dHRvbiAuc2Itc29jaWFsLnNiLXJpZ2h0e2xlZnQ6NTAlfXNoYXJlLWJ1dHRvbiAuc2Itc29jaWFsLnNiLXJpZ2h0LnNiLXRvcHt0b3A6MDstd2Via2l0LXRyYW5zZm9ybTp0cmFuc2xhdGUoLTMwcHgsLTEwMCUpO3RyYW5zZm9ybTp0cmFuc2xhdGUoLTMwcHgsLTEwMCUpfXNoYXJlLWJ1dHRvbiAuc2Itc29jaWFsLnNiLXJpZ2h0LnNiLW1pZGRsZXt0b3A6NTAlO2xlZnQ6MTAwJTstd2Via2l0LXRyYW5zZm9ybTp0cmFuc2xhdGUoMCwtNTAlKTt0cmFuc2Zvcm06dHJhbnNsYXRlKDAsLTUwJSl9c2hhcmUtYnV0dG9uIC5zYi1zb2NpYWwuc2ItcmlnaHQuc2ItYm90dG9te2JvdHRvbTowOy13ZWJraXQtdHJhbnNmb3JtOnRyYW5zbGF0ZSgtMzBweCwxMDAlKTt0cmFuc2Zvcm06dHJhbnNsYXRlKC0zMHB4LDEwMCUpfXNoYXJlLWJ1dHRvbiAuc2Itc29jaWFsLnNiLXJpZ2h0LmFjdGl2ZS5zYi10b3B7dG9wOi0xZW19c2hhcmUtYnV0dG9uIC5zYi1zb2NpYWwuc2ItcmlnaHQuYWN0aXZlLnNiLW1pZGRsZXtsZWZ0OmNhbGMoMTAwJSArIDFlbSl9c2hhcmUtYnV0dG9uIC5zYi1zb2NpYWwuc2ItcmlnaHQuYWN0aXZlLnNiLWJvdHRvbXtib3R0b206LTFlbX1zaGFyZS1idXR0b24gLnNiLXNvY2lhbC5hY3RpdmV7b3BhY2l0eToxOy13ZWJraXQtYmFja2ZhY2UtdmlzaWJpbGl0eTpoaWRkZW47dHJhbnNpdGlvbjphbGwgMC40cyBlYXNlO3Zpc2liaWxpdHk6dmlzaWJsZX1zaGFyZS1idXR0b24gLnNiLXNvY2lhbC5sb2Fke3RyYW5zaXRpb246bm9uZSFpbXBvcnRhbnR9QG1lZGlhIHNjcmVlbiBhbmQgKG1heC13aWR0aDo0MDBweCl7c2hhcmUtYnV0dG9uIC5zYi1zb2NpYWwubmV0d29ya3MtNi5zYi1jZW50ZXJ7d2hpdGUtc3BhY2U6aW5pdGlhbDt0ZXh0LWFsaWduOmNlbnRlcjt3aWR0aDozMDBweH19QG1lZGlhIHNjcmVlbiBhbmQgKG1heC13aWR0aDo0NjBweCl7c2hhcmUtYnV0dG9uIC5zYi1zb2NpYWwubmV0d29ya3MtNy5zYi1jZW50ZXJ7d2hpdGUtc3BhY2U6aW5pdGlhbDt0ZXh0LWFsaWduOmNlbnRlcjt3aWR0aDozNjBweH19QG1lZGlhIHNjcmVlbiBhbmQgKG1heC13aWR0aDo0MDBweCl7c2hhcmUtYnV0dG9uIC5zYi1zb2NpYWwubmV0d29ya3MtNy5zYi1jZW50ZXJ7d2hpdGUtc3BhY2U6aW5pdGlhbDt0ZXh0LWFsaWduOmNlbnRlcjt3aWR0aDozMDBweH19QG1lZGlhIHNjcmVlbiBhbmQgKG1heC13aWR0aDo1MjBweCl7c2hhcmUtYnV0dG9uIC5zYi1zb2NpYWwubmV0d29ya3MtOC5zYi1jZW50ZXJ7d2hpdGUtc3BhY2U6aW5pdGlhbDt0ZXh0LWFsaWduOmNlbnRlcjt3aWR0aDo0MjBweH19QG1lZGlhIHNjcmVlbiBhbmQgKG1heC13aWR0aDo0NjBweCl7c2hhcmUtYnV0dG9uIC5zYi1zb2NpYWwubmV0d29ya3MtOC5zYi1jZW50ZXJ7d2hpdGUtc3BhY2U6aW5pdGlhbDt0ZXh0LWFsaWduOmNlbnRlcjt3aWR0aDozNjBweH19QG1lZGlhIHNjcmVlbiBhbmQgKG1heC13aWR0aDo0MDBweCl7c2hhcmUtYnV0dG9uIC5zYi1zb2NpYWwubmV0d29ya3MtOC5zYi1jZW50ZXJ7d2hpdGUtc3BhY2U6aW5pdGlhbDt0ZXh0LWFsaWduOmNlbnRlcjt3aWR0aDozMDBweH19c2hhcmUtYnV0dG9uIC5zYi1zb2NpYWwgdWx7bWFyZ2luOjA7cGFkZGluZzowO2xpc3Qtc3R5bGU6bm9uZTtsaW5lLWhlaWdodDowfXNoYXJlLWJ1dHRvbiAuc2Itc29jaWFsIHVsIGxpe3Bvc2l0aW9uOnJlbGF0aXZlO2hlaWdodDoyMnB4O3dpZHRoOjYwcHg7cGFkZGluZzoxMnB4IDA7bWFyZ2luOjA7dGV4dC1hbGlnbjpjZW50ZXI7Zm9udC1zaXplOjIwcHg7Y3Vyc29yOnBvaW50ZXI7ei1pbmRleDoyO2JveC1zaXppbmc6Y29udGVudC1ib3g7dHJhbnNpdGlvbjphbGwgLjNzIGVhc2V9c2hhcmUtYnV0dG9uIC5zYi1zb2NpYWwgdWwgbGkuZW5hYmxlZHtkaXNwbGF5OmlubGluZS1ibG9ja31zaGFyZS1idXR0b24gLnNiLXNvY2lhbCB1bCBsaS5kaXNhYmxlZHtkaXNwbGF5Om5vbmV9c2hhcmUtYnV0dG9uIC5zYi1zb2NpYWwgdWwgbGk6aG92ZXI6YmVmb3Jle29wYWNpdHk6MH1zaGFyZS1idXR0b24gLnNiLXNvY2lhbCB1bCBsaTpob3ZlcjphZnRlcntvcGFjaXR5OjAuNX1zaGFyZS1idXR0b24gLnNiLXNvY2lhbCB1bCBsaTpiZWZvcmUsc2hhcmUtYnV0dG9uIC5zYi1zb2NpYWwgdWwgbGk6YWZ0ZXJ7Y29udGVudDonICc7cG9zaXRpb246YWJzb2x1dGU7d2lkdGg6aW5oZXJpdDtoZWlnaHQ6aW5oZXJpdDstd2Via2l0LXRyYW5zZm9ybTp0cmFuc2xhdGUoLTIwJSwwKTt0cmFuc2Zvcm06dHJhbnNsYXRlKC0yMCUsMCk7dHJhbnNpdGlvbjphbGwgLjNzIGVhc2U7YmFja2dyb3VuZC1yZXBlYXQ6bm8tcmVwZWF0IWltcG9ydGFudH1zaGFyZS1idXR0b24gLnNiLXNvY2lhbCB1bCBsaTpiZWZvcmV7b3BhY2l0eToxfXNoYXJlLWJ1dHRvbiAuc2Itc29jaWFsIHVsIGxpOmFmdGVye29wYWNpdHk6MH1zaGFyZS1idXR0b24gLnNiLXNvY2lhbCB1bCBsaSBhe3Bvc2l0aW9uOmFic29sdXRlO3RvcDowO2xlZnQ6MDt3aWR0aDoxMDAlO2hlaWdodDoxMDAlO3otaW5kZXg6M31zaGFyZS1idXR0b24gLnNiLXNvY2lhbCBsaVtjbGFzcyo9J2VtYWlsJ117YmFja2dyb3VuZDojNDJjNWIwfXNoYXJlLWJ1dHRvbiAuc2Itc29jaWFsIGxpW2NsYXNzKj0nZW1haWwnXTpiZWZvcmV7YmFja2dyb3VuZC1pbWFnZTp1cmwoZGF0YTppbWFnZS9zdmcreG1sO2NoYXJzZXQ9dXRmLTgsJTNDc3ZnJTIweG1sbnMlM0QlMjJodHRwJTNBJTJGJTJGd3d3LnczLm9yZyUyRjIwMDAlMkZzdmclMjIlMjB2aWV3Qm94JTNEJTIyMCUyMDAlMjAyMCUyMDIwJTIyJTIwc3R5bGUlM0QlMjJmaWxsJTNBJTIzZmZmJTNCJTIyJTIwaGVpZ2h0JTNEJTIyMTAwJTI1JTIyJTIwd2lkdGglM0QlMjIxMDAlMjUlMjIlM0UlMEElMjAlMjAlMjAlMjAlM0NwYXRoJTIwZCUzRCUyMk0xOC42NCUyMDIuNjM0Yy0uMzQ0LjEyLTE3LjMyJTIwNi4xMDQtMTcuNjU2JTIwNi4yMjItLjI4NC4xLS4zNDcuMzQ1LS4wMS40OGwzLjc5NiUyMDEuNTIlMjAyLjI1LjlMMTguMDA0JTIwMy42OWMuMTQ4LS4xMDYuMzE4LjA5Ny4yMS4yMTMtLjEwNi4xMTctNy44NyUyMDguNTEzLTcuODclMjA4LjUxM3YuMDAybC0uNDUyLjUwMy42LjMyMyUyMDQuOTglMjAyLjY4MmMuMjkyLjE1Ni42Ny4wMjcuNzUzLS4zMzQuMS0uNDI1JTIwMi44NDUtMTIuMjYlMjAyLjkwNi0xMi41MjQuMDgtLjM0My0uMTQ2LS41NTItLjQ5LS40M3pNNyUyMDE3LjE2MmMwJTIwLjI0Ni4xNC4zMTUuMzMuMTQuMjUyLS4yMjglMjAyLjg1LTIuNTYlMjAyLjg1LTIuNTZMNyUyMDEzLjA5OHY0LjA2NHolMjIlMkYlM0UlMEElM0MlMkZzdmclM0UpfXNoYXJlLWJ1dHRvbiAuc2Itc29jaWFsIGxpW2NsYXNzKj0nZW1haWwnXTphZnRlcntiYWNrZ3JvdW5kLWltYWdlOnVybChkYXRhOmltYWdlL3N2Zyt4bWw7Y2hhcnNldD11dGYtOCwlM0NzdmclMjB4bWxucyUzRCUyMmh0dHAlM0ElMkYlMkZ3d3cudzMub3JnJTJGMjAwMCUyRnN2ZyUyMiUyMHZpZXdCb3glM0QlMjIwJTIwMCUyMDIwJTIwMjAlMjIlMjBzdHlsZSUzRCUyMmZpbGwlM0ElMjMwMDAlM0IlMjIlMjBoZWlnaHQlM0QlMjIxMDAlMjUlMjIlMjB3aWR0aCUzRCUyMjEwMCUyNSUyMiUzRSUwQSUyMCUyMCUyMCUyMCUzQ3BhdGglMjBkJTNEJTIyTTE4LjY0JTIwMi42MzRjLS4zNDQuMTItMTcuMzIlMjA2LjEwNC0xNy42NTYlMjA2LjIyMi0uMjg0LjEtLjM0Ny4zNDUtLjAxLjQ4bDMuNzk2JTIwMS41MiUyMDIuMjUuOUwxOC4wMDQlMjAzLjY5Yy4xNDgtLjEwNi4zMTguMDk3LjIxLjIxMy0uMTA2LjExNy03Ljg3JTIwOC41MTMtNy44NyUyMDguNTEzdi4wMDJsLS40NTIuNTAzLjYuMzIzJTIwNC45OCUyMDIuNjgyYy4yOTIuMTU2LjY3LjAyNy43NTMtLjMzNC4xLS40MjUlMjAyLjg0NS0xMi4yNiUyMDIuOTA2LTEyLjUyNC4wOC0uMzQzLS4xNDYtLjU1Mi0uNDktLjQzek03JTIwMTcuMTYyYzAlMjAuMjQ2LjE0LjMxNS4zMy4xNC4yNTItLjIyOCUyMDIuODUtMi41NiUyMDIuODUtMi41Nkw3JTIwMTMuMDk4djQuMDY0eiUyMiUyRiUzRSUwQSUzQyUyRnN2ZyUzRSl9c2hhcmUtYnV0dG9uIC5zYi1zb2NpYWwgbGlbY2xhc3MqPSdmYWNlYm9vaydde2JhY2tncm91bmQ6IzNiNTk5OH1zaGFyZS1idXR0b24gLnNiLXNvY2lhbCBsaVtjbGFzcyo9J2ZhY2Vib29rJ106YmVmb3Jle2JhY2tncm91bmQtaW1hZ2U6dXJsKGRhdGE6aW1hZ2Uvc3ZnK3htbDtjaGFyc2V0PXV0Zi04LCUzQ3N2ZyUyMHhtbG5zJTNEJTIyaHR0cCUzQSUyRiUyRnd3dy53My5vcmclMkYyMDAwJTJGc3ZnJTIyJTIwdmlld0JveCUzRCUyMjAlMjAwJTIwNTEyJTIwNTEyJTIyJTIwc3R5bGUlM0QlMjJmaWxsJTNBJTIzZmZmJTNCJTIyJTIwaGVpZ2h0JTNEJTIyMTAwJTI1JTIyJTIwd2lkdGglM0QlMjIxMDAlMjUlMjIlM0UlMEElMjAlMjAlMjAlMjAlM0NwYXRoJTIwZCUzRCUyMk0yODglMjAxOTJ2LTM4LjFjMC0xNy4yJTIwMy44LTI1LjklMjAzMC41LTI1LjlIMzUyVjY0aC01NS45Yy02OC41JTIwMC05MS4xJTIwMzEuNC05MS4xJTIwODUuM1YxOTJoLTQ1djY0aDQ1djE5Mmg4M1YyNTZoNTYuNGw3LjYtNjRoLTY0eiUyMiUyRiUzRSUwQSUzQyUyRnN2ZyUzRSl9c2hhcmUtYnV0dG9uIC5zYi1zb2NpYWwgbGlbY2xhc3MqPSdmYWNlYm9vayddOmFmdGVye2JhY2tncm91bmQtaW1hZ2U6dXJsKGRhdGE6aW1hZ2Uvc3ZnK3htbDtjaGFyc2V0PXV0Zi04LCUzQ3N2ZyUyMHhtbG5zJTNEJTIyaHR0cCUzQSUyRiUyRnd3dy53My5vcmclMkYyMDAwJTJGc3ZnJTIyJTIwdmlld0JveCUzRCUyMjAlMjAwJTIwNTEyJTIwNTEyJTIyJTIwc3R5bGUlM0QlMjJmaWxsJTNBJTIzMDAwJTNCJTIyJTIwaGVpZ2h0JTNEJTIyMTAwJTI1JTIyJTIwd2lkdGglM0QlMjIxMDAlMjUlMjIlM0UlMEElMjAlMjAlMjAlMjAlM0NwYXRoJTIwZCUzRCUyMk0yODglMjAxOTJ2LTM4LjFjMC0xNy4yJTIwMy44LTI1LjklMjAzMC41LTI1LjlIMzUyVjY0aC01NS45Yy02OC41JTIwMC05MS4xJTIwMzEuNC05MS4xJTIwODUuM1YxOTJoLTQ1djY0aDQ1djE5Mmg4M1YyNTZoNTYuNGw3LjYtNjRoLTY0eiUyMiUyRiUzRSUwQSUzQyUyRnN2ZyUzRSl9c2hhcmUtYnV0dG9uIC5zYi1zb2NpYWwgbGlbY2xhc3MqPSdnb29nbGVQbHVzJ117YmFja2dyb3VuZDojZTM0NDI5fXNoYXJlLWJ1dHRvbiAuc2Itc29jaWFsIGxpW2NsYXNzKj0nZ29vZ2xlUGx1cyddOmJlZm9yZXtiYWNrZ3JvdW5kLWltYWdlOnVybChkYXRhOmltYWdlL3N2Zyt4bWw7Y2hhcnNldD11dGYtOCwlM0NzdmclMjB4bWxucyUzRCUyMmh0dHAlM0ElMkYlMkZ3d3cudzMub3JnJTJGMjAwMCUyRnN2ZyUyMiUyMHZpZXdCb3glM0QlMjIwJTIwMCUyMDIwJTIwMjAlMjIlMjBzdHlsZSUzRCUyMmZpbGwlM0ElMjNmZmYlM0IlMjIlMjBoZWlnaHQlM0QlMjIxMDAlMjUlMjIlMjB3aWR0aCUzRCUyMjEwMCUyNSUyMiUzRSUwQSUyMCUyMCUyMCUyMCUzQ3BhdGglMjBkJTNEJTIyTTEuOTklMjA1LjU5YzAlMjAxLjQ5My40OTglMjAyLjU3JTIwMS40OCUyMDMuMjA0LjgwNy41MiUyMDEuNzQuNTk4JTIwMi4yMjcuNTk4LjExOCUyMDAlMjAuMjEzLS4wMDYuMjgtLjAxJTIwMCUyMDAtLjE1NSUyMDEuMDA0LjU5JTIwMS45OTZINi41M2MtMS4yOSUyMDAtNS40OTMuMjctNS40OTMlMjAzLjcyNyUyMDAlMjAzLjUxNiUyMDMuODYlMjAzLjY5NSUyMDQuNjM1JTIwMy42OTUuMDYlMjAwJTIwLjA5Ny0uMDAyLjA5Ny0uMDAyLjAwNyUyMDAlMjAuMDYyLjAwMi4xNTcuMDAyLjQ5NyUyMDAlMjAxLjc4Mi0uMDYyJTIwMi45NzUtLjY0MyUyMDEuNTQ4LS43NSUyMDIuMzMzLTIuMDYlMjAyLjMzMy0zLjg4NSUyMDAtMS43NjQtMS4xOTYtMi44MTQtMi4wNy0zLjU4Mi0uNTMyLS40Ny0uOTkzLS44NzMtLjk5My0xLjI2NiUyMDAtLjQuMzM3LS43Ljc2Mi0xLjA4Mi42OS0uNjE1JTIwMS4zNC0xLjQ5MiUyMDEuMzQtMy4xNSUyMDAtMS40NTctLjE5LTIuNDM2LTEuMzU1LTMuMDU3LjEyLS4wNjIuNTUtLjEwNy43NjItLjEzNy42My0uMDg2JTIwMS41NTQtLjE4NCUyMDEuNTU0LS43VjEuMmgtNC42Yy0uMDQ2LjAwMi00LjY1LjE3Mi00LjY1JTIwNC4zOXptNy40MjIlMjA5LjAxYy4wODglMjAxLjQwNi0xLjExNSUyMDIuNDQzLTIuOTIyJTIwMi41NzQtMS44MzQuMTM1LTMuMzQ0LS42OS0zLjQzMi0yLjA5Ni0uMDQzLS42NzYuMjU0LTEuMzM2LjgzNS0xLjg2My41OS0uNTMzJTIwMS4zOTgtLjg2MyUyMDIuMjc4LS45MjguMTA2LS4wMDcuMjEtLjAxMy4zMS0uMDEzJTIwMS43JTIwMCUyMDIuODUlMjAxJTIwMi45MzQlMjAyLjMyNXptLTEuMi05Ljk3NmMuNDUlMjAxLjU4OC0uMjMlMjAzLjI0Ni0xLjMxNyUyMDMuNTUzLS4xMjUuMDM0LS4yNTMuMDUtLjM4NC4wNS0uOTkzJTIwMC0xLjk4LTEuMDA1LTIuMzQ0LTIuMzkyLS4yMDQtLjc3Ni0uMTg3LTEuNDU4LjA0Ny0yLjExMi4yMy0uNjQ1LjY0My0xLjA3OCUyMDEuMTYzLTEuMjI1LjEyNS0uMDM0LjI1NC0uMDUyLjM4NS0uMDUyJTIwMS4yJTIwMCUyMDEuOTczLjQ5OCUyMDIuNDUlMjAyLjE3OHpNMTYlMjA4VjVoLTJ2M2gtM3YyaDN2M2gydi0zaDNWOGgtM3olMjIlMkYlM0UlMEElM0MlMkZzdmclM0UpfXNoYXJlLWJ1dHRvbiAuc2Itc29jaWFsIGxpW2NsYXNzKj0nZ29vZ2xlUGx1cyddOmFmdGVye2JhY2tncm91bmQtaW1hZ2U6dXJsKGRhdGE6aW1hZ2Uvc3ZnK3htbDtjaGFyc2V0PXV0Zi04LCUzQ3N2ZyUyMHhtbG5zJTNEJTIyaHR0cCUzQSUyRiUyRnd3dy53My5vcmclMkYyMDAwJTJGc3ZnJTIyJTIwdmlld0JveCUzRCUyMjAlMjAwJTIwMjAlMjAyMCUyMiUyMHN0eWxlJTNEJTIyZmlsbCUzQSUyMzAwMCUzQiUyMiUyMGhlaWdodCUzRCUyMjEwMCUyNSUyMiUyMHdpZHRoJTNEJTIyMTAwJTI1JTIyJTNFJTBBJTIwJTIwJTIwJTIwJTNDcGF0aCUyMGQlM0QlMjJNMS45OSUyMDUuNTljMCUyMDEuNDkzLjQ5OCUyMDIuNTclMjAxLjQ4JTIwMy4yMDQuODA3LjUyJTIwMS43NC41OTglMjAyLjIyNy41OTguMTE4JTIwMCUyMC4yMTMtLjAwNi4yOC0uMDElMjAwJTIwMC0uMTU1JTIwMS4wMDQuNTklMjAxLjk5Nkg2LjUzYy0xLjI5JTIwMC01LjQ5My4yNy01LjQ5MyUyMDMuNzI3JTIwMCUyMDMuNTE2JTIwMy44NiUyMDMuNjk1JTIwNC42MzUlMjAzLjY5NS4wNiUyMDAlMjAuMDk3LS4wMDIuMDk3LS4wMDIuMDA3JTIwMCUyMC4wNjIuMDAyLjE1Ny4wMDIuNDk3JTIwMCUyMDEuNzgyLS4wNjIlMjAyLjk3NS0uNjQzJTIwMS41NDgtLjc1JTIwMi4zMzMtMi4wNiUyMDIuMzMzLTMuODg1JTIwMC0xLjc2NC0xLjE5Ni0yLjgxNC0yLjA3LTMuNTgyLS41MzItLjQ3LS45OTMtLjg3My0uOTkzLTEuMjY2JTIwMC0uNC4zMzctLjcuNzYyLTEuMDgyLjY5LS42MTUlMjAxLjM0LTEuNDkyJTIwMS4zNC0zLjE1JTIwMC0xLjQ1Ny0uMTktMi40MzYtMS4zNTUtMy4wNTcuMTItLjA2Mi41NS0uMTA3Ljc2Mi0uMTM3LjYzLS4wODYlMjAxLjU1NC0uMTg0JTIwMS41NTQtLjdWMS4yaC00LjZjLS4wNDYuMDAyLTQuNjUuMTcyLTQuNjUlMjA0LjM5em03LjQyMiUyMDkuMDFjLjA4OCUyMDEuNDA2LTEuMTE1JTIwMi40NDMtMi45MjIlMjAyLjU3NC0xLjgzNC4xMzUtMy4zNDQtLjY5LTMuNDMyLTIuMDk2LS4wNDMtLjY3Ni4yNTQtMS4zMzYuODM1LTEuODYzLjU5LS41MzMlMjAxLjM5OC0uODYzJTIwMi4yNzgtLjkyOC4xMDYtLjAwNy4yMS0uMDEzLjMxLS4wMTMlMjAxLjclMjAwJTIwMi44NSUyMDElMjAyLjkzNCUyMDIuMzI1em0tMS4yLTkuOTc2Yy40NSUyMDEuNTg4LS4yMyUyMDMuMjQ2LTEuMzE3JTIwMy41NTMtLjEyNS4wMzQtLjI1My4wNS0uMzg0LjA1LS45OTMlMjAwLTEuOTgtMS4wMDUtMi4zNDQtMi4zOTItLjIwNC0uNzc2LS4xODctMS40NTguMDQ3LTIuMTEyLjIzLS42NDUuNjQzLTEuMDc4JTIwMS4xNjMtMS4yMjUuMTI1LS4wMzQuMjU0LS4wNTIuMzg1LS4wNTIlMjAxLjIlMjAwJTIwMS45NzMuNDk4JTIwMi40NSUyMDIuMTc4ek0xNiUyMDhWNWgtMnYzaC0zdjJoM3YzaDJ2LTNoM1Y4aC0zeiUyMiUyRiUzRSUwQSUzQyUyRnN2ZyUzRSl9c2hhcmUtYnV0dG9uIC5zYi1zb2NpYWwgbGlbY2xhc3MqPSdsaW5rZWRpbidde2JhY2tncm91bmQ6IzQ4NzViNH1zaGFyZS1idXR0b24gLnNiLXNvY2lhbCBsaVtjbGFzcyo9J2xpbmtlZGluJ106YmVmb3Jle2JhY2tncm91bmQtaW1hZ2U6dXJsKGRhdGE6aW1hZ2Uvc3ZnK3htbDtjaGFyc2V0PXV0Zi04LCUzQ3N2ZyUyMHhtbG5zJTNEJTIyaHR0cCUzQSUyRiUyRnd3dy53My5vcmclMkYyMDAwJTJGc3ZnJTIyJTIwdmlld0JveCUzRCUyMjAlMjAwJTIwMjAlMjAyMCUyMiUyMHN0eWxlJTNEJTIyZmlsbCUzQSUyM2ZmZiUzQiUyMiUyMGhlaWdodCUzRCUyMjEwMCUyNSUyMiUyMHdpZHRoJTNEJTIyMTAwJTI1JTIyJTNFJTBBJTIwJTIwJTIwJTIwJTNDcGF0aCUyMGQlM0QlMjJNNSUyMDNjMCUyMDEuMS0uNyUyMDItMiUyMDItMS4yJTIwMC0yLS45LTItMS45QzElMjAyJTIwMS44JTIwMSUyMDMlMjAxczIlMjAuOSUyMDIlMjAyek0xJTIwMTloNFY2SDF2MTN6TTE0LjYlMjA2LjJjLTIuMSUyMDAtMy4zJTIwMS4yLTMuOCUyMDJoLS4xbC0uMi0xLjdINi45YzAlMjAxLjEuMSUyMDIuNC4xJTIwMy45VjE5aDR2LTcuMWMwLS40JTIwMC0uNy4xLTElMjAuMy0uNy44LTEuNiUyMDEuOS0xLjYlMjAxLjQlMjAwJTIwMiUyMDEuMiUyMDIlMjAyLjhWMTloNHYtNy40YzAtMy43LTEuOS01LjQtNC40LTUuNHolMjIlMkYlM0UlMEElM0MlMkZzdmclM0UpfXNoYXJlLWJ1dHRvbiAuc2Itc29jaWFsIGxpW2NsYXNzKj0nbGlua2VkaW4nXTphZnRlcntiYWNrZ3JvdW5kLWltYWdlOnVybChkYXRhOmltYWdlL3N2Zyt4bWw7Y2hhcnNldD11dGYtOCwlM0NzdmclMjB4bWxucyUzRCUyMmh0dHAlM0ElMkYlMkZ3d3cudzMub3JnJTJGMjAwMCUyRnN2ZyUyMiUyMHZpZXdCb3glM0QlMjIwJTIwMCUyMDIwJTIwMjAlMjIlMjBzdHlsZSUzRCUyMmZpbGwlM0ElMjMwMDAlM0IlMjIlMjBoZWlnaHQlM0QlMjIxMDAlMjUlMjIlMjB3aWR0aCUzRCUyMjEwMCUyNSUyMiUzRSUwQSUyMCUyMCUyMCUyMCUzQ3BhdGglMjBkJTNEJTIyTTUlMjAzYzAlMjAxLjEtLjclMjAyLTIlMjAyLTEuMiUyMDAtMi0uOS0yLTEuOUMxJTIwMiUyMDEuOCUyMDElMjAzJTIwMXMyJTIwLjklMjAyJTIwMnpNMSUyMDE5aDRWNkgxdjEzek0xNC42JTIwNi4yYy0yLjElMjAwLTMuMyUyMDEuMi0zLjglMjAyaC0uMWwtLjItMS43SDYuOWMwJTIwMS4xLjElMjAyLjQuMSUyMDMuOVYxOWg0di03LjFjMC0uNCUyMDAtLjcuMS0xJTIwLjMtLjcuOC0xLjYlMjAxLjktMS42JTIwMS40JTIwMCUyMDIlMjAxLjIlMjAyJTIwMi44VjE5aDR2LTcuNGMwLTMuNy0xLjktNS40LTQuNC01LjR6JTIyJTJGJTNFJTBBJTNDJTJGc3ZnJTNFKX1zaGFyZS1idXR0b24gLnNiLXNvY2lhbCBsaVtjbGFzcyo9J3BpbnRlcmVzdCdde2JhY2tncm91bmQ6I2M1MjgyZn1zaGFyZS1idXR0b24gLnNiLXNvY2lhbCBsaVtjbGFzcyo9J3BpbnRlcmVzdCddOmJlZm9yZXtiYWNrZ3JvdW5kLWltYWdlOnVybChkYXRhOmltYWdlL3N2Zyt4bWw7Y2hhcnNldD11dGYtOCwlM0NzdmclMjB4bWxucyUzRCUyMmh0dHAlM0ElMkYlMkZ3d3cudzMub3JnJTJGMjAwMCUyRnN2ZyUyMiUyMHZpZXdCb3glM0QlMjIwJTIwMCUyMDIwJTIwMjAlMjIlMjBzdHlsZSUzRCUyMmZpbGwlM0ElMjNmZmYlM0IlMjIlMjBoZWlnaHQlM0QlMjIxMDAlMjUlMjIlMjB3aWR0aCUzRCUyMjEwMCUyNSUyMiUzRSUwQSUyMCUyMCUyMCUyMCUzQ3BhdGglMjBkJTNEJTIyTTguNjE3JTIwMTMuMjI3QzguMDklMjAxNS45OCUyMDcuNDUlMjAxOC42MiUyMDUuNTUlMjAyMGMtLjU4Ny00LjE2Mi44Ni03LjI4NyUyMDEuNTMzLTEwLjYwNS0xLjE0Ny0xLjkzLjEzOC01LjgxMiUyMDIuNTU1LTQuODU1JTIwMi45NzUlMjAxLjE3Ni0yLjU3NiUyMDcuMTcyJTIwMS4xNSUyMDcuOTIyJTIwMy44OS43OCUyMDUuNDgtNi43NSUyMDMuMDY2LTkuMkMxMC4zNy0uMjc0JTIwMy43MDglMjAzLjE4JTIwNC41MjglMjA4LjI0NmMuMiUyMDEuMjM4JTIwMS40NzglMjAxLjYxMy41MSUyMDMuMzIyLTIuMjMtLjQ5NC0yLjg5Ni0yLjI1NC0yLjgxLTQuNi4xMzgtMy44NCUyMDMuNDUtNi41MjclMjA2Ljc3LTYuOSUyMDQuMjAyLS40NyUyMDguMTQ1JTIwMS41NDMlMjA4LjY5JTIwNS40OTQuNjEzJTIwNC40NjItMS44OTYlMjA5LjI5NC02LjM5JTIwOC45NDYtMS4yMTctLjA5NS0xLjcyNy0uNy0yLjY4LTEuMjh6JTIyJTJGJTNFJTBBJTNDJTJGc3ZnJTNFKX1zaGFyZS1idXR0b24gLnNiLXNvY2lhbCBsaVtjbGFzcyo9J3BpbnRlcmVzdCddOmFmdGVye2JhY2tncm91bmQtaW1hZ2U6dXJsKGRhdGE6aW1hZ2Uvc3ZnK3htbDtjaGFyc2V0PXV0Zi04LCUzQ3N2ZyUyMHhtbG5zJTNEJTIyaHR0cCUzQSUyRiUyRnd3dy53My5vcmclMkYyMDAwJTJGc3ZnJTIyJTIwdmlld0JveCUzRCUyMjAlMjAwJTIwMjAlMjAyMCUyMiUyMHN0eWxlJTNEJTIyZmlsbCUzQSUyMzAwMCUzQiUyMiUyMGhlaWdodCUzRCUyMjEwMCUyNSUyMiUyMHdpZHRoJTNEJTIyMTAwJTI1JTIyJTNFJTBBJTIwJTIwJTIwJTIwJTNDcGF0aCUyMGQlM0QlMjJNOC42MTclMjAxMy4yMjdDOC4wOSUyMDE1Ljk4JTIwNy40NSUyMDE4LjYyJTIwNS41NSUyMDIwYy0uNTg3LTQuMTYyLjg2LTcuMjg3JTIwMS41MzMtMTAuNjA1LTEuMTQ3LTEuOTMuMTM4LTUuODEyJTIwMi41NTUtNC44NTUlMjAyLjk3NSUyMDEuMTc2LTIuNTc2JTIwNy4xNzIlMjAxLjE1JTIwNy45MjIlMjAzLjg5Ljc4JTIwNS40OC02Ljc1JTIwMy4wNjYtOS4yQzEwLjM3LS4yNzQlMjAzLjcwOCUyMDMuMTglMjA0LjUyOCUyMDguMjQ2Yy4yJTIwMS4yMzglMjAxLjQ3OCUyMDEuNjEzLjUxJTIwMy4zMjItMi4yMy0uNDk0LTIuODk2LTIuMjU0LTIuODEtNC42LjEzOC0zLjg0JTIwMy40NS02LjUyNyUyMDYuNzctNi45JTIwNC4yMDItLjQ3JTIwOC4xNDUlMjAxLjU0MyUyMDguNjklMjA1LjQ5NC42MTMlMjA0LjQ2Mi0xLjg5NiUyMDkuMjk0LTYuMzklMjA4Ljk0Ni0xLjIxNy0uMDk1LTEuNzI3LS43LTIuNjgtMS4yOHolMjIlMkYlM0UlMEElM0MlMkZzdmclM0UpfXNoYXJlLWJ1dHRvbiAuc2Itc29jaWFsIGxpW2NsYXNzKj0ncmVkZGl0J117YmFja2dyb3VuZDojYTFjYWYyfXNoYXJlLWJ1dHRvbiAuc2Itc29jaWFsIGxpW2NsYXNzKj0ncmVkZGl0J106YmVmb3Jle2JhY2tncm91bmQtaW1hZ2U6dXJsKGRhdGE6aW1hZ2Uvc3ZnK3htbDtjaGFyc2V0PXV0Zi04LCUzQ3N2ZyUyMHhtbG5zJTNEJTIyaHR0cCUzQSUyRiUyRnd3dy53My5vcmclMkYyMDAwJTJGc3ZnJTIyJTIwdmlld0JveCUzRCUyMjAlMjAwJTIwNTEyJTIwNDI2LjY2JTIyJTIwc3R5bGUlM0QlMjJmaWxsJTNBJTIzZmZmJTNCJTIyJTIwaGVpZ2h0JTNEJTIyMTAwJTI1JTIyJTIwd2lkdGglM0QlMjIxMDAlMjUlMjIlM0UlMEElMjAlMjAlMjAlMjAlM0NwYXRoJTIwZCUzRCUyMk00NzguOTA1JTIwMTk2LjU1NmMwLTQuNS0xLjAyOC04LjkzMy0zLjI2OC0xMy4wOWwtLjA1My0uMDUzLS4wMjYtLjA2Yy0zLjAwNC02LjE5OC03LjcyLTEwLjg2Mi0xMy40LTE0LjA1LTUuNjc3LTMuMTktMTIuMzE3LTQuODM2LTE4Ljk4My00LjgzNi02LjAyJTIwMC0xMi4wMTYlMjAxLjM2My0xNy4zMzglMjA0LjAzOCUyMDE2LjkxNiUyMDE0LjY3NyUyMDMxLjc2NSUyMDMyLjM3JTIwNDEuMzclMjA1My4xMjglMjAzLjA4LTIuNjY4JTIwNS43MTctNS45NyUyMDcuNjgtOS42MDQlMjAyLjU3LTQuNzg1JTIwNC4wMTgtMTAuMTg2JTIwNC4wMTgtMTUuNDc1em0tMzMuNjM1JTIwNzMuNDQyYzAtMTguNDg0LTYuNjUzLTM2Ljk4LTE3LjQzLTUxLjk0LTIxLjQ3Ni0yOS44NjgtNTQuODItNDkuMzgtODkuNDk3LTYwLjI0M2wtLjI1LS4xMThjLTYuNjQtMi4wNS0xMy4zNzMtMy44MDgtMjAuMTU4LTUuNDAyLTIwLjI2My00LjYxLTQxLjAyNi02Ljg4NC02MS43OTYtNi44ODQtMjcuODc0JTIwMC01NS43MzglMjA0LjEtODIuNDMlMjAxMi4zNDctMzQuNjclMjAxMS4wMzQtNjguMTA4JTIwMzAuMzc1LTg5LjU1NyUyMDYwLjM2di4wNTRDNzMuMjklMjAyMzMuMTM4JTIwNjYuOTIlMjAyNTEuNzQlMjA2Ni45MiUyMDI3MC4yMjZjMCUyMDYuODI0Ljg1NyUyMDEzLjY0OCUyMDIuNjU1JTIwMjAuMzE1aC4wMmMzLjkwNiUyMDE0LjgzNCUyMDExLjU0JTIwMjguMTUzJTIwMjEuNDE2JTIwMzkuNzYlMjA5Ljg3NSUyMDExLjU0MiUyMDIxLjk5JTIwMjEuNDUlMjAzNC43MzYlMjAyOS41MjUlMjAyLjgyJTIwMS43NjYlMjA1LjY1MiUyMDMuNDEyJTIwOC41NSUyMDUuMDYlMjAzNy4wMSUyMDIwLjY0NSUyMDc5LjYzJTIwMjkuNjk1JTIwMTIxLjk0NyUyMDI5LjY5NSUyMDcuMTQ2JTIwMCUyMDE0LjM1NC0uMjI0JTIwMjEuNDU1LS43MzclMjA0Mi42Mi0zLjUxOCUyMDg1LjQxLTE2LjElMjAxMTkuOTk1LTQxLjgwNGguMDEzYzExLjAxNS04LjE0NSUyMDIxLjIxMi0xOC4wNSUyMDI5LjI4OC0yOS4yNSUyMDguMDktMTEuMjElMjAxNC4wMTgtMjMuNzE1JTIwMTYuNjUzLTM3LjMxdi0uMDY3aC4wMTJjMS4wOTMtNS4xMjYlMjAxLjYwNy0xMC4yMzglMjAxLjYwNy0xNS40MTZ6TTg2LjA3OCUyMDE2OC43MzZjLTUuNTE0LTIuNTYyLTExLjIxMi00LjM4Ny0xNi44NDUtNC4zODctLjk0JTIwMC0xLjg5Ni4wNTctMi44NDYuMTdoLS4yN2MtOC4wOS4yMy0xNi4yNSUyMDMuNzU0LTIyLjM3NyUyMDkuNDQ1LTYuMTMzJTIwNS42MzMtMTAuMTklMjAxMy4yLTEwLjQ5NCUyMDIxLjYydi4wNTNsLS4wMTMuMDZjLS4wNi42ODQtLjA4JTIwMS4zNjItLjA4JTIwMS45ODglMjAwJTIwNS4xNzglMjAxLjU5JTIwMTAuMTg0JTIwNC4yNzYlMjAxNC43MzUlMjAxLjk5NCUyMDMuNDE0JTIwNC42MDIlMjA2LjQ4MyUyMDcuNTU0JTIwOS4xNTglMjA5LjQ1My0yMC43MDMlMjAyNC4yMjItMzguMjI2JTIwNDEuMDkzLTUyLjg0NHpNMzkwLjQ0OCUyMDU4LjJjMCUyMC41NjYlMjAwJTIwMS4xNC4wNjYlMjAxLjcwNnYuMTEyYy4yNSUyMDcuMTY3JTIwMy42MzclMjAxMy44MjclMjA4Ljc4OCUyMDE4Ljc3NCUyMDUuMTY0JTIwNC44OTUlMjAxMi4wMTYlMjA3Ljk2NCUyMDE4Ljk3MiUyMDcuOTY0aC4xODVsMS41LjA2YzcuMDElMjAwJTIwMTMuOTgtMy4wMTclMjAxOS4yMS03LjkxJTIwNS4yNDItNC45NDglMjA4LjcwNy0xMS42NiUyMDguOTgzLTE4Ljg4OHYtLjA1M2MuMDUzLS41NzIuMDgtMS4wOC4wOC0xLjY1MyUyMDAtNy40NS0zLjQ4LTE0LjUwNS04LjkzMy0xOS43OTUtNS40MTQtNS4yMzctMTIuNzEzLTguNDc4LTE5LjkyLTguNDc4LTIuMzE4JTIwMC00LjYxLjM0LTYuODc3JTIwMS4wMjZsLS4wNTMuMDUzaC0uMDhjLTUuOTI4JTIwMS41MzQtMTEuNDg3JTIwNS4xNzctMTUuNDglMjAxMC4wNy00LjAxNyUyMDQuODM1LTYuNDQlMjAxMC44MS02LjQ0JTIwMTcuMDF6bTEyMS40NDclMjAxMzQuOTM3di4wNmMuMDglMjAxLjE0LjEwNSUyMDIuMjIuMTA1JTIwMy4zNiUyMDAlMjAxMi4zOTYtMy45OTIlMjAyNC40MDUtMTAuNjQ2JTIwMzQuNTIzLTYuMjE4JTIwOS41LTE0Ljc4MiUyMDE3LjQ3LTI0LjYzNyUyMDIyLjgxOC42MzMlMjA0Ljk0JTIwMSUyMDkuOTQ3JTIwMSUyMDE0LjktLjAyNSUyMDI2Ljc5OC05LjI0NyUyMDUzLjEzNS0yNS4zMzQlMjA3NC4yNGgtLjAyNmMtMjkuNzM1JTIwMzkuNTM4LTc1LjM3MyUyMDYyLjg1Ny0xMjEuNDYlMjA3NC41ODNoLS4wMTJsLS4wNC4wNTVjLTI0LjU3JTIwNS45OC00OS45MDYlMjA4Ljk4NS03NS4yNDclMjA4Ljk4NS0zNy43NjYlMjAwLTc1LjUxMi02Ljc3Mi0xMTAuNzIyLTIwLjkyM2gtLjA0NmMtMzYuNTA4LTE1LjA4NS03MS4yOTYtMzguOTctOTIuNjMzLTc0LjAxNi0xMS40NzUtMTguNzItMTcuNzcyLTQwLjY4My0xNy43NzItNjIuNjg1JTIwMC01LjAwNi4zMy0xMC4wMTMlMjAxLTE0LjkxMy05LjYxNy01LjQ1NC0xNy45MzctMTMuMDgyLTI0LjExNi0yMi4yMzhDNC43MSUyMDIyMS45NzYuNTMyJTIwMjEwLjQ4NyUyMDAlMjAxOTguMzE0di0uMjI0Yy4wMTMtMTcuMDY4JTIwNy40MjQtMzMuMjI4JTIwMTguOTQ1LTQ1LjExJTIwMTEuNTItMTEuOTUlMjAyNy4yNTItMTkuNzQzJTIwNDQuMTM2LTE5Ljc0M2guN2MxLjc2LS4xMiUyMDMuNTU4LS4xNzIlMjA1LjM0My0uMTcyJTIwOC40NzglMjAwJTIwMTYuOTc2JTIwMS4zNjQlMjAyNS4wNDUlMjA0LjQ5M2guMDg2YzYuODklMjAyLjkwNCUyMDEzLjczNCUyMDYuNDMlMjAxOS44MzQlMjAxMS4yNjUlMjAxLjk3Ny0xLjAyJTIwNC4xMy0yLjIyJTIwNi41NTUtMy4xMyUyMDM2Ljk4Mi0yMS45MDIlMjA3OS45NTgtMzAuMzIlMjAxMjEuODQ4LTMyLjc2Ni4zNjMtMjAuNzY0JTIwMi45MS00Mi40OTUlMjAxMy4wMy02MS41JTIwOC40MjYtMTUuODElMjAyMy4wNS0yOC4xMDIlMjA0MC40OC0zMi4zN2guMTU4YzYuNjI3LTEuMzA1JTIwMTMuMzItMS44NzclMjAxOS45Ni0xLjg3NyUyMDE3LjcwNiUyMDAlMjAzNS4xOSUyMDQuMTU2JTIwNTEuNTY1JTIwMTAuNjk4JTIwNy4yMzMtMTAuOTIyJTIwMTcuNTc1LTE5LjQ2JTIwMjkuNzEtMjQuMjM1bC4xMTgtLjA2LjEwNi0uMDUzQzQwNC43MyUyMDEuMzElMjA0MTIuMjY2JTIwMCUyMDQxOS44MyUyMDBjNy45NTYlMjAwJTIwMTUuOTglMjAxLjQ4MiUyMDIzLjUwMyUyMDQuODM1di0uMDUzbC4wMjYuMDUzLjEzLjA2YzEwLjc5JTIwNC4xNTclMjAxOS45MiUyMDExLjgzJTIwMjYuMzklMjAyMS4zMyUyMDYuNDclMjA5LjYxOCUyMDEwLjI5JTIwMjEuMTA1JTIwMTAuMjklMjAzMi44ODQlMjAwJTIwMi4xNi0uMTMzJTIwNC4zMi0uMzg0JTIwNi41NGwtLjAxMy4wNi0uMDI2LjExYy0xLjI2NSUyMDE1LjI1LTguOTg1JTIwMjguNjE3LTE5LjkyJTIwMzguMTE2LTExJTIwOS42MTctMjUuMjQzJTIwMTUuNDItMzkuODY3JTIwMTUuNDItMi4zNDUlMjAwLTQuNzE2LS4xNy03LjA2LS40Ni0xNC41MDctMS4xMzQtMjguMDI0LTguMTMtMzcuOTU4LTE4LjYwNC05Ljk3NC0xMC40MDgtMTYuMzktMjQuMzQ3LTE2LjM5LTM5LjM2JTIwMC0uNjg1LjA2Ni0xLjQ4LjA5My0yLjE2Ni0xMy42MjMtNi4wODctMjguMDYyLTExLjA5NC00Mi40MzctMTEuMDk0LTIuMDY4JTIwMC00LjE1LjEyLTYuMjMuMzQzaC0uMDI3Yy0xMC43NSUyMDEuMDI3LTIwLjc1JTIwNy43OTMtMjUuNTk3JTIwMTcuNTIydi4wNTNjLTcuMzY1JTIwMTQuMzQyLTguODE0JTIwMzEuMDY3LTkuMDM4JTIwNDcuNzMzJTIwNDEuMjI0JTIwMi42NzUlMjA4Mi43MSUyMDEyLjU3NSUyMDExOS4wODclMjAzMy40NWguMDU0bC41MjcuMzQzYy42ODYuMzk2JTIwMS45NSUyMDEuMDglMjAzLjEyMyUyMDEuNzA3JTIwMi40OS0yLjA1JTIwNS4xNC00LjA5OCUyMDguMTU1LTUuOTE2JTIwMTEuMDI4LTcuMzM4JTIwMjQuMDg1LTEwLjk4JTIwMzcuMTU0LTEwLjk4JTIwNS44MSUyMDAlMjAxMS42Mi43MzclMjAxNy4yNiUyMDIuMTZoLjAxM2wuMjI1LjA2LjIyNC4wNmMxMy4zMDclMjAzLjQxJTIwMjUuMzYlMjAxMS4wMzMlMjAzNC40MjYlMjAyMS4zMyUyMDkuMDUlMjAxMC4zNTQlMjAxNS4xNSUyMDIzLjM4NCUyMDE2LjMzNyUyMDM3LjZ6bS0zNDUuMzklMjA4MC4zOGguMTVjMy4yNTQlMjAxLjE5OCUyMDYuNjA2JTIwMS43NjUlMjA5LjkzNCUyMDEuNzY1JTIwOC4yODUlMjAwJTIwMTYuMzQtMy4zNDclMjAyMi40NC04Ljg2NiUyMDYuMDk0LTUuNTczJTIwMTAuMjU4LTEzLjQyNiUyMDEwLjI1OC0yMi4zNThsLS4wMTUtLjczNy4wMzMtMS4zMTVjMC04Ljg2Ny00LjExLTE2Ljc4NS0xMC4xNDUtMjIuMjkyLTYuMDUzLTUuNjQtMTQuMDktOS4wNS0yMi40MS05LjA1LTIuMjIlMjAwLTQuNDkyLjI4OC02LjcuNzk2aC0uMTI0Yy0xMS4wMDglMjAyLjM0LTIwLjY3OCUyMDEwLjQ2Ni0yNC4yNCUyMDIxLjczbC0uMDE1LjA2NmMtMS4wMiUyMDMuMDU3LTEuNDk0JTIwNi4yNDQtMS40OTQlMjA5LjM4JTIwMCUyMDYuOTMlMjAyLjI3MiUyMDEzLjU5NyUyMDYuMTk4JTIwMTkuMTclMjAzLjg4NyUyMDUuNCUyMDkuNCUyMDkuNjclMjAxNi4wMDglMjAxMS42Nm0xNzkuMjE4JTIwNDEuNDJjLTIuNjM1LTEuNzEzLTUuNjY1LTIuNzQtOC44OC0yLjc0LTIuNTgyJTIwMC01LjI3LjczNy03LjY1NCUyMDIuMzQ1LTIyLjYyJTIwMTMuNDgtNDkuMjM0JTIwMjAuODctNzUuNjQ0JTIwMjAuODctMTkuODIlMjAwLTM5LjUyNC00LjE1LTU3LjM3LTEyLjkxbC0uMDkyLS4wNTQtLjA4NS0uMDUzYy0yLjY4OC0xLjA4LTUuNzU4LTMuNDI2LTkuMTA0LTUuNjQtMS43LTEuMTMyLTMuNDctMi4yMTMtNS40NC0zLjAxNy0xLjk0Mi0uODU1LTQuMTAzLTEuNDIzLTYuNDEtMS40MjMtMS45MSUyMDAtMy45Mi40NjItNS45JTIwMS4zMDVsLS4zMDMuMTE4aC4wMTNjLTMuMTA3JTIwMS4yLTUuNTM4JTIwMy40MTMtNy4xMDYlMjA1Ljk3LTEuNjM0JTIwMi42ODctMi40MzglMjA1Ljc0My0yLjQzOCUyMDguODI2JTIwMCUyMDIuNzk0LjY2JTIwNS41NzQlMjAyLjAxNiUyMDguMDc3JTIwMS4yOSUyMDIuMzg0JTIwMy4yNzQlMjA0LjQ5JTIwNS44NzYlMjA1Ljg2JTIwMjUuNTE0JTIwMTcuMjMzJTIwNTUuNTQ1JTIwMjUuMDMlMjA4NS43MDIlMjAyNC45NjclMjAyNy4xODclMjAwJTIwNTQuNTM4LTYuMjU4JTIwNzguODg1LTE3Ljc0N2wuMTMyLS4wNTQuMTMyLS4wNTJjMy4yLTEuOTUlMjA3LjQ3LTMuNjUlMjAxMS40ODYtNi4wODclMjAyLjAwMy0xLjMxNyUyMDMuOTQtMi43NCUyMDUuNjEyLTQuNjc4JTIwMS42Ni0xLjg3JTIwMy4wMDMtNC4yMDQlMjAzLjc2Ny02Ljk5Ny4zMDQtMS4yNTIuNDYyLTIuNDUuNDYyLTMuNTg0JTIwMC0yLjI2Ny0uNTY3LTQuNDI4LTEuNDktNi4zNzgtMS4zNzMtMi44NDQtMy41ODUtNS4yMTUtNi4xNjgtNi45Mjh6bTIwLjQ3My04Mi41YzEuMzE4JTIwMy4zNzIlMjAxLjkxJTIwNi44OSUyMDEuOTElMjAxMC4zNTQlMjAwJTIwNi45NDItMi40MSUyMDEzLjc4LTYuNDU1JTIwMTkuMjg3LTMuOTkyJTIwNS40NjgtOS42NTclMjA5LjY3LTE2LjMyMyUyMDExLjU1NWwtLjE0Ni4wNTNoLS4wOWMtMy4xMSUyMDEuMDgtNi4zMjYlMjAxLjU5NC05LjQ4OCUyMDEuNTk0LTcuNDU3JTIwMC0xNC43NTYtMi42NzctMjAuNjA1LTcuMjc0LTUuNzk3LTQuNTYtMTAuMTk3LTExLjA5My0xMS41NjctMTguODRoLS4wMTJsLS4wMTQtLjEwNS0uMDI2LS4wNjRoLjAyNmMtLjQzNS0xLjk5LS42NTgtMy45OC0uNjU4LTUuOTclMjAwLTYuNzE4JTIwMi4yOTItMTMuMiUyMDYuMDczLTE4LjQ5NiUyMDMuNzY2LTUuMzQyJTIwOS4wNzUtOS41NSUyMDE1LjI5NC0xMS43MTJoLjA5M2MzLjUxOC0xLjMxJTIwNy4yMzItMS45OSUyMDEwLjg5Ni0xLjk5JTIwNi42OTIlMjAwJTIwMTMuMjglMjAyLjA0MyUyMDE4Ljg0JTIwNS43NDUlMjA1LjQ4JTIwMy42MzclMjA5LjkzNCUyMDguOTg1JTIwMTIuMTczJTIwMTUuNjVsLjA1My4xMDYuMDQuMTAzaC0uMDE2eiUyMiUyRiUzRSUwQSUzQyUyRnN2ZyUzRSl9c2hhcmUtYnV0dG9uIC5zYi1zb2NpYWwgbGlbY2xhc3MqPSdyZWRkaXQnXTphZnRlcntiYWNrZ3JvdW5kLWltYWdlOnVybChkYXRhOmltYWdlL3N2Zyt4bWw7Y2hhcnNldD11dGYtOCwlM0NzdmclMjB4bWxucyUzRCUyMmh0dHAlM0ElMkYlMkZ3d3cudzMub3JnJTJGMjAwMCUyRnN2ZyUyMiUyMHZpZXdCb3glM0QlMjIwJTIwMCUyMDUxMiUyMDQyNi42NiUyMiUyMHN0eWxlJTNEJTIyZmlsbCUzQSUyMzAwMCUzQiUyMiUyMGhlaWdodCUzRCUyMjEwMCUyNSUyMiUyMHdpZHRoJTNEJTIyMTAwJTI1JTIyJTNFJTBBJTIwJTIwJTIwJTIwJTNDcGF0aCUyMGQlM0QlMjJNNDc4LjkwNSUyMDE5Ni41NTZjMC00LjUtMS4wMjgtOC45MzMtMy4yNjgtMTMuMDlsLS4wNTMtLjA1My0uMDI2LS4wNmMtMy4wMDQtNi4xOTgtNy43Mi0xMC44NjItMTMuNC0xNC4wNS01LjY3Ny0zLjE5LTEyLjMxNy00LjgzNi0xOC45ODMtNC44MzYtNi4wMiUyMDAtMTIuMDE2JTIwMS4zNjMtMTcuMzM4JTIwNC4wMzglMjAxNi45MTYlMjAxNC42NzclMjAzMS43NjUlMjAzMi4zNyUyMDQxLjM3JTIwNTMuMTI4JTIwMy4wOC0yLjY2OCUyMDUuNzE3LTUuOTclMjA3LjY4LTkuNjA0JTIwMi41Ny00Ljc4NSUyMDQuMDE4LTEwLjE4NiUyMDQuMDE4LTE1LjQ3NXptLTMzLjYzNSUyMDczLjQ0MmMwLTE4LjQ4NC02LjY1My0zNi45OC0xNy40My01MS45NC0yMS40NzYtMjkuODY4LTU0LjgyLTQ5LjM4LTg5LjQ5Ny02MC4yNDNsLS4yNS0uMTE4Yy02LjY0LTIuMDUtMTMuMzczLTMuODA4LTIwLjE1OC01LjQwMi0yMC4yNjMtNC42MS00MS4wMjYtNi44ODQtNjEuNzk2LTYuODg0LTI3Ljg3NCUyMDAtNTUuNzM4JTIwNC4xLTgyLjQzJTIwMTIuMzQ3LTM0LjY3JTIwMTEuMDM0LTY4LjEwOCUyMDMwLjM3NS04OS41NTclMjA2MC4zNnYuMDU0QzczLjI5JTIwMjMzLjEzOCUyMDY2LjkyJTIwMjUxLjc0JTIwNjYuOTIlMjAyNzAuMjI2YzAlMjA2LjgyNC44NTclMjAxMy42NDglMjAyLjY1NSUyMDIwLjMxNWguMDJjMy45MDYlMjAxNC44MzQlMjAxMS41NCUyMDI4LjE1MyUyMDIxLjQxNiUyMDM5Ljc2JTIwOS44NzUlMjAxMS41NDIlMjAyMS45OSUyMDIxLjQ1JTIwMzQuNzM2JTIwMjkuNTI1JTIwMi44MiUyMDEuNzY2JTIwNS42NTIlMjAzLjQxMiUyMDguNTUlMjA1LjA2JTIwMzcuMDElMjAyMC42NDUlMjA3OS42MyUyMDI5LjY5NSUyMDEyMS45NDclMjAyOS42OTUlMjA3LjE0NiUyMDAlMjAxNC4zNTQtLjIyNCUyMDIxLjQ1NS0uNzM3JTIwNDIuNjItMy41MTglMjA4NS40MS0xNi4xJTIwMTE5Ljk5NS00MS44MDRoLjAxM2MxMS4wMTUtOC4xNDUlMjAyMS4yMTItMTguMDUlMjAyOS4yODgtMjkuMjUlMjA4LjA5LTExLjIxJTIwMTQuMDE4LTIzLjcxNSUyMDE2LjY1My0zNy4zMXYtLjA2N2guMDEyYzEuMDkzLTUuMTI2JTIwMS42MDctMTAuMjM4JTIwMS42MDctMTUuNDE2ek04Ni4wNzglMjAxNjguNzM2Yy01LjUxNC0yLjU2Mi0xMS4yMTItNC4zODctMTYuODQ1LTQuMzg3LS45NCUyMDAtMS44OTYuMDU3LTIuODQ2LjE3aC0uMjdjLTguMDkuMjMtMTYuMjUlMjAzLjc1NC0yMi4zNzclMjA5LjQ0NS02LjEzMyUyMDUuNjMzLTEwLjE5JTIwMTMuMi0xMC40OTQlMjAyMS42MnYuMDUzbC0uMDEzLjA2Yy0uMDYuNjg0LS4wOCUyMDEuMzYyLS4wOCUyMDEuOTg4JTIwMCUyMDUuMTc4JTIwMS41OSUyMDEwLjE4NCUyMDQuMjc2JTIwMTQuNzM1JTIwMS45OTQlMjAzLjQxNCUyMDQuNjAyJTIwNi40ODMlMjA3LjU1NCUyMDkuMTU4JTIwOS40NTMtMjAuNzAzJTIwMjQuMjIyLTM4LjIyNiUyMDQxLjA5My01Mi44NDR6TTM5MC40NDglMjA1OC4yYzAlMjAuNTY2JTIwMCUyMDEuMTQuMDY2JTIwMS43MDZ2LjExMmMuMjUlMjA3LjE2NyUyMDMuNjM3JTIwMTMuODI3JTIwOC43ODglMjAxOC43NzQlMjA1LjE2NCUyMDQuODk1JTIwMTIuMDE2JTIwNy45NjQlMjAxOC45NzIlMjA3Ljk2NGguMTg1bDEuNS4wNmM3LjAxJTIwMCUyMDEzLjk4LTMuMDE3JTIwMTkuMjEtNy45MSUyMDUuMjQyLTQuOTQ4JTIwOC43MDctMTEuNjYlMjA4Ljk4My0xOC44ODh2LS4wNTNjLjA1My0uNTcyLjA4LTEuMDguMDgtMS42NTMlMjAwLTcuNDUtMy40OC0xNC41MDUtOC45MzMtMTkuNzk1LTUuNDE0LTUuMjM3LTEyLjcxMy04LjQ3OC0xOS45Mi04LjQ3OC0yLjMxOCUyMDAtNC42MS4zNC02Ljg3NyUyMDEuMDI2bC0uMDUzLjA1M2gtLjA4Yy01LjkyOCUyMDEuNTM0LTExLjQ4NyUyMDUuMTc3LTE1LjQ4JTIwMTAuMDctNC4wMTclMjA0LjgzNS02LjQ0JTIwMTAuODEtNi40NCUyMDE3LjAxem0xMjEuNDQ3JTIwMTM0LjkzN3YuMDZjLjA4JTIwMS4xNC4xMDUlMjAyLjIyLjEwNSUyMDMuMzYlMjAwJTIwMTIuMzk2LTMuOTkyJTIwMjQuNDA1LTEwLjY0NiUyMDM0LjUyMy02LjIxOCUyMDkuNS0xNC43ODIlMjAxNy40Ny0yNC42MzclMjAyMi44MTguNjMzJTIwNC45NCUyMDElMjA5Ljk0NyUyMDElMjAxNC45LS4wMjUlMjAyNi43OTgtOS4yNDclMjA1My4xMzUtMjUuMzM0JTIwNzQuMjRoLS4wMjZjLTI5LjczNSUyMDM5LjUzOC03NS4zNzMlMjA2Mi44NTctMTIxLjQ2JTIwNzQuNTgzaC0uMDEybC0uMDQuMDU1Yy0yNC41NyUyMDUuOTgtNDkuOTA2JTIwOC45ODUtNzUuMjQ3JTIwOC45ODUtMzcuNzY2JTIwMC03NS41MTItNi43NzItMTEwLjcyMi0yMC45MjNoLS4wNDZjLTM2LjUwOC0xNS4wODUtNzEuMjk2LTM4Ljk3LTkyLjYzMy03NC4wMTYtMTEuNDc1LTE4LjcyLTE3Ljc3Mi00MC42ODMtMTcuNzcyLTYyLjY4NSUyMDAtNS4wMDYuMzMtMTAuMDEzJTIwMS0xNC45MTMtOS42MTctNS40NTQtMTcuOTM3LTEzLjA4Mi0yNC4xMTYtMjIuMjM4QzQuNzElMjAyMjEuOTc2LjUzMiUyMDIxMC40ODclMjAwJTIwMTk4LjMxNHYtLjIyNGMuMDEzLTE3LjA2OCUyMDcuNDI0LTMzLjIyOCUyMDE4Ljk0NS00NS4xMSUyMDExLjUyLTExLjk1JTIwMjcuMjUyLTE5Ljc0MyUyMDQ0LjEzNi0xOS43NDNoLjdjMS43Ni0uMTIlMjAzLjU1OC0uMTcyJTIwNS4zNDMtLjE3MiUyMDguNDc4JTIwMCUyMDE2Ljk3NiUyMDEuMzY0JTIwMjUuMDQ1JTIwNC40OTNoLjA4NmM2Ljg5JTIwMi45MDQlMjAxMy43MzQlMjA2LjQzJTIwMTkuODM0JTIwMTEuMjY1JTIwMS45NzctMS4wMiUyMDQuMTMtMi4yMiUyMDYuNTU1LTMuMTMlMjAzNi45ODItMjEuOTAyJTIwNzkuOTU4LTMwLjMyJTIwMTIxLjg0OC0zMi43NjYuMzYzLTIwLjc2NCUyMDIuOTEtNDIuNDk1JTIwMTMuMDMtNjEuNSUyMDguNDI2LTE1LjgxJTIwMjMuMDUtMjguMTAyJTIwNDAuNDgtMzIuMzdoLjE1OGM2LjYyNy0xLjMwNSUyMDEzLjMyLTEuODc3JTIwMTkuOTYtMS44NzclMjAxNy43MDYlMjAwJTIwMzUuMTklMjA0LjE1NiUyMDUxLjU2NSUyMDEwLjY5OCUyMDcuMjMzLTEwLjkyMiUyMDE3LjU3NS0xOS40NiUyMDI5LjcxLTI0LjIzNWwuMTE4LS4wNi4xMDYtLjA1M0M0MDQuNzMlMjAxLjMxJTIwNDEyLjI2NiUyMDAlMjA0MTkuODMlMjAwYzcuOTU2JTIwMCUyMDE1Ljk4JTIwMS40ODIlMjAyMy41MDMlMjA0LjgzNXYtLjA1M2wuMDI2LjA1My4xMy4wNmMxMC43OSUyMDQuMTU3JTIwMTkuOTIlMjAxMS44MyUyMDI2LjM5JTIwMjEuMzMlMjA2LjQ3JTIwOS42MTglMjAxMC4yOSUyMDIxLjEwNSUyMDEwLjI5JTIwMzIuODg0JTIwMCUyMDIuMTYtLjEzMyUyMDQuMzItLjM4NCUyMDYuNTRsLS4wMTMuMDYtLjAyNi4xMWMtMS4yNjUlMjAxNS4yNS04Ljk4NSUyMDI4LjYxNy0xOS45MiUyMDM4LjExNi0xMSUyMDkuNjE3LTI1LjI0MyUyMDE1LjQyLTM5Ljg2NyUyMDE1LjQyLTIuMzQ1JTIwMC00LjcxNi0uMTctNy4wNi0uNDYtMTQuNTA3LTEuMTM0LTI4LjAyNC04LjEzLTM3Ljk1OC0xOC42MDQtOS45NzQtMTAuNDA4LTE2LjM5LTI0LjM0Ny0xNi4zOS0zOS4zNiUyMDAtLjY4NS4wNjYtMS40OC4wOTMtMi4xNjYtMTMuNjIzLTYuMDg3LTI4LjA2Mi0xMS4wOTQtNDIuNDM3LTExLjA5NC0yLjA2OCUyMDAtNC4xNS4xMi02LjIzLjM0M2gtLjAyN2MtMTAuNzUlMjAxLjAyNy0yMC43NSUyMDcuNzkzLTI1LjU5NyUyMDE3LjUyMnYuMDUzYy03LjM2NSUyMDE0LjM0Mi04LjgxNCUyMDMxLjA2Ny05LjAzOCUyMDQ3LjczMyUyMDQxLjIyNCUyMDIuNjc1JTIwODIuNzElMjAxMi41NzUlMjAxMTkuMDg3JTIwMzMuNDVoLjA1NGwuNTI3LjM0M2MuNjg2LjM5NiUyMDEuOTUlMjAxLjA4JTIwMy4xMjMlMjAxLjcwNyUyMDIuNDktMi4wNSUyMDUuMTQtNC4wOTglMjA4LjE1NS01LjkxNiUyMDExLjAyOC03LjMzOCUyMDI0LjA4NS0xMC45OCUyMDM3LjE1NC0xMC45OCUyMDUuODElMjAwJTIwMTEuNjIuNzM3JTIwMTcuMjYlMjAyLjE2aC4wMTNsLjIyNS4wNi4yMjQuMDZjMTMuMzA3JTIwMy40MSUyMDI1LjM2JTIwMTEuMDMzJTIwMzQuNDI2JTIwMjEuMzMlMjA5LjA1JTIwMTAuMzU0JTIwMTUuMTUlMjAyMy4zODQlMjAxNi4zMzclMjAzNy42em0tMzQ1LjM5JTIwODAuMzhoLjE1YzMuMjU0JTIwMS4xOTglMjA2LjYwNiUyMDEuNzY1JTIwOS45MzQlMjAxLjc2NSUyMDguMjg1JTIwMCUyMDE2LjM0LTMuMzQ3JTIwMjIuNDQtOC44NjYlMjA2LjA5NC01LjU3MyUyMDEwLjI1OC0xMy40MjYlMjAxMC4yNTgtMjIuMzU4bC0uMDE1LS43MzcuMDMzLTEuMzE1YzAtOC44NjctNC4xMS0xNi43ODUtMTAuMTQ1LTIyLjI5Mi02LjA1My01LjY0LTE0LjA5LTkuMDUtMjIuNDEtOS4wNS0yLjIyJTIwMC00LjQ5Mi4yODgtNi43Ljc5NmgtLjEyNGMtMTEuMDA4JTIwMi4zNC0yMC42NzglMjAxMC40NjYtMjQuMjQlMjAyMS43M2wtLjAxNS4wNjZjLTEuMDIlMjAzLjA1Ny0xLjQ5NCUyMDYuMjQ0LTEuNDk0JTIwOS4zOCUyMDAlMjA2LjkzJTIwMi4yNzIlMjAxMy41OTclMjA2LjE5OCUyMDE5LjE3JTIwMy44ODclMjA1LjQlMjA5LjQlMjA5LjY3JTIwMTYuMDA4JTIwMTEuNjZtMTc5LjIxOCUyMDQxLjQyYy0yLjYzNS0xLjcxMy01LjY2NS0yLjc0LTguODgtMi43NC0yLjU4MiUyMDAtNS4yNy43MzctNy42NTQlMjAyLjM0NS0yMi42MiUyMDEzLjQ4LTQ5LjIzNCUyMDIwLjg3LTc1LjY0NCUyMDIwLjg3LTE5LjgyJTIwMC0zOS41MjQtNC4xNS01Ny4zNy0xMi45MWwtLjA5Mi0uMDU0LS4wODUtLjA1M2MtMi42ODgtMS4wOC01Ljc1OC0zLjQyNi05LjEwNC01LjY0LTEuNy0xLjEzMi0zLjQ3LTIuMjEzLTUuNDQtMy4wMTctMS45NDItLjg1NS00LjEwMy0xLjQyMy02LjQxLTEuNDIzLTEuOTElMjAwLTMuOTIuNDYyLTUuOSUyMDEuMzA1bC0uMzAzLjExOGguMDEzYy0zLjEwNyUyMDEuMi01LjUzOCUyMDMuNDEzLTcuMTA2JTIwNS45Ny0xLjYzNCUyMDIuNjg3LTIuNDM4JTIwNS43NDMtMi40MzglMjA4LjgyNiUyMDAlMjAyLjc5NC42NiUyMDUuNTc0JTIwMi4wMTYlMjA4LjA3NyUyMDEuMjklMjAyLjM4NCUyMDMuMjc0JTIwNC40OSUyMDUuODc2JTIwNS44NiUyMDI1LjUxNCUyMDE3LjIzMyUyMDU1LjU0NSUyMDI1LjAzJTIwODUuNzAyJTIwMjQuOTY3JTIwMjcuMTg3JTIwMCUyMDU0LjUzOC02LjI1OCUyMDc4Ljg4NS0xNy43NDdsLjEzMi0uMDU0LjEzMi0uMDUyYzMuMi0xLjk1JTIwNy40Ny0zLjY1JTIwMTEuNDg2LTYuMDg3JTIwMi4wMDMtMS4zMTclMjAzLjk0LTIuNzQlMjA1LjYxMi00LjY3OCUyMDEuNjYtMS44NyUyMDMuMDAzLTQuMjA0JTIwMy43NjctNi45OTcuMzA0LTEuMjUyLjQ2Mi0yLjQ1LjQ2Mi0zLjU4NCUyMDAtMi4yNjctLjU2Ny00LjQyOC0xLjQ5LTYuMzc4LTEuMzczLTIuODQ0LTMuNTg1LTUuMjE1LTYuMTY4LTYuOTI4em0yMC40NzMtODIuNWMxLjMxOCUyMDMuMzcyJTIwMS45MSUyMDYuODklMjAxLjkxJTIwMTAuMzU0JTIwMCUyMDYuOTQyLTIuNDElMjAxMy43OC02LjQ1NSUyMDE5LjI4Ny0zLjk5MiUyMDUuNDY4LTkuNjU3JTIwOS42Ny0xNi4zMjMlMjAxMS41NTVsLS4xNDYuMDUzaC0uMDljLTMuMTElMjAxLjA4LTYuMzI2JTIwMS41OTQtOS40ODglMjAxLjU5NC03LjQ1NyUyMDAtMTQuNzU2LTIuNjc3LTIwLjYwNS03LjI3NC01Ljc5Ny00LjU2LTEwLjE5Ny0xMS4wOTMtMTEuNTY3LTE4Ljg0aC0uMDEybC0uMDE0LS4xMDUtLjAyNi0uMDY0aC4wMjZjLS40MzUtMS45OS0uNjU4LTMuOTgtLjY1OC01Ljk3JTIwMC02LjcxOCUyMDIuMjkyLTEzLjIlMjA2LjA3My0xOC40OTYlMjAzLjc2Ni01LjM0MiUyMDkuMDc1LTkuNTUlMjAxNS4yOTQtMTEuNzEyaC4wOTNjMy41MTgtMS4zMSUyMDcuMjMyLTEuOTklMjAxMC44OTYtMS45OSUyMDYuNjkyJTIwMCUyMDEzLjI4JTIwMi4wNDMlMjAxOC44NCUyMDUuNzQ1JTIwNS40OCUyMDMuNjM3JTIwOS45MzQlMjA4Ljk4NSUyMDEyLjE3MyUyMDE1LjY1bC4wNTMuMTA2LjA0LjEwM2gtLjAxNnolMjIlMkYlM0UlMEElM0MlMkZzdmclM0UpfXNoYXJlLWJ1dHRvbiAuc2Itc29jaWFsIGxpW2NsYXNzKj0ndHdpdHRlcidde2JhY2tncm91bmQ6IzZjZGZlYX1zaGFyZS1idXR0b24gLnNiLXNvY2lhbCBsaVtjbGFzcyo9J3R3aXR0ZXInXTpiZWZvcmV7YmFja2dyb3VuZC1pbWFnZTp1cmwoZGF0YTppbWFnZS9zdmcreG1sO2NoYXJzZXQ9dXRmLTgsJTNDc3ZnJTIweG1sbnMlM0QlMjJodHRwJTNBJTJGJTJGd3d3LnczLm9yZyUyRjIwMDAlMkZzdmclMjIlMjB2aWV3Qm94JTNEJTIyMCUyMDAlMjAyMCUyMDIwJTIyJTIwc3R5bGUlM0QlMjJmaWxsJTNBJTIzZmZmJTNCJTIyJTIwaGVpZ2h0JTNEJTIyMTAwJTI1JTIyJTIwd2lkdGglM0QlMjIxMDAlMjUlMjIlM0UlMEElMjAlMjAlMjAlMjAlM0NwYXRoJTIwZCUzRCUyMk0xNy4zMTYlMjA2LjI0NmMuMDA4LjE2Mi4wMS4zMjYuMDEuNDg4JTIwMCUyMDQuOTktMy43OTYlMjAxMC43NDItMTAuNzQlMjAxMC43NDItMi4xMzIlMjAwLTQuMTE1LS42MjUtNS43ODYtMS42OTcuMjk2LjAzMy41OTYuMDUuOS4wNSUyMDEuNzclMjAwJTIwMy4zOTctLjYwMyUyMDQuNjg4LTEuNjE0LTEuNjUtLjAzLTMuMDQ2LTEuMTItMy41MjYtMi42Mi4yMy4wNDIuNDY3LjA2NS43MS4wNjUuMzQ1JTIwMCUyMC42OC0uMDQ0Ljk5NS0uMTNDMi44NCUyMDExLjE4JTIwMS41NCUyMDkuNjU4JTIwMS41NCUyMDcuODI4VjcuNzhjLjUwOC4yODQlMjAxLjA5LjQ1NCUyMDEuNzEuNDc0LTEuMDE0LS42NzgtMS42OC0xLjgzMi0xLjY4LTMuMTQzJTIwMC0uNjkuMTg1LTEuMzQuNTEtMS44OTZDMy45NDMlMjA1LjQ5OCUyMDYuNzI2JTIwNyUyMDkuODYzJTIwNy4xNThjLS4wNjQtLjI3Ny0uMDk3LS41NjQtLjA5Ny0uODYlMjAwLTIuMDg1JTIwMS42OS0zLjc3NCUyMDMuNzc0LTMuNzc0JTIwMS4wODUlMjAwJTIwMi4wNjYuNDU3JTIwMi43NTUlMjAxLjE5Ljg2LS4xNyUyMDEuNjY3LS40ODMlMjAyLjM5Ny0uOTE1LS4yODIuODgtLjg4JTIwMS42Mi0xLjY2JTIwMi4wODYuNzY0LS4wOTIlMjAxLjQ5LS4yOTMlMjAyLjE2OC0uNTk0LS41MDYuNzU4LTEuMTQ2JTIwMS40MjItMS44ODQlMjAxLjk1M3olMjIlMkYlM0UlMEElM0MlMkZzdmclM0UpfXNoYXJlLWJ1dHRvbiAuc2Itc29jaWFsIGxpW2NsYXNzKj0ndHdpdHRlciddOmFmdGVye2JhY2tncm91bmQtaW1hZ2U6dXJsKGRhdGE6aW1hZ2Uvc3ZnK3htbDtjaGFyc2V0PXV0Zi04LCUzQ3N2ZyUyMHhtbG5zJTNEJTIyaHR0cCUzQSUyRiUyRnd3dy53My5vcmclMkYyMDAwJTJGc3ZnJTIyJTIwdmlld0JveCUzRCUyMjAlMjAwJTIwMjAlMjAyMCUyMiUyMHN0eWxlJTNEJTIyZmlsbCUzQSUyMzAwMCUzQiUyMiUyMGhlaWdodCUzRCUyMjEwMCUyNSUyMiUyMHdpZHRoJTNEJTIyMTAwJTI1JTIyJTNFJTBBJTIwJTIwJTIwJTIwJTNDcGF0aCUyMGQlM0QlMjJNMTcuMzE2JTIwNi4yNDZjLjAwOC4xNjIuMDEuMzI2LjAxLjQ4OCUyMDAlMjA0Ljk5LTMuNzk2JTIwMTAuNzQyLTEwLjc0JTIwMTAuNzQyLTIuMTMyJTIwMC00LjExNS0uNjI1LTUuNzg2LTEuNjk3LjI5Ni4wMzMuNTk2LjA1LjkuMDUlMjAxLjc3JTIwMCUyMDMuMzk3LS42MDMlMjA0LjY4OC0xLjYxNC0xLjY1LS4wMy0zLjA0Ni0xLjEyLTMuNTI2LTIuNjIuMjMuMDQyLjQ2Ny4wNjUuNzEuMDY1LjM0NSUyMDAlMjAuNjgtLjA0NC45OTUtLjEzQzIuODQlMjAxMS4xOCUyMDEuNTQlMjA5LjY1OCUyMDEuNTQlMjA3LjgyOFY3Ljc4Yy41MDguMjg0JTIwMS4wOS40NTQlMjAxLjcxLjQ3NC0xLjAxNC0uNjc4LTEuNjgtMS44MzItMS42OC0zLjE0MyUyMDAtLjY5LjE4NS0xLjM0LjUxLTEuODk2QzMuOTQzJTIwNS40OTglMjA2LjcyNiUyMDclMjA5Ljg2MyUyMDcuMTU4Yy0uMDY0LS4yNzctLjA5Ny0uNTY0LS4wOTctLjg2JTIwMC0yLjA4NSUyMDEuNjktMy43NzQlMjAzLjc3NC0zLjc3NCUyMDEuMDg1JTIwMCUyMDIuMDY2LjQ1NyUyMDIuNzU1JTIwMS4xOS44Ni0uMTclMjAxLjY2Ny0uNDgzJTIwMi4zOTctLjkxNS0uMjgyLjg4LS44OCUyMDEuNjItMS42NiUyMDIuMDg2Ljc2NC0uMDkyJTIwMS40OS0uMjkzJTIwMi4xNjgtLjU5NC0uNTA2Ljc1OC0xLjE0NiUyMDEuNDIyLTEuODg0JTIwMS45NTN6JTIyJTJGJTNFJTBBJTNDJTJGc3ZnJTNFKX1zaGFyZS1idXR0b24gLnNiLXNvY2lhbCBsaVtjbGFzcyo9J3doYXRzYXBwJ117YmFja2dyb3VuZDojNGRjMjQ3fXNoYXJlLWJ1dHRvbiAuc2Itc29jaWFsIGxpW2NsYXNzKj0nd2hhdHNhcHAnXTpiZWZvcmV7YmFja2dyb3VuZC1pbWFnZTp1cmwoZGF0YTppbWFnZS9zdmcreG1sO2NoYXJzZXQ9dXRmLTgsJTNDc3ZnJTIwdmlld0JveCUzRCUyMjAlMjAwJTIwODclMjA4OCUyMiUyMHhtbG5zJTNEJTIyaHR0cCUzQSUyRiUyRnd3dy53My5vcmclMkYyMDAwJTJGc3ZnJTIyJTIwc3R5bGUlM0QlMjJmaWxsJTNBJTIzZmZmJTNCJTIyJTIwaGVpZ2h0JTNEJTIyMTAwJTI1JTIyJTIwd2lkdGglM0QlMjIxMDAlMjUlMjIlM0UlMEElMjAlMjAlMjAlMjAlM0NwYXRoJTIwZCUzRCUyMk02MS42MjMlMjA1MS44M2MtLjk0LS41MTUtNS41NjItMy4wMS02LjQyOC0zLjM2My0uODY3LS4zNS0xLjUtLjUzNS0yLjE3My40LS42NzUuOTM0LTIuNTkzJTIwMy4wMjMtMy4xNzUlMjAzLjY0Mi0uNTgzLjYxNS0xLjE0NC42NzItMi4wODQuMTYtLjk0LS41MTYtMy45OS0xLjY0Ni03LjUyNS01LjA0NS0yLjc1Mi0yLjY0NS00LjU1Ny01Ljg1NC01LjA4LTYuODM0LS41MjYtLjk3Ny0uMDA1LTEuNDc3LjQ5My0xLjkzNi40NS0uNDEzJTIwMS0xLjA4NCUyMDEuNS0xLjYyNS41LS41NC42NzgtLjkzNCUyMDEuMDItMS41NjMuMzQzLS42MjUuMjA0LTEuMTktLjAxNy0xLjY3OC0uMjIyLS40OS0xLjk2Mi01LjI3Ni0yLjY4Ny03LjIyMy0uNzI1LTEuOTQ2LTEuNTM3LTEuNjU3LTIuMDk1LTEuNjc4LS41NTctLjAyMy0xLjE5NC0uMTI2LTEuODMzLS4xNS0uNjM3LS4wMjQtMS42ODQuMTc2LTIuNiUyMDEuMTA0LS45MTIuOTIyLTMuNDc0JTIwMy4xNDctMy42NSUyMDcuODYyLS4xNzQlMjA0LjcxMyUyMDMuMDg0JTIwOS4zOTUlMjAzLjUzOCUyMDEwLjA1LjQ1Ni42NTglMjA2LjIzJTIwMTAuODc1JTIwMTUuODIzJTIwMTUuMDc1JTIwOS41OTYlMjA0LjIlMjA5LjY0NSUyMDIuOTIlMjAxMS40MDYlMjAyLjgyNiUyMDEuNzYzLS4wOSUyMDUuNzU2LTIuMTA0JTIwNi42MzgtNC4zMS44ODQtMi4yMDUuOTU1LTQuMTI1LjczLTQuNTMyLS4yMjUtLjQwOC0uODU1LS42NzMtMS43OTQtMS4xODhtLTE3LjYlMjAyMi43MTRjLTYuMzQ1JTIwMC0xMi4yNTMtMS45MDMtMTcuMTg3LTUuMTYzTDE0Ljg0JTIwNzMuMjJsMy45MDItMTEuNkMxNSUyMDU2LjQ2NiUyMDEyLjc5JTIwNTAuMTM3JTIwMTIuNzklMjA0My4zYzAtMTcuMjI2JTIwMTQuMDE0LTMxLjI0JTIwMzEuMjQtMzEuMjQlMjAxNy4yMjQlMjAwJTIwMzEuMjQlMjAxNC4wMTIlMjAzMS4yNCUyMDMxLjI0JTIwMCUyMDE3LjIyNi0xNC4wMTYlMjAzMS4yNC0zMS4yNCUyMDMxLjI0TTYuNSUyMDQzLjNjMCUyMDcuMDklMjAxLjk2OCUyMDEzLjcyJTIwNS4zODQlMjAxOS4zOEw1LjExJTIwODIuODA4bDIwLjc4LTYuNjVjNS4zNzUlMjAyLjk3MiUyMDExLjU1OCUyMDQuNjY3JTIwMTguMTM3JTIwNC42NjclMjAyMC43MjUlMjAwJTIwMzcuNTI4LTE2LjgwMiUyMDM3LjUyOC0zNy41MjUlMjAwLTIwLjcyNy0xNi44MDQtMzcuNTI4LTM3LjUzLTM3LjUyOC0yMC43MjMlMjAwLTM3LjUyMyUyMDE2LjgtMzcuNTIzJTIwMzcuNTI3eiUyMiUyRiUzRSUwQSUzQyUyRnN2ZyUzRSl9c2hhcmUtYnV0dG9uIC5zYi1zb2NpYWwgbGlbY2xhc3MqPSd3aGF0c2FwcCddOmFmdGVye2JhY2tncm91bmQtaW1hZ2U6dXJsKGRhdGE6aW1hZ2Uvc3ZnK3htbDtjaGFyc2V0PXV0Zi04LCUzQ3N2ZyUyMHZpZXdCb3glM0QlMjIwJTIwMCUyMDg3JTIwODglMjIlMjB4bWxucyUzRCUyMmh0dHAlM0ElMkYlMkZ3d3cudzMub3JnJTJGMjAwMCUyRnN2ZyUyMiUyMHN0eWxlJTNEJTIyZmlsbCUzQSUyMzAwMCUzQiUyMiUyMGhlaWdodCUzRCUyMjEwMCUyNSUyMiUyMHdpZHRoJTNEJTIyMTAwJTI1JTIyJTNFJTBBJTIwJTIwJTIwJTIwJTNDcGF0aCUyMGQlM0QlMjJNNjEuNjIzJTIwNTEuODNjLS45NC0uNTE1LTUuNTYyLTMuMDEtNi40MjgtMy4zNjMtLjg2Ny0uMzUtMS41LS41MzUtMi4xNzMuNC0uNjc1LjkzNC0yLjU5MyUyMDMuMDIzLTMuMTc1JTIwMy42NDItLjU4My42MTUtMS4xNDQuNjcyLTIuMDg0LjE2LS45NC0uNTE2LTMuOTktMS42NDYtNy41MjUtNS4wNDUtMi43NTItMi42NDUtNC41NTctNS44NTQtNS4wOC02LjgzNC0uNTI2LS45NzctLjAwNS0xLjQ3Ny40OTMtMS45MzYuNDUtLjQxMyUyMDEtMS4wODQlMjAxLjUtMS42MjUuNS0uNTQuNjc4LS45MzQlMjAxLjAyLTEuNTYzLjM0My0uNjI1LjIwNC0xLjE5LS4wMTctMS42NzgtLjIyMi0uNDktMS45NjItNS4yNzYtMi42ODctNy4yMjMtLjcyNS0xLjk0Ni0xLjUzNy0xLjY1Ny0yLjA5NS0xLjY3OC0uNTU3LS4wMjMtMS4xOTQtLjEyNi0xLjgzMy0uMTUtLjYzNy0uMDI0LTEuNjg0LjE3Ni0yLjYlMjAxLjEwNC0uOTEyLjkyMi0zLjQ3NCUyMDMuMTQ3LTMuNjUlMjA3Ljg2Mi0uMTc0JTIwNC43MTMlMjAzLjA4NCUyMDkuMzk1JTIwMy41MzglMjAxMC4wNS40NTYuNjU4JTIwNi4yMyUyMDEwLjg3NSUyMDE1LjgyMyUyMDE1LjA3NSUyMDkuNTk2JTIwNC4yJTIwOS42NDUlMjAyLjkyJTIwMTEuNDA2JTIwMi44MjYlMjAxLjc2My0uMDklMjA1Ljc1Ni0yLjEwNCUyMDYuNjM4LTQuMzEuODg0LTIuMjA1Ljk1NS00LjEyNS43My00LjUzMi0uMjI1LS40MDgtLjg1NS0uNjczLTEuNzk0LTEuMTg4bS0xNy42JTIwMjIuNzE0Yy02LjM0NSUyMDAtMTIuMjUzLTEuOTAzLTE3LjE4Ny01LjE2M0wxNC44NCUyMDczLjIybDMuOTAyLTExLjZDMTUlMjA1Ni40NjYlMjAxMi43OSUyMDUwLjEzNyUyMDEyLjc5JTIwNDMuM2MwLTE3LjIyNiUyMDE0LjAxNC0zMS4yNCUyMDMxLjI0LTMxLjI0JTIwMTcuMjI0JTIwMCUyMDMxLjI0JTIwMTQuMDEyJTIwMzEuMjQlMjAzMS4yNCUyMDAlMjAxNy4yMjYtMTQuMDE2JTIwMzEuMjQtMzEuMjQlMjAzMS4yNE02LjUlMjA0My4zYzAlMjA3LjA5JTIwMS45NjglMjAxMy43MiUyMDUuMzg0JTIwMTkuMzhMNS4xMSUyMDgyLjgwOGwyMC43OC02LjY1YzUuMzc1JTIwMi45NzIlMjAxMS41NTglMjA0LjY2NyUyMDE4LjEzNyUyMDQuNjY3JTIwMjAuNzI1JTIwMCUyMDM3LjUyOC0xNi44MDIlMjAzNy41MjgtMzcuNTI1JTIwMC0yMC43MjctMTYuODA0LTM3LjUyOC0zNy41My0zNy41MjgtMjAuNzIzJTIwMC0zNy41MjMlMjAxNi44LTM3LjUyMyUyMDM3LjUyN3olMjIlMkYlM0UlMEElM0MlMkZzdmclM0UpfQ=='));
+  )(window.atob('c2hhcmUtYnV0dG9uIHsKICBwb3NpdGlvbjogcmVsYXRpdmU7CiAgZm9udC1zaXplOiAxNnB4OwogIGNvbG9yOiAjMzMzOwogIGJhY2tncm91bmQ6ICNhMjliYWE7CiAgcGFkZGluZzogNXB4IDEwcHggNXB4IDEuNzVlbTsKICBib3JkZXItcmFkaXVzOiA1cHg7CiAgZm9udC1mYW1pbHk6IExhdG8sIHNhbnMtc2VyaWY7CiAgZm9udC13ZWlnaHQ6IDgwMDsKICAtd2Via2l0LWZvbnQtc21vb3RoaW5nOiBhbnRpYWxpYXNlZDsKICBjdXJzb3I6IHBvaW50ZXI7CiAgd2hpdGUtc3BhY2U6IG5vd3JhcDsKICB0cmFuc2l0aW9uOiBhbGwgLjNzIGVhc2U7CiAgdGV4dC10cmFuc2Zvcm06IHVwcGVyY2FzZTsKfQpzaGFyZS1idXR0b246aG92ZXIgewogIGNvbG9yOiByZ2JhKDUxLDUxLDUxLDAuOCk7CiAgYmFja2dyb3VuZDogcmdiYSgxNjIsMTU1LDE3MCwwLjgpOwp9CnNoYXJlLWJ1dHRvbjpiZWZvcmUgewogIHBvc2l0aW9uOiBhYnNvbHV0ZTsKICBsaW5lLWhlaWdodDogMWVtOwogIGxlZnQ6IDAuNmVtOwogIHdpZHRoOiAxZW07CiAgaGVpZ2h0OiAxZW07CiAgY29udGVudDogJyAnOwogIGJhY2tncm91bmQ6IHVybCgiZGF0YTppbWFnZS9zdmcreG1sO2NoYXJzZXQ9dXRmLTgsJTNDc3ZnJTIweG1sbnMlM0QlMjJodHRwJTNBJTJGJTJGd3d3LnczLm9yZyUyRjIwMDAlMkZzdmclMjIlMjB2aWV3Qm94JTNEJTIyMCUyMDAlMjAyMCUyMDIwJTIyJTIwc3R5bGUlM0QlMjJmaWxsJTNBJTIzMDAwJTNCJTIyJTIwaGVpZ2h0JTNEJTIyMTAwJTI1JTIyJTIwd2lkdGglM0QlMjIxMDAlMjUlMjIlM0UlMEElMjAlMjAlMjAlMjAlM0NwYXRoJTIwZCUzRCUyMk0xNSUyMDE1SDJWNmgyLjU5NXMuNjktLjg5NiUyMDIuMTctMkgxYy0uNTUzJTIwMC0xJTIwLjQ1LTElMjAxdjExYzAlMjAuNTUzLjQ0NyUyMDElMjAxJTIwMWgxNWMuNTUzJTIwMCUyMDEtLjQ0NyUyMDEtMXYtMy43NDZMMTUlMjAxMy45VjE1em0tMS42NC02Ljk1djMuNTVMMjAlMjA2LjRsLTYuNjQtNXYzLjEzMkM1LjMlMjA0LjUzMiUyMDUuMyUyMDEyLjUlMjA1LjMlMjAxMi41YzIuMjgyLTMuNzQ4JTIwMy42ODYtNC40NSUyMDguMDYtNC40NXolMjIlMkYlM0UlMEElM0MlMkZzdmclM0UiKSBuby1yZXBlYXQ7Cn0Kc2hhcmUtYnV0dG9uIC5zYi1zb2NpYWwgewogIHBvc2l0aW9uOiBhYnNvbHV0ZTsKICBvcGFjaXR5OiAwOwogIHZpc2liaWxpdHk6IGhpZGRlbjsKICB0cmFuc2l0aW9uOiBhbGwgMC40cyBlYXNlOwp9CnNoYXJlLWJ1dHRvbiAuc2Itc29jaWFsLnNiLWNlbnRlciB7CiAgbGVmdDogNTAlOwp9CnNoYXJlLWJ1dHRvbiAuc2Itc29jaWFsLnNiLWNlbnRlci5zYi10b3AgewogIHRvcDogMDsKICAtd2Via2l0LXRyYW5zZm9ybTogdHJhbnNsYXRlKC01MCUsIC0xMDAlKTsKICAgICAgICAgIHRyYW5zZm9ybTogdHJhbnNsYXRlKC01MCUsIC0xMDAlKTsKfQpzaGFyZS1idXR0b24gLnNiLXNvY2lhbC5zYi1jZW50ZXIuc2ItYm90dG9tIHsKICBib3R0b206IDA7CiAgLXdlYmtpdC10cmFuc2Zvcm06IHRyYW5zbGF0ZSgtNTAlLCAxMDAlKTsKICAgICAgICAgIHRyYW5zZm9ybTogdHJhbnNsYXRlKC01MCUsIDEwMCUpOwp9CnNoYXJlLWJ1dHRvbiAuc2Itc29jaWFsLnNiLWNlbnRlci5hY3RpdmUuc2ItdG9wIHsKICB0b3A6IC0xZW07Cn0Kc2hhcmUtYnV0dG9uIC5zYi1zb2NpYWwuc2ItY2VudGVyLmFjdGl2ZS5zYi1ib3R0b20gewogIGJvdHRvbTogLTFlbTsKfQpzaGFyZS1idXR0b24gLnNiLXNvY2lhbC5zYi1sZWZ0IHsKICBsZWZ0OiA1MCU7Cn0Kc2hhcmUtYnV0dG9uIC5zYi1zb2NpYWwuc2ItbGVmdC5zYi10b3AgewogIHRvcDogMDsKICAtd2Via2l0LXRyYW5zZm9ybTogdHJhbnNsYXRlKGNhbGMoLTEwMCUgKyAzMHB4KSwgLTEwMCUpOwogICAgICAgICAgdHJhbnNmb3JtOiB0cmFuc2xhdGUoY2FsYygtMTAwJSArIDMwcHgpLCAtMTAwJSk7Cn0Kc2hhcmUtYnV0dG9uIC5zYi1zb2NpYWwuc2ItbGVmdC5zYi1taWRkbGUgewogIHRvcDogNTAlOwogIGxlZnQ6IDA7CiAgLXdlYmtpdC10cmFuc2Zvcm06IHRyYW5zbGF0ZSgtMTAwJSwgLTUwJSk7CiAgICAgICAgICB0cmFuc2Zvcm06IHRyYW5zbGF0ZSgtMTAwJSwgLTUwJSk7Cn0Kc2hhcmUtYnV0dG9uIC5zYi1zb2NpYWwuc2ItbGVmdC5zYi1ib3R0b20gewogIGJvdHRvbTogMDsKICAtd2Via2l0LXRyYW5zZm9ybTogdHJhbnNsYXRlKGNhbGMoLTEwMCUgKyAzMHB4KSwgMTAwJSk7CiAgICAgICAgICB0cmFuc2Zvcm06IHRyYW5zbGF0ZShjYWxjKC0xMDAlICsgMzBweCksIDEwMCUpOwp9CnNoYXJlLWJ1dHRvbiAuc2Itc29jaWFsLnNiLWxlZnQuYWN0aXZlLnNiLXRvcCB7CiAgdG9wOiAtMWVtOwp9CnNoYXJlLWJ1dHRvbiAuc2Itc29jaWFsLnNiLWxlZnQuYWN0aXZlLnNiLW1pZGRsZSB7CiAgbGVmdDogLTFlbTsKfQpzaGFyZS1idXR0b24gLnNiLXNvY2lhbC5zYi1sZWZ0LmFjdGl2ZS5zYi1ib3R0b20gewogIGJvdHRvbTogLTFlbTsKfQpzaGFyZS1idXR0b24gLnNiLXNvY2lhbC5zYi1yaWdodCB7CiAgbGVmdDogNTAlOwp9CnNoYXJlLWJ1dHRvbiAuc2Itc29jaWFsLnNiLXJpZ2h0LnNiLXRvcCB7CiAgdG9wOiAwOwogIC13ZWJraXQtdHJhbnNmb3JtOiB0cmFuc2xhdGUoLTMwcHgsIC0xMDAlKTsKICAgICAgICAgIHRyYW5zZm9ybTogdHJhbnNsYXRlKC0zMHB4LCAtMTAwJSk7Cn0Kc2hhcmUtYnV0dG9uIC5zYi1zb2NpYWwuc2ItcmlnaHQuc2ItbWlkZGxlIHsKICB0b3A6IDUwJTsKICBsZWZ0OiAxMDAlOwogIC13ZWJraXQtdHJhbnNmb3JtOiB0cmFuc2xhdGUoMCwgLTUwJSk7CiAgICAgICAgICB0cmFuc2Zvcm06IHRyYW5zbGF0ZSgwLCAtNTAlKTsKfQpzaGFyZS1idXR0b24gLnNiLXNvY2lhbC5zYi1yaWdodC5zYi1ib3R0b20gewogIGJvdHRvbTogMDsKICAtd2Via2l0LXRyYW5zZm9ybTogdHJhbnNsYXRlKC0zMHB4LCAxMDAlKTsKICAgICAgICAgIHRyYW5zZm9ybTogdHJhbnNsYXRlKC0zMHB4LCAxMDAlKTsKfQpzaGFyZS1idXR0b24gLnNiLXNvY2lhbC5zYi1yaWdodC5hY3RpdmUuc2ItdG9wIHsKICB0b3A6IC0xZW07Cn0Kc2hhcmUtYnV0dG9uIC5zYi1zb2NpYWwuc2ItcmlnaHQuYWN0aXZlLnNiLW1pZGRsZSB7CiAgbGVmdDogY2FsYygxMDAlICsgMWVtKTsKfQpzaGFyZS1idXR0b24gLnNiLXNvY2lhbC5zYi1yaWdodC5hY3RpdmUuc2ItYm90dG9tIHsKICBib3R0b206IC0xZW07Cn0Kc2hhcmUtYnV0dG9uIC5zYi1zb2NpYWwuYWN0aXZlIHsKICBvcGFjaXR5OiAxOwogIC13ZWJraXQtYmFja2ZhY2UtdmlzaWJpbGl0eTogaGlkZGVuOwogIHRyYW5zaXRpb246IGFsbCAwLjRzIGVhc2U7CiAgdmlzaWJpbGl0eTogdmlzaWJsZTsKfQpzaGFyZS1idXR0b24gLnNiLXNvY2lhbC5sb2FkIHsKICB0cmFuc2l0aW9uOiBub25lICFpbXBvcnRhbnQ7Cn0KQG1lZGlhIHNjcmVlbiBhbmQgKG1heC13aWR0aDogNDAwcHgpIHsKICBzaGFyZS1idXR0b24gLnNiLXNvY2lhbC5uZXR3b3Jrcy02LnNiLWNlbnRlciB7CiAgICB3aGl0ZS1zcGFjZTogaW5pdGlhbDsKICAgIHRleHQtYWxpZ246IGNlbnRlcjsKICAgIHdpZHRoOiAzMDBweDsKICB9Cn0KQG1lZGlhIHNjcmVlbiBhbmQgKG1heC13aWR0aDogNDYwcHgpIHsKICBzaGFyZS1idXR0b24gLnNiLXNvY2lhbC5uZXR3b3Jrcy03LnNiLWNlbnRlciB7CiAgICB3aGl0ZS1zcGFjZTogaW5pdGlhbDsKICAgIHRleHQtYWxpZ246IGNlbnRlcjsKICAgIHdpZHRoOiAzNjBweDsKICB9Cn0KQG1lZGlhIHNjcmVlbiBhbmQgKG1heC13aWR0aDogNDAwcHgpIHsKICBzaGFyZS1idXR0b24gLnNiLXNvY2lhbC5uZXR3b3Jrcy03LnNiLWNlbnRlciB7CiAgICB3aGl0ZS1zcGFjZTogaW5pdGlhbDsKICAgIHRleHQtYWxpZ246IGNlbnRlcjsKICAgIHdpZHRoOiAzMDBweDsKICB9Cn0KQG1lZGlhIHNjcmVlbiBhbmQgKG1heC13aWR0aDogNTIwcHgpIHsKICBzaGFyZS1idXR0b24gLnNiLXNvY2lhbC5uZXR3b3Jrcy04LnNiLWNlbnRlciB7CiAgICB3aGl0ZS1zcGFjZTogaW5pdGlhbDsKICAgIHRleHQtYWxpZ246IGNlbnRlcjsKICAgIHdpZHRoOiA0MjBweDsKICB9Cn0KQG1lZGlhIHNjcmVlbiBhbmQgKG1heC13aWR0aDogNDYwcHgpIHsKICBzaGFyZS1idXR0b24gLnNiLXNvY2lhbC5uZXR3b3Jrcy04LnNiLWNlbnRlciB7CiAgICB3aGl0ZS1zcGFjZTogaW5pdGlhbDsKICAgIHRleHQtYWxpZ246IGNlbnRlcjsKICAgIHdpZHRoOiAzNjBweDsKICB9Cn0KQG1lZGlhIHNjcmVlbiBhbmQgKG1heC13aWR0aDogNDAwcHgpIHsKICBzaGFyZS1idXR0b24gLnNiLXNvY2lhbC5uZXR3b3Jrcy04LnNiLWNlbnRlciB7CiAgICB3aGl0ZS1zcGFjZTogaW5pdGlhbDsKICAgIHRleHQtYWxpZ246IGNlbnRlcjsKICAgIHdpZHRoOiAzMDBweDsKICB9Cn0Kc2hhcmUtYnV0dG9uIC5zYi1zb2NpYWwgdWwgewogIG1hcmdpbjogMDsKICBwYWRkaW5nOiAwOwogIGxpc3Qtc3R5bGU6IG5vbmU7CiAgbGluZS1oZWlnaHQ6IDA7Cn0Kc2hhcmUtYnV0dG9uIC5zYi1zb2NpYWwgdWwgbGkgewogIHBvc2l0aW9uOiByZWxhdGl2ZTsKICBoZWlnaHQ6IDIycHg7CiAgd2lkdGg6IDYwcHg7CiAgcGFkZGluZzogMTJweCAwOwogIG1hcmdpbjogMDsKICB0ZXh0LWFsaWduOiBjZW50ZXI7CiAgZm9udC1zaXplOiAyMHB4OwogIGN1cnNvcjogcG9pbnRlcjsKICB6LWluZGV4OiAyOwogIGJveC1zaXppbmc6IGNvbnRlbnQtYm94OwogIHRyYW5zaXRpb246IGFsbCAuM3MgZWFzZTsKfQpzaGFyZS1idXR0b24gLnNiLXNvY2lhbCB1bCBsaS5lbmFibGVkIHsKICBkaXNwbGF5OiBpbmxpbmUtYmxvY2s7Cn0Kc2hhcmUtYnV0dG9uIC5zYi1zb2NpYWwgdWwgbGkuZGlzYWJsZWQgewogIGRpc3BsYXk6IG5vbmU7Cn0Kc2hhcmUtYnV0dG9uIC5zYi1zb2NpYWwgdWwgbGk6aG92ZXI6YmVmb3JlIHsKICBvcGFjaXR5OiAwOwp9CnNoYXJlLWJ1dHRvbiAuc2Itc29jaWFsIHVsIGxpOmhvdmVyOmFmdGVyIHsKICBvcGFjaXR5OiAwLjU7Cn0Kc2hhcmUtYnV0dG9uIC5zYi1zb2NpYWwgdWwgbGk6YmVmb3JlLApzaGFyZS1idXR0b24gLnNiLXNvY2lhbCB1bCBsaTphZnRlciB7CiAgY29udGVudDogJyAnOwogIHBvc2l0aW9uOiBhYnNvbHV0ZTsKICB3aWR0aDogaW5oZXJpdDsKICBoZWlnaHQ6IGluaGVyaXQ7CiAgLXdlYmtpdC10cmFuc2Zvcm06IHRyYW5zbGF0ZSgtMjAlLCAwKTsKICAgICAgICAgIHRyYW5zZm9ybTogdHJhbnNsYXRlKC0yMCUsIDApOwogIHRyYW5zaXRpb246IGFsbCAuM3MgZWFzZTsKICBiYWNrZ3JvdW5kLXJlcGVhdDogbm8tcmVwZWF0ICFpbXBvcnRhbnQ7Cn0Kc2hhcmUtYnV0dG9uIC5zYi1zb2NpYWwgdWwgbGk6YmVmb3JlIHsKICBvcGFjaXR5OiAxOwp9CnNoYXJlLWJ1dHRvbiAuc2Itc29jaWFsIHVsIGxpOmFmdGVyIHsKICBvcGFjaXR5OiAwOwp9CnNoYXJlLWJ1dHRvbiAuc2Itc29jaWFsIHVsIGxpIGEgewogIHBvc2l0aW9uOiBhYnNvbHV0ZTsKICB0b3A6IDA7CiAgbGVmdDogMDsKICB3aWR0aDogMTAwJTsKICBoZWlnaHQ6IDEwMCU7CiAgei1pbmRleDogMzsKfQpzaGFyZS1idXR0b24gLnNiLXNvY2lhbCBsaVtjbGFzcyo9J2VtYWlsJ10gewogIGJhY2tncm91bmQ6ICM0MmM1YjA7Cn0Kc2hhcmUtYnV0dG9uIC5zYi1zb2NpYWwgbGlbY2xhc3MqPSdlbWFpbCddOmJlZm9yZSB7CiAgYmFja2dyb3VuZC1pbWFnZTogdXJsKCJkYXRhOmltYWdlL3N2Zyt4bWw7Y2hhcnNldD11dGYtOCwlM0NzdmclMjB4bWxucyUzRCUyMmh0dHAlM0ElMkYlMkZ3d3cudzMub3JnJTJGMjAwMCUyRnN2ZyUyMiUyMHZpZXdCb3glM0QlMjIwJTIwMCUyMDIwJTIwMjAlMjIlMjBzdHlsZSUzRCUyMmZpbGwlM0ElMjNmZmYlM0IlMjIlMjBoZWlnaHQlM0QlMjIxMDAlMjUlMjIlMjB3aWR0aCUzRCUyMjEwMCUyNSUyMiUzRSUwQSUyMCUyMCUyMCUyMCUzQ3BhdGglMjBkJTNEJTIyTTE4LjY0JTIwMi42MzRjLS4zNDQuMTItMTcuMzIlMjA2LjEwNC0xNy42NTYlMjA2LjIyMi0uMjg0LjEtLjM0Ny4zNDUtLjAxLjQ4bDMuNzk2JTIwMS41MiUyMDIuMjUuOUwxOC4wMDQlMjAzLjY5Yy4xNDgtLjEwNi4zMTguMDk3LjIxLjIxMy0uMTA2LjExNy03Ljg3JTIwOC41MTMtNy44NyUyMDguNTEzdi4wMDJsLS40NTIuNTAzLjYuMzIzJTIwNC45OCUyMDIuNjgyYy4yOTIuMTU2LjY3LjAyNy43NTMtLjMzNC4xLS40MjUlMjAyLjg0NS0xMi4yNiUyMDIuOTA2LTEyLjUyNC4wOC0uMzQzLS4xNDYtLjU1Mi0uNDktLjQzek03JTIwMTcuMTYyYzAlMjAuMjQ2LjE0LjMxNS4zMy4xNC4yNTItLjIyOCUyMDIuODUtMi41NiUyMDIuODUtMi41Nkw3JTIwMTMuMDk4djQuMDY0eiUyMiUyRiUzRSUwQSUzQyUyRnN2ZyUzRSIpOwp9CnNoYXJlLWJ1dHRvbiAuc2Itc29jaWFsIGxpW2NsYXNzKj0nZW1haWwnXTphZnRlciB7CiAgYmFja2dyb3VuZC1pbWFnZTogdXJsKCJkYXRhOmltYWdlL3N2Zyt4bWw7Y2hhcnNldD11dGYtOCwlM0NzdmclMjB4bWxucyUzRCUyMmh0dHAlM0ElMkYlMkZ3d3cudzMub3JnJTJGMjAwMCUyRnN2ZyUyMiUyMHZpZXdCb3glM0QlMjIwJTIwMCUyMDIwJTIwMjAlMjIlMjBzdHlsZSUzRCUyMmZpbGwlM0ElMjMwMDAlM0IlMjIlMjBoZWlnaHQlM0QlMjIxMDAlMjUlMjIlMjB3aWR0aCUzRCUyMjEwMCUyNSUyMiUzRSUwQSUyMCUyMCUyMCUyMCUzQ3BhdGglMjBkJTNEJTIyTTE4LjY0JTIwMi42MzRjLS4zNDQuMTItMTcuMzIlMjA2LjEwNC0xNy42NTYlMjA2LjIyMi0uMjg0LjEtLjM0Ny4zNDUtLjAxLjQ4bDMuNzk2JTIwMS41MiUyMDIuMjUuOUwxOC4wMDQlMjAzLjY5Yy4xNDgtLjEwNi4zMTguMDk3LjIxLjIxMy0uMTA2LjExNy03Ljg3JTIwOC41MTMtNy44NyUyMDguNTEzdi4wMDJsLS40NTIuNTAzLjYuMzIzJTIwNC45OCUyMDIuNjgyYy4yOTIuMTU2LjY3LjAyNy43NTMtLjMzNC4xLS40MjUlMjAyLjg0NS0xMi4yNiUyMDIuOTA2LTEyLjUyNC4wOC0uMzQzLS4xNDYtLjU1Mi0uNDktLjQzek03JTIwMTcuMTYyYzAlMjAuMjQ2LjE0LjMxNS4zMy4xNC4yNTItLjIyOCUyMDIuODUtMi41NiUyMDIuODUtMi41Nkw3JTIwMTMuMDk4djQuMDY0eiUyMiUyRiUzRSUwQSUzQyUyRnN2ZyUzRSIpOwp9CnNoYXJlLWJ1dHRvbiAuc2Itc29jaWFsIGxpW2NsYXNzKj0nZmFjZWJvb2snXSB7CiAgYmFja2dyb3VuZDogIzNiNTk5ODsKfQpzaGFyZS1idXR0b24gLnNiLXNvY2lhbCBsaVtjbGFzcyo9J2ZhY2Vib29rJ106YmVmb3JlIHsKICBiYWNrZ3JvdW5kLWltYWdlOiB1cmwoImRhdGE6aW1hZ2Uvc3ZnK3htbDtjaGFyc2V0PXV0Zi04LCUzQ3N2ZyUyMHhtbG5zJTNEJTIyaHR0cCUzQSUyRiUyRnd3dy53My5vcmclMkYyMDAwJTJGc3ZnJTIyJTIwdmlld0JveCUzRCUyMjAlMjAwJTIwNTEyJTIwNTEyJTIyJTIwc3R5bGUlM0QlMjJmaWxsJTNBJTIzZmZmJTNCJTIyJTIwaGVpZ2h0JTNEJTIyMTAwJTI1JTIyJTIwd2lkdGglM0QlMjIxMDAlMjUlMjIlM0UlMEElMjAlMjAlMjAlMjAlM0NwYXRoJTIwZCUzRCUyMk0yODglMjAxOTJ2LTM4LjFjMC0xNy4yJTIwMy44LTI1LjklMjAzMC41LTI1LjlIMzUyVjY0aC01NS45Yy02OC41JTIwMC05MS4xJTIwMzEuNC05MS4xJTIwODUuM1YxOTJoLTQ1djY0aDQ1djE5Mmg4M1YyNTZoNTYuNGw3LjYtNjRoLTY0eiUyMiUyRiUzRSUwQSUzQyUyRnN2ZyUzRSIpOwp9CnNoYXJlLWJ1dHRvbiAuc2Itc29jaWFsIGxpW2NsYXNzKj0nZmFjZWJvb2snXTphZnRlciB7CiAgYmFja2dyb3VuZC1pbWFnZTogdXJsKCJkYXRhOmltYWdlL3N2Zyt4bWw7Y2hhcnNldD11dGYtOCwlM0NzdmclMjB4bWxucyUzRCUyMmh0dHAlM0ElMkYlMkZ3d3cudzMub3JnJTJGMjAwMCUyRnN2ZyUyMiUyMHZpZXdCb3glM0QlMjIwJTIwMCUyMDUxMiUyMDUxMiUyMiUyMHN0eWxlJTNEJTIyZmlsbCUzQSUyMzAwMCUzQiUyMiUyMGhlaWdodCUzRCUyMjEwMCUyNSUyMiUyMHdpZHRoJTNEJTIyMTAwJTI1JTIyJTNFJTBBJTIwJTIwJTIwJTIwJTNDcGF0aCUyMGQlM0QlMjJNMjg4JTIwMTkydi0zOC4xYzAtMTcuMiUyMDMuOC0yNS45JTIwMzAuNS0yNS45SDM1MlY2NGgtNTUuOWMtNjguNSUyMDAtOTEuMSUyMDMxLjQtOTEuMSUyMDg1LjNWMTkyaC00NXY2NGg0NXYxOTJoODNWMjU2aDU2LjRsNy42LTY0aC02NHolMjIlMkYlM0UlMEElM0MlMkZzdmclM0UiKTsKfQpzaGFyZS1idXR0b24gLnNiLXNvY2lhbCBsaVtjbGFzcyo9J2dvb2dsZVBsdXMnXSB7CiAgYmFja2dyb3VuZDogI2UzNDQyOTsKfQpzaGFyZS1idXR0b24gLnNiLXNvY2lhbCBsaVtjbGFzcyo9J2dvb2dsZVBsdXMnXTpiZWZvcmUgewogIGJhY2tncm91bmQtaW1hZ2U6IHVybCgiZGF0YTppbWFnZS9zdmcreG1sO2NoYXJzZXQ9dXRmLTgsJTNDc3ZnJTIweG1sbnMlM0QlMjJodHRwJTNBJTJGJTJGd3d3LnczLm9yZyUyRjIwMDAlMkZzdmclMjIlMjB2aWV3Qm94JTNEJTIyMCUyMDAlMjAyMCUyMDIwJTIyJTIwc3R5bGUlM0QlMjJmaWxsJTNBJTIzZmZmJTNCJTIyJTIwaGVpZ2h0JTNEJTIyMTAwJTI1JTIyJTIwd2lkdGglM0QlMjIxMDAlMjUlMjIlM0UlMEElMjAlMjAlMjAlMjAlM0NwYXRoJTIwZCUzRCUyMk0xLjk5JTIwNS41OWMwJTIwMS40OTMuNDk4JTIwMi41NyUyMDEuNDglMjAzLjIwNC44MDcuNTIlMjAxLjc0LjU5OCUyMDIuMjI3LjU5OC4xMTglMjAwJTIwLjIxMy0uMDA2LjI4LS4wMSUyMDAlMjAwLS4xNTUlMjAxLjAwNC41OSUyMDEuOTk2SDYuNTNjLTEuMjklMjAwLTUuNDkzLjI3LTUuNDkzJTIwMy43MjclMjAwJTIwMy41MTYlMjAzLjg2JTIwMy42OTUlMjA0LjYzNSUyMDMuNjk1LjA2JTIwMCUyMC4wOTctLjAwMi4wOTctLjAwMi4wMDclMjAwJTIwLjA2Mi4wMDIuMTU3LjAwMi40OTclMjAwJTIwMS43ODItLjA2MiUyMDIuOTc1LS42NDMlMjAxLjU0OC0uNzUlMjAyLjMzMy0yLjA2JTIwMi4zMzMtMy44ODUlMjAwLTEuNzY0LTEuMTk2LTIuODE0LTIuMDctMy41ODItLjUzMi0uNDctLjk5My0uODczLS45OTMtMS4yNjYlMjAwLS40LjMzNy0uNy43NjItMS4wODIuNjktLjYxNSUyMDEuMzQtMS40OTIlMjAxLjM0LTMuMTUlMjAwLTEuNDU3LS4xOS0yLjQzNi0xLjM1NS0zLjA1Ny4xMi0uMDYyLjU1LS4xMDcuNzYyLS4xMzcuNjMtLjA4NiUyMDEuNTU0LS4xODQlMjAxLjU1NC0uN1YxLjJoLTQuNmMtLjA0Ni4wMDItNC42NS4xNzItNC42NSUyMDQuMzl6bTcuNDIyJTIwOS4wMWMuMDg4JTIwMS40MDYtMS4xMTUlMjAyLjQ0My0yLjkyMiUyMDIuNTc0LTEuODM0LjEzNS0zLjM0NC0uNjktMy40MzItMi4wOTYtLjA0My0uNjc2LjI1NC0xLjMzNi44MzUtMS44NjMuNTktLjUzMyUyMDEuMzk4LS44NjMlMjAyLjI3OC0uOTI4LjEwNi0uMDA3LjIxLS4wMTMuMzEtLjAxMyUyMDEuNyUyMDAlMjAyLjg1JTIwMSUyMDIuOTM0JTIwMi4zMjV6bS0xLjItOS45NzZjLjQ1JTIwMS41ODgtLjIzJTIwMy4yNDYtMS4zMTclMjAzLjU1My0uMTI1LjAzNC0uMjUzLjA1LS4zODQuMDUtLjk5MyUyMDAtMS45OC0xLjAwNS0yLjM0NC0yLjM5Mi0uMjA0LS43NzYtLjE4Ny0xLjQ1OC4wNDctMi4xMTIuMjMtLjY0NS42NDMtMS4wNzglMjAxLjE2My0xLjIyNS4xMjUtLjAzNC4yNTQtLjA1Mi4zODUtLjA1MiUyMDEuMiUyMDAlMjAxLjk3My40OTglMjAyLjQ1JTIwMi4xNzh6TTE2JTIwOFY1aC0ydjNoLTN2MmgzdjNoMnYtM2gzVjhoLTN6JTIyJTJGJTNFJTBBJTNDJTJGc3ZnJTNFIik7Cn0Kc2hhcmUtYnV0dG9uIC5zYi1zb2NpYWwgbGlbY2xhc3MqPSdnb29nbGVQbHVzJ106YWZ0ZXIgewogIGJhY2tncm91bmQtaW1hZ2U6IHVybCgiZGF0YTppbWFnZS9zdmcreG1sO2NoYXJzZXQ9dXRmLTgsJTNDc3ZnJTIweG1sbnMlM0QlMjJodHRwJTNBJTJGJTJGd3d3LnczLm9yZyUyRjIwMDAlMkZzdmclMjIlMjB2aWV3Qm94JTNEJTIyMCUyMDAlMjAyMCUyMDIwJTIyJTIwc3R5bGUlM0QlMjJmaWxsJTNBJTIzMDAwJTNCJTIyJTIwaGVpZ2h0JTNEJTIyMTAwJTI1JTIyJTIwd2lkdGglM0QlMjIxMDAlMjUlMjIlM0UlMEElMjAlMjAlMjAlMjAlM0NwYXRoJTIwZCUzRCUyMk0xLjk5JTIwNS41OWMwJTIwMS40OTMuNDk4JTIwMi41NyUyMDEuNDglMjAzLjIwNC44MDcuNTIlMjAxLjc0LjU5OCUyMDIuMjI3LjU5OC4xMTglMjAwJTIwLjIxMy0uMDA2LjI4LS4wMSUyMDAlMjAwLS4xNTUlMjAxLjAwNC41OSUyMDEuOTk2SDYuNTNjLTEuMjklMjAwLTUuNDkzLjI3LTUuNDkzJTIwMy43MjclMjAwJTIwMy41MTYlMjAzLjg2JTIwMy42OTUlMjA0LjYzNSUyMDMuNjk1LjA2JTIwMCUyMC4wOTctLjAwMi4wOTctLjAwMi4wMDclMjAwJTIwLjA2Mi4wMDIuMTU3LjAwMi40OTclMjAwJTIwMS43ODItLjA2MiUyMDIuOTc1LS42NDMlMjAxLjU0OC0uNzUlMjAyLjMzMy0yLjA2JTIwMi4zMzMtMy44ODUlMjAwLTEuNzY0LTEuMTk2LTIuODE0LTIuMDctMy41ODItLjUzMi0uNDctLjk5My0uODczLS45OTMtMS4yNjYlMjAwLS40LjMzNy0uNy43NjItMS4wODIuNjktLjYxNSUyMDEuMzQtMS40OTIlMjAxLjM0LTMuMTUlMjAwLTEuNDU3LS4xOS0yLjQzNi0xLjM1NS0zLjA1Ny4xMi0uMDYyLjU1LS4xMDcuNzYyLS4xMzcuNjMtLjA4NiUyMDEuNTU0LS4xODQlMjAxLjU1NC0uN1YxLjJoLTQuNmMtLjA0Ni4wMDItNC42NS4xNzItNC42NSUyMDQuMzl6bTcuNDIyJTIwOS4wMWMuMDg4JTIwMS40MDYtMS4xMTUlMjAyLjQ0My0yLjkyMiUyMDIuNTc0LTEuODM0LjEzNS0zLjM0NC0uNjktMy40MzItMi4wOTYtLjA0My0uNjc2LjI1NC0xLjMzNi44MzUtMS44NjMuNTktLjUzMyUyMDEuMzk4LS44NjMlMjAyLjI3OC0uOTI4LjEwNi0uMDA3LjIxLS4wMTMuMzEtLjAxMyUyMDEuNyUyMDAlMjAyLjg1JTIwMSUyMDIuOTM0JTIwMi4zMjV6bS0xLjItOS45NzZjLjQ1JTIwMS41ODgtLjIzJTIwMy4yNDYtMS4zMTclMjAzLjU1My0uMTI1LjAzNC0uMjUzLjA1LS4zODQuMDUtLjk5MyUyMDAtMS45OC0xLjAwNS0yLjM0NC0yLjM5Mi0uMjA0LS43NzYtLjE4Ny0xLjQ1OC4wNDctMi4xMTIuMjMtLjY0NS42NDMtMS4wNzglMjAxLjE2My0xLjIyNS4xMjUtLjAzNC4yNTQtLjA1Mi4zODUtLjA1MiUyMDEuMiUyMDAlMjAxLjk3My40OTglMjAyLjQ1JTIwMi4xNzh6TTE2JTIwOFY1aC0ydjNoLTN2MmgzdjNoMnYtM2gzVjhoLTN6JTIyJTJGJTNFJTBBJTNDJTJGc3ZnJTNFIik7Cn0Kc2hhcmUtYnV0dG9uIC5zYi1zb2NpYWwgbGlbY2xhc3MqPSdsaW5rZWRpbiddIHsKICBiYWNrZ3JvdW5kOiAjNDg3NWI0Owp9CnNoYXJlLWJ1dHRvbiAuc2Itc29jaWFsIGxpW2NsYXNzKj0nbGlua2VkaW4nXTpiZWZvcmUgewogIGJhY2tncm91bmQtaW1hZ2U6IHVybCgiZGF0YTppbWFnZS9zdmcreG1sO2NoYXJzZXQ9dXRmLTgsJTNDc3ZnJTIweG1sbnMlM0QlMjJodHRwJTNBJTJGJTJGd3d3LnczLm9yZyUyRjIwMDAlMkZzdmclMjIlMjB2aWV3Qm94JTNEJTIyMCUyMDAlMjAyMCUyMDIwJTIyJTIwc3R5bGUlM0QlMjJmaWxsJTNBJTIzZmZmJTNCJTIyJTIwaGVpZ2h0JTNEJTIyMTAwJTI1JTIyJTIwd2lkdGglM0QlMjIxMDAlMjUlMjIlM0UlMEElMjAlMjAlMjAlMjAlM0NwYXRoJTIwZCUzRCUyMk01JTIwM2MwJTIwMS4xLS43JTIwMi0yJTIwMi0xLjIlMjAwLTItLjktMi0xLjlDMSUyMDIlMjAxLjglMjAxJTIwMyUyMDFzMiUyMC45JTIwMiUyMDJ6TTElMjAxOWg0VjZIMXYxM3pNMTQuNiUyMDYuMmMtMi4xJTIwMC0zLjMlMjAxLjItMy44JTIwMmgtLjFsLS4yLTEuN0g2LjljMCUyMDEuMS4xJTIwMi40LjElMjAzLjlWMTloNHYtNy4xYzAtLjQlMjAwLS43LjEtMSUyMC4zLS43LjgtMS42JTIwMS45LTEuNiUyMDEuNCUyMDAlMjAyJTIwMS4yJTIwMiUyMDIuOFYxOWg0di03LjRjMC0zLjctMS45LTUuNC00LjQtNS40eiUyMiUyRiUzRSUwQSUzQyUyRnN2ZyUzRSIpOwp9CnNoYXJlLWJ1dHRvbiAuc2Itc29jaWFsIGxpW2NsYXNzKj0nbGlua2VkaW4nXTphZnRlciB7CiAgYmFja2dyb3VuZC1pbWFnZTogdXJsKCJkYXRhOmltYWdlL3N2Zyt4bWw7Y2hhcnNldD11dGYtOCwlM0NzdmclMjB4bWxucyUzRCUyMmh0dHAlM0ElMkYlMkZ3d3cudzMub3JnJTJGMjAwMCUyRnN2ZyUyMiUyMHZpZXdCb3glM0QlMjIwJTIwMCUyMDIwJTIwMjAlMjIlMjBzdHlsZSUzRCUyMmZpbGwlM0ElMjMwMDAlM0IlMjIlMjBoZWlnaHQlM0QlMjIxMDAlMjUlMjIlMjB3aWR0aCUzRCUyMjEwMCUyNSUyMiUzRSUwQSUyMCUyMCUyMCUyMCUzQ3BhdGglMjBkJTNEJTIyTTUlMjAzYzAlMjAxLjEtLjclMjAyLTIlMjAyLTEuMiUyMDAtMi0uOS0yLTEuOUMxJTIwMiUyMDEuOCUyMDElMjAzJTIwMXMyJTIwLjklMjAyJTIwMnpNMSUyMDE5aDRWNkgxdjEzek0xNC42JTIwNi4yYy0yLjElMjAwLTMuMyUyMDEuMi0zLjglMjAyaC0uMWwtLjItMS43SDYuOWMwJTIwMS4xLjElMjAyLjQuMSUyMDMuOVYxOWg0di03LjFjMC0uNCUyMDAtLjcuMS0xJTIwLjMtLjcuOC0xLjYlMjAxLjktMS42JTIwMS40JTIwMCUyMDIlMjAxLjIlMjAyJTIwMi44VjE5aDR2LTcuNGMwLTMuNy0xLjktNS40LTQuNC01LjR6JTIyJTJGJTNFJTBBJTNDJTJGc3ZnJTNFIik7Cn0Kc2hhcmUtYnV0dG9uIC5zYi1zb2NpYWwgbGlbY2xhc3MqPSdwaW50ZXJlc3QnXSB7CiAgYmFja2dyb3VuZDogI2M1MjgyZjsKfQpzaGFyZS1idXR0b24gLnNiLXNvY2lhbCBsaVtjbGFzcyo9J3BpbnRlcmVzdCddOmJlZm9yZSB7CiAgYmFja2dyb3VuZC1pbWFnZTogdXJsKCJkYXRhOmltYWdlL3N2Zyt4bWw7Y2hhcnNldD11dGYtOCwlM0NzdmclMjB4bWxucyUzRCUyMmh0dHAlM0ElMkYlMkZ3d3cudzMub3JnJTJGMjAwMCUyRnN2ZyUyMiUyMHZpZXdCb3glM0QlMjIwJTIwMCUyMDIwJTIwMjAlMjIlMjBzdHlsZSUzRCUyMmZpbGwlM0ElMjNmZmYlM0IlMjIlMjBoZWlnaHQlM0QlMjIxMDAlMjUlMjIlMjB3aWR0aCUzRCUyMjEwMCUyNSUyMiUzRSUwQSUyMCUyMCUyMCUyMCUzQ3BhdGglMjBkJTNEJTIyTTguNjE3JTIwMTMuMjI3QzguMDklMjAxNS45OCUyMDcuNDUlMjAxOC42MiUyMDUuNTUlMjAyMGMtLjU4Ny00LjE2Mi44Ni03LjI4NyUyMDEuNTMzLTEwLjYwNS0xLjE0Ny0xLjkzLjEzOC01LjgxMiUyMDIuNTU1LTQuODU1JTIwMi45NzUlMjAxLjE3Ni0yLjU3NiUyMDcuMTcyJTIwMS4xNSUyMDcuOTIyJTIwMy44OS43OCUyMDUuNDgtNi43NSUyMDMuMDY2LTkuMkMxMC4zNy0uMjc0JTIwMy43MDglMjAzLjE4JTIwNC41MjglMjA4LjI0NmMuMiUyMDEuMjM4JTIwMS40NzglMjAxLjYxMy41MSUyMDMuMzIyLTIuMjMtLjQ5NC0yLjg5Ni0yLjI1NC0yLjgxLTQuNi4xMzgtMy44NCUyMDMuNDUtNi41MjclMjA2Ljc3LTYuOSUyMDQuMjAyLS40NyUyMDguMTQ1JTIwMS41NDMlMjA4LjY5JTIwNS40OTQuNjEzJTIwNC40NjItMS44OTYlMjA5LjI5NC02LjM5JTIwOC45NDYtMS4yMTctLjA5NS0xLjcyNy0uNy0yLjY4LTEuMjh6JTIyJTJGJTNFJTBBJTNDJTJGc3ZnJTNFIik7Cn0Kc2hhcmUtYnV0dG9uIC5zYi1zb2NpYWwgbGlbY2xhc3MqPSdwaW50ZXJlc3QnXTphZnRlciB7CiAgYmFja2dyb3VuZC1pbWFnZTogdXJsKCJkYXRhOmltYWdlL3N2Zyt4bWw7Y2hhcnNldD11dGYtOCwlM0NzdmclMjB4bWxucyUzRCUyMmh0dHAlM0ElMkYlMkZ3d3cudzMub3JnJTJGMjAwMCUyRnN2ZyUyMiUyMHZpZXdCb3glM0QlMjIwJTIwMCUyMDIwJTIwMjAlMjIlMjBzdHlsZSUzRCUyMmZpbGwlM0ElMjMwMDAlM0IlMjIlMjBoZWlnaHQlM0QlMjIxMDAlMjUlMjIlMjB3aWR0aCUzRCUyMjEwMCUyNSUyMiUzRSUwQSUyMCUyMCUyMCUyMCUzQ3BhdGglMjBkJTNEJTIyTTguNjE3JTIwMTMuMjI3QzguMDklMjAxNS45OCUyMDcuNDUlMjAxOC42MiUyMDUuNTUlMjAyMGMtLjU4Ny00LjE2Mi44Ni03LjI4NyUyMDEuNTMzLTEwLjYwNS0xLjE0Ny0xLjkzLjEzOC01LjgxMiUyMDIuNTU1LTQuODU1JTIwMi45NzUlMjAxLjE3Ni0yLjU3NiUyMDcuMTcyJTIwMS4xNSUyMDcuOTIyJTIwMy44OS43OCUyMDUuNDgtNi43NSUyMDMuMDY2LTkuMkMxMC4zNy0uMjc0JTIwMy43MDglMjAzLjE4JTIwNC41MjglMjA4LjI0NmMuMiUyMDEuMjM4JTIwMS40NzglMjAxLjYxMy41MSUyMDMuMzIyLTIuMjMtLjQ5NC0yLjg5Ni0yLjI1NC0yLjgxLTQuNi4xMzgtMy44NCUyMDMuNDUtNi41MjclMjA2Ljc3LTYuOSUyMDQuMjAyLS40NyUyMDguMTQ1JTIwMS41NDMlMjA4LjY5JTIwNS40OTQuNjEzJTIwNC40NjItMS44OTYlMjA5LjI5NC02LjM5JTIwOC45NDYtMS4yMTctLjA5NS0xLjcyNy0uNy0yLjY4LTEuMjh6JTIyJTJGJTNFJTBBJTNDJTJGc3ZnJTNFIik7Cn0Kc2hhcmUtYnV0dG9uIC5zYi1zb2NpYWwgbGlbY2xhc3MqPSdyZWRkaXQnXSB7CiAgYmFja2dyb3VuZDogI2ExY2FmMjsKfQpzaGFyZS1idXR0b24gLnNiLXNvY2lhbCBsaVtjbGFzcyo9J3JlZGRpdCddOmJlZm9yZSB7CiAgYmFja2dyb3VuZC1pbWFnZTogdXJsKCJkYXRhOmltYWdlL3N2Zyt4bWw7Y2hhcnNldD11dGYtOCwlM0NzdmclMjB4bWxucyUzRCUyMmh0dHAlM0ElMkYlMkZ3d3cudzMub3JnJTJGMjAwMCUyRnN2ZyUyMiUyMHZpZXdCb3glM0QlMjIwJTIwMCUyMDUxMiUyMDQyNi42NiUyMiUyMHN0eWxlJTNEJTIyZmlsbCUzQSUyM2ZmZiUzQiUyMiUyMGhlaWdodCUzRCUyMjEwMCUyNSUyMiUyMHdpZHRoJTNEJTIyMTAwJTI1JTIyJTNFJTBBJTIwJTIwJTIwJTIwJTNDcGF0aCUyMGQlM0QlMjJNNDc4LjkwNSUyMDE5Ni41NTZjMC00LjUtMS4wMjgtOC45MzMtMy4yNjgtMTMuMDlsLS4wNTMtLjA1My0uMDI2LS4wNmMtMy4wMDQtNi4xOTgtNy43Mi0xMC44NjItMTMuNC0xNC4wNS01LjY3Ny0zLjE5LTEyLjMxNy00LjgzNi0xOC45ODMtNC44MzYtNi4wMiUyMDAtMTIuMDE2JTIwMS4zNjMtMTcuMzM4JTIwNC4wMzglMjAxNi45MTYlMjAxNC42NzclMjAzMS43NjUlMjAzMi4zNyUyMDQxLjM3JTIwNTMuMTI4JTIwMy4wOC0yLjY2OCUyMDUuNzE3LTUuOTclMjA3LjY4LTkuNjA0JTIwMi41Ny00Ljc4NSUyMDQuMDE4LTEwLjE4NiUyMDQuMDE4LTE1LjQ3NXptLTMzLjYzNSUyMDczLjQ0MmMwLTE4LjQ4NC02LjY1My0zNi45OC0xNy40My01MS45NC0yMS40NzYtMjkuODY4LTU0LjgyLTQ5LjM4LTg5LjQ5Ny02MC4yNDNsLS4yNS0uMTE4Yy02LjY0LTIuMDUtMTMuMzczLTMuODA4LTIwLjE1OC01LjQwMi0yMC4yNjMtNC42MS00MS4wMjYtNi44ODQtNjEuNzk2LTYuODg0LTI3Ljg3NCUyMDAtNTUuNzM4JTIwNC4xLTgyLjQzJTIwMTIuMzQ3LTM0LjY3JTIwMTEuMDM0LTY4LjEwOCUyMDMwLjM3NS04OS41NTclMjA2MC4zNnYuMDU0QzczLjI5JTIwMjMzLjEzOCUyMDY2LjkyJTIwMjUxLjc0JTIwNjYuOTIlMjAyNzAuMjI2YzAlMjA2LjgyNC44NTclMjAxMy42NDglMjAyLjY1NSUyMDIwLjMxNWguMDJjMy45MDYlMjAxNC44MzQlMjAxMS41NCUyMDI4LjE1MyUyMDIxLjQxNiUyMDM5Ljc2JTIwOS44NzUlMjAxMS41NDIlMjAyMS45OSUyMDIxLjQ1JTIwMzQuNzM2JTIwMjkuNTI1JTIwMi44MiUyMDEuNzY2JTIwNS42NTIlMjAzLjQxMiUyMDguNTUlMjA1LjA2JTIwMzcuMDElMjAyMC42NDUlMjA3OS42MyUyMDI5LjY5NSUyMDEyMS45NDclMjAyOS42OTUlMjA3LjE0NiUyMDAlMjAxNC4zNTQtLjIyNCUyMDIxLjQ1NS0uNzM3JTIwNDIuNjItMy41MTglMjA4NS40MS0xNi4xJTIwMTE5Ljk5NS00MS44MDRoLjAxM2MxMS4wMTUtOC4xNDUlMjAyMS4yMTItMTguMDUlMjAyOS4yODgtMjkuMjUlMjA4LjA5LTExLjIxJTIwMTQuMDE4LTIzLjcxNSUyMDE2LjY1My0zNy4zMXYtLjA2N2guMDEyYzEuMDkzLTUuMTI2JTIwMS42MDctMTAuMjM4JTIwMS42MDctMTUuNDE2ek04Ni4wNzglMjAxNjguNzM2Yy01LjUxNC0yLjU2Mi0xMS4yMTItNC4zODctMTYuODQ1LTQuMzg3LS45NCUyMDAtMS44OTYuMDU3LTIuODQ2LjE3aC0uMjdjLTguMDkuMjMtMTYuMjUlMjAzLjc1NC0yMi4zNzclMjA5LjQ0NS02LjEzMyUyMDUuNjMzLTEwLjE5JTIwMTMuMi0xMC40OTQlMjAyMS42MnYuMDUzbC0uMDEzLjA2Yy0uMDYuNjg0LS4wOCUyMDEuMzYyLS4wOCUyMDEuOTg4JTIwMCUyMDUuMTc4JTIwMS41OSUyMDEwLjE4NCUyMDQuMjc2JTIwMTQuNzM1JTIwMS45OTQlMjAzLjQxNCUyMDQuNjAyJTIwNi40ODMlMjA3LjU1NCUyMDkuMTU4JTIwOS40NTMtMjAuNzAzJTIwMjQuMjIyLTM4LjIyNiUyMDQxLjA5My01Mi44NDR6TTM5MC40NDglMjA1OC4yYzAlMjAuNTY2JTIwMCUyMDEuMTQuMDY2JTIwMS43MDZ2LjExMmMuMjUlMjA3LjE2NyUyMDMuNjM3JTIwMTMuODI3JTIwOC43ODglMjAxOC43NzQlMjA1LjE2NCUyMDQuODk1JTIwMTIuMDE2JTIwNy45NjQlMjAxOC45NzIlMjA3Ljk2NGguMTg1bDEuNS4wNmM3LjAxJTIwMCUyMDEzLjk4LTMuMDE3JTIwMTkuMjEtNy45MSUyMDUuMjQyLTQuOTQ4JTIwOC43MDctMTEuNjYlMjA4Ljk4My0xOC44ODh2LS4wNTNjLjA1My0uNTcyLjA4LTEuMDguMDgtMS42NTMlMjAwLTcuNDUtMy40OC0xNC41MDUtOC45MzMtMTkuNzk1LTUuNDE0LTUuMjM3LTEyLjcxMy04LjQ3OC0xOS45Mi04LjQ3OC0yLjMxOCUyMDAtNC42MS4zNC02Ljg3NyUyMDEuMDI2bC0uMDUzLjA1M2gtLjA4Yy01LjkyOCUyMDEuNTM0LTExLjQ4NyUyMDUuMTc3LTE1LjQ4JTIwMTAuMDctNC4wMTclMjA0LjgzNS02LjQ0JTIwMTAuODEtNi40NCUyMDE3LjAxem0xMjEuNDQ3JTIwMTM0LjkzN3YuMDZjLjA4JTIwMS4xNC4xMDUlMjAyLjIyLjEwNSUyMDMuMzYlMjAwJTIwMTIuMzk2LTMuOTkyJTIwMjQuNDA1LTEwLjY0NiUyMDM0LjUyMy02LjIxOCUyMDkuNS0xNC43ODIlMjAxNy40Ny0yNC42MzclMjAyMi44MTguNjMzJTIwNC45NCUyMDElMjA5Ljk0NyUyMDElMjAxNC45LS4wMjUlMjAyNi43OTgtOS4yNDclMjA1My4xMzUtMjUuMzM0JTIwNzQuMjRoLS4wMjZjLTI5LjczNSUyMDM5LjUzOC03NS4zNzMlMjA2Mi44NTctMTIxLjQ2JTIwNzQuNTgzaC0uMDEybC0uMDQuMDU1Yy0yNC41NyUyMDUuOTgtNDkuOTA2JTIwOC45ODUtNzUuMjQ3JTIwOC45ODUtMzcuNzY2JTIwMC03NS41MTItNi43NzItMTEwLjcyMi0yMC45MjNoLS4wNDZjLTM2LjUwOC0xNS4wODUtNzEuMjk2LTM4Ljk3LTkyLjYzMy03NC4wMTYtMTEuNDc1LTE4LjcyLTE3Ljc3Mi00MC42ODMtMTcuNzcyLTYyLjY4NSUyMDAtNS4wMDYuMzMtMTAuMDEzJTIwMS0xNC45MTMtOS42MTctNS40NTQtMTcuOTM3LTEzLjA4Mi0yNC4xMTYtMjIuMjM4QzQuNzElMjAyMjEuOTc2LjUzMiUyMDIxMC40ODclMjAwJTIwMTk4LjMxNHYtLjIyNGMuMDEzLTE3LjA2OCUyMDcuNDI0LTMzLjIyOCUyMDE4Ljk0NS00NS4xMSUyMDExLjUyLTExLjk1JTIwMjcuMjUyLTE5Ljc0MyUyMDQ0LjEzNi0xOS43NDNoLjdjMS43Ni0uMTIlMjAzLjU1OC0uMTcyJTIwNS4zNDMtLjE3MiUyMDguNDc4JTIwMCUyMDE2Ljk3NiUyMDEuMzY0JTIwMjUuMDQ1JTIwNC40OTNoLjA4NmM2Ljg5JTIwMi45MDQlMjAxMy43MzQlMjA2LjQzJTIwMTkuODM0JTIwMTEuMjY1JTIwMS45NzctMS4wMiUyMDQuMTMtMi4yMiUyMDYuNTU1LTMuMTMlMjAzNi45ODItMjEuOTAyJTIwNzkuOTU4LTMwLjMyJTIwMTIxLjg0OC0zMi43NjYuMzYzLTIwLjc2NCUyMDIuOTEtNDIuNDk1JTIwMTMuMDMtNjEuNSUyMDguNDI2LTE1LjgxJTIwMjMuMDUtMjguMTAyJTIwNDAuNDgtMzIuMzdoLjE1OGM2LjYyNy0xLjMwNSUyMDEzLjMyLTEuODc3JTIwMTkuOTYtMS44NzclMjAxNy43MDYlMjAwJTIwMzUuMTklMjA0LjE1NiUyMDUxLjU2NSUyMDEwLjY5OCUyMDcuMjMzLTEwLjkyMiUyMDE3LjU3NS0xOS40NiUyMDI5LjcxLTI0LjIzNWwuMTE4LS4wNi4xMDYtLjA1M0M0MDQuNzMlMjAxLjMxJTIwNDEyLjI2NiUyMDAlMjA0MTkuODMlMjAwYzcuOTU2JTIwMCUyMDE1Ljk4JTIwMS40ODIlMjAyMy41MDMlMjA0LjgzNXYtLjA1M2wuMDI2LjA1My4xMy4wNmMxMC43OSUyMDQuMTU3JTIwMTkuOTIlMjAxMS44MyUyMDI2LjM5JTIwMjEuMzMlMjA2LjQ3JTIwOS42MTglMjAxMC4yOSUyMDIxLjEwNSUyMDEwLjI5JTIwMzIuODg0JTIwMCUyMDIuMTYtLjEzMyUyMDQuMzItLjM4NCUyMDYuNTRsLS4wMTMuMDYtLjAyNi4xMWMtMS4yNjUlMjAxNS4yNS04Ljk4NSUyMDI4LjYxNy0xOS45MiUyMDM4LjExNi0xMSUyMDkuNjE3LTI1LjI0MyUyMDE1LjQyLTM5Ljg2NyUyMDE1LjQyLTIuMzQ1JTIwMC00LjcxNi0uMTctNy4wNi0uNDYtMTQuNTA3LTEuMTM0LTI4LjAyNC04LjEzLTM3Ljk1OC0xOC42MDQtOS45NzQtMTAuNDA4LTE2LjM5LTI0LjM0Ny0xNi4zOS0zOS4zNiUyMDAtLjY4NS4wNjYtMS40OC4wOTMtMi4xNjYtMTMuNjIzLTYuMDg3LTI4LjA2Mi0xMS4wOTQtNDIuNDM3LTExLjA5NC0yLjA2OCUyMDAtNC4xNS4xMi02LjIzLjM0M2gtLjAyN2MtMTAuNzUlMjAxLjAyNy0yMC43NSUyMDcuNzkzLTI1LjU5NyUyMDE3LjUyMnYuMDUzYy03LjM2NSUyMDE0LjM0Mi04LjgxNCUyMDMxLjA2Ny05LjAzOCUyMDQ3LjczMyUyMDQxLjIyNCUyMDIuNjc1JTIwODIuNzElMjAxMi41NzUlMjAxMTkuMDg3JTIwMzMuNDVoLjA1NGwuNTI3LjM0M2MuNjg2LjM5NiUyMDEuOTUlMjAxLjA4JTIwMy4xMjMlMjAxLjcwNyUyMDIuNDktMi4wNSUyMDUuMTQtNC4wOTglMjA4LjE1NS01LjkxNiUyMDExLjAyOC03LjMzOCUyMDI0LjA4NS0xMC45OCUyMDM3LjE1NC0xMC45OCUyMDUuODElMjAwJTIwMTEuNjIuNzM3JTIwMTcuMjYlMjAyLjE2aC4wMTNsLjIyNS4wNi4yMjQuMDZjMTMuMzA3JTIwMy40MSUyMDI1LjM2JTIwMTEuMDMzJTIwMzQuNDI2JTIwMjEuMzMlMjA5LjA1JTIwMTAuMzU0JTIwMTUuMTUlMjAyMy4zODQlMjAxNi4zMzclMjAzNy42em0tMzQ1LjM5JTIwODAuMzhoLjE1YzMuMjU0JTIwMS4xOTglMjA2LjYwNiUyMDEuNzY1JTIwOS45MzQlMjAxLjc2NSUyMDguMjg1JTIwMCUyMDE2LjM0LTMuMzQ3JTIwMjIuNDQtOC44NjYlMjA2LjA5NC01LjU3MyUyMDEwLjI1OC0xMy40MjYlMjAxMC4yNTgtMjIuMzU4bC0uMDE1LS43MzcuMDMzLTEuMzE1YzAtOC44NjctNC4xMS0xNi43ODUtMTAuMTQ1LTIyLjI5Mi02LjA1My01LjY0LTE0LjA5LTkuMDUtMjIuNDEtOS4wNS0yLjIyJTIwMC00LjQ5Mi4yODgtNi43Ljc5NmgtLjEyNGMtMTEuMDA4JTIwMi4zNC0yMC42NzglMjAxMC40NjYtMjQuMjQlMjAyMS43M2wtLjAxNS4wNjZjLTEuMDIlMjAzLjA1Ny0xLjQ5NCUyMDYuMjQ0LTEuNDk0JTIwOS4zOCUyMDAlMjA2LjkzJTIwMi4yNzIlMjAxMy41OTclMjA2LjE5OCUyMDE5LjE3JTIwMy44ODclMjA1LjQlMjA5LjQlMjA5LjY3JTIwMTYuMDA4JTIwMTEuNjZtMTc5LjIxOCUyMDQxLjQyYy0yLjYzNS0xLjcxMy01LjY2NS0yLjc0LTguODgtMi43NC0yLjU4MiUyMDAtNS4yNy43MzctNy42NTQlMjAyLjM0NS0yMi42MiUyMDEzLjQ4LTQ5LjIzNCUyMDIwLjg3LTc1LjY0NCUyMDIwLjg3LTE5LjgyJTIwMC0zOS41MjQtNC4xNS01Ny4zNy0xMi45MWwtLjA5Mi0uMDU0LS4wODUtLjA1M2MtMi42ODgtMS4wOC01Ljc1OC0zLjQyNi05LjEwNC01LjY0LTEuNy0xLjEzMi0zLjQ3LTIuMjEzLTUuNDQtMy4wMTctMS45NDItLjg1NS00LjEwMy0xLjQyMy02LjQxLTEuNDIzLTEuOTElMjAwLTMuOTIuNDYyLTUuOSUyMDEuMzA1bC0uMzAzLjExOGguMDEzYy0zLjEwNyUyMDEuMi01LjUzOCUyMDMuNDEzLTcuMTA2JTIwNS45Ny0xLjYzNCUyMDIuNjg3LTIuNDM4JTIwNS43NDMtMi40MzglMjA4LjgyNiUyMDAlMjAyLjc5NC42NiUyMDUuNTc0JTIwMi4wMTYlMjA4LjA3NyUyMDEuMjklMjAyLjM4NCUyMDMuMjc0JTIwNC40OSUyMDUuODc2JTIwNS44NiUyMDI1LjUxNCUyMDE3LjIzMyUyMDU1LjU0NSUyMDI1LjAzJTIwODUuNzAyJTIwMjQuOTY3JTIwMjcuMTg3JTIwMCUyMDU0LjUzOC02LjI1OCUyMDc4Ljg4NS0xNy43NDdsLjEzMi0uMDU0LjEzMi0uMDUyYzMuMi0xLjk1JTIwNy40Ny0zLjY1JTIwMTEuNDg2LTYuMDg3JTIwMi4wMDMtMS4zMTclMjAzLjk0LTIuNzQlMjA1LjYxMi00LjY3OCUyMDEuNjYtMS44NyUyMDMuMDAzLTQuMjA0JTIwMy43NjctNi45OTcuMzA0LTEuMjUyLjQ2Mi0yLjQ1LjQ2Mi0zLjU4NCUyMDAtMi4yNjctLjU2Ny00LjQyOC0xLjQ5LTYuMzc4LTEuMzczLTIuODQ0LTMuNTg1LTUuMjE1LTYuMTY4LTYuOTI4em0yMC40NzMtODIuNWMxLjMxOCUyMDMuMzcyJTIwMS45MSUyMDYuODklMjAxLjkxJTIwMTAuMzU0JTIwMCUyMDYuOTQyLTIuNDElMjAxMy43OC02LjQ1NSUyMDE5LjI4Ny0zLjk5MiUyMDUuNDY4LTkuNjU3JTIwOS42Ny0xNi4zMjMlMjAxMS41NTVsLS4xNDYuMDUzaC0uMDljLTMuMTElMjAxLjA4LTYuMzI2JTIwMS41OTQtOS40ODglMjAxLjU5NC03LjQ1NyUyMDAtMTQuNzU2LTIuNjc3LTIwLjYwNS03LjI3NC01Ljc5Ny00LjU2LTEwLjE5Ny0xMS4wOTMtMTEuNTY3LTE4Ljg0aC0uMDEybC0uMDE0LS4xMDUtLjAyNi0uMDY0aC4wMjZjLS40MzUtMS45OS0uNjU4LTMuOTgtLjY1OC01Ljk3JTIwMC02LjcxOCUyMDIuMjkyLTEzLjIlMjA2LjA3My0xOC40OTYlMjAzLjc2Ni01LjM0MiUyMDkuMDc1LTkuNTUlMjAxNS4yOTQtMTEuNzEyaC4wOTNjMy41MTgtMS4zMSUyMDcuMjMyLTEuOTklMjAxMC44OTYtMS45OSUyMDYuNjkyJTIwMCUyMDEzLjI4JTIwMi4wNDMlMjAxOC44NCUyMDUuNzQ1JTIwNS40OCUyMDMuNjM3JTIwOS45MzQlMjA4Ljk4NSUyMDEyLjE3MyUyMDE1LjY1bC4wNTMuMTA2LjA0LjEwM2gtLjAxNnolMjIlMkYlM0UlMEElM0MlMkZzdmclM0UiKTsKfQpzaGFyZS1idXR0b24gLnNiLXNvY2lhbCBsaVtjbGFzcyo9J3JlZGRpdCddOmFmdGVyIHsKICBiYWNrZ3JvdW5kLWltYWdlOiB1cmwoImRhdGE6aW1hZ2Uvc3ZnK3htbDtjaGFyc2V0PXV0Zi04LCUzQ3N2ZyUyMHhtbG5zJTNEJTIyaHR0cCUzQSUyRiUyRnd3dy53My5vcmclMkYyMDAwJTJGc3ZnJTIyJTIwdmlld0JveCUzRCUyMjAlMjAwJTIwNTEyJTIwNDI2LjY2JTIyJTIwc3R5bGUlM0QlMjJmaWxsJTNBJTIzMDAwJTNCJTIyJTIwaGVpZ2h0JTNEJTIyMTAwJTI1JTIyJTIwd2lkdGglM0QlMjIxMDAlMjUlMjIlM0UlMEElMjAlMjAlMjAlMjAlM0NwYXRoJTIwZCUzRCUyMk00NzguOTA1JTIwMTk2LjU1NmMwLTQuNS0xLjAyOC04LjkzMy0zLjI2OC0xMy4wOWwtLjA1My0uMDUzLS4wMjYtLjA2Yy0zLjAwNC02LjE5OC03LjcyLTEwLjg2Mi0xMy40LTE0LjA1LTUuNjc3LTMuMTktMTIuMzE3LTQuODM2LTE4Ljk4My00LjgzNi02LjAyJTIwMC0xMi4wMTYlMjAxLjM2My0xNy4zMzglMjA0LjAzOCUyMDE2LjkxNiUyMDE0LjY3NyUyMDMxLjc2NSUyMDMyLjM3JTIwNDEuMzclMjA1My4xMjglMjAzLjA4LTIuNjY4JTIwNS43MTctNS45NyUyMDcuNjgtOS42MDQlMjAyLjU3LTQuNzg1JTIwNC4wMTgtMTAuMTg2JTIwNC4wMTgtMTUuNDc1em0tMzMuNjM1JTIwNzMuNDQyYzAtMTguNDg0LTYuNjUzLTM2Ljk4LTE3LjQzLTUxLjk0LTIxLjQ3Ni0yOS44NjgtNTQuODItNDkuMzgtODkuNDk3LTYwLjI0M2wtLjI1LS4xMThjLTYuNjQtMi4wNS0xMy4zNzMtMy44MDgtMjAuMTU4LTUuNDAyLTIwLjI2My00LjYxLTQxLjAyNi02Ljg4NC02MS43OTYtNi44ODQtMjcuODc0JTIwMC01NS43MzglMjA0LjEtODIuNDMlMjAxMi4zNDctMzQuNjclMjAxMS4wMzQtNjguMTA4JTIwMzAuMzc1LTg5LjU1NyUyMDYwLjM2di4wNTRDNzMuMjklMjAyMzMuMTM4JTIwNjYuOTIlMjAyNTEuNzQlMjA2Ni45MiUyMDI3MC4yMjZjMCUyMDYuODI0Ljg1NyUyMDEzLjY0OCUyMDIuNjU1JTIwMjAuMzE1aC4wMmMzLjkwNiUyMDE0LjgzNCUyMDExLjU0JTIwMjguMTUzJTIwMjEuNDE2JTIwMzkuNzYlMjA5Ljg3NSUyMDExLjU0MiUyMDIxLjk5JTIwMjEuNDUlMjAzNC43MzYlMjAyOS41MjUlMjAyLjgyJTIwMS43NjYlMjA1LjY1MiUyMDMuNDEyJTIwOC41NSUyMDUuMDYlMjAzNy4wMSUyMDIwLjY0NSUyMDc5LjYzJTIwMjkuNjk1JTIwMTIxLjk0NyUyMDI5LjY5NSUyMDcuMTQ2JTIwMCUyMDE0LjM1NC0uMjI0JTIwMjEuNDU1LS43MzclMjA0Mi42Mi0zLjUxOCUyMDg1LjQxLTE2LjElMjAxMTkuOTk1LTQxLjgwNGguMDEzYzExLjAxNS04LjE0NSUyMDIxLjIxMi0xOC4wNSUyMDI5LjI4OC0yOS4yNSUyMDguMDktMTEuMjElMjAxNC4wMTgtMjMuNzE1JTIwMTYuNjUzLTM3LjMxdi0uMDY3aC4wMTJjMS4wOTMtNS4xMjYlMjAxLjYwNy0xMC4yMzglMjAxLjYwNy0xNS40MTZ6TTg2LjA3OCUyMDE2OC43MzZjLTUuNTE0LTIuNTYyLTExLjIxMi00LjM4Ny0xNi44NDUtNC4zODctLjk0JTIwMC0xLjg5Ni4wNTctMi44NDYuMTdoLS4yN2MtOC4wOS4yMy0xNi4yNSUyMDMuNzU0LTIyLjM3NyUyMDkuNDQ1LTYuMTMzJTIwNS42MzMtMTAuMTklMjAxMy4yLTEwLjQ5NCUyMDIxLjYydi4wNTNsLS4wMTMuMDZjLS4wNi42ODQtLjA4JTIwMS4zNjItLjA4JTIwMS45ODglMjAwJTIwNS4xNzglMjAxLjU5JTIwMTAuMTg0JTIwNC4yNzYlMjAxNC43MzUlMjAxLjk5NCUyMDMuNDE0JTIwNC42MDIlMjA2LjQ4MyUyMDcuNTU0JTIwOS4xNTglMjA5LjQ1My0yMC43MDMlMjAyNC4yMjItMzguMjI2JTIwNDEuMDkzLTUyLjg0NHpNMzkwLjQ0OCUyMDU4LjJjMCUyMC41NjYlMjAwJTIwMS4xNC4wNjYlMjAxLjcwNnYuMTEyYy4yNSUyMDcuMTY3JTIwMy42MzclMjAxMy44MjclMjA4Ljc4OCUyMDE4Ljc3NCUyMDUuMTY0JTIwNC44OTUlMjAxMi4wMTYlMjA3Ljk2NCUyMDE4Ljk3MiUyMDcuOTY0aC4xODVsMS41LjA2YzcuMDElMjAwJTIwMTMuOTgtMy4wMTclMjAxOS4yMS03LjkxJTIwNS4yNDItNC45NDglMjA4LjcwNy0xMS42NiUyMDguOTgzLTE4Ljg4OHYtLjA1M2MuMDUzLS41NzIuMDgtMS4wOC4wOC0xLjY1MyUyMDAtNy40NS0zLjQ4LTE0LjUwNS04LjkzMy0xOS43OTUtNS40MTQtNS4yMzctMTIuNzEzLTguNDc4LTE5LjkyLTguNDc4LTIuMzE4JTIwMC00LjYxLjM0LTYuODc3JTIwMS4wMjZsLS4wNTMuMDUzaC0uMDhjLTUuOTI4JTIwMS41MzQtMTEuNDg3JTIwNS4xNzctMTUuNDglMjAxMC4wNy00LjAxNyUyMDQuODM1LTYuNDQlMjAxMC44MS02LjQ0JTIwMTcuMDF6bTEyMS40NDclMjAxMzQuOTM3di4wNmMuMDglMjAxLjE0LjEwNSUyMDIuMjIuMTA1JTIwMy4zNiUyMDAlMjAxMi4zOTYtMy45OTIlMjAyNC40MDUtMTAuNjQ2JTIwMzQuNTIzLTYuMjE4JTIwOS41LTE0Ljc4MiUyMDE3LjQ3LTI0LjYzNyUyMDIyLjgxOC42MzMlMjA0Ljk0JTIwMSUyMDkuOTQ3JTIwMSUyMDE0LjktLjAyNSUyMDI2Ljc5OC05LjI0NyUyMDUzLjEzNS0yNS4zMzQlMjA3NC4yNGgtLjAyNmMtMjkuNzM1JTIwMzkuNTM4LTc1LjM3MyUyMDYyLjg1Ny0xMjEuNDYlMjA3NC41ODNoLS4wMTJsLS4wNC4wNTVjLTI0LjU3JTIwNS45OC00OS45MDYlMjA4Ljk4NS03NS4yNDclMjA4Ljk4NS0zNy43NjYlMjAwLTc1LjUxMi02Ljc3Mi0xMTAuNzIyLTIwLjkyM2gtLjA0NmMtMzYuNTA4LTE1LjA4NS03MS4yOTYtMzguOTctOTIuNjMzLTc0LjAxNi0xMS40NzUtMTguNzItMTcuNzcyLTQwLjY4My0xNy43NzItNjIuNjg1JTIwMC01LjAwNi4zMy0xMC4wMTMlMjAxLTE0LjkxMy05LjYxNy01LjQ1NC0xNy45MzctMTMuMDgyLTI0LjExNi0yMi4yMzhDNC43MSUyMDIyMS45NzYuNTMyJTIwMjEwLjQ4NyUyMDAlMjAxOTguMzE0di0uMjI0Yy4wMTMtMTcuMDY4JTIwNy40MjQtMzMuMjI4JTIwMTguOTQ1LTQ1LjExJTIwMTEuNTItMTEuOTUlMjAyNy4yNTItMTkuNzQzJTIwNDQuMTM2LTE5Ljc0M2guN2MxLjc2LS4xMiUyMDMuNTU4LS4xNzIlMjA1LjM0My0uMTcyJTIwOC40NzglMjAwJTIwMTYuOTc2JTIwMS4zNjQlMjAyNS4wNDUlMjA0LjQ5M2guMDg2YzYuODklMjAyLjkwNCUyMDEzLjczNCUyMDYuNDMlMjAxOS44MzQlMjAxMS4yNjUlMjAxLjk3Ny0xLjAyJTIwNC4xMy0yLjIyJTIwNi41NTUtMy4xMyUyMDM2Ljk4Mi0yMS45MDIlMjA3OS45NTgtMzAuMzIlMjAxMjEuODQ4LTMyLjc2Ni4zNjMtMjAuNzY0JTIwMi45MS00Mi40OTUlMjAxMy4wMy02MS41JTIwOC40MjYtMTUuODElMjAyMy4wNS0yOC4xMDIlMjA0MC40OC0zMi4zN2guMTU4YzYuNjI3LTEuMzA1JTIwMTMuMzItMS44NzclMjAxOS45Ni0xLjg3NyUyMDE3LjcwNiUyMDAlMjAzNS4xOSUyMDQuMTU2JTIwNTEuNTY1JTIwMTAuNjk4JTIwNy4yMzMtMTAuOTIyJTIwMTcuNTc1LTE5LjQ2JTIwMjkuNzEtMjQuMjM1bC4xMTgtLjA2LjEwNi0uMDUzQzQwNC43MyUyMDEuMzElMjA0MTIuMjY2JTIwMCUyMDQxOS44MyUyMDBjNy45NTYlMjAwJTIwMTUuOTglMjAxLjQ4MiUyMDIzLjUwMyUyMDQuODM1di0uMDUzbC4wMjYuMDUzLjEzLjA2YzEwLjc5JTIwNC4xNTclMjAxOS45MiUyMDExLjgzJTIwMjYuMzklMjAyMS4zMyUyMDYuNDclMjA5LjYxOCUyMDEwLjI5JTIwMjEuMTA1JTIwMTAuMjklMjAzMi44ODQlMjAwJTIwMi4xNi0uMTMzJTIwNC4zMi0uMzg0JTIwNi41NGwtLjAxMy4wNi0uMDI2LjExYy0xLjI2NSUyMDE1LjI1LTguOTg1JTIwMjguNjE3LTE5LjkyJTIwMzguMTE2LTExJTIwOS42MTctMjUuMjQzJTIwMTUuNDItMzkuODY3JTIwMTUuNDItMi4zNDUlMjAwLTQuNzE2LS4xNy03LjA2LS40Ni0xNC41MDctMS4xMzQtMjguMDI0LTguMTMtMzcuOTU4LTE4LjYwNC05Ljk3NC0xMC40MDgtMTYuMzktMjQuMzQ3LTE2LjM5LTM5LjM2JTIwMC0uNjg1LjA2Ni0xLjQ4LjA5My0yLjE2Ni0xMy42MjMtNi4wODctMjguMDYyLTExLjA5NC00Mi40MzctMTEuMDk0LTIuMDY4JTIwMC00LjE1LjEyLTYuMjMuMzQzaC0uMDI3Yy0xMC43NSUyMDEuMDI3LTIwLjc1JTIwNy43OTMtMjUuNTk3JTIwMTcuNTIydi4wNTNjLTcuMzY1JTIwMTQuMzQyLTguODE0JTIwMzEuMDY3LTkuMDM4JTIwNDcuNzMzJTIwNDEuMjI0JTIwMi42NzUlMjA4Mi43MSUyMDEyLjU3NSUyMDExOS4wODclMjAzMy40NWguMDU0bC41MjcuMzQzYy42ODYuMzk2JTIwMS45NSUyMDEuMDglMjAzLjEyMyUyMDEuNzA3JTIwMi40OS0yLjA1JTIwNS4xNC00LjA5OCUyMDguMTU1LTUuOTE2JTIwMTEuMDI4LTcuMzM4JTIwMjQuMDg1LTEwLjk4JTIwMzcuMTU0LTEwLjk4JTIwNS44MSUyMDAlMjAxMS42Mi43MzclMjAxNy4yNiUyMDIuMTZoLjAxM2wuMjI1LjA2LjIyNC4wNmMxMy4zMDclMjAzLjQxJTIwMjUuMzYlMjAxMS4wMzMlMjAzNC40MjYlMjAyMS4zMyUyMDkuMDUlMjAxMC4zNTQlMjAxNS4xNSUyMDIzLjM4NCUyMDE2LjMzNyUyMDM3LjZ6bS0zNDUuMzklMjA4MC4zOGguMTVjMy4yNTQlMjAxLjE5OCUyMDYuNjA2JTIwMS43NjUlMjA5LjkzNCUyMDEuNzY1JTIwOC4yODUlMjAwJTIwMTYuMzQtMy4zNDclMjAyMi40NC04Ljg2NiUyMDYuMDk0LTUuNTczJTIwMTAuMjU4LTEzLjQyNiUyMDEwLjI1OC0yMi4zNThsLS4wMTUtLjczNy4wMzMtMS4zMTVjMC04Ljg2Ny00LjExLTE2Ljc4NS0xMC4xNDUtMjIuMjkyLTYuMDUzLTUuNjQtMTQuMDktOS4wNS0yMi40MS05LjA1LTIuMjIlMjAwLTQuNDkyLjI4OC02LjcuNzk2aC0uMTI0Yy0xMS4wMDglMjAyLjM0LTIwLjY3OCUyMDEwLjQ2Ni0yNC4yNCUyMDIxLjczbC0uMDE1LjA2NmMtMS4wMiUyMDMuMDU3LTEuNDk0JTIwNi4yNDQtMS40OTQlMjA5LjM4JTIwMCUyMDYuOTMlMjAyLjI3MiUyMDEzLjU5NyUyMDYuMTk4JTIwMTkuMTclMjAzLjg4NyUyMDUuNCUyMDkuNCUyMDkuNjclMjAxNi4wMDglMjAxMS42Nm0xNzkuMjE4JTIwNDEuNDJjLTIuNjM1LTEuNzEzLTUuNjY1LTIuNzQtOC44OC0yLjc0LTIuNTgyJTIwMC01LjI3LjczNy03LjY1NCUyMDIuMzQ1LTIyLjYyJTIwMTMuNDgtNDkuMjM0JTIwMjAuODctNzUuNjQ0JTIwMjAuODctMTkuODIlMjAwLTM5LjUyNC00LjE1LTU3LjM3LTEyLjkxbC0uMDkyLS4wNTQtLjA4NS0uMDUzYy0yLjY4OC0xLjA4LTUuNzU4LTMuNDI2LTkuMTA0LTUuNjQtMS43LTEuMTMyLTMuNDctMi4yMTMtNS40NC0zLjAxNy0xLjk0Mi0uODU1LTQuMTAzLTEuNDIzLTYuNDEtMS40MjMtMS45MSUyMDAtMy45Mi40NjItNS45JTIwMS4zMDVsLS4zMDMuMTE4aC4wMTNjLTMuMTA3JTIwMS4yLTUuNTM4JTIwMy40MTMtNy4xMDYlMjA1Ljk3LTEuNjM0JTIwMi42ODctMi40MzglMjA1Ljc0My0yLjQzOCUyMDguODI2JTIwMCUyMDIuNzk0LjY2JTIwNS41NzQlMjAyLjAxNiUyMDguMDc3JTIwMS4yOSUyMDIuMzg0JTIwMy4yNzQlMjA0LjQ5JTIwNS44NzYlMjA1Ljg2JTIwMjUuNTE0JTIwMTcuMjMzJTIwNTUuNTQ1JTIwMjUuMDMlMjA4NS43MDIlMjAyNC45NjclMjAyNy4xODclMjAwJTIwNTQuNTM4LTYuMjU4JTIwNzguODg1LTE3Ljc0N2wuMTMyLS4wNTQuMTMyLS4wNTJjMy4yLTEuOTUlMjA3LjQ3LTMuNjUlMjAxMS40ODYtNi4wODclMjAyLjAwMy0xLjMxNyUyMDMuOTQtMi43NCUyMDUuNjEyLTQuNjc4JTIwMS42Ni0xLjg3JTIwMy4wMDMtNC4yMDQlMjAzLjc2Ny02Ljk5Ny4zMDQtMS4yNTIuNDYyLTIuNDUuNDYyLTMuNTg0JTIwMC0yLjI2Ny0uNTY3LTQuNDI4LTEuNDktNi4zNzgtMS4zNzMtMi44NDQtMy41ODUtNS4yMTUtNi4xNjgtNi45Mjh6bTIwLjQ3My04Mi41YzEuMzE4JTIwMy4zNzIlMjAxLjkxJTIwNi44OSUyMDEuOTElMjAxMC4zNTQlMjAwJTIwNi45NDItMi40MSUyMDEzLjc4LTYuNDU1JTIwMTkuMjg3LTMuOTkyJTIwNS40NjgtOS42NTclMjA5LjY3LTE2LjMyMyUyMDExLjU1NWwtLjE0Ni4wNTNoLS4wOWMtMy4xMSUyMDEuMDgtNi4zMjYlMjAxLjU5NC05LjQ4OCUyMDEuNTk0LTcuNDU3JTIwMC0xNC43NTYtMi42NzctMjAuNjA1LTcuMjc0LTUuNzk3LTQuNTYtMTAuMTk3LTExLjA5My0xMS41NjctMTguODRoLS4wMTJsLS4wMTQtLjEwNS0uMDI2LS4wNjRoLjAyNmMtLjQzNS0xLjk5LS42NTgtMy45OC0uNjU4LTUuOTclMjAwLTYuNzE4JTIwMi4yOTItMTMuMiUyMDYuMDczLTE4LjQ5NiUyMDMuNzY2LTUuMzQyJTIwOS4wNzUtOS41NSUyMDE1LjI5NC0xMS43MTJoLjA5M2MzLjUxOC0xLjMxJTIwNy4yMzItMS45OSUyMDEwLjg5Ni0xLjk5JTIwNi42OTIlMjAwJTIwMTMuMjglMjAyLjA0MyUyMDE4Ljg0JTIwNS43NDUlMjA1LjQ4JTIwMy42MzclMjA5LjkzNCUyMDguOTg1JTIwMTIuMTczJTIwMTUuNjVsLjA1My4xMDYuMDQuMTAzaC0uMDE2eiUyMiUyRiUzRSUwQSUzQyUyRnN2ZyUzRSIpOwp9CnNoYXJlLWJ1dHRvbiAuc2Itc29jaWFsIGxpW2NsYXNzKj0ndHdpdHRlciddIHsKICBiYWNrZ3JvdW5kOiAjNmNkZmVhOwp9CnNoYXJlLWJ1dHRvbiAuc2Itc29jaWFsIGxpW2NsYXNzKj0ndHdpdHRlciddOmJlZm9yZSB7CiAgYmFja2dyb3VuZC1pbWFnZTogdXJsKCJkYXRhOmltYWdlL3N2Zyt4bWw7Y2hhcnNldD11dGYtOCwlM0NzdmclMjB4bWxucyUzRCUyMmh0dHAlM0ElMkYlMkZ3d3cudzMub3JnJTJGMjAwMCUyRnN2ZyUyMiUyMHZpZXdCb3glM0QlMjIwJTIwMCUyMDIwJTIwMjAlMjIlMjBzdHlsZSUzRCUyMmZpbGwlM0ElMjNmZmYlM0IlMjIlMjBoZWlnaHQlM0QlMjIxMDAlMjUlMjIlMjB3aWR0aCUzRCUyMjEwMCUyNSUyMiUzRSUwQSUyMCUyMCUyMCUyMCUzQ3BhdGglMjBkJTNEJTIyTTE3LjMxNiUyMDYuMjQ2Yy4wMDguMTYyLjAxLjMyNi4wMS40ODglMjAwJTIwNC45OS0zLjc5NiUyMDEwLjc0Mi0xMC43NCUyMDEwLjc0Mi0yLjEzMiUyMDAtNC4xMTUtLjYyNS01Ljc4Ni0xLjY5Ny4yOTYuMDMzLjU5Ni4wNS45LjA1JTIwMS43NyUyMDAlMjAzLjM5Ny0uNjAzJTIwNC42ODgtMS42MTQtMS42NS0uMDMtMy4wNDYtMS4xMi0zLjUyNi0yLjYyLjIzLjA0Mi40NjcuMDY1LjcxLjA2NS4zNDUlMjAwJTIwLjY4LS4wNDQuOTk1LS4xM0MyLjg0JTIwMTEuMTglMjAxLjU0JTIwOS42NTglMjAxLjU0JTIwNy44MjhWNy43OGMuNTA4LjI4NCUyMDEuMDkuNDU0JTIwMS43MS40NzQtMS4wMTQtLjY3OC0xLjY4LTEuODMyLTEuNjgtMy4xNDMlMjAwLS42OS4xODUtMS4zNC41MS0xLjg5NkMzLjk0MyUyMDUuNDk4JTIwNi43MjYlMjA3JTIwOS44NjMlMjA3LjE1OGMtLjA2NC0uMjc3LS4wOTctLjU2NC0uMDk3LS44NiUyMDAtMi4wODUlMjAxLjY5LTMuNzc0JTIwMy43NzQtMy43NzQlMjAxLjA4NSUyMDAlMjAyLjA2Ni40NTclMjAyLjc1NSUyMDEuMTkuODYtLjE3JTIwMS42NjctLjQ4MyUyMDIuMzk3LS45MTUtLjI4Mi44OC0uODglMjAxLjYyLTEuNjYlMjAyLjA4Ni43NjQtLjA5MiUyMDEuNDktLjI5MyUyMDIuMTY4LS41OTQtLjUwNi43NTgtMS4xNDYlMjAxLjQyMi0xLjg4NCUyMDEuOTUzeiUyMiUyRiUzRSUwQSUzQyUyRnN2ZyUzRSIpOwp9CnNoYXJlLWJ1dHRvbiAuc2Itc29jaWFsIGxpW2NsYXNzKj0ndHdpdHRlciddOmFmdGVyIHsKICBiYWNrZ3JvdW5kLWltYWdlOiB1cmwoImRhdGE6aW1hZ2Uvc3ZnK3htbDtjaGFyc2V0PXV0Zi04LCUzQ3N2ZyUyMHhtbG5zJTNEJTIyaHR0cCUzQSUyRiUyRnd3dy53My5vcmclMkYyMDAwJTJGc3ZnJTIyJTIwdmlld0JveCUzRCUyMjAlMjAwJTIwMjAlMjAyMCUyMiUyMHN0eWxlJTNEJTIyZmlsbCUzQSUyMzAwMCUzQiUyMiUyMGhlaWdodCUzRCUyMjEwMCUyNSUyMiUyMHdpZHRoJTNEJTIyMTAwJTI1JTIyJTNFJTBBJTIwJTIwJTIwJTIwJTNDcGF0aCUyMGQlM0QlMjJNMTcuMzE2JTIwNi4yNDZjLjAwOC4xNjIuMDEuMzI2LjAxLjQ4OCUyMDAlMjA0Ljk5LTMuNzk2JTIwMTAuNzQyLTEwLjc0JTIwMTAuNzQyLTIuMTMyJTIwMC00LjExNS0uNjI1LTUuNzg2LTEuNjk3LjI5Ni4wMzMuNTk2LjA1LjkuMDUlMjAxLjc3JTIwMCUyMDMuMzk3LS42MDMlMjA0LjY4OC0xLjYxNC0xLjY1LS4wMy0zLjA0Ni0xLjEyLTMuNTI2LTIuNjIuMjMuMDQyLjQ2Ny4wNjUuNzEuMDY1LjM0NSUyMDAlMjAuNjgtLjA0NC45OTUtLjEzQzIuODQlMjAxMS4xOCUyMDEuNTQlMjA5LjY1OCUyMDEuNTQlMjA3LjgyOFY3Ljc4Yy41MDguMjg0JTIwMS4wOS40NTQlMjAxLjcxLjQ3NC0xLjAxNC0uNjc4LTEuNjgtMS44MzItMS42OC0zLjE0MyUyMDAtLjY5LjE4NS0xLjM0LjUxLTEuODk2QzMuOTQzJTIwNS40OTglMjA2LjcyNiUyMDclMjA5Ljg2MyUyMDcuMTU4Yy0uMDY0LS4yNzctLjA5Ny0uNTY0LS4wOTctLjg2JTIwMC0yLjA4NSUyMDEuNjktMy43NzQlMjAzLjc3NC0zLjc3NCUyMDEuMDg1JTIwMCUyMDIuMDY2LjQ1NyUyMDIuNzU1JTIwMS4xOS44Ni0uMTclMjAxLjY2Ny0uNDgzJTIwMi4zOTctLjkxNS0uMjgyLjg4LS44OCUyMDEuNjItMS42NiUyMDIuMDg2Ljc2NC0uMDkyJTIwMS40OS0uMjkzJTIwMi4xNjgtLjU5NC0uNTA2Ljc1OC0xLjE0NiUyMDEuNDIyLTEuODg0JTIwMS45NTN6JTIyJTJGJTNFJTBBJTNDJTJGc3ZnJTNFIik7Cn0Kc2hhcmUtYnV0dG9uIC5zYi1zb2NpYWwgbGlbY2xhc3MqPSd3aGF0c2FwcCddIHsKICBiYWNrZ3JvdW5kOiAjNGRjMjQ3Owp9CnNoYXJlLWJ1dHRvbiAuc2Itc29jaWFsIGxpW2NsYXNzKj0nd2hhdHNhcHAnXTpiZWZvcmUgewogIGJhY2tncm91bmQtaW1hZ2U6IHVybCgiZGF0YTppbWFnZS9zdmcreG1sO2NoYXJzZXQ9dXRmLTgsJTNDc3ZnJTIwdmlld0JveCUzRCUyMjAlMjAwJTIwODclMjA4OCUyMiUyMHhtbG5zJTNEJTIyaHR0cCUzQSUyRiUyRnd3dy53My5vcmclMkYyMDAwJTJGc3ZnJTIyJTIwc3R5bGUlM0QlMjJmaWxsJTNBJTIzZmZmJTNCJTIyJTIwaGVpZ2h0JTNEJTIyMTAwJTI1JTIyJTIwd2lkdGglM0QlMjIxMDAlMjUlMjIlM0UlMEElMjAlMjAlMjAlMjAlM0NwYXRoJTIwZCUzRCUyMk02MS42MjMlMjA1MS44M2MtLjk0LS41MTUtNS41NjItMy4wMS02LjQyOC0zLjM2My0uODY3LS4zNS0xLjUtLjUzNS0yLjE3My40LS42NzUuOTM0LTIuNTkzJTIwMy4wMjMtMy4xNzUlMjAzLjY0Mi0uNTgzLjYxNS0xLjE0NC42NzItMi4wODQuMTYtLjk0LS41MTYtMy45OS0xLjY0Ni03LjUyNS01LjA0NS0yLjc1Mi0yLjY0NS00LjU1Ny01Ljg1NC01LjA4LTYuODM0LS41MjYtLjk3Ny0uMDA1LTEuNDc3LjQ5My0xLjkzNi40NS0uNDEzJTIwMS0xLjA4NCUyMDEuNS0xLjYyNS41LS41NC42NzgtLjkzNCUyMDEuMDItMS41NjMuMzQzLS42MjUuMjA0LTEuMTktLjAxNy0xLjY3OC0uMjIyLS40OS0xLjk2Mi01LjI3Ni0yLjY4Ny03LjIyMy0uNzI1LTEuOTQ2LTEuNTM3LTEuNjU3LTIuMDk1LTEuNjc4LS41NTctLjAyMy0xLjE5NC0uMTI2LTEuODMzLS4xNS0uNjM3LS4wMjQtMS42ODQuMTc2LTIuNiUyMDEuMTA0LS45MTIuOTIyLTMuNDc0JTIwMy4xNDctMy42NSUyMDcuODYyLS4xNzQlMjA0LjcxMyUyMDMuMDg0JTIwOS4zOTUlMjAzLjUzOCUyMDEwLjA1LjQ1Ni42NTglMjA2LjIzJTIwMTAuODc1JTIwMTUuODIzJTIwMTUuMDc1JTIwOS41OTYlMjA0LjIlMjA5LjY0NSUyMDIuOTIlMjAxMS40MDYlMjAyLjgyNiUyMDEuNzYzLS4wOSUyMDUuNzU2LTIuMTA0JTIwNi42MzgtNC4zMS44ODQtMi4yMDUuOTU1LTQuMTI1LjczLTQuNTMyLS4yMjUtLjQwOC0uODU1LS42NzMtMS43OTQtMS4xODhtLTE3LjYlMjAyMi43MTRjLTYuMzQ1JTIwMC0xMi4yNTMtMS45MDMtMTcuMTg3LTUuMTYzTDE0Ljg0JTIwNzMuMjJsMy45MDItMTEuNkMxNSUyMDU2LjQ2NiUyMDEyLjc5JTIwNTAuMTM3JTIwMTIuNzklMjA0My4zYzAtMTcuMjI2JTIwMTQuMDE0LTMxLjI0JTIwMzEuMjQtMzEuMjQlMjAxNy4yMjQlMjAwJTIwMzEuMjQlMjAxNC4wMTIlMjAzMS4yNCUyMDMxLjI0JTIwMCUyMDE3LjIyNi0xNC4wMTYlMjAzMS4yNC0zMS4yNCUyMDMxLjI0TTYuNSUyMDQzLjNjMCUyMDcuMDklMjAxLjk2OCUyMDEzLjcyJTIwNS4zODQlMjAxOS4zOEw1LjExJTIwODIuODA4bDIwLjc4LTYuNjVjNS4zNzUlMjAyLjk3MiUyMDExLjU1OCUyMDQuNjY3JTIwMTguMTM3JTIwNC42NjclMjAyMC43MjUlMjAwJTIwMzcuNTI4LTE2LjgwMiUyMDM3LjUyOC0zNy41MjUlMjAwLTIwLjcyNy0xNi44MDQtMzcuNTI4LTM3LjUzLTM3LjUyOC0yMC43MjMlMjAwLTM3LjUyMyUyMDE2LjgtMzcuNTIzJTIwMzcuNTI3eiUyMiUyRiUzRSUwQSUzQyUyRnN2ZyUzRSIpOwp9CnNoYXJlLWJ1dHRvbiAuc2Itc29jaWFsIGxpW2NsYXNzKj0nd2hhdHNhcHAnXTphZnRlciB7CiAgYmFja2dyb3VuZC1pbWFnZTogdXJsKCJkYXRhOmltYWdlL3N2Zyt4bWw7Y2hhcnNldD11dGYtOCwlM0NzdmclMjB2aWV3Qm94JTNEJTIyMCUyMDAlMjA4NyUyMDg4JTIyJTIweG1sbnMlM0QlMjJodHRwJTNBJTJGJTJGd3d3LnczLm9yZyUyRjIwMDAlMkZzdmclMjIlMjBzdHlsZSUzRCUyMmZpbGwlM0ElMjMwMDAlM0IlMjIlMjBoZWlnaHQlM0QlMjIxMDAlMjUlMjIlMjB3aWR0aCUzRCUyMjEwMCUyNSUyMiUzRSUwQSUyMCUyMCUyMCUyMCUzQ3BhdGglMjBkJTNEJTIyTTYxLjYyMyUyMDUxLjgzYy0uOTQtLjUxNS01LjU2Mi0zLjAxLTYuNDI4LTMuMzYzLS44NjctLjM1LTEuNS0uNTM1LTIuMTczLjQtLjY3NS45MzQtMi41OTMlMjAzLjAyMy0zLjE3NSUyMDMuNjQyLS41ODMuNjE1LTEuMTQ0LjY3Mi0yLjA4NC4xNi0uOTQtLjUxNi0zLjk5LTEuNjQ2LTcuNTI1LTUuMDQ1LTIuNzUyLTIuNjQ1LTQuNTU3LTUuODU0LTUuMDgtNi44MzQtLjUyNi0uOTc3LS4wMDUtMS40NzcuNDkzLTEuOTM2LjQ1LS40MTMlMjAxLTEuMDg0JTIwMS41LTEuNjI1LjUtLjU0LjY3OC0uOTM0JTIwMS4wMi0xLjU2My4zNDMtLjYyNS4yMDQtMS4xOS0uMDE3LTEuNjc4LS4yMjItLjQ5LTEuOTYyLTUuMjc2LTIuNjg3LTcuMjIzLS43MjUtMS45NDYtMS41MzctMS42NTctMi4wOTUtMS42NzgtLjU1Ny0uMDIzLTEuMTk0LS4xMjYtMS44MzMtLjE1LS42MzctLjAyNC0xLjY4NC4xNzYtMi42JTIwMS4xMDQtLjkxMi45MjItMy40NzQlMjAzLjE0Ny0zLjY1JTIwNy44NjItLjE3NCUyMDQuNzEzJTIwMy4wODQlMjA5LjM5NSUyMDMuNTM4JTIwMTAuMDUuNDU2LjY1OCUyMDYuMjMlMjAxMC44NzUlMjAxNS44MjMlMjAxNS4wNzUlMjA5LjU5NiUyMDQuMiUyMDkuNjQ1JTIwMi45MiUyMDExLjQwNiUyMDIuODI2JTIwMS43NjMtLjA5JTIwNS43NTYtMi4xMDQlMjA2LjYzOC00LjMxLjg4NC0yLjIwNS45NTUtNC4xMjUuNzMtNC41MzItLjIyNS0uNDA4LS44NTUtLjY3My0xLjc5NC0xLjE4OG0tMTcuNiUyMDIyLjcxNGMtNi4zNDUlMjAwLTEyLjI1My0xLjkwMy0xNy4xODctNS4xNjNMMTQuODQlMjA3My4yMmwzLjkwMi0xMS42QzE1JTIwNTYuNDY2JTIwMTIuNzklMjA1MC4xMzclMjAxMi43OSUyMDQzLjNjMC0xNy4yMjYlMjAxNC4wMTQtMzEuMjQlMjAzMS4yNC0zMS4yNCUyMDE3LjIyNCUyMDAlMjAzMS4yNCUyMDE0LjAxMiUyMDMxLjI0JTIwMzEuMjQlMjAwJTIwMTcuMjI2LTE0LjAxNiUyMDMxLjI0LTMxLjI0JTIwMzEuMjRNNi41JTIwNDMuM2MwJTIwNy4wOSUyMDEuOTY4JTIwMTMuNzIlMjA1LjM4NCUyMDE5LjM4TDUuMTElMjA4Mi44MDhsMjAuNzgtNi42NWM1LjM3NSUyMDIuOTcyJTIwMTEuNTU4JTIwNC42NjclMjAxOC4xMzclMjA0LjY2NyUyMDIwLjcyNSUyMDAlMjAzNy41MjgtMTYuODAyJTIwMzcuNTI4LTM3LjUyNSUyMDAtMjAuNzI3LTE2LjgwNC0zNy41MjgtMzcuNTMtMzcuNTI4LTIwLjcyMyUyMDAtMzcuNTIzJTIwMTYuOC0zNy41MjMlMjAzNy41Mjd6JTIyJTJGJTNFJTBBJTNDJTJGc3ZnJTNFIik7Cn0K'));
 (  function (data) {
     var st = document.createElement('style');
     st.appendChild(document.createTextNode(data));
