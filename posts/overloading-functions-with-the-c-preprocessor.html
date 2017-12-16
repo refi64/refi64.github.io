@@ -1,16 +1,14 @@
-<!DOCTYPE html>
-
-<head>
+<!DOCTYPE html><html><head>
   <title>Overloading functions with the C preprocessor</title>
-  <script defer src="/dist/pack.js"></script>
+  <script defer="" src="/dist/pack.js"></script>
   <link rel="stylesheet" href="/dist/pack.css">
-  <script defer type="application/dart" src="../page.initialize.dart"></script>
-  <script defer src="packages/browser/dart.js"></script>
+  <script defer="" src="../page.initialize.dart.js"></script>
+  
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 
-<body >
-  <div id="page" v-cloak>
+<body>
+  <div id="page" v-cloak="">
     <site-navbar></site-navbar>
     <site-title created-on="2014-09-15 20:42"></site-title>
 
@@ -52,12 +50,12 @@
 
 <span class="kt">void</span> <span class="nf">_myfunc_1</span><span class="p">(</span><span class="kt">int</span> <span class="n">a</span><span class="p">)</span>
 <span class="p">{</span>
-    <span class="n">puts</span><span class="p">(</span><span class="s">&quot;Got 1 arg&quot;</span><span class="p">);</span>
+    <span class="n">puts</span><span class="p">(</span><span class="s">"Got 1 arg"</span><span class="p">);</span>
 <span class="p">}</span>
 
 <span class="kt">void</span> <span class="nf">_myfunc_2</span><span class="p">(</span><span class="kt">int</span> <span class="n">a</span><span class="p">,</span> <span class="kt">int</span> <span class="n">b</span><span class="p">)</span>
 <span class="p">{</span>
-    <span class="n">puts</span><span class="p">(</span><span class="s">&quot;Got 2 args&quot;</span><span class="p">);</span>
+    <span class="n">puts</span><span class="p">(</span><span class="s">"Got 2 args"</span><span class="p">);</span>
 <span class="p">}</span>
 
 <span class="cp">#define _MYFUNC_SEL(_1, _2, _3, ...) _3</span>
@@ -70,7 +68,7 @@
 
     <p>and the main file:</p>
 
-    <div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&quot;myfunc.h&quot;</span><span class="cp"></span>
+    <div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">"myfunc.h"</span><span class="cp"></span>
 
 <span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
 <span class="p">{</span>
@@ -129,17 +127,17 @@
 
 <span class="kt">void</span> <span class="nf">_myfunc_1_int</span><span class="p">(</span><span class="kt">int</span> <span class="n">a</span><span class="p">)</span>
 <span class="p">{</span>
-    <span class="n">puts</span><span class="p">(</span><span class="s">&quot;Got 1 int&quot;</span><span class="p">);</span>
+    <span class="n">puts</span><span class="p">(</span><span class="s">"Got 1 int"</span><span class="p">);</span>
 <span class="p">}</span>
 
 <span class="kt">void</span> <span class="nf">_myfunc_1_void</span><span class="p">(</span><span class="kt">void</span><span class="o">*</span> <span class="n">x</span><span class="p">)</span>
 <span class="p">{</span>
-    <span class="n">puts</span><span class="p">(</span><span class="s">&quot;Got 1 pointer&quot;</span><span class="p">);</span>
+    <span class="n">puts</span><span class="p">(</span><span class="s">"Got 1 pointer"</span><span class="p">);</span>
 <span class="p">}</span>
 
 <span class="kt">void</span> <span class="nf">_myfunc_2</span><span class="p">(</span><span class="kt">int</span> <span class="n">a</span><span class="p">,</span> <span class="kt">int</span> <span class="n">b</span><span class="p">)</span>
 <span class="p">{</span>
-    <span class="n">puts</span><span class="p">(</span><span class="s">&quot;Got 2 args&quot;</span><span class="p">);</span>
+    <span class="n">puts</span><span class="p">(</span><span class="s">"Got 2 args"</span><span class="p">);</span>
 <span class="p">}</span>
 
 <span class="cp">#define _MYFUNC_1(x) _Generic((x), int: _myfunc_1_int, void*: _myfunc_1_void)(x)</span>
@@ -153,7 +151,7 @@
 
     <p>and the new main source file:</p>
 
-    <div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&quot;myfunc.h&quot;</span><span class="cp"></span>
+    <div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">"myfunc.h"</span><span class="cp"></span>
 
 <span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
 <span class="p">{</span>
@@ -195,4 +193,5 @@
     <site-tags tags="hack, c, preprocessor, programming"></site-tags>
     <site-suffix></site-suffix>
   </div>
-</body>
+
+</body></html>

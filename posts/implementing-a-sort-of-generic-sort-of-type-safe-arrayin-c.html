@@ -1,16 +1,14 @@
-<!DOCTYPE html>
-
-<head>
+<!DOCTYPE html><html><head>
   <title>Implementing a (sort of) generic, (sort of) type-safe array in C</title>
-  <script defer src="/dist/pack.js"></script>
+  <script defer="" src="/dist/pack.js"></script>
   <link rel="stylesheet" href="/dist/pack.css">
-  <script defer type="application/dart" src="../page.initialize.dart"></script>
-  <script defer src="packages/browser/dart.js"></script>
+  <script defer="" src="../page.initialize.dart.js"></script>
+  
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 
-<body >
-  <div id="page" v-cloak>
+<body>
+  <div id="page" v-cloak="">
     <site-navbar></site-navbar>
     <site-title created-on="2015-11-28"></site-title>
 
@@ -51,9 +49,9 @@
 <span class="kt">int</span> <span class="n">a</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">b</span><span class="o">=</span><span class="mi">2</span><span class="p">;</span>
 <span class="n">list_append</span><span class="p">(</span><span class="n">mylist</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">a</span><span class="p">);</span>
 <span class="c1">// We can get the first element of the list with l[0] and the length with list_len:</span>
-<span class="n">printf</span><span class="p">(</span><span class="s">&quot;%zu %d</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">list_len</span><span class="p">(</span><span class="n">mylist</span><span class="p">),</span> <span class="o">*</span><span class="n">mylist</span><span class="p">[</span><span class="mi">0</span><span class="p">]);</span> <span class="c1">// Prints 1 1.</span>
+<span class="n">printf</span><span class="p">(</span><span class="s">"%zu %d</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">list_len</span><span class="p">(</span><span class="n">mylist</span><span class="p">),</span> <span class="o">*</span><span class="n">mylist</span><span class="p">[</span><span class="mi">0</span><span class="p">]);</span> <span class="c1">// Prints 1 1.</span>
 <span class="n">list_append</span><span class="p">(</span><span class="n">mylist</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">b</span><span class="p">);</span>
-<span class="n">printf</span><span class="p">(</span><span class="s">&quot;%zu %d %d</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">list_len</span><span class="p">(</span><span class="n">mylist</span><span class="p">),</span> <span class="o">*</span><span class="n">mylist</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="o">*</span><span class="n">mylist</span><span class="p">[</span><span class="mi">1</span><span class="p">]);</span> <span class="c1">// Prints 2 1 2.</span>
+<span class="n">printf</span><span class="p">(</span><span class="s">"%zu %d %d</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">list_len</span><span class="p">(</span><span class="n">mylist</span><span class="p">),</span> <span class="o">*</span><span class="n">mylist</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="o">*</span><span class="n">mylist</span><span class="p">[</span><span class="mi">1</span><span class="p">]);</span> <span class="c1">// Prints 2 1 2.</span>
 <span class="n">list_free</span><span class="p">(</span><span class="n">mylist</span><span class="p">);</span>
     
 </pre></div>
@@ -141,7 +139,7 @@
       (which gets the length of the list) needs to index BEFORE the given list to
       get the length.
 
-    <p>Next is the definition of <code>list_len</code>:</p>
+    </p><p>Next is the definition of <code>list_len</code>:</p>
 
     <div class="highlight"><pre><span></span><span class="cp">#define list_len(l) (l?list_lenref(l):0)</span>
     
@@ -156,7 +154,7 @@
 
     <p>Now is my personal favorite part: the definition of <code>list_append</code>:
 
-  <div class="highlight"><pre><span></span><span class="cp">#define list_append(l,x) do {\</span>
+  </p><div class="highlight"><pre><span></span><span class="cp">#define list_append(l,x) do {\</span>
 <span class="cp">    size_t list_var(len) = list_len(l);\</span>
 <span class="cp">    l = realloc(l?((void*)l)-sizeof(size_t):NULL,\</span>
 <span class="cp">                sizeof(void*)*(list_var(len)+1)+sizeof(size_t))+sizeof(size_t);\</span>
@@ -250,7 +248,7 @@
 
     <link-header id="closing">Closing notes (and problems)</link-header>
 
-    <p>If you're wondering how the heck this is type-safe, consider:</p>
+    </p><p>If you're wondering how the heck this is type-safe, consider:</p>
 
     <div class="highlight"><pre><span></span><span class="n">List</span><span class="p">(</span><span class="kt">int</span><span class="o">*</span><span class="p">)</span> <span class="n">l</span><span class="p">;</span>
 <span class="kt">char</span> <span class="n">c</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
@@ -261,10 +259,10 @@
 
     <p>If I try to compile this, my compiler (Clang) says:</p>
 
-    <div class="highlight"><pre><span></span>tst.c:13:5: warning: incompatible pointer types assigning to &#39;int *&#39; from &#39;char *&#39; [-Wincompatible-pointer-types]
+    <div class="highlight"><pre><span></span>tst.c:13:5: warning: incompatible pointer types assigning to 'int *' from 'char *' [-Wincompatible-pointer-types]
     list_append(l, &amp;c);
     ^              ~~
-./list.h:16:25: note: expanded from macro &#39;list_append&#39;
+./list.h:16:25: note: expanded from macro 'list_append'
     l[list_lenref(l)-1] = x;\
                         ^
 1 warning generated.
@@ -290,7 +288,7 @@ tst.c:13:5: note: in expansion of macro âlist_appendâ
 
     <p>Intel's doesn't show the macro expansion, but it still works:</p>
 
-    <div class="highlight"><pre><span></span>tst.c(13): warning #556: a value of type &quot;char *&quot; cannot be assigned to an entity of type &quot;int *&quot;
+    <div class="highlight"><pre><span></span>tst.c(13): warning #556: a value of type "char *" cannot be assigned to an entity of type "int *"
       list_append(l, &amp;c);
       ^
     
@@ -307,7 +305,7 @@ tst.c:13:5: note: in expansion of macro âlist_appendâ
       <li>
         The list is always resized on every append, like I mentioned above. This
         would be a trivial change that I just haven't done yet.
-      <li>No popping from a list, which I also mentioned.</li>
+      </li><li>No popping from a list, which I also mentioned.</li>
       <li>
         No handling of a <code>realloc</code> failure. Again, I mentioned this
         above, too.</li>
@@ -316,11 +314,12 @@ tst.c:13:5: note: in expansion of macro âlist_appendâ
         <code>list_append(some_nonexistent_variable, 0)</code> and you'll see what
         I mean. That gives a whopping 8 errors with Clang. GCC and Intel are much
         better here (they only show one), but you get the idea!
-    </ul>
+    </li></ul>
 
     <p>All in all, I still think this is a cool list implementation!</p>
 
-    <site-tags tags='c, programming, preprocessor, hack'></site-tags>
+    <site-tags tags="c, programming, preprocessor, hack"></site-tags>
     <site-suffix></site-suffix>
   </div>
-</body>
+
+</body></html>

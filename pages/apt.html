@@ -1,21 +1,18 @@
-<!DOCTYPE html>
-
-<head>
+<!DOCTYPE html><html><head>
   <title>APT Repository</title>
-  <script defer src="/dist/pack.js"></script>
+  <script defer="" src="/dist/pack.js"></script>
   <link rel="stylesheet" href="/dist/pack.css">
-  <script defer type="application/dart" src="../page.initialize.dart"></script>
-  <script defer src="packages/browser/dart.js"></script>
+  <script defer="" src="../page.initialize.dart.js"></script>
+  
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <link rel="stylesheet"
-        href="//cdnjs.cloudflare.com/ajax/libs/KaTeX/0.2.0/katex.min.css">
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/KaTeX/0.2.0/katex.min.css">
   <script src="//cdnjs.cloudflare.com/ajax/libs/KaTeX/0.2.0/katex.min.js">
   </script>
 </head>
 
-<body >
-  <div id="page" v-cloak>
+<body>
+  <div id="page" v-cloak="">
     <site-navbar></site-navbar>
 
     <h1>APT Repository</h1>
@@ -29,13 +26,13 @@
         build system</a>.</li>
       <li>
         <b>howl:</b> A packaged version of <a href="https://howl.io/">Howl</a>.</li>
-      </li>
+      
     </ul>
 
     <link-header id="directions">Directions</link-header>
 
     <div class="highlight"><pre><span></span>$ curl -s https://refi64.com/apt/PUBLIC.KEY | sudo apt-key add -
-$ echo &quot;deb https://refi64.com/apt `lsb_release -sc` `lsb_release -sc`&quot; | sudo tee -a /etc/apt/sources.list
+$ echo "deb https://refi64.com/apt `lsb_release -sc` `lsb_release -sc`" | sudo tee -a /etc/apt/sources.list
 $ sudo apt update
     
 </pre></div>
@@ -43,4 +40,5 @@ $ sudo apt update
 
     <site-suffix></site-suffix>
   </div>
-</body>
+
+</body></html>
