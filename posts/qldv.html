@@ -1,0 +1,291 @@
+<!DOCTYPE html><html><head>
+  <title>
+    Getting rid of version warnings: an experiment at hacking the Linux/glibc dynamic
+    linker to shut up</title>
+  <script defer="" src="/dist/pack.js"></script>
+  <link rel="stylesheet" href="/dist/pack.css">
+  <script defer="" src="../page.initialize.dart.js"></script>
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="utf-8">
+</head>
+
+<body>
+  <div id="page" v-cloak="">
+    <site-navbar></site-navbar>
+    <site-title created-on="2018-01-02"></site-title>
+
+    <div id="teaser">
+      <p>
+        If you use a non-Debian/Ubuntu distro (I recently switched to Arch), you've
+        probably had a moment where you downloaded some binaries and tried running them,
+        only to get an error like this:</p>
+
+      <div class="highlight"><pre><span></span>$ lldb-argdumper -h
+usr/bin/lldb-argdumper: /usr/lib/libtinfo.so.5: no version information available <span class="o">(</span>required by usr/bin/lldb-argdumper<span class="o">)</span>
+usr/bin/lldb-argdumper: /usr/lib/libtinfo.so.5: no version information available <span class="o">(</span>required by /tmp/tmp.8oiyW382Pu/usr/bin/../lib/liblldb.so.4<span class="o">)</span>
+usr/bin/lldb-argdumper: /usr/lib/libtinfo.so.5: no version information available <span class="o">(</span>required by /tmp/tmp.8oiyW382Pu/usr/bin/../lib/liblldb.so.4<span class="o">)</span>
+usr/bin/lldb-argdumper: /usr/lib/libpanel.so.5: no version information available <span class="o">(</span>required by /tmp/tmp.8oiyW382Pu/usr/bin/../lib/liblldb.so.4<span class="o">)</span>
+      
+</pre></div>
+
+
+      <p>
+        Ugh. Normally these warnings are nothing more than an annoyance. However,
+        recently I started trying to get Swift working on my new Arch install. With
+        Swift, the warnings suddenly turned much more lethal: some part of
+        <code>swift package build</code> assumes that, if one of the commands outputs
+        anything (including these warnings), it has failed, and the build will be
+        aborted.</p>
+
+      <p>Obviously, I couldn't stand for this. I mean, how hard could this be to fix?</p>
+
+      <p>
+        (Spoiler alert: if you want to cut to the chase, I created a tool called
+        <a href="https://github.com/kirbyfan64/qldv">qldv</a> that does everything
+        listed below already.)
+    </p></div>
+
+    <link-header id="start">Starting the search: LD_NOWARN</link-header>
+
+    <p>
+      When I started Googling, all I could find where Stack Overflow posts where
+      the accepted answer was, <i>upgrade your packages</i>. Of course, that only works
+      if your distro uses versioned shared libraries. Guess What? <i>Arch doesn't</i>.</p>
+
+    <p>
+      I then discovered the <i>LD_NOWARN</i> environment variable. This looked like the
+      perfect solution! Except...it didn't work. Time to dig in the code.</p>
+
+    <link-header id="source">Exploring the glibc source code</link-header>
+
+    <p>
+      A quick GitHub search led me to find
+      <a href="https://github.com/bminor/glibc/blob/master/elf/dl-version.c">dl-version.c</a>,
+      the file where the warning is emitted. This is what the code looks like:</p>
+
+    <div class="highlight"><pre><span></span>  <span class="k">if</span> <span class="p">(</span><span class="n">__glibc_unlikely</span> <span class="p">(</span><span class="n">map</span><span class="o">-&gt;</span><span class="n">l_info</span><span class="p">[</span><span class="n">VERSYMIDX</span> <span class="p">(</span><span class="n">DT_VERDEF</span><span class="p">)]</span> <span class="o">==</span> <span class="nb">NULL</span><span class="p">))</span>
+    <span class="p">{</span>
+      <span class="cm">/* The file has no symbol versioning.  I.e., the dependent</span>
+<span class="cm">	 object was linked against another version of this file.  We</span>
+<span class="cm">	 only print a message if verbose output is requested.  */</span>
+      <span class="k">if</span> <span class="p">(</span><span class="n">verbose</span><span class="p">)</span>
+	<span class="p">{</span>
+	  <span class="cm">/* XXX We cannot translate the messages.  */</span>
+	  <span class="n">_dl_exception_create_format</span>
+	    <span class="p">(</span><span class="o">&amp;</span><span class="n">exception</span><span class="p">,</span> <span class="n">DSO_FILENAME</span> <span class="p">(</span><span class="n">map</span><span class="o">-&gt;</span><span class="n">l_name</span><span class="p">),</span>
+	     <span class="s">"no version information available (required by %s)"</span><span class="p">,</span> <span class="n">name</span><span class="p">);</span>
+	  <span class="k">goto</span> <span class="n">call_cerror</span><span class="p">;</span>
+	<span class="p">}</span>
+      <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="p">}</span>
+    
+</pre></div>
+
+
+    <p>
+      Looks pretty simple, right? This is inside the function <i>match_symbol</i>, which
+      takes an argument named <i>verbose</i>. I figured all I had to do was figure out
+      how to make <i>verbose</i> 0/false.</p>
+
+    <p>
+      A further search showed that <i>match_symbol</i> is called by
+      <i>_dl_check_map_versions</i>, which passes down the <i>verbose</i> argument.
+      <i>That</i> function is called by <i>_dl_check_all_versions</i>, which <i>again</i>
+      is passing down a <i>verbose</i> argument.</p>
+
+    <p>
+      <i>_dl_check_all_versions</i> is in turn called by <i>version_check_doit</i>
+      located in <a href="https://github.com/bminor/glibc/blob/master/elf/rtld.c">rtld.c</a>.
+      This is the code:</p>
+
+    <div class="highlight"><pre><span></span><span class="k">static</span> <span class="kt">void</span>
+<span class="nf">version_check_doit</span> <span class="p">(</span><span class="kt">void</span> <span class="o">*</span><span class="n">a</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="k">struct</span> <span class="n">version_check_args</span> <span class="o">*</span><span class="n">args</span> <span class="o">=</span> <span class="p">(</span><span class="k">struct</span> <span class="n">version_check_args</span> <span class="o">*</span><span class="p">)</span> <span class="n">a</span><span class="p">;</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">_dl_check_all_versions</span> <span class="p">(</span><span class="n">GL</span><span class="p">(</span><span class="n">dl_ns</span><span class="p">)[</span><span class="n">LM_ID_BASE</span><span class="p">].</span><span class="n">_ns_loaded</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span>
+			      <span class="n">args</span><span class="o">-&gt;</span><span class="n">dotrace</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="n">args</span><span class="o">-&gt;</span><span class="n">doexit</span><span class="p">)</span>
+    <span class="cm">/* We cannot start the application.  Abort now.  */</span>
+    <span class="n">_exit</span> <span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+<span class="p">}</span>
+    
+</pre></div>
+
+
+    <p>
+      See the constant <code>1</code> argument that can't be changed? Yup, that's
+      the <i>verbose</i> argument.</p>
+
+    <link-header id="binary">Hacking the ld.so binary</link-header>
+
+    <p>
+      This seems impossible to overcome. Unless, of course, you modify the
+      <code>ld.so</code> binary, right?</p>
+
+    <p>First off, I located my dynamic linker:</p>
+
+    <div class="highlight"><pre><span></span> ryan@DevPC-archLX  ~  patchelf --print-interpreter /bin/sh
+/lib64/ld-linux-x86-64.so.2
+ ryan@DevPC-archLX  ~  realpath /lib64/ld-linux-x86-64.so.2
+/usr/lib/ld-2.26.so
+ ryan@DevPC-archLX  ~  mkdir ld-hack
+ ryan@DevPC-archLX  ~  <span class="nb">cd</span> ld-hack
+ ryan@DevPC-archLX  ~/ld-hack  cp /usr/lib/ld-2.26.so ld.so
+    
+</pre></div>
+
+
+    <p>
+      Now that I had a copy of the linker, I used lldb to print the assembler code
+      inside of the <i>_dl_check_all_versions</i> (this seemed like an easy target to
+      change):</p>
+
+    <div class="highlight"><pre><span></span> ryan@DevPC-archLX  ~/ld-hack  lldb ld.so -bo <span class="s1">'di -F intel -n _dl_check_all_versions'</span>
+Current executable <span class="nb">set</span> to <span class="s1">'ld.so'</span> <span class="o">(</span>x86_64<span class="o">)</span>.
+<span class="o">(</span>lldb<span class="o">)</span> di -F intel -n _dl_check_all_versions
+ld.so<span class="sb">`</span>_dl_check_all_versions:
+ld.so<span class="o">[</span>0x111a0<span class="o">]</span> &lt;+0&gt;:   push   r13
+ld.so<span class="o">[</span>0x111a2<span class="o">]</span> &lt;+2&gt;:   push   r12
+ld.so<span class="o">[</span>0x111a4<span class="o">]</span> &lt;+4&gt;:   push   rbp
+ld.so<span class="o">[</span>0x111a5<span class="o">]</span> &lt;+5&gt;:   push   rbx
+ld.so<span class="o">[</span>0x111a6<span class="o">]</span> &lt;+6&gt;:   sub    rsp, 0x8
+ld.so<span class="o">[</span>0x111aa<span class="o">]</span> &lt;+10&gt;:  <span class="nb">test</span>   rdi, rdi
+ld.so<span class="o">[</span>0x111ad<span class="o">]</span> &lt;+13&gt;:  je     0x11200                   <span class="p">;</span> &lt;+96&gt;
+ld.so<span class="o">[</span>0x111af<span class="o">]</span> &lt;+15&gt;:  mov    rbx, rdi
+ld.so<span class="o">[</span>0x111b2<span class="o">]</span> &lt;+18&gt;:  mov    r12d, esi
+ld.so<span class="o">[</span>0x111b5<span class="o">]</span> &lt;+21&gt;:  mov    r13d, edx
+ld.so<span class="o">[</span>0x111b8<span class="o">]</span> &lt;+24&gt;:  xor    ebp, ebp
+ld.so<span class="o">[</span>0x111ba<span class="o">]</span> &lt;+26&gt;:  jmp    0x111c9                   <span class="p">;</span> &lt;+41&gt;
+ld.so<span class="o">[</span>0x111bc<span class="o">]</span> &lt;+28&gt;:  nop    dword ptr <span class="o">[</span>rax<span class="o">]</span>
+ld.so<span class="o">[</span>0x111c0<span class="o">]</span> &lt;+32&gt;:  mov    rbx, qword ptr <span class="o">[</span>rbx + 0x18<span class="o">]</span>
+ld.so<span class="o">[</span>0x111c4<span class="o">]</span> &lt;+36&gt;:  <span class="nb">test</span>   rbx, rbx
+ld.so<span class="o">[</span>0x111c7<span class="o">]</span> &lt;+39&gt;:  je     0x111f3                   <span class="p">;</span> &lt;+83&gt;
+ld.so<span class="o">[</span>0x111c9<span class="o">]</span> &lt;+41&gt;:  <span class="nb">test</span>   byte ptr <span class="o">[</span>rbx + 0x315<span class="o">]</span>, 0x2
+ld.so<span class="o">[</span>0x111d0<span class="o">]</span> &lt;+48&gt;:  jne    0x111c0                   <span class="p">;</span> &lt;+32&gt;
+ld.so<span class="o">[</span>0x111d2<span class="o">]</span> &lt;+50&gt;:  mov    rdi, rbx
+ld.so<span class="o">[</span>0x111d5<span class="o">]</span> &lt;+53&gt;:  mov    edx, r13d
+ld.so<span class="o">[</span>0x111d8<span class="o">]</span> &lt;+56&gt;:  mov    esi, r12d
+ld.so<span class="o">[</span>0x111db<span class="o">]</span> &lt;+59&gt;:  call   0x10d30                   <span class="p">;</span> _dl_check_map_versions
+ld.so<span class="o">[</span>0x111e0<span class="o">]</span> &lt;+64&gt;:  mov    rbx, qword ptr <span class="o">[</span>rbx + 0x18<span class="o">]</span>
+ld.so<span class="o">[</span>0x111e4<span class="o">]</span> &lt;+68&gt;:  <span class="nb">test</span>   eax, eax
+ld.so<span class="o">[</span>0x111e6<span class="o">]</span> &lt;+70&gt;:  setne  al
+ld.so<span class="o">[</span>0x111e9<span class="o">]</span> &lt;+73&gt;:  movzx  eax, al
+ld.so<span class="o">[</span>0x111ec<span class="o">]</span> &lt;+76&gt;:  or     ebp, eax
+ld.so<span class="o">[</span>0x111ee<span class="o">]</span> &lt;+78&gt;:  <span class="nb">test</span>   rbx, rbx
+ld.so<span class="o">[</span>0x111f1<span class="o">]</span> &lt;+81&gt;:  jne    0x111c9                   <span class="p">;</span> &lt;+41&gt;
+ld.so<span class="o">[</span>0x111f3<span class="o">]</span> &lt;+83&gt;:  add    rsp, 0x8
+ld.so<span class="o">[</span>0x111f7<span class="o">]</span> &lt;+87&gt;:  mov    eax, ebp
+ld.so<span class="o">[</span>0x111f9<span class="o">]</span> &lt;+89&gt;:  pop    rbx
+ld.so<span class="o">[</span>0x111fa<span class="o">]</span> &lt;+90&gt;:  pop    rbp
+ld.so<span class="o">[</span>0x111fb<span class="o">]</span> &lt;+91&gt;:  pop    r12
+ld.so<span class="o">[</span>0x111fd<span class="o">]</span> &lt;+93&gt;:  pop    r13
+ld.so<span class="o">[</span>0x111ff<span class="o">]</span> &lt;+95&gt;:  ret
+ld.so<span class="o">[</span>0x11200<span class="o">]</span> &lt;+96&gt;:  add    rsp, 0x8
+ld.so<span class="o">[</span>0x11204<span class="o">]</span> &lt;+100&gt;: xor    ebp, ebp
+ld.so<span class="o">[</span>0x11206<span class="o">]</span> &lt;+102&gt;: pop    rbx
+ld.so<span class="o">[</span>0x11207<span class="o">]</span> &lt;+103&gt;: mov    eax, ebp
+ld.so<span class="o">[</span>0x11209<span class="o">]</span> &lt;+105&gt;: pop    rbp
+ld.so<span class="o">[</span>0x1120a<span class="o">]</span> &lt;+106&gt;: pop    r12
+ld.so<span class="o">[</span>0x1120c<span class="o">]</span> &lt;+108&gt;: pop    r13
+ld.so<span class="o">[</span>0x1120e<span class="o">]</span> &lt;+110&gt;: ret
+    
+</pre></div>
+
+
+    <p>
+      <i>_dl_check_all_versions</i> calls <i>_dl_check_map_versions</i> at offset
+      <code>0x111db</code>: <code>call 0x10d30</code>. Look at the instruction
+      immediately before it (at <code>0x111d8</code>): <code>mov esi, r12d</code>. With
+      the System-V x86_64 ABI, <code>esi</code> is the register used to hold the second
+      argument. Therefore, this instruction is the one that gets the <i>verbose</i>
+      argument ready to pass to <i>_dl_check_map_versions</i>.</p>
+
+    <p>
+      In order to make <i>verbose</i> 0, this instruction needs to be replaced with
+      one that assigns it to 0. In addition, this instruction is 3 bytes in size. The
+      replacement therefore needs to be either 3 bytes or smaller (it can be padded
+      with extra <code>nop</code>s). A quick experiment shows that
+      <code>xor esi, esi</code> is the way to go:</p>
+
+    <div class="highlight"><pre><span></span> ryan@DevPC-archLX  ~/ld-hack  <span class="nb">echo</span> -e <span class="s1">'mov esi, 0\nxor esi, esi'</span> &gt; x.asm
+ ryan@DevPC-archLX  ~/ld-hack  nasm -f elf64 -o x.o x.asm
+ ryan@DevPC-archLX  ~/ld-hack  objdump -Mintel -D x.o
+
+x.o:     file format elf64-x86-64
+
+
+Disassembly of section .text:
+
+<span class="m">0000000000000000</span> &lt;.text&gt;:
+   <span class="m">0</span>:	be <span class="m">00</span> <span class="m">00</span> <span class="m">00</span> <span class="m">00</span>       	mov    esi,0x0
+   <span class="m">5</span>:	<span class="m">31</span> f6                	xor    esi,esi
+    
+</pre></div>
+
+
+    <p>
+      (Technically, <code>shr esi, 1</code> would've also done the trick, since
+      <code>1 &gt;&gt; 1 == 0</code>.)</p>
+
+    <p>
+      Now's to patch the linker to replace the instruction with
+      <code>xor esi, esi</code> (<code>0x31 0xf6</code>, as shown above) followed by a
+      <code>nop&gt;</code> (which is <code>0x90</code>). <i>printf</i> + <i>dd</i> can be
+      used for this:</p>
+
+    <div class="highlight"><pre><span></span> ryan@DevPC-archLX  ~/ld-hack  <span class="nb">printf</span> <span class="s1">'\x31\xf6\x90'</span> <span class="p">|</span> dd <span class="nv">of</span><span class="o">=</span>ld.so <span class="nv">bs</span><span class="o">=</span><span class="m">1</span> <span class="nv">seek</span><span class="o">=</span><span class="k">$((</span><span class="m">0</span>x111d8<span class="k">))</span> <span class="nv">count</span><span class="o">=</span><span class="m">3</span> <span class="nv">conv</span><span class="o">=</span>notrunc
+    
+</pre></div>
+
+
+    <p>
+      <i>printf</i> is used to send the bytes to <i>dd</i>, which will write them to
+      <i>ld.so</i> at the given offset (the <code>$((...))</code> syntax is used to
+      convert the hex location to decimal). <i>count=3</i> is passed to ensure only
+      3 bytes are written, and <i>conv=notrunc</i> prevents <i>dd</i> from truncating
+      the rest of the file.</p>
+
+    <p>Now, if you run lldb again, you'll see the changed bytes:</p>
+
+    <div class="highlight"><pre><span></span> ryan@DevPC-archLX  ~/ld-hack  lldb ld.so -bo <span class="s1">'di -F intel -n _dl_check_all_versions'</span>
+Current executable <span class="nb">set</span> to <span class="s1">'ld.so'</span> <span class="o">(</span>x86_64<span class="o">)</span>.
+<span class="o">(</span>lldb<span class="o">)</span> di -F intel -n _dl_check_all_versions
+ld.so<span class="sb">`</span>_dl_check_all_versions:
+<span class="o">(</span>...<span class="o">)</span>
+ld.so<span class="o">[</span>0x111d8<span class="o">]</span> &lt;+56&gt;:  xor   esi, esi
+ld.so<span class="o">[</span>0x111da<span class="o">]</span> &lt;+58&gt;:  nop
+    
+</pre></div>
+
+
+    <p>Viola!</p>
+
+    <link-header id="new-linker">Using the new dynamic linker</link-header>
+
+    <p>
+      Of course, our application is still using the old linker. Let's use patchelf
+      to force use of the new one:</p>
+
+    <div class="highlight"><pre><span></span> ryan@DevPC-archLX  ~/ld-hack  patchelf --set-interpreter <span class="nv">$PWD</span>/ld.so usr/bin/lldb-argdumper
+    
+</pre></div>
+
+
+    <p>Now you can try the executable again, and there will be no warnings this time!</p>
+
+    <link-header id="qldv">Using qldv</link-header>
+
+    <p>
+      This is all a bit tedious, so I created a tool for this:
+      <a href="https://github.com/kirbyfan64/qldv">qldv</a>. With qldv, this all is
+      reduced to:</p>
+
+    <div class="highlight"><pre><span></span> ryan@DevPC-archLX  ~/ld-hack  qldv -set usr/bin/lldb-argdumer ld.so
+    
+</pre></div>
+
+
+    <site-tags tags="programming, hack, assembly, qldv, elf"></site-tags>
+    <site-suffix></site-suffix>
+
+</div></body></html>
