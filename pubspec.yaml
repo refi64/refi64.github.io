@@ -4,7 +4,8 @@ dependencies:
   browser: any
   dart_to_js_script_rewriter: any
   js: any
-  pygments: ^0.1.2
+  protic_transformer: any
+  pygments: ^0.1.3
   vue2: any
 dependency_overrides:
   vue2:
@@ -12,7 +13,14 @@ dependency_overrides:
     git: "https://github.com/kirbyfan64/vuedart.git"
   # scopify:
     # path: /home/ryan/scopify
+  # pygments:
+    # path: /home/ryan/pygments-dart
+  # protic:
+  #   path: /home/ryan/protic/protic
+  # protic_transformer:
+  #   path: /home/ryan/protic/protic_transformer
 transformers:
+  - protic_transformer
   - pygments:
       classes:
         - "pygments":

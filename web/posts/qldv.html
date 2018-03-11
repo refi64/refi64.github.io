@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+
+<head>
+  <title>
+    Getting rid of version warnings: an experiment at hacking the Linux/glibc dynamic
+    linker to shut up</title>
+  <+ require="base.html">
+</head>
+
+<body vuedart>
+  <div id="page" v-cloak>
+    <site-navbar></site-navbar>
+    <site-title created-on="2018-01-02"></site-title>
+
+    <div id="teaser">
+      <p>
+        If you use a non-Debian/Ubuntu distro (I recently switched to Arch), you've
+        probably had a moment where you downloaded some binaries and tried running them,
+        only to get an error like this:</p>
+
+      <pygments class="bash">
+$ lldb-argdumper -h
+usr/bin/lldb-argdumper: /usr/lib/libtinfo.so.5: no version information available (required by usr/bin/lldb-argdumper)
+usr/bin/lldb-argdumper: /usr/lib/libtinfo.so.5: no version information available (required by /tmp/tmp.8oiyW382Pu/usr/bin/../lib/liblldb.so.4)
+usr/bin/lldb-argdumper: /usr/lib/libtinfo.so.5: no version information available (required by /tmp/tmp.8oiyW382Pu/usr/bin/../lib/liblldb.so.4)
+usr/bin/lldb-argdumper: /usr/lib/libpanel.so.5: no version information available (required by /tmp/tmp.8oiyW382Pu/usr/bin/../lib/liblldb.so.4)
+      </pygments>
+
+      <p>
+        Ugh. Normally these warnings are nothing more than an annoyance. However,
+        recently I started trying to get Swift working on my new Arch install. With
+        Swift, the warnings suddenly turned much more lethal: some part of
+        <code>swift package build</code> assumes that, if one of the commands outputs
+        anything (including these warnings), it has failed, and the build will be
+        aborted.</p>
+
+      <p>Obviously, I couldn't stand for this. I mean, how hard could this be to fix?</p>
+
+      <p>
+        (Spoiler alert: if you want to cut to the chase, I created a tool called
+        <a href="https://github.com/kirbyfan64/qldv">qldv</a> that does everything
+        listed below already.)
+    </div>
+
+    <link-header id="start">Starting the search: LD_NOWARN</link-header>
+
+    <p>
+      When I started Googling, all I could find where Stack Overflow posts where
+      the accepted answer was, <i>upgrade your packages</i>. Of course, that only works
+      if your distro uses versioned shared libraries. Guess What? <i>Arch doesn't</i>.</p>
+
+    <p>
+      I then discovered the <i>LD_NOWARN</i> environment variable. This looked like the
+      perfect solution! Except...it didn't work. Time to dig in the code.</p>
+
+    <link-header id="source">Exploring the glibc source code</link-header>
+
+    <p>
+      A quick GitHub search led me to find
+      <a href="https://github.com/bminor/glibc/blob/master/elf/dl-version.c">dl-version.c</a>,
+      the file where the warning is emitted. This is what the code looks like:</p>
+
+    <pygments class="c">
+  if (__glibc_unlikely (map->l_info[VERSYMIDX (DT_VERDEF)] == NULL))
+    {
+      /* The file has no symbol versioning.  I.e., the dependent
+	 object was linked against another version of this file.  We
+	 only print a message if verbose output is requested.  */
+      if (verbose)
+	{
+	  /* XXX We cannot translate the messages.  */
+	  _dl_exception_create_format
+	    (&exception, DSO_FILENAME (map-&gt;l_name),
+	     "no version information available (required by %s)", name);
+	  goto call_cerror;
+	}
+      return 0;
+    }
+    </pygments>
+
+    <p>
+      Looks pretty simple, right? This is inside the function <i>match_symbol</i>, which
+      takes an argument named <i>verbose</i>. I figured all I had to do was figure out
+      how to make <i>verbose</i> 0/false.</p>
+
+    <p>
+      A further search showed that <i>match_symbol</i> is called by
+      <i>_dl_check_map_versions</i>, which passes down the <i>verbose</i> argument.
+      <i>That</i> function is called by <i>_dl_check_all_versions</i>, which <i>again</i>
+      is passing down a <i>verbose</i> argument.</p>
+
+    <p>
+      <i>_dl_check_all_versions</i> is in turn called by <i>version_check_doit</i>
+      located in <a href="https://github.com/bminor/glibc/blob/master/elf/rtld.c">rtld.c</a>.
+      This is the code:</p>
+
+    <pygments class="c">
+static void
+version_check_doit (void *a)
+{
+  struct version_check_args *args = (struct version_check_args *) a;
+  if (_dl_check_all_versions (GL(dl_ns)[LM_ID_BASE]._ns_loaded, 1,
+			      args->dotrace) &amp;&amp; args->doexit)
+    /* We cannot start the application.  Abort now.  */
+    _exit (1);
+}
+    </pygments>
+
+    <p>
+      See the constant <code>1</code> argument that can't be changed? Yup, that's
+      the <i>verbose</i> argument.</p>
+
+    <link-header id="binary">Hacking the ld.so binary</link-header>
+
+    <p>
+      This seems impossible to overcome. Unless, of course, you modify the
+      <code>ld.so</code> binary, right?</p>
+
+    <p>First off, I located my dynamic linker:</p>
+
+    <pygments class="bash">
+ ryan@DevPC-archLX  ~  patchelf --print-interpreter /bin/sh
+/lib64/ld-linux-x86-64.so.2
+ ryan@DevPC-archLX  ~  realpath /lib64/ld-linux-x86-64.so.2
+/usr/lib/ld-2.26.so
+ ryan@DevPC-archLX  ~  mkdir ld-hack
+ ryan@DevPC-archLX  ~  cd ld-hack
+ ryan@DevPC-archLX  ~/ld-hack  cp /usr/lib/ld-2.26.so ld.so
+    </pygments>
+
+    <p>
+      Now that I had a copy of the linker, I used lldb to print the assembler code
+      inside of the <i>_dl_check_all_versions</i> (this seemed like an easy target to
+      change):</p>
+
+    <pygments class="bash">
+ ryan@DevPC-archLX  ~/ld-hack  lldb ld.so -bo 'di -F intel -n _dl_check_all_versions'
+Current executable set to 'ld.so' (x86_64).
+(lldb) di -F intel -n _dl_check_all_versions
+ld.so`_dl_check_all_versions:
+ld.so[0x111a0] &lt;+0&gt;:   push   r13
+ld.so[0x111a2] &lt;+2&gt;:   push   r12
+ld.so[0x111a4] &lt;+4&gt;:   push   rbp
+ld.so[0x111a5] &lt;+5&gt;:   push   rbx
+ld.so[0x111a6] &lt;+6&gt;:   sub    rsp, 0x8
+ld.so[0x111aa] &lt;+10&gt;:  test   rdi, rdi
+ld.so[0x111ad] &lt;+13&gt;:  je     0x11200                   ; &lt;+96&gt;
+ld.so[0x111af] &lt;+15&gt;:  mov    rbx, rdi
+ld.so[0x111b2] &lt;+18&gt;:  mov    r12d, esi
+ld.so[0x111b5] &lt;+21&gt;:  mov    r13d, edx
+ld.so[0x111b8] &lt;+24&gt;:  xor    ebp, ebp
+ld.so[0x111ba] &lt;+26&gt;:  jmp    0x111c9                   ; &lt;+41&gt;
+ld.so[0x111bc] &lt;+28&gt;:  nop    dword ptr [rax]
+ld.so[0x111c0] &lt;+32&gt;:  mov    rbx, qword ptr [rbx + 0x18]
+ld.so[0x111c4] &lt;+36&gt;:  test   rbx, rbx
+ld.so[0x111c7] &lt;+39&gt;:  je     0x111f3                   ; &lt;+83&gt;
+ld.so[0x111c9] &lt;+41&gt;:  test   byte ptr [rbx + 0x315], 0x2
+ld.so[0x111d0] &lt;+48&gt;:  jne    0x111c0                   ; &lt;+32&gt;
+ld.so[0x111d2] &lt;+50&gt;:  mov    rdi, rbx
+ld.so[0x111d5] &lt;+53&gt;:  mov    edx, r13d
+ld.so[0x111d8] &lt;+56&gt;:  mov    esi, r12d
+ld.so[0x111db] &lt;+59&gt;:  call   0x10d30                   ; _dl_check_map_versions
+ld.so[0x111e0] &lt;+64&gt;:  mov    rbx, qword ptr [rbx + 0x18]
+ld.so[0x111e4] &lt;+68&gt;:  test   eax, eax
+ld.so[0x111e6] &lt;+70&gt;:  setne  al
+ld.so[0x111e9] &lt;+73&gt;:  movzx  eax, al
+ld.so[0x111ec] &lt;+76&gt;:  or     ebp, eax
+ld.so[0x111ee] &lt;+78&gt;:  test   rbx, rbx
+ld.so[0x111f1] &lt;+81&gt;:  jne    0x111c9                   ; &lt;+41&gt;
+ld.so[0x111f3] &lt;+83&gt;:  add    rsp, 0x8
+ld.so[0x111f7] &lt;+87&gt;:  mov    eax, ebp
+ld.so[0x111f9] &lt;+89&gt;:  pop    rbx
+ld.so[0x111fa] &lt;+90&gt;:  pop    rbp
+ld.so[0x111fb] &lt;+91&gt;:  pop    r12
+ld.so[0x111fd] &lt;+93&gt;:  pop    r13
+ld.so[0x111ff] &lt;+95&gt;:  ret
+ld.so[0x11200] &lt;+96&gt;:  add    rsp, 0x8
+ld.so[0x11204] &lt;+100&gt;: xor    ebp, ebp
+ld.so[0x11206] &lt;+102&gt;: pop    rbx
+ld.so[0x11207] &lt;+103&gt;: mov    eax, ebp
+ld.so[0x11209] &lt;+105&gt;: pop    rbp
+ld.so[0x1120a] &lt;+106&gt;: pop    r12
+ld.so[0x1120c] &lt;+108&gt;: pop    r13
+ld.so[0x1120e] &lt;+110&gt;: ret
+    </pygments>
+
+    <p>
+      <i>_dl_check_all_versions</i> calls <i>_dl_check_map_versions</i> at offset
+      <code>0x111db</code>: <code>call 0x10d30</code>. Look at the instruction
+      immediately before it (at <code>0x111d8</code>): <code>mov esi, r12d</code>. With
+      the System-V x86_64 ABI, <code>esi</code> is the register used to hold the second
+      argument. Therefore, this instruction is the one that gets the <i>verbose</i>
+      argument ready to pass to <i>_dl_check_map_versions</i>.</p>
+
+    <p>
+      In order to make <i>verbose</i> 0, this instruction needs to be replaced with
+      one that assigns it to 0. In addition, this instruction is 3 bytes in size. The
+      replacement therefore needs to be either 3 bytes or smaller (it can be padded
+      with extra <code>nop</code>s). A quick experiment shows that
+      <code>xor esi, esi</code> is the way to go:</p>
+
+    <pygments class="bash">
+ ryan@DevPC-archLX  ~/ld-hack  echo -e 'mov esi, 0\nxor esi, esi' &gt; x.asm
+ ryan@DevPC-archLX  ~/ld-hack  nasm -f elf64 -o x.o x.asm
+ ryan@DevPC-archLX  ~/ld-hack  objdump -Mintel -D x.o
+
+x.o:     file format elf64-x86-64
+
+
+Disassembly of section .text:
+
+0000000000000000 <.text>:
+   0:	be 00 00 00 00       	mov    esi,0x0
+   5:	31 f6                	xor    esi,esi
+    </pygments>
+
+    <p>
+      (Technically, <code>shr esi, 1</code> would've also done the trick, since
+      <code>1 &gt;&gt; 1 == 0</code>.)</p>
+
+    <p>
+      Now's to patch the linker to replace the instruction with
+      <code>xor esi, esi</code> (<code>0x31 0xf6</code>, as shown above) followed by a
+      <code>nop></code> (which is <code>0x90</code>). <i>printf</i> + <i>dd</i> can be
+      used for this:</p>
+
+    <pygments class="bash">
+ ryan@DevPC-archLX  ~/ld-hack  printf '\x31\xf6\x90' | dd of=ld.so bs=1 seek=$((0x111d8)) count=3 conv=notrunc
+    </pygments>
+
+    <p>
+      <i>printf</i> is used to send the bytes to <i>dd</i>, which will write them to
+      <i>ld.so</i> at the given offset (the <code>$((...))</code> syntax is used to
+      convert the hex location to decimal). <i>count=3</i> is passed to ensure only
+      3 bytes are written, and <i>conv=notrunc</i> prevents <i>dd</i> from truncating
+      the rest of the file.</p>
+
+    <p>Now, if you run lldb again, you'll see the changed bytes:</p>
+
+    <pygments class="bash">
+ ryan@DevPC-archLX  ~/ld-hack  lldb ld.so -bo 'di -F intel -n _dl_check_all_versions'
+Current executable set to 'ld.so' (x86_64).
+(lldb) di -F intel -n _dl_check_all_versions
+ld.so`_dl_check_all_versions:
+(...)
+ld.so[0x111d8] &lt;+56&gt;:  xor   esi, esi
+ld.so[0x111da] &lt;+58&gt;:  nop
+    </pygments>
+
+    <p>Viola!</p>
+
+    <link-header id="new-linker">Using the new dynamic linker</link-header>
+
+    <p>
+      Of course, our application is still using the old linker. Let's use patchelf
+      to force use of the new one:</p>
+
+    <pygments class="bash">
+ ryan@DevPC-archLX  ~/ld-hack  patchelf --set-interpreter $PWD/ld.so usr/bin/lldb-argdumper
+    </pygments>
+
+    <p>Now you can try the executable again, and there will be no warnings this time!</p>
+
+    <link-header id="qldv">Using qldv</link-header>
+
+    <p>
+      This is all a bit tedious, so I created a tool for this:
+      <a href="https://github.com/kirbyfan64/qldv">qldv</a>. With qldv, this all is
+      reduced to:</p>
+
+    <pygments class="bash">
+ ryan@DevPC-archLX  ~/ld-hack  qldv -set usr/bin/lldb-argdumer ld.so
+    </pygments>
+
+    <site-tags tags='programming, hack, assembly, qldv, elf'></site-tags>
+    <site-suffix></site-suffix>
+</body>
