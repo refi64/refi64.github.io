@@ -1,14 +1,14 @@
-import 'package:vue2/vue.dart';
+import 'package:vue/vue.dart';
 
 import 'dart:html';
 
 
-@VueComponent(name: 'embedded-image', template: '<<')
+@VueComponent(template: '<<')
 class EmbeddedImage extends VueComponentBase {
-  EmbeddedImage(context): super(context);
+  EmbeddedImage(): super();
 
   @override
-  void mounted() {
+  void lifecycleMounted() {
     window.onResize.listen((evt) => imgsize());
   }
 

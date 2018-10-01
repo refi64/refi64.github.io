@@ -3,15 +3,11 @@
 <head>
   <title>
     How to be an awesome hacker, according to the anime/J-drama industry</title>
-  <script defer src="/dist/pack.js"></script>
-  <link rel="stylesheet" href="/dist/pack.css">
-  <script defer type="application/dart" src="../page.dart"></script>
-  <script defer src="packages/browser/dart.js"></script>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <+ require="base.html">
 </head>
 
-<body vuedart>
-  <div id="page" v-cloak>
+<+@ body>
+
     <site-navbar></site-navbar>
     <site-title created-on="2017-06-26 12:00"></site-title>
 
@@ -293,5 +289,5 @@
 
     <site-tags tags='programming'></site-tags>
     <site-suffix></site-suffix>
-  </div>
-</body>
+
+</+@>

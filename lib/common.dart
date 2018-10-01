@@ -1,16 +1,15 @@
 @JS()
 library blockbyte.common;
 
-import 'package:aspen_assets/aspen_assets.dart' as aspen;
-import 'package:vue2/vue.dart';
-import 'package:vue2/plugins/vuematerial.dart';
+// import 'package:aspen_assets/aspen_assets.dart' as aspen;
+import 'package:vue/vue.dart';
+import 'package:vue/plugins/vuematerial_legacy.dart';
 
 import 'package:blockbyte/embedded_image.dart';
 import 'package:blockbyte/link_header.dart';
 import 'package:blockbyte/site_navbar.dart';
 import 'package:blockbyte/site_title.dart';
 import 'package:blockbyte/site_suffix.dart';
-import 'package:blockbyte/site_tags.dart';
 
 import 'package:js/js.dart';
 
@@ -21,7 +20,7 @@ import 'dart:html';
 
 Future<List<String>> getPosts() async {
   var str = await HttpRequest.getString('/posts.json');
-  return new Future.value(JSON.decode(str)['posts'] as List<String>);
+  return new Future.value(List<String>.from(json.decode(str)['posts']));
 }
 
 
@@ -49,12 +48,10 @@ void appendScript(String src) {
 ScriptElement muutjs;
 
 
-Future init() async {
+void init() {
   VueConfig.ignoredElements = ['share-button'];
 
   appendStyle('https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,400italic');
-
-  await initVue();
 
   VueMaterial.use();
   VueMaterial.registerTheme('main', new MdTheme(
@@ -64,7 +61,7 @@ Future init() async {
     background: 'white',
   ));
   VueMaterial.setCurrentTheme('main');
-
-  return new Future.value();
 }
 
+@VueMixin(components: [EmbeddedImage, LinkHeader, SiteNavbar, SiteTitle, SiteSuffix])
+abstract class CommonElements implements VueMixinRequirements {}

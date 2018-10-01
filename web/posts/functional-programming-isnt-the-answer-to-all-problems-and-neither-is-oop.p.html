@@ -4,15 +4,11 @@
   <title>
     Functional programming isn't the answer to all problems (and neither is OOP)
   </title>
-  <script defer src="/dist/pack.js"></script>
-  <link rel="stylesheet" href="/dist/pack.css">
-  <script defer type="application/dart" src="../page.dart"></script>
-  <script defer src="packages/browser/dart.js"></script>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <+ require="base.html">
 </head>
 
-<body vuedart>
-  <div id="page" v-cloak>
+<+@ body>
+
     <site-navbar></site-navbar>
     <site-title created-on="2015-05-17 16:59"></site-title>
 
@@ -237,5 +233,5 @@ main = print . f $ V.replicate 10000000 1
 
     <site-tags tags='function, programming, oop, haskell, c++'></site-tags>
     <site-suffix></site-suffix>
-  </div>
-</body>
+
+</+@>

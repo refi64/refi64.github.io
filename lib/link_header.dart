@@ -1,9 +1,9 @@
-import 'package:vue2/vue.dart';
+import 'package:vue/vue.dart';
 
 
-@VueComponent(name: 'link-header', template: '<<')
+@VueComponent(template: '<<')
 class LinkHeader extends VueComponentBase {
-  LinkHeader(context): super(context);
+  LinkHeader(): super();
 
   @prop
   String id;

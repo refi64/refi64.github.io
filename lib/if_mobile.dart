@@ -1,19 +1,17 @@
-import 'package:vue2/vue.dart';
+import 'package:vue/vue.dart';
 
 import 'dart:html';
-
-import 'if_mobile.dart';
 
 
 bool isMobile() => document.body.clientWidth <= 480;
 
 
-@VueComponent(name: 'if-mobile', template: '<<')
+@VueComponent(template: '<<')
 class IfMobile extends VueComponentBase {
-  IfMobile(context): super(context);
+  IfMobile(): super();
 
   @override
-  void mounted() {
+  void lifecycleMounted() {
     window.onResize.listen((Event event) {
       mobile = isMobile();
     });

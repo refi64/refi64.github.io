@@ -6,7 +6,7 @@
     </div>
 
     <template v-if="hasPosts">
-      <post-teaser v-for="(post, index) in posts" :post=post :key="index"></post-teaser>
+      <post-teaser v-for="(post, index) in posts" :post="post" :key="index"></post-teaser>
     </template>
   </div>
 </template>

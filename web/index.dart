@@ -1,23 +1,19 @@
-import 'package:vue2/vue.dart';
+import 'package:vue/vue.dart';
 
 import 'package:blockbyte/common.dart';
 import 'package:blockbyte/post_list.dart';
 
-import 'dart:async';
 
-
-@VueApp(el: '#page')
-class Page extends VueAppBase {
-  factory Page() => VueAppBase.create((context) => new Page._(context));
-  Page._(context): super(context);
+@VueApp(el: '#page', components: [PostList])
+class Page extends VueAppBase with CommonElements {
 }
 
 
 Page page;
 
 
-Future main() async {
-  await init();
+void main() {
+  init();
   page = new Page();
-  return new Future.value();
+  page.create();
 }

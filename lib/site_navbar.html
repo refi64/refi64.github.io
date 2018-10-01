@@ -10,14 +10,14 @@
           </md-toolbar>
 
           <md-list>
-            <md-list-item v-for="(item, index) in headers.root" :key="index" :href="item[1]">
+            <md-list-item v-for="(item, index) in headers.root" :key="'h'+index" :href="item[1]">
               {{ item[0] }}
             </md-list-item>
 
             <template v-for="(menu, index) in headers.menus">
               <md-subheader>{{ menu }}</md-subheader>
 
-              <md-list-item v-for="(item, index) in headers[menu]" :key="index"
+              <md-list-item v-for="(item, index) in headers[menu]" :key="'s'+index"
                             :href="item[1]">
                 {{ item[0] }}
               </md-list-item>
@@ -40,7 +40,7 @@
 
       <if-mobile>
         <span class="container" slot="desktop">
-          <md-button v-for="(item, index) in headers.root" :key="index" :href="item[1]">
+          <md-button v-for="(item, index) in headers.root" :key="'h'+index" :href="item[1]">
             {{ item[0] }}
           </md-button>
 
@@ -51,7 +51,7 @@
             </md-button>
 
             <md-menu-content>
-              <md-menu-item v-for="(item, index) in headers[menu]" :key="index"
+              <md-menu-item v-for="(item, index) in headers[menu]" :key="'s'+index"
                             :href="item[1]">
                 {{ item[0] }}
               </md-menu-item>

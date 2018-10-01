@@ -1,13 +1,11 @@
 @JS()
 library blockbyte.site_suffix;
 
-import 'package:vue2/vue.dart';
+import 'package:vue/vue.dart';
 
 import 'package:js/js.dart';
-import 'package:js/js_util.dart';
 
 import 'common.dart';
-import 'embedded_image.dart';
 
 import 'dart:html';
 
@@ -44,12 +42,12 @@ external void whenDefined(dynamic obj, String prop, dynamic func);
 const MUUT_PREFIX = 'https://muut.com/i/blockbyte/general:';
 
 
-@VueComponent(name: 'site-suffix', template: '<<')
+@VueComponent(template: '<<')
 class SiteSuffix extends VueComponentBase {
-  SiteSuffix(context): super(context);
+  SiteSuffix(): super();
 
   @override
-  void mounted() {
+  void lifecycleMounted() {
     new ShareButton();
 
     appendStyle('https://cdn.muut.com/1/moot.css');

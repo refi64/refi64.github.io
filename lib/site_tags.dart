@@ -1,11 +1,11 @@
-import 'package:vue2/vue.dart';
+import 'package:vue/vue.dart';
 
 import 'dart:html';
 
 
-@VueComponent(name: 'site-tags', template: '<<')
+@VueComponent(template: '<<')
 class SiteTags extends VueComponentBase {
-  SiteTags(context): super(context);
+  SiteTags(): super();
 
   @prop
   String tags;
@@ -13,9 +13,8 @@ class SiteTags extends VueComponentBase {
   dynamic noHeader = null;
 
   @computed
-  List<String> get tagsList {
-    return tags.split(', ').map((tag) => tag.trim().toUpperCase()).toList();
-  }
+  List<String> get tagsList =>
+    tags.split(', ').map((tag) => tag.trim().toUpperCase()).toList();
 
   @method
   void tagclick(String tag) {

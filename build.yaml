@@ -1,0 +1,6 @@
+builders:
+  proticBuilder:
+    import: 'package:blockbyte/builder.dart'
+    builder_factories: ['proticBuilder']
+    build_extensions: {'.p.html': ['.html']}
+    auto_apply: root_package

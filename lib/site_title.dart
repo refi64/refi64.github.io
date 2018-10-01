@@ -1,11 +1,11 @@
-import 'package:vue2/vue.dart';
+import 'package:vue/vue.dart';
 
 import 'dart:html';
 
 
-@VueComponent(name: 'site-title', template: '<<')
+@VueComponent(template: '<<')
 class SiteTitle extends VueComponentBase {
-  SiteTitle(context): super(context);
+  SiteTitle(): super();
 
   @prop
   String createdOn;

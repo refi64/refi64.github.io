@@ -1,4 +1,4 @@
-import 'package:vue2/vue.dart';
+import 'package:vue/vue.dart';
 
 import 'dart:async';
 
@@ -6,11 +6,12 @@ import 'common.dart';
 import 'site_title.dart';
 
 
-@VueComponent(name: 'post-teaser', template: '<<')
+@VueComponent(template: '<<', components: [SiteTitle])
 class PostTeaser extends VueComponentBase {
-  PostTeaser(context): super(context);
+  PostTeaser(): super();
 
-  void mounted() => load();
+  @override
+  void lifecycleMounted() => load();
 
   Future load() async {
     var doc = await getPost(url);

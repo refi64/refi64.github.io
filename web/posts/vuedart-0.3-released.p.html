@@ -2,15 +2,11 @@
 
 <head>
   <title>VueDart 0.3 released! Featuring scoped styles, mixins, a CLI, and more!</title>
-  <script defer src="/dist/pack.js"></script>
-  <link rel="stylesheet" href="/dist/pack.css">
-  <script defer type="application/dart" src="../page.dart"></script>
-  <script defer src="packages/browser/dart.js"></script>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <+ require="base.html">
 </head>
 
-<body vuedart>
-  <div id="page" v-cloak>
+<+@ body>
+
     <site-navbar></site-navbar>
     <site-title created-on="2017-11-19"></site-title>
 
@@ -318,5 +314,5 @@ String myFirstProp, mySecondProp;
 
     <site-tags tags='vue, vuedart'></site-tags>
     <site-suffix></site-suffix>
-  </div>
-</body>
+
+</+@>

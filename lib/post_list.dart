@@ -1,4 +1,4 @@
-import 'package:vue2/vue.dart';
+import 'package:vue/vue.dart';
 
 import 'dart:async';
 
@@ -6,11 +6,12 @@ import 'common.dart';
 import 'post_teaser.dart';
 
 
-@VueComponent(name: 'post-list', template: '<<')
+@VueComponent(template: '<<', components: [PostTeaser])
 class PostList extends VueComponentBase {
-  PostList(context): super(context);
+  PostList(): super();
 
-  void mounted() => load();
+  @override
+  void lifecycleMounted() => load();
 
   Future load() async {
     posts = await getPosts();
@@ -18,7 +19,7 @@ class PostList extends VueComponentBase {
   }
 
   @data
-  List<String> posts = [];
+  List posts = [];
 
   @computed
   bool get hasPosts => !posts.isEmpty;

@@ -1,0 +1,32 @@
+<script defer src="/dist/pack.js"></script>
+<script defer +src="$?script or ../page.vue.dart.js"></script>
+<link rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Roboto|Roboto+Mono|Material+Icons">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="utf-8">
+
+<style>
+  a, a:visited:not(.md-button) { text-decoration: none; }
+  a:hover:not(.md-button) { text-decoration: underline; }
+  #moot-logo a { z-index: 0 !important; }
+  .highlight { overflow-y: auto; }
+  .highlight .err { border: none !important; }
+
+  [v-cloak] { display: none; }
+
+  body #page {
+    margin: 0 1em 1em 1em;
+    --mdc-theme-primary: #3f51b5;
+    --mdc-theme-secondary: #0d47a1;
+  }
+</style>
+
+<+ macro="body" slot>
+  <body>
+    <div v-cloak +#page>
+      <!-- <m-typography> -->
+        <+ slot>
+      <!-- </m-typography> -->
+    </div>
+  </body>
+</+>

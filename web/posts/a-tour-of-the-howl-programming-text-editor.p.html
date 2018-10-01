@@ -2,15 +2,11 @@
 
 <head>
   <title>A tour of the Howl programming text editor</title>
-  <script defer src="/dist/pack.js"></script>
-  <link rel="stylesheet" href="/dist/pack.css">
-  <script defer type="application/dart" src="../page.dart"></script>
-  <script defer src="packages/browser/dart.js"></script>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <+ require="base.html">
 </head>
 
-<body vuedart>
-  <div id="page" v-cloak>
+<+@ body>
+
     <site-navbar></site-navbar>
     <site-title created-on="2016-03-20 16:27"></site-title>
 
@@ -20,7 +16,7 @@
         here:</p>
     </div>
 
-    <embedded-video width="560" height="315"
+    <embedded-video :width="560" :height="315"
                     url="https://www.youtube.com/embed/FmxKXWXj90c">
     </embedded-video>
 
@@ -30,4 +26,4 @@
 
     <site-tags tags='howl, moonscript, lua, video, youtube, editor'></site-tags>
     <site-suffix></site-suffix>
-</body>
+</+@>

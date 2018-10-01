@@ -1,4 +1,4 @@
-import 'package:vue2/vue.dart';
+import 'package:vue/vue.dart';
 
 import 'common.dart';
 import 'post_teaser.dart';
@@ -8,32 +8,36 @@ import 'dart:async';
 import 'dart:html';
 
 
-@VueComponent(name: 'tag-list', template: '<<')
+@VueComponent(template: '<<', components: [PostTeaser, SiteTags])
 class TagList extends VueComponentBase {
-  TagList(context): super(context);
+  TagList(): super();
 
   @override
-  void mounted() {
+  void lifecycleMounted() {
     hashchange();
     window.onHashChange.listen((evt) => hashchange());
+    load();
+  }
 
-    getPosts().then((posts) => this.posts = posts);
+  Future load() async {
+    posts = await getPosts();
+    return Future.value();
   }
 
   @prop
-  dynamic tagPage = null;
+  bool tagPage = false;
 
   @data
   String tag = '';
   @data
-  List<String> posts = [];
+  List posts = [];
   @data
-  List<String> allTags = [];
+  List allTags = [];
   @data
-  List<String> ourPosts = [];
+  List ourPosts = [];
 
   @computed
-  bool get istag => tag.isNotEmpty && tagPage != null;
+  bool get istag => tag.isNotEmpty && tagPage;
   @computed
   String get allTagsString => allTags.join(', ');
   @computed

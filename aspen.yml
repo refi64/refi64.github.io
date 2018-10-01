@@ -21,7 +21,3 @@ targets:
     - dev: node_modules/better-share-button/dist/share-button.css
       prod: node_modules/better-share-button/dist/share-button.min.css
       autoload: true
-    - default: node_modules/material-design-icons/iconfont/material-icons.css
-      autoload: true
-      options:
-        inline: true

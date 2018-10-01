@@ -3,14 +3,11 @@
 <head>
   <title>XCXSound</title>
   <script defer src="/dist/pack.js"></script>
-  <link rel="stylesheet" href="/dist/pack.css">
-  <script defer type="application/dart" src="../page.dart"></script>
-  <script defer src="packages/browser/dart.js"></script>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <+ require="base.html">
 </head>
 
-<body vuedart>
-  <div id="page" v-cloak>
+<+@ body>
+
     <site-navbar></site-navbar>
 
     <h1>XCXSound</h1>
@@ -22,7 +19,7 @@
 
     <link-header id="screen">Screenshots</link-header>
 
-    <embedded-image url="https://s5.postimg.org/mgrqipddz/xcxsound_v0_4.png">
+    <embedded-image url="https://i.postimg.cc/nLMDjJKP/xcxsound_v0.4.png">
       Linux</embedded-image>
 
     <link-header id="downloads">Downloads</link-header>
@@ -230,5 +227,5 @@
     <p>Initial version.</p>
 
     <site-suffix></site-suffix>
-  </div>
-</body>
+
+</+@>

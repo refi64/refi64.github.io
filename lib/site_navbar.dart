@@ -1,12 +1,12 @@
-import 'package:vue2/vue.dart';
-import 'package:vue2/plugins/vuematerial.dart';
+import 'package:vue/vue.dart';
+import 'package:vue/plugins/vuematerial_legacy.dart';
 
 import 'if_mobile.dart';
 
 
-@VueComponent(name: 'site-navbar', template: '<<')
+@VueComponent(template: '<<', components: [IfMobile])
 class SiteNavbar extends VueComponentBase {
-  SiteNavbar(context): super(context);
+  SiteNavbar(): super();
 
   @method
   void toggleNav() => sidenav.toggle();
