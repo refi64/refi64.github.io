@@ -5,10 +5,13 @@ dependencies:
   aspen_assets: any
   html_unescape: any
   js: any
+  # vdmc: any
   vue: any
 dependency_overrides:
   vue:
     path: /code/vuedart/vue
+  # vdmc:
+    # path: /code/vdmc/vdmc
     # git: "https://github.com/kirbyfan64/vuedart.git"
   scopify:
     path: /code/scopify

@@ -5,6 +5,8 @@ library blockbyte.common;
 import 'package:vue/vue.dart';
 import 'package:vue/plugins/vuematerial_legacy.dart';
 
+// import 'package:vdmc/vdmc.dart';
+
 import 'package:blockbyte/embedded_image.dart';
 import 'package:blockbyte/link_header.dart';
 import 'package:blockbyte/site_navbar.dart';
@@ -30,6 +32,13 @@ Future<Document> getPost(String url) async {
 }
 
 
+void appendScript(String src) {
+  var script = new ScriptElement();
+  script.src = src;
+  document.head.append(script);
+}
+
+
 void appendStyle(String href) {
   var style = new LinkElement();
   style.rel = 'stylesheet';
@@ -38,20 +47,11 @@ void appendStyle(String href) {
 }
 
 
-void appendScript(String src) {
-  var script = new ScriptElement();
-  script.src = src;
-  document.head.append(script);
-}
-
-
 ScriptElement muutjs;
 
 
 void init() {
   VueConfig.ignoredElements = ['share-button'];
-
-  appendStyle('https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,400italic');
 
   VueMaterial.use();
   VueMaterial.registerTheme('main', new MdTheme(
@@ -63,5 +63,6 @@ void init() {
   VueMaterial.setCurrentTheme('main');
 }
 
+// @VueMixin(components: [EmbeddedImage, LinkHeader, SiteNavbar, SiteTitle, SiteSuffix, MTypography])
 @VueMixin(components: [EmbeddedImage, LinkHeader, SiteNavbar, SiteTitle, SiteSuffix])
 abstract class CommonElements implements VueMixinRequirements {}
