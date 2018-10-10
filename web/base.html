@@ -1,4 +1,7 @@
 <script defer src="/dist/pack.js"></script>
+<+ if="$?extra-script" do>
+  <script defer +src="$extra-script"></script>
+</+>
 <script defer +src="$?script or ../page.vue.dart.js"></script>
 <link rel="stylesheet"
       href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,400italic|Roboto+Mono|Material+Icons">
