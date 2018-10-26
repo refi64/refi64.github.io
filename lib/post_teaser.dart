@@ -1,4 +1,5 @@
 import 'package:vue/vue.dart';
+import 'package:vdmc/vdmc.dart';
 
 import 'dart:async';
 
@@ -8,7 +9,15 @@ import 'site_title.dart';
 
 @VueComponent(template: '<<', components: [SiteTitle])
 class PostTeaser extends VueComponentBase {
-  PostTeaser(): super();
+  static final loaded = VueEventSpec<String>('loaded');
+  VueEventSink<String> loadedSink;
+  VueEventStream<String> loadedStream;
+
+  @override
+  void lifecycleCreated() {
+    loadedSink = loaded.createSink(this);
+    loadedStream = loaded.createStream(this);
+  }
 
   @override
   void lifecycleMounted() => load();
@@ -18,6 +27,8 @@ class PostTeaser extends VueComponentBase {
     title = doc.querySelector('title').innerHtml;
     createdOn = doc.querySelector('site-title').attributes['created-on'];
     teaser = doc.querySelector('#teaser').innerHtml;
+
+    loadedSink.add(post);
 
     return new Future.value();
   }

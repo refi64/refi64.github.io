@@ -1,21 +1,17 @@
 <template vuedart>
-  <h3 :id="id" v-if="small != null">
-    <slot></slot>
-    <a :href="ref">
-      <md-icon>link</md-icon>
-    </a>
-  </h3>
+  <div>
+    <m-typo-headline :level="small ? 5 : 4" :id="id" class="headline">
+      <slot></slot>
+    </m-typo-headline>
 
-  <h2 :id="id" v-else>
-    <slot></slot>
-    <a :href="ref">
-      <md-icon>link</md-icon>
+    <a class="no-style" :href="ref">
+      <m-icon-button>
+        <m-icon icon="link"></m-icon>
+      </m-icon-button>
     </a>
-  </h2>
+  </div>
 </template>
 
 <style scoped>
-  .md-icon { color: gray; }
-  .md-icon:hover { color: darkgray; }
-  a:hover { text-decoration: none !important; }
+  .headline { vertical-align: text-bottom; }
 </style>

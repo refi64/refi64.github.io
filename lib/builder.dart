@@ -42,6 +42,9 @@ class ProticBuilder implements Builder {
       log.severe(error.toString());
     }
 
+    var env = Map<String, String>.from(Platform.environment);
+    env['PYTHONIOENCODING'] = 'utf-8';
+
     var contents = result.code;
     var doc = parse(contents, generateSpans: true);
     var rewriter = new TextEditTransaction(contents,
@@ -61,11 +64,18 @@ class ProticBuilder implements Builder {
         code = unescape.convert(code);
       }
 
-      var proc = await Process.start('pygmentize', ['-l', lang, '-f', 'html']);
+      var proc = await Process.start('pygmentize', ['-l', lang, '-f', 'html'],
+                                     environment: env);
       proc.stdin.write(code.trim());
       await proc.stdin.flush();
       await proc.stdin.close();
       var formattedCode = await proc.stdout.map(utf8.decode).join();
+
+      var exitCode = await proc.exitCode;
+      if (exitCode != 0) {
+        var err = await proc.stderr.map(utf8.decode).join();
+        log.warning('pygmentize returned exit status $exitCode:\n${code.trim()}\n$err');
+      }
 
       rewriter.edit(node.sourceSpan.start.offset, node.endSourceSpan.end.offset,
                     formattedCode.trim());

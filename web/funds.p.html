@@ -1,59 +1,49 @@
 <!DOCTYPE html>
 
 <head>
-  <title>refi64's BlockByte</title>
-  <+ require="base.html" script="page.vue.dart.js">
+  <title>re:fi.64's BlockByte</title>
+  <+ require="base.html" script="funds.vue.dart.js">
 
   <style>
-    .card { margin: 1em auto; }
-
-    .card-image {
-      padding-top: 1em;
-      width: inherit !important;
-      display: block;
-      margin: auto;
-      max-width: 196px;
-      max-height: 170px;
-    }
-
-    .md-card-header .md-title {
+    .cr-name {
       text-align: center;
     }
   </style>
 </head>
 
 <+@ body>
-  <site-navbar></site-navbar>
+  <site-navbar side-title="Contribute"></site-navbar>
 
-  <h1>Contribute</h1>
-
-  <p>You can also contribute via <a href="https://paypal.me/refi64">PayPal</a></p>
+  <p>You can also contribute via <a href="https://paypal.me/refi64">PayPal</a>.</p>
 
   <p>Thanks! :D</p>
 
-  <md-layout md-row md-gutter>
-    <+ macro="meth">
-      <md-card +.card>
-        <md-card-media>
-          <img +.card-image +src="/funds/ + ($@?image or $@prefix) + .png"></img>
-        </md-card-media>
+  <m-layout-grid>
+    <m-layout-grid-inner>
+      <+ macro="meth">
+        <m-layout-grid-cell :span-phone="4" :span-tablet="4" :span-desktop="3">
+          <a class="no-style" +href="$@?url or ($@prefix + : + $@address)">
+            <m-card primary-action>
+              <m-card-media
+                class="card-media" slot="media"
+                +style="'background-image: url(/funds/' + ($@?image or $@prefix) + '.png)'">
+              </m-card-media>
 
-        <md-card-header>
-          <div +.md-title><+ value="$@title"></div>
+              <m-typo-headline class="cr-name" :level="5"><+ value="$@title"></m-typo-headline>
+            </m-card>
+          </a>
+        </m-layout-grid-cell>
+      </+>
 
-          <a +href="$@?url or ($@prefix + : + $@address)"><+ value="$@address"></a>
-        </md-card-header>
-      </md-card>
-    </+>
-
-    <+@ meth title="BTC" prefix="bitcoin"
-        address="bc1qrnw7duuwnnddgw2uzn0fd744k3p7xphv0ec2jc">
-    <+@ meth title="BTC (non-SegWit)" prefix="bitcoin" image="bitcoin-std"
-        address="168oT9HvSFZj2TWmeQzav1hKJMQo42TECo">
-    <+@ meth title="ETH" image="ethereum" url="iban:XE17KAT1E2S6ATN64G2IHHKRUFUX6BBNN55"
-        address="0xadc94e2a9e12189a89259381d0236eecf54a6be9">
-    <+@ meth title="LTC" prefix="litecoin" address="LgLak1KqkvMRxf4bKizYWnawQEpvAHQcbw">
-    <+@ meth title="BCH" image="bitcoin-cash" prefix="bitcoincash"
-        address="17jfwb6Zr149cVew8KmGLNHP7xkQ6Xg3P8">
-  </md-layout>
+      <+@ meth title="BTC SegWit" prefix="bitcoin"
+          address="bc1qrnw7duuwnnddgw2uzn0fd744k3p7xphv0ec2jc">
+      <+@ meth title="BTC Plain" prefix="bitcoin" image="bitcoin-std"
+          address="168oT9HvSFZj2TWmeQzav1hKJMQo42TECo">
+      <+@ meth title="ETH" image="ethereum" url="iban:XE17KAT1E2S6ATN64G2IHHKRUFUX6BBNN55"
+          address="0xadc94e2a9e12189a89259381d0236eecf54a6be9">
+      <+@ meth title="LTC" prefix="litecoin" address="LgLak1KqkvMRxf4bKizYWnawQEpvAHQcbw">
+      <+@ meth title="BCH" image="bitcoin-cash" prefix="bitcoincash"
+          address="17jfwb6Zr149cVew8KmGLNHP7xkQ6Xg3P8">
+    </m-layout-grid-inner>
+  </m-layout-grid>
 </+@>

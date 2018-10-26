@@ -6,15 +6,16 @@ dependencies:
   html_unescape: any
   js: any
   # vdmc: any
-  vue: any
+  # vue: any
+  vue: ^0.4.0
 dependency_overrides:
-  vue:
-    path: /code/vuedart/vue
-  # vdmc:
-    # path: /code/vdmc/vdmc
+  # vue:
+    # path: /code/vuedart/vue
     # git: "https://github.com/kirbyfan64/vuedart.git"
-  scopify:
-    path: /code/scopify
+  vdmc:
+    path: /code/vdmc/vdmc
+  # scopify:
+    # path: /code/scopify
   # scopify:
     # path: /home/ryan/scopify
   # pygments:

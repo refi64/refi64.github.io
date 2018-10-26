@@ -2,6 +2,7 @@
 library blockbyte.math_preview;
 
 import 'package:vue/vue.dart';
+import 'package:vdmc/vdmc.dart';
 
 import 'package:js/js.dart';
 
@@ -10,7 +11,8 @@ import 'package:js/js.dart';
 external String _katexRenderToString(String math);
 
 
-@VueComponent(template: '<<')
+@VueComponent(template: '<<', components: [MTextfield, MFloatingLabel, MLineRipple,
+                                           MTextfieldHelptext])
 class MathPreview extends VueComponentBase {
   MathPreview(): super();
 

@@ -1,0 +1,71 @@
+<template vuedart>
+  <div class="outer">
+    <div class="large-circle circle"></div>
+    <div class="left-circle small-circle circle"></div>
+    <div class="right-circle small-circle circle"></div>
+
+    <m-typo-headline class="message" :level="4">Loading...</m-typo-headline>
+  </div>
+</template>
+
+<style scoped bleeds>
+
+  .outer {
+    margin-top: 100px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .message {
+    margin-top: 100px;
+    text-align: center;
+  }
+
+  .circle {
+    display: inline-block;
+    background-color: var(--mdc-theme-secondary);
+    border: 1px solid var(--mdc-theme-secondary);
+    border-radius: 50%;
+  }
+
+  .large-circle {
+    margin: 0 20px;
+    height: 50px;
+    width: 50px;
+    animation: loading 2s infinite;
+  }
+
+  .small-circle {
+    height: 25px;
+    width: 25px;
+  }
+
+  .left-circle {
+    animation: left-movement 2s infinite;
+  }
+
+  .right-circle {
+    animation: right-movement 2s infinite;
+    margin-top: -27px;
+  }
+
+  @keyframes loading {
+    0% { transform: translateY(100px); }
+    50% { transform: translateY(0); }
+    100% { transform: translateY(100px); }
+  }
+
+  @keyframes left-movement {
+    0% { transform: rotate(180deg) translateY(50px) rotate(180deg); }
+    50% { transform: rotate(0deg) translateY(50px) rotate(0deg); }
+    100% { transform: rotate(180deg) translateY(50px) rotate(180deg); }
+  }
+
+  @keyframes right-movement {
+    0% { transform: rotate(0deg) translateY(-50px) rotate(0deg); }
+    50% { transform: rotate(180deg) translateY(-50px) rotate(180deg); }
+    100% { transform: rotate(0deg) translateY(-50px) rotate(0deg); }
+  }
+
+</style>

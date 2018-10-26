@@ -1,0 +1,44 @@
+<template vuedart>
+  <m-list>
+    <a class="no-style" v-for="(item, index) in headers.root" :key="'r' + index" :href="item[2]">
+      <m-list-item>
+        <m-icon :icon="item[1]"></m-icon>
+          <span class="after-icon">{{ item[0] }}</span>
+        </m-list-item>
+    </a>
+
+    <template v-for="(menu, index) in headers.menus">
+      <m-list-group-divider :key="'d' + index"></m-list-group-divider>
+
+      <m-list-group :key="'h' + index">
+        <m-list-group-subheader>
+          <m-icon :icon="menu[1]"></m-icon>
+          <span class="after-icon">{{ menu[0] }}</span>
+        </m-list-group-subheader>
+        <a class="no-style" v-for="(item, index) in headers[menu[0]]" :key="'i' + index"
+           :href="item[1]">
+          <m-list-item>{{ item[0] }}</m-list-item>
+        </a>
+      </m-list-group>
+    </template>
+  </m-list>
+</template>
+
+<style scoped bleeds>
+
+  .material-icons {
+    vertical-align: top;
+    color: var(--mdc-theme-secondary);
+  }
+
+  .after-icon {
+    padding-left: 1em;
+    line-height: 24px;
+  }
+
+  .mdc-list-group__subheader {
+    height: 24px;
+    display: block;
+  }
+
+</style>

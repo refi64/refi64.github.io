@@ -1,14 +1,25 @@
 <template vuedart>
-  <div>
-    <span v-if="!noHeader">
-      <b><i>Tags:</i></b>
-    </span>
-
-    <md-chip md-editable v-for="(tag, index) in tagsList" :href="'/tags.html#' + tag"
-             :key="index" style="margin: 0.2em;" @edit="tagclick(tag)">
-      {{tag}}
-    </md-chip>
-
-    <br>
-  </div>
+  <transition-group name="tag-changes" tag="m-chip-set">
+    <a v-for="(tag, index) in tagsList" :key="tag" :href="'/tags.html#' + tag" class="no-style">
+      <m-chip>
+        {{tag}}
+      </m-chip>
+    </a>
+  </transition-group>
 </template>
+
+<style scoped>
+
+  .tag-changes-enter-active {
+    transition: opacity 0.3s;
+  }
+
+  .tag-changes-enter {
+    opacity: 0;
+  }
+
+  .tag-changes-move {
+    transition: all 1s;
+  }
+
+</style>

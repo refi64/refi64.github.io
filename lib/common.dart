@@ -3,9 +3,8 @@ library blockbyte.common;
 
 // import 'package:aspen_assets/aspen_assets.dart' as aspen;
 import 'package:vue/vue.dart';
-import 'package:vue/plugins/vuematerial_legacy.dart';
 
-// import 'package:vdmc/vdmc.dart';
+import 'package:vdmc/vdmc.dart';
 
 import 'package:blockbyte/embedded_image.dart';
 import 'package:blockbyte/link_header.dart';
@@ -52,17 +51,7 @@ ScriptElement muutjs;
 
 void init() {
   VueConfig.ignoredElements = ['share-button'];
-
-  VueMaterial.use();
-  VueMaterial.registerTheme('main', new MdTheme(
-    primary: 'indigo',
-    accent: new MdColor(color: 'blue', hue: 900),
-    warn: 'red',
-    background: 'white',
-  ));
-  VueMaterial.setCurrentTheme('main');
 }
 
-// @VueMixin(components: [EmbeddedImage, LinkHeader, SiteNavbar, SiteTitle, SiteSuffix, MTypography])
-@VueMixin(components: [EmbeddedImage, LinkHeader, SiteNavbar, SiteTitle, SiteSuffix])
+@VueMixin(components: [EmbeddedImage, LinkHeader, SiteNavbar, SiteTitle, SiteSuffix, MTypography])
 abstract class CommonElements implements VueMixinRequirements {}

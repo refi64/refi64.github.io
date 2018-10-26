@@ -1,4 +1,5 @@
 import 'package:vue/vue.dart';
+import 'package:vdmc/vdmc.dart';
 
 import 'common.dart';
 import 'post_teaser.dart';
@@ -8,7 +9,7 @@ import 'dart:async';
 import 'dart:html';
 
 
-@VueComponent(template: '<<', components: [PostTeaser, SiteTags])
+@VueComponent(template: '<<', components: [PostTeaser, SiteTags, MTypoHeadline, MChip])
 class TagList extends VueComponentBase {
   TagList(): super();
 
@@ -28,6 +29,8 @@ class TagList extends VueComponentBase {
   bool tagPage = false;
 
   @data
+  bool doneLoading = false;
+  @data
   String tag = '';
   @data
   List posts = [];
@@ -40,8 +43,6 @@ class TagList extends VueComponentBase {
   bool get istag => tag.isNotEmpty && tagPage;
   @computed
   String get allTagsString => allTags.join(', ');
-  @computed
-  bool get hasPosts => posts.isNotEmpty && (istag ? ourPosts.isNotEmpty : true);
 
   @watch('posts')
   void watchPosts() => updateTags();
@@ -49,6 +50,8 @@ class TagList extends VueComponentBase {
   void watchTag() => updateTags();
 
   Future updateTags() async {
+    doneLoading = false;
+
     for (var postName in posts) {
       var post = await getPost('/posts/$postName.html');
 
@@ -67,9 +70,11 @@ class TagList extends VueComponentBase {
         }
       } else {
         allTags.addAll(tags.where((tag) => !allTags.contains(tag)));
-        allTags.sort();
       }
     }
+
+    allTags.sort();
+    doneLoading = true;
   }
 
   void hashchange() {

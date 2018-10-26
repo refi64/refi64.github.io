@@ -6,10 +6,8 @@ import 'dart:html';
 bool isMobile() => document.body.clientWidth <= 480;
 
 
-@VueComponent(template: '<<')
-class IfMobile extends VueComponentBase {
-  IfMobile(): super();
-
+@VueMixin()
+abstract class IfMobileMixin implements VueMixinRequirements {
   @override
   void lifecycleMounted() {
     window.onResize.listen((Event event) {

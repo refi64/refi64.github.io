@@ -1,21 +1,30 @@
 <template vuedart>
   <div>
-    <template v-if="tagPage">
-      <h1 v-if="istag">Tag: {{tag.toUpperCase()}}</h1>
-      <h1 v-else>Tags</h1>
-    </template>
+    <transition name="tags-fade" mode="out-in">
+      <template v-if="!istag">
+        <site-tags :tags="allTagsString"></site-tags>
+      </template>
 
-    <div v-if="!hasPosts" style="text-align: center;">
-      <p>Loading tags...</p>
-      <md-spinner md-indeterminate></md-spinner>
-    </div>
-
-    <template v-if="!istag">
-      <site-tags :tags="allTagsString" no-header></site-tags>
-    </template>
-
-    <template v-else>
-      <post-teaser v-for="(post, index) in ourPosts" :key="index" :post="post"></post-teaser>
-    </template>
+      <div v-else>
+        <a href="#" class="no-style">
+          <m-icon-button>
+            <m-icon icon="arrow_back"></m-icon>
+          </m-icon-button>
+        </a>
+        <m-typo-headline :level="4">#{{tag}}</m-typo-headline>
+        <post-teaser v-for="(post, index) in ourPosts" :key="index" :post="post"></post-teaser>
+      </div>
+    </transition>
   </div>
 </template>
+
+<style scoped>
+
+  .tags-fade-enter-active, .tags-fade-leave-active {
+    transition: opacity .3s ease;
+  }
+  .tags-fade-enter, .tags-fade-leave-to {
+    opacity: 0;
+  }
+
+</style>

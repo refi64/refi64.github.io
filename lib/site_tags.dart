@@ -1,23 +1,19 @@
 import 'package:vue/vue.dart';
 
+import 'package:vdmc/vdmc.dart';
+
 import 'dart:html';
 
 
-@VueComponent(template: '<<')
+@VueComponent(template: '<<', components: [MChipSet, MChip])
 class SiteTags extends VueComponentBase {
   SiteTags(): super();
 
   @prop
   String tags;
-  @prop
-  dynamic noHeader = null;
 
   @computed
-  List<String> get tagsList =>
-    tags.split(', ').map((tag) => tag.trim().toUpperCase()).toList();
-
-  @method
-  void tagclick(String tag) {
-    window.location.href = '/tags.html#${Uri.encodeComponent(tag.toLowerCase())}';
-  }
+  List<String> get tagsList => tags.isNotEmpty
+                                ? tags.split(', ').map((tag) => tag.trim()).toList()
+                                : <String>[];
 }

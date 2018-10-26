@@ -1,50 +1,25 @@
 import 'package:vue/vue.dart';
-import 'package:vue/plugins/vuematerial_legacy.dart';
+import 'package:vdmc/vdmc.dart';
 
 import 'if_mobile.dart';
+import 'site_navlist.dart';
 
 
-@VueComponent(template: '<<', components: [IfMobile])
-class SiteNavbar extends VueComponentBase {
+@VueComponent(template: '<<', components: [MButton, MTypoHeadline, MTopAppBar,
+                                           MTopAppBarFixedAdjust, MIconButton,
+                                           MDrawerTemporary, MDrawerToolbarSpacer, MDrawerContent, SiteNavlist, MDrawerPermanent])
+class SiteNavbar extends VueComponentBase with IfMobileMixin {
   SiteNavbar(): super();
 
-  @method
-  void toggleNav() => sidenav.toggle();
-
   @ref
-  MdSidenav sidenav;
+  MDrawerTemporary nav;
 
   @data
-  dynamic headers = mapToJs({
-    'root': [
-      ['Home', '/'],
-      ['RSS', 'https://feed43.com/4061761183385368.xml'],
-      ['Tags', '/tags.html'],
-    ],
+  bool navOpen = false;
 
-    'menus': ['Projects', 'Misc', 'Links'],
+  @prop
+  String sideTitle = '';
 
-    'Projects': [
-      ['XCXSound', '/proj/xcxsound.html'],
-      ['zdata', '/proj/zdata.html'],
-      ['VueDart', '/vuedart/'],
-      ['Other projects', '/projects.html'],
-    ],
-
-    'Misc': [
-      ['APT Repository', '/pages/apt.html'],
-      ['Katex Previewer', '/pages/katex.html'],
-    ],
-
-    'Links': [
-      ['GitHub', 'https://github.com/kirbyfan64'],
-      ['Twitter', 'https://twitter.com/refi_64'],
-      ['GameFAQs', 'http://www.gamefaqs.com/community/kirbyfan64sos'],
-      ['Stack Overflow', 'http://stackoverflow.com/users/2097780/refi64'],
-      ['Darcs Hub', 'http://hub.darcs.net/refi64'],
-      ['SoundCloud', 'https://soundcloud.com/user-356790806'],
-      ['XDA Developers', 'https://forum.xda-developers.com/member.php?u=5569318'],
-      ['VGMdb', 'http://vgmdb.net/forums/member.php?u=24312'],
-    ],
-  });
+  @method
+  void toggleNav() => navOpen = !nav.open;
 }

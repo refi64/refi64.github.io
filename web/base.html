@@ -4,32 +4,69 @@
 </+>
 <script defer +src="$?script or ../page.vue.dart.js"></script>
 <link rel="stylesheet"
-      href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,400italic|Roboto+Mono|Material+Icons">
+      href="https://fonts.googleapis.com/css?family=Roboto:400,400italic,700|Roboto+Mono|Montserrat:400,500|Material+Icons">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta charset="utf-8">
 
 <style>
-  a, a:visited:not(.md-button) { text-decoration: none; }
-  a:hover:not(.md-button) { text-decoration: underline; }
+  a:not(.no-style), a:visited:not(.no-style) {
+    color: var(--mdc-theme-secondary);
+    text-decoration: none;
+
+  }
+
+  a:hover:not(.no-style) {
+    text-decoration: underline;
+  }
+
+  a.no-style, a.no-style:hover, a.no-style:visited {
+    color: black;
+    text-decoration: none;
+  }
+
+  pre {
+    margin: 1em;
+  }
+
   #moot-logo a { z-index: 0 !important; }
   .highlight { overflow-y: auto; }
   .highlight .err { border: none !important; }
 
   [v-cloak] { display: none; }
 
+  body {
+    margin: 0;
+  }
+
+  @media (min-width: 481px) {
+    body {
+      margin-left: 240px;
+    }
+  }
+
   body #page {
     margin: 0 1em 1em 1em;
-    --mdc-theme-primary: #3f51b5;
+  }
+
+  .mdc-top-app-bar__title, .mdc-typography--headline3,
+  .mdc-typography--headline4, .mdc-typography--headline5,
+  .mdc-list-group__subheader {
+    font-family: Montserrat, Roboto, sans-serif !important;
+  }
+
+  :root {
+    --mdc-theme-primary: #fffffff6;
     --mdc-theme-secondary: #0d47a1;
+    --mdc-theme-on-primary: black;
   }
 </style>
 
 <+ macro="body" slot>
   <body>
     <div v-cloak +#page>
-      <!-- <m-typography> -->
+      <m-typography>
         <+ slot>
-      <!-- </m-typography> -->
+      </m-typography>
     </div>
   </body>
 </+>

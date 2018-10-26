@@ -1,12 +1,26 @@
 <template vuedart>
-  <div>
-    <div v-if="!hasPosts" style="text-align: center;">
-      <p>Loading posts...</p>
-      <md-spinner md-indeterminate></md-spinner>
-    </div>
+  <transition-group name="teasers" tag="div">
+    <loading-circle key="circle" v-if="!doneLoading"></loading-circle>
 
-    <template v-if="hasPosts">
-      <post-teaser v-for="(post, index) in posts" :post="post" :key="index"></post-teaser>
-    </template>
-  </div>
+    <div key="teasers" v-if="hasPosts" v-show="doneLoading">
+      <post-teaser v-for="(post, index) in posts" :key="post" :post="post" @loaded="postLoaded">
+      </post-teaser>
+    </div>
+  </transition-group>
 </template>
+
+<style scoped>
+
+  .teasers-enter-active, .teasers-leave-active {
+    transition: opacity 0.3s ease;
+  }
+
+  .teasers-enter, .teasers-leave-to {
+    opacity: 0;
+  }
+
+  .teasers-move {
+    transition: all 1s;
+  }
+
+</style>
