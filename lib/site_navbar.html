@@ -31,12 +31,61 @@
     </m-top-app-bar>
 
     <m-top-app-bar-fixed-adjust></m-top-app-bar-fixed-adjust>
+
+    <transition name="warning-hide">
+      <div class="firefox-android-warning" v-if="showFirefoxAndroidWarning">
+        <p>
+          Firefox for Android has a
+          <a href="https://bugzilla.mozilla.org/show_bug.cgi?id=1475288">known bug</a> that causes
+          scrolling on the navigation menu to glitch out, although it is still usable.
+        </p>
+
+        <m-button @click="hideFirefoxAndroidWarning">OK</m-button>
+      </div>
+    </transition>
   </div>
 </template>
 
 <style scoped bleeds>
   .nav {
     z-index: 10;
+  }
+
+  .firefox-android-warning {
+    z-index: 2;
+    position: fixed;
+    bottom: 0;
+    width: calc(100% - 2em);
+    padding: 0 1em;
+    text-align: center;
+    background-color: var(--mdc-theme-primary);
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    box-shadow:
+      0 -2px 4px -1px rgba(0,0,0,.2),
+      /* 0 -4px 5px 0 rgba(0,0,0,.14), */
+      0 -1px 10px 0 rgba(0,0,0,.12);
+  }
+
+  .firefox-android-warning p {
+    padding-right: 1em;
+  }
+
+  .firefox-android-warning .mdc-button {
+    --mdc-theme-primary: var(--mdc-theme-secondary);
+  }
+
+  .warning-hide-leave-active {
+    transition: all 0.2s;
+    transition-timing-function: linear;
+  }
+
+  .warning-hide-leave-to {
+    /* opacity: 0; */
+    transform: translateY(100%);
   }
 
   .mobile-nav-header {
