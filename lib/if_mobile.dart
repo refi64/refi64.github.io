@@ -3,7 +3,7 @@ import 'package:vue/vue.dart';
 import 'dart:html';
 
 
-bool isMobile() => document.body.clientWidth <= 480;
+bool isMobile() => window.innerWidth <= 480;
 
 
 @VueMixin()
