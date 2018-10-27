@@ -1,8 +1,0 @@
-a, a:visited:not(.md-button) { text-decoration: none; }
-a:hover:not(.md-button) { text-decoration: underline; }
-body #page { margin: 0 1em 1em 1em; }
-#moot-logo a { z-index: 0 !important; }
-.highlight { overflow-y: auto; }
-.highlight .err { border: none !important; }
-
-[v-cloak] { display: none; }

@@ -1,16 +1,81 @@
-<!DOCTYPE html><html><head>
+<!DOCTYPE html>
+
+<head>
   <title>
     Functional programming isn't the answer to all problems (and neither is OOP)
   </title>
-  <script defer="" src="/dist/pack.js"></script>
-  <link rel="stylesheet" href="/dist/pack.css">
-  <script defer="" src="../page.initialize.dart.js"></script>
-  
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script defer src="/dist/pack.js"></script>
+</script>
+<script defer src="../page.vue.dart.js"></script>
+<link rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Roboto:400,400italic,700|Roboto+Mono|Montserrat:400,500|Material+Icons">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="utf-8">
+
+<style>
+  a:not(.no-style), a:visited:not(.no-style) {
+    color: var(--mdc-theme-secondary);
+    text-decoration: none;
+
+  }
+
+  a:hover:not(.no-style) {
+    text-decoration: underline;
+  }
+
+  a.no-style, a.no-style:hover, a.no-style:visited {
+    color: black;
+    text-decoration: none;
+  }
+
+  pre {
+    font-family: "Roboto Mono", monospace;
+    margin: 1em;
+  }
+
+  #moot-logo a { z-index: 0 !important; }
+  .highlight { overflow-y: auto; }
+  .highlight .err { border: none !important; }
+
+  [v-cloak] { display: none; }
+
+  body {
+    margin: 0;
+  }
+
+  @media (min-width: 768px) {
+    body {
+      margin-left: 240px;
+    }
+  }
+
+  body #page {
+    margin: 0 1em 1em 1em;
+  }
+
+  .mdc-top-app-bar__title, .mdc-typography--headline3,
+  .mdc-typography--headline4, .mdc-typography--headline5,
+  .mdc-list-group__subheader {
+    font-family: Montserrat, Roboto, sans-serif !important;
+  }
+
+  :root {
+    --mdc-theme-primary: rgba(255, 255, 255, 0.96);
+    --mdc-theme-secondary: #0d47a1;
+    --mdc-theme-on-primary: black;
+  }
+</style>
+
+
+
 </head>
 
-<body>
-  <div id="page" v-cloak="">
+
+  <body>
+    <div v-cloak id="page">
+      <m-typography>
+        
+
     <site-navbar></site-navbar>
     <site-title created-on="2015-05-17 16:59"></site-title>
 
@@ -75,9 +140,7 @@
       function:</p>
 
     <div class="highlight"><pre><span></span><span class="nf">f</span> <span class="ow">=</span> <span class="n">foldl1</span> <span class="p">(</span><span class="o">+</span><span class="p">)</span>
-    
 </pre></div>
-
 
     <p>
       will explode if given a list too long; the stack will be exhausted. Or it will
@@ -88,9 +151,7 @@
 
     <div class="highlight"><pre><span></span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">v</span><span class="p">(</span><span class="mi">10000000</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
 <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">accumulate</span><span class="p">(</span><span class="n">v</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span> <span class="n">v</span><span class="p">.</span><span class="n">end</span><span class="p">(),</span> <span class="mi">0</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="n">plus</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="p">{})</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
-    
 </pre></div>
-
 
     <p>I had this code in all:</p>
 
@@ -99,9 +160,7 @@
     <div class="highlight"><pre><span></span><span class="nf">f</span> <span class="ow">=</span> <span class="n">foldl1</span> <span class="p">(</span><span class="o">+</span><span class="p">)</span>
 
 <span class="nf">main</span> <span class="ow">=</span> <span class="n">print</span> <span class="o">.</span> <span class="n">f</span> <span class="o">$</span> <span class="n">replicate</span> <span class="mi">10000000</span> <span class="mi">1</span>
-    
 </pre></div>
-
 
     <note-card>
       I know about <code>sum</code>, but using it distracts from the point of this
@@ -119,9 +178,7 @@
     <span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">v</span><span class="p">(</span><span class="mi">10000000</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
     <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">accumulate</span><span class="p">(</span><span class="n">v</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span> <span class="n">v</span><span class="p">.</span><span class="n">end</span><span class="p">(),</span> <span class="mi">0</span><span class="p">,</span> <span class="n">plus</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="p">())</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
 <span class="p">}</span>
-    
 </pre></div>
-
 
     <p>
       The Haskell version gives a stack overflow after 1.7 seconds. Changing
@@ -144,10 +201,8 @@
       ones:</p>
 
     <div class="highlight"><pre><span></span><span class="nf">f</span> <span class="ow">::</span> <span class="p">[</span><span class="kt">Int</span><span class="p">]</span> <span class="ow">-&gt;</span> <span class="kt">Int</span>
-<span class="nf">f</span> <span class="ow">=</span> <span class="n">foldl1'</span> <span class="p">(</span><span class="o">+</span><span class="p">)</span>
-    
+<span class="nf">f</span> <span class="ow">=</span> <span class="n">foldl1&#39;</span> <span class="p">(</span><span class="o">+</span><span class="p">)</span>
 </pre></div>
-
 
     <p>
       This finishes in 1.7s on my (not-too-fast) computer. He also pointed out that
@@ -157,12 +212,10 @@
     <div class="highlight"><pre><span></span><span class="kr">import</span> <span class="k">qualified</span> <span class="nn">Data.Vector</span> <span class="k">as</span> <span class="n">V</span>
 
 <span class="nf">f</span> <span class="ow">::</span> <span class="kt">V</span><span class="o">.</span><span class="kt">Vector</span> <span class="kt">Int</span> <span class="ow">-&gt;</span> <span class="kt">Int</span>
-<span class="nf">f</span> <span class="ow">=</span> <span class="kt">V</span><span class="o">.</span><span class="n">foldl1'</span> <span class="p">(</span><span class="o">+</span><span class="p">)</span>
+<span class="nf">f</span> <span class="ow">=</span> <span class="kt">V</span><span class="o">.</span><span class="n">foldl1&#39;</span> <span class="p">(</span><span class="o">+</span><span class="p">)</span>
 
 <span class="nf">main</span> <span class="ow">=</span> <span class="n">print</span> <span class="o">.</span> <span class="n">f</span> <span class="o">$</span> <span class="kt">V</span><span class="o">.</span><span class="n">replicate</span> <span class="mi">10000000</span> <span class="mi">1</span>
-    
 </pre></div>
-
 
     <p>This actually took a whopping 1.08s on my laptop. Ouch!</p>
 
@@ -235,12 +288,15 @@
     <p><b>EDIT:</b> Apparently, this post is very controversial:</p>
 
     <embedded-image url="http://s5.postimg.org/wrbf628w7/contr_web.png"></embedded-image>
-    
+    </img>
 
     <p>:/</p>
 
-    <site-tags tags="function, programming, oop, haskell, c++"></site-tags>
+    <site-tags tags='function, programming, oop, haskell, c++'></site-tags>
     <site-suffix></site-suffix>
-  </div>
 
-</body></html>
+
+      </m-typography>
+    </div>
+  </body>
+

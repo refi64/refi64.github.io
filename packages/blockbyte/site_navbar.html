@@ -1,0 +1,139 @@
+<template vuedart>
+  <div class="site-navbar">
+    <m-drawer-temporary class="nav" ref="nav" v-if="mobile" v-model="navOpen">
+      <m-drawer-content>
+        <m-drawer-toolbar-spacer class="mobile-nav-header">
+          <m-typo-headline :level="5">Navigation</m-typo-headline>
+        </m-drawer-toolbar-spacer>
+
+        <site-navlist></site-navlist>
+      </m-drawer-content>
+    </m-drawer-temporary>
+
+    <m-drawer-permanent v-else>
+      <m-drawer-toolbar-spacer>
+      </m-drawer-toolbar-spacer>
+
+      <m-drawer-content>
+        <site-navlist></site-navlist>
+      </m-drawer-content>
+    </m-drawer-permanent>
+
+    <m-top-app-bar fixed>
+      <div class="nav-icon" v-if="mobile">
+        <m-icon-button @click="toggleNav()" v-if="mobile">
+          <m-icon icon="menu"></m-icon>
+        </m-icon-button>
+      </div>
+
+      <span>re:fi.64</span>
+      <span class="side-title">{{sideTitle}}</span>
+    </m-top-app-bar>
+
+    <m-top-app-bar-fixed-adjust></m-top-app-bar-fixed-adjust>
+
+    <transition name="warning-hide">
+      <div class="firefox-android-warning" v-if="showFirefoxAndroidWarning">
+        <p>
+          Firefox for Android has a
+          <a href="https://bugzilla.mozilla.org/show_bug.cgi?id=1475288">known bug</a> that causes
+          scrolling on the navigation menu to glitch out, although it is still usable.
+        </p>
+
+        <m-button @click="hideFirefoxAndroidWarning()">OK</m-button>
+      </div>
+    </transition>
+  </div>
+</template>
+
+<style scoped bleeds>
+  .nav {
+    z-index: 10;
+  }
+
+  .firefox-android-warning {
+    z-index: 2;
+    position: fixed;
+    bottom: 0;
+    width: calc(100% - 2em);
+    padding: 0 1em;
+    text-align: center;
+    background-color: var(--mdc-theme-primary);
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    box-shadow:
+      0 -2px 4px -1px rgba(0,0,0,.2),
+      /* 0 -4px 5px 0 rgba(0,0,0,.14), */
+      0 -1px 10px 0 rgba(0,0,0,.12);
+  }
+
+  .firefox-android-warning p {
+    padding-right: 1em;
+  }
+
+  .firefox-android-warning .mdc-button {
+    --mdc-theme-primary: var(--mdc-theme-secondary);
+  }
+
+  .warning-hide-leave-active {
+    transition: all 0.1s;
+    transition-timing-function: ease;
+  }
+
+  .warning-hide-leave-to {
+    /* opacity: 0; */
+    transform: translateY(100%);
+  }
+
+  .mobile-nav-header {
+    justify-content: center;
+  }
+
+  .mdc-top-app-bar {
+    color: black;
+  }
+
+  .mdc-top-app-bar__title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-right: 20px;
+    width: 100%;
+  }
+
+  .mdc-drawer--permanent {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    /* High enough to be over the animation but not the navbar */
+    z-index: 2;
+  }
+
+  .mdc-drawer--permanent .mdc-drawer__content {
+    overflow-y: scroll;
+  }
+
+  .nav-icon {
+    width: 33%;
+    text-align: start;
+  }
+
+  .site-navbar {
+    margin: 0 -1em;
+  }
+
+  .side-title {
+    width: 33%;
+    text-align: end;
+    font-size: 16px;
+  }
+
+  @media (min-width: 768px) {
+    .mdc-top-app-bar {
+      margin-left: -240px;
+    }
+  }
+</style>

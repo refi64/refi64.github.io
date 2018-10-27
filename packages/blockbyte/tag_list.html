@@ -1,0 +1,30 @@
+<template vuedart>
+  <div>
+    <transition name="tags-fade" mode="out-in">
+      <template v-if="!istag">
+        <site-tags :tags="allTagsString"></site-tags>
+      </template>
+
+      <div v-else>
+        <a href="#" class="no-style">
+          <m-icon-button>
+            <m-icon icon="arrow_back"></m-icon>
+          </m-icon-button>
+        </a>
+        <m-typo-headline :level="4">#{{tag}}</m-typo-headline>
+        <post-teaser v-for="(post, index) in ourPosts" :key="index" :post="post"></post-teaser>
+      </div>
+    </transition>
+  </div>
+</template>
+
+<style scoped>
+
+  .tags-fade-enter-active, .tags-fade-leave-active {
+    transition: opacity .3s ease;
+  }
+  .tags-fade-enter, .tags-fade-leave-to {
+    opacity: 0;
+  }
+
+</style>

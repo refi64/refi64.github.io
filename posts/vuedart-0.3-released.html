@@ -1,14 +1,79 @@
-<!DOCTYPE html><html><head>
+<!DOCTYPE html>
+
+<head>
   <title>VueDart 0.3 released! Featuring scoped styles, mixins, a CLI, and more!</title>
-  <script defer="" src="/dist/pack.js"></script>
-  <link rel="stylesheet" href="/dist/pack.css">
-  <script defer="" src="../page.initialize.dart.js"></script>
-  
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script defer src="/dist/pack.js"></script>
+</script>
+<script defer src="../page.vue.dart.js"></script>
+<link rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Roboto:400,400italic,700|Roboto+Mono|Montserrat:400,500|Material+Icons">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="utf-8">
+
+<style>
+  a:not(.no-style), a:visited:not(.no-style) {
+    color: var(--mdc-theme-secondary);
+    text-decoration: none;
+
+  }
+
+  a:hover:not(.no-style) {
+    text-decoration: underline;
+  }
+
+  a.no-style, a.no-style:hover, a.no-style:visited {
+    color: black;
+    text-decoration: none;
+  }
+
+  pre {
+    font-family: "Roboto Mono", monospace;
+    margin: 1em;
+  }
+
+  #moot-logo a { z-index: 0 !important; }
+  .highlight { overflow-y: auto; }
+  .highlight .err { border: none !important; }
+
+  [v-cloak] { display: none; }
+
+  body {
+    margin: 0;
+  }
+
+  @media (min-width: 768px) {
+    body {
+      margin-left: 240px;
+    }
+  }
+
+  body #page {
+    margin: 0 1em 1em 1em;
+  }
+
+  .mdc-top-app-bar__title, .mdc-typography--headline3,
+  .mdc-typography--headline4, .mdc-typography--headline5,
+  .mdc-list-group__subheader {
+    font-family: Montserrat, Roboto, sans-serif !important;
+  }
+
+  :root {
+    --mdc-theme-primary: rgba(255, 255, 255, 0.96);
+    --mdc-theme-secondary: #0d47a1;
+    --mdc-theme-on-primary: black;
+  }
+</style>
+
+
+
 </head>
 
-<body>
-  <div id="page" v-cloak="">
+
+  <body>
+    <div v-cloak id="page">
+      <m-typography>
+        
+
     <site-navbar></site-navbar>
     <site-title created-on="2017-11-19"></site-title>
 
@@ -21,7 +86,7 @@
 
     <link-header id="new">New features</link-header>
 
-    <link-header small="" id="cli">The VueDart CLI</link-header>
+    <link-header small id="cli">The VueDart CLI</link-header>
 
     <p>
       One of my favorite new features is the VueDart CLI. Installable via
@@ -32,22 +97,18 @@
     <p>Now, creating a new project is as easy as:</p>
 
     <div class="highlight"><pre><span></span>$ vuedart create my-project --aspen
-    
 </pre></div>
-
 
     <p>(Aspen is covered below.)</p>
 
     <p>Migrating from VueDart 0.2? Just run:</p>
 
     <div class="highlight"><pre><span></span>$ vuedart migrate . pubspec.yaml lib/* any_other_files_to_migrate
-    
 </pre></div>
-
 
     <p>I actually used the migration tool to update this website's components!</p>
 
-    <link-header small="" id="aspen">Aspen: A Dart-oriented asset acker</link-header>
+    <link-header small id="aspen">Aspen: A Dart-oriented asset acker</link-header>
 
     <p>
       As I started to create more VueDart projects, I found myself often having to
@@ -83,9 +144,7 @@
       <span class="l l-Scalar l-Scalar-Plain">prod</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">node_modules/better-share-button/dist/share-button.min.css</span>
     <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">name</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">material-icons-css</span>
       <span class="l l-Scalar l-Scalar-Plain">default</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">node_modules/material-design-icons/iconfont/material-icons.css</span>
-    
 </pre></div>
-
 
     <p>
       Now I just run <code>aspen</code> for development builds and
@@ -97,7 +156,7 @@
       CLI will generate an Aspen-and-npm/yarn-based project instead of generating
       one that depends on CDNs.</p>
 
-    <link-header small="" id="scoped">Scoped styles</link-header>
+    <link-header small id="scoped">Scoped styles</link-header>
 
     <p>
       Scoped styles are now supported in your components, via the
@@ -113,11 +172,9 @@
     background-color: purple;
   }
 <span class="p">&lt;</span><span class="nt">style</span><span class="p">&gt;</span>
-    
 </pre></div>
 
-
-    <link-header small="" id="plugins">Support for the VueMaterial and VueRouter plugins</link-header>
+    <link-header small id="plugins">Support for the VueMaterial and VueRouter plugins</link-header>
 
     <p>
       VueDart now includes built-in support for VueRouter and VueMaterial. Both are
@@ -128,16 +185,14 @@
     <p>The syntax looks much like JavaScript:</p>
 
     <div class="highlight"><pre><span></span><span class="kd">final</span> <span class="n">router</span> <span class="o">=</span> <span class="k">new</span> <span class="n">VueRouter</span><span class="p">(</span><span class="nl">routes:</span> <span class="p">[</span>
-  <span class="k">new</span> <span class="n">VueRoute</span><span class="p">(</span><span class="nl">path:</span> <span class="s1">'/item/:id'</span><span class="p">,</span> <span class="nl">component:</span> <span class="err">#</span><span class="n">RootComponent</span><span class="p">,</span> <span class="nl">children:</span> <span class="p">[</span>
-    <span class="k">new</span> <span class="n">VueRoute</span><span class="p">(</span><span class="nl">path:</span> <span class="s1">'info'</span><span class="p">,</span> <span class="nl">component:</span> <span class="err">#</span><span class="n">ChildComponent</span><span class="p">),</span>
+  <span class="k">new</span> <span class="n">VueRoute</span><span class="p">(</span><span class="nl">path:</span> <span class="s1">&#39;/item/:id&#39;</span><span class="p">,</span> <span class="nl">component:</span> <span class="err">#</span><span class="n">RootComponent</span><span class="p">,</span> <span class="nl">children:</span> <span class="p">[</span>
+    <span class="k">new</span> <span class="n">VueRoute</span><span class="p">(</span><span class="nl">path:</span> <span class="s1">&#39;info&#39;</span><span class="p">,</span> <span class="nl">component:</span> <span class="err">#</span><span class="n">ChildComponent</span><span class="p">),</span>
   <span class="p">]),</span>
-  <span class="k">new</span> <span class="n">VueRoute</span><span class="p">(</span><span class="nl">path:</span> <span class="s1">'/named-view/:id'</span><span class="p">,</span> <span class="nl">components:</span> <span class="p">{</span>
-    <span class="s1">'root'</span><span class="o">:</span> <span class="err">#</span><span class="n">RootComponent</span><span class="p">,</span>
+  <span class="k">new</span> <span class="n">VueRoute</span><span class="p">(</span><span class="nl">path:</span> <span class="s1">&#39;/named-view/:id&#39;</span><span class="p">,</span> <span class="nl">components:</span> <span class="p">{</span>
+    <span class="s1">&#39;root&#39;</span><span class="o">:</span> <span class="err">#</span><span class="n">RootComponent</span><span class="p">,</span>
   <span class="p">}),</span>
 <span class="p">]);</span>
-    
 </pre></div>
-
 
     <p>
       In order to access <code>$router</code> and <code>$route</code>, you need to
@@ -149,35 +204,31 @@
       component (which is why <a href="#name-positional">this breaking change</a> had
       to occur).</p>
 
-    <link-header small="" id="mixins">Mixins and watchers</link-header>
+    <link-header small id="mixins">Mixins and watchers</link-header>
 
     <p>Mixins are supported now, too. Here's an example:</p>
 
-    <div class="highlight"><pre><span></span><span class="nd">@VueMixin</span><span class="p">()</span>
+    <div class="highlight"><pre><span></span><span class="err">@</span><span class="n">VueMixin</span><span class="p">()</span>
 <span class="kd">abstract</span> <span class="kd">class</span> <span class="nc">TodoMixin</span> <span class="p">{</span>
-  <span class="nd">@method</span>
+  <span class="err">@</span><span class="n">method</span>
   <span class="kt">String</span> <span class="n">capitalize</span><span class="p">(</span><span class="kt">String</span> <span class="n">thing</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">thing</span><span class="p">.</span><span class="n">toUpperCase</span><span class="p">();</span>
 <span class="p">}</span>
 
-<span class="nd">@VueComponent</span><span class="p">(</span><span class="nl">name:</span> <span class="s1">'my-component'</span><span class="p">,</span> <span class="nl">template:</span> <span class="s1">'&lt;&lt;'</span><span class="p">,</span> <span class="nl">mixins:</span> <span class="kd">const</span> <span class="p">[</span><span class="n">TodoMixin</span><span class="p">])</span>
+<span class="err">@</span><span class="n">VueComponent</span><span class="p">(</span><span class="nl">name:</span> <span class="s1">&#39;my-component&#39;</span><span class="p">,</span> <span class="nl">template:</span> <span class="s1">&#39;&lt;&lt;&#39;</span><span class="p">,</span> <span class="nl">mixins:</span> <span class="kd">const</span> <span class="p">[</span><span class="n">TodoMixin</span><span class="p">])</span>
 <span class="kd">class</span> <span class="nc">ShowName</span> <span class="kd">extends</span> <span class="n">VueComponentBase</span> <span class="kd">with</span> <span class="n">TodoMixin</span> <span class="p">{</span>
   <span class="c1">// ...</span>
 <span class="p">}</span>
-    
 </pre></div>
-
 
     <p>Note that at the moment, only components can use mixins.</p>
 
     <p>Watchers work now, too:</p>
 
-    <div class="highlight"><pre><span></span><span class="nd">@watch</span><span class="p">(</span><span class="s1">'my-value'</span><span class="p">)</span>
-<span class="kt">void</span> <span class="n">watchMyValue</span><span class="p">()</span> <span class="o">=&gt;</span> <span class="n">print</span><span class="p">(</span><span class="s1">'Watching my-value!'</span><span class="p">);</span>
-    
+    <div class="highlight"><pre><span></span><span class="err">@</span><span class="n">watch</span><span class="p">(</span><span class="s1">&#39;my-value&#39;</span><span class="p">)</span>
+<span class="kt">void</span> <span class="n">watchMyValue</span><span class="p">()</span> <span class="o">=&gt;</span> <span class="n">print</span><span class="p">(</span><span class="s1">&#39;Watching my-value!&#39;</span><span class="p">);</span>
 </pre></div>
 
-
-    <link-header small="" id="instance">
+    <link-header small id="instance">
       <code>$emit</code>, <code>$nextTick</code>, and more instance properties/methods
       </link-header>
 
@@ -185,39 +236,33 @@
       As stated in the title, you can now emit events, and use <code>$on</code>,
       <code>$off</code>, and <code>$once</code>:</p>
 
-    <div class="highlight"><pre><span></span><span class="n">$emit</span><span class="p">(</span><span class="s1">'my-custom-event'</span><span class="p">,</span> <span class="p">[</span><span class="s1">'some arg'</span><span class="p">,</span> <span class="s1">'some other arg'</span><span class="p">]);</span>
+    <div class="highlight"><pre><span></span><span class="n">$emit</span><span class="p">(</span><span class="s1">&#39;my-custom-event&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;some arg&#39;</span><span class="p">,</span> <span class="s1">&#39;some other arg&#39;</span><span class="p">]);</span>
 
-<span class="n">$on</span><span class="p">(</span><span class="s1">'something'</span><span class="p">,</span> <span class="p">(</span><span class="n">event</span><span class="p">)</span> <span class="p">{</span>
+<span class="n">$on</span><span class="p">(</span><span class="s1">&#39;something&#39;</span><span class="p">,</span> <span class="p">(</span><span class="n">event</span><span class="p">)</span> <span class="p">{</span>
   <span class="n">print</span><span class="p">(</span><span class="m">123</span><span class="p">);</span>
 <span class="p">});</span>
-    
 </pre></div>
-
 
     <p><code>$nextTick</code> also works:</p>
 
     <div class="highlight"><pre><span></span><span class="n">$nextTick</span><span class="p">().</span><span class="n">then</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
-  <span class="n">print</span><span class="p">(</span><span class="s1">'In </span><span class="se">\$</span><span class="s1">nextTick callback!'</span><span class="p">);</span>
+  <span class="n">print</span><span class="p">(</span><span class="s1">&#39;In </span><span class="se">\$</span><span class="s1">nextTick callback!&#39;</span><span class="p">);</span>
 <span class="p">});</span>
-    
 </pre></div>
-
 
     <p>Several others work now, too.</p>
 
-    <link-header small="" id="config">
+    <link-header small id="config">
       Support for setting Vue config options via <code>VueConfig</code></link-header>
 
     <p>
       <code>VueConfig</code> is making its debut with VueDart 0.3, though for now
       all it supports is assigning ignoredElements:</p>
 
-    <div class="highlight"><pre><span></span>VueConfig.ignoredElements = ['my-element'];
-    
+    <div class="highlight"><pre><span></span>VueConfig.ignoredElements = [&#39;my-element&#39;];
 </pre></div>
 
-
-    <link-header small="" id="rewriting">
+    <link-header small id="rewriting">
       HTML files won't be completely reformatted by the transformer</link-header>
 
     <p>
@@ -225,23 +270,19 @@
       completely reformatted when they were run through the transformer, due to the
       way it worked. This was revamped, so now the formatting will be preserved.</p>
 
-    <link-header small="" id="renaming">Better automated script path renaming</link-header>
+    <link-header small id="renaming">Better automated script path renaming</link-header>
 
     <p>
       By default, VueDart will automatically change your unpkg script tags when
       building in release mode. For instance, this:</p>
 
-    <div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">script</span> <span class="na">src</span><span class="o">=</span><span class="s">"https://unpkg.com/vue"</span><span class="p">&gt;</span>
-    
+    <div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">script</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;https://unpkg.com/vue&quot;</span><span class="p">&gt;</span>
 </pre></div>
-
 
     <p>will be transformed into this:</p>
 
-    <div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">script</span> <span class="na">src</span><span class="o">=</span><span class="s">"https://unpkg.com/vue/dist/vue.min.js"</span><span class="p">&gt;</span>
-    
+    <div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">script</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;https://unpkg.com/vue/dist/vue.min.js&quot;</span><span class="p">&gt;</span>
 </pre></div>
-
 
     <p>
       Now this will be done to any Vue imports, not just the ones from unpkg. Note
@@ -249,7 +290,7 @@
 
     <link-header id="breaking">Breaking Changes</link-header>
 
-    <link-header small="" id="entry-points">
+    <link-header small id="entry-points">
       Entry points must now be explicitly declared</link-header>
 
     <p>
@@ -262,29 +303,23 @@
     <div class="highlight"><pre><span></span><span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">vue2</span><span class="p p-Indicator">:</span>
     <span class="l l-Scalar l-Scalar-Plain">entry_points</span><span class="p p-Indicator">:</span>
       <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">web/index.dart</span>
-    
 </pre></div>
-
 
     <p>As mentioned above, the VueDart CLI will take care of this change for you.</p>
 
-    <link-header small="" id="name-positional">
+    <link-header small id="name-positional">
       The component name being passed to <code>VueComponent</code> is now a named
       parameter</link-header>
 
     <p><b>TL;DR:</b> Instead of this:</p>
 
-    <div class="highlight"><pre><span></span><span class="nd">@VueComponent</span><span class="p">(</span><span class="s1">'my-component'</span><span class="p">)</span>
-    
+    <div class="highlight"><pre><span></span><span class="err">@</span><span class="n">VueComponent</span><span class="p">(</span><span class="s1">&#39;my-component&#39;</span><span class="p">)</span>
 </pre></div>
-
 
     <p>You now need to do this:</p>
 
-    <div class="highlight"><pre><span></span><span class="nd">@VueComponent</span><span class="p">(</span><span class="nl">name:</span> <span class="s1">'my-component'</span><span class="p">)</span>
-    
+    <div class="highlight"><pre><span></span><span class="err">@</span><span class="n">VueComponent</span><span class="p">(</span><span class="nl">name:</span> <span class="s1">&#39;my-component&#39;</span><span class="p">)</span>
 </pre></div>
-
 
     <p>
       Again, this is a minor change, and the CLI will automatically migrate your code.
@@ -295,24 +330,22 @@
 
     <link-header id="fixes">Bugfixes</link-header>
 
-    <link-header small="" id="errors">Errors instead of crashing</link-header>
+    <link-header small id="errors">Errors instead of crashing</link-header>
 
     <p>
       In many cases before, when there was a bug in your Dart components, VueDart's
       transformer would crash. Obviously, this is a very bad thing, so VueDart 0.3
       will show proper errors in these situations.</p>
 
-    <link-header small="" id="multiline">
+    <link-header small id="multiline">
       Multiple data/prop declarations on one line no longer crash the transformer
       </link-header>
 
     <p>Before, stuff like this would crash the transformer:</p>
 
-    <div class="highlight"><pre><span></span><span class="nd">@prop</span>
+    <div class="highlight"><pre><span></span><span class="err">@</span><span class="n">prop</span>
 <span class="kt">String</span> <span class="n">myFirstProp</span><span class="p">,</span> <span class="n">mySecondProp</span><span class="p">;</span>
-    
 </pre></div>
-
 
     <p>
       Now, it works much like you'd expect: it declares multiple props on one line.
@@ -330,8 +363,11 @@
       enjoy it! Happy Darting! (<i>Is that even a thing? That's totally not a
       thing...)</i></p>
 
-    <site-tags tags="vue, vuedart"></site-tags>
+    <site-tags tags='vue, vuedart'></site-tags>
     <site-suffix></site-suffix>
-  </div>
 
-</body></html>
+
+      </m-typography>
+    </div>
+  </body>
+

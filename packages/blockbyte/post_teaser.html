@@ -1,0 +1,31 @@
+<template vuedart>
+  <transition name="fade" mode="out-in">
+    <div v-if="hasPost" class="outer">
+      <site-title small :created-on="createdOn" :title="title" :url="url"></site-title>
+      <div v-html="teaser"></div>
+
+      <a class="read-more" :href="url">Read more...</a>
+    </div>
+
+  </transition>
+</template>
+
+<style scoped>
+
+  .fade-enter-active, .fade-leave-active {
+    transition: opacity 0.3s ease;
+  }
+
+  .fade-enter, .fade-leave-to {
+    opacity: 0;
+  }
+
+  .outer {
+    padding-bottom: 1.2em;
+  }
+
+  .read-more {
+    padding-bottom: 10px;
+  }
+
+</style>

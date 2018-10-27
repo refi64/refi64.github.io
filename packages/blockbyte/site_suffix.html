@@ -1,0 +1,23 @@
+<template vuedart>
+  <div>
+    <div style="text-align: center;">
+      <share-button ref="share"></share-button>
+
+      <p>
+        Really liked what you saw? <a href="/funds.html">Show your appreciation!</a>
+      </p>
+    </div>
+
+    <div id="comments"></div>
+    <div v-once>
+      <a ref="comments" type="dynamic">Loading comments...</a>
+    </div>
+  </div>
+</template>
+
+<style scoped>
+  share-button {
+    display: inline-block !important;
+    margin-top: 1em;
+  }
+</style>

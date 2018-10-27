@@ -1,17 +1,83 @@
-<!DOCTYPE html><html><head>
+<!DOCTYPE html>
+
+<head>
   <title>XCXSound</title>
-  <script defer="" src="/dist/pack.js"></script>
-  <link rel="stylesheet" href="/dist/pack.css">
-  <script defer="" src="../page.initialize.dart.js"></script>
-  
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script defer src="/dist/pack.js"></script>
+  <script defer src="/dist/pack.js"></script>
+</script>
+<script defer src="../page.vue.dart.js"></script>
+<link rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Roboto:400,400italic,700|Roboto+Mono|Montserrat:400,500|Material+Icons">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="utf-8">
+
+<style>
+  a:not(.no-style), a:visited:not(.no-style) {
+    color: var(--mdc-theme-secondary);
+    text-decoration: none;
+
+  }
+
+  a:hover:not(.no-style) {
+    text-decoration: underline;
+  }
+
+  a.no-style, a.no-style:hover, a.no-style:visited {
+    color: black;
+    text-decoration: none;
+  }
+
+  pre {
+    font-family: "Roboto Mono", monospace;
+    margin: 1em;
+  }
+
+  #moot-logo a { z-index: 0 !important; }
+  .highlight { overflow-y: auto; }
+  .highlight .err { border: none !important; }
+
+  [v-cloak] { display: none; }
+
+  body {
+    margin: 0;
+  }
+
+  @media (min-width: 768px) {
+    body {
+      margin-left: 240px;
+    }
+  }
+
+  body #page {
+    margin: 0 1em 1em 1em;
+  }
+
+  .mdc-top-app-bar__title, .mdc-typography--headline3,
+  .mdc-typography--headline4, .mdc-typography--headline5,
+  .mdc-list-group__subheader {
+    font-family: Montserrat, Roboto, sans-serif !important;
+  }
+
+  :root {
+    --mdc-theme-primary: rgba(255, 255, 255, 0.96);
+    --mdc-theme-secondary: #0d47a1;
+    --mdc-theme-on-primary: black;
+  }
+</style>
+
+
+
 </head>
 
-<body>
-  <div id="page" v-cloak="">
-    <site-navbar></site-navbar>
 
-    <h1>XCXSound</h1>
+  <body>
+    <div v-cloak id="page">
+      <m-typography>
+        
+
+    <site-navbar side-title="XCXSound"></site-navbar>
+
+    <!-- <m-typo-headline :level="3">XCXSound</m-typo-headline> -->
 
     <p>
       XCXSound is a tool that makes it easier to use custom music in Xenoblade
@@ -20,39 +86,39 @@
 
     <link-header id="screen">Screenshots</link-header>
 
-    <embedded-image url="https://s5.postimg.org/mgrqipddz/xcxsound_v0_4.png">
+    <embedded-image url="https://i.postimg.cc/nLMDjJKP/xcxsound_v0.4.png">
       Linux</embedded-image>
 
     <link-header id="downloads">Downloads</link-header>
 
-    <link-header id="v04" small="">Version 0.4</link-header>
+    <link-header id="v04" small>Version 0.4</link-header>
 
     <p><a href="https://www.dropbox.com/s/smfaw5kfrpaubr2/xcxsound_v0.4.zip?dl=0">
       Windows binaries.</a></p>
 
-    <link-header id="v03" small="">Version 0.3</link-header>
+    <link-header id="v03" small>Version 0.3</link-header>
 
     <p><a href="https://www.dropbox.com/s/29d9q1h6no9p2oz/xcxsound_v0.3.zip?dl=0">
       Windows binaries.</a></p>
 
-    <link-header id="v02" small="">Version 0.2</link-header>
+    <link-header id="v02" small>Version 0.2</link-header>
 
     <p><a href="https://www.dropbox.com/s/8a8iy0iivwq3rmd/xcxsound_v0.2.zip?dl=0">
       Windows binaries.</a></p>
 
-    <link-header id="v01" small="">Version 0.1</link-header>
+    <link-header id="v01" small>Version 0.1</link-header>
 
     <p><a href="https://www.dropbox.com/s/wtsruq1tis9aap2/xcxsound_v0.1.zip?dl=0">
       Windows binaries.</a></p>
 
-    <link-header id="src" small="">Source code</link-header>
+    <link-header id="src" small>Source code</link-header>
 
     <a href="http://hub.darcs.net/refi64/xcxsound">
       Source code is available on Darcs Hub.</a>
 
     <link-header id="howto">How to use</link-header>
 
-    <link-header id="extracting" small="">Extracting and opening</link-header>
+    <link-header id="extracting" small>Extracting and opening</link-header>
 
     <ul>
       <li>
@@ -69,7 +135,7 @@
           <code>python3 xcxsound.py</code></p></li>
     </ul>
 
-    <link-header id="basics" small="">Setting up XCXSound</link-header>
+    <link-header id="basics" small>Setting up XCXSound</link-header>
 
     <p>
       The top-left field of the XCXSound window allows you to set the directory
@@ -82,7 +148,7 @@
       tested XCXSound with the US region. After this, click the <i>Load</i>
       button.</p>
 
-    <link-header id="editing" small="">Editing the songs</link-header>
+    <link-header id="editing" small>Editing the songs</link-header>
 
     <p>
       Select the song you want to change and click <i>Edit Song</i>. There
@@ -110,7 +176,7 @@
       corresponding percentage, and negative values decrease it. If you don't
       want to change the volume at all, click <i>Don't Change</i>.</p>
 
-    <link-header id="cafiine" small="">
+    <link-header id="cafiine" small>
       Connecting the Wii U to the computer</link-header>
 
     <b>On your computer:</b>
@@ -139,7 +205,7 @@
       <li>Open up Xenoblade X and enjoy the custom music!</li>
     </ul>
 
-    <link-header id="backup" small="">Backing up and restoring mods</link-header>
+    <link-header id="backup" small>Backing up and restoring mods</link-header>
 
     <p>
       If you have a group of sound modifications you would like to save, you
@@ -149,15 +215,15 @@
 
     <p>
       Note that restoring a backup will <b>not</b> remove any already-present
-      mods. Hit <i>Reset all mods</i> first if you want to do that.
+      mods. Hit <i>Reset all mods</i> first if you want to do that.</note-card>
 
-    <link-header id="rm-flight" small="">Removing the flight music</link-header>
+    <link-header id="rm-flight" small>Removing the flight music</link-header>
 
     <note-card>
       This feature is still in testing!! Please read this section fully before
       attempting to use it.</note-card>
 
-    </p><p>
+    <p>
       XCXSound can automatically try to replace the flight music with the normal
       continent music, but there are some gotchas involved. In order to enable
       this, just check the <i>No flight music</i> checkbox before hitting
@@ -180,7 +246,7 @@
 
     <p>If you follow these directions carefully, it should work well!</p>
 
-    <link-header id="rst" small="">Resetting your mods</link-header>
+    <link-header id="rst" small>Resetting your mods</link-header>
 
     <p>
       If you want to reset all your music mods, use the <i>Reset all mods</i>
@@ -188,7 +254,7 @@
 
     <link-header id="changelog">Changelog</link-header>
 
-    <link-header id="log-v0.4" small="">Version 0.4</link-header>
+    <link-header id="log-v0.4" small>Version 0.4</link-header>
 
     <ul>
       <li>Add the ability to change the volume of songs.</li>
@@ -199,7 +265,7 @@
       <li>Avoid spawning unnecessary cmd.exe windows on Windows.</li>
     </ul>
 
-    <link-header id="log-v0.3" small="">Version 0.3</link-header>
+    <link-header id="log-v0.3" small>Version 0.3</link-header>
 
     <ul>
       <li>
@@ -213,7 +279,7 @@
         mods.</li>
     </ul>
 
-    <link-header id="log-v0.2" small="">Version 0.2</link-header>
+    <link-header id="log-v0.2" small>Version 0.2</link-header>
 
     <ul>
       <li>Add the ability to replace 14 more songs.</li>
@@ -223,11 +289,14 @@
       <li>Add backup and restore.</li>
     </ul>
 
-    <link-header id="log-v0.1" small="">Version 0.1</link-header>
+    <link-header id="log-v0.1" small>Version 0.1</link-header>
 
     <p>Initial version.</p>
 
     <site-suffix></site-suffix>
-  </div>
 
-</body></html>
+
+      </m-typography>
+    </div>
+  </body>
+

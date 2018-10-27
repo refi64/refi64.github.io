@@ -1,14 +1,79 @@
-<!DOCTYPE html><html><head>
+<!DOCTYPE html>
+
+<head>
   <title>The top 5 programming languages you've never heard of</title>
-  <script defer="" src="/dist/pack.js"></script>
-  <link rel="stylesheet" href="/dist/pack.css">
-  <script defer="" src="../page.initialize.dart.js"></script>
-  
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script defer src="/dist/pack.js"></script>
+</script>
+<script defer src="../page.vue.dart.js"></script>
+<link rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Roboto:400,400italic,700|Roboto+Mono|Montserrat:400,500|Material+Icons">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="utf-8">
+
+<style>
+  a:not(.no-style), a:visited:not(.no-style) {
+    color: var(--mdc-theme-secondary);
+    text-decoration: none;
+
+  }
+
+  a:hover:not(.no-style) {
+    text-decoration: underline;
+  }
+
+  a.no-style, a.no-style:hover, a.no-style:visited {
+    color: black;
+    text-decoration: none;
+  }
+
+  pre {
+    font-family: "Roboto Mono", monospace;
+    margin: 1em;
+  }
+
+  #moot-logo a { z-index: 0 !important; }
+  .highlight { overflow-y: auto; }
+  .highlight .err { border: none !important; }
+
+  [v-cloak] { display: none; }
+
+  body {
+    margin: 0;
+  }
+
+  @media (min-width: 768px) {
+    body {
+      margin-left: 240px;
+    }
+  }
+
+  body #page {
+    margin: 0 1em 1em 1em;
+  }
+
+  .mdc-top-app-bar__title, .mdc-typography--headline3,
+  .mdc-typography--headline4, .mdc-typography--headline5,
+  .mdc-list-group__subheader {
+    font-family: Montserrat, Roboto, sans-serif !important;
+  }
+
+  :root {
+    --mdc-theme-primary: rgba(255, 255, 255, 0.96);
+    --mdc-theme-secondary: #0d47a1;
+    --mdc-theme-on-primary: black;
+  }
+</style>
+
+
+
 </head>
 
-<body>
-  <div id="page" v-cloak="">
+
+  <body>
+    <div v-cloak id="page">
+      <m-typography>
+        
+
     <site-navbar></site-navbar>
     <site-title created-on="2015-03-07 18:56"></site-title>
 
@@ -37,17 +102,15 @@
   <span class="k">else</span><span class="p">:</span>
     <span class="k">return</span> <span class="n">n</span><span class="p">.</span><span class="n">uint64</span><span class="p">()</span> <span class="o">*</span> <span class="n">fac</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
 
-<span class="n">stdout</span><span class="p">.</span><span class="n">write</span> <span class="s">"Number: "</span>
+<span class="n">stdout</span><span class="p">.</span><span class="n">write</span> <span class="s">&quot;Number: &quot;</span>
 <span class="kd">var</span> <span class="n">number</span> <span class="o">=</span> <span class="n">stdin</span><span class="p">.</span><span class="n">readLine</span><span class="p">.</span><span class="n">parseInt</span>
 
 <span class="k">if</span> <span class="n">number</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
-  <span class="n">echo</span> <span class="s">"Number must be greater than 0"</span>
+  <span class="n">echo</span> <span class="s">&quot;Number must be greater than 0&quot;</span>
   <span class="n">quit</span> <span class="n">QuitFailure</span>
 
 <span class="n">echo</span> <span class="n">fac</span> <span class="n">number</span>
-    
 </pre></div>
-
 
     <link-header id="felix">Felix</link-header>
 
@@ -59,9 +122,7 @@
       run your files just like a scripting language:</p>
 
     <div class="highlight"><pre><span></span>$ flx my_prog.flx arg1 arg2
-    
 </pre></div>
-
 
     <p>Here's a factorial program, this time in Felix:</p>
 
@@ -73,19 +134,17 @@ fun fac(n: int) =&gt;
 ;
 
 // Read a number from stdin
-print "Number: ";
+print &quot;Number: &quot;;
 var number = cstdin.readln.int;
 
 if number &lt; 0 do
-    println "Number must be greater than 0";
+    println &quot;Number must be greater than 0&quot;;
     System::exit(1);
 done;
 
 // Print factorial
 println $ fac number
-    
 </pre></div>
-
 
     <link-header id="myrddin">Myrddin</link-header>
 
@@ -95,7 +154,7 @@ println $ fac number
       It's my new favorite low-level language (yes, above Rust). Following is yet
       another factorial program, but this one in, guess what, Myrddin:
 
-    </p><div class="highlight"><pre><span></span>use std
+    <div class="highlight"><pre><span></span>use std
 use bio
 
 const fac = {n: int -&gt; uint64
@@ -108,28 +167,26 @@ const fac = {n: int -&gt; uint64
 
 const main = {
     var stdin = bio.mkfile(0, bio.Rd)
-    std.put("Number: ")
+    std.put(&quot;Number: &quot;)
     match bio.readln(stdin)
     | `std.Some s:
         match std.intparse(std.strstrip(s))
         | `std.Some n:
             if n &lt; 0
-                std.put("Number must be greater than 0\n")
+                std.put(&quot;Number must be greater than 0\n&quot;)
                 std.exit(1)
             ;;
-            std.put("%l\n", fac(n))
+            std.put(&quot;%l\n&quot;, fac(n))
         | `std.None:
-            std.put("error parsing integer input\n")
+            std.put(&quot;error parsing integer input\n&quot;)
             std.exit(1)
         ;;
     | `std.None:
-        std.put("error reading input\n")
+        std.put(&quot;error reading input\n&quot;)
         std.exit(1)
     ;;
 }
-    
 </pre></div>
-
 
     <p>Notice the explicit error handling.</p>
 
@@ -142,23 +199,17 @@ const main = {
       language. Here's a factorial function in K:</p>
 
     <div class="highlight"><pre><span></span>fac:{*/1+!x}
-    
 </pre></div>
-
 
     <p>If that isn't readable enough, here's another version:</p>
 
     <div class="highlight"><pre><span></span>fac:*/1+!:
-    
 </pre></div>
-
 
     <p>You can now call it:</p>
 
     <div class="highlight"><pre><span></span>fac[4]
-    
 </pre></div>
-
 
     <p>
       K is actually surprisingly readable once you learn it...provided you don't
@@ -181,18 +232,16 @@ const main = {
     }
 
     function : Main(args : String[]) ~ Nil {
-        "Number: "-&gt;Print();
+        &quot;Number: &quot;-&gt;Print();
         number := IO.Console-&gt;ReadString()-&gt;ToInt();
         if (number &lt; 0) {
-            "Number must be greater than 0"-&gt;PrintLine();
+            &quot;Number must be greater than 0&quot;-&gt;PrintLine();
             Runtime-&gt;Exit(1);
         };
         Factorial(number)-&gt;PrintLine();
     }
 }
-    
 </pre></div>
-
 
     Objeck has no long/unsigned types, so I just used the basic <code>Int</code> type.
 
@@ -205,6 +254,9 @@ const main = {
     <site-tags tags="compilers, felix, k, language, myrddin, nim, objeck, programming">
     </site-tags>
     <site-suffix></site-suffix>
-  </div>
 
-</body></html>
+
+      </m-typography>
+    </div>
+  </body>
+

@@ -1,14 +1,79 @@
-<!DOCTYPE html><html><head>
+<!DOCTYPE html>
+
+<head>
   <title>The top 5 programming languages you've never heard of (part 2)</title>
-  <script defer="" src="/dist/pack.js"></script>
-  <link rel="stylesheet" href="/dist/pack.css">
-  <script defer="" src="../page.initialize.dart.js"></script>
-  
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script defer src="/dist/pack.js"></script>
+</script>
+<script defer src="../page.vue.dart.js"></script>
+<link rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Roboto:400,400italic,700|Roboto+Mono|Montserrat:400,500|Material+Icons">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="utf-8">
+
+<style>
+  a:not(.no-style), a:visited:not(.no-style) {
+    color: var(--mdc-theme-secondary);
+    text-decoration: none;
+
+  }
+
+  a:hover:not(.no-style) {
+    text-decoration: underline;
+  }
+
+  a.no-style, a.no-style:hover, a.no-style:visited {
+    color: black;
+    text-decoration: none;
+  }
+
+  pre {
+    font-family: "Roboto Mono", monospace;
+    margin: 1em;
+  }
+
+  #moot-logo a { z-index: 0 !important; }
+  .highlight { overflow-y: auto; }
+  .highlight .err { border: none !important; }
+
+  [v-cloak] { display: none; }
+
+  body {
+    margin: 0;
+  }
+
+  @media (min-width: 768px) {
+    body {
+      margin-left: 240px;
+    }
+  }
+
+  body #page {
+    margin: 0 1em 1em 1em;
+  }
+
+  .mdc-top-app-bar__title, .mdc-typography--headline3,
+  .mdc-typography--headline4, .mdc-typography--headline5,
+  .mdc-list-group__subheader {
+    font-family: Montserrat, Roboto, sans-serif !important;
+  }
+
+  :root {
+    --mdc-theme-primary: rgba(255, 255, 255, 0.96);
+    --mdc-theme-secondary: #0d47a1;
+    --mdc-theme-on-primary: black;
+  }
+</style>
+
+
+
 </head>
 
-<body>
-  <div id="page" v-cloak="">
+
+  <body>
+    <div v-cloak id="page">
+      <m-typography>
+        
+
     <site-navbar></site-navbar>
     <site-title created-on="2015-03-08 17:04"></site-title>
 
@@ -37,33 +102,31 @@
   <span class="sd">## If the download is successful, the global didUpdatePackages is set to</span>
   <span class="sd">## true. Otherwise an exception is raised on error.</span>
   <span class="k">let</span> <span class="n">url</span> <span class="o">=</span>
-    <span class="k">if</span> <span class="n">options</span><span class="p">.</span><span class="n">action</span><span class="p">.</span><span class="n">typ</span> <span class="o">==</span> <span class="n">actionUpdate</span> <span class="ow">and</span> <span class="n">options</span><span class="p">.</span><span class="n">action</span><span class="p">.</span><span class="n">optionalURL</span> <span class="o">!=</span> <span class="s">""</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">options</span><span class="p">.</span><span class="n">action</span><span class="p">.</span><span class="n">typ</span> <span class="o">==</span> <span class="n">actionUpdate</span> <span class="ow">and</span> <span class="n">options</span><span class="p">.</span><span class="n">action</span><span class="p">.</span><span class="n">optionalURL</span> <span class="o">!=</span> <span class="s">&quot;&quot;</span><span class="p">:</span>
       <span class="n">options</span><span class="p">.</span><span class="n">action</span><span class="p">.</span><span class="n">optionalURL</span>
     <span class="k">else</span><span class="p">:</span>
       <span class="n">defaultPackageURL</span>
-  <span class="n">echo</span><span class="p">(</span><span class="s">"Downloading package list from "</span> <span class="o">&amp;</span> <span class="n">url</span><span class="p">)</span>
-  <span class="n">downloadFile</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">options</span><span class="p">.</span><span class="n">getNimbleDir</span><span class="p">()</span> <span class="o">/</span> <span class="s">"packages.json"</span><span class="p">)</span>
-  <span class="n">echo</span><span class="p">(</span><span class="s">"Done."</span><span class="p">)</span>
-    
+  <span class="n">echo</span><span class="p">(</span><span class="s">&quot;Downloading package list from &quot;</span> <span class="o">&amp;</span> <span class="n">url</span><span class="p">)</span>
+  <span class="n">downloadFile</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">options</span><span class="p">.</span><span class="n">getNimbleDir</span><span class="p">()</span> <span class="o">/</span> <span class="s">&quot;packages.json&quot;</span><span class="p">)</span>
+  <span class="n">echo</span><span class="p">(</span><span class="s">&quot;Done.&quot;</span><span class="p">)</span>
 </pre></div>
-
 
     <p>A longer piece:</p>
 
     <div class="highlight"><pre><span></span><span class="k">proc </span><span class="nf">parseConfig</span><span class="o">*</span><span class="p">():</span> <span class="n">Config</span> <span class="o">=</span>
   <span class="n">result</span> <span class="o">=</span> <span class="n">initConfig</span><span class="p">()</span>
-  <span class="kd">var</span> <span class="n">confFile</span> <span class="o">=</span> <span class="n">getConfigDir</span><span class="p">()</span> <span class="o">/</span> <span class="s">"nimble"</span> <span class="o">/</span> <span class="s">"nimble.ini"</span>
+  <span class="kd">var</span> <span class="n">confFile</span> <span class="o">=</span> <span class="n">getConfigDir</span><span class="p">()</span> <span class="o">/</span> <span class="s">&quot;nimble&quot;</span> <span class="o">/</span> <span class="s">&quot;nimble.ini&quot;</span>
 
   <span class="kd">var</span> <span class="n">f</span> <span class="o">=</span> <span class="n">newFileStream</span><span class="p">(</span><span class="n">confFile</span><span class="p">,</span> <span class="n">fmRead</span><span class="p">)</span>
   <span class="k">if</span> <span class="n">f</span> <span class="o">==</span> <span class="kp">nil</span><span class="p">:</span>
     <span class="c"># Try the old deprecated babel.ini</span>
-    <span class="n">confFile</span> <span class="o">=</span> <span class="n">getConfigDir</span><span class="p">()</span> <span class="o">/</span> <span class="s">"babel"</span> <span class="o">/</span> <span class="s">"babel.ini"</span>
+    <span class="n">confFile</span> <span class="o">=</span> <span class="n">getConfigDir</span><span class="p">()</span> <span class="o">/</span> <span class="s">&quot;babel&quot;</span> <span class="o">/</span> <span class="s">&quot;babel.ini&quot;</span>
     <span class="n">f</span> <span class="o">=</span> <span class="n">newFileStream</span><span class="p">(</span><span class="n">confFile</span><span class="p">,</span> <span class="n">fmRead</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">f</span> <span class="o">!=</span> <span class="kp">nil</span><span class="p">:</span>
-      <span class="n">echo</span><span class="p">(</span><span class="s">"[Warning] Using deprecated config file at "</span><span class="p">,</span> <span class="n">confFile</span><span class="p">)</span>
+      <span class="n">echo</span><span class="p">(</span><span class="s">&quot;[Warning] Using deprecated config file at &quot;</span><span class="p">,</span> <span class="n">confFile</span><span class="p">)</span>
 
   <span class="k">if</span> <span class="n">f</span> <span class="o">!=</span> <span class="kp">nil</span><span class="p">:</span>
-    <span class="n">echo</span><span class="p">(</span><span class="s">"Reading from config file at "</span><span class="p">,</span> <span class="n">confFile</span><span class="p">)</span>
+    <span class="n">echo</span><span class="p">(</span><span class="s">&quot;Reading from config file at &quot;</span><span class="p">,</span> <span class="n">confFile</span><span class="p">)</span>
     <span class="kd">var</span> <span class="n">p</span><span class="p">:</span> <span class="n">CfgParser</span>
     <span class="n">open</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">f</span><span class="p">,</span> <span class="n">confFile</span><span class="p">)</span>
     <span class="k">while</span> <span class="kp">true</span><span class="p">:</span>
@@ -74,21 +137,19 @@
       <span class="k">of</span> <span class="n">cfgSectionStart</span><span class="p">:</span> <span class="k">discard</span>
       <span class="k">of</span> <span class="n">cfgKeyValuePair</span><span class="p">,</span> <span class="n">cfgOption</span><span class="p">:</span>
         <span class="k">case</span> <span class="n">e</span><span class="p">.</span><span class="n">key</span><span class="p">.</span><span class="n">normalize</span>
-        <span class="k">of</span> <span class="s">"nimbledir"</span><span class="p">:</span>
-          <span class="c"># Ensure we don't restore the deprecated nimble dir.</span>
-          <span class="k">if</span> <span class="n">e</span><span class="p">.</span><span class="n">value</span> <span class="o">!=</span> <span class="n">getHomeDir</span><span class="p">()</span> <span class="o">/</span> <span class="s">".babel"</span><span class="p">:</span>
+        <span class="k">of</span> <span class="s">&quot;nimbledir&quot;</span><span class="p">:</span>
+          <span class="c"># Ensure we don&#39;t restore the deprecated nimble dir.</span>
+          <span class="k">if</span> <span class="n">e</span><span class="p">.</span><span class="n">value</span> <span class="o">!=</span> <span class="n">getHomeDir</span><span class="p">()</span> <span class="o">/</span> <span class="s">&quot;.babel&quot;</span><span class="p">:</span>
             <span class="n">result</span><span class="p">.</span><span class="n">nimbleDir</span> <span class="o">=</span> <span class="n">e</span><span class="p">.</span><span class="n">value</span>
-        <span class="k">of</span> <span class="s">"chcp"</span><span class="p">:</span>
+        <span class="k">of</span> <span class="s">&quot;chcp&quot;</span><span class="p">:</span>
           <span class="n">result</span><span class="p">.</span><span class="n">chcp</span> <span class="o">=</span> <span class="n">parseBool</span><span class="p">(</span><span class="n">e</span><span class="p">.</span><span class="n">value</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
-          <span class="k">raise</span> <span class="n">newException</span><span class="p">(</span><span class="n">NimbleError</span><span class="p">,</span> <span class="s">"Unable to parse config file:"</span> <span class="o">&amp;</span>
-                                  <span class="s">" Unknown key: "</span> <span class="o">&amp;</span> <span class="n">e</span><span class="p">.</span><span class="n">key</span><span class="p">)</span>
+          <span class="k">raise</span> <span class="n">newException</span><span class="p">(</span><span class="n">NimbleError</span><span class="p">,</span> <span class="s">&quot;Unable to parse config file:&quot;</span> <span class="o">&amp;</span>
+                                  <span class="s">&quot; Unknown key: &quot;</span> <span class="o">&amp;</span> <span class="n">e</span><span class="p">.</span><span class="n">key</span><span class="p">)</span>
       <span class="k">of</span> <span class="n">cfgError</span><span class="p">:</span>
-        <span class="k">raise</span> <span class="n">newException</span><span class="p">(</span><span class="n">NimbleError</span><span class="p">,</span> <span class="s">"Unable to parse config file: "</span> <span class="o">&amp;</span> <span class="n">e</span><span class="p">.</span><span class="n">msg</span><span class="p">)</span>
+        <span class="k">raise</span> <span class="n">newException</span><span class="p">(</span><span class="n">NimbleError</span><span class="p">,</span> <span class="s">&quot;Unable to parse config file: &quot;</span> <span class="o">&amp;</span> <span class="n">e</span><span class="p">.</span><span class="n">msg</span><span class="p">)</span>
     <span class="n">close</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
-    
 </pre></div>
-
 
     <link-header id="felix">Felix</link-header>
 
@@ -128,18 +189,18 @@
 
     instance Str[Token] {
         fun str(t: Token) =&gt; match t with
-            | TString ?s =&gt; "TString \"" + s + "\""
-            | TNumber ?n =&gt; "TNumber " + n.str
-            | TLBrace    =&gt; "TLBrace"
-            | TRBrace    =&gt; "TRBrace"
-            | TLBrak     =&gt; "TLBrak"
-            | TRBrak     =&gt; "TRBrak"
-            | TColon     =&gt; "TColon"
-            | TTrue      =&gt; "TTrue"
-            | TFalse     =&gt; "TFalse"
-            | TNull      =&gt; "TNull"
-            | TEOF       =&gt; "TEOF"
-            | TError (?s, ?i) =&gt; "error at line " + i.str + ": " + s
+            | TString ?s =&gt; &quot;TString \&quot;&quot; + s + &quot;\&quot;&quot;
+            | TNumber ?n =&gt; &quot;TNumber &quot; + n.str
+            | TLBrace    =&gt; &quot;TLBrace&quot;
+            | TRBrace    =&gt; &quot;TRBrace&quot;
+            | TLBrak     =&gt; &quot;TLBrak&quot;
+            | TRBrak     =&gt; &quot;TRBrak&quot;
+            | TColon     =&gt; &quot;TColon&quot;
+            | TTrue      =&gt; &quot;TTrue&quot;
+            | TFalse     =&gt; &quot;TFalse&quot;
+            | TNull      =&gt; &quot;TNull&quot;
+            | TEOF       =&gt; &quot;TEOF&quot;
+            | TError (?s, ?i) =&gt; &quot;error at line &quot; + i.str + &quot;: &quot; + s
         endmatch;
     }
 
@@ -157,47 +218,47 @@
 
         while i &lt; s.len do
             while s.[i].isspace do
-                if s.[i] == "\n" do *line++; done;
+                if s.[i] == &quot;\n&quot; do *line++; done;
                 i++;
                 if i &gt;= s.len goto eof;
             done;
 
             // number
-            if s.[i].isnumeric or (i+1 &lt; s.len and s.[i] == "-" and
+            if s.[i].isnumeric or (i+1 &lt; s.len and s.[i] == &quot;-&quot; and
                                      s.[i+1].isnumeric) do
                 d := s.[i to].double;
                 i += d.str.len;
                 tok $ TNumber d;
             // string
-            elif s.[i] == "\"" do
+            elif s.[i] == &quot;\&quot;&quot; do
                 i++;
-                var st = "";
-                while i &lt; s.len and s.[i] != "\n" and s.[i] != "\"" do
+                var st = &quot;&quot;;
+                while i &lt; s.len and s.[i] != &quot;\n&quot; and s.[i] != &quot;\&quot;&quot; do
                     st += s.[i];
                     i++;
                 done;
-                if s.[i] != "\"" call err "unterminated string literal";
+                if s.[i] != &quot;\&quot;&quot; call err &quot;unterminated string literal&quot;;
                 i++;
                 tok $ TString st;
             // literals
-            elif s.[i to i+4] == "true" do
+            elif s.[i to i+4] == &quot;true&quot; do
                 tok $ TTrue;
                 i += 4.size;
-            elif s.[i to i+5] == "false" do
+            elif s.[i to i+5] == &quot;false&quot; do
                 tok $ TFalse;
                 i += 5.size;
-            elif s.[i to i+4] == "null" do
+            elif s.[i to i+4] == &quot;null&quot; do
                 tok $ TNull;
                 i += 4.size;
             // others
             else
                 match s.[i].str with
-                    | "{" =&gt; tok TLBrace;
-                    | "}" =&gt; tok TRBrace;
-                    | "[" =&gt; tok TLBrak;
-                    | "]" =&gt; tok TRBrak;
-                    | ":" =&gt; tok TColon;
-                    | _   =&gt; err "unknown token";
+                    | &quot;{&quot; =&gt; tok TLBrace;
+                    | &quot;}&quot; =&gt; tok TRBrace;
+                    | &quot;[&quot; =&gt; tok TLBrak;
+                    | &quot;]&quot; =&gt; tok TRBrak;
+                    | &quot;:&quot; =&gt; tok TColon;
+                    | _   =&gt; err &quot;unknown token&quot;;
                 endmatch;
 
                 i++;
@@ -208,9 +269,7 @@
         tok TEOF;
     }
 }
-    
 </pre></div>
-
 
     <p>
       <a href="http://felix-lang.org/%24/usr/local/lib/felix/felix-latest//share/lib/web/json.flx">
@@ -260,7 +319,7 @@ writes to as much from `src` as possible to a file,
 returning the number of bytes written.
 */
 const write = {f, src
-    std.assert(f.mode &amp; Wr != 0, "File is not in write mode")
+    std.assert(f.mode &amp; Wr != 0, &quot;File is not in write mode&quot;)
     /*
     Tack small writes onto the buffer end. Big ones
     flush the buffer and then go right to kernel.
@@ -274,9 +333,7 @@ const write = {f, src
         -&gt; writebuf(f.fd, src)
     ;;
 }
-    
 </pre></div>
-
 
     <p>
       However, the compiler generates VERY slow x64 assembly code at the
@@ -299,12 +356,10 @@ const write = {f, src
 mean:{(+/x)%#x} / Arithmetic mean
 fac:*/1+!: / Factorial
 fib:{x{x,+/-2#x}/!2} / Fibonacci
-life:{|/(1;x)&amp;3 4=\:+/,/2{-1 0 1!'\:x}/x} / Conway's Game of Life
+life:{|/(1;x)&amp;3 4=\:+/,/2{-1 0 1!&#39;\:x}/x} / Conway&#39;s Game of Life
 sort:{x@&lt;x} / Sort list
-powerset:{x[&amp;:'!2+&amp;#x]} / Powerset
-    
+powerset:{x[&amp;:&#39;!2+&amp;#x]} / Powerset
 </pre></div>
-
 
     <p>
       As you can see, K is very concise. A little too concise. However, as an
@@ -334,18 +389,16 @@ powerset:{x[&amp;:'!2+&amp;#x]} / Powerset
     }
 
     function : Main(args : String[]) ~ Nil {
-        "Number: "-&gt;Print();
+        &quot;Number: &quot;-&gt;Print();
         number := IO.Console-&gt;ReadString()-&gt;ToInt();
         if (number &lt; 0) {
-            "Number must be greater than 0"-&gt;PrintLine();
+            &quot;Number must be greater than 0&quot;-&gt;PrintLine();
             Runtime-&gt;Exit(1);
         };
         Factorial(number)-&gt;PrintLine();
     }
 }
-    
 </pre></div>
-
 
     <p>
       It's very Java-esque but nicer to use. The cons would be the fact that there
@@ -387,6 +440,9 @@ powerset:{x[&amp;:'!2+&amp;#x]} / Powerset
     <site-tags tags="compilers, felix, k, language, myrddin, nim, objeck, programming">
     </site-tags>
     <site-suffix></site-suffix>
-  </div>
 
-</body></html>
+
+      </m-typography>
+    </div>
+  </body>
+

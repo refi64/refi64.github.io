@@ -1,0 +1,15 @@
+<template vuedart>
+  <div>
+    <a :href="url">
+      <m-typo-headline :level="headerLevel" style="line-height: 1.2;">
+        {{title}}
+      </m-typo-headline>
+    </a>
+    <div>
+
+      <m-typo-subheading :level="1">
+      Created on {{createdOn}} - <a :href="comments">Comments</a>
+    </m-typo-subheading>
+    </div>
+  </div>
+</template>

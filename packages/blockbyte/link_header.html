@@ -1,0 +1,17 @@
+<template vuedart>
+  <div>
+    <m-typo-headline :level="small ? 5 : 4" :id="id" class="headline">
+      <slot></slot>
+    </m-typo-headline>
+
+    <a class="no-style" :href="ref">
+      <m-icon-button>
+        <m-icon icon="link"></m-icon>
+      </m-icon-button>
+    </a>
+  </div>
+</template>
+
+<style scoped>
+  .headline { vertical-align: text-bottom; }
+</style>

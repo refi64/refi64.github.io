@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+
+<head>
+  <title>A tour of the Howl programming text editor</title>
+  <+ require="base.html">
+</head>
+
+<+@ body>
+
+    <site-navbar></site-navbar>
+    <site-title created-on="2016-03-20 16:27"></site-title>
+
+    <div id="teaser">
+      <p>
+        Check it out on <a href="https://youtu.be/FmxKXWXj90c">YouTube</a> or right
+        here:</p>
+    </div>
+
+    <embedded-video :width="560" :height="315"
+                    url="https://www.youtube.com/embed/FmxKXWXj90c">
+    </embedded-video>
+
+    <p>
+      I think I did pretty well, considering I've never used a microphone
+      before...</p>
+
+    <site-tags tags='howl, moonscript, lua, video, youtube, editor'></site-tags>
+    <site-suffix></site-suffix>
+</+@>

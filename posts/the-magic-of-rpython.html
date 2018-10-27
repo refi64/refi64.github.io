@@ -1,14 +1,79 @@
-<!DOCTYPE html><html><head>
+<!DOCTYPE html>
+
+<head>
   <title>The Magic of RPython</title>
-  <script defer="" src="/dist/pack.js"></script>
-  <link rel="stylesheet" href="/dist/pack.css">
-  <script defer="" src="../page.initialize.dart.js"></script>
-  
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script defer src="/dist/pack.js"></script>
+</script>
+<script defer src="../page.vue.dart.js"></script>
+<link rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Roboto:400,400italic,700|Roboto+Mono|Montserrat:400,500|Material+Icons">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="utf-8">
+
+<style>
+  a:not(.no-style), a:visited:not(.no-style) {
+    color: var(--mdc-theme-secondary);
+    text-decoration: none;
+
+  }
+
+  a:hover:not(.no-style) {
+    text-decoration: underline;
+  }
+
+  a.no-style, a.no-style:hover, a.no-style:visited {
+    color: black;
+    text-decoration: none;
+  }
+
+  pre {
+    font-family: "Roboto Mono", monospace;
+    margin: 1em;
+  }
+
+  #moot-logo a { z-index: 0 !important; }
+  .highlight { overflow-y: auto; }
+  .highlight .err { border: none !important; }
+
+  [v-cloak] { display: none; }
+
+  body {
+    margin: 0;
+  }
+
+  @media (min-width: 768px) {
+    body {
+      margin-left: 240px;
+    }
+  }
+
+  body #page {
+    margin: 0 1em 1em 1em;
+  }
+
+  .mdc-top-app-bar__title, .mdc-typography--headline3,
+  .mdc-typography--headline4, .mdc-typography--headline5,
+  .mdc-list-group__subheader {
+    font-family: Montserrat, Roboto, sans-serif !important;
+  }
+
+  :root {
+    --mdc-theme-primary: rgba(255, 255, 255, 0.96);
+    --mdc-theme-secondary: #0d47a1;
+    --mdc-theme-on-primary: black;
+  }
+</style>
+
+
+
 </head>
 
-<body>
-  <div id="page" v-cloak="">
+
+  <body>
+    <div v-cloak id="page">
+      <m-typography>
+        
+
     <site-navbar></site-navbar>
     <site-title created-on="2015-05-29 19:19"></site-title>
 
@@ -29,22 +94,18 @@
     <p>Your RPython programs/interpreters will often begin like this:</p>
 
     <div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">entry_point</span><span class="p">(</span><span class="n">argv</span><span class="p">):</span>
-    <span class="c1"># this is your program's main function</span>
+    <span class="c1"># this is your program&#39;s main function</span>
     <span class="k">return</span> <span class="mi">0</span>
 
 <span class="k">def</span> <span class="nf">target</span><span class="p">(</span><span class="n">driver</span><span class="p">,</span> <span class="n">args</span><span class="p">):</span>
     <span class="c1"># this is run at compile time</span>
     <span class="k">return</span> <span class="n">entry_point</span><span class="p">,</span> <span class="bp">None</span>
-    
 </pre></div>
-
 
     <p>You'd run RPython kind of like this:</p>
 
     <div class="highlight"><pre><span></span>$ python path_to_pypy_source/rpython/bin/rpython -O0 my_program.py
-    
 </pre></div>
-
 
     <p>
       The <code>-O0</code> turns off all optimizations, which makes compile times
@@ -52,10 +113,8 @@
 
     <p>If you're lazy like me, you can define an alias:</p>
 
-    <div class="highlight"><pre><span></span>$ alias rpython="python path_to_pypy_source/rpython/bin/rpython"
-    
+    <div class="highlight"><pre><span></span>$ alias rpython=&quot;python path_to_pypy_source/rpython/bin/rpython&quot;
 </pre></div>
-
 
     <p>
       The <code>target</code> function lets you set certain or check command-line
@@ -63,12 +122,10 @@
 
     <div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">target</span><span class="p">(</span><span class="n">driver</span><span class="p">,</span> <span class="n">args</span><span class="p">):</span>
     <span class="c1"># The default output file name for xyz.py is xyz-c</span>
-    <span class="k">if</span> <span class="n">driver</span><span class="o">.</span><span class="n">exe_name</span> <span class="o">==</span> <span class="s1">'xyz-c'</span><span class="p">:</span>
-        <span class="n">driver</span><span class="o">.</span><span class="n">exe_name</span> <span class="o">=</span> <span class="s1">'bin/xyz'</span>
+    <span class="k">if</span> <span class="n">driver</span><span class="o">.</span><span class="n">exe_name</span> <span class="o">==</span> <span class="s1">&#39;xyz-c&#39;</span><span class="p">:</span>
+        <span class="n">driver</span><span class="o">.</span><span class="n">exe_name</span> <span class="o">=</span> <span class="s1">&#39;bin/xyz&#39;</span>
     <span class="k">return</span> <span class="n">entry_point</span><span class="p">,</span> <span class="bp">None</span>
-    
 </pre></div>
-
 
     <p>I have <i>no</i> clue what the None is for, though.</p>
 
@@ -87,50 +144,44 @@
       other Python translation frameworks, such as Shedskin and Cython, analyse the
       program's static AST, RPython analyses its bytecode. Here's an example:</p>
 
-    <div class="highlight"><pre><span></span><span class="k">print</span> <span class="s1">'This is run during compile time!'</span> <span class="c1"># guess when this is run?</span>
+    <div class="highlight"><pre><span></span><span class="k">print</span> <span class="s1">&#39;This is run during compile time!&#39;</span> <span class="c1"># guess when this is run?</span>
 
 <span class="k">def</span> <span class="nf">entry_point</span><span class="p">(</span><span class="n">argv</span><span class="p">):</span>
-    <span class="k">print</span> <span class="s1">'This is run at run time!'</span>
+    <span class="k">print</span> <span class="s1">&#39;This is run at run time!&#39;</span>
     <span class="k">return</span> <span class="mi">0</span>
-    
 </pre></div>
-
 
     <p>
       This has really cool implications. For one thing, RPython lazily compiles
       functions. For instance:</p>
 
     <div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">f</span><span class="p">():</span>
-    <span class="c1"># This is never compiled by RPython because 'f' is never called</span>
+    <span class="c1"># This is never compiled by RPython because &#39;f&#39; is never called</span>
     <span class="k">return</span> <span class="mi">123</span>
 
 <span class="k">def</span> <span class="nf">g</span><span class="p">():</span>
-    <span class="c1"># This is compiled by RPython because 'g' *is* called</span>
+    <span class="c1"># This is compiled by RPython because &#39;g&#39; *is* called</span>
     <span class="k">return</span> <span class="mi">456</span>
 
 <span class="k">def</span> <span class="nf">entry_point</span><span class="p">(</span><span class="n">argv</span><span class="p">):</span>
     <span class="k">print</span> <span class="n">g</span><span class="p">()</span>
-    
 </pre></div>
-
 
     <p>That means we can do lots of compile-time computations:</p>
 
     <div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sys</span>
 
-<span class="k">if</span> <span class="n">sys</span><span class="o">.</span><span class="n">platform</span> <span class="o">==</span> <span class="s1">'windows'</span><span class="p">:</span>
-    <span class="k">def</span> <span class="nf">plat</span><span class="p">():</span> <span class="k">return</span> <span class="s1">'Windows!'</span>
-<span class="k">elif</span> <span class="n">sys</span><span class="o">.</span><span class="n">platform</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s1">'linux'</span><span class="p">):</span>
-    <span class="k">def</span> <span class="nf">plat</span><span class="p">():</span> <span class="k">return</span> <span class="s1">'Linux!'</span>
+<span class="k">if</span> <span class="n">sys</span><span class="o">.</span><span class="n">platform</span> <span class="o">==</span> <span class="s1">&#39;windows&#39;</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">plat</span><span class="p">():</span> <span class="k">return</span> <span class="s1">&#39;Windows!&#39;</span>
+<span class="k">elif</span> <span class="n">sys</span><span class="o">.</span><span class="n">platform</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s1">&#39;linux&#39;</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">plat</span><span class="p">():</span> <span class="k">return</span> <span class="s1">&#39;Linux!&#39;</span>
 <span class="k">else</span><span class="p">:</span>
-    <span class="k">def</span> <span class="nf">plat</span><span class="p">():</span> <span class="k">return</span> <span class="s1">'Who cares?'</span>
+    <span class="k">def</span> <span class="nf">plat</span><span class="p">():</span> <span class="k">return</span> <span class="s1">&#39;Who cares?&#39;</span>
 
 <span class="k">def</span> <span class="nf">entry_point</span><span class="p">(</span><span class="n">argv</span><span class="p">):</span>
     <span class="k">print</span> <span class="n">plat</span><span class="p">()</span>
     <span class="k">return</span> <span class="mi">0</span>
-    
 </pre></div>
-
 
     <link-header id="statically-typed">RPython is statically-typed</link-header>
 
@@ -138,10 +189,8 @@
 
     <div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">entry_point</span><span class="p">(</span><span class="n">argv</span><span class="p">):</span>
     <span class="n">x</span> <span class="o">=</span> <span class="mi">123</span> <span class="c1"># ok</span>
-    <span class="n">x</span> <span class="o">=</span> <span class="s1">'456'</span> <span class="c1"># error!</span>
-    
+    <span class="n">x</span> <span class="o">=</span> <span class="s1">&#39;456&#39;</span> <span class="c1"># error!</span>
 </pre></div>
-
 
     <p>
       Notice that no variable annotations were needed. This is because RPython uses
@@ -160,9 +209,7 @@
 
 <span class="k">def</span> <span class="nf">target</span><span class="p">(</span><span class="n">driver</span><span class="p">,</span> <span class="n">args</span><span class="p">):</span>
     <span class="k">return</span> <span class="n">entry_point</span><span class="p">,</span> <span class="bp">None</span>
-    
 </pre></div>
-
 
     <link-header id="errors">RPython has confusing error messages</link-header>
 
@@ -170,70 +217,66 @@
       Whenever an error occurs during compilation, most compilers will output
       something like:</p>
 
-    <div class="highlight"><pre><span></span>error: myfile.whatever:22: variable 'xyz' may be 'null' when used here
-    
+    <div class="highlight"><pre><span></span>error: myfile.whatever:22: variable &#39;xyz&#39; may be &#39;null&#39; when used here
 </pre></div>
-
 
     <p>Not RPython! This is what I get when I try to compile the above snippet:</p>
 
     <div class="highlight"><pre><span></span>[translation:info] Error:
-[translation:info]    File "/media/ryan/stuff/pypy/rpython/translator/goal/translate.py", line 316, in main
+[translation:info]    File &quot;/media/ryan/stuff/pypy/rpython/translator/goal/translate.py&quot;, line 316, in main
 [translation:info]     drv.proceed(goals)
-[translation:info]    File "/media/ryan/stuff/pypy/rpython/translator/driver.py", line 539, in proceed
+[translation:info]    File &quot;/media/ryan/stuff/pypy/rpython/translator/driver.py&quot;, line 539, in proceed
 [translation:info]     return self._execute(goals, task_skip = self._maybe_skip())
-[translation:info]    File "/media/ryan/stuff/pypy/rpython/translator/tool/taskengine.py", line 114, in _execute
+[translation:info]    File &quot;/media/ryan/stuff/pypy/rpython/translator/tool/taskengine.py&quot;, line 114, in _execute
 [translation:info]     res = self._do(goal, taskcallable, *args, **kwds)
-[translation:info]    File "/media/ryan/stuff/pypy/rpython/translator/driver.py", line 276, in _do
+[translation:info]    File &quot;/media/ryan/stuff/pypy/rpython/translator/driver.py&quot;, line 276, in _do
 [translation:info]     res = func()
-[translation:info]    File "/media/ryan/stuff/pypy/rpython/translator/driver.py", line 313, in task_annotate
+[translation:info]    File &quot;/media/ryan/stuff/pypy/rpython/translator/driver.py&quot;, line 313, in task_annotate
 [translation:info]     s = annotator.build_types(self.entry_point, self.inputtypes)
-[translation:info]    File "/media/ryan/stuff/pypy/rpython/annotator/annrpython.py", line 82, in build_types
+[translation:info]    File &quot;/media/ryan/stuff/pypy/rpython/annotator/annrpython.py&quot;, line 82, in build_types
 [translation:info]     flowgraph, inputcells = self.get_call_parameters(function, args_s, policy)
-[translation:info]    File "/media/ryan/stuff/pypy/rpython/annotator/annrpython.py", line 103, in get_call_parameters
+[translation:info]    File &quot;/media/ryan/stuff/pypy/rpython/annotator/annrpython.py&quot;, line 103, in get_call_parameters
 [translation:info]     desc.pycall(schedule, args, annmodel.s_ImpossibleValue)
-[translation:info]    File "/media/ryan/stuff/pypy/rpython/annotator/description.py", line 301, in pycall
+[translation:info]    File &quot;/media/ryan/stuff/pypy/rpython/annotator/description.py&quot;, line 301, in pycall
 [translation:info]     result = self.specialize(inputcells, op)
-[translation:info]    File "/media/ryan/stuff/pypy/rpython/annotator/description.py", line 297, in specialize
+[translation:info]    File &quot;/media/ryan/stuff/pypy/rpython/annotator/description.py&quot;, line 297, in specialize
 [translation:info]     return self.specializer(self, inputcells)
-[translation:info]    File "/media/ryan/stuff/pypy/rpython/annotator/specialize.py", line 80, in default_specialize
+[translation:info]    File &quot;/media/ryan/stuff/pypy/rpython/annotator/specialize.py&quot;, line 80, in default_specialize
 [translation:info]     graph = funcdesc.cachedgraph(key, builder=builder)
-[translation:info]    File "/media/ryan/stuff/pypy/rpython/annotator/description.py", line 245, in cachedgraph
+[translation:info]    File &quot;/media/ryan/stuff/pypy/rpython/annotator/description.py&quot;, line 245, in cachedgraph
 [translation:info]     graph = self.buildgraph(alt_name, builder)
-[translation:info]    File "/media/ryan/stuff/pypy/rpython/annotator/description.py", line 208, in buildgraph
+[translation:info]    File &quot;/media/ryan/stuff/pypy/rpython/annotator/description.py&quot;, line 208, in buildgraph
 [translation:info]     graph = translator.buildflowgraph(self.pyobj)
-[translation:info]    File "/media/ryan/stuff/pypy/rpython/translator/translator.py", line 54, in buildflowgraph
+[translation:info]    File &quot;/media/ryan/stuff/pypy/rpython/translator/translator.py&quot;, line 54, in buildflowgraph
 [translation:info]     graph = build_flow(func)
-[translation:info]    File "/media/ryan/stuff/pypy/rpython/flowspace/objspace.py", line 42, in build_flow
+[translation:info]    File &quot;/media/ryan/stuff/pypy/rpython/flowspace/objspace.py&quot;, line 42, in build_flow
 [translation:info]     ctx.build_flow()
-[translation:info]    File "/media/ryan/stuff/pypy/rpython/flowspace/flowcontext.py", line 448, in build_flow
+[translation:info]    File &quot;/media/ryan/stuff/pypy/rpython/flowspace/flowcontext.py&quot;, line 448, in build_flow
 [translation:info]     self.record_block(block)
-[translation:info]    File "/media/ryan/stuff/pypy/rpython/flowspace/flowcontext.py", line 456, in record_block
+[translation:info]    File &quot;/media/ryan/stuff/pypy/rpython/flowspace/flowcontext.py&quot;, line 456, in record_block
 [translation:info]     next_pos = self.handle_bytecode(next_pos)
-[translation:info]    File "/media/ryan/stuff/pypy/rpython/flowspace/flowcontext.py", line 548, in handle_bytecode
+[translation:info]    File &quot;/media/ryan/stuff/pypy/rpython/flowspace/flowcontext.py&quot;, line 548, in handle_bytecode
 [translation:info]     res = getattr(self, methodname)(oparg)
-[translation:info]    File "/media/ryan/stuff/pypy/rpython/flowspace/flowcontext.py", line 266, in BINARY_OP
+[translation:info]    File &quot;/media/ryan/stuff/pypy/rpython/flowspace/flowcontext.py&quot;, line 266, in BINARY_OP
 [translation:info]     w_result = operation(w_1, w_2).eval(self)
-[translation:info]    File "/media/ryan/stuff/pypy/rpython/flowspace/operation.py", line 91, in eval
+[translation:info]    File &quot;/media/ryan/stuff/pypy/rpython/flowspace/operation.py&quot;, line 91, in eval
 [translation:info]     result = self.constfold()
-[translation:info]    File "/media/ryan/stuff/pypy/rpython/flowspace/operation.py", line 121, in constfold
+[translation:info]    File &quot;/media/ryan/stuff/pypy/rpython/flowspace/operation.py&quot;, line 121, in constfold
 [translation:info]     raise FlowingError(msg)
 [translation:ERROR] FlowingError:
 [translation:ERROR]
-[translation:ERROR] add(None, 1) always raises &lt;type 'exceptions.TypeError'&gt;: unsupported operand type(s) for +: 'NoneType' and 'int'
+[translation:ERROR] add(None, 1) always raises &lt;type &#39;exceptions.TypeError&#39;&gt;: unsupported operand type(s) for +: &#39;NoneType&#39; and &#39;int&#39;
 [translation:ERROR]
 [translation:ERROR] In &lt;FunctionGraph of (nl:1)entry_point at 0x7f988a349090&gt;:
 [translation:ERROR] Happened at file nl.py line 6
 [translation:ERROR]
 [translation:ERROR]         print x+1+2 # compile-time error
 [translation:ERROR]
-    
 </pre></div>
-
 
     <p>Wow! RPython's exceptions generally go like this:</p>
 
-    <link-header id="flowingerror" small="">FlowingError</link-header>
+    <link-header id="flowingerror" small>FlowingError</link-header>
 
     <p>
       RPython can prove at compile-time that some run-time computation may fail.
@@ -246,7 +289,7 @@
       <li>You're trying to get the len of None.</li>
     </ul>
 
-    <link-header id="unionerror" small="">UnionError</link-header>
+    <link-header id="unionerror" small>UnionError</link-header>
 
     <p>
       A type conflict. Whenever you get this, RPython will show the internal types
@@ -263,46 +306,44 @@
 
 <span class="k">def</span> <span class="nf">target</span><span class="p">(</span><span class="n">driver</span><span class="p">,</span> <span class="n">args</span><span class="p">):</span>
     <span class="k">return</span> <span class="n">entry_point</span><span class="p">,</span> <span class="bp">None</span>
-    
 </pre></div>
-
 
     <p>RPython gives this error message:</p>
 
     <div class="highlight"><pre><span></span>[translation:info] Error:
-[translation:info]    File "/media/ryan/stuff/pypy/rpython/translator/goal/translate.py", line 316, in main
+[translation:info]    File &quot;/media/ryan/stuff/pypy/rpython/translator/goal/translate.py&quot;, line 316, in main
 [translation:info]     drv.proceed(goals)
-[translation:info]    File "/media/ryan/stuff/pypy/rpython/translator/driver.py", line 539, in proceed
+[translation:info]    File &quot;/media/ryan/stuff/pypy/rpython/translator/driver.py&quot;, line 539, in proceed
 [translation:info]     return self._execute(goals, task_skip = self._maybe_skip())
-[translation:info]    File "/media/ryan/stuff/pypy/rpython/translator/tool/taskengine.py", line 114, in _execute
+[translation:info]    File &quot;/media/ryan/stuff/pypy/rpython/translator/tool/taskengine.py&quot;, line 114, in _execute
 [translation:info]     res = self._do(goal, taskcallable, *args, **kwds)
-[translation:info]    File "/media/ryan/stuff/pypy/rpython/translator/driver.py", line 276, in _do
+[translation:info]    File &quot;/media/ryan/stuff/pypy/rpython/translator/driver.py&quot;, line 276, in _do
 [translation:info]     res = func()
-[translation:info]    File "/media/ryan/stuff/pypy/rpython/translator/driver.py", line 313, in task_annotate
+[translation:info]    File &quot;/media/ryan/stuff/pypy/rpython/translator/driver.py&quot;, line 313, in task_annotate
 [translation:info]     s = annotator.build_types(self.entry_point, self.inputtypes)
-[translation:info]    File "/media/ryan/stuff/pypy/rpython/annotator/annrpython.py", line 89, in build_types
+[translation:info]    File &quot;/media/ryan/stuff/pypy/rpython/annotator/annrpython.py&quot;, line 89, in build_types
 [translation:info]     return self.build_graph_types(flowgraph, inputcells, complete_now=complete_now)
-[translation:info]    File "/media/ryan/stuff/pypy/rpython/annotator/annrpython.py", line 143, in build_graph_types
+[translation:info]    File &quot;/media/ryan/stuff/pypy/rpython/annotator/annrpython.py&quot;, line 143, in build_graph_types
 [translation:info]     self.complete()
-[translation:info]    File "/media/ryan/stuff/pypy/rpython/annotator/annrpython.py", line 197, in complete
+[translation:info]    File &quot;/media/ryan/stuff/pypy/rpython/annotator/annrpython.py&quot;, line 197, in complete
 [translation:info]     self.complete_pending_blocks()
-[translation:info]    File "/media/ryan/stuff/pypy/rpython/annotator/annrpython.py", line 192, in complete_pending_blocks
+[translation:info]    File &quot;/media/ryan/stuff/pypy/rpython/annotator/annrpython.py&quot;, line 192, in complete_pending_blocks
 [translation:info]     self.processblock(graph, block)
-[translation:info]    File "/media/ryan/stuff/pypy/rpython/annotator/annrpython.py", line 338, in processblock
+[translation:info]    File &quot;/media/ryan/stuff/pypy/rpython/annotator/annrpython.py&quot;, line 338, in processblock
 [translation:info]     self.flowin(graph, block)
-[translation:info]    File "/media/ryan/stuff/pypy/rpython/annotator/annrpython.py", line 473, in flowin
+[translation:info]    File &quot;/media/ryan/stuff/pypy/rpython/annotator/annrpython.py&quot;, line 473, in flowin
 [translation:info]     self.follow_link(graph, link, knowntypedata)
-[translation:info]    File "/media/ryan/stuff/pypy/rpython/annotator/annrpython.py", line 561, in follow_link
+[translation:info]    File &quot;/media/ryan/stuff/pypy/rpython/annotator/annrpython.py&quot;, line 561, in follow_link
 [translation:info]     self.addpendingblock(graph, link.target, inputs_s)
-[translation:info]    File "/media/ryan/stuff/pypy/rpython/annotator/annrpython.py", line 185, in addpendingblock
+[translation:info]    File &quot;/media/ryan/stuff/pypy/rpython/annotator/annrpython.py&quot;, line 185, in addpendingblock
 [translation:info]     self.mergeinputargs(graph, block, cells)
-[translation:info]    File "/media/ryan/stuff/pypy/rpython/annotator/annrpython.py", line 375, in mergeinputargs
+[translation:info]    File &quot;/media/ryan/stuff/pypy/rpython/annotator/annrpython.py&quot;, line 375, in mergeinputargs
 [translation:info]     unions = [annmodel.unionof(c1,c2) for c1, c2 in zip(oldcells,inputcells)]
-[translation:info]    File "/media/ryan/stuff/pypy/rpython/annotator/model.py", line 658, in unionof
+[translation:info]    File &quot;/media/ryan/stuff/pypy/rpython/annotator/model.py&quot;, line 658, in unionof
 [translation:info]     s1 = pair(s1, s2).union()
-[translation:info]    File "/media/ryan/stuff/pypy/rpython/annotator/binaryop.py", line 755, in union
+[translation:info]    File &quot;/media/ryan/stuff/pypy/rpython/annotator/binaryop.py&quot;, line 755, in union
 [translation:info]     return obj.noneify()
-[translation:info]    File "/media/ryan/stuff/pypy/rpython/annotator/model.py", line 126, in noneify
+[translation:info]    File &quot;/media/ryan/stuff/pypy/rpython/annotator/model.py&quot;, line 126, in noneify
 [translation:info]     raise UnionError(self, s_None)
 [translation:ERROR] UnionError:
 [translation:ERROR]
@@ -313,14 +354,12 @@
 [translation:ERROR] In &lt;FunctionGraph of (nl2:1)f at 0x7f6801abdb50&gt;:
 [translation:ERROR] &lt;return block&gt;
 [translation:ERROR] Processing block:
-[translation:ERROR]  block@3 is a &lt;class 'rpython.flowspace.flowcontext.SpamBlock'&gt;
+[translation:ERROR]  block@3 is a &lt;class &#39;rpython.flowspace.flowcontext.SpamBlock&#39;&gt;
 [translation:ERROR]  in (nl2:1)f
 [translation:ERROR]  containing the following operations:
 [translation:ERROR]        v0 = bool(b_0)
 [translation:ERROR]  --end--
-    
 </pre></div>
-
 
     <p>
       This tells us that the type conflict is between an integer and
@@ -338,31 +377,29 @@
         (<code>unsigned=False</code>).</li>
     </ul>
 
-    <link-header id="blockerror" small="">BlockError</link-header>
+    <link-header id="blockerror" small>BlockError</link-header>
 
     <p>This means that type inference couldn't succeed. Take this program:</p>
 
     <div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
 
 <span class="k">def</span> <span class="nf">rd</span><span class="p">():</span>
-    <span class="s1">'Read all of stdin'</span>
-    <span class="n">res</span> <span class="o">=</span> <span class="s1">''</span>
+    <span class="s1">&#39;Read all of stdin&#39;</span>
+    <span class="n">res</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
     <span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
         <span class="n">buf</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
-        <span class="k">if</span> <span class="n">buf</span> <span class="o">==</span> <span class="s1">''</span><span class="p">:</span> <span class="k">return</span>
+        <span class="k">if</span> <span class="n">buf</span> <span class="o">==</span> <span class="s1">&#39;&#39;</span><span class="p">:</span> <span class="k">return</span>
         <span class="n">res</span> <span class="o">+=</span> <span class="n">buf</span>
     <span class="k">return</span> <span class="n">res</span>
 
 <span class="k">def</span> <span class="nf">entry_point</span><span class="p">(</span><span class="n">argv</span><span class="p">):</span>
-    <span class="n">data</span> <span class="o">=</span> <span class="n">rd</span><span class="p">()[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">' '</span><span class="p">)</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">rd</span><span class="p">()[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">)</span>
     <span class="k">print</span> <span class="nb">float</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="o">+</span><span class="mf">2.3</span>
     <span class="k">return</span> <span class="mi">0</span>
 
 <span class="k">def</span> <span class="nf">target</span><span class="p">(</span><span class="n">driver</span><span class="p">,</span> <span class="n">args</span><span class="p">):</span>
     <span class="k">return</span> <span class="n">entry_point</span><span class="p">,</span> <span class="bp">None</span>
-    
 </pre></div>
-
 
     <p>
       This reads one or more numbers from stdin and prints the first one added to
@@ -370,21 +407,21 @@
       compiling, this happens:</p>
 
     <div class="highlight"><pre><span></span>[translation:info] Error:
-[translation:info]    File "/media/ryan/stuff/pypy/rpython/translator/goal/translate.py", line 316, in main
+[translation:info]    File &quot;/media/ryan/stuff/pypy/rpython/translator/goal/translate.py&quot;, line 316, in main
 [translation:info]     drv.proceed(goals)
-[translation:info]    File "/media/ryan/stuff/pypy/rpython/translator/driver.py", line 539, in proceed
+[translation:info]    File &quot;/media/ryan/stuff/pypy/rpython/translator/driver.py&quot;, line 539, in proceed
 [translation:info]     return self._execute(goals, task_skip = self._maybe_skip())
-[translation:info]    File "/media/ryan/stuff/pypy/rpython/translator/tool/taskengine.py", line 114, in _execute
+[translation:info]    File &quot;/media/ryan/stuff/pypy/rpython/translator/tool/taskengine.py&quot;, line 114, in _execute
 [translation:info]     res = self._do(goal, taskcallable, *args, **kwds)
-[translation:info]    File "/media/ryan/stuff/pypy/rpython/translator/driver.py", line 276, in _do
+[translation:info]    File &quot;/media/ryan/stuff/pypy/rpython/translator/driver.py&quot;, line 276, in _do
 [translation:info]     res = func()
-[translation:info]    File "/media/ryan/stuff/pypy/rpython/translator/driver.py", line 313, in task_annotate
+[translation:info]    File &quot;/media/ryan/stuff/pypy/rpython/translator/driver.py&quot;, line 313, in task_annotate
 [translation:info]     s = annotator.build_types(self.entry_point, self.inputtypes)
-[translation:info]    File "/media/ryan/stuff/pypy/rpython/annotator/annrpython.py", line 89, in build_types
+[translation:info]    File &quot;/media/ryan/stuff/pypy/rpython/annotator/annrpython.py&quot;, line 89, in build_types
 [translation:info]     return self.build_graph_types(flowgraph, inputcells, complete_now=complete_now)
-[translation:info]    File "/media/ryan/stuff/pypy/rpython/annotator/annrpython.py", line 143, in build_graph_types
+[translation:info]    File &quot;/media/ryan/stuff/pypy/rpython/annotator/annrpython.py&quot;, line 143, in build_graph_types
 [translation:info]     self.complete()
-[translation:info]    File "/media/ryan/stuff/pypy/rpython/annotator/annrpython.py", line 219, in complete
+[translation:info]    File &quot;/media/ryan/stuff/pypy/rpython/annotator/annrpython.py&quot;, line 219, in complete
 [translation:info]     raise annmodel.AnnotatorError(text)
 [translation:ERROR] AnnotatorError:
 [translation:ERROR]
@@ -395,15 +432,13 @@
 [translation:ERROR] In &lt;FunctionGraph of (nn:12)entry_point at 0x7f7558a750d0&gt;:
 [translation:ERROR] Happened at file nn.py line 13
 [translation:ERROR]
-[translation:ERROR] ==&gt;     data = rd()[:-1].split(' ')
+[translation:ERROR] ==&gt;     data = rd()[:-1].split(&#39; &#39;)
 [translation:ERROR]         print float(data[0])+2.3
 [translation:ERROR]
 [translation:ERROR] Known variable annotations:
 [translation:ERROR]  v0 = SomeNone()
 [translation:ERROR]
-    
 </pre></div>
-
 
     <p>
       What?? What RPython means is that it can't infer the type of
@@ -417,7 +452,7 @@
       it occurred when we tried to slice it. This can be a little odd until you get
       the hang of it.</p>
 
-    <link-header id="assertionerror" small="">AssertionError</link-header>
+    <link-header id="assertionerror" small>AssertionError</link-header>
 
     <p>
       Various meanings. Sometimes they have an error message; sometimes they don't.
@@ -425,7 +460,7 @@
       raised the error and look for any helpful comments or try to figure out on
       your own.</p>
 
-    <link-header id="annotatorerror" small="">AnnotatorError</link-header>
+    <link-header id="annotatorerror" small>AnnotatorError</link-header>
 
     <p>
       This may have various meanings, but it basically means that an error occurred
@@ -435,18 +470,16 @@
     <div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">entry_point</span><span class="p">(</span><span class="n">argv</span><span class="p">):</span>
     <span class="k">print</span> <span class="n">argv</span><span class="o">.</span><span class="n">x</span>
     <span class="k">return</span> <span class="mi">0</span>
-    
 </pre></div>
-
 
     <p>Gives:</p>
 
     <div class="highlight"><pre><span></span>[translation:ERROR] AnnotatorError:
 [translation:ERROR]
-[translation:ERROR] Cannot find attribute 'x' on SomeList(listdef=&lt;[SomeString(no_nul=True)]mr&gt;)
+[translation:ERROR] Cannot find attribute &#39;x&#39; on SomeList(listdef=&lt;[SomeString(no_nul=True)]mr&gt;)
 [translation:ERROR]
 [translation:ERROR]
-[translation:ERROR]     v0 = getattr(argv_0, ('x'))
+[translation:ERROR]     v0 = getattr(argv_0, (&#39;x&#39;))
 [translation:ERROR]
 [translation:ERROR] In &lt;FunctionGraph of (nn:1)entry_point at 0x7feeac22e090&gt;:
 [translation:ERROR] Happened at file nn.py line 2
@@ -457,17 +490,15 @@
 [translation:ERROR]  argv_0 = SomeList(listdef=&lt;[SomeString(no_nul=True)]mr&gt;)
 [translation:ERROR]
 [translation:ERROR] Processing block:
-[translation:ERROR]  block@3 is a &lt;class 'rpython.flowspace.flowcontext.SpamBlock'&gt;
+[translation:ERROR]  block@3 is a &lt;class &#39;rpython.flowspace.flowcontext.SpamBlock&#39;&gt;
 [translation:ERROR]  in (nn:1)entry_point
 [translation:ERROR]  containing the following operations:
-[translation:ERROR]        v0 = getattr(argv_0, ('x'))
+[translation:ERROR]        v0 = getattr(argv_0, (&#39;x&#39;))
 [translation:ERROR]        v1 = str(v0)
 [translation:ERROR]        v2 = simple_call((function rpython_print_item), v1)
 [translation:ERROR]        v3 = simple_call((function rpython_print_newline))
 [translation:ERROR]  --end--
-    
 </pre></div>
-
 
     <p>
       Also note the types again. Here, it's telling us it's a list
@@ -482,21 +513,19 @@
     <span class="k">pass</span>
 
 <span class="k">class</span> <span class="nc">B</span><span class="p">(</span><span class="n">A</span><span class="p">):</span>
-    <span class="k">def</span> <span class="nf">x</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span> <span class="k">return</span> <span class="s1">'y'</span>
+    <span class="k">def</span> <span class="nf">x</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span> <span class="k">return</span> <span class="s1">&#39;y&#39;</span>
 
 <span class="k">class</span> <span class="nc">C</span><span class="p">(</span><span class="n">A</span><span class="p">):</span>
-    <span class="k">def</span> <span class="nf">x</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span> <span class="k">return</span> <span class="s1">'z'</span>
+    <span class="k">def</span> <span class="nf">x</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span> <span class="k">return</span> <span class="s1">&#39;z&#39;</span>
 
 <span class="k">def</span> <span class="nf">entry_point</span><span class="p">(</span><span class="n">argv</span><span class="p">):</span>
-    <span class="n">a</span> <span class="o">=</span> <span class="n">C</span><span class="p">()</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">argv</span><span class="p">)</span> <span class="o">==</span> <span class="mi">3</span> <span class="k">else</span> <span class="n">B</span><span class="p">()</span> <span class="c1"># Ok; 'a' is of type A</span>
-    <span class="k">print</span> <span class="n">a</span><span class="o">.</span><span class="n">x</span><span class="p">()</span> <span class="c1"># Error! RPython can't prove that 'a' is of type B, so it doesn't know which signature of 'x' to use</span>
+    <span class="n">a</span> <span class="o">=</span> <span class="n">C</span><span class="p">()</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">argv</span><span class="p">)</span> <span class="o">==</span> <span class="mi">3</span> <span class="k">else</span> <span class="n">B</span><span class="p">()</span> <span class="c1"># Ok; &#39;a&#39; is of type A</span>
+    <span class="k">print</span> <span class="n">a</span><span class="o">.</span><span class="n">x</span><span class="p">()</span> <span class="c1"># Error! RPython can&#39;t prove that &#39;a&#39; is of type B, so it doesn&#39;t know which signature of &#39;x&#39; to use</span>
     <span class="k">return</span> <span class="mi">0</span>
 
 <span class="k">def</span> <span class="nf">target</span><span class="p">(</span><span class="n">driver</span><span class="p">,</span> <span class="n">args</span><span class="p">):</span>
     <span class="k">return</span> <span class="n">entry_point</span><span class="p">,</span> <span class="bp">None</span>
-    
 </pre></div>
-
 
     <p>This gives:</p>
 
@@ -506,55 +535,49 @@
 [translation:ERROR]
 [translation:ERROR]
 [translation:ERROR] Occurred processing the following simple_call:
-[translation:ERROR]   &lt;MethodDesc 'x' of &lt;ClassDef 'nn.C'&amp;rt; bound to &lt;ClassDef 'nn.C'&amp;rt; {}&amp;rt; returning
+[translation:ERROR]   &lt;MethodDesc &#39;x&#39; of &lt;ClassDef &#39;nn.C&#39;&amp;rt; bound to &lt;ClassDef &#39;nn.C&#39;&amp;rt; {}&amp;rt; returning
 [translation:ERROR]
 [translation:ERROR]     v1 = simple_call(v0)
 [translation:ERROR]
 [translation:ERROR] In &lt;FunctionGraph of (nn:10)entry_point at 0x7f1c3d7081d0&amp;rt;:
 [translation:ERROR] Happened at file nn.py line 12
 [translation:ERROR]
-[translation:ERROR] ==&amp;rt;     print a.x() # Error! RPython can't prove that 'a' is of type B
+[translation:ERROR] ==&amp;rt;     print a.x() # Error! RPython can&#39;t prove that &#39;a&#39; is of type B
 [translation:ERROR]
 [translation:ERROR] Known variable annotations:
 [translation:ERROR]  v0 = SomePBC(can_be_None=False, descriptions={...1...}, knowntype=instancemethod, subset_of=None)
 [translation:ERROR]
 [translation:ERROR] Processing block:
-[translation:ERROR]  block@39 is a &lt;class 'rpython.flowspace.flowcontext.SpamBlock'&amp;rt;
+[translation:ERROR]  block@39 is a &lt;class &#39;rpython.flowspace.flowcontext.SpamBlock&#39;&amp;rt;
 [translation:ERROR]  in (nn:10)entry_point
 [translation:ERROR]  containing the following operations:
-[translation:ERROR]        v0 = getattr(v2, ('x'))
+[translation:ERROR]        v0 = getattr(v2, (&#39;x&#39;))
 [translation:ERROR]        v1 = simple_call(v0)
 [translation:ERROR]        v3 = str(v1)
 [translation:ERROR]        v4 = simple_call((function rpython_print_item), v3)
 [translation:ERROR]        v5 = simple_call((function rpython_print_newline))
 [translation:ERROR]  --end--
-    
 </pre></div>
-
 
     <p>The solution? You can use an assertion:</p>
 
     <div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">entry_point</span><span class="p">(</span><span class="n">argv</span><span class="p">):</span>
-    <span class="n">a</span> <span class="o">=</span> <span class="n">C</span><span class="p">()</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">argv</span><span class="p">)</span> <span class="o">==</span> <span class="mi">3</span> <span class="k">else</span> <span class="n">B</span><span class="p">()</span> <span class="c1"># Ok; 'a' is of type A</span>
+    <span class="n">a</span> <span class="o">=</span> <span class="n">C</span><span class="p">()</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">argv</span><span class="p">)</span> <span class="o">==</span> <span class="mi">3</span> <span class="k">else</span> <span class="n">B</span><span class="p">()</span> <span class="c1"># Ok; &#39;a&#39; is of type A</span>
     <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">B</span><span class="p">)</span>
-    <span class="k">print</span> <span class="n">a</span><span class="o">.</span><span class="n">x</span><span class="p">()</span> <span class="c1"># Ok; this will never run if 'a' is of type 'C'</span>
+    <span class="k">print</span> <span class="n">a</span><span class="o">.</span><span class="n">x</span><span class="p">()</span> <span class="c1"># Ok; this will never run if &#39;a&#39; is of type &#39;C&#39;</span>
     <span class="k">return</span> <span class="mi">0</span>
-    
 </pre></div>
-
 
     <p>Or an <code>if</code> statement:</p>
 
     <div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">entry_point</span><span class="p">(</span><span class="n">argv</span><span class="p">):</span>
-    <span class="n">a</span> <span class="o">=</span> <span class="n">C</span><span class="p">()</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">argv</span><span class="p">)</span> <span class="o">==</span> <span class="mi">3</span> <span class="k">else</span> <span class="n">B</span><span class="p">()</span> <span class="c1"># Ok; 'a' is of type A</span>
+    <span class="n">a</span> <span class="o">=</span> <span class="n">C</span><span class="p">()</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">argv</span><span class="p">)</span> <span class="o">==</span> <span class="mi">3</span> <span class="k">else</span> <span class="n">B</span><span class="p">()</span> <span class="c1"># Ok; &#39;a&#39; is of type A</span>
     <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">B</span><span class="p">):</span>
         <span class="k">print</span> <span class="n">a</span><span class="o">.</span><span class="n">x</span><span class="p">()</span>
     <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">C</span><span class="p">):</span>
         <span class="k">print</span> <span class="n">a</span><span class="o">.</span><span class="n">x</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
     <span class="k">return</span> <span class="mi">0</span>
-    
 </pre></div>
-
 
     <link-header id="info">RPython drops you some neat info</link-header>
 
@@ -575,9 +598,7 @@
 
 <span class="k">def</span> <span class="nf">target</span><span class="p">(</span><span class="n">driver</span><span class="p">,</span> <span class="n">args</span><span class="p">):</span>
     <span class="k">return</span> <span class="n">entry_point</span><span class="p">,</span> <span class="bp">None</span>
-    
 </pre></div>
-
 
     <p>
       If you give it no arguments, it'll throw an <code>IndexError</code>, right?
@@ -592,11 +613,9 @@
     <span class="k">try</span><span class="p">:</span>
         <span class="k">print</span> <span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
     <span class="k">except</span><span class="p">:</span>
-        <span class="k">print</span> <span class="s1">'Too few arguments!'</span>
+        <span class="k">print</span> <span class="s1">&#39;Too few arguments!&#39;</span>
     <span class="k">return</span> <span class="mi">0</span>
-    
 </pre></div>
-
 
     <p>
       This will correctly print "Too few arguments!" if given no arguments. See,
@@ -611,14 +630,12 @@
     <span class="k">try</span><span class="p">:</span>
         <span class="k">print</span> <span class="n">f</span><span class="p">(</span><span class="n">argv</span><span class="p">)</span>
     <span class="k">except</span><span class="p">:</span>
-        <span class="k">print</span> <span class="s1">'Too few arguments!'</span>
+        <span class="k">print</span> <span class="s1">&#39;Too few arguments!&#39;</span>
     <span class="k">return</span> <span class="mi">0</span>
 
 <span class="k">def</span> <span class="nf">target</span><span class="p">(</span><span class="n">driver</span><span class="p">,</span> <span class="n">args</span><span class="p">):</span>
     <span class="k">return</span> <span class="n">entry_point</span><span class="p">,</span> <span class="bp">None</span>
-    
 </pre></div>
-
 
     <p>
       This will segfault when build with <code>-O2</code>. But we put a
@@ -632,9 +649,7 @@
         <span class="k">return</span> <span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
     <span class="k">except</span><span class="p">:</span>
         <span class="k">raise</span>
-    
 </pre></div>
-
 
     <link-header id="restricted">RPython is very restricted</link-header>
 
@@ -682,15 +697,13 @@
     <div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
 
 <span class="k">def</span> <span class="nf">readline</span><span class="p">():</span>
-    <span class="n">res</span> <span class="o">=</span> <span class="s1">''</span>
+    <span class="n">res</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
     <span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
         <span class="n">buf</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">16</span><span class="p">)</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">buf</span><span class="p">:</span> <span class="k">return</span> <span class="n">res</span>
         <span class="n">res</span> <span class="o">+=</span> <span class="n">buf</span>
-        <span class="k">if</span> <span class="n">res</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="s1">'</span><span class="se">\n</span><span class="s1">'</span><span class="p">:</span> <span class="k">return</span> <span class="n">res</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
-    
+        <span class="k">if</span> <span class="n">res</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">:</span> <span class="k">return</span> <span class="n">res</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
 </pre></div>
-
 
     <p>For reading all the lines in <code>stdin</code> into a list:</p>
 
@@ -698,25 +711,21 @@
 
 <span class="k">def</span> <span class="nf">readlines</span><span class="p">():</span>
     <span class="n">res</span> <span class="o">=</span> <span class="p">[]</span>
-    <span class="n">cur</span> <span class="o">=</span> <span class="s1">''</span>
+    <span class="n">cur</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
     <span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
         <span class="n">buf</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">16</span><span class="p">)</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">buf</span><span class="p">:</span> <span class="k">return</span> <span class="n">res</span>
         <span class="n">cur</span> <span class="o">+=</span> <span class="n">buf</span>
-        <span class="k">if</span> <span class="n">cur</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="s1">'</span><span class="se">\n</span><span class="s1">'</span><span class="p">:</span> <span class="n">res</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">cur</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
-    
+        <span class="k">if</span> <span class="n">cur</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">:</span> <span class="n">res</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">cur</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
 </pre></div>
-
 
     <p>For writing to <code>stderr</code>:</p>
 
     <div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
 
 <span class="k">def</span> <span class="nf">write_err</span><span class="p">(</span><span class="n">msg</span><span class="p">):</span>
-    <span class="n">os</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">msg</span><span class="o">+</span><span class="s1">'</span><span class="se">\n</span><span class="s1">'</span><span class="p">)</span>
-    
+    <span class="n">os</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">msg</span><span class="o">+</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
 </pre></div>
-
 
     <p>
       And for writing to <code>stdout</code> without any trailing newlines or
@@ -726,9 +735,7 @@
 
 <span class="k">def</span> <span class="nf">write</span><span class="p">(</span><span class="n">msg</span><span class="p">):</span>
     <span class="n">os</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">msg</span><span class="p">)</span>
-    
 </pre></div>
-
 
     <link-header id="fun">RPython is fun!</link-header>
 
@@ -744,15 +751,18 @@
         PyPy mailing list</a>. They helped me with several slip-ups while writing
       an interpreter in RPython.</p>
 
-    <link-header id="docs" small="">Read the docs!</link-header>
+    <link-header id="docs" small>Read the docs!</link-header>
 
     <p>
       Also, read through the
       <a href="http://rpython.readthedocs.org/en/latest/">RPython documentation</a>.
       It's very exhaustive and mentions stuff that I can't in this short space.</p>
 
-    <site-tags tags="rpython, interpreter, python"></site-tags>
+    <site-tags tags='rpython, interpreter, python'></site-tags>
     <site-suffix></site-suffix>
-  </div>
 
-</body></html>
+
+      </m-typography>
+    </div>
+  </body>
+

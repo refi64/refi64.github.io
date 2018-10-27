@@ -1,14 +1,79 @@
-<!DOCTYPE html><html><head>
+<!DOCTYPE html>
+
+<head>
   <title>VueDart 0.3.1 released!</title>
-  <script defer="" src="/dist/pack.js"></script>
-  <link rel="stylesheet" href="/dist/pack.css">
-  <script defer="" src="../page.initialize.dart.js"></script>
-  
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script defer src="/dist/pack.js"></script>
+</script>
+<script defer src="../page.vue.dart.js"></script>
+<link rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Roboto:400,400italic,700|Roboto+Mono|Montserrat:400,500|Material+Icons">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="utf-8">
+
+<style>
+  a:not(.no-style), a:visited:not(.no-style) {
+    color: var(--mdc-theme-secondary);
+    text-decoration: none;
+
+  }
+
+  a:hover:not(.no-style) {
+    text-decoration: underline;
+  }
+
+  a.no-style, a.no-style:hover, a.no-style:visited {
+    color: black;
+    text-decoration: none;
+  }
+
+  pre {
+    font-family: "Roboto Mono", monospace;
+    margin: 1em;
+  }
+
+  #moot-logo a { z-index: 0 !important; }
+  .highlight { overflow-y: auto; }
+  .highlight .err { border: none !important; }
+
+  [v-cloak] { display: none; }
+
+  body {
+    margin: 0;
+  }
+
+  @media (min-width: 768px) {
+    body {
+      margin-left: 240px;
+    }
+  }
+
+  body #page {
+    margin: 0 1em 1em 1em;
+  }
+
+  .mdc-top-app-bar__title, .mdc-typography--headline3,
+  .mdc-typography--headline4, .mdc-typography--headline5,
+  .mdc-list-group__subheader {
+    font-family: Montserrat, Roboto, sans-serif !important;
+  }
+
+  :root {
+    --mdc-theme-primary: rgba(255, 255, 255, 0.96);
+    --mdc-theme-secondary: #0d47a1;
+    --mdc-theme-on-primary: black;
+  }
+</style>
+
+
+
 </head>
 
-<body>
-  <div id="page" v-cloak="">
+
+  <body>
+    <div v-cloak id="page">
+      <m-typography>
+        
+
     <site-navbar></site-navbar>
     <site-title created-on="2017-11-19"></site-title>
 
@@ -39,7 +104,7 @@
       (e.g. jQuery plugins):</p>
 
     <div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">template</span> <span class="na">vuedart</span><span class="p">&gt;</span>
-  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">v-html</span><span class="o">=</span><span class="s">"'&lt;p&gt;This is inside v-html!&lt;/p&gt;'"</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">v-html</span><span class="o">=</span><span class="s">&quot;&#39;&lt;p&gt;This is inside v-html!&lt;/p&gt;&#39;&quot;</span><span class="p">&gt;</span>
 <span class="p">&lt;/</span><span class="nt">template</span><span class="p">&gt;</span>
 
 <span class="p">&lt;</span><span class="nt">style</span> <span class="na">scoped</span><span class="p">&gt;</span>
@@ -47,9 +112,7 @@
     background-color: purple;
   }
 <span class="p">&lt;</span><span class="nt">style</span><span class="p">&gt;</span>
-    
 </pre></div>
-
 
     <p>
       However, there was a bug where these styles would also go into any child
@@ -58,7 +121,7 @@
       use the <code>bleeds</code> attribute:</p>
 
     <div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">template</span> <span class="na">vuedart</span><span class="p">&gt;</span>
-  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">v-html</span><span class="o">=</span><span class="s">"'&lt;p&gt;This is inside v-html!&lt;/p&gt;'"</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">v-html</span><span class="o">=</span><span class="s">&quot;&#39;&lt;p&gt;This is inside v-html!&lt;/p&gt;&#39;&quot;</span><span class="p">&gt;</span>
 <span class="p">&lt;/</span><span class="nt">template</span><span class="p">&gt;</span>
 
 <span class="p">&lt;</span><span class="nt">style</span> <span class="na">scoped</span> <span class="na">bleeds</span><span class="p">&gt;</span>
@@ -66,9 +129,7 @@
     background-color: purple;
   }
 <span class="p">&lt;</span><span class="nt">style</span><span class="p">&gt;</span>
-    
 </pre></div>
-
 
     <p>
       Note that now, even if you pass <i>bleeds</i>, styles will only bleed into
@@ -85,8 +146,11 @@
       The documentation now better explains the significance of the
       <code>entry_points</code> argument to the VueDart transformer.</p>
 
-    <site-tags tags="vue, vuedart"></site-tags>
+    <site-tags tags='vue, vuedart'></site-tags>
     <site-suffix></site-suffix>
-  </div>
 
-</body></html>
+
+      </m-typography>
+    </div>
+  </body>
+

@@ -1,14 +1,79 @@
-<!DOCTYPE html><html><head>
+<!DOCTYPE html>
+
+<head>
   <title>Overloading functions with the C preprocessor</title>
-  <script defer="" src="/dist/pack.js"></script>
-  <link rel="stylesheet" href="/dist/pack.css">
-  <script defer="" src="../page.initialize.dart.js"></script>
-  
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script defer src="/dist/pack.js"></script>
+</script>
+<script defer src="../page.vue.dart.js"></script>
+<link rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Roboto:400,400italic,700|Roboto+Mono|Montserrat:400,500|Material+Icons">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="utf-8">
+
+<style>
+  a:not(.no-style), a:visited:not(.no-style) {
+    color: var(--mdc-theme-secondary);
+    text-decoration: none;
+
+  }
+
+  a:hover:not(.no-style) {
+    text-decoration: underline;
+  }
+
+  a.no-style, a.no-style:hover, a.no-style:visited {
+    color: black;
+    text-decoration: none;
+  }
+
+  pre {
+    font-family: "Roboto Mono", monospace;
+    margin: 1em;
+  }
+
+  #moot-logo a { z-index: 0 !important; }
+  .highlight { overflow-y: auto; }
+  .highlight .err { border: none !important; }
+
+  [v-cloak] { display: none; }
+
+  body {
+    margin: 0;
+  }
+
+  @media (min-width: 768px) {
+    body {
+      margin-left: 240px;
+    }
+  }
+
+  body #page {
+    margin: 0 1em 1em 1em;
+  }
+
+  .mdc-top-app-bar__title, .mdc-typography--headline3,
+  .mdc-typography--headline4, .mdc-typography--headline5,
+  .mdc-list-group__subheader {
+    font-family: Montserrat, Roboto, sans-serif !important;
+  }
+
+  :root {
+    --mdc-theme-primary: rgba(255, 255, 255, 0.96);
+    --mdc-theme-secondary: #0d47a1;
+    --mdc-theme-on-primary: black;
+  }
+</style>
+
+
+
 </head>
 
-<body>
-  <div id="page" v-cloak="">
+
+  <body>
+    <div v-cloak id="page">
+      <m-typography>
+        
+
     <site-navbar></site-navbar>
     <site-title created-on="2014-09-15 20:42"></site-title>
 
@@ -22,17 +87,13 @@
 
     <div class="highlight"><pre><span></span><span class="kt">void</span> <span class="nf">myfunc</span><span class="p">(</span><span class="kt">int</span><span class="p">);</span>
 <span class="kt">void</span> <span class="nf">myfunc</span><span class="p">(</span><span class="kt">int</span><span class="p">,</span> <span class="kt">int</span><span class="p">);</span>
-    
 </pre></div>
-
 
     <p>C doesn't have a way to do this. You'll often see code like this:</p>
 
     <div class="highlight"><pre><span></span><span class="kt">void</span> <span class="nf">myfunc_1</span><span class="p">(</span><span class="kt">int</span><span class="p">);</span>
 <span class="kt">void</span> <span class="nf">myfunc_2</span><span class="p">(</span><span class="kt">int</span><span class="p">,</span> <span class="kt">int</span><span class="p">);</span>
-    
 </pre></div>
-
 
     <p>
       However, this <i>can</i> be implemented, albeit in a slightly convoluted way,
@@ -50,25 +111,23 @@
 
 <span class="kt">void</span> <span class="nf">_myfunc_1</span><span class="p">(</span><span class="kt">int</span> <span class="n">a</span><span class="p">)</span>
 <span class="p">{</span>
-    <span class="n">puts</span><span class="p">(</span><span class="s">"Got 1 arg"</span><span class="p">);</span>
+    <span class="n">puts</span><span class="p">(</span><span class="s">&quot;Got 1 arg&quot;</span><span class="p">);</span>
 <span class="p">}</span>
 
 <span class="kt">void</span> <span class="nf">_myfunc_2</span><span class="p">(</span><span class="kt">int</span> <span class="n">a</span><span class="p">,</span> <span class="kt">int</span> <span class="n">b</span><span class="p">)</span>
 <span class="p">{</span>
-    <span class="n">puts</span><span class="p">(</span><span class="s">"Got 2 args"</span><span class="p">);</span>
+    <span class="n">puts</span><span class="p">(</span><span class="s">&quot;Got 2 args&quot;</span><span class="p">);</span>
 <span class="p">}</span>
 
 <span class="cp">#define _MYFUNC_SEL(_1, _2, _3, ...) _3</span>
 <span class="cp">#define myfunc(...) _MYFUNC_SEL(__VA_ARGS__, _myfunc_2, _myfunc_1)(__VA_ARGS__)</span>
 
 <span class="cp">#endif </span><span class="c1">// MYFUNC_H</span>
-    
 </pre></div>
-
 
     <p>and the main file:</p>
 
-    <div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">"myfunc.h"</span><span class="cp"></span>
+    <div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&quot;myfunc.h&quot;</span><span class="cp"></span>
 
 <span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
 <span class="p">{</span>
@@ -76,9 +135,7 @@
     <span class="n">myfunc</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">);</span> <span class="c1">// Got 2 args</span>
     <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
 <span class="p">}</span>
-    
 </pre></div>
-
 
     <p>
       What's going on here? The easiest way to see is to look at what happens in
@@ -87,9 +144,7 @@
     <p>The first call (<code>myfunc(1)</code>) expands to this:</p>
 
     <div class="highlight"><pre><span></span><span class="n">_MYFUNC_SEL</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">_myfunc_2</span><span class="p">,</span> <span class="n">_myfunc_1</span><span class="p">)(</span><span class="mi">1</span><span class="p">)</span>
-    
 </pre></div>
-
 
     <p>
       Remember, <code>__VA_ARGS__</code> expands to the <code>...</code> arguments.
@@ -97,16 +152,12 @@
       <code>_myfunc_1</code>. Therefore, the expansion is ends up being:</p>
 
     <div class="highlight"><pre><span></span><span class="n">_myfunc_1</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-    
 </pre></div>
-
 
     <p>The second call (<code>myfunc(1, 2)</code>) expands to this:</p>
 
     <div class="highlight"><pre><span></span><span class="n">_MYFUNC_SEL</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">_myfunc_2</span><span class="p">,</span> <span class="n">_myfunc_1</span><span class="p">)(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
-    
 </pre></div>
-
 
     <p>
       Again, <code>_MYFUNC_SEL</code> returns the third argument, which, in this
@@ -127,17 +178,17 @@
 
 <span class="kt">void</span> <span class="nf">_myfunc_1_int</span><span class="p">(</span><span class="kt">int</span> <span class="n">a</span><span class="p">)</span>
 <span class="p">{</span>
-    <span class="n">puts</span><span class="p">(</span><span class="s">"Got 1 int"</span><span class="p">);</span>
+    <span class="n">puts</span><span class="p">(</span><span class="s">&quot;Got 1 int&quot;</span><span class="p">);</span>
 <span class="p">}</span>
 
 <span class="kt">void</span> <span class="nf">_myfunc_1_void</span><span class="p">(</span><span class="kt">void</span><span class="o">*</span> <span class="n">x</span><span class="p">)</span>
 <span class="p">{</span>
-    <span class="n">puts</span><span class="p">(</span><span class="s">"Got 1 pointer"</span><span class="p">);</span>
+    <span class="n">puts</span><span class="p">(</span><span class="s">&quot;Got 1 pointer&quot;</span><span class="p">);</span>
 <span class="p">}</span>
 
 <span class="kt">void</span> <span class="nf">_myfunc_2</span><span class="p">(</span><span class="kt">int</span> <span class="n">a</span><span class="p">,</span> <span class="kt">int</span> <span class="n">b</span><span class="p">)</span>
 <span class="p">{</span>
-    <span class="n">puts</span><span class="p">(</span><span class="s">"Got 2 args"</span><span class="p">);</span>
+    <span class="n">puts</span><span class="p">(</span><span class="s">&quot;Got 2 args&quot;</span><span class="p">);</span>
 <span class="p">}</span>
 
 <span class="cp">#define _MYFUNC_1(x) _Generic((x), int: _myfunc_1_int, void*: _myfunc_1_void)(x)</span>
@@ -145,13 +196,11 @@
 <span class="cp">#define myfunc(...) _MYFUNC_SEL(__VA_ARGS__, _myfunc_2, _MYFUNC_1)(__VA_ARGS__)</span>
 
 <span class="cp">#endif </span><span class="c1">// MYFUNC_H</span>
-    
 </pre></div>
-
 
     <p>and the new main source file:</p>
 
-    <div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">"myfunc.h"</span><span class="cp"></span>
+    <div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&quot;myfunc.h&quot;</span><span class="cp"></span>
 
 <span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
 <span class="p">{</span>
@@ -160,9 +209,7 @@
     <span class="n">myfunc</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">);</span> <span class="c1">// Got 2 args</span>
     <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
 <span class="p">}</span>
-    
 </pre></div>
-
 
     <p>Let's review the expansion process:</p>
 
@@ -170,18 +217,14 @@
 <span class="n">_MYFUNC_SEL</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">_myfunc_2</span><span class="p">,</span> <span class="n">_MYFUNC_1</span><span class="p">)(</span><span class="mi">1</span><span class="p">)</span>
 <span class="n">_MYFUNC_1</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
 <span class="n">_Generic</span><span class="p">((</span><span class="mi">1</span><span class="p">),</span> <span class="kt">int</span><span class="o">:</span> <span class="n">_myfunc_1_int</span><span class="p">,</span> <span class="kt">void</span><span class="o">*:</span> <span class="n">_myfunc_1_void</span><span class="p">)(</span><span class="mi">1</span><span class="p">)</span>
-    
 </pre></div>
-
     <p>
       Now, the <code>_Generic</code> function basically is like pattern-matching on
       types. (See the linked article above for more info.) The <code>_Generic</code>
       call evaluates to:</p>
 
     <div class="highlight"><pre><span></span><span class="n">_myfunc_1_int</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-    
 </pre></div>
-
 
     <p>See how the magic works? </p>
 
@@ -192,6 +235,9 @@
 
     <site-tags tags="hack, c, preprocessor, programming"></site-tags>
     <site-suffix></site-suffix>
-  </div>
 
-</body></html>
+
+      </m-typography>
+    </div>
+  </body>
+

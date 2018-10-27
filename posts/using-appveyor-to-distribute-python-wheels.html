@@ -1,14 +1,79 @@
-<!DOCTYPE html><html><head>
+<!DOCTYPE html>
+
+<head>
   <title>Using AppVeyor to distribute Python wheels</title>
-  <script defer="" src="/dist/pack.js"></script>
-  <link rel="stylesheet" href="/dist/pack.css">
-  <script defer="" src="../page.initialize.dart.js"></script>
-  
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script defer src="/dist/pack.js"></script>
+</script>
+<script defer src="../page.vue.dart.js"></script>
+<link rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Roboto:400,400italic,700|Roboto+Mono|Montserrat:400,500|Material+Icons">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="utf-8">
+
+<style>
+  a:not(.no-style), a:visited:not(.no-style) {
+    color: var(--mdc-theme-secondary);
+    text-decoration: none;
+
+  }
+
+  a:hover:not(.no-style) {
+    text-decoration: underline;
+  }
+
+  a.no-style, a.no-style:hover, a.no-style:visited {
+    color: black;
+    text-decoration: none;
+  }
+
+  pre {
+    font-family: "Roboto Mono", monospace;
+    margin: 1em;
+  }
+
+  #moot-logo a { z-index: 0 !important; }
+  .highlight { overflow-y: auto; }
+  .highlight .err { border: none !important; }
+
+  [v-cloak] { display: none; }
+
+  body {
+    margin: 0;
+  }
+
+  @media (min-width: 768px) {
+    body {
+      margin-left: 240px;
+    }
+  }
+
+  body #page {
+    margin: 0 1em 1em 1em;
+  }
+
+  .mdc-top-app-bar__title, .mdc-typography--headline3,
+  .mdc-typography--headline4, .mdc-typography--headline5,
+  .mdc-list-group__subheader {
+    font-family: Montserrat, Roboto, sans-serif !important;
+  }
+
+  :root {
+    --mdc-theme-primary: rgba(255, 255, 255, 0.96);
+    --mdc-theme-secondary: #0d47a1;
+    --mdc-theme-on-primary: black;
+  }
+</style>
+
+
+
 </head>
 
-<body>
-  <div id="page" v-cloak="">
+
+  <body>
+    <div v-cloak id="page">
+      <m-typography>
+        
+
     <site-navbar></site-navbar>
     <site-title created-on="2014-09-21 17:02"></site-title>
 
@@ -28,7 +93,7 @@
       config file for your project might look like:</p>
 
     <div class="highlight"><pre><span></span><span class="l l-Scalar l-Scalar-Plain">install</span><span class="p p-Indicator">:</span>
-  <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">ps</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">(new-object net.webclient).DownloadFile('https://raw.github.com/pypa/pip/master/contrib/get-pip.py', 'C:/get-pip.py')</span>
+  <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">ps</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">(new-object net.webclient).DownloadFile(&#39;https://raw.github.com/pypa/pip/master/contrib/get-pip.py&#39;, &#39;C:/get-pip.py&#39;)</span>
   <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">C:/Python34/python.exe C:/get-pip.py</span>
   <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">C:/Python34/Scripts/pip.exe install wheel</span>
 <span class="l l-Scalar l-Scalar-Plain">build_script</span><span class="p p-Indicator">:</span>
@@ -37,35 +102,27 @@
   <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">C:/Python34/Scripts/py.test</span>
 <span class="l l-Scalar l-Scalar-Plain">deploy_script</span><span class="p p-Indicator">:</span>
   <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">python setup.py sdist bdist_wheel upload</span>
-    
 </pre></div>
-
 
     <p>
       It goes into a file named appveyor.yml. Here's what's going on, one piece at a
       time:</p>
 
     <div class="highlight"><pre><span></span><span class="l l-Scalar l-Scalar-Plain">install</span><span class="p p-Indicator">:</span>
-    
 </pre></div>
-
 
     <p>The install section defines commands to run for installation.</p>
 
-    <div class="highlight"><pre><span></span><span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">ps</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">(new-object net.webclient).DownloadFile('https://raw.github.com/pypa/pip/master/contrib/get-pip.py', 'C:/get-pip.py')</span>
+    <div class="highlight"><pre><span></span><span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">ps</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">(new-object net.webclient).DownloadFile(&#39;https://raw.github.com/pypa/pip/master/contrib/get-pip.py&#39;, &#39;C:/get-pip.py&#39;)</span>
 <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">C:/Python34/python.exe C:/get-pip.py</span>
-    
 </pre></div>
-
     <p>
       These two lines install pip. The first uses PowerShell to download the install
       script; the second runs it.</p>
 
     <div class="highlight"><pre><span></span><span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">C:/Python34/Scripts/pip.exe install wheel</span>
 <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">C:/Python34/Scripts/pip.exe install pytest</span>
-    
 </pre></div>
-
 
     <p>
       The first line installs wheel. The second is optional; it just installs pytest
@@ -74,25 +131,19 @@
 
     <div class="highlight"><pre><span></span><span class="l l-Scalar l-Scalar-Plain">build_script</span><span class="p p-Indicator">:</span>
   <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">C:/Python34/python.exe setup.py build</span>
-    
 </pre></div>
-
 
     <p>The commands to build your Python project go here.</p>
 
     <div class="highlight"><pre><span></span><span class="l l-Scalar l-Scalar-Plain">test_script</span><span class="p p-Indicator">:</span>
   <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">C:/Python34/Scripts/py.test</span>
-    
 </pre></div>
-
 
     <p>Whatever you do to run your project tests go here.</p>
 
     <div class="highlight"><pre><span></span><span class="l l-Scalar l-Scalar-Plain">deploy_script</span><span class="p p-Indicator">:</span>
   <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">python setup.py sdist bdist_wheel upload</span>
-    
 </pre></div>
-
 
     <p>This is the magic part; it runs bdist_wheel and uploads the result.</p>
 
@@ -128,23 +179,23 @@
         <span class="l l-Scalar l-Scalar-Plain">&lt;/value&gt;</span>
 </pre></div>
 
-
         <p>
           replaing <code>value</code> with the value you copied from the Encrypt
           Data page. Then, change the deploy_script part to read this:</p>
 
         <div class="highlight"><pre><span></span><span class="l l-Scalar l-Scalar-Plain">deploy_script</span><span class="p p-Indicator">:</span>
-  <span class="p p-Indicator">-</span> <span class="s">"echo</span><span class="nv"> </span><span class="s">[pypi]</span><span class="nv"> </span><span class="s">&gt;</span><span class="nv"> </span><span class="s">%USERPROFILE%\\.pypirc"</span>
-  <span class="p p-Indicator">-</span> <span class="s">"echo</span><span class="nv"> </span><span class="s">username:</span><span class="nv"> </span><span class="s">user</span><span class="nv"> </span><span class="s">&gt;&gt;</span><span class="nv"> </span><span class="s">%USERPROFILE%\\.pypirc"</span>
-  <span class="p p-Indicator">-</span> <span class="s">"echo</span><span class="nv"> </span><span class="s">password:</span><span class="nv"> </span><span class="s">%password%</span><span class="nv"> </span><span class="s">&gt;&gt;</span><span class="nv"> </span><span class="s">%USERPROFILE%\\.pypirc"</span>
+  <span class="p p-Indicator">-</span> <span class="s">&quot;echo</span><span class="nv"> </span><span class="s">[pypi]</span><span class="nv"> </span><span class="s">&gt;</span><span class="nv"> </span><span class="s">%USERPROFILE%\\.pypirc&quot;</span>
+  <span class="p p-Indicator">-</span> <span class="s">&quot;echo</span><span class="nv"> </span><span class="s">username:</span><span class="nv"> </span><span class="s">user</span><span class="nv"> </span><span class="s">&gt;&gt;</span><span class="nv"> </span><span class="s">%USERPROFILE%\\.pypirc&quot;</span>
+  <span class="p p-Indicator">-</span> <span class="s">&quot;echo</span><span class="nv"> </span><span class="s">password:</span><span class="nv"> </span><span class="s">%password%</span><span class="nv"> </span><span class="s">&gt;&gt;</span><span class="nv"> </span><span class="s">%USERPROFILE%\\.pypirc&quot;</span>
   <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">python setup.py sdist bdist_wheel upload</span>
-        
-</pre></div>
-</li>
+</pre></div></li>
     </ol>
 
-    <site-tags tags="appveyor, ci, python, wheels"></site-tags>
+    <site-tags tags='appveyor, ci, python, wheels'></site-tags>
     <site-suffix></site-suffix>
-  </div>
 
-</body></html>
+
+      </m-typography>
+    </div>
+  </body>
+

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+
+<head>
+  <title>KaTeX math previewer</title>
+  <script defer src="/dist/pack.js"></script>
+  <+ require="base.html" script="katex.vue.dart.js">
+
+  <link rel="stylesheet"
+        href="//cdnjs.cloudflare.com/ajax/libs/KaTeX/0.2.0/katex.min.css">
+  <script src="//cdnjs.cloudflare.com/ajax/libs/KaTeX/0.2.0/katex.min.js">
+  </script>
+</head>
+
+<+@ body>
+    <site-navbar side-title="KaTeX"></site-navbar>
+
+    <p>
+      A KaTeX demo page. Type in your math, and see it rendered. Or you can get a
+      big, red parse error.</p>
+
+    <math-preview></math-preview>
+
+</+@>

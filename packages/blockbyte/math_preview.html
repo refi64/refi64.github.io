@@ -1,0 +1,30 @@
+<template vuedart>
+  <div :style="{'--mdc-theme-primary': hasError ? '#C51162' : 'var(--mdc-theme-secondary)'}">
+    <m-textfield id="math-field" v-model="math">
+      <m-floating-label for="math-field">Math expression</m-floating-label>
+      <m-line-ripple slot="bottomLine"></m-line-ripple>
+    </m-textfield>
+
+    <transition name="error" mode="out-in">
+      <m-textfield-helptext v-if="hasError">{{error}}</m-textfield-helptext>
+      <div v-else v-html="result"></div>
+    </transition>
+  </div>
+</template>
+
+<style scoped>
+
+  .mdc-text-field--focused:not(.mdc-text-field--disabled) .mdc-floating-label {
+    color: var(--mdc-theme-primary) !important;
+  }
+
+  .error-enter-active, .error-leave-active {
+    transition: all 0.3s ease;
+  }
+
+  .error-enter, .error-leave-to {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+
+</style>

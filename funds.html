@@ -1,38 +1,74 @@
-<!DOCTYPE html><html><head>
-  <title>refi64's BlockByte</title>
-  <script defer="" src="/dist/pack.js"></script>
-<script defer="" src="page.initialize.dart.js"></script>
+<!DOCTYPE html>
 
+<head>
+  <title>re:fi.64's BlockByte</title>
+  <script defer src="/dist/pack.js"></script>
+</script>
+<script defer src="funds.vue.dart.js"></script>
+<link rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Roboto:400,400italic,700|Roboto+Mono|Montserrat:400,500|Material+Icons">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta charset="utf-8">
 
 <style>
-  a, a:visited:not(.md-button) { text-decoration: none; }
-  a:hover:not(.md-button) { text-decoration: underline; }
-  body #page { margin: 0 1em 1em 1em; }
+  a:not(.no-style), a:visited:not(.no-style) {
+    color: var(--mdc-theme-secondary);
+    text-decoration: none;
+
+  }
+
+  a:hover:not(.no-style) {
+    text-decoration: underline;
+  }
+
+  a.no-style, a.no-style:hover, a.no-style:visited {
+    color: black;
+    text-decoration: none;
+  }
+
+  pre {
+    font-family: "Roboto Mono", monospace;
+    margin: 1em;
+  }
+
   #moot-logo a { z-index: 0 !important; }
   .highlight { overflow-y: auto; }
   .highlight .err { border: none !important; }
 
   [v-cloak] { display: none; }
+
+  body {
+    margin: 0;
+  }
+
+  @media (min-width: 768px) {
+    body {
+      margin-left: 240px;
+    }
+  }
+
+  body #page {
+    margin: 0 1em 1em 1em;
+  }
+
+  .mdc-top-app-bar__title, .mdc-typography--headline3,
+  .mdc-typography--headline4, .mdc-typography--headline5,
+  .mdc-list-group__subheader {
+    font-family: Montserrat, Roboto, sans-serif !important;
+  }
+
+  :root {
+    --mdc-theme-primary: rgba(255, 255, 255, 0.96);
+    --mdc-theme-secondary: #0d47a1;
+    --mdc-theme-on-primary: black;
+  }
 </style>
 
 
 
 
   <style>
-    .card { margin: 1em auto; }
-
-    .card-image {
-      padding-top: 1em;
-      width: inherit !important;
-      display: block;
-      margin: auto;
-      max-width: 196px;
-      max-height: 170px;
-    }
-
-    .md-card-header .md-title {
+    .cr-name {
       text-align: center;
     }
   </style>
@@ -40,87 +76,93 @@
 
 
   <body>
-    <div v-cloak="" id="page">
-      
-  <site-navbar></site-navbar>
+    <div v-cloak id="page">
+      <m-typography>
+        
+  <site-navbar side-title="Contribute"></site-navbar>
 
-  <h1>Contribute</h1>
-
-  <p>You can also contribute via <a href="https://paypal.me/refi64">PayPal</a></p>
+  <p>You can also contribute via <a href="https://paypal.me/refi64">PayPal</a>.</p>
 
   <p>Thanks! :D</p>
 
-  <md-layout md-row="" md-gutter="">
-    
+  <m-layout-grid>
+    <m-layout-grid-inner>
+      
 
-    
-      <md-card class="card">
-        <md-card-media>
-          <img class="card-image" src="/funds/bitcoin.png">
-        </md-card-media>
+      
+        <m-layout-grid-cell :span-phone="4" :span-tablet="4" :span-desktop="3">
+          <a class="no-style" href="bitcoin:bc1qrnw7duuwnnddgw2uzn0fd744k3p7xphv0ec2jc">
+            <m-card primary-action>
+              <m-card-media
+                class="card-media" slot="media"
+                style="background-image: url(/funds/bitcoin.png)">
+              </m-card-media>
 
-        <md-card-header>
-          <div class="md-title">BTC</div>
+              <m-typo-headline class="cr-name" :level="5">BTC SegWit</m-typo-headline>
+            </m-card>
+          </a>
+        </m-layout-grid-cell>
+      
+      
+        <m-layout-grid-cell :span-phone="4" :span-tablet="4" :span-desktop="3">
+          <a class="no-style" href="bitcoin:168oT9HvSFZj2TWmeQzav1hKJMQo42TECo">
+            <m-card primary-action>
+              <m-card-media
+                class="card-media" slot="media"
+                style="background-image: url(/funds/bitcoin-std.png)">
+              </m-card-media>
 
-          <a href="bitcoin:bc1qrnw7duuwnnddgw2uzn0fd744k3p7xphv0ec2jc">bc1qrnw7duuwnnddgw2uzn0fd744k3p7xphv0ec2jc</a>
-        </md-card-header>
-      </md-card>
-    
-    
-      <md-card class="card">
-        <md-card-media>
-          <img class="card-image" src="/funds/bitcoin-std.png">
-        </md-card-media>
+              <m-typo-headline class="cr-name" :level="5">BTC Plain</m-typo-headline>
+            </m-card>
+          </a>
+        </m-layout-grid-cell>
+      
+      
+        <m-layout-grid-cell :span-phone="4" :span-tablet="4" :span-desktop="3">
+          <a class="no-style" href="iban:XE17KAT1E2S6ATN64G2IHHKRUFUX6BBNN55">
+            <m-card primary-action>
+              <m-card-media
+                class="card-media" slot="media"
+                style="background-image: url(/funds/ethereum.png)">
+              </m-card-media>
 
-        <md-card-header>
-          <div class="md-title">BTC (non-SegWit)</div>
+              <m-typo-headline class="cr-name" :level="5">ETH</m-typo-headline>
+            </m-card>
+          </a>
+        </m-layout-grid-cell>
+      
+      
+        <m-layout-grid-cell :span-phone="4" :span-tablet="4" :span-desktop="3">
+          <a class="no-style" href="litecoin:LgLak1KqkvMRxf4bKizYWnawQEpvAHQcbw">
+            <m-card primary-action>
+              <m-card-media
+                class="card-media" slot="media"
+                style="background-image: url(/funds/litecoin.png)">
+              </m-card-media>
 
-          <a href="bitcoin:168oT9HvSFZj2TWmeQzav1hKJMQo42TECo">168oT9HvSFZj2TWmeQzav1hKJMQo42TECo</a>
-        </md-card-header>
-      </md-card>
-    
-    
-      <md-card class="card">
-        <md-card-media>
-          <img class="card-image" src="/funds/ethereum.png">
-        </md-card-media>
+              <m-typo-headline class="cr-name" :level="5">LTC</m-typo-headline>
+            </m-card>
+          </a>
+        </m-layout-grid-cell>
+      
+      
+        <m-layout-grid-cell :span-phone="4" :span-tablet="4" :span-desktop="3">
+          <a class="no-style" href="bitcoincash:17jfwb6Zr149cVew8KmGLNHP7xkQ6Xg3P8">
+            <m-card primary-action>
+              <m-card-media
+                class="card-media" slot="media"
+                style="background-image: url(/funds/bitcoin-cash.png)">
+              </m-card-media>
 
-        <md-card-header>
-          <div class="md-title">ETH</div>
+              <m-typo-headline class="cr-name" :level="5">BCH</m-typo-headline>
+            </m-card>
+          </a>
+        </m-layout-grid-cell>
+      
+    </m-layout-grid-inner>
+  </m-layout-grid>
 
-          <a href="iban:XE17KAT1E2S6ATN64G2IHHKRUFUX6BBNN55">0xadc94e2a9e12189a89259381d0236eecf54a6be9</a>
-        </md-card-header>
-      </md-card>
-    
-    
-      <md-card class="card">
-        <md-card-media>
-          <img class="card-image" src="/funds/litecoin.png">
-        </md-card-media>
-
-        <md-card-header>
-          <div class="md-title">LTC</div>
-
-          <a href="litecoin:LgLak1KqkvMRxf4bKizYWnawQEpvAHQcbw">LgLak1KqkvMRxf4bKizYWnawQEpvAHQcbw</a>
-        </md-card-header>
-      </md-card>
-    
-    
-      <md-card class="card">
-        <md-card-media>
-          <img class="card-image" src="/funds/bitcoin-cash.png">
-        </md-card-media>
-
-        <md-card-header>
-          <div class="md-title">BCH</div>
-
-          <a href="bitcoincash:17jfwb6Zr149cVew8KmGLNHP7xkQ6Xg3P8">17jfwb6Zr149cVew8KmGLNHP7xkQ6Xg3P8</a>
-        </md-card-header>
-      </md-card>
-    
-  </md-layout>
-
+      </m-typography>
     </div>
-  
+  </body>
 
-</body></html>

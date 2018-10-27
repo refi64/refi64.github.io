@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+
+<head>
+  <title>APT Repository</title>
+  <+ require="base.html">
+
+  <link rel="stylesheet"
+        href="//cdnjs.cloudflare.com/ajax/libs/KaTeX/0.2.0/katex.min.css">
+  <script src="//cdnjs.cloudflare.com/ajax/libs/KaTeX/0.2.0/katex.min.js">
+  </script>
+</head>
+
+<+@ body>
+    <site-navbar site-title="apt"></site-navbar>
+
+    <link-header id="packages">Packages</link-header>
+
+    <ul>
+      <li>
+        <b>gn:</b> A packaged version of
+        <a href="https://chromium.googlesource.com/chromium/src/tools/gn/">Google's GN
+        build system</a>.</li>
+      <li>
+        <b>howl:</b> A packaged version of <a href="https://howl.io/">Howl</a>.</li>
+      </li>
+    </ul>
+
+    <link-header id="directions">Directions</link-header>
+
+    <pygments>
+$ curl -s https://refi64.com/apt/PUBLIC.KEY | sudo apt-key add -
+$ echo "deb https://refi64.com/apt `lsb_release -sc` `lsb_release -sc`" | sudo tee -a /etc/apt/sources.list
+$ sudo apt update
+    </pygments>
+
+    <site-suffix></site-suffix>
+
+</+@>

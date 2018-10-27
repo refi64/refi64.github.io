@@ -1,0 +1,25 @@
+<template vuedart>
+  <transition-group name="tag-changes" tag="m-chip-set">
+    <a v-for="(tag, index) in tagsList" :key="tag" :href="'/tags.html#' + tag" class="no-style">
+      <m-chip>
+        {{tag}}
+      </m-chip>
+    </a>
+  </transition-group>
+</template>
+
+<style scoped>
+
+  .tag-changes-enter-active {
+    transition: opacity 0.3s;
+  }
+
+  .tag-changes-enter {
+    opacity: 0;
+  }
+
+  .tag-changes-move {
+    transition: all 1s;
+  }
+
+</style>

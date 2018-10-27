@@ -1,14 +1,79 @@
-<!DOCTYPE html><html><head>
+<!DOCTYPE html>
+
+<head>
   <title>Going from Polymer to Vue, from JavaScript to Dart</title>
-  <script defer="" src="/dist/pack.js"></script>
-  <link rel="stylesheet" href="/dist/pack.css">
-  <script defer="" src="../page.initialize.dart.js"></script>
-  
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script defer src="/dist/pack.js"></script>
+</script>
+<script defer src="../page.vue.dart.js"></script>
+<link rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Roboto:400,400italic,700|Roboto+Mono|Montserrat:400,500|Material+Icons">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="utf-8">
+
+<style>
+  a:not(.no-style), a:visited:not(.no-style) {
+    color: var(--mdc-theme-secondary);
+    text-decoration: none;
+
+  }
+
+  a:hover:not(.no-style) {
+    text-decoration: underline;
+  }
+
+  a.no-style, a.no-style:hover, a.no-style:visited {
+    color: black;
+    text-decoration: none;
+  }
+
+  pre {
+    font-family: "Roboto Mono", monospace;
+    margin: 1em;
+  }
+
+  #moot-logo a { z-index: 0 !important; }
+  .highlight { overflow-y: auto; }
+  .highlight .err { border: none !important; }
+
+  [v-cloak] { display: none; }
+
+  body {
+    margin: 0;
+  }
+
+  @media (min-width: 768px) {
+    body {
+      margin-left: 240px;
+    }
+  }
+
+  body #page {
+    margin: 0 1em 1em 1em;
+  }
+
+  .mdc-top-app-bar__title, .mdc-typography--headline3,
+  .mdc-typography--headline4, .mdc-typography--headline5,
+  .mdc-list-group__subheader {
+    font-family: Montserrat, Roboto, sans-serif !important;
+  }
+
+  :root {
+    --mdc-theme-primary: rgba(255, 255, 255, 0.96);
+    --mdc-theme-secondary: #0d47a1;
+    --mdc-theme-on-primary: black;
+  }
+</style>
+
+
+
 </head>
 
-<body>
-  <div id="page" v-cloak="">
+
+  <body>
+    <div v-cloak id="page">
+      <m-typography>
+        
+
     <site-navbar></site-navbar>
     <site-title created-on="2017-10-10"></site-title>
 
@@ -19,7 +84,7 @@
 
     <link-header id="polymer">What was wrong with Polymer?</link-header>
 
-    <link-header small="" id="shadow">Shadow DOM isn't ready for prime time</link-header>
+    <link-header small id="shadow">Shadow DOM isn't ready for prime time</link-header>
 
     <p>Shadow DOM is a cool idea. However, in practice...not so much.</p>
 
@@ -44,7 +109,7 @@
       Prism work, because I reached the point where I didn't want to maintain the freaking
       code mess.</p>
 
-    <link-header small="" id="es6">I don't like ES6</link-header>
+    <link-header small id="es6">I don't like ES6</link-header>
 
     <p>Well, maybe not ES6 as much as the tooling around it.</p>
 
@@ -63,7 +128,7 @@
       mind...because it's fun. However, I don't find working with these over-engineered
       build tools fun <i>at all</i>.</p>
 
-    <link-header small="" id="dart">
+    <link-header small id="dart">
       I wanted to use Dart, but Polymer+Dart is a lost cause</link-header>
 
     <p>
@@ -96,7 +161,7 @@
       Polymer -&gt; Vue transition significantly easier! (It also has atrocious load times
       because of all the AJAX calls for HTML imports, but ehh...)</p>
 
-    <link-header small="" id="material">VueMaterial is seriously great</link-header>
+    <link-header small id="material">VueMaterial is seriously great</link-header>
 
     <p>
       Oddly enough, you'd expect Google's web framework to have the best material design
@@ -117,7 +182,7 @@
       And thus the <a href="http://www.dailymotion.com/video/x5upu9o">rabBIThole</a>
       began...</p>
 
-    <link-header small="" id="vuedart">Enter VueDart</link-header>
+    <link-header small id="vuedart">Enter VueDart</link-header>
 
     <p>
       This series of events is what led me to develop
@@ -141,7 +206,7 @@
       Note that <i>this site is built using the GitHub version, not the release</i>. Several
       features (like scoped styles) aren't in a release variant yet.</p>
 
-    <link-header small="" id="transition">The transition</link-header>
+    <link-header small id="transition">The transition</link-header>
 
     <p>
       It was actually a lot easier than I thought. The JS to Dart conversions were rather
@@ -169,6 +234,9 @@
 
     <site-tags tags="programming, website, polymer, dart, vue"></site-tags>
     <site-suffix></site-suffix>
-  </div>
 
-</body></html>
+
+      </m-typography>
+    </div>
+  </body>
+

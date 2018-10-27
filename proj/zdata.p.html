@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+
+<head>
+  <title>zdata</title>
+  <script defer src="/dist/pack.js"></script>
+  <+ require="base.html">
+</head>
+
+<+@ body>
+
+    <site-navbar side-title="zdata"></site-navbar>
+
+    <p>
+      zdata is an Android app that compresses applications to reduce their data usage.
+      More info is available on the
+      <a href="https://forum.xda-developers.com/android/apps-games/alpha-zdata-app-makes-apps-space-t3655656">
+        XDA page</a>.</p>
+
+    <link-header id="notes">Important Information</link-header>
+
+    <ul>
+      <li><b>Do NOT try using zdata on any system apps!</b></li>
+      <li>
+        When you boot up your device, make sure that you wait for zdata to say it's
+        mounted the apps before trying to use them.</li>
+      <li>Make sure you disable zdata before uninstalling an app.</li>
+      <li>
+        zdata doesn't always have a major effect, if it has an effect at all.</li>
+    </ul>
+
+    <link-header id="downloads">Downloads</link-header>
+
+    <link-header id="v0.2.0" small>Version 0.2.0</link-header>
+
+    <p><a href="https://play.google.com/store/apps/details?id=com.refi64.zdata.app">
+      Google Play Store.</a></p>
+    <p><a href="https://forum.xda-developers.com/devdb/project/dl/?id=27645">
+      XDA DevDB.</a></p>
+    <p><a href="https://forum.xda-developers.com/devdb/project/dl/?id=27646">
+      XDA DevDB (debug build, only use on X86 devices).</a></p>
+
+    <link-header id="v0.1.3" small>Version 0.1.3</link-header>
+
+    <p><a href="https://forum.xda-developers.com/devdb/project/dl/?id=26244">
+      XDA DevDB.</a></p>
+    <p><a href="https://forum.xda-developers.com/devdb/project/dl/?id=26245">
+      XDA DevDB (debug build, only use on X86 devices).</a></p>
+    <p><a href="http://www.mediafire.com/file/fawwnrfcayddr4e/zdata-v0.1.3-08-18-17.apk">
+      MediaFire.</a></p>
+    <p><a href="http://www.mediafire.com/file/e2yciap7cs494xy/zdata-v0.1.3-08-18-17-debug.apk">
+      MediaFire (debug build, only use on X86 devices).</a></p>
+
+    <link-header id="v0.1.2" small>Version 0.1.2</link-header>
+
+    <p><a href="https://forum.xda-developers.com/devdb/project/dl/?id=26211">
+      XDA DevDB.</a></p>
+    <p><a href="http://www.mediafire.com/file/t85zk850c0cih1d/zdata-v0.1.2-08-16-17.apk">
+      MediaFire.</a></p>
+
+    <link-header id="v0.1.1" small>Version 0.1.1</link-header>
+
+    <p><a href="http://www.mediafire.com/file/2ejrvnq1r7f42nx/zdata-v0.1.1-08-14-17.apk">
+      MediaFire.</a></p>
+
+    <link-header id="v0.1" small>Version 0.1</link-header>
+
+    <p><a href="http://www.mediafire.com/file/glvx9k1plwgphba/zdata-v0.1-08-12-17.apk">
+      MediaFire.</a></p>
+
+    <link-header id="all" small>All Downloads</link-header>
+
+    <p><a href="https://forum.xda-developers.com/devdb/project/?id=22044#downloads">
+      XDA DevDB.</p></a>
+    <p><a href="https://www.mediafire.com/folder/61w9jrgw297ji/zdata">MediaFire.</p></a>
+
+    <p><a href="https://github.com/kirbyfan64/zdata">Source code.</a></p>
+
+    <link-header id="changelog">Changelog</link-header>
+
+    <link-header id="log-v0.2.0" small>Version 0.2.0</link-header>
+
+    <ul>
+      <li>
+        App usage screen. Now you can see how much of an effect zdata is actually
+        having on your apps!</li>
+      <li>Support all Android versions down to 5.0 Lollipop.</li>
+      <li>Upgrade Flutter SDK.</li>
+    </ul>
+
+    <link-header id="log-v0.1.3" small>Version 0.1.3</link-header>
+
+    <ul>
+      <li>Avoid relying on stat and Busybox's chmod.</li>
+      <li>Add debug apks for X86 systems.</li>
+    </ul>
+
+    <link-header id="log-v0.1.2" small>Version 0.1.2</link-header>
+
+    <ul>
+      <li>Fix running under LineageOS.</li>
+      <li>Better logging in case of <i>android_app_info</i> errors.</li>
+      <li>Add experimental X86 support.</li>
+    </ul>
+
+    <link-header id="log-v0.1.1" small>Version 0.1.1</link-header>
+
+    <ul>
+      <li>Fix application data being deleted upon reboot in some cases.</li>
+    </ul>
+
+    <link-header id="log-v0.1" small>Version 0.1</link-header>
+
+    <p>Initial version.</p>
+
+    <link-header id="how">How does it work?</link-header>
+
+    <p>
+      zdata uses a technology built into Linux systems called <i>FUSE</i>, which allows you
+      to create custom filesystems and mount them over different directories. In particular,
+      zdata uses a FUSE filesystem implementation called <i>fusecompress</i>. fusecompress
+      is particularly interesting because it serves as a middle-man of sorts; when you
+      write a file to a directory fusecompress is running on, it will compress the file
+      and save it somewhere else instead.</p>
+
+    <p>
+      This is essentially how zdata works. It uses fusecompress to override an app's
+      data directory, that way any data the app saves will be compressed and saved
+      elsewhere.</p>
+
+    <site-suffix></site-suffix>
+
+</+@>

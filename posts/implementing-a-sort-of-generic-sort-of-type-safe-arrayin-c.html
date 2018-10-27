@@ -1,14 +1,79 @@
-<!DOCTYPE html><html><head>
+<!DOCTYPE html>
+
+<head>
   <title>Implementing a (sort of) generic, (sort of) type-safe array in C</title>
-  <script defer="" src="/dist/pack.js"></script>
-  <link rel="stylesheet" href="/dist/pack.css">
-  <script defer="" src="../page.initialize.dart.js"></script>
-  
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script defer src="/dist/pack.js"></script>
+</script>
+<script defer src="../page.vue.dart.js"></script>
+<link rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Roboto:400,400italic,700|Roboto+Mono|Montserrat:400,500|Material+Icons">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="utf-8">
+
+<style>
+  a:not(.no-style), a:visited:not(.no-style) {
+    color: var(--mdc-theme-secondary);
+    text-decoration: none;
+
+  }
+
+  a:hover:not(.no-style) {
+    text-decoration: underline;
+  }
+
+  a.no-style, a.no-style:hover, a.no-style:visited {
+    color: black;
+    text-decoration: none;
+  }
+
+  pre {
+    font-family: "Roboto Mono", monospace;
+    margin: 1em;
+  }
+
+  #moot-logo a { z-index: 0 !important; }
+  .highlight { overflow-y: auto; }
+  .highlight .err { border: none !important; }
+
+  [v-cloak] { display: none; }
+
+  body {
+    margin: 0;
+  }
+
+  @media (min-width: 768px) {
+    body {
+      margin-left: 240px;
+    }
+  }
+
+  body #page {
+    margin: 0 1em 1em 1em;
+  }
+
+  .mdc-top-app-bar__title, .mdc-typography--headline3,
+  .mdc-typography--headline4, .mdc-typography--headline5,
+  .mdc-list-group__subheader {
+    font-family: Montserrat, Roboto, sans-serif !important;
+  }
+
+  :root {
+    --mdc-theme-primary: rgba(255, 255, 255, 0.96);
+    --mdc-theme-secondary: #0d47a1;
+    --mdc-theme-on-primary: black;
+  }
+</style>
+
+
+
 </head>
 
-<body>
-  <div id="page" v-cloak="">
+
+  <body>
+    <div v-cloak id="page">
+      <m-typography>
+        
+
     <site-navbar></site-navbar>
     <site-title created-on="2015-11-28"></site-title>
 
@@ -49,13 +114,11 @@
 <span class="kt">int</span> <span class="n">a</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">b</span><span class="o">=</span><span class="mi">2</span><span class="p">;</span>
 <span class="n">list_append</span><span class="p">(</span><span class="n">mylist</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">a</span><span class="p">);</span>
 <span class="c1">// We can get the first element of the list with l[0] and the length with list_len:</span>
-<span class="n">printf</span><span class="p">(</span><span class="s">"%zu %d</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">list_len</span><span class="p">(</span><span class="n">mylist</span><span class="p">),</span> <span class="o">*</span><span class="n">mylist</span><span class="p">[</span><span class="mi">0</span><span class="p">]);</span> <span class="c1">// Prints 1 1.</span>
+<span class="n">printf</span><span class="p">(</span><span class="s">&quot;%zu %d</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">list_len</span><span class="p">(</span><span class="n">mylist</span><span class="p">),</span> <span class="o">*</span><span class="n">mylist</span><span class="p">[</span><span class="mi">0</span><span class="p">]);</span> <span class="c1">// Prints 1 1.</span>
 <span class="n">list_append</span><span class="p">(</span><span class="n">mylist</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">b</span><span class="p">);</span>
-<span class="n">printf</span><span class="p">(</span><span class="s">"%zu %d %d</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">list_len</span><span class="p">(</span><span class="n">mylist</span><span class="p">),</span> <span class="o">*</span><span class="n">mylist</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="o">*</span><span class="n">mylist</span><span class="p">[</span><span class="mi">1</span><span class="p">]);</span> <span class="c1">// Prints 2 1 2.</span>
+<span class="n">printf</span><span class="p">(</span><span class="s">&quot;%zu %d %d</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">list_len</span><span class="p">(</span><span class="n">mylist</span><span class="p">),</span> <span class="o">*</span><span class="n">mylist</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="o">*</span><span class="n">mylist</span><span class="p">[</span><span class="mi">1</span><span class="p">]);</span> <span class="c1">// Prints 2 1 2.</span>
 <span class="n">list_free</span><span class="p">(</span><span class="n">mylist</span><span class="p">);</span>
-    
 </pre></div>
-
 
     <p>
       Note that I used the term <code>list</code>, not <code>array</code>, since I'm
@@ -83,9 +146,7 @@
 <span class="p">...</span>
 
 <span class="cp">#endif</span>
-    
 </pre></div>
-
 
     <p>Yeah, we all know what this is for! Joyous header files.</p>
 
@@ -94,9 +155,7 @@
     <div class="highlight"><pre><span></span><span class="cp">#define list_cat2(a,b) a##b</span>
 <span class="cp">#define list_cat(a,b) list_cat2(a,b)</span>
 <span class="cp">#define list_var(b) list_cat(list_type_,list_cat(b,__LINE__))</span>
-    
 </pre></div>
-
 
     <p>
       This is just a way of creating anonymous, single-use variables inside a macro
@@ -105,9 +164,7 @@
     <link-header id="basics">The basics</link-header>
 
     <div class="highlight"><pre><span></span><span class="cp">#define List(t) t*</span>
-    
 </pre></div>
-
 
     <p>
       <i>Now</i> the interesting stuff starts! This is just a macro to make uses
@@ -115,9 +172,7 @@
       <code>List(int*)</code>.</p>
 
     <div class="highlight"><pre><span></span><span class="cp">#define list_lenref(l) ((size_t*)l)[-1]</span>
-    
 </pre></div>
-
 
     <p>I think I need to explain a moment.</p>
 
@@ -129,9 +184,7 @@
     <span class="kt">size_t</span> <span class="n">length</span><span class="p">;</span>
     <span class="n">some_type</span> <span class="n">my_array</span><span class="p">[</span><span class="n">size_here</span><span class="p">];</span>
 <span class="p">};</span>
-    
 </pre></div>
-
 
     <p>
       (Except that <code>my_array</code> can be of any size.) However, the list is
@@ -139,12 +192,10 @@
       (which gets the length of the list) needs to index BEFORE the given list to
       get the length.
 
-    </p><p>Next is the definition of <code>list_len</code>:</p>
+    <p>Next is the definition of <code>list_len</code>:</p>
 
     <div class="highlight"><pre><span></span><span class="cp">#define list_len(l) (l?list_lenref(l):0)</span>
-    
 </pre></div>
-
 
     <p>
       This is just a wrapper macro around <code>list_lenref</code> to support
@@ -154,16 +205,14 @@
 
     <p>Now is my personal favorite part: the definition of <code>list_append</code>:
 
-  </p><div class="highlight"><pre><span></span><span class="cp">#define list_append(l,x) do {\</span>
+  <div class="highlight"><pre><span></span><span class="cp">#define list_append(l,x) do {\</span>
 <span class="cp">    size_t list_var(len) = list_len(l);\</span>
 <span class="cp">    l = realloc(l?((void*)l)-sizeof(size_t):NULL,\</span>
 <span class="cp">                sizeof(void*)*(list_var(len)+1)+sizeof(size_t))+sizeof(size_t);\</span>
 <span class="cp">    list_lenref(l) = list_var(len)+1;\</span>
 <span class="cp">    l[list_lenref(l)-1] = x;\</span>
 <span class="cp">} while (0)</span>
-  
 </pre></div>
-
 
     <p>
       This is definitely the biggest macro (and arguably the most important), so
@@ -172,17 +221,13 @@
     <p>First, the length of the list is saved in an anonymous variable:</p>
 
     <div class="highlight"><pre><span></span><span class="kt">size_t</span> <span class="nf">list_var</span><span class="p">(</span><span class="n">len</span><span class="p">)</span> <span class="o">=</span> <span class="n">list_len</span><span class="p">(</span><span class="n">l</span><span class="p">);</span>\
-    
 </pre></div>
-
 
     <p>Next, the list is <code>realloc</code>'d:</p>
 
     <div class="highlight"><pre><span></span><span class="n">l</span> <span class="o">=</span> <span class="n">realloc</span><span class="p">(</span><span class="n">l</span><span class="o">?</span><span class="p">((</span><span class="kt">void</span><span class="o">*</span><span class="p">)</span><span class="n">l</span><span class="p">)</span><span class="o">-</span><span class="k">sizeof</span><span class="p">(</span><span class="kt">size_t</span><span class="p">)</span><span class="o">:</span><span class="nb">NULL</span><span class="p">,</span>\
             <span class="k">sizeof</span><span class="p">(</span><span class="kt">void</span><span class="o">*</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">list_var</span><span class="p">(</span><span class="n">len</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">+</span><span class="k">sizeof</span><span class="p">(</span><span class="kt">size_t</span><span class="p">))</span><span class="o">+</span><span class="k">sizeof</span><span class="p">(</span><span class="kt">size_t</span><span class="p">);</span>\
-    
 </pre></div>
-
 
     <p>
       This alone deserves explanation, too! The first argument to
@@ -208,9 +253,7 @@
     <p>After all that, the length of the list is updated:</p>
 
     <div class="highlight"><pre><span></span><span class="n">list_lenref</span><span class="p">(</span><span class="n">l</span><span class="p">)</span> <span class="o">=</span> <span class="n">list_var</span><span class="p">(</span><span class="n">len</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="p">;</span>\
-    
 </pre></div>
-
 
     <p>
       If you're wondering why I didn't just use <code>++list_lenref(l)</code>, it's
@@ -223,9 +266,7 @@
     <p>And the new element is assigned:</p>
 
     <div class="highlight"><pre><span></span><span class="n">l</span><span class="p">[</span><span class="n">list_lenref</span><span class="p">(</span><span class="n">l</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">x</span><span class="p">;</span>\
-    
 </pre></div>
-
 
     <p>
       All of this is wrapped in a <code>do/while</code> block to avoid
@@ -236,9 +277,7 @@
     <p>Last of all comes freeing a list:</p>
 
     <div class="highlight"><pre><span></span><span class="cp">#define list_free(l) free(l?(void*)l-sizeof(size_t):NULL)</span>
-    
 </pre></div>
-
 
     <p>
       If the list is empty, then it just tries to free <code>NULL</code>, which
@@ -248,27 +287,23 @@
 
     <link-header id="closing">Closing notes (and problems)</link-header>
 
-    </p><p>If you're wondering how the heck this is type-safe, consider:</p>
+    <p>If you're wondering how the heck this is type-safe, consider:</p>
 
     <div class="highlight"><pre><span></span><span class="n">List</span><span class="p">(</span><span class="kt">int</span><span class="o">*</span><span class="p">)</span> <span class="n">l</span><span class="p">;</span>
 <span class="kt">char</span> <span class="n">c</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
 <span class="n">list_append</span><span class="p">(</span><span class="n">l</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">c</span><span class="p">);</span>
-    
 </pre></div>
-
 
     <p>If I try to compile this, my compiler (Clang) says:</p>
 
-    <div class="highlight"><pre><span></span>tst.c:13:5: warning: incompatible pointer types assigning to 'int *' from 'char *' [-Wincompatible-pointer-types]
+    <div class="highlight"><pre><span></span>tst.c:13:5: warning: incompatible pointer types assigning to &#39;int *&#39; from &#39;char *&#39; [-Wincompatible-pointer-types]
     list_append(l, &amp;c);
     ^              ~~
-./list.h:16:25: note: expanded from macro 'list_append'
+./list.h:16:25: note: expanded from macro &#39;list_append&#39;
     l[list_lenref(l)-1] = x;\
                         ^
 1 warning generated.
-    
 </pre></div>
-
 
     <p>
       GCC 4.9 (which is admittedly an old version) gives a slightly less helpful
@@ -282,18 +317,14 @@ list.h:16:25: warning: assignment from incompatible pointer type
 tst.c:13:5: note: in expansion of macro ‘list_append’
      list_append(l, &amp;c);
      ^
-    
 </pre></div>
-
 
     <p>Intel's doesn't show the macro expansion, but it still works:</p>
 
-    <div class="highlight"><pre><span></span>tst.c(13): warning #556: a value of type "char *" cannot be assigned to an entity of type "int *"
+    <div class="highlight"><pre><span></span>tst.c(13): warning #556: a value of type &quot;char *&quot; cannot be assigned to an entity of type &quot;int *&quot;
       list_append(l, &amp;c);
       ^
-    
 </pre></div>
-
 
     <p>
       You can see that the compiler always notices when something isn't right, and
@@ -305,7 +336,7 @@ tst.c:13:5: note: in expansion of macro ‘list_append’
       <li>
         The list is always resized on every append, like I mentioned above. This
         would be a trivial change that I just haven't done yet.
-      </li><li>No popping from a list, which I also mentioned.</li>
+      <li>No popping from a list, which I also mentioned.</li>
       <li>
         No handling of a <code>realloc</code> failure. Again, I mentioned this
         above, too.</li>
@@ -314,12 +345,15 @@ tst.c:13:5: note: in expansion of macro ‘list_append’
         <code>list_append(some_nonexistent_variable, 0)</code> and you'll see what
         I mean. That gives a whopping 8 errors with Clang. GCC and Intel are much
         better here (they only show one), but you get the idea!
-    </li></ul>
+    </ul>
 
     <p>All in all, I still think this is a cool list implementation!</p>
 
-    <site-tags tags="c, programming, preprocessor, hack"></site-tags>
+    <site-tags tags='c, programming, preprocessor, hack'></site-tags>
     <site-suffix></site-suffix>
-  </div>
 
-</body></html>
+
+      </m-typography>
+    </div>
+  </body>
+
