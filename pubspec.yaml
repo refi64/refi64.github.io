@@ -2,29 +2,35 @@ name: blockbyte
 environment:
   sdk: ">=2.0.0 <3.0.0"
 dependencies:
+  aspen: any
   aspen_assets: any
-  html_unescape: any
-  js: any
-  user_agent: any
+  aspen_web: any
+  html_unescape: ^1.0.1
+  js: ^0.6.1
+  protic: ^0.1.2
+  user_agent: ^2.0.0
   vdmc: any
-  # vue: any
-  vue: ^0.4.0
-dependency_overrides:
-  # vue:
-    # path: /code/vuedart/vue
-    # git: "https://github.com/kirbyfan64/vuedart.git"
-  vdmc:
-    path: /code/vdmc/vdmc
-  # scopify:
-    # path: /code/scopify
-  # scopify:
-    # path: /home/ryan/scopify
-  # pygments:
-    # path: /home/ryan/pygments-dart
-  aspen_assets:
-    path: /code/aspen/assets
-  protic:
-    path: /code/protic/protic
+  vue: any
 dev_dependencies:
+  aspen_generator: any
   build_runner: any
   build_web_compilers: any
+dependency_overrides:
+  vue: any
+    # path: ../vuedart/vue
+    # path: /code/vuedart/vue
+  # scopify:
+    # path: /code/scopify
+    # path: /home/ryan/scopify
+  aspen:
+    path: ../aspen/aspen
+  aspen_assets:
+    path: ../aspen/aspen_assets
+  aspen_web:
+    path: ../aspen/aspen_web
+  aspen_generator:
+    path: ../aspen/aspen_generator
+  protic:
+    path: ../protic/protic
+  vdmc:
+    path: ../vdmc/vdmc

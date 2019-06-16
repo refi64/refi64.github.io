@@ -12,8 +12,8 @@ class Page extends VueAppBase with CommonElements {
 Page page;
 
 
-void main() {
-  init();
+void main() async {
+  await init();
   page = new Page();
   page.create();
 }

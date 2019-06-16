@@ -1,7 +1,6 @@
 @JS()
 library blockbyte.common;
 
-// import 'package:aspen_assets/aspen_assets.dart' as aspen;
 import 'package:vue/vue.dart';
 
 import 'package:vdmc/vdmc.dart';
@@ -17,6 +16,8 @@ import 'package:js/js.dart';
 import 'dart:async';
 import 'dart:convert';
 import 'dart:html';
+
+import 'assets.dart';
 
 
 Future<List<String>> getPosts() async {
@@ -49,7 +50,17 @@ void appendStyle(String href) {
 ScriptElement muutjs;
 
 
-void init() {
+Future init() async {
+  pygmentsCss.apply();
+  shareButtonCss.apply();
+
+  await Future.wait([
+    vueJs.eval(),
+    whendefinedJs.eval(),
+    shareButtonJs.eval(),
+    analyticsJs.eval(),
+  ]);
+
   VueConfig.ignoredElements = ['share-button'];
 }
 

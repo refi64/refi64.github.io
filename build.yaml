@@ -4,3 +4,22 @@ builders:
     builder_factories: ['proticBuilder']
     build_extensions: {'.p.html': ['.html']}
     auto_apply: root_package
+
+targets:
+  $default:
+    sources:
+      include:
+        - 'benchmark/**'
+        - 'bin/**'
+        - 'example/**'
+        - 'lib/**'
+        - 'node_modules/**'
+        - 'test/**'
+        - 'tool/**'
+        - 'web/**'
+        - 'pubspec.yaml'
+        - 'pubspec.lock'
+    builders:
+      'build_web_compilers|entrypoint':
+        generate_for:
+          - web/**.vue.dart
